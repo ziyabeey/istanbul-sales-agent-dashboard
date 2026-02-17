@@ -94,7 +94,7 @@ export function fixUtf8Mojibake(str: string): string {
     // "BeylikdÃƒÂ¼zÃƒÂ¼" -> "Beylikdüzü"
     const knownCorruptions: { [key: string]: string } = {
         'ÃƒÂ§': 'ç', 'ÃƒÂ¼': 'ü', 'ÃƒÂ¶': 'ö', 'Ã„ÂŸ': 'ğ', 'Ã„Â±': 'ı', 'Ã…ÂŸ': 'ş', 'Ã„Â°': 'İ',
-        'ÃÂ§': 'ç', 'ÃÂ¼': 'ü', 'ÃÂ¶': 'ö', 'ÃÂŸ': 'ğ', 'ÃÂ±': 'ı', 'ÃÂ': 'ş', // Variations
+        'ÃÂ§': 'ç', 'ÃÂ¼': 'ü', 'ÃÂ¶': 'ö', 'ÃÂŸ': 'ğ', 'ÃÂ±': 'ı',
         'Ã§': 'ç', 'Ã¼': 'ü', 'Ã¶': 'ö', 'ÄŸ': 'ğ', 'Ä±': 'ı', 'ÅŸ': 'ş', 'Ä°': 'İ' // Single mojibake
     };
 
@@ -106,7 +106,7 @@ export function fixUtf8Mojibake(str: string): string {
             out = out.split(key).join(knownCorruptions[key]);
         }
     });
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 5; i++) {
         if (!mojibakePattern.test(out)) break;
         try {
             // Attempt to reverse the "UTF-8 interpreted as Windows-1252/ISO-8859-1" corruption
@@ -145,9 +145,33 @@ export function fixUtf8Mojibake(str: string): string {
             // Simple heuristic: if we resolved the common mojibake patterns, we are good.
             if (decoded === out) break;
             out = decoded;
+
+            // apply direct replacements again because mixed strings can include
+            // both single and double mojibake in the same subject/body.
+            Object.keys(knownCorruptions).forEach(key => {
+                if (out.includes(key)) {
+                    out = out.split(key).join(knownCorruptions[key]);
+                }
+            });
         } catch {
             break;
         }
+    }
+    return out;
+}
+
+
+/**
+ * Repeatedly applies mojibake fixing with NFC normalization.
+ * Use this for user-visible Turkish text that may arrive double/triple corrupted.
+ */
+export function normalizeTurkishText(input: string, maxPasses: number = 5): string {
+    if (!input || typeof input !== 'string') return input;
+    let out = input;
+    for (let i = 0; i < maxPasses; i++) {
+        const next = fixUtf8Mojibake(out).normalize('NFC');
+        if (next === out) break;
+        out = next;
     }
     return out;
 }

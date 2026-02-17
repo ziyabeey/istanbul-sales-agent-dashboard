@@ -7,10 +7,12 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, (process as any).cwd(), '');
   // Cloud Run/Deployment platforms inject PORT env variable
   const port = process.env.PORT ? parseInt(process.env.PORT) : 3000;
+  const explicitBase = (env.VITE_BASE_PATH || '').trim();
 
   return {
-    // Vercel/root deployment: absolute paths so assets load on all SPA routes (e.g. /leads)
-    base: mode === 'production' ? '/' : './',
+    // Default to relative assets for portability across ports/proxies/subpaths.
+    // Override with VITE_BASE_PATH (e.g. '/') when deploying at domain root.
+    base: explicitBase || './',
     plugins: [
       react(),
       visualizer({
@@ -42,7 +44,7 @@ export default defineConfig(({ mode }) => {
     },
     server: {
       port: 3000,
-      host: 'localhost'
+      host: true
     },
     preview: {
       port: port, // Use container port

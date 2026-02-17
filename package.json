@@ -14,10 +14,12 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "electron:dev": "VITE_DEV_SERVER_URL=http://localhost:5173 electron .",
-    "electron:build": "npm run build && electron-builder --mac",
-    "electron:build:win": "npm run build && electron-builder --win",
-    "electron:build:linux": "npm run build && electron-builder --linux"
+    "electron:dev": "VITE_PLATFORM=electron VITE_DEV_SERVER_URL=http://localhost:5173 electron .",
+    "electron:build": "VITE_PLATFORM=electron npm run build && electron-builder --mac",
+    "electron:build:win": "VITE_PLATFORM=electron npm run build && electron-builder --win",
+    "electron:build:linux": "VITE_PLATFORM=electron npm run build && electron-builder --linux",
+    "clean:cache": "rm -rf node_modules/.vite dist",
+    "dev:clean": "npm run clean:cache && vite"
   },
   "dependencies": {
     "@google/genai": "^1.40.0",

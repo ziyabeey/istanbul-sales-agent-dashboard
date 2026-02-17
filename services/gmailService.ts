@@ -1,4 +1,4 @@
-import { fixUtf8Mojibake } from '../utils/agentUtils';
+import { fixUtf8Mojibake, normalizeTurkishText } from '../utils/agentUtils';
 
 /** Gmail'den gelen Subject header: RFC 2047 decode + mojibake düzeltmesi. */
 function decodeAndFixSubject(raw: string): string {
@@ -38,7 +38,7 @@ function decodeAndFixSubject(raw: string): string {
     }
     parts.push(s.slice(lastIndex));
     s = parts.join('');
-    return fixUtf8Mojibake(s).normalize('NFC');
+    return normalizeTurkishText(s);
 }
 
 function escapeHtml(s: string): string {
@@ -63,6 +63,17 @@ function rfc2047Encode(value: string): string {
     const isAscii = /^[\x00-\x7F]*$/.test(value);
     if (isAscii) return value;
     return `=?utf-8?B?${subjectToBase64Utf8(value)}?=`;
+}
+
+
+/** RFC 2045: base64 body lines should be wrapped at 76 chars. */
+function wrapBase64Lines(input: string, lineLength: number = 76): string {
+    if (!input) return '';
+    const chunks: string[] = [];
+    for (let i = 0; i < input.length; i += lineLength) {
+        chunks.push(input.slice(i, i + lineLength));
+    }
+    return chunks.join('\r\n');
 }
 
 export class GmailService {
@@ -233,15 +244,9 @@ export class GmailService {
         const nl = "\r\n";
 
         // Konu: çok geçişli mojibake (çift/katlı bozulmayı düzelt), sonra NFC ve base64
-        let cleanSubject = (subject || '').trim();
-        for (let i = 0; i < 3; i++) {
-            const next = fixUtf8Mojibake(cleanSubject);
-            if (next === cleanSubject) break;
-            cleanSubject = next;
-        }
-        cleanSubject = cleanSubject.normalize('NFC');
+        const cleanSubject = normalizeTurkishText((subject || '').trim());
         const encodedSubject = `=?utf-8?B?${subjectToBase64Utf8(cleanSubject)}?=`;
-        const cleanBody = fixUtf8Mojibake(body);
+        const cleanBody = normalizeTurkishText(body || '');
 
         let msg = "";
 
@@ -257,13 +262,17 @@ export class GmailService {
             const raw = localStorage.getItem('sales_agent_profile');
             const profile = raw ? JSON.parse(raw) : {};
             if (profile.fullName) {
+                const safeFullName = normalizeTurkishText(String(profile.fullName || ''));
+                const safeRole = normalizeTurkishText(String(profile.role || ''));
+                const safeCompany = normalizeTurkishText(String(profile.companyName || ''));
+                const safeWebsite = String(profile.website || '');
                 const contentCell = `
-                            <div style="font-weight:700; font-size:18px; color:#1e293b;">${escapeHtml(profile.fullName)}</div>
-                            ${profile.role || profile.companyName ? `<div style="color:#64748b; font-size:14px; margin-top:4px;">${escapeHtml([profile.role, profile.companyName].filter(Boolean).join(' | '))}</div>` : ''}
+                            <div style="font-weight:700; font-size:18px; color:#1e293b;">${escapeHtml(safeFullName)}</div>
+                            ${safeRole || safeCompany ? `<div style="color:#64748b; font-size:14px; margin-top:4px;">${escapeHtml([safeRole, safeCompany].filter(Boolean).join(' | '))}</div>` : ''}
                             <div style="margin-top:8px; font-size:14px; color:#64748b;">
                                 ${profile.phone ? `<span>${escapeHtml(profile.phone)}</span>` : ''}
-                                ${profile.phone && profile.website ? ' · ' : ''}
-                                ${profile.website ? `<a href="${escapeHtml(profile.website)}" style="color:#4f46e5; text-decoration:none;">${escapeHtml(profile.website)}</a>` : ''}
+                                ${profile.phone && safeWebsite ? ' · ' : ''}
+                                ${safeWebsite ? `<a href="${escapeHtml(safeWebsite)}" style="color:#4f46e5; text-decoration:none;">${escapeHtml(safeWebsite)}</a>` : ''}
                             </div>
                         `;
                 signatureHtml = `
@@ -328,7 +337,7 @@ export class GmailService {
         const htmlBytes = new TextEncoder().encode(htmlBody);
         let htmlBinary = '';
         for (let i = 0; i < htmlBytes.length; i++) htmlBinary += String.fromCharCode(htmlBytes[i]);
-        const htmlBase64 = btoa(htmlBinary);
+        const htmlBase64 = wrapBase64Lines(btoa(htmlBinary));
 
         msg += `--${boundary}${nl}`;
         msg += `Content-Type: text/html; charset=utf-8${nl}`;
@@ -344,7 +353,7 @@ export class GmailService {
                 msg += `Content-Description: ${encodedFilename}${nl}`;
                 msg += `Content-Disposition: attachment; filename="${encodedFilename}"; size=${att.content.length}${nl}`;
                 msg += `Content-Transfer-Encoding: base64${nl}${nl}`;
-                msg += `${att.content}${nl}${nl}`;
+                msg += `${wrapBase64Lines(att.content)}${nl}${nl}`;
             }
         }
 

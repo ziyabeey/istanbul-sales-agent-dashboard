@@ -4,7 +4,7 @@ import { Lead, DashboardStats } from '../types';
 import { storage } from './storage';
 import { gamificationService } from './gamificationService';
 import { decodeAudioData, playAudioBuffer, base64ToArrayBuffer } from '../utils/audioUtils';
-import { fixUtf8Mojibake } from '../utils/agentUtils';
+import { fixUtf8Mojibake, normalizeTurkishText } from '../utils/agentUtils';
 
 const getApiKey = () => process.env.API_KEY || localStorage.getItem('apiKey') || '';
 
@@ -82,11 +82,11 @@ export const aiService = {
                 config: { responseMimeType: 'application/json' }
             });
             const rawText = result.text || '{"subject": "Hata", "body": "E-posta üretilemedi."}';
-            const normalized = fixUtf8Mojibake(rawText);
+            const normalized = normalizeTurkishText(fixUtf8Mojibake(rawText));
             const parsed = JSON.parse(normalized);
             return {
-                subject: fixUtf8Mojibake(String(parsed.subject ?? 'Hata').trim()),
-                body: fixUtf8Mojibake(String(parsed.body ?? '').trim())
+                subject: normalizeTurkishText(String(parsed.subject ?? 'Hata').trim()),
+                body: normalizeTurkishText(String(parsed.body ?? '').trim())
             };
         } catch (e) {
             console.error("AI Gen Error", e);
@@ -148,11 +148,11 @@ ADIMLAR:
                 config: { responseMimeType: 'application/json' }
             });
             const text = (result as { text?: string }).text || '{}';
-            const normalized = fixUtf8Mojibake(text);
+            const normalized = normalizeTurkishText(fixUtf8Mojibake(text));
             const parsed = JSON.parse(normalized || '{}');
             return {
-                subject: fixUtf8Mojibake(String(parsed.subject || `Teklif: ${lead.firma_adi}`).trim()),
-                body: fixUtf8Mojibake(String(parsed.body || 'Detaylı teklifimiz ektedir.').trim())
+                subject: normalizeTurkishText(String(parsed.subject || `Teklif: ${lead.firma_adi}`).trim()),
+                body: normalizeTurkishText(String(parsed.body || 'Detaylı teklifimiz ektedir.').trim())
             };
         } catch (e) {
             console.error("AI Proposal Error", e);
@@ -206,11 +206,11 @@ KURALLAR:
                 config: { responseMimeType: 'application/json' }
             });
             const text = (result as { text?: string }).text || '{}';
-            const normalized = fixUtf8Mojibake(text);
+            const normalized = normalizeTurkishText(fixUtf8Mojibake(text));
             const parsed = JSON.parse(normalized || '{}');
             return {
-                subject: fixUtf8Mojibake(String(parsed.subject || `Re: ${lead.firma_adi}`).trim()),
-                body: fixUtf8Mojibake(String(parsed.body || 'Merhaba, detayları konuşmak isteriz.').trim())
+                subject: normalizeTurkishText(String(parsed.subject || `Re: ${lead.firma_adi}`).trim()),
+                body: normalizeTurkishText(String(parsed.body || 'Merhaba, detayları konuşmak isteriz.').trim())
             };
         } catch (e) {
             console.error("AI ReplyDraft Error", e);

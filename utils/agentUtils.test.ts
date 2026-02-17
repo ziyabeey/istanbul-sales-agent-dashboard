@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { getErrorMessage, isPermanentAgentError, isSystemMailbox, isBounceOrDaemonSnippet, isNonActionableInbound, fixUtf8Mojibake } from './agentUtils';
+import { getErrorMessage, isPermanentAgentError, isSystemMailbox, isBounceOrDaemonSnippet, isNonActionableInbound, fixUtf8Mojibake, normalizeTurkishText } from './agentUtils';
 
 describe('getErrorMessage', () => {
     it('returns message from Error', () => {
@@ -105,8 +105,31 @@ describe('fixUtf8Mojibake', () => {
         expect(fixed).toContain('için');
         expect(fixed).not.toContain('iÃ§');
     });
+    it('fixes real-world triple mojibake in Turkish subject', () => {
+        const broken = "BahÃƒÂ§eÃ…ÂŸehir'deki pet sahipleri iÃƒÂ§in GÃƒÂ¶zde Veteriner KliniÃ„ÂŸi gÃƒÂ¶rÃƒÂ¼nÃƒÂ¼rlÃƒÂ¼Ã„ÂŸÃƒÂ¼";
+        const fixed = fixUtf8Mojibake(broken);
+        expect(fixed).toBe("Bahçeşehir'deki pet sahipleri için Gözde Veteriner Kliniği görünürlüğü");
+    });
+
     it('returns input when decode throws', () => {
         const invalid = '\u00C3\u0087\u00C2\u00A7'; // might decode to something invalid
         expect(fixUtf8Mojibake(invalid)).toBeDefined();
+    });
+});
+
+
+describe('normalizeTurkishText', () => {
+    it('stabilizes corrupted Turkish in repeated passes', () => {
+        const broken = "BahÃƒÂ§eÃ…ÂŸehir'deki pet sahipleri iÃƒÂ§in";
+        expect(normalizeTurkishText(broken)).toBe("Bahçeşehir'deki pet sahipleri için");
+    });
+
+    it('returns clean string unchanged', () => {
+        expect(normalizeTurkishText('İstanbul için teklif')).toBe('İstanbul için teklif');
+    });
+
+    it('fixes mojibake variants seen with profile/persona texts', () => {
+        const broken = "Kim olduÄŸunuz (kÄ±sa tanÄ±m)";
+        expect(normalizeTurkishText(broken)).toBe("Kim olduğunuz (kısa tanım)");
     });
 });
