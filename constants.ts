@@ -1,0 +1,122 @@
+
+import { LeadStatus } from './types';
+
+export const STATUS_COLORS: Record<LeadStatus, string> = {
+  aktif: 'bg-emerald-100 text-emerald-800 border-emerald-200',
+  beklemede: 'bg-amber-100 text-amber-800 border-amber-200',
+  gecersiz: 'bg-gray-100 text-gray-800 border-gray-200',
+  takipte: 'bg-blue-100 text-blue-800 border-blue-200',
+  teklif_gonderildi: 'bg-purple-100 text-purple-800 border-purple-200',
+  onay_bekliyor: 'bg-indigo-100 text-indigo-800 border-indigo-200',
+  olumlu: 'bg-green-100 text-green-800 border-green-200',
+  olumsuz: 'bg-red-100 text-red-800 border-red-200',
+};
+
+export const SECTORS = [
+  'Sağlık',
+  'Restoran',
+  'Emlak',
+  'Güzellik',
+  'Diğer'
+];
+
+// Web sitesi satışı için yüksek potansiyelli KOBİ sektörleri (keşif önceliği)
+export const WEB_DESIGN_SECTORS = [
+  'Kuaför / Güzellik',
+  'Restoran / Kafe',
+  'Emlak',
+  'Sağlık (Klinik, Eczane)',
+  'Otel / Konaklama',
+  'E-ticaret / Butik',
+  'Eğitim / Kurs',
+  'Spor Salonu',
+  'Perakende',
+  'Diğer'
+];
+
+// Reordered based on user priority
+export const DISTRICTS = [
+  'Bahçeşehir',
+  'Esenyurt',
+  'Beylikdüzü',
+  'Kadıköy',
+  'Beşiktaş',
+  'Şişli',
+  'Üsküdar',
+  'Ataşehir',
+  'Beyoğlu',
+  'Bakırköy'
+];
+
+// Approximate coordinates for Istanbul districts to calculate distance without API cost
+export const DISTRICT_COORDINATES: Record<string, { lat: number, lng: number }> = {
+  'Bahçeşehir': { lat: 41.0637, lng: 28.6826 },
+  'Esenyurt': { lat: 41.0343, lng: 28.6801 },
+  'Beylikdüzü': { lat: 41.0025, lng: 28.6433 },
+  'Kadıköy': { lat: 40.9818, lng: 29.0576 },
+  'Beşiktaş': { lat: 41.0422, lng: 29.0060 },
+  'Şişli': { lat: 41.0529, lng: 28.9817 },
+  'Üsküdar': { lat: 41.0264, lng: 29.0163 },
+  'Ataşehir': { lat: 40.9930, lng: 29.1129 },
+  'Beyoğlu': { lat: 41.0286, lng: 28.9744 },
+  'Bakırköy': { lat: 40.9781, lng: 28.8742 },
+  // Fallback center of Istanbul
+  'İstanbul': { lat: 41.0082, lng: 28.9784 }
+};
+
+// Otopilot discovery/enrichment thresholds (defaults; overridable via AgentConfig)
+export const DISCOVERY_MAX_ACTIONABLE_LEADS = 5;
+export const DISCOVERY_MAX_TOTAL_ACTIVE = 100;
+export const MIN_ENRICHMENT_SCORE = 3;
+
+/** Aylık teklif hedefi (varsayılan); kullanıcı Ayarlar'dan değiştirebilir (localStorage: agent_target_teklif_ay). */
+export const TARGET_TEKLIF_AY_DEFAULT = 20;
+
+export const AGENT_ERROR_CODES = {
+  GMAIL_AUTH: 'ERR_GMAIL_AUTH',
+  GMAIL_SEND: 'ERR_GMAIL_SEND',
+  GMAIL_SYNC: 'ERR_GMAIL_SYNC',
+  AI_GENERATE: 'ERR_AI_GENERATE',
+  AI_RATE_LIMIT: 'ERR_AI_RATE_LIMIT',
+  DATA_FETCH: 'ERR_DATA_FETCH',
+  DATA_SAVE: 'ERR_DATA_SAVE',
+  RATE_LIMIT: 'ERR_RATE_LIMIT',
+  UNKNOWN: 'ERR_UNKNOWN'
+};
+
+export const SYSTEM_PROMPT = `
+ROL:
+Sen İstanbul'daki yeni şirketler için çalışan, kendini sürekli geliştiren bir Yapay Zeka Satış Ajanısın.
+Şu an bir web dashboard üzerinden yönetici (insan) ile yazışıyorsun.
+
+AMACIN: Zamanla kendini geliştirmek ve satış hunisini optimize etmektir.
+
+SÜREKLİ İYİLEŞTİRME DÖNGÜSÜ (Her etkileşimden sonra uygula):
+1. DEĞERLENDİRME: Cevabın başarısını şu kriterlere göre ölç: Doğruluk, Netlik, Hız, Memnuniyet.
+2. HATA ANALİZİ: Eğer başarısızlık varsa nedenini sınıflandır:
+   - Bilgi eksikliği
+   - Yanlış çıkarım
+   - Yetersiz aksiyon
+   - Ton uyumsuzluğu
+3. DÜZELTME: Her hata için bir düzeltme önerisi üret:
+   - Prompt iyileştirmesi
+   - Bilgi tabanı güncellemesi
+   - Ek takip sorusu
+4. TEST VE KIYASLAMA: Kendini test et ve eski cevaplarınla kıyasla.
+5. RAPORLAMA: Öğrenimlerini şu formatta özetle:
+   "Ne öğrendim, neyi değiştirdim, neyi iyileştireceğim."
+
+TEMEL GÖREVLERİN:
+1. Lead bulmak ve nitelendirmek.
+2. Websitesi kontrolü yapmak.
+3. E-posta ve WhatsApp üzerinden iletişim kurmak.
+4. Teklif süreçlerini yönetmek.
+
+İLETİŞİM KURALLARI:
+- Kısa, net ve profesyonel cevaplar ver.
+- Her cevabının sonunda yöneticiye bir sonraki adım için somut bir öneri sun.
+
+KRİTİK SENARYOLAR:
+- "Bütçe yok" diyenlere uygun maliyetli paket öner.
+- "Sıcak lead" tespit ettiğinde yöneticiyi hemen uyar.
+`;

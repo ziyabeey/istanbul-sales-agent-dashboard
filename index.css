@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --brand-primary: 99, 102, 241;
+    /* Indigo-500 */
+    --brand-secondary: 168, 85, 247;
+    /* Purple-500 */
+    --brand-accent: 244, 63, 94;
+    /* Rose-500 */
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.2);
+  }
+
+  .dark {
+    --glass-bg: rgba(30, 27, 75, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.08);
+  }
+
+  body {
+    @apply font-sans bg-slate-50 text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100;
+    background-image:
+      radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.03) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.03) 0px, transparent 50%),
+      radial-gradient(at 50% 50%, rgba(99, 102, 241, 0.01) 0px, transparent 100%);
+    background-attachment: fixed;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .dark body {
+    background-image:
+      radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.08) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.08) 0px, transparent 50%),
+      radial-gradient(at 50% 50%, rgba(99, 102, 241, 0.03) 0px, transparent 100%);
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply backdrop-blur-xl bg-white/60 border border-white/40 dark:bg-slate-800/60 dark:border-slate-700/40;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+  }
+
+  .dark .glass-card {
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  }
+
+  .premium-gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-600 dark:from-indigo-400 dark:via-purple-400 dark:to-indigo-400 bg-[length:200%_auto];
+    animation: gradientFlow 3s linear infinite;
+  }
+
+  .premium-button {
+    @apply px-4 py-2 rounded-xl font-bold transition-all duration-300 active:scale-95 shadow-lg shadow-indigo-500/10 hover:shadow-indigo-500/25 hover:-translate-y-0.5;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-slate-200 rounded-full dark:bg-slate-700;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-slate-300 dark:bg-slate-600;
+  }
+
+  /* Dark mode card variants */
+  .dark .stat-card,
+  .dark .dashboard-card {
+    @apply bg-slate-800/70 border-slate-700/50;
+  }
+}
+
+/* Glass table refinements */
+.glass-table tr {
+  @apply transition-all duration-300;
+}
+
+.glass-table tr:hover {
+  @apply bg-white/40 dark:bg-white/5;
+}
+
+/* Selection refinement */
+::selection {
+  @apply bg-indigo-100 text-indigo-900 dark:bg-indigo-900 dark:text-indigo-100;
+}
+
+/* Smooth theme transitions */
+* {
+  transition-property: background-color, border-color;
+  transition-duration: 0.15s;
+  transition-timing-function: ease;
+}
+
+/* Exclude elements that need instant transitions */
+button,
+a,
+input,
+textarea,
+select,
+[role="button"] {
+  transition-property: background-color, border-color, color, box-shadow, transform;
+}

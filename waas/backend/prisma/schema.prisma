@@ -1,0 +1,41 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id // Clerk ID
+  email     String   @unique
+  stripeId  String?
+  sites     Site[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Site {
+  id           String   @id @default(uuid())
+  name         String
+  subdomain    String   @unique
+  customDomain String?  @unique
+  userId       String
+  user         User     @relation(fields: [userId], references: [id])
+  pages        Page[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Page {
+  id        String   @id @default(uuid())
+  siteId    String
+  site      Site     @relation(fields: [siteId], references: [id], onDelete: Cascade)
+  title     String
+  slug      String
+  content   Json     @default("{}")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([siteId, slug])
+}

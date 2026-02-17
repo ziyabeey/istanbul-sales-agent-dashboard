@@ -1,0 +1,107 @@
+{
+  "name": "istanbul-ai-sales-agent",
+  "private": true,
+  "version": "1.2.0",
+  "type": "module",
+  "main": "electron/main.js",
+  "author": "Istanbul AI Sales Team",
+  "description": "AI-Powered Sales Agent Dashboard for Istanbul Market",
+  "scripts": {
+    "dev": "vite",
+    "start": "vite preview",
+    "build": "tsc && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "electron:dev": "VITE_DEV_SERVER_URL=http://localhost:5173 electron .",
+    "electron:build": "npm run build && electron-builder --mac",
+    "electron:build:win": "npm run build && electron-builder --win",
+    "electron:build:linux": "npm run build && electron-builder --linux"
+  },
+  "dependencies": {
+    "@google/genai": "^1.40.0",
+    "firebase": "^10.8.0",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^2.5.1",
+    "lucide-react": "^0.344.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.3",
+    "recharts": "^2.12.2",
+    "sonner": "^2.0.7"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.24",
+    "@types/react": "^18.2.64",
+    "@types/react-dom": "^18.2.21",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.18",
+    "electron": "^40.4.0",
+    "electron-builder": "^26.7.0",
+    "postcss": "^8.4.35",
+    "rollup-plugin-visualizer": "^6.0.5",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.2.2",
+    "vite": "^5.1.4",
+    "vitest": "^4.0.18"
+  },
+  "build": {
+    "appId": "com.istanbul.ai-sales-agent",
+    "productName": "Istanbul AI Sales Agent",
+    "directories": {
+      "output": "release",
+      "buildResources": "build"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "build/**/*"
+    ],
+    "mac": {
+      "artifactName": "${productName}-${version}-${arch}.${ext}",
+      "category": "public.app-category.business",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "arm64",
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.png",
+      "darkModeSupport": true,
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false,
+      "entitlements": "build/entitlements.mac.plist",
+      "entitlementsInherit": "build/entitlements.mac.plist"
+    },
+    "dmg": {
+      "title": "${productName}",
+      "backgroundColor": "#1e1b4b",
+      "iconSize": 80,
+      "contents": [
+        {
+          "x": 130,
+          "y": 220
+        },
+        {
+          "x": 410,
+          "y": 220,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "build/icon.png"
+    },
+    "linux": {
+      "target": "AppImage",
+      "icon": "build/icon.png",
+      "category": "Office"
+    }
+  }
+}

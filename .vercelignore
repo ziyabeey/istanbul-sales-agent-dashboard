@@ -1,0 +1,27 @@
+# Build output is uploaded by Vercel; avoid double upload
+dist
+release
+build
+
+# Dev / test
+node_modules
+*.test.ts
+*.test.tsx
+**/__tests__
+vitest.config.ts
+vitest-setup.ts
+.reproduce_encoding.js
+
+# Docs and tooling (not needed at runtime)
+docs
+electron
+waas
+site-builder
+*.md
+!README.md
+
+# Git / IDE
+.git
+.idea
+.vscode
+.DS_Store
