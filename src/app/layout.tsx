@@ -10,6 +10,13 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "XINXIA v5.0 - Esnaf Asistanı Ekosistemi",
   description: "Türkiye'nin 3.5 milyon esnafına özel, 7/24 uyumayan, yorulmayan dijital iş arkadaşınız XINXIA v5.0 ile tanışın.",
+  manifest: "/manifest.json",
+  themeColor: "#F97316",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "XINXIA v5.0",
+  },
 };
 
 export default function RootLayout({

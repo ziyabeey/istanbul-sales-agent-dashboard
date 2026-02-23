@@ -1,0 +1,30 @@
+{
+    "currency": "TRY",
+    "base_prices": {
+        "temel": 399,
+        "standart": 799,
+        "buyume": 1499,
+        "premium": 2999,
+        "premium_plus": 4499
+    },
+    "setup_fees": {
+        "temel": 0,
+        "standart": 990,
+        "buyume": 1990,
+        "premium": 2800,
+        "premium_plus": 3500
+    },
+    "guardrails": {
+        "max_discount_percentage": 15,
+        "min_allowed_prices": {
+            "temel": 339,
+            "standart": 679,
+            "buyume": 1274,
+            "premium": 2549,
+            "premium_plus": 3824
+        },
+        "free_setup_allowed": false,
+        "max_setup_discount_percentage": 20
+    },
+    "system_prompt_instruction": "Asla min_allowed_prices değerlerinin altında fiyat teklif etme. Bedava kurulum (free_setup_allowed) tanımlı değilse asla ücretsiz kurulum sözü verme. Sadece 15% maksimum indirim yetkin var."
+}
