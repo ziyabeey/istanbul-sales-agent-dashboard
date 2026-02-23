@@ -1,7 +1,7 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Coffee, BrainCircuit, CalendarHeart, Share2, Award, Zap } from "lucide-react";
 
 const features = [
@@ -38,8 +38,11 @@ const features = [
 ];
 
 export default function FeaturesSection() {
+    const [showAll, setShowAll] = useState(false);
+    const visibleFeatures = showAll ? features : features.slice(0, 3);
+
     return (
-        <section className="py-24 bg-slate-50 relative overflow-hidden">
+        <section className="py-24 bg-slate-50 relative overflow-hidden" id="features">
 
             {/* Background Decoration */}
             <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-blue-100 opacity-50 blur-3xl"></div>
@@ -66,23 +69,48 @@ export default function FeaturesSection() {
                     </motion.p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {features.map((feature, index) => (
-                        <motion.div
-                            key={index}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-100px" }}
-                            transition={{ delay: index * 0.1, duration: 0.5 }}
-                            className="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group"
-                        >
-                            <div className="w-16 h-16 rounded-2xl bg-slate-50 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                                {feature.icon}
-                            </div>
-                            <h3 className="text-xl font-bold text-primary-900 mb-4">{feature.title}</h3>
-                            <p className="text-slate-600 leading-relaxed">{feature.description}</p>
-                        </motion.div>
-                    ))}
+                <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <AnimatePresence>
+                        {visibleFeatures.map((feature, index) => (
+                            <motion.div
+                                key={feature.title}
+                                layout
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.9 }}
+                                transition={{ duration: 0.3 }}
+                                whileHover="hover"
+                                className="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 hover:shadow-xl relative overflow-hidden group cursor-pointer"
+                            >
+                                <div className="w-16 h-16 rounded-2xl bg-slate-50 flex items-center justify-center mb-6 transition-transform duration-300 transform group-hover:-translate-y-2">
+                                    {feature.icon}
+                                </div>
+                                <h3 className="text-xl font-bold text-primary-900 mb-4">{feature.title}</h3>
+                                <p className="text-slate-600 leading-relaxed mb-4">{feature.description}</p>
+
+                                {/* Hover Panel Outline/Glow effect */}
+                                <motion.div
+                                    variants={{ hover: { opacity: 1, y: 0 }, initial: { opacity: 0, y: 10 } }}
+                                    initial="initial"
+                                    className="pt-4 border-t border-slate-100 flex items-center justify-between"
+                                >
+                                    <span className="text-secondary-500 text-sm font-semibold">Uygulamada Gör</span>
+                                    <div className="w-6 h-6 rounded-full bg-secondary-100 flex items-center justify-center text-secondary-500">→</div>
+                                </motion.div>
+                            </motion.div>
+                        ))}
+                    </AnimatePresence>
+                </motion.div>
+
+                <div className="mt-12 text-center">
+                    <motion.button
+                        onClick={() => setShowAll(!showAll)}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="inline-flex items-center justify-center px-6 py-3 border border-slate-200 shadow-sm text-sm font-medium rounded-xl text-slate-700 bg-white hover:bg-slate-50 transition-colors cursor-pointer"
+                    >
+                        {showAll ? "Daha Az Göster" : `Tüm Ajanları Gör (${features.length - 3})`}
+                    </motion.button>
                 </div>
 
             </div>

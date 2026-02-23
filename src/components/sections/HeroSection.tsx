@@ -1,8 +1,10 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/Button";
+import Link from "next/link";
+import { X, Play } from "lucide-react";
 
 /**
  * HeroSection Component
@@ -14,6 +16,8 @@ import { Button } from "@/components/ui/Button";
  * @returns {JSX.Element} The rendered Hero section.
  */
 export default function HeroSection() {
+    const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
+
     return (
         <section className="relative overflow-hidden bg-base pt-24 pb-16 md:pt-32 md:pb-24">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
@@ -40,12 +44,32 @@ export default function HeroSection() {
                         </p>
 
                         <div className="flex flex-col sm:flex-row gap-4">
-                            <Button size="lg" variant="primary" className="w-full sm:w-auto">
-                                Asistanla Tanış
-                            </Button>
-                            <Button size="lg" variant="outline" className="w-full sm:w-auto">
-                                Paketleri İncele
-                            </Button>
+                            <Link href="/onboarding" passHref legacyBehavior>
+                                <motion.a
+                                    whileHover={{ scale: 1.02 }}
+                                    whileTap={{ scale: 0.97 }}
+                                    className="w-full sm:w-auto"
+                                >
+                                    <Button size="lg" variant="primary" className="w-full">
+                                        Ücretsiz Başla
+                                    </Button>
+                                </motion.a>
+                            </Link>
+
+                            <motion.div
+                                whileHover={{ scale: 1.02 }}
+                                whileTap={{ scale: 0.97 }}
+                                className="w-full sm:w-auto"
+                            >
+                                <Button
+                                    size="lg"
+                                    variant="outline"
+                                    className="w-full flex items-center justify-center gap-2"
+                                    onClick={() => setIsVideoModalOpen(true)}
+                                >
+                                    <Play className="w-4 h-4" /> Demo İzle
+                                </Button>
+                            </motion.div>
                         </div>
 
                         <div className="mt-8 flex items-center gap-4 text-sm text-slate-500 font-medium">
@@ -104,6 +128,41 @@ export default function HeroSection() {
 
                 </div>
             </div>
+
+            {/* Video Modal */}
+            <AnimatePresence>
+                {isVideoModalOpen && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-sm"
+                        onClick={() => setIsVideoModalOpen(false)}
+                    >
+                        <motion.div
+                            initial={{ scale: 0.95, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0.95, opacity: 0 }}
+                            className="bg-white rounded-2xl overflow-hidden w-full max-w-4xl shadow-2xl relative"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <button
+                                onClick={() => setIsVideoModalOpen(false)}
+                                className="absolute top-4 right-4 z-10 w-10 h-10 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition"
+                            >
+                                <X className="w-5 h-5" />
+                            </button>
+                            <div className="aspect-video bg-slate-800 flex items-center justify-center text-slate-400">
+                                <div className="text-center">
+                                    <Play className="w-16 h-16 mx-auto mb-4 opacity-50" />
+                                    <p>Demo Video Placeholder</p>
+                                    <p className="text-sm opacity-50 mt-2">Bu alana YouTube/Vimeo iframe gelecek</p>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </section>
     );
 }

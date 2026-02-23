@@ -1,9 +1,26 @@
 "use client";
 
-import React from "react";
-import { ShieldCheck, Lock } from "lucide-react";
+import React, { useState } from "react";
+import { ShieldCheck, Lock, Mail, ExternalLink, CheckCircle2 } from "lucide-react";
+import { Button } from "@/components/ui/Button";
 
 export default function FooterTrustSection() {
+    const [email, setEmail] = useState("");
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [error, setError] = useState("");
+
+    const handleSubscribe = (e: React.FormEvent) => {
+        e.preventDefault();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            setError("Lütfen geçerli bir e-posta adresi giriniz.");
+            return;
+        }
+        setError("");
+        setIsSubmitted(true);
+        setTimeout(() => setIsSubmitted(false), 3000);
+        setEmail("");
+    };
     return (
         <footer className="bg-primary-900 border-t border-blue-800 text-blue-100 py-16">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -20,12 +37,48 @@ export default function FooterTrustSection() {
                             Türkiye'nin 3.5 milyon esnafı için geliştirilen, 7/24 uyumayan, yorulmayan dijital iş arkadaşı ekosistemi.
                         </p>
                         <div className="flex gap-4">
-                            <span className="w-10 h-10 rounded-full bg-blue-800/50 flex items-center justify-center hover:bg-blue-700 transition-colors cursor-pointer text-sm font-bold">In</span>
-                            <span className="w-10 h-10 rounded-full bg-blue-800/50 flex items-center justify-center hover:bg-blue-700 transition-colors cursor-pointer text-sm font-bold">Wa</span>
+                            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-blue-800/50 flex items-center justify-center hover:bg-blue-700 transition-colors cursor-pointer text-sm font-bold">In</a>
+                            <a href="https://whatsapp.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-blue-800/50 flex items-center justify-center hover:bg-blue-700 transition-colors cursor-pointer text-sm font-bold">Wa</a>
                         </div>
                     </div>
 
-                    <div className="col-span-1 md:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-8">
+                    <div className="col-span-1 md:col-span-4 pl-0 md:pl-8">
+                        <h3 className="text-white font-bold mb-4 tracking-wide">İletişim & Bülten</h3>
+                        <p className="text-sm text-blue-200 mb-4">Ayda bir kez dijital esnaflık hakkında ipuçları alın.</p>
+
+                        {!isSubmitted ? (
+                            <form onSubmit={handleSubscribe} className="space-y-2">
+                                <div className="flex group">
+                                    <input
+                                        type="email"
+                                        value={email}
+                                        onChange={(e) => { setEmail(e.target.value); setError(""); }}
+                                        placeholder="E-posta adresiniz"
+                                        className="w-full px-4 py-2 rounded-l-lg bg-blue-900 border border-blue-800 text-white placeholder-blue-400 focus:outline-none focus:border-secondary-500"
+                                    />
+                                    <button type="submit" className="bg-secondary-500 hover:bg-secondary-600 px-4 py-2 rounded-r-lg text-white font-medium transition-colors">
+                                        Katıl
+                                    </button>
+                                </div>
+                                {error && <p className="text-red-400 text-xs">{error}</p>}
+                            </form>
+                        ) : (
+                            <div className="flex items-center gap-2 text-green-400 bg-green-400/10 px-4 py-2.5 rounded-lg border border-green-400/20">
+                                <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
+                                <p className="text-sm font-medium">Teşekkürler! Başarıyla kaydoldunuz.</p>
+                            </div>
+                        )}
+
+                        <div className="mt-8">
+                            <a href="mailto:kurumsal@xinxia.com.tr" className="inline-flex items-center gap-2 text-sm text-white font-medium hover:text-secondary-400 transition-colors">
+                                <Mail className="w-4 h-4" />
+                                Kurumsal Teklif Al
+                                <ExternalLink className="w-3 h-3 ml-1" />
+                            </a>
+                        </div>
+                    </div>
+
+                    <div className="col-span-1 md:col-span-3 grid grid-cols-1 gap-8">
                         {/* Trust Policies */}
                         <div>
                             <h3 className="text-white font-bold mb-6 tracking-wide flex items-center gap-2">

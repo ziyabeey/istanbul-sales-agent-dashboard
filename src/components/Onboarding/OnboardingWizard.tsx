@@ -3,7 +3,8 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/Button";
-import { CheckCircle2, Store, MessageCircle, Link as LinkIcon, Award, ArrowRight } from "lucide-react";
+import { CheckCircle2, Store, MessageCircle, Link as LinkIcon, Award, ArrowRight, ArrowLeft } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const steps = [
     {
@@ -45,6 +46,14 @@ const steps = [
 export default function OnboardingWizard() {
     const [currentStepIndex, setCurrentStepIndex] = useState(0);
     const [isCompleted, setIsCompleted] = useState(false);
+    const router = useRouter();
+
+    // Form states
+    const [formData, setFormData] = useState({
+        gmbUrl: "",
+        whatsappNumber: "",
+        photoUrl: "",
+    });
 
     const handleNext = () => {
         if (currentStepIndex < steps.length - 1) {
@@ -52,6 +61,20 @@ export default function OnboardingWizard() {
         } else {
             setIsCompleted(true);
         }
+    };
+
+    const handleBack = () => {
+        if (currentStepIndex > 0) {
+            setCurrentStepIndex(currentStepIndex - 1);
+        }
+    };
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleFinish = () => {
+        router.push("/admin");
     };
 
     const currentStep = steps[currentStepIndex];
@@ -78,7 +101,7 @@ export default function OnboardingWizard() {
                     Başarıyla "Tam Donanımlı Dijital Esnaf" rozetini kazandın.
                     Asistanın şu an arka planda dükkanın için çalışmaya başladı.
                 </p>
-                <Button variant="primary" size="lg" className="w-full flex justify-center py-4">
+                <Button variant="primary" size="lg" className="w-full flex justify-center py-4" onClick={handleFinish}>
                     Kontrol Paneline Git
                 </Button>
             </motion.div>
@@ -87,6 +110,9 @@ export default function OnboardingWizard() {
 
     return (
         <div className="max-w-2xl mx-auto p-4 sm:p-8">
+            <div className="text-center mb-6 text-sm font-medium text-slate-500">
+                Adım {currentStepIndex + 1} / {steps.length}
+            </div>
             {/* Progress Bar */}
             <div className="mb-10">
                 <div className="flex justify-between mb-2">
@@ -124,12 +150,52 @@ export default function OnboardingWizard() {
                         {currentStep.description}
                     </p>
 
-                    <div className="mt-auto w-full pt-6">
+                    {/* Step Specific Inputs */}
+                    {currentStep.id === "gmb" && (
+                        <input
+                            type="text"
+                            name="gmbUrl"
+                            value={formData.gmbUrl}
+                            onChange={handleChange}
+                            placeholder="Google My Business Linki"
+                            className="w-full max-w-sm px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary-500 mb-6"
+                        />
+                    )}
+                    {currentStep.id === "whatsapp" && (
+                        <input
+                            type="tel"
+                            name="whatsappNumber"
+                            value={formData.whatsappNumber}
+                            onChange={handleChange}
+                            placeholder="WhatsApp Numaranız (Örn: 555 123 4567)"
+                            className="w-full max-w-sm px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary-500 mb-6"
+                        />
+                    )}
+                    {currentStep.id === "photo" && (
+                        <input
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) => setFormData({ ...formData, photoUrl: e.target.files?.[0]?.name || "" })}
+                            className="w-full max-w-sm px-4 py-3 mb-6"
+                        />
+                    )}
+
+                    <div className="mt-auto w-full pt-6 flex gap-4 justify-between">
+                        {currentStepIndex > 0 ? (
+                            <Button
+                                variant="outline"
+                                size="lg"
+                                onClick={handleBack}
+                                className="flex-1 max-w-[140px] flex items-center justify-center"
+                            >
+                                <ArrowLeft className="mr-2 w-5 h-5" /> Geri
+                            </Button>
+                        ) : <div className="flex-1 max-w-[140px]" />}
                         <Button
                             variant="primary"
                             size="lg"
                             onClick={handleNext}
-                            className="w-full sm:w-auto px-12 group flex items-center justify-center mx-auto"
+                            className="flex-1 group flex items-center justify-center"
                         >
                             {currentStepIndex === steps.length - 1 ? "Rozeti Kap & Bitir" : "Onayla ve Devam Et"}
                             {currentStepIndex !== steps.length - 1 && (

@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, Info } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { useRouter } from "next/navigation";
 
 const pricingPlans = [
     {
@@ -86,6 +87,15 @@ const pricingPlans = [
 
 export default function PricingSection() {
     const [activePlan, setActivePlan] = useState("premium"); // Mobile view active tab
+    const [isAnnual, setIsAnnual] = useState(false);
+    const router = useRouter();
+
+    const handlePurchase = (planId: string, basePrice: string) => {
+        const finalPrice = isAnnual
+            ? Math.floor(parseInt(basePrice.replace(/\./g, '')) * 0.8)
+            : parseInt(basePrice.replace(/\./g, ''));
+        router.push(`/onboarding?paket=${planId}&fiyat=${finalPrice}`);
+    };
 
     return (
         <section className="py-24 bg-slate-50 relative" id="pricing">
@@ -109,6 +119,23 @@ export default function PricingSection() {
                     >
                         Herkes ister bir çalışanı olsun ama esnaf bunu karşılayamaz. Biz ayda <span className="font-bold text-primary-900">399₺</span>'ye karşılıyoruz. Şeffaf fiyatlandırma, sürpriz maliyet yok.
                     </motion.p>
+
+                    {/* Billing Toggle */}
+                    <div className="flex items-center justify-center mt-8 space-x-4">
+                        <span className={`text-sm font-medium ${!isAnnual ? 'text-primary-900' : 'text-slate-500'}`}>Aylık</span>
+                        <button
+                            onClick={() => setIsAnnual(!isAnnual)}
+                            className="relative inline-flex h-6 w-11 items-center rounded-full bg-slate-200 transition-colors focus:outline-none"
+                            style={{ backgroundColor: isAnnual ? '#F97316' : '#cbd5e1' }}
+                        >
+                            <span
+                                className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${isAnnual ? 'translate-x-6' : 'translate-x-1'}`}
+                            />
+                        </button>
+                        <span className={`text-sm font-medium ${isAnnual ? 'text-primary-900' : 'text-slate-500'}`}>
+                            Yıllık <span className="text-xs text-green-500 bg-green-100 px-2 py-0.5 rounded-full ml-1">%20 İndirim</span>
+                        </span>
+                    </div>
                 </div>
 
                 {/* Mobile View Toggle (Visible only max-md) */}
@@ -118,8 +145,8 @@ export default function PricingSection() {
                             key={plan.id}
                             onClick={() => setActivePlan(plan.id)}
                             className={`snap-center shrink-0 px-6 py-3 rounded-xl font-bold transition-all ${activePlan === plan.id
-                                    ? "bg-primary-900 text-white shadow-md transform scale-105"
-                                    : "bg-white text-slate-600 border border-slate-200"
+                                ? "bg-primary-900 text-white shadow-md transform scale-105"
+                                : "bg-white text-slate-600 border border-slate-200"
                                 }`}
                         >
                             {plan.name}
@@ -155,7 +182,9 @@ export default function PricingSection() {
                                 <p className="text-slate-500 text-sm h-12 mb-4">{plan.description}</p>
 
                                 <div className="mb-6 pb-6 border-b border-slate-100">
-                                    <span className="text-3xl font-extrabold text-primary-900">{plan.price}₺</span>
+                                    <span className="text-3xl font-extrabold text-primary-900">
+                                        {isAnnual ? Math.floor(parseInt(plan.price.replace(/\./g, '')) * 0.8).toLocaleString('tr-TR') : plan.price}₺
+                                    </span>
                                     <span className="text-slate-500 font-medium">/ay</span>
                                     <p className="text-xs text-slate-400 mt-2 flex items-center justify-between">
                                         <span>Kurulum: {plan.setupFee}</span>
@@ -172,12 +201,15 @@ export default function PricingSection() {
                                     ))}
                                 </ul>
 
-                                <Button
-                                    variant={plan.popular ? "primary" : "outline"}
-                                    className={`w-full mt-auto ${plan.popular ? 'shadow-secondary-500/30' : ''}`}
-                                >
-                                    <span className="text-sm">Hemen Başla</span>
-                                </Button>
+                                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="mt-auto">
+                                    <Button
+                                        variant={plan.popular ? "primary" : "outline"}
+                                        className={`w-full ${plan.popular ? 'shadow-secondary-500/30 shadow-lg' : ''}`}
+                                        onClick={() => handlePurchase(plan.id, plan.price)}
+                                    >
+                                        <span className="text-sm">Hemen Başla</span>
+                                    </Button>
+                                </motion.div>
                             </motion.div>
                         ))}
                     </AnimatePresence>

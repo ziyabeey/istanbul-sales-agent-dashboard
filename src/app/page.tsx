@@ -1,4 +1,5 @@
 import React from "react";
+import Navbar from "@/components/layout/Navbar";
 import HeroSection from "@/components/sections/HeroSection";
 import ProblemSolutionSection from "@/components/sections/ProblemSolutionSection";
 import FeaturesSection from "@/components/sections/FeaturesSection";
@@ -8,7 +9,8 @@ import FooterTrustSection from "@/components/sections/FooterTrustSection";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-base font-sans selection:bg-secondary-500 selection:text-white">
+    <main className="min-h-screen bg-base font-sans selection:bg-secondary-500 selection:text-white relative">
+      <Navbar />
       {/* 1. Ana Karşılama Alanı */}
       <HeroSection />
 
