@@ -69,6 +69,21 @@ export async function POST(req: Request) {
             }, { status: 200 });
         }
 
+        // 1. CHECK DAILY QUOTA (Token Economy)
+        // We simulate that the user's plan is "standart" for this demonstration
+        const { checkDailyQuota } = require('@/utils/quotaManager');
+        const merchantId = customerPhone; // Using phone as ID for mock
+        const quotaStatus = await checkDailyQuota(merchantId, "standart");
+
+        if (!quotaStatus.hasQuota) {
+            // Quota exceeded, return upsell message and DO NOT process AI logic
+            return NextResponse.json({
+                success: true,
+                agent_reply: quotaStatus.message,
+                action: "QUOTA_EXCEEDED_UPSELL"
+            }, { status: 200 });
+        }
+
         // Load Guardrails and Pricing dynamically from Firestore
         let pricing: PricingSchema;
         try {
