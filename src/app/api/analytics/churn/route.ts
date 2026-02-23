@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { logAgentAction } from "@/utils/logger";
 
 /**
  * Agent 16: Churn Detective Analytics
@@ -39,6 +40,14 @@ export async function POST(req: Request) {
         let recommendedAction = "Continue standard automated follow-ups.";
         if (riskLevel === "HIGH") {
             recommendedAction = "IMMEDIATE ACTION REQUIRED: Schedule a personal call from the account manager. Offer a complimentary consultancy session.";
+
+            // Log Churn Alert to Agent 10 Operations
+            await logAgentAction({
+                agentId: "agent_16",
+                actionType: "CHURN_RISK_ALERT",
+                description: `Detected HIGH churn risk (${riskScore}/100) for customer ${customerId}. Action needed.`,
+                metadata: { customerId, riskScore }
+            });
         }
 
         return NextResponse.json({

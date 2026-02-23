@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
-import fs from "fs";
-import path from "path";
 import { generateIyzicoLink } from "@/utils/iyzico";
+import { db } from "@/utils/firebaseAdmin";
+import { logAgentAction } from "@/utils/logger";
 
 // Define strict typing for our price list
 interface PricingSchema {
@@ -16,12 +16,18 @@ interface PricingSchema {
 }
 
 /**
- * Parses the anti-hallucination JSON data.
+ * Fetches the anti-hallucination JSON data live from Firestore.
  */
-function getPricingData(): PricingSchema {
-    const filePath = path.join(process.cwd(), "data", "fiyat_listesi.json");
-    const fileContents = fs.readFileSync(filePath, "utf8");
-    return JSON.parse(fileContents) as PricingSchema;
+async function getPricingData(): Promise<PricingSchema> {
+    const docRef = db.collection('xinxia_config').doc('fiyat_listesi');
+    const docSnap = await docRef.get();
+
+    if (docSnap.exists) {
+        return docSnap.data() as PricingSchema;
+    }
+
+    // Fallback if Firestore isn't populated yet
+    throw new Error("MOCK_FIRESTORE_DATA_MISSING");
 }
 
 /**
@@ -49,6 +55,13 @@ export async function POST(req: Request) {
 
         if (["hayır", "hayir", "iptal", "stop", "dur"].includes(incomingMessage)) {
             globalBlacklist.add(customerPhone);
+            await logAgentAction({
+                agentId: "agent_5",
+                actionType: "WHATSAPP_OPTOUT",
+                description: `Customer ${customerPhone} opted out and was blacklisted.`,
+                metadata: { phone: customerPhone }
+            });
+
             return NextResponse.json({
                 success: true,
                 agent_reply: "Talebiniz alınmıştır. Numaranız iletişim listemizden (kara liste) çıkarıldı. Size bir daha mesaj gönderilmeyecektir. Sağlıklı günler dileriz.",
@@ -56,8 +69,14 @@ export async function POST(req: Request) {
             }, { status: 200 });
         }
 
-        // Load Guardrails and Pricing
-        const pricing = getPricingData();
+        // Load Guardrails and Pricing dynamically from Firestore
+        let pricing: PricingSchema;
+        try {
+            pricing = await getPricingData();
+        } catch (e) {
+            // Mock fallback just in case we didn't populate DB
+            pricing = require("@/../data/fiyat_listesi.json");
+        }
 
         let replyMessage = "";
 
@@ -84,6 +103,13 @@ export async function POST(req: Request) {
             });
 
             replyMessage = `Harika karar! 🚀 \nGüvenli ödemenizi tamamlamak ve anında kuruluma başlamak için linkiniz: \n${paymentLink}\n\nÖdeme sonrası asistanınız 2 dakika içinde WhatsApp üzerinden size 'Merhaba' diyecek.`;
+
+            await logAgentAction({
+                agentId: "agent_5",
+                actionType: "SALE_CLOSED",
+                description: `Agent successfully closed a 'Premium' plan sale over WhatsApp for ${pricing.guardrails.min_allowed_prices.premium}₺.`,
+                metadata: { phone: customerPhone, plan: "premium", price: pricing.guardrails.min_allowed_prices.premium }
+            });
         }
 
         // Default fallback
@@ -99,6 +125,11 @@ export async function POST(req: Request) {
 
     } catch (error: any) {
         console.error("WhatsApp Webhook Error:", error);
+        await logAgentAction({
+            agentId: "agent_5",
+            actionType: "SYSTEM_ERROR",
+            description: `WhatsApp Webhook crashed: ${error.message}`
+        });
         return NextResponse.json({ success: false, error: "Internal Server Error" }, { status: 500 });
     }
 }

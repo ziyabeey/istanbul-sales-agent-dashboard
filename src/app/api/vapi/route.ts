@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import fs from "fs";
-import path from "path";
+import { db } from "@/utils/firebaseAdmin";
+import { logAgentAction } from "@/utils/logger";
 
 /**
  * Handles 'Server URL / Custom Functions' callbacks from Vapi.ai
@@ -17,9 +17,24 @@ export async function POST(req: Request) {
 
             // Anti-Hallucination: Assistant asks for actual pricing data
             if (functionCall.name === "get_pricing_details") {
-                const filePath = path.join(process.cwd(), "data", "fiyat_listesi.json");
-                const fileContents = fs.readFileSync(filePath, "utf8");
-                const pricingData = JSON.parse(fileContents);
+
+                let pricingData: any;
+                const docRef = db.collection('xinxia_config').doc('fiyat_listesi');
+                const docSnap = await docRef.get();
+                if (docSnap.exists) {
+                    pricingData = docSnap.data();
+                } else {
+                    // Mock fallback
+                    pricingData = require("@/../data/fiyat_listesi.json");
+                }
+
+                // Log that voice agent fetched pricing
+                // We log it asynchronously
+                logAgentAction({
+                    agentId: "vapi_voice_assistant",
+                    actionType: "SYSTEM_ERROR", // Just a debug tag for now or we could use custom tag
+                    description: "Vapi fetched real-time pricing data via custom function.",
+                });
 
                 return NextResponse.json({
                     results: [
@@ -47,8 +62,13 @@ export async function POST(req: Request) {
         // Default Vapi Response
         return NextResponse.json({ status: "Received, no function matched" }, { status: 200 });
 
-    } catch (error) {
+    } catch (error: any) {
         console.error("Vapi Webhook Error:", error);
+        await logAgentAction({
+            agentId: "vapi_voice_assistant",
+            actionType: "VAPI_API_DELAY",
+            description: `Vapi API crashed or delayed: ${error.message}`
+        });
         return NextResponse.json({ error: "Failed to process Vapi request" }, { status: 500 });
     }
 }
