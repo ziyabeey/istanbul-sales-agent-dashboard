@@ -29,11 +29,32 @@ function getPricingData(): PricingSchema {
  * This endpoint simulates "The Closer" AI Agent evaluating a message,
  * looking up the rigid pricing structure, and returning a controlled response or payment link.
  */
+
+// Mock Blacklist Database (In-memory for demonstration)
+const globalBlacklist = new Set<string>();
+
 export async function POST(req: Request) {
     try {
         const body = await req.json();
-        const incomingMessage = body.message?.toLowerCase() || "";
+        const incomingMessage = body.message?.toLowerCase().trim() || "";
         const customerPhone = body.from || "unknown_number";
+
+        // 0. OPT-OUT & BLACKLIST CHECK
+        if (globalBlacklist.has(customerPhone)) {
+            return NextResponse.json({
+                success: false,
+                reason: "User is blacklisted"
+            }, { status: 200 }); // Return 200 so WhatsApp doesn't retry
+        }
+
+        if (["hayır", "hayir", "iptal", "stop", "dur"].includes(incomingMessage)) {
+            globalBlacklist.add(customerPhone);
+            return NextResponse.json({
+                success: true,
+                agent_reply: "Talebiniz alınmıştır. Numaranız iletişim listemizden (kara liste) çıkarıldı. Size bir daha mesaj gönderilmeyecektir. Sağlıklı günler dileriz.",
+                action: "BLACKLISTED"
+            }, { status: 200 });
+        }
 
         // Load Guardrails and Pricing
         const pricing = getPricingData();
