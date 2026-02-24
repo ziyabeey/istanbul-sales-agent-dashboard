@@ -87,18 +87,15 @@ const pricingPlans = [
 
 export default function PricingSection() {
     const [activePlan, setActivePlan] = useState("premium"); // Mobile view active tab
-    const [isAnnual, setIsAnnual] = useState(false);
     const router = useRouter();
 
     const handlePurchase = (planId: string, basePrice: string) => {
-        const finalPrice = isAnnual
-            ? Math.floor(parseInt(basePrice.replace(/\./g, '')) * 0.8)
-            : parseInt(basePrice.replace(/\./g, ''));
+        const finalPrice = parseInt(basePrice.replace(/\./g, '')) * 12;
         router.push(`/onboarding?paket=${planId}&fiyat=${finalPrice}`);
     };
 
     return (
-        <section className="py-24 bg-slate-50 relative" id="pricing">
+        <section className="py-24 bg-cream relative" id="pricing">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
 
                 <div className="text-center max-w-3xl mx-auto mb-16">
@@ -106,36 +103,19 @@ export default function PricingSection() {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="text-3xl md:text-5xl font-bold text-primary-900 mb-6"
+                        className="font-syne text-3xl md:text-5xl font-extrabold text-ink mb-6 tracking-tight"
                     >
-                        Maliyet Değil, <span className="text-secondary-500">Çalışma Arkadaşı</span>
+                        Maliyet Değil, <span className="text-rust">Çalışma Arkadaşı</span>
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className="text-lg text-slate-600 mb-8"
+                        className="text-lg text-stone-light mb-8 max-w-2xl mx-auto"
                     >
-                        Herkes ister bir çalışanı olsun ama esnaf bunu karşılayamaz. Biz ayda <span className="font-bold text-primary-900">399₺</span>'ye karşılıyoruz. Şeffaf fiyatlandırma, sürpriz maliyet yok.
+                        Herkes ister bir çalışanı olsun ama esnaf bunu karşılayamaz. Biz ayda <span className="font-bold text-ink">399₺</span>'ye karşılıyoruz. Şeffaf fiyatlandırma, sürpriz maliyet yok.
                     </motion.p>
-
-                    {/* Billing Toggle */}
-                    <div className="flex items-center justify-center mt-8 space-x-4">
-                        <span className={`text-sm font-medium ${!isAnnual ? 'text-primary-900' : 'text-slate-500'}`}>Aylık</span>
-                        <button
-                            onClick={() => setIsAnnual(!isAnnual)}
-                            className="relative inline-flex h-6 w-11 items-center rounded-full bg-slate-200 transition-colors focus:outline-none"
-                            style={{ backgroundColor: isAnnual ? '#F97316' : '#cbd5e1' }}
-                        >
-                            <span
-                                className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${isAnnual ? 'translate-x-6' : 'translate-x-1'}`}
-                            />
-                        </button>
-                        <span className={`text-sm font-medium ${isAnnual ? 'text-primary-900' : 'text-slate-500'}`}>
-                            Yıllık <span className="text-xs text-green-500 bg-green-100 px-2 py-0.5 rounded-full ml-1">%20 İndirim</span>
-                        </span>
-                    </div>
                 </div>
 
                 {/* Mobile View Toggle (Visible only max-md) */}
@@ -145,8 +125,8 @@ export default function PricingSection() {
                             key={plan.id}
                             onClick={() => setActivePlan(plan.id)}
                             className={`snap-center shrink-0 px-6 py-3 rounded-xl font-bold transition-all ${activePlan === plan.id
-                                ? "bg-primary-900 text-white shadow-md transform scale-105"
-                                : "bg-white text-slate-600 border border-slate-200"
+                                ? "bg-ink text-cream shadow-md transform scale-105"
+                                : "bg-white text-stone border border-warm"
                                 }`}
                         >
                             {plan.name}
@@ -166,27 +146,32 @@ export default function PricingSection() {
                                 exit={{ opacity: 0, scale: 0.9 }}
                                 transition={{ duration: 0.4, delay: index * 0.1 }}
                                 className={`
-                  relative bg-white rounded-3xl p-6 flex flex-col 
-                  ${plan.popular ? 'border-2 border-secondary-500 shadow-xl md:scale-105 z-10' : 'border border-slate-200 shadow-sm hover:shadow-md'}
+                  relative bg-white rounded-3xl p-6 flex flex-col
+                  ${plan.popular ? 'border-2 border-rust shadow-xl md:scale-105 z-10' : 'border border-warm shadow-sm hover:shadow-md'}
                   ${/* Mobile logic: show only active plan */ ''}
                   md:flex ${activePlan === plan.id ? 'flex' : 'hidden md:flex'}
                 `}
                             >
                                 {plan.popular && (
-                                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-secondary-500 text-white px-4 py-1 rounded-full text-sm font-bold shadow-md w-max">
+                                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-rust text-cream px-4 py-1 rounded-full text-sm font-bold shadow-md w-max border border-rust-light">
                                         En Çok Tercih Edilen
                                     </div>
                                 )}
 
-                                <h3 className={`text-xl font-bold mb-2 ${plan.popular ? 'text-secondary-600' : 'text-primary-900'}`}>{plan.name}</h3>
-                                <p className="text-slate-500 text-sm h-12 mb-4">{plan.description}</p>
+                                <h3 className={`text-xl font-syne font-bold mb-2 ${plan.popular ? 'text-rust' : 'text-ink'}`}>{plan.name}</h3>
+                                <p className="text-stone-light text-sm h-12 mb-4 leading-relaxed">{plan.description}</p>
 
-                                <div className="mb-6 pb-6 border-b border-slate-100">
-                                    <span className="text-3xl font-extrabold text-primary-900">
-                                        {isAnnual ? Math.floor(parseInt(plan.price.replace(/\./g, '')) * 0.8).toLocaleString('tr-TR') : plan.price}₺
-                                    </span>
-                                    <span className="text-slate-500 font-medium">/ay</span>
-                                    <p className="text-xs text-slate-400 mt-2 flex items-center justify-between">
+                                <div className="mb-6 pb-6 border-b border-warm">
+                                    <div className="flex items-baseline mb-1">
+                                        <span className="text-3xl font-extrabold text-ink">
+                                            {plan.price}₺
+                                        </span>
+                                        <span className="text-stone-light font-medium ml-1">/ay</span>
+                                    </div>
+                                    <p className="text-sm font-medium text-stone mt-2 py-1 px-3 bg-warm rounded-lg inline-block border border-stone-light/20">
+                                        Yıllık faturalandırılır ({(parseInt(plan.price.replace(/\./g, '')) * 12).toLocaleString('tr-TR')}₺ / yıl)
+                                    </p>
+                                    <p className="text-xs text-stone-light mt-4 flex items-center justify-between">
                                         <span>Kurulum: {plan.setupFee}</span>
                                         <Info className="w-3 h-3" />
                                     </p>
@@ -195,8 +180,8 @@ export default function PricingSection() {
                                 <ul className="space-y-4 mb-8 flex-grow">
                                     {plan.features.map((feature, idx) => (
                                         <li key={idx} className="flex items-start text-sm">
-                                            <CheckCircle2 className={`w-5 h-5 shrink-0 mr-3 ${plan.popular ? 'text-secondary-500' : 'text-green-500'}`} />
-                                            <span className="text-slate-700 leading-snug">{feature}</span>
+                                            <CheckCircle2 className={`w-5 h-5 shrink-0 mr-3 ${plan.popular ? 'text-rust' : 'text-gold'}`} />
+                                            <span className="text-stone leading-snug">{feature}</span>
                                         </li>
                                     ))}
                                 </ul>
@@ -204,7 +189,7 @@ export default function PricingSection() {
                                 <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="mt-auto">
                                     <Button
                                         variant={plan.popular ? "primary" : "outline"}
-                                        className={`w-full ${plan.popular ? 'shadow-secondary-500/30 shadow-lg' : ''}`}
+                                        className={`w-full ${plan.popular ? 'shadow-rust/30 shadow-lg' : ''}`}
                                         onClick={() => handlePurchase(plan.id, plan.price)}
                                     >
                                         <span className="text-sm">Hemen Başla</span>
@@ -221,11 +206,11 @@ export default function PricingSection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.5 }}
-                    className="mt-16 bg-white rounded-2xl p-8 border border-slate-200 shadow-sm flex flex-col md:flex-row items-center justify-between max-w-4xl mx-auto"
+                    className="mt-16 bg-white rounded-2xl p-8 border border-warm shadow-sm flex flex-col md:flex-row items-center justify-between max-w-4xl mx-auto ring-1 ring-ink/5"
                 >
                     <div className="mb-6 md:mb-0 text-center md:text-left">
-                        <h4 className="text-xl font-bold text-primary-900 mb-2">Kurumsal Çözümler (Özel Paket)</h4>
-                        <p className="text-slate-600">Çoklu şube, ERP/CRM entegrasyonu ve size özel eğitilmiş AI modeli mi gerekiyor?</p>
+                        <h4 className="text-xl font-bold text-ink mb-2 font-syne">Kurumsal Çözümler (Özel Paket)</h4>
+                        <p className="text-stone">Çoklu şube, ERP/CRM entegrasyonu ve size özel eğitilmiş AI modeli mi gerekiyor?</p>
                     </div>
                     <Button variant="outline" className="shrink-0">Özel Teklif Alın</Button>
                 </motion.div>

@@ -34,14 +34,14 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ({ variant = "primary", size = "md", children, className, ...props }, ref) => {
 
         // Base styles
-        const baseStyles = "inline-flex items-center justify-center font-bold rounded-xl transition-colors duration-300 transform focus:outline-none focus:ring-2 focus:ring-offset-2";
+        const baseStyles = "inline-flex items-center justify-center font-bold rounded-xl transition-colors duration-300 transform focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none";
 
         // Variant styles
         const variants = {
-            primary: "bg-secondary-500 text-white hover:bg-secondary-600 shadow-md hover:shadow-lg focus:ring-secondary-500",
-            secondary: "bg-primary-900 text-white hover:bg-primary-800 shadow-md hover:shadow-lg focus:ring-primary-900",
-            outline: "bg-transparent border-2 border-primary-900 text-primary-900 hover:bg-slate-50 focus:ring-primary-900",
-            ghost: "bg-transparent text-primary-900 hover:bg-slate-100 focus:ring-slate-200",
+            primary: "bg-rust text-cream hover:bg-rust-light shadow-md hover:shadow-lg focus:ring-rust",
+            secondary: "bg-ink text-cream hover:bg-ink/80 shadow-md hover:shadow-lg focus:ring-ink",
+            outline: "bg-transparent border-2 border-ink text-ink hover:bg-cream focus:ring-ink",
+            ghost: "bg-transparent text-ink hover:bg-warm focus:ring-warm focus:bg-warm",
         };
 
         // Size styles
