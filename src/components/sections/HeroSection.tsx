@@ -35,11 +35,11 @@ export default function HeroSection() {
                             kepenk.ai Yayında
                         </div>
 
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-cream tracking-tight leading-tight mb-6 text-balance">
+                        <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-cream tracking-tight leading-snug mb-5 text-balance">
                             Herkes İster Bir Çalışanı Olsun. Esnaf Bunu Karşılayamıyor Diye Üzülmeyin. <span className="text-rust">Biz Karşılıyoruz.</span>
                         </h1>
 
-                        <p className="font-lora italic text-lg md:text-xl text-stone-light mb-8 max-w-xl leading-relaxed">
+                        <p className="font-lora italic text-base md:text-lg text-stone-light mb-8 max-w-lg leading-relaxed">
                             Türkiye'nin 3.5 milyon esnafına özel, 7/24 uyumayan, yorulmayan dijital iş arkadaşınız kepenk.ai ile tanışın.
                         </p>
 
