@@ -10,7 +10,7 @@ export default function ProfilPage() {
     const [notificationsEnabled, setNotificationsEnabled] = useState(true);
 
     const handleLogout = () => {
-        localStorage.removeItem("xinxia_esnaf_id");
+        localStorage.removeItem("kepenk_esnaf_id");
         router.push("/onboarding");
     };
 
@@ -47,7 +47,7 @@ export default function ProfilPage() {
                             <User className="w-5 h-5 mr-3 text-slate-400" />
                             İşletme Bilgileri
                         </div>
-                        <Button variant="ghost" className="text-orange-500 hover:text-orange-600 hover:bg-orange-50">
+                        <Button variant="ghost" className="text-rust hover:text-rust-light hover:bg-rust/10">
                             Düzenle
                         </Button>
                     </div>
@@ -66,7 +66,7 @@ export default function ProfilPage() {
                             Sabah Bildirimleri
                         </div>
                         <button
-                            className={`w-12 h-6 rounded-full transition-colors relative ${notificationsEnabled ? "bg-orange-500" : "bg-slate-200"}`}
+                            className={`w-12 h-6 rounded-full transition-colors relative ${notificationsEnabled ? "bg-rust" : "bg-slate-200"}`}
                             onClick={() => setNotificationsEnabled(!notificationsEnabled)}
                         >
                             <div className={`w-4 h-4 bg-white rounded-full absolute top-1 transition-transform ${notificationsEnabled ? "translate-x-7" : "translate-x-1"}`} />

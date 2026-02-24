@@ -2,8 +2,8 @@ import React from "react";
 import OnboardingWizard from "@/components/Onboarding/OnboardingWizard";
 
 export const metadata = {
-    title: "Kurulum Sıhirbazı | XINXIA v5.0",
-    description: "XINXIA Esnaf Asistanı dijital kurulum ekranı."
+    title: "Kurulum Sihirbazı | kepenk.ai",
+    description: "kepenk.ai Esnaf Asistanı dijital kurulum ekranı."
 };
 
 export default function OnboardingPage() {

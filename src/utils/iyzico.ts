@@ -36,14 +36,14 @@ export async function generateIyzicoLink(data: PaymentRequest): Promise<string> 
             currency: Iyzipay.CURRENCY.TRY,
             basketId: `BASKET-${data.planId}`,
             paymentGroup: Iyzipay.PAYMENT_GROUP.PRODUCT,
-            callbackUrl: "https://xinxia.co/payment/success",
+            callbackUrl: "https://kepenk.ai/payment/success",
             enabledInstallments: [2, 3, 6, 9],
             buyer: {
                 id: `UY-${Date.now()}`,
                 name: data.customerName.split(" ")[0] || "Esnaf",
                 surname: data.customerName.split(" ").slice(1).join(" ") || "Musteri",
                 gsmNumber: data.customerPhone,
-                email: "esnaf@xinxia.co",
+                email: "esnaf@kepenk.ai",
                 identityNumber: "74300864791",
                 lastLoginDate: "2026-02-23 08:00:00",
                 registrationDate: "2026-02-23 08:00:00",
@@ -70,7 +70,7 @@ export async function generateIyzicoLink(data: PaymentRequest): Promise<string> 
             basketItems: [
                 {
                     id: data.planId,
-                    name: `XINXIA v5.0 ${data.planId.toUpperCase()} Paketi`,
+                    name: `kepenk.ai ${data.planId.toUpperCase()} Paketi`,
                     category1: "Digital Services",
                     category2: "AI Assistant",
                     itemType: Iyzipay.BASKET_ITEM_TYPE.VIRTUAL,

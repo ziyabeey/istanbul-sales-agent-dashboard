@@ -38,7 +38,7 @@ export async function checkDailyQuota(merchantId: string, plan: PlanType): Promi
             return {
                 hasQuota: false,
                 isUpsell: true,
-                message: `Bugünlük ${limit} mesajlık ${plan.toUpperCase()} paketi limitimizi doldurduk. Patron, benim de mesaim bitti, yarın devam edelim. Ancak işleri büyütmek ve sınırsız 7/24 konuşmak istersen PREMIUM pakete geçebiliriz: https://xinxia.co/upgrade`
+                message: `Bugünlük ${limit} mesajlık ${plan.toUpperCase()} paketi limitimizi doldurduk. Patron, benim de mesaim bitti, yarın devam edelim. Ancak işleri büyütmek ve sınırsız 7/24 konuşmak istersen PREMIUM pakete geçebiliriz: https://kepenk.ai/upgrade`
             };
         }
 

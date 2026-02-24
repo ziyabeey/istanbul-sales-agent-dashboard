@@ -12,7 +12,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
     useEffect(() => {
         setIsMounted(true);
-        const esnafId = localStorage.getItem("xinxia_esnaf_id");
+        const esnafId = localStorage.getItem("kepenk_esnaf_id");
         if (!esnafId) {
             router.push("/onboarding");
         }
@@ -38,8 +38,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                     const isActive = pathname === item.href;
                     return (
                         <Link key={item.href} href={item.href} className="flex flex-col items-center justify-center w-16 h-12">
-                            <item.icon className={`w-6 h-6 mb-1 transition-colors ${isActive ? "text-orange-500" : "text-slate-400"}`} />
-                            <span className={`text-[10px] font-medium transition-colors ${isActive ? "text-orange-500" : "text-slate-500"}`}>
+                            <item.icon className={`w-6 h-6 mb-1 transition-colors ${isActive ? "text-rust" : "text-stone-light"}`} />
+                            <span className={`text-[10px] font-medium transition-colors ${isActive ? "text-rust" : "text-stone"}`}>
                                 {item.label}
                             </span>
                         </Link>
@@ -49,13 +49,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             {/* Desktop dummy sidebar fallback for larger screens if necessary */}
             <div className="hidden md:flex fixed left-0 top-0 bottom-0 w-64 bg-white border-r border-slate-200 flex-col">
                 <div className="p-6 border-b border-slate-100">
-                    <span className="font-bold text-xl text-slate-900">XINXIA <span className="text-orange-500 text-sm">Esnaf</span></span>
+                    <span className="font-syne font-bold text-xl text-ink"><span className="text-rust">K</span>EPENK <span className="text-rust text-sm font-normal">Esnaf</span></span>
                 </div>
                 <div className="flex-1 py-4 flex flex-col gap-2 px-4">
                     {navItems.map((item) => {
                         const isActive = pathname === item.href;
                         return (
-                            <Link key={item.href} href={item.href} className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${isActive ? 'bg-orange-50 text-orange-600 font-semibold' : 'text-slate-600 hover:bg-slate-50'}`}>
+                            <Link key={item.href} href={item.href} className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${isActive ? 'bg-rust/10 text-rust font-semibold' : 'text-stone hover:bg-warm/50'}`}>
                                 <item.icon className="w-5 h-5" />
                                 <span>{item.label}</span>
                             </Link>

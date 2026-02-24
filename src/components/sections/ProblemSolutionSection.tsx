@@ -5,12 +5,12 @@ import { motion } from "framer-motion";
 import { CheckCircle2, XCircle } from "lucide-react";
 
 /**
- * Standard interface for comparison items between traditional methods and XINXIA.
+ * Standard interface for comparison items between traditional methods and kepenk.ai.
  */
 interface ComparisonItem {
     title: string;
     issues: string[];
-    xinxiaSolves: boolean;
+    kepenkSolves: boolean;
 }
 
 /**
@@ -21,22 +21,22 @@ const comparisons: ComparisonItem[] = [
     {
         title: "Geleneksel Ajanslar",
         issues: ["7.000 - 18.000₺ aylık maliyet", "Yavaş süreç ve bürokrasi", "Sadece 09:00 - 18:00 arası müsaitlik"],
-        xinxiaSolves: false,
+        kepenkSolves: false,
     },
     {
         title: "Hazır Site Platformları (Wix vb.)",
         issues: ["Yabancı dil zorunluluğu", "Teknik karmaşa (Domain, Hosting)", "Kişisel destek eksikliği"],
-        xinxiaSolves: false,
+        kepenkSolves: false,
     },
     {
         title: "Serbest Çalışanlar (Freelance)",
         issues: ["Sistemsizlik ve garantisizlik", "Aniden ortadan kaybolma riski", "Her iş için ayrı bütçe talebi"],
-        xinxiaSolves: false,
+        kepenkSolves: false,
     },
     {
-        title: "XINXIA v5.0 Asistanı",
+        title: "kepenk.ai Asistanı",
         issues: ["Aylık 399₺'den başlayan fiyatlar", "2 dakikada anında kurulum", "7/24 Kesintisiz çalışma & destek"],
-        xinxiaSolves: true,
+        kepenkSolves: true,
     }
 ];
 
@@ -44,14 +44,14 @@ const comparisons: ComparisonItem[] = [
  * ProblemSolutionSection Component
  * 
  * Displays a comparative matrix highlighting the pain points of alternative solutions
- * (agencies, DIY builders, freelancers) versus the benefits of XINXIA v5.0.
+ * (agencies, DIY builders, freelancers) versus the benefits of kepenk.ai.
  *
  * @returns {JSX.Element} The rendered Problem/Solution section.
  */
 export default function ProblemSolutionSection() {
 
     return (
-        <section className="py-20 bg-white">
+        <section className="py-20 bg-cream">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
                 <div className="text-center max-w-3xl mx-auto mb-16">
@@ -59,16 +59,16 @@ export default function ProblemSolutionSection() {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="text-3xl md:text-4xl font-bold text-primary-900 mb-4"
+                        className="text-3xl md:text-4xl font-bold text-ink mb-4"
                     >
-                        Neden <span className="text-secondary-500">XINXIA</span>? Diğerlerinden Farkı Ne?
+                        Neden <span className="text-rust">kepenk.ai</span>? Diğerlerinden Farkı Ne?
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className="text-lg text-slate-600"
+                        className="text-lg text-stone"
                     >
                         Esnafın bütçesini ve zamanını yormayan, sorunsuz bir dijital ortaklık sunuyoruz.
                     </motion.p>
@@ -82,24 +82,24 @@ export default function ProblemSolutionSection() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
-                            className={`rounded-2xl p-6 border ${item.xinxiaSolves
-                                ? 'bg-primary-900 border-primary-900 text-white shadow-xl transform scale-105 z-10'
-                                : 'bg-slate-50 border-slate-200 text-slate-800'
+                            className={`rounded-2xl p-6 border ${item.kepenkSolves
+                                ? 'bg-steel border-steel text-cream shadow-xl transform scale-105 z-10'
+                                : 'bg-warm border-warm text-ink'
                                 }`}
                         >
-                            <h3 className={`text-xl font-bold mb-6 pb-4 border-b ${item.xinxiaSolves ? 'border-blue-800' : 'border-slate-200'}`}>
+                            <h3 className={`text-xl font-bold mb-6 pb-4 border-b ${item.kepenkSolves ? 'border-ink/20' : 'border-stone-light/20'}`}>
                                 {item.title}
                             </h3>
 
                             <ul className="space-y-4">
                                 {item.issues.map((issue, idx) => (
                                     <li key={idx} className="flex items-start gap-3">
-                                        {item.xinxiaSolves ? (
-                                            <CheckCircle2 className="w-5 h-5 text-secondary-500 shrink-0 mt-0.5" />
+                                        {item.kepenkSolves ? (
+                                            <CheckCircle2 className="w-5 h-5 text-rust shrink-0 mt-0.5" />
                                         ) : (
-                                            <XCircle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
+                                            <XCircle className="w-5 h-5 text-stone-light shrink-0 mt-0.5" />
                                         )}
-                                        <span className={item.xinxiaSolves ? 'text-blue-50' : 'text-slate-600'}>
+                                        <span className={item.kepenkSolves ? 'text-cream/90' : 'text-stone'}>
                                             {issue}
                                         </span>
                                     </li>

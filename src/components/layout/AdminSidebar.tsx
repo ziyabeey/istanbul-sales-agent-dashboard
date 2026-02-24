@@ -26,10 +26,10 @@ export default function AdminSidebar() {
     };
 
     return (
-        <aside className="hidden md:flex flex-col w-64 bg-slate-900 border-r border-slate-800 text-white flex-shrink-0 min-h-screen">
-            <div className="h-16 flex items-center px-6 border-b border-slate-800">
-                <span className="text-xl font-bold tracking-tight text-white">
-                    XINXIA <span className="text-orange-500">Admin</span>
+        <aside className="hidden md:flex flex-col w-64 bg-ink border-r border-stone/20 text-cream flex-shrink-0 min-h-screen">
+            <div className="h-16 flex items-center px-6 border-b border-stone/20">
+                <span className="font-syne text-xl font-bold tracking-tight text-cream">
+                    <span className="text-rust">K</span>EPENK <span className="text-stone font-normal">Admin</span>
                 </span>
             </div>
 
@@ -42,8 +42,8 @@ export default function AdminSidebar() {
                                 <Link
                                     href={item.href}
                                     className={`flex items-center px-3 py-2.5 rounded-lg transition-colors ${isActive
-                                            ? "bg-orange-500/10 text-orange-500"
-                                            : "text-slate-400 hover:text-white hover:bg-slate-800"
+                                        ? "bg-rust/10 text-rust"
+                                        : "text-stone-light hover:text-cream hover:bg-steel/50"
                                         }`}
                                 >
                                     <item.icon className="w-5 h-5 mr-3" />
@@ -55,10 +55,10 @@ export default function AdminSidebar() {
                 </ul>
             </nav>
 
-            <div className="p-4 border-t border-slate-800">
+            <div className="p-4 border-t border-stone/20">
                 <button
                     onClick={handleLogout}
-                    className="flex items-center w-full px-3 py-2.5 text-sm font-medium text-slate-400 rounded-lg hover:text-white hover:bg-slate-800 transition-colors"
+                    className="flex items-center w-full px-3 py-2.5 text-sm font-medium text-stone-light rounded-lg hover:text-cream hover:bg-steel/50 transition-colors"
                 >
                     <LogOut className="w-5 h-5 mr-3" />
                     Çıkış Yap

@@ -48,11 +48,8 @@ export default function Navbar() {
                 <div className="flex justify-between items-center">
                     {/* Logo */}
                     <Link href="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center gap-2 cursor-pointer">
-                        <div className="w-8 h-8 bg-secondary-500 rounded flex items-center justify-center font-bold text-white shadow-sm">
-                            X
-                        </div>
-                        <span className={`font-bold text-xl tracking-tight ${isScrolled ? 'text-slate-900' : 'text-slate-900'}`}>
-                            XINXIA <span className="text-secondary-500 text-sm align-top ml-0.5">v5</span>
+                        <span className="font-syne font-extrabold text-2xl tracking-tight">
+                            <span className="text-rust">K</span><span className="text-ink">EPENK</span>
                         </span>
                     </Link>
 
@@ -63,7 +60,7 @@ export default function Navbar() {
                                 key={link.label}
                                 href={link.href}
                                 onClick={(e) => handleSmoothScroll(e, link.href)}
-                                className="text-sm font-medium text-slate-600 hover:text-secondary-500 transition-colors"
+                                className="text-sm font-medium text-stone hover:text-rust transition-colors"
                             >
                                 {link.label}
                             </a>
@@ -73,7 +70,7 @@ export default function Navbar() {
                     {/* Actions */}
                     <div className="hidden md:flex items-center space-x-4">
                         <Link href="/admin" passHref legacyBehavior>
-                            <a className="text-sm font-medium text-slate-600 hover:text-secondary-500 transition-colors cursor-pointer">
+                            <a className="text-sm font-medium text-stone hover:text-rust transition-colors cursor-pointer">
                                 Giriş Yap
                             </a>
                         </Link>
@@ -90,7 +87,7 @@ export default function Navbar() {
                     <div className="md:hidden flex items-center">
                         <button
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                            className="text-slate-600 hover:text-secondary-500 focus:outline-none p-2"
+                            className="text-stone hover:text-rust focus:outline-none p-2"
                         >
                             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
                         </button>
@@ -107,7 +104,7 @@ export default function Navbar() {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            className="fixed inset-0 bg-slate-900/20 backdrop-blur-sm z-40 md:hidden h-screen top-[60px]"
+                            className="fixed inset-0 bg-ink/20 backdrop-blur-sm z-40 md:hidden h-screen top-[60px]"
                             onClick={() => setIsMobileMenuOpen(false)}
                         />
                         <motion.div
@@ -115,23 +112,23 @@ export default function Navbar() {
                             animate={{ height: 'auto', opacity: 1 }}
                             exit={{ height: 0, opacity: 0 }}
                             transition={{ duration: 0.2 }}
-                            className="absolute top-full left-0 w-full bg-white shadow-xl border-t border-slate-100 flex flex-col items-center py-6 space-y-6 z-50 md:hidden overflow-hidden"
+                            className="absolute top-full left-0 w-full bg-cream shadow-xl border-t border-warm flex flex-col items-center py-6 space-y-6 z-50 md:hidden overflow-hidden"
                         >
                             {navLinks.map((link) => (
                                 <a
                                     key={link.label}
                                     href={link.href}
                                     onClick={(e) => handleSmoothScroll(e, link.href)}
-                                    className="text-lg font-medium text-slate-800 hover:text-secondary-500 w-full text-center py-2"
+                                    className="text-lg font-medium text-ink hover:text-rust w-full text-center py-2"
                                 >
                                     {link.label}
                                 </a>
                             ))}
-                            <div className="w-full h-px bg-slate-100 max-w-[200px]" />
+                            <div className="w-full h-px bg-warm max-w-[200px]" />
                             <Link href="/admin" passHref legacyBehavior>
                                 <a
                                     onClick={() => setIsMobileMenuOpen(false)}
-                                    className="text-lg font-medium text-slate-800 hover:text-secondary-500 cursor-pointer"
+                                    className="text-lg font-medium text-ink hover:text-rust cursor-pointer"
                                 >
                                     Giriş Yap
                                 </a>

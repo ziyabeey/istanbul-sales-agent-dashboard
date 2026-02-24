@@ -97,7 +97,7 @@ export async function POST(req: Request) {
 
         // 1. Handling "Fiyat Nedir?" (What is the price?)
         if (incomingMessage.includes("fiyat") || incomingMessage.includes("ne kadar")) {
-            replyMessage = `Merhaba! XINXIA v5.0 Temel paketimiz aylık ${pricing.base_prices.temel}₺, en çok tercih edilen Premium paketimiz ise vergi dahil ${pricing.base_prices.premium}₺'dir. Hangi paketle ilgileniyorsunuz?`;
+            replyMessage = `Merhaba! kepenk.ai Temel paketimiz aylık ${pricing.base_prices.temel}₺, en çok tercih edilen Premium paketimiz ise vergi dahil ${pricing.base_prices.premium}₺'dir. Hangi paketle ilgileniyorsunuz?`;
         }
 
         // 2. Handling Discount Requests (Pazarlık)
@@ -129,7 +129,7 @@ export async function POST(req: Request) {
 
         // Default fallback
         else {
-            replyMessage = "XINXIA Asistan sistemine hoş geldiniz. Size nasıl yardımcı olabilirim? (Fiyatları sormaktan çekinmeyin)";
+            replyMessage = "kepenk.ai Asistan sistemine hoş geldiniz. Size nasıl yardımcı olabilirim? (Fiyatları sormaktan çekinmeyin)";
         }
 
         return NextResponse.json({

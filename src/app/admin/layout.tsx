@@ -2,7 +2,7 @@ import React from "react";
 import AdminSidebar from "@/components/layout/AdminSidebar";
 
 export const metadata = {
-    title: "Super Admin | XINXIA v5.0",
+    title: "Super Admin | kepenk.ai",
 };
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
