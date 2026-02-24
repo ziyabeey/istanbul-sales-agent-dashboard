@@ -74,7 +74,10 @@ export default function OnboardingWizard() {
     };
 
     const handleFinish = () => {
-        router.push("/admin");
+        // Geçici olarak mock veri kullanıyoruz. İleride Firestore'dan dönen ID kullanılacak.
+        const esnafId = "mock_esnaf_id_123";
+        localStorage.setItem('xinxia_esnaf_id', esnafId);
+        router.push("/dashboard");
     };
 
     const currentStep = steps[currentStepIndex];
