@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { generateIyzicoLink } from "@/utils/iyzico";
 import { db } from "@/utils/firebaseAdmin";
 import { logAgentAction } from "@/utils/logger";
+import { runAdkOrchestrator } from "@/agents/OrchestratorAgent";
 
 // Define strict typing for our price list
 interface PricingSchema {
@@ -84,52 +85,18 @@ export async function POST(req: Request) {
             }, { status: 200 });
         }
 
-        // Load Guardrails and Pricing dynamically from Firestore
-        let pricing: PricingSchema;
-        try {
-            pricing = await getPricingData();
-        } catch (e) {
-            // Mock fallback just in case we didn't populate DB
-            pricing = require("@/../data/fiyat_listesi.json");
-        }
-
+        // 2. ADK ORCHESTRATOR DELEGATION
+        // Passing the user's message to the Google ADK Orchestrator
         let replyMessage = "";
-
-        // 1. Handling "Fiyat Nedir?" (What is the price?)
-        if (incomingMessage.includes("fiyat") || incomingMessage.includes("ne kadar")) {
-            replyMessage = `Merhaba! kepenk.ai Temel paketimiz aylık ${pricing.base_prices.temel}₺, en çok tercih edilen Premium paketimiz ise vergi dahil ${pricing.base_prices.premium}₺'dir. Hangi paketle ilgileniyorsunuz?`;
-        }
-
-        // 2. Handling Discount Requests (Pazarlık)
-        else if (incomingMessage.includes("indirim") || incomingMessage.includes("kurtarmaz")) {
-            const maxDiscount = pricing.guardrails.max_discount_percentage;
-            const premiumBottomPrice = pricing.guardrails.min_allowed_prices.premium;
-
-            replyMessage = `Esnaf dostuyuz! Patronla konuştum, Premium paket için size özel %${maxDiscount} indirim sağlayabilirim. Bu durumda aylık ${premiumBottomPrice}₺'ye geliyor. Onaylıyorsanız ödeme linkini göndereyim?`;
-        }
-
-        // 3. Handling Closing / Payment (Satış Kapatma)
-        else if (incomingMessage.includes("tamam") || incomingMessage.includes("link") || incomingMessage.includes("alıyorum")) {
-            const paymentLink = await generateIyzicoLink({
-                customerName: "Esnaf Musteri",
-                customerPhone: customerPhone,
-                planId: "premium",
-                price: pricing.guardrails.min_allowed_prices.premium
-            });
-
-            replyMessage = `Harika karar! 🚀 \nGüvenli ödemenizi tamamlamak ve anında kuruluma başlamak için linkiniz: \n${paymentLink}\n\nÖdeme sonrası asistanınız 2 dakika içinde WhatsApp üzerinden size 'Merhaba' diyecek.`;
-
-            await logAgentAction({
-                agentId: "agent_5",
-                actionType: "SALE_CLOSED",
-                description: `Agent successfully closed a 'Premium' plan sale over WhatsApp for ${pricing.guardrails.min_allowed_prices.premium}₺.`,
-                metadata: { phone: customerPhone, plan: "premium", price: pricing.guardrails.min_allowed_prices.premium }
-            });
-        }
-
-        // Default fallback
-        else {
-            replyMessage = "kepenk.ai Asistan sistemine hoş geldiniz. Size nasıl yardımcı olabilirim? (Fiyatları sormaktan çekinmeyin)";
+        try {
+            const sessionId = `wa_${customerPhone}`;
+            replyMessage = await runAdkOrchestrator(
+                sessionId,
+                `User (${customerPhone}) says: "${incomingMessage}". Analyze intent and provide a suitable response as kepenk.ai assistant.`
+            );
+        } catch (adkError) {
+            console.error("ADK Runner failed:", adkError);
+            replyMessage = "Şu anda teknik bir güncelleme yapıyoruz, lütfen birazdan tekrar deneyin.";
         }
 
         return NextResponse.json({
