@@ -1,0 +1,48 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "b2b_katalog",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "sektor", "order": "ASCENDING" },
+        { "fieldPath": "urunSayisi", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "b2b_siparisler",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "saticiAd", "order": "ASCENDING" },
+        { "fieldPath": "durum", "order": "ASCENDING" },
+        { "fieldPath": "tarih", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "musteriKonusmalar",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "esnafId", "order": "ASCENDING" },
+        { "fieldPath": "okundu", "order": "ASCENDING" },
+        { "fieldPath": "zaman", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "yorumlar",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "esnafId", "order": "ASCENDING" },
+        { "fieldPath": "yildiz", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "randevular",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "esnafId", "order": "ASCENDING" },
+        { "fieldPath": "durum", "order": "ASCENDING" },
+        { "fieldPath": "saat", "order": "ASCENDING" }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}

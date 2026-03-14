@@ -1,0 +1,128 @@
+{
+    "sektor": "nakliyeci",
+    "sikSorulanlar": [
+        {
+            "soru": "Sehir ici nakliye ne kadar?",
+            "cevap": "3+1 ev sehir ici ortalama 4.000-8.000₺. Kat, asansör durumu, esya miktari ve mesafeye göre degisir. Ücretsiz kesif yapariz.",
+            "aciliyet": "orta"
+        },
+        {
+            "soru": "Sehirlerarasi nakliye fiyati?",
+            "cevap": "Istanbul-Ankara 3+1 ev icin 12.000-20.000₺. Mesafe + esya hacmi + sigorta tercihine bagli. Kesin fiyat icin liste yapip gönderin.",
+            "aciliyet": "orta"
+        },
+        {
+            "soru": "Esyalarim sigortalanir mi?",
+            "cevap": "Evet. Nakliye sigortasi zorunlu olarak sunuyoruz. Tam deger sigortasi %2-3 ek maliyet. Hasar durumunda tazminat.",
+            "aciliyet": "yuksek"
+        },
+        {
+            "soru": "Paketleme yapiyor musunuz?",
+            "cevap": "Evet. Profesyonel paketleme (koli, köpük, streç) dahil veya ekstra olarak sunulur. Kirilacak esyalar özel sarılır.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Asansör yoksa ne olur?",
+            "cevap": "Kat basi 500-1.500₺ ek ücret. 4. kattan sonra vinç/asansörlü kamyon gerekebilir (2.000-4.000₺ ek).",
+            "aciliyet": "orta"
+        },
+        {
+            "soru": "Evden eve ne kadar sürer?",
+            "cevap": "Sehir ici 3+1 ev: yükleme 2-3 saat, tasinma 1-2 saat, bosaltma 2-3 saat. Toplam yarim gün. Sehirlerarasi 1-2 gün.",
+            "aciliyet": "orta"
+        },
+        {
+            "soru": "Hafta sonu tasinabilir miyiz?",
+            "cevap": "Evet ama hafta sonu %20-30 ek ücret uygulanir. En uygun günler Salı-Çarşamba.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Depolama hizmetiniz var mi?",
+            "cevap": "Evet. Günlük, haftalik veya aylik depolama. Kapalı, güvenlikli depo. Aylik m² bazinda fiyatlanir.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Piyano/kasa gibi ağır eşya taşır mısınız?",
+            "cevap": "Evet. Özel ekipmanla (trans palet, vinç) taşınır. Piyano 2.000-5.000₺ ek, çelik kasa ağırlığa göre hesaplanır.",
+            "aciliyet": "orta"
+        }
+    ],
+    "mevzuat": [
+        "Karayolu Taşıma Kanunu (4925)",
+        "K1/K2/K3 Yetki Belgesi zorunluluğu",
+        "Nakliye Sigortası Genel Şartları",
+        "Tüketici Hakları (hasar tazminat)",
+        "Trafik Kanunu ağır vasıta kısıtlamaları"
+    ],
+    "mevsimsellik": {
+        "kis": "Düşük sezon. Öğrenci dönüşleri (dönem arası). Fiyatlar daha uygun.",
+        "yaz": "En yoğun sezon — ev taşıma, tatil dönüşü. Fiyatlar %20-30 artar. Erken rezervasyon şart.",
+        "ilkbahar": "Taşınma sezonu başlangıcı. Kira yenileme dönemleri. Talep artmaya başlar.",
+        "sonbahar": "Üniversite açılışı ile öğrenci nakliyesi patlar. Eylül-Ekim yoğun."
+    },
+    "rakipler": [
+        "Armut.com nakliye ilanları",
+        "Kozcuoğlu Nakliyat (kurumsal)",
+        "Modoko hırdavatçı kamyonları",
+        "Facebook marketplace nakliyeciler",
+        "Getir Büyük (küçük eşya)"
+    ],
+    "ortalamaSureler": {
+        "sehirIci3+1": "4-6 saat (tam gün)",
+        "sehirIciStudio": "2-3 saat",
+        "sehirlerarasi": "1-3 gün",
+        "ofisNakliye": "1-2 gün (hafta sonu)",
+        "paketleme": "2-4 saat (3+1 ev)"
+    },
+    "populerHizmetler": [
+        "Evden eve nakliyat (şehir içi)",
+        "Şehirlerarası nakliyat",
+        "Ofis/işyeri taşıma",
+        "Profesyonel paketleme",
+        "Eşya depolama",
+        "Parça eşya taşıma",
+        "Asansörlü taşıma (vinç)",
+        "Piyano/kasa özel taşıma"
+    ],
+    "fiyatAraliklari": {
+        "sehirIci1+1": "2.000-4.000₺",
+        "sehirIci3+1": "4.000-8.000₺",
+        "sehirlerarasi3+1": "10.000-25.000₺",
+        "paketlemeEk": "1.000-3.000₺",
+        "depolamaAylik": "1.500-4.000₺/ay",
+        "vincKullanimEk": "2.000-4.000₺"
+    },
+    "musteriProfili": {
+        "demografik": "Kiracılar (%70), 25-45 yaş, tek veya çift. Şehirlerarasında öğrenci ailesi de olabilir.",
+        "karar": "Genelde acil karar — kira bitiş tarihi baskısı var. 2-3 teklif alır, en güveniliri seçer.",
+        "hassasiyet": "Eşya güvenliği 1 numara. Sigorta, referans, hasar fotoğrafı istiyor. Gizli maliyet endişesi yüksek."
+    },
+    "caprazSatis": [
+        "Taşınan müşteriye temizlik hizmeti öner (eski ev + yeni ev)",
+        "Boyacı referansı ver (yeni eve taşınma = boyama fırsatı)",
+        "Mobilyacı yönlendir (yeni ev = yeni mutfak dolabı)",
+        "Depolama hizmeti → uzun süreli müşteri",
+        "Elektrikçi/tesisatçı: yeni eve montaj"
+    ],
+    "krizSenaryolari": [
+        {
+            "tetikleyici": "Eşya hasarı tespit edildi",
+            "yanit": "Fotoğrafla belgele + sigorta formunu doldurt + 48 saat içinde tazminat süreci başlat. Özür WA mesajı gönder."
+        },
+        {
+            "tetikleyici": "Kamyon geç kaldı / gelmedi",
+            "yanit": "Derhal arayıp bilgilendir + tahmini varış paylaş + gecikme indirimi teklif et."
+        },
+        {
+            "tetikleyici": "Ek ücret tartışması",
+            "yanit": "Keşif formundaki notu göster + fotoğraflı kanıt sun. Anlaşmazlıkta %50 indirim teklifi yap."
+        }
+    ],
+    "dijitalIpuclari": [
+        "Google'da 'nakliyat + ilçe' araması çok yüksek hacimli — SEO odaklanın",
+        "Müşteri yorumları nakliyede güven oluşturmanın 1 numaralı yolu",
+        "Taşınma checklist'i blog yazısı sürekli organik trafik getirir",
+        "Instagram'da paketleme videoları izlenme oranı yüksek",
+        "WhatsApp'tan fotoğraflı teklif: müşteri güvenini artırır"
+    ]
+}

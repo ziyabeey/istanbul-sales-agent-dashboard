@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İLERİ Dijital | Dijital Tasarım Butik Ajansı</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-black: #000;
+            --color-dark: #111;
+            --color-white: #f5f5f5;
+            --color-highlight: #c24040;
+            --color-grey: #575757;
+            --color-dark-grey: #2a2a2a;
+            --color-border: #1e1e1e;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--color-black);
+            color: var(--color-white);
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-weight: 300;
+            font-size: 16px;
+            line-height: 1.6;
+            overflow-x: hidden;
+            cursor: none;
+        }
+        ::-webkit-scrollbar { width: 0; background: transparent; }
+        a { color: inherit; text-decoration: none; }
+        button { font-family: inherit; cursor: none; }
+
+        /* ── Preloader ── */
+        .preloader {
+            position: fixed; inset: 0; z-index: 10000;
+            background: var(--color-black);
+            display: flex; align-items: center; justify-content: center;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+        .preloader.hide { opacity: 0; visibility: hidden; pointer-events: none; }
+        .preloader-text {
+            font-size: clamp(28px, 5vw, 64px); font-weight: 200; letter-spacing: 0.3em;
+            text-transform: uppercase; color: var(--color-white);
+            animation: preloaderPulse 1.5s ease-in-out infinite;
+        }
+        @keyframes preloaderPulse { 0%,100%{opacity:0.3} 50%{opacity:1} }
+
+        /* ── Custom Cursor ── */
+        .cursor-dot {
+            position: fixed; top: 0; left: 0; width: 8px; height: 8px;
+            background: var(--color-white); border-radius: 50%;
+            transform: translate(-50%,-50%); pointer-events: none; z-index: 9999;
+            transition: width 0.3s, height 0.3s, background 0.3s;
+            mix-blend-mode: difference;
+        }
+        .cursor-ring {
+            position: fixed; top: 0; left: 0; width: 40px; height: 40px;
+            border: 1px solid rgba(245,245,245,0.3); border-radius: 50%;
+            transform: translate(-50%,-50%); pointer-events: none; z-index: 9998;
+            transition: width 0.3s, height 0.3s, opacity 0.3s;
+        }
+        body.cursor-hover .cursor-dot { width: 60px; height: 60px; }
+        body.cursor-hover .cursor-ring { opacity: 0; }
+
+        /* ── Scroll Progress ── */
+        .scroll-progress {
+            position: fixed; bottom: 0; left: 0; height: 2px; z-index: 100;
+            background: var(--color-highlight); width: 0%; transition: width 0.1s;
+        }
+
+        /* ── Header ── */
+        .site-header {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            padding: 28px 48px; display: flex; justify-content: space-between; align-items: center;
+            background: rgba(0,0,0,0.6); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+        .header-logo {
+            font-size: 14px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase;
+        }
+        .header-logo span { color: var(--color-highlight); }
+        .header-nav { display: flex; gap: 36px; }
+        .header-nav a {
+            font-size: 13px; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase;
+            color: var(--color-grey); transition: color 0.3s; position: relative;
+        }
+        .header-nav a:hover { color: var(--color-white); }
+        .header-nav a::after {
+            content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px;
+            background: var(--color-highlight); transition: width 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+        }
+        .header-nav a:hover::after { width: 100%; }
+
+        /* ── Hero ── */
+        .hero {
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            position: relative; overflow: hidden; padding: 120px 48px;
+        }
+        .hero-content { max-width: 1200px; width: 100%; position: relative; z-index: 2; }
+        .hero-label {
+            font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase;
+            color: var(--color-grey); margin-bottom: 32px; display: flex; align-items: center; gap: 16px;
+        }
+        .hero-label::before { content: ''; width: 40px; height: 1px; background: var(--color-highlight); }
+        .hero-title {
+            font-family: 'Inter', sans-serif; font-size: clamp(48px, 8vw, 96px); font-weight: 200;
+            line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 40px;
+        }
+        .hero-title em {
+            font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400;
+            color: var(--color-highlight);
+        }
+        .hero-sub {
+            max-width: 480px; font-size: 14px; color: var(--color-grey); line-height: 1.8;
+            font-weight: 300;
+        }
+        /* Text reveal animation */
+        .reveal-line { overflow: hidden; display: block; }
+        .reveal-line span {
+            display: inline-block; transform: translateY(110%);
+            animation: revealUp 0.9s cubic-bezier(0.16,1,0.3,1) forwards;
+        }
+        @keyframes revealUp { to { transform: translateY(0); } }
+
+        /* ── Showreel ── */
+        .showreel { padding: 0 48px 120px; position: relative; }
+        .showreel-video-wrap {
+            width: 100%; aspect-ratio: 16/9; border-radius: 16px; overflow: hidden;
+            position: relative; background: var(--color-dark-grey);
+            transform: perspective(1000px) rotateX(2deg); transition: transform 0.6s;
+        }
+        .showreel-video-wrap:hover { transform: perspective(1000px) rotateX(0deg) scale(1.01); }
+        .showreel-video-wrap video {
+            width: 100%; height: 100%; object-fit: cover; display: block;
+        }
+        .showreel-play {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+            width: 100px; height: 100px; border-radius: 50%; background: var(--color-highlight);
+            display: flex; align-items: center; justify-content: center; border: none;
+            color: #fff; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+            font-weight: 500; transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .showreel-play:hover { transform: translate(-50%,-50%) scale(1.15); box-shadow: 0 0 60px rgba(194,64,64,0.4); }
+
+        /* ── Marquee ── */
+        .marquee-wrap {
+            overflow: hidden; padding: 48px 0; border-top: 1px solid var(--color-border);
+            border-bottom: 1px solid var(--color-border);
+        }
+        .marquee-track {
+            display: flex; white-space: nowrap; animation: marqueeScroll 25s linear infinite;
+        }
+        .marquee-item {
+            font-size: clamp(36px,6vw,80px); font-weight: 200; letter-spacing: -0.02em;
+            padding: 0 40px; color: rgba(245,245,245,0.08); flex-shrink: 0;
+        }
+        .marquee-item em {
+            font-family: 'Playfair Display', serif; font-style: italic;
+            color: rgba(194,64,64,0.3);
+        }
+        @keyframes marqueeScroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+        /* ── About ── */
+        .about { padding: 160px 48px; max-width: 1200px; margin: 0 auto; }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+        .about-text {
+            font-family: 'Playfair Display', serif; font-size: clamp(24px,3vw,40px);
+            font-weight: 400; font-style: italic; line-height: 1.4; color: rgba(245,245,245,0.9);
+        }
+        .about-desc { font-size: 14px; color: var(--color-grey); line-height: 1.9; }
+        .about-stats { display: flex; gap: 48px; margin-top: 48px; }
+        .stat-num {
+            font-size: 48px; font-weight: 200; color: var(--color-highlight);
+            font-family: 'Playfair Display', serif; font-style: italic;
+        }
+        .stat-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-grey); margin-top: 4px; }
+        .readmore-btn {
+            display: inline-flex; align-items: center; gap: 12px;
+            margin-top: 48px; font-size: 12px; letter-spacing: 0.15em;
+            text-transform: uppercase; color: var(--color-white); border: none;
+            background: none; padding: 0; transition: color 0.3s;
+        }
+        .readmore-btn::after {
+            content: '→'; display: inline-block; transition: transform 0.3s;
+        }
+        .readmore-btn:hover::after { transform: translateX(6px); }
+
+        /* ── Services ── */
+        .services { padding: 120px 48px; max-width: 1200px; margin: 0 auto; }
+        .services-label {
+            font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase;
+            color: var(--color-grey); margin-bottom: 64px; display: flex; align-items: center; gap: 16px;
+        }
+        .services-label::before { content: ''; width: 40px; height: 1px; background: var(--color-highlight); }
+        .service-item {
+            padding: 40px 0; border-bottom: 1px solid var(--color-border);
+            display: flex; justify-content: space-between; align-items: baseline;
+            transition: padding-left 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+        }
+        .service-item:first-child { border-top: 1px solid var(--color-border); }
+        .service-item:hover { padding-left: 24px; }
+        .service-name {
+            font-size: clamp(36px,5vw,72px); font-weight: 200; letter-spacing: -0.02em;
+            transition: color 0.3s;
+        }
+        .service-item:hover .service-name { color: var(--color-highlight); }
+        .service-num {
+            font-size: 12px; color: var(--color-grey); letter-spacing: 0.1em; font-weight: 400;
+        }
+
+        /* ── Image Marquee (behind services) ── */
+        .img-marquee {
+            overflow: hidden; padding: 80px 0; position: relative;
+        }
+        .img-marquee-track {
+            display: flex; gap: 24px; animation: imgMarquee 30s linear infinite;
+        }
+        .img-marquee-track img {
+            height: 200px; width: auto; border-radius: 8px; opacity: 0.4;
+            filter: grayscale(0.5); transition: opacity 0.4s, filter 0.4s;
+        }
+        .img-marquee-track img:hover { opacity: 0.9; filter: none; }
+        @keyframes imgMarquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+        /* ── Portfolio ── */
+        .portfolio { padding: 120px 48px; }
+        .portfolio-heading {
+            font-size: clamp(36px,6vw,80px); font-weight: 200; text-align: center;
+            margin-bottom: 80px; letter-spacing: -0.02em;
+        }
+        .portfolio-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+            max-width: 1400px; margin: 0 auto;
+        }
+        .project-card {
+            position: relative; overflow: hidden; border-radius: 12px;
+            aspect-ratio: 3/4; background: var(--color-dark-grey);
+        }
+        .project-card:nth-child(2) { transform: translateY(60px); }
+        .project-card:nth-child(5) { transform: translateY(60px); }
+        .project-card:nth-child(8) { transform: translateY(60px); }
+        .project-card:nth-child(11) { transform: translateY(60px); }
+        .project-card img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 1.2s cubic-bezier(0.19,1,0.22,1), filter 0.6s;
+            filter: grayscale(0.3);
+        }
+        .project-card:hover img { transform: scale(1.08); filter: none; }
+        .project-info {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            padding: 32px; background: linear-gradient(transparent, rgba(0,0,0,0.85));
+            transform: translateY(20px); opacity: 0;
+            transition: all 0.5s cubic-bezier(0.19,1,0.22,1);
+        }
+        .project-card:hover .project-info { transform: translateY(0); opacity: 1; }
+        .project-name {
+            font-size: 18px; font-weight: 500; margin-bottom: 4px;
+        }
+        .project-award {
+            font-size: 11px; color: var(--color-highlight); letter-spacing: 0.05em;
+        }
+        .project-year {
+            font-size: 11px; color: var(--color-grey); margin-top: 4px;
+        }
+
+        /* ── Awards ── */
+        .awards { padding: 120px 48px; }
+        .awards-stats {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px;
+            max-width: 1000px; margin: 80px auto 0;
+        }
+        .award-block { text-align: center; padding: 40px; border: 1px solid var(--color-border); border-radius: 12px; }
+        .award-platform {
+            font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+            color: var(--color-grey); margin-bottom: 16px;
+        }
+        .award-count {
+            font-size: 64px; font-weight: 200; color: var(--color-highlight);
+            font-family: 'Playfair Display', serif; font-style: italic;
+        }
+        .award-detail { font-size: 12px; color: var(--color-grey); margin-top: 12px; line-height: 1.7; }
+
+        /* ── Contact CTA ── */
+        .contact-cta {
+            padding: 200px 48px; text-align: center; position: relative;
+        }
+        .contact-cta-title {
+            font-size: clamp(48px,8vw,120px); font-weight: 200; letter-spacing: -0.02em;
+            margin-bottom: 40px;
+        }
+        .contact-cta-title em {
+            font-family: 'Playfair Display', serif; font-style: italic;
+            color: var(--color-highlight);
+        }
+        .cta-button {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 160px; height: 160px; border-radius: 50%;
+            border: 1px solid rgba(245,245,245,0.2); background: transparent;
+            color: var(--color-white); font-size: 12px; letter-spacing: 0.15em;
+            text-transform: uppercase; font-weight: 500;
+            transition: all 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+            position: relative;
+        }
+        .cta-button:hover {
+            background: var(--color-highlight); border-color: var(--color-highlight);
+            transform: scale(1.1);
+        }
+
+        /* ── Footer ── */
+        .site-footer {
+            padding: 80px 48px 40px; border-top: 1px solid var(--color-border);
+        }
+        .footer-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 48px;
+            max-width: 1400px; margin: 0 auto;
+        }
+        .footer-office-label {
+            font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+            color: var(--color-highlight); margin-bottom: 12px;
+        }
+        .footer-office-city { font-size: 16px; font-weight: 400; margin-bottom: 4px; }
+        .footer-office-detail { font-size: 13px; color: var(--color-grey); line-height: 1.7; }
+        .footer-social { display: flex; gap: 24px; margin-top: 24px; }
+        .footer-social a {
+            font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+            color: var(--color-grey); transition: color 0.3s;
+        }
+        .footer-social a:hover { color: var(--color-white); }
+        .footer-bottom {
+            max-width: 1400px; margin: 60px auto 0; padding-top: 32px;
+            border-top: 1px solid var(--color-border);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .footer-tagline {
+            font-size: 11px; color: var(--color-grey); letter-spacing: 0.15em; text-transform: uppercase;
+        }
+        .footer-ukraine { font-size: 11px; color: var(--color-grey); }
+
+        /* ── Brief Wizard ── */
+        .wizard-overlay {
+            position: fixed; inset: 0; z-index: 200;
+            background: rgba(0,0,0,0.92); backdrop-filter: blur(40px);
+            opacity: 0; pointer-events: none; transition: opacity 0.5s;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .wizard-overlay.active { opacity: 1; pointer-events: auto; }
+        .wizard-card {
+            background: var(--color-dark); border: 1px solid var(--color-border);
+            width: 100%; max-width: 640px; padding: 48px; border-radius: 16px;
+            transform: translateY(20px) scale(0.96); opacity: 0;
+            transition: all 0.6s cubic-bezier(0.16,1,0.3,1);
+        }
+        .wizard-overlay.active .wizard-card { transform: none; opacity: 1; }
+        .wizard-head {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 40px;
+        }
+        .wizard-step-label {
+            font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--color-grey);
+        }
+        .wizard-close {
+            width: 36px; height: 36px; border: 1px solid var(--color-border);
+            border-radius: 50%; background: none; color: var(--color-grey);
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.3s; font-size: 18px;
+        }
+        .wizard-close:hover { border-color: var(--color-white); color: var(--color-white); }
+        .wizard-title {
+            font-family: 'Playfair Display', serif; font-size: 28px; font-style: italic;
+            margin-bottom: 32px; font-weight: 400;
+        }
+        .wizard-input {
+            width: 100%; background: transparent; border: none;
+            border-bottom: 1px solid var(--color-border); padding: 16px 0;
+            color: var(--color-white); font-size: 16px; font-family: inherit;
+            outline: none; margin-bottom: 20px; transition: border-color 0.3s;
+        }
+        .wizard-input:focus { border-color: var(--color-highlight); }
+        .wizard-input::placeholder { color: rgba(245,245,245,0.2); }
+        .wizard-btn {
+            width: 100%; padding: 16px; background: var(--color-highlight);
+            color: #fff; border: none; font-size: 12px; letter-spacing: 0.15em;
+            text-transform: uppercase; font-weight: 500; border-radius: 8px;
+            margin-top: 16px; transition: background 0.3s, transform 0.2s;
+        }
+        .wizard-btn:hover { background: #d44; transform: translateY(-1px); }
+        .wizard-btn-ghost {
+            width: 100%; padding: 16px; background: none;
+            color: var(--color-grey); border: 1px solid var(--color-border);
+            font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase;
+            font-weight: 400; border-radius: 8px; margin-top: 8px; transition: all 0.3s;
+        }
+        .wizard-btn-ghost:hover { border-color: var(--color-white); color: var(--color-white); }
+        .wizard-options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px; }
+        .wizard-opt {
+            padding: 24px; border: 1px solid var(--color-border); border-radius: 8px;
+            background: none; color: var(--color-white); text-align: left;
+            transition: all 0.3s; font-family: inherit;
+        }
+        .wizard-opt:hover { border-color: var(--color-highlight); background: rgba(194,64,64,0.05); }
+        .wizard-opt-title { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
+        .wizard-opt-desc { font-size: 11px; color: var(--color-grey); }
+        .wizard-step { display: none; }
+        .wizard-step.active { display: block; }
+        .wizard-success { text-align: center; padding: 40px 0; }
+        .wizard-success-icon {
+            width: 80px; height: 80px; border: 2px solid var(--color-highlight);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 24px; font-size: 32px; color: var(--color-highlight);
+        }
+
+        /* ── Scroll Animate ── */
+        .fade-up {
+            opacity: 0; transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16,1,0.3,1);
+        }
+        .fade-up.visible { opacity: 1; transform: none; }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .site-header { padding: 20px 24px; }
+            .header-nav { display: none; }
+            .hero { padding: 100px 24px; }
+            .about-grid { grid-template-columns: 1fr; gap: 40px; }
+            .portfolio-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+            .project-card:nth-child(n) { transform: none; }
+            .awards-stats { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+            .services, .about, .portfolio, .awards, .contact-cta { padding-left: 24px; padding-right: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Preloader -->
+<div class="preloader" id="preloader">
+    <div class="preloader-text">İLERİ</div>
+</div>
+
+<!-- Custom Cursor -->
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+
+<!-- Scroll Progress -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- Header -->
+<header class="site-header" data-kepenk-section="header">
+    <div class="header-logo" data-kepenk-editable="text">İLERİ Dijital <span>®</span></div>
+    <nav class="header-nav">
+        <a href="#works" data-kepenk-editable="text">Portfolyo</a>
+        <a href="#about" data-kepenk-editable="text">Ajans</a>
+        <a href="#services" data-kepenk-editable="text">Hizmetler</a>
+        <a href="#contact" onclick="briefWizard.open(); return false;" data-kepenk-editable="text">İletişim</a>
+    </nav>
+</header>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero" id="hero" data-kepenk-section="hero">
+    <div class="hero-content">
+        <div class="hero-label">Dijital Tasarım Butik Ajansı</div>
+        <h1 class="hero-title" data-kepenk-editable="text">
+            <span class="reveal-line"><span style="animation-delay:0.1s">İLERİ Dijital <em>®</em></span></span>
+            <span class="reveal-line"><span style="animation-delay:0.25s">Estetik Odaklı</span></span>
+            <span class="reveal-line"><span style="animation-delay:0.4s">Tasarım <em>Butik Ajansı</em></span></span>
+        </h1>
+        <p class="hero-sub" data-kepenk-editable="text">
+            Tasarım ve teknolojinin kesişim noktasında yaratılan her proje, 
+            geleceği bugüne taşır. 200'den fazla tamamlanmış proje ile 
+            markaların dijital dönüşümünü yönetiyoruz.
+        </p>
+    </div>
+</section>
+
+<!-- ═══ SHOWREEL ═══ -->
+<section class="showreel" data-kepenk-section="showreel">
+    <div class="showreel-video-wrap fade-up">
+        <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?w=1600&q=80">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-futuristic-devices-99786-large.mp4" type="video/mp4">
+        </video>
+        <button class="showreel-play" data-kepenk-editable="text">Showreel</button>
+    </div>
+</section>
+
+<!-- ═══ MARQUEE 1 ═══ -->
+<div class="marquee-wrap">
+    <div class="marquee-track">
+        <span class="marquee-item">Showreel — <em>İLERİ Dijital</em> — </span>
+        <span class="marquee-item">Showreel — <em>İLERİ Dijital</em> — </span>
+        <span class="marquee-item">Showreel — <em>İLERİ Dijital</em> — </span>
+        <span class="marquee-item">Showreel — <em>İLERİ Dijital</em> — </span>
+    </div>
+</div>
+
+<!-- ═══ ABOUT ═══ -->
+<section class="about" id="about" data-kepenk-section="about">
+    <div class="about-grid">
+        <div class="fade-up">
+            <p class="about-text" data-kepenk-editable="text">
+                "İLERİ Dijital tarafından hayata geçirilen her proje, 
+                tasarım ile teknolojinin buluşma noktasında — 
+                geleceği bugüne taşıyarak yaratılır."
+            </p>
+        </div>
+        <div class="fade-up">
+            <p class="about-desc" data-kepenk-editable="text">
+                Büyük ve orta ölçekli işletmelerin dijital varlıklarını güçlendirmek için 
+                tasarımın gücüne, yaratıcılığa ve duyguya inanıyoruz. Kullanıcı davranış kalıplarını 
+                derinlemesine analiz ederek, markaların hedef kitleleriyle anlamlı bağlar kurmasını sağlıyoruz.
+                <br><br>
+                İstanbul merkezli ajansımız, Avrupa ve Ortadoğu genelinde 
+                fintech, e-ticaret, lüks perakende ve SaaS sektörlerinde 
+                ödüllü projeler üretmektedir.
+            </p>
+            <div class="about-stats">
+                <div>
+                    <div class="stat-num">200+</div>
+                    <div class="stat-label">Tamamlanan Proje</div>
+                </div>
+                <div>
+                    <div class="stat-num">32</div>
+                    <div class="stat-label">Uluslararası Ödül</div>
+                </div>
+                <div>
+                    <div class="stat-num">8</div>
+                    <div class="stat-label">Yıllık Deneyim</div>
+                </div>
+            </div>
+            <button class="readmore-btn" data-kepenk-editable="text">Ajans Hakkında</button>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ SERVICES ═══ -->
+<section class="services" id="services" data-kepenk-section="services">
+    <div class="services-label">Hizmetlerimiz</div>
+    <div class="fade-up">
+        <div class="service-item">
+            <span class="service-name" data-kepenk-editable="text">UX Strateji</span>
+            <span class="service-num">01</span>
+        </div>
+        <div class="service-item">
+            <span class="service-name" data-kepenk-editable="text">UI Tasarım</span>
+            <span class="service-num">02</span>
+        </div>
+        <div class="service-item">
+            <span class="service-name" data-kepenk-editable="text">Geliştirme</span>
+            <span class="service-num">03</span>
+        </div>
+        <div class="service-item">
+            <span class="service-name" data-kepenk-editable="text">İletişim</span>
+            <span class="service-num">04</span>
+        </div>
+        <div class="service-item">
+            <span class="service-name" data-kepenk-editable="text">Marka Kimliği</span>
+            <span class="service-num">05</span>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ IMAGE MARQUEE ═══ -->
+<div class="img-marquee">
+    <div class="img-marquee-track">
+        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&q=80" alt="Proje 1" data-kepenk-editable="image">
+        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=500&q=80" alt="Proje 2" data-kepenk-editable="image">
+        <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?w=500&q=80" alt="Proje 3" data-kepenk-editable="image">
+        <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=500&q=80" alt="Proje 4" data-kepenk-editable="image">
+        <img src="https://images.unsplash.com/photo-1504384764586-bb4cdc1707b0?w=500&q=80" alt="Proje 5" data-kepenk-editable="image">
+        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500&q=80" alt="Proje 6" data-kepenk-editable="image">
+        <!-- Duplicate for seamless loop -->
+        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&q=80" alt="Proje 1">
+        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=500&q=80" alt="Proje 2">
+        <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?w=500&q=80" alt="Proje 3">
+        <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=500&q=80" alt="Proje 4">
+        <img src="https://images.unsplash.com/photo-1504384764586-bb4cdc1707b0?w=500&q=80" alt="Proje 5">
+        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500&q=80" alt="Proje 6">
+    </div>
+</div>
+
+<!-- ═══ PORTFOLIO ═══ -->
+<section class="portfolio" id="works" data-kepenk-section="portfolio">
+    <h2 class="portfolio-heading fade-up" data-kepenk-editable="text">Son İşlerimiz</h2>
+    <div class="portfolio-grid">
+        <div class="project-card fade-up">
+            <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80" alt="Kara Taş Residence" data-kepenk-editable="image">
+            <div class="project-info">
+                <div class="project-name" data-kepenk-editable="text">Kara Taş Residence</div>
+                <div class="project-award">Awwwards — Günün Sitesi</div>
+                <div class="project-year">2024</div>
+            </div>
+        </div>
+        <div class="project-card fade-up">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80" alt="Gapsy Dijital" data-kepenk-editable="image">
+            <div class="project-info">
+                <div class="project-name" data-kepenk-editable="text">Gapsy Dijital</div>
+                <div class="project-award">FWA — Günün Projesi</div>
+                <div class="project-year">2023</div>
+            </div>
+        </div>
+        <div class="project-card fade-up">
+            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&q=80" alt="Deniz Finans" data-kepenk-editable="image">
+            <div class="project-info">
+                <div class="project-name" data-kepenk-editable="text">Deniz Finans</div>
+                <div class="project-award">Türkiye'nin En İyi 10 Fintech'i</div>
+                <div class="project-year">2023</div>
+            </div>
+        </div>
+        <div class="project-card fade-up">
+            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80" alt="Vendome Klinik" data-kepenk-editable="image">
+            <div class="project-info">
+                <div class="project-name" data-kepenk-editable="text">Vendome Klinik</div>
+                <div class="project-award">Awwwards — Günün Sitesi</div>
+                <div class="project-year">2023</div>
+            </div>
+        </div>
+        <div class="project-card fade-up">
+            <img src="https://images.unsplash.com/photo-1504384764586-bb4cdc1707b0?w=600&q=80" alt="Boğaz Kapital" data-kepenk-editable="image">
+            <div class="project-info">
+                <div class="project-name" data-kepenk-editable="text">Boğaz Kapital</div>
+                <div class="project-award">Awwwards — Onur Ödülü</div>
+                <div class="project-year">2023</div>
+            </div>
+        </div>
+        <div class="project-card fade-up">
+            <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600&q=80" alt="Anatolia Tarım" data-kepenk-editable="image">
+            <div class="project-info">
+                <div class="project-name" data-kepenk-editable="text">Anatolia Tarım</div>
+                <div class="project-award">UI/UX Tasarım, Kurumsal Web</div>
+                <div class="project-year">2022</div>
+            </div>
+        </div>
+        <div class="project-card fade-up">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80" alt="mr.Pops E-Ticaret" data-kepenk-editable="image">
+            <div class="project-info">
+                <div class="project-name" data-kepenk-editable="text">mr.Pops E-Ticaret</div>
+                <div class="project-award">Awwwards — Yılın E-Ticaret Sitesi</div>
+                <div class="project-year">2022</div>
+            </div>
+        </div>
+        <div class="project-card fade-up">
+            <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?w=600&q=80" alt="Takım Stefansky" data-kepenk-editable="image">
+            <div class="project-info">
+                <div class="project-name" data-kepenk-editable="text">Takım Stefansky</div>
+                <div class="project-award">CSS Design Awards — Günün Sitesi</div>
+                <div class="project-year">2022</div>
+            </div>
+        </div>
+        <div class="project-card fade-up">
+            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" alt="Granit Ocakları" data-kepenk-editable="image">
+            <div class="project-info">
+                <div class="project-name" data-kepenk-editable="text">Granit Ocakları</div>
+                <div class="project-award">Awwwards — Onur Ödülü</div>
+                <div class="project-year">2021</div>
+            </div>
+        </div>
+        <div class="project-card fade-up">
+            <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&q=80" alt="DepositApp" data-kepenk-editable="image">
+            <div class="project-info">
+                <div class="project-name" data-kepenk-editable="text">DepositApp Evolution</div>
+                <div class="project-award">Awwwards — Günün Sitesi</div>
+                <div class="project-year">2023</div>
+            </div>
+        </div>
+        <div class="project-card fade-up">
+            <img src="https://images.unsplash.com/photo-1563986768609-322da13575f2?w=600&q=80" alt="Maks Kolt Portfolyo" data-kepenk-editable="image">
+            <div class="project-info">
+                <div class="project-name" data-kepenk-editable="text">Maks Kolt Portfolyo</div>
+                <div class="project-award">Awwwards — Günün Sitesi</div>
+                <div class="project-year">2021</div>
+            </div>
+        </div>
+        <div class="project-card fade-up">
+            <img src="https://images.unsplash.com/photo-1555421689-d68471e189f2?w=600&q=80" alt="Yenigün Ajans" data-kepenk-editable="image">
+            <div class="project-info">
+                <div class="project-name" data-kepenk-editable="text">Yenigün Ajans</div>
+                <div class="project-award">Awwwards — Günün Sitesi</div>
+                <div class="project-year">2021</div>
+            </div>
+        </div>
+    </div>
+    <div style="text-align:center; margin-top:64px;">
+        <button class="readmore-btn fade-up" data-kepenk-editable="text">Tüm Portfolyo</button>
+    </div>
+</section>
+
+<!-- ═══ AWARDS MARQUEE ═══ -->
+<div class="marquee-wrap">
+    <div class="marquee-track" style="animation-direction:reverse;">
+        <span class="marquee-item">Ödüller — <em>Tanınırlık</em> — </span>
+        <span class="marquee-item">Ödüller — <em>Tanınırlık</em> — </span>
+        <span class="marquee-item">Ödüller — <em>Tanınırlık</em> — </span>
+        <span class="marquee-item">Ödüller — <em>Tanınırlık</em> — </span>
+    </div>
+</div>
+
+<!-- ═══ AWARDS ═══ -->
+<section class="awards" id="awards" data-kepenk-section="awards">
+    <div style="text-align:center; max-width:800px; margin:0 auto;" class="fade-up">
+        <p style="font-size:11px; letter-spacing:0.3em; text-transform:uppercase; color:var(--color-grey); margin-bottom:24px;">
+            2022 Yılın Stüdyosu — CSS Design Awards &nbsp;•&nbsp; 2024 Yılın E-Ticaret Sitesi — Awwwards
+        </p>
+        <h2 style="font-family:'Playfair Display',serif; font-size:clamp(32px,4vw,56px); font-weight:400; font-style:italic; line-height:1.3;" data-kepenk-editable="text">
+            "Tasarım sadece görünüm değil,<br>aynı zamanda nasıl çalıştığıdır."
+        </h2>
+    </div>
+    <div class="awards-stats fade-up">
+        <div class="award-block">
+            <div class="award-platform">Awwwards</div>
+            <div class="award-count">32</div>
+            <div class="award-detail">
+                Günün Sitesi: 8<br>
+                Geliştirici Ödülü: 7<br>
+                Onur Ödülü: 10<br>
+                Yılın E-Ticareti: 1<br>
+                Mobil Mükemmellik: 5
+            </div>
+        </div>
+        <div class="award-block">
+            <div class="award-platform">CSS Design Awards</div>
+            <div class="award-count">32</div>
+            <div class="award-detail">
+                Özel Takdir: 3<br>
+                UX Tasarım: 8<br>
+                UI Tasarım: 8<br>
+                İnovasyon: 8<br>
+                Günün Sitesi: 5
+            </div>
+        </div>
+        <div class="award-block">
+            <div class="award-platform">the FWA</div>
+            <div class="award-count">4</div>
+            <div class="award-detail">
+                Günün FWA'sı: 4
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ CONTACT MARQUEE ═══ -->
+<div class="marquee-wrap">
+    <div class="marquee-track">
+        <span class="marquee-item">Konuşalım — <em>İletişim</em> — </span>
+        <span class="marquee-item">Konuşalım — <em>İletişim</em> — </span>
+        <span class="marquee-item">Konuşalım — <em>İletişim</em> — </span>
+        <span class="marquee-item">Konuşalım — <em>İletişim</em> — </span>
+    </div>
+</div>
+
+<!-- ═══ CONTACT CTA ═══ -->
+<section class="contact-cta" id="contact" data-kepenk-section="contact">
+    <h2 class="contact-cta-title fade-up" data-kepenk-editable="text">
+        Bir <em>projeniz</em> mi var?
+    </h2>
+    <button class="cta-button fade-up" onclick="briefWizard.open()" data-kepenk-editable="text">Bize Yazın</button>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="site-footer" data-kepenk-section="footer">
+    <div class="footer-grid">
+        <div>
+            <div class="footer-office-label">🇹🇷 Ana Ofis</div>
+            <div class="footer-office-city" data-kepenk-editable="text">İstanbul, 34000</div>
+            <div class="footer-office-detail" data-kepenk-editable="text">
+                Levent, Büyükdere Cad. No:185<br>
+                merhaba@ileri.digital
+            </div>
+        </div>
+        <div>
+            <div class="footer-office-label">🇩🇪 Almanya</div>
+            <div class="footer-office-city" data-kepenk-editable="text">Berlin, 10115</div>
+            <div class="footer-office-detail" data-kepenk-editable="text">
+                Mitte, Friedrichstraße 123<br>
+                de@ileri.digital
+            </div>
+        </div>
+        <div>
+            <div class="footer-office-label">🇬🇧 İngiltere</div>
+            <div class="footer-office-city" data-kepenk-editable="text">Londra, EC2A</div>
+            <div class="footer-office-detail" data-kepenk-editable="text">
+                Shoreditch, Old Street 42<br>
+                uk@ileri.digital
+            </div>
+        </div>
+        <div>
+            <div class="footer-office-label">Sosyal Medya</div>
+            <div class="footer-social">
+                <a href="#">Instagram</a>
+                <a href="#">Dribbble</a>
+                <a href="#">Behance</a>
+                <a href="#">LinkedIn</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-tagline">İleri ol.</div>
+        <div class="footer-ukraine" style="font-size:11px; color:var(--color-grey);">
+            İş birlikleri: merhaba@ileri.digital
+        </div>
+    </div>
+</footer>
+
+<!-- ═══ BRIEF WIZARD ═══ -->
+<div class="wizard-overlay" id="wizardOverlay">
+    <div class="wizard-card">
+        <div class="wizard-head">
+            <div class="wizard-step-label" id="wizStepLabel">Adım 1 / 3</div>
+            <button class="wizard-close" onclick="briefWizard.close()">✕</button>
+        </div>
+
+        <!-- Step 1 -->
+        <div class="wizard-step active" id="wizStep1">
+            <div class="wizard-title">Projenizin tarzı nedir?</div>
+            <div class="wizard-options">
+                <button class="wizard-opt" onclick="briefWizard.setStyle('Minimal & Modern'); briefWizard.goto(2)">
+                    <div class="wizard-opt-title">Minimal & Modern</div>
+                    <div class="wizard-opt-desc">Sade, temiz, geniş boşluklar</div>
+                </button>
+                <button class="wizard-opt" onclick="briefWizard.setStyle('Bold & Ekspresif'); briefWizard.goto(2)">
+                    <div class="wizard-opt-title">Bold & Ekspresif</div>
+                    <div class="wizard-opt-desc">Cesur renkler, güçlü tipografi</div>
+                </button>
+                <button class="wizard-opt" onclick="briefWizard.setStyle('Premium & Lüks'); briefWizard.goto(2)">
+                    <div class="wizard-opt-title">Premium & Lüks</div>
+                    <div class="wizard-opt-desc">Zarif, altın detaylar, koyu tema</div>
+                </button>
+                <button class="wizard-opt" onclick="briefWizard.setStyle('Teknolojik & Fütürist'); briefWizard.goto(2)">
+                    <div class="wizard-opt-title">Teknolojik</div>
+                    <div class="wizard-opt-desc">Neon, gradyan, 3D efektler</div>
+                </button>
+            </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="wizard-step" id="wizStep2">
+            <div class="wizard-title">Projenizi anlatın</div>
+            <input class="wizard-input" id="wizBrand" placeholder="Marka / Şirket adınız" data-kepenk-editable="text">
+            <input class="wizard-input" id="wizBudget" placeholder="Tahmini bütçe (opsiyonel)" data-kepenk-editable="text">
+            <textarea class="wizard-input" id="wizBrief" placeholder="Kısa brief — ne yapmak istiyorsunuz?" rows="3" style="resize:none;" data-kepenk-editable="text"></textarea>
+            <button class="wizard-btn" onclick="briefWizard.goto(3)">Devam Et</button>
+            <button class="wizard-btn-ghost" onclick="briefWizard.goto(1)">← Geri</button>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="wizard-step" id="wizStep3">
+            <div class="wizard-title">İletişim bilgileriniz</div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+                <input class="wizard-input" id="wizName" placeholder="Adınız Soyadınız" data-kepenk-editable="text">
+                <input class="wizard-input" id="wizPhone" placeholder="Telefon" data-kepenk-editable="text">
+            </div>
+            <input class="wizard-input" id="wizEmail" placeholder="E-posta adresiniz" type="email" data-kepenk-editable="text">
+            <button class="wizard-btn" onclick="briefWizard.submit()">Talebi Gönder</button>
+            <button class="wizard-btn-ghost" onclick="briefWizard.goto(2)">← Geri</button>
+        </div>
+
+        <!-- Step 4: Success -->
+        <div class="wizard-step" id="wizStep4">
+            <div class="wizard-success">
+                <div class="wizard-success-icon">✓</div>
+                <div class="wizard-title" style="margin-bottom:12px;">Talebiniz Alındı!</div>
+                <p style="color:var(--color-grey); font-size:14px; line-height:1.7; max-width:400px; margin:0 auto 24px;">
+                    Kıdemli tasarım ekibimiz brief'inizi inceleyecek. 
+                    24 saat içinde e-posta adresinize geri dönüş yapılacaktır.
+                </p>
+                <button class="wizard-btn-ghost" onclick="briefWizard.close()">Siteye Dön</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+/* ── Preloader ── */
+window.addEventListener('load', () => {
+    setTimeout(() => document.getElementById('preloader').classList.add('hide'), 1200);
+});
+
+/* ── Custom Cursor ── */
+const dot = document.getElementById('cursorDot');
+const ring = document.getElementById('cursorRing');
+let mx = innerWidth/2, my = innerHeight/2, dx = mx, dy = my, rx = mx, ry = my;
+
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+
+document.querySelectorAll('a, button, .project-card, .cta-button').forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+});
+
+function cursorLoop() {
+    dx += (mx - dx) * 0.2; dy += (my - dy) * 0.2;
+    rx += (mx - rx) * 0.08; ry += (my - ry) * 0.08;
+    dot.style.left = dx + 'px'; dot.style.top = dy + 'px';
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    requestAnimationFrame(cursorLoop);
+}
+cursorLoop();
+
+/* ── Scroll Progress ── */
+const progressBar = document.getElementById('scrollProgress');
+window.addEventListener('scroll', () => {
+    const pct = (window.scrollY / (document.body.scrollHeight - innerHeight)) * 100;
+    progressBar.style.width = pct + '%';
+});
+
+/* ── Fade-up observer ── */
+const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.15 });
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+/* ── Brief Wizard ── */
+const briefWizard = {
+    step: 1,
+    data: JSON.parse(localStorage.getItem('ileri_brief') || '{}'),
+
+    open() {
+        document.getElementById('wizardOverlay').classList.add('active');
+        this.goto(this.step > 3 ? 1 : this.step);
+    },
+    close() {
+        document.getElementById('wizardOverlay').classList.remove('active');
+    },
+    setStyle(s) { this.data.style = s; this.save(); },
+    save() { localStorage.setItem('ileri_brief', JSON.stringify(this.data)); },
+    goto(n) {
+        this.step = n;
+        for (let i = 1; i <= 4; i++) {
+            const el = document.getElementById('wizStep' + i);
+            el.classList.toggle('active', i === n);
+        }
+        document.getElementById('wizStepLabel').textContent =
+            n <= 3 ? `Adım ${n} / 3` : 'Tamamlandı';
+        if (n <= 3) localStorage.setItem('ileri_brief_step', n);
+    },
+    submit() {
+        this.data.brand = document.getElementById('wizBrand').value;
+        this.data.budget = document.getElementById('wizBudget').value;
+        this.data.brief = document.getElementById('wizBrief').value;
+        this.data.name = document.getElementById('wizName').value;
+        this.data.phone = document.getElementById('wizPhone').value;
+        this.data.email = document.getElementById('wizEmail').value;
+        this.save();
+        console.log('Brief submitted:', this.data);
+        this.goto(4);
+        localStorage.removeItem('ileri_brief_step');
+    }
+};
+// Restore step
+const savedStep = localStorage.getItem('ileri_brief_step');
+if (savedStep) briefWizard.step = parseInt(savedStep);
+</script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+{
+    "sektor": "avukat",
+    "sikSorulanlar": [
+        {
+            "soru": "İlk görüşme ücretli mi?",
+            "cevap": "İlk tanışma görüşmesi genelde 15-30dk ücretsiz veya 500-1.000₺. Detaylı hukuki danışmanlık saatlik ücretlendirilir. Ofisimizi arayarak bilgi alabilirsiniz.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Dava masrafları ne kadar?",
+            "cevap": "Dava türü, mahkeme, süre ve karmaşıklığa göre değişir. Avukat ücreti + harç + masraf olarak 3 kalem var. İlk görüşmede tahmini maliyet tablosu veririz.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "İş davası açmak istiyorum, süreç nasıl?",
+            "cevap": "Önce zorunlu arabuluculuk başvurusu yapılır (2-4 hafta). Anlaşmazlıkta dava açılır. İş mahkemesinde ortalama süre 6-18 ay.",
+            "aciliyet": "orta"
+        },
+        {
+            "soru": "Boşanma davası ne kadar sürer?",
+            "cevap": "Anlaşmalı boşanma: 1-3 ay. Çekişmeli boşanma: 1-3 yıl. Velayet, nafaka, mal paylaşımı süreci uzatabilir.",
+            "aciliyet": "orta"
+        },
+        {
+            "soru": "İcra takibi başlatmak istiyorum.",
+            "cevap": "Alacak belgesi (senet, fatura, çek) ile icra dairesine başvuru yapılır. İlamsız icra: ödeme emri → itiraz yoksa haciz. İlamlı: mahkeme kararı ile direkt.",
+            "aciliyet": "orta"
+        },
+        {
+            "soru": "Ceza davası için avukat gerekli mi?",
+            "cevap": "Zorunlu değil ama şiddetle önerilir. Ağır ceza davalarında müdafii zorunluluğu var. Tutuklu müvekkil için 24 saat içinde avukat atanabilir.",
+            "aciliyet": "yuksek"
+        },
+        {
+            "soru": "Online danışmanlık yapıyor musunuz?",
+            "cevap": "Evet. Zoom/telefon ile ön değerlendirme görüşmesi yapıyoruz. Belge paylaşımı güvenli kanal ile. İmza gerektiren işlemler yüz yüze.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Tüketici hakları şikayeti nasıl yapılır?",
+            "cevap": "Önce satıcıya yazılı başvuru. Sonuç yoksa Tüketici Hakem Heyeti (THH) veya Tüketici Mahkemesi. Belli tutarın altı THH zorunlu.",
+            "aciliyet": "orta"
+        }
+    ],
+    "mevzuat": [
+        "1136 sayılı Avukatlık Kanunu",
+        "Avukatlık Asgari Ücret Tarifesi (yıllık güncellenir)",
+        "Hukuk Muhakemeleri Kanunu (HMK)",
+        "Ceza Muhakemesi Kanunu (CMK)",
+        "Arabuluculuk Kanunu (zorunlu arabuluculuk)",
+        "Avukat-müvekkil gizliliği (sır saklama yükümlülüğü)",
+        "Reklam yasağı kuralları (TBB Meslek Kuralları)"
+    ],
+    "yasalUyarilar": [
+        "AI asla hukuki tavsiye veremez — 'Avukatınıza danışın' ZORUNLU",
+        "Hukuki yorum yapmak, dava sonucu tahmin etmek YASAK",
+        "Müvekkil bilgileri kesinlikle gizli",
+        "Avukatın reklam yapması sınırlı — TBB kurallarına uyum zorunlu"
+    ],
+    "mevsimsellik": {
+        "kis": "Adli tatil sonrası (Eylül) birikmiş davalar. Yılsonu kapanışı — sözleşme yenilemeleri. İcra takip yoğunluğu.",
+        "yaz": "Adli tatil (20 Temmuz - 31 Ağustos): Dava süreleri durur. Danışmanlık devam eder. Tatil planlaması.",
+        "ilkbahar": "İş davaları yoğunluğu (yılbaşı işten çıkarmalar). Kira anlaşmazlıkları (yıllık artış dönemi).",
+        "sonbahar": "Yeni adli yıl başlangıcı (Eylül). Arabuluculuk başvuruları artar. Kurumsal sözleşmeler dönemi."
+    },
+    "rakipler": [
+        "Büyük hukuk büroları",
+        "Online hukuk platformları (HukukiBilgi vb.)",
+        "Arabuluculuk merkezleri",
+        "Baro adli yardım servisi (ücretsiz)",
+        "Kurumsal hukuk departmanları"
+    ],
+    "ortalamaSureler": {
+        "ilkGorusme": "30-60 dakika",
+        "arabuluculuk": "2-4 hafta",
+        "isMahkemesi": "6-18 ay",
+        "bosanmaAnlasmali": "1-3 ay",
+        "bosanmaCekismeli": "1-3 yıl",
+        "icraTakibi": "3-12 ay"
+    },
+    "populerHizmetler": [
+        "Hukuki danışmanlık (saatlik/aylık)",
+        "İş hukuku (işe iade, tazminat, mobbing)",
+        "Aile hukuku (boşanma, velayet, nafaka)",
+        "İcra ve iflas hukuku (alacak takibi)",
+        "Ceza hukuku savunma",
+        "Gayrimenkul hukuku (kira, tapu)",
+        "Ticaret hukuku (sözleşme, şirket)",
+        "Tüketici hakları",
+        "Arabuluculuk başvurusu"
+    ],
+    "fiyatAraliklari": {
+        "ilkGorusme": "Ücretsiz - 1.000₺",
+        "saatlikDanismanlik": "1.000-3.000₺/saat",
+        "aylikDanismanlik": "5.000-15.000₺/ay",
+        "bosanmaDavasi": "15.000-50.000₺+",
+        "isDavasi": "10.000-30.000₺+",
+        "icraTakibi": "Alacağın %10-15'i",
+        "cezaDavasi": "15.000-100.000₺+ (karmaşıklığa göre)"
+    },
+    "musteriProfili": {
+        "demografik": "Bireysel (%60): 25-60 yaş, her gelir seviyesi. Kurumsal (%40): KOBİ ve orta ölçekli şirketler.",
+        "karar": "Güven ve referans 1 numara. Avukatın uzmanlık alanı. İletişim kalitesi ve ulaşılabilirlik. Sonuç odaklılık.",
+        "hassasiyet": "Gizlilik (en kritik), ücret şeffaflığı, dava süreci hakkında düzenli bilgilendirme, empati."
+    },
+    "caprazSatis": [
+        "İş davası müvekkiline SGK/sigorta danışmanlığı yönlendir",
+        "Boşanma müvekkiline gayrimenkul (mal paylaşımı) desteği",
+        "Ticari müvekkile vergi/muhasebe danışmanlığı yönlendir",
+        "Arabuluculuk biten müvekkile önleyici hukuk (sözleşme) danışmanlığı",
+        "Bireysel müvekkile kurumsal abonelik teklifi (aylık retainer)"
+    ],
+    "krizSenaryolari": [
+        {
+            "tetikleyici": "Müvekkil tutuklandı / acil durum",
+            "yanit": "24 saat içinde müvekkil ile görüşme talep et. CMK hakları bilgilendir. Savcılık/mahkeme ile iletişime geç."
+        },
+        {
+            "tetikleyici": "Dava kaybedildi",
+            "yanit": "Kararı detaylı açıkla. İstinaf/temyiz seçeneklerini değerlendir. Süreleri kaçırma. Müvekkili bilgilendir."
+        },
+        {
+            "tetikleyici": "Müvekkil ücret ödemiyor",
+            "yanit": "Yazılı hatırlatma gönder. Avukatlık ücret sözleşmesini referans göster. Gerekirse icra takibi başlat."
+        }
+    ],
+    "dijitalIpuclari": [
+        "LinkedIn profesyonel ağda en etkili kanal — hukuki bilgilendirme yazıları",
+        "Blog: 'Boşanma davası nasıl açılır', 'İşçi hakları' SEO'da çok aranan sorgular",
+        "Google Haritalar: 'avukat yakınımda' lokalde çok aranır — yorum sayısı kritik",
+        "WhatsApp: Randevu ve belge paylaşımı için profesyonel kullanım",
+        "YouTube: Hukuki bilgilendirme videoları (genel bilgi, tavsiye değil) organik trafik getirir",
+        "TBB reklam kurallarına dikkat: 'En iyi avukat' gibi ifadeler YASAK"
+    ]
+}

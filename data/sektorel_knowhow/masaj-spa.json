@@ -1,0 +1,134 @@
+{
+    "sektor": "masaj-spa",
+    "sikSorulanlar": [
+        {
+            "soru": "Hangi masaj türleri var?",
+            "cevap": "Klasik İsveç masajı, derin doku, aromaterapi, hot stone, Bali masajı, spor masajı, refleksoloji. Seçim kişisel ihtiyaca göre.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Bir seans kaç dakika?",
+            "cevap": "30dk (bölgesel), 50dk (standart), 80dk (tam vücut), 120dk (VIP). En popüler 50dk tam vücut masajı.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Fiyatlar ne kadar?",
+            "cevap": "30dk 400-600₺, 50dk 600-1.000₺, 80dk 900-1.500₺, çift masajı 1.500-2.500₺. Paket alımlarda %15-25 indirim.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Çift masajı var mı?",
+            "cevap": "Evet. Çift odası olan şubelerimizde eşzamanlı masaj yapılır. Romantik paket: masaj + yüz bakımı + içecek ikramı.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Hamilelikte masaj olabilir miyim?",
+            "cevap": "3. aydan sonra prenatal masaj yapılabilir. Özel pozisyonla (yan yatış), yumuşak basınçla uygulanır. Doktor izni önerilir.",
+            "aciliyet": "yuksek"
+        },
+        {
+            "soru": "Masaj sonrası ne yapmalıyım?",
+            "cevap": "Bol su için (en az 2 bardak). 2 saat ağır egzersiz yapmayın. Ilık duş tercih edin. Toksinler atılıyor — hafif ağrı normal.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Sauna/hamam var mı?",
+            "cevap": "Şubemize göre değişir: Fin saunası, buhar odası, Türk hamamı mevcut. Masaj öncesi 15-20dk sauna önerilir.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Erkekler gelebilir mi?",
+            "cevap": "Evet. Kadın/erkek ayrı seans saatleri veya karışık (tercihe göre). Erkek terapist de mevcuttur.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Hediye kartı alabilir miyim?",
+            "cevap": "Evet. İstediğiniz tutarda veya belirli paket için hediye kartı düzenlenir. Fiziksel veya dijital olarak gönderilebilir.",
+            "aciliyet": "dusuk"
+        }
+    ],
+    "mevzuat": [
+        "Sağlık Bakanlığı Spa/Masaj Salonu Ruhsat Yönetmeliği",
+        "Masör/Masöz Sertifika Zorunluluğu (MEB onaylı)",
+        "Hijyen ve Sterilizasyon Standartları",
+        "KVKK: Müşteri sağlık bilgileri özel nitelikli kişisel veri",
+        "Reklam Kurulu: 'Tedavi' ifadesi kullanılamaz (sadece 'bakım/rahatlatma')"
+    ],
+    "mevsimsellik": {
+        "kis": "Sıcak taşlı masaj ve hamam talebi artar. Stres yönetimi — yılsonu iş yoğunluğu. Kış depresyonu → relaksasyon.",
+        "yaz": "Tatil öncesi vücut hazırlığı. Bölgesel masaj + zayıflama. Hafif sezon — kampanya fırsatı.",
+        "ilkbahar": "Detoks + yenileme sezonu. Anneler Günü hediye paketleri (Mayıs). Düğün öncesi gelin/damat paketi.",
+        "sonbahar": "Stres yönetimi sezonu. Kurumsal wellness paketleri. Kış hazırlığı — bağışıklık destekleyici masajlar."
+    },
+    "rakipler": [
+        "Otel spa merkezleri",
+        "Zincir spa markaları",
+        "Evde masaj hizmeti uygulamaları",
+        "Türk hamamı (geleneksel)",
+        "Fizyoterapi merkezleri (tıbbi masaj)"
+    ],
+    "ortalamaSureler": {
+        "bolgeselMasaj30dk": "30 dakika + 15dk hazırlık",
+        "tamVucut50dk": "50 dakika + 15dk hazırlık",
+        "vipPaket120dk": "120 dakika + 30dk hazırlık/sonrası",
+        "hamamRitual": "60-90 dakika",
+        "ciftMasaji": "50-80 dakika"
+    },
+    "populerHizmetler": [
+        "Klasik İsveç masajı (50dk/80dk)",
+        "Aromaterapi masajı",
+        "Hot stone (sıcak taş) masajı",
+        "Derin doku masajı",
+        "Bali masajı",
+        "Çift masajı (romantik paket)",
+        "Hamam + kese + köpük",
+        "Refleksoloji (ayak masajı)",
+        "Anti-stres baş/boyun masajı",
+        "Prenatal (hamile) masajı"
+    ],
+    "fiyatAraliklari": {
+        "masaj30dk": "400-600₺",
+        "masaj50dk": "600-1.000₺",
+        "masaj80dk": "900-1.500₺",
+        "ciftMasaji50dk": "1.500-2.500₺",
+        "hamam": "500-1.000₺",
+        "5SeansPaket": "2.500-4.000₺",
+        "10SeansPaket": "4.500-7.500₺",
+        "hediyeKarti": "500-3.000₺"
+    },
+    "musteriProfili": {
+        "demografik": "Kadın %70, erkek %30. 25-55 yaş. Orta-üst gelir. Stresli şehir hayatı yaşayan profesyoneller.",
+        "karar": "İlk ziyaret genelde hediye/ikna ile olur. Memnun kalırsa düzenli müşteri olur. Ortam hissi çok önemli.",
+        "hassasiyet": "Hijyen, terapist sertifikası, ortam huzuru/sessizliği, gizlilik. Erkek müşteriler terapist cinsiyetine hassas."
+    },
+    "caprazSatis": [
+        "Tek seanslık müşteriye paket sat (5/10 seans → %15-25 indirim)",
+        "Masaj yapana yüz bakımı / cilt bakımı ekle",
+        "Çift masajı → romantik paket (içecek + hediye)",
+        "Hediye kartı satışı (özellikle özel günler öncesi)",
+        "Kurumsal wellness: şirketlere aylık abonelik teklifi",
+        "Hamam + masaj kombo teklifi"
+    ],
+    "krizSenaryolari": [
+        {
+            "tetikleyici": "Masaj sonrası ağrı/rahatsızlık şikayeti",
+            "yanit": "Normal doku tepkisi olabileceğini açıkla. 24 saat geçmezse randevu ver. Ciddi ise doktora yönlendir."
+        },
+        {
+            "tetikleyici": "Terapist memnuniyetsizliği",
+            "yanit": "Farklı terapist ile ücretsiz seans teklif et. Geri bildirimi not al ve personele ilet."
+        },
+        {
+            "tetikleyici": "Randevu iptal/değişiklik",
+            "yanit": "24 saat öncesine kadar ücretsiz iptal. Son dakika → kredi olarak bir sonrakine aktar."
+        }
+    ],
+    "dijitalIpuclari": [
+        "Instagram'da ortam/ambiyans fotoğrafları en çok etkileşim alır",
+        "Google Haritalar'da 'spa yakınımda' araması yüksek hacimli",
+        "WhatsApp randevu hatırlatması + 'hoş geldiniz' mesajı deneyimi tamamlar",
+        "Anneler Günü, Sevgililer Günü öncesi hediye kartı kampanyası planla",
+        "Blog: 'Stres yönetimi için 5 masaj türü' gibi bilgi içerikleri SEO getirir",
+        "YouTube: ASMR tarzı masaj ortam videoları kanal oluşturur"
+    ]
+}

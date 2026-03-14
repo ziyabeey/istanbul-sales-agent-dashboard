@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İleri Düzey Dijital Stüdyo | Premium+ Demo</title>
+    <meta name="description" content="Estetiğe odaklanmış dijital tasarım stüdyosu. WebGL, 3D deneyimler ve yaratıcı çözümler.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Import Map for Three.js r140 ES Modules -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.140.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.140.0/examples/jsm/"
+        }
+    }
+    </script>
+
+    <style>
+        /* ============================================
+           RESET & BASE
+           ============================================ */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: auto; /* No smooth scroll — we need precise scroll tracking */
+        }
+
+        body {
+            background: #000;
+            color: #fff;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ============================================
+           LOADING SCREEN
+           ============================================ */
+        #loading-screen {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+        #loading-screen.loaded {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .loading-text {
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 2rem;
+        }
+        .loading-bar-outer {
+            width: 200px;
+            height: 2px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .loading-bar-inner {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #510303, #ff2020);
+            transition: width 0.3s ease;
+        }
+
+        /* ============================================
+           HEADER (FIXED, z-index: 9)
+           ============================================ */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 9;
+            padding: 1.5rem 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, transparent 100%);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+        }
+        .site-header__logo {
+            font-size: 1.1rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .site-header__logo:hover { color: #e8443a; }
+        .site-header__nav {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+        .site-header__nav a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+        .site-header__nav a:hover { color: #fff; }
+
+        @media (max-width: 768px) {
+            .site-header { padding: 1rem 1.5rem; }
+            .site-header__nav { display: none; }
+        }
+
+        /* ============================================
+           HOME SCREEN — 250vh scroll container
+           Doc spec: height 2292px (~250vh)
+           ============================================ */
+        #home-screen {
+            position: relative;
+            width: 100%;
+            height: 250vh;
+        }
+
+        /* ============================================
+           TEXT CONTENT — sticky on top
+           z-index: auto (above 3D, per spec)
+           ============================================ */
+        .home-screen__content {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            z-index: 2; /* Above 3D canvas */
+            pointer-events: none;
+            will-change: opacity, transform;
+        }
+
+        .home-screen__header {
+            font-size: clamp(2rem, 5vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.08;
+            letter-spacing: -0.03em;
+            text-transform: uppercase;
+            max-width: 80%;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 4px 30px rgba(0,0,0,0.8);
+        }
+        .home-screen__header .highlight {
+            color: #e8443a;
+        }
+
+        .home-screen__desc {
+            font-size: clamp(0.9rem, 1.2vw, 1.15rem);
+            font-weight: 300;
+            line-height: 1.7;
+            max-width: 520px;
+            color: rgba(255,255,255,0.65);
+            text-shadow: 0 2px 16px rgba(0,0,0,0.7);
+        }
+
+        .home-screen__scroll-hint {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.35);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.35; transform: translateX(-50%) translateY(0); }
+            50% { opacity: 0.7; transform: translateX(-50%) translateY(6px); }
+        }
+
+        /* ============================================
+           THREE.JS CANVAS (z-index: -1)
+           Per spec: behind text, above fluid
+           ============================================ */
+        .canvas-outer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+        }
+        .canvas-outer canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* ============================================
+           FLUID BACKGROUND (z-index: -3)
+           Per spec: behind everything
+           ============================================ */
+        #fluid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -3;
+            pointer-events: none;
+        }
+        #fluid-canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* ============================================
+           PAGE CONTENT (After fly-through)
+           ============================================ */
+        .page-content {
+            position: relative;
+            z-index: 5;
+            background: #000;
+        }
+
+        /* --- Showreel Section --- */
+        .showreel-section {
+            padding: 8rem 2rem 6rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .showreel-header {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        @media (min-width: 768px) {
+            .showreel-header {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: flex-end;
+            }
+        }
+        .showreel-title {
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 900;
+            letter-spacing: -0.04em;
+            line-height: 0.9;
+            text-transform: uppercase;
+        }
+        .showreel-title .year { color: #c0392b; }
+        .showreel-desc {
+            max-width: 360px;
+            font-size: 1rem;
+            line-height: 1.6;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .showreel-video {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #0a0a0a;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        .showreel-video img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.5;
+            transition: opacity 0.7s ease, transform 1.2s ease;
+        }
+        .showreel-video:hover img {
+            opacity: 0.7;
+            transform: scale(1.03);
+        }
+        .showreel-play {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+        .showreel-play-btn {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(12px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.5s ease;
+        }
+        .showreel-play-btn:hover {
+            transform: scale(1.15);
+            background: #c0392b;
+            border-color: #c0392b;
+        }
+        .showreel-play-btn svg {
+            width: 32px;
+            height: 32px;
+            fill: #fff;
+            margin-left: 4px;
+        }
+
+        /* --- Services Section --- */
+        .services-section {
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .services-label {
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.35);
+            margin-bottom: 3rem;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1px;
+        }
+        .service-card {
+            border: 1px solid rgba(255,255,255,0.06);
+            padding: 2.5rem;
+            transition: all 0.5s ease;
+            cursor: default;
+        }
+        .service-card:hover {
+            background: rgba(255,255,255,0.03);
+            border-color: rgba(255,255,255,0.12);
+        }
+        .service-card__number {
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.25);
+            margin-bottom: 1.5rem;
+        }
+        .service-card__title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+        .service-card__desc {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: rgba(255,255,255,0.45);
+        }
+
+        /* --- Footer --- */
+        .site-footer {
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .site-footer__brand {
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+        .site-footer__copy {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.3);
+        }
+
+        /* ============================================
+           CUSTOM CURSOR
+           ============================================ */
+        .custom-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 1.5px solid rgba(255,255,255,0.5);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            transition: transform 0.15s ease, border-color 0.3s, width 0.3s, height 0.3s, margin 0.3s;
+            margin-left: -10px;
+            margin-top: -10px;
+            mix-blend-mode: difference;
+        }
+        .custom-cursor.hovering {
+            width: 50px;
+            height: 50px;
+            margin-left: -25px;
+            margin-top: -25px;
+            border-color: #e8443a;
+        }
+        .cursor-dot {
+            position: fixed;
+            width: 5px;
+            height: 5px;
+            background: #fff;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10001;
+            margin-left: -2.5px;
+            margin-top: -2.5px;
+            mix-blend-mode: difference;
+        }
+
+        @media (max-width: 768px) {
+            .custom-cursor, .cursor-dot { display: none; }
+        }
+
+        /* ============================================
+           SCROLL REVEAL
+           ============================================ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        /* ============================================
+           GRADIENT DIVIDER
+           ============================================ */
+        .gradient-divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(232,68,58,0.4), rgba(81,3,3,0.3), transparent);
+            margin: 0 auto;
+        }
+
+        /* ============================================
+           MARQUEE TICKER
+           ============================================ */
+        .marquee-section {
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 3rem 0;
+            border-top: 1px solid rgba(255,255,255,0.04);
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+        .marquee-track {
+            display: inline-flex;
+            animation: marquee 30s linear infinite;
+        }
+        .marquee-item {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -0.03em;
+            color: rgba(255,255,255,0.06);
+            padding: 0 2rem;
+            -webkit-text-stroke: 1px rgba(255,255,255,0.08);
+            transition: color 0.4s;
+        }
+        .marquee-item:hover { color: rgba(232,68,58,0.3); }
+        .marquee-item .dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(232,68,58,0.3);
+            margin: 0 1.5rem;
+            vertical-align: middle;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ============================================
+           STATS SECTION
+           ============================================ */
+        .stats-section {
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+        }
+        @media (max-width: 768px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        .stat-card {
+            padding: 3rem 2rem;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.04);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 120%, rgba(232,68,58,0.06), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        .stat-card:hover::before { opacity: 1; }
+        .stat-card__number {
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            font-weight: 900;
+            letter-spacing: -0.04em;
+            background: linear-gradient(135deg, #fff, rgba(255,255,255,0.5));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .stat-card__label {
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.35);
+            margin-top: 0.75rem;
+        }
+
+        /* ============================================
+           PROJECTS SECTION
+           ============================================ */
+        .projects-section {
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .projects-label {
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.35);
+            margin-bottom: 3rem;
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+        @media (max-width: 768px) {
+            .projects-grid { grid-template-columns: 1fr; }
+        }
+        .project-card {
+            position: relative;
+            aspect-ratio: 16/10;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .project-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+            filter: brightness(0.7) saturate(0.8);
+        }
+        .project-card:hover img {
+            transform: scale(1.08);
+            filter: brightness(0.9) saturate(1);
+        }
+        .project-card__overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.85) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+        }
+        .project-card__tag {
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #e8443a;
+            margin-bottom: 0.5rem;
+        }
+        .project-card__title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        .project-card__arrow {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(8px);
+            transition: all 0.4s ease;
+        }
+        .project-card:hover .project-card__arrow {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ============================================
+           CONTACT / CTA SECTION
+           ============================================ */
+        .cta-section {
+            padding: 8rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 80%, rgba(81,3,3,0.15), transparent 70%);
+            pointer-events: none;
+        }
+        .cta-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.35);
+            margin-bottom: 2rem;
+        }
+        .cta-title {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1.05;
+            max-width: 800px;
+            margin: 0 auto 2.5rem;
+        }
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2.5rem;
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 100px;
+            color: #fff;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .cta-btn:hover {
+            background: #e8443a;
+            border-color: #e8443a;
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(232,68,58,0.3);
+        }
+        .cta-btn svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+            transition: transform 0.3s;
+        }
+        .cta-btn:hover svg { transform: translateX(4px); }
+
+        /* Enhanced service cards */
+        .service-card {
+            position: relative;
+            overflow: hidden;
+        }
+        .service-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #e8443a, #510303);
+            transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .service-card:hover::after { width: 100%; }
+    </style>
+</head>
+<body>
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="cursor"></div>
+    <div class="cursor-dot" id="cursor-dot"></div>
+
+    <!-- ============================================
+         LOADING SCREEN
+         ============================================ -->
+    <div id="loading-screen">
+        <div class="loading-text">Yükleniyor</div>
+        <div class="loading-bar-outer">
+            <div class="loading-bar-inner" id="loading-bar"></div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         HEADER (z-index: 9, fixed)
+         ============================================ -->
+    <header class="site-header">
+        <div class="site-header__logo">İLERİDÜZEY®</div>
+        <nav>
+            <ul class="site-header__nav">
+                <li><a href="#showreel-section">Projeler</a></li>
+                <li><a href="#services-section">Hizmetler</a></li>
+                <li><a href="#">Stüdyo</a></li>
+                <li><a href="#">İletişim</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ============================================
+         HOME SCREEN — 250vh scroll space
+         ============================================ -->
+    <div id="home-screen">
+        <div class="home-screen__content" id="hero-text">
+            <h1 class="home-screen__header">
+                <span class="highlight">İleri Düzey</span><sup style="font-size:0.4em;vertical-align:super">®</sup><br>
+                Dijital Tasarım<br>Stüdyosu
+            </h1>
+            <p class="home-screen__desc">
+                Estetiğe odaklanmış; markanızı geleceğe taşıyacak sürükleyici WebGL deneyimleri ve yaratıcı yazılımlarla dijital sınırları zorluyoruz.
+            </p>
+            <div class="home-screen__scroll-hint">↓ Keşfetmek için kaydırın</div>
+        </div>
+    </div>
+
+    <!-- THREE.JS CANVAS (z-index: -1) -->
+    <div class="canvas-outer" id="three-container"></div>
+
+    <!-- FLUID BACKGROUND (z-index: -3) -->
+    <div id="fluid-bg">
+        <canvas id="fluid-canvas"></canvas>
+    </div>
+
+    <!-- ============================================
+         PAGE CONTENT (after fly-through)
+         ============================================ -->
+    <div class="page-content">
+
+        <!-- Showreel -->
+        <section class="showreel-section" id="showreel-section">
+            <div class="showreel-header reveal">
+                <h2 class="showreel-title">Showreel<br><span class="year">2026</span></h2>
+                <p class="showreel-desc">Seçilmiş en iyi işlerimizden oluşan derlemeyi izleyin. Yaratıcılığımızın sınırlarına tanık olun.</p>
+            </div>
+            <div class="showreel-video reveal reveal-delay-1">
+                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop" alt="Showreel 2026" loading="lazy">
+                <div class="showreel-play">
+                    <div class="showreel-play-btn">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="gradient-divider"></div>
+
+        <!-- Marquee Ticker -->
+        <div class="marquee-section">
+            <div class="marquee-track">
+                <span class="marquee-item">WebGL<span class="dot"></span></span>
+                <span class="marquee-item">3D Deneyim<span class="dot"></span></span>
+                <span class="marquee-item">Marka Kimliği<span class="dot"></span></span>
+                <span class="marquee-item">UI/UX<span class="dot"></span></span>
+                <span class="marquee-item">Motion Design<span class="dot"></span></span>
+                <span class="marquee-item">Creative Dev<span class="dot"></span></span>
+                <!-- Duplicate for seamless loop -->
+                <span class="marquee-item">WebGL<span class="dot"></span></span>
+                <span class="marquee-item">3D Deneyim<span class="dot"></span></span>
+                <span class="marquee-item">Marka Kimliği<span class="dot"></span></span>
+                <span class="marquee-item">UI/UX<span class="dot"></span></span>
+                <span class="marquee-item">Motion Design<span class="dot"></span></span>
+                <span class="marquee-item">Creative Dev<span class="dot"></span></span>
+            </div>
+        </div>
+
+        <!-- Stats -->
+        <section class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-card reveal">
+                    <div class="stat-card__number">147+</div>
+                    <div class="stat-card__label">Tamamlanan Proje</div>
+                </div>
+                <div class="stat-card reveal reveal-delay-1">
+                    <div class="stat-card__number">12</div>
+                    <div class="stat-card__label">Awwwards Ödülü</div>
+                </div>
+                <div class="stat-card reveal reveal-delay-2">
+                    <div class="stat-card__number">8+</div>
+                    <div class="stat-card__label">Yıllık Deneyim</div>
+                </div>
+                <div class="stat-card reveal reveal-delay-3">
+                    <div class="stat-card__number">%98</div>
+                    <div class="stat-card__label">Müşteri Memnuniyeti</div>
+                </div>
+            </div>
+        </section>
+
+        <div class="gradient-divider"></div>
+
+        <!-- Projects Portfolio -->
+        <section class="projects-section" id="projects-section">
+            <div class="projects-label reveal">Seçilmiş Projeler</div>
+            <div class="projects-grid">
+                <div class="project-card reveal">
+                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2560&auto=format&fit=crop" alt="Neon Pulse" loading="lazy">
+                    <div class="project-card__overlay">
+                        <div class="project-card__tag">WebGL / Interactive</div>
+                        <div class="project-card__title">Neon Pulse — Immersive Brand</div>
+                    </div>
+                    <div class="project-card__arrow"><svg width="16" height="16" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+                </div>
+                <div class="project-card reveal reveal-delay-1">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?q=80&w=2560&auto=format&fit=crop" alt="Void Studio" loading="lazy">
+                    <div class="project-card__overlay">
+                        <div class="project-card__tag">3D / Motion</div>
+                        <div class="project-card__title">Void Studio — Digital Identity</div>
+                    </div>
+                    <div class="project-card__arrow"><svg width="16" height="16" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+                </div>
+                <div class="project-card reveal reveal-delay-2">
+                    <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=2560&auto=format&fit=crop" alt="Hyperion" loading="lazy">
+                    <div class="project-card__overlay">
+                        <div class="project-card__tag">UI/UX / SaaS</div>
+                        <div class="project-card__title">Hyperion — Dashboard Redesign</div>
+                    </div>
+                    <div class="project-card__arrow"><svg width="16" height="16" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+                </div>
+                <div class="project-card reveal reveal-delay-3">
+                    <img src="https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?q=80&w=2560&auto=format&fit=crop" alt="Eclipse" loading="lazy">
+                    <div class="project-card__overlay">
+                        <div class="project-card__tag">E-Commerce / Luxury</div>
+                        <div class="project-card__title">Eclipse — Luxury Fashion Hub</div>
+                    </div>
+                    <div class="project-card__arrow"><svg width="16" height="16" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+                </div>
+            </div>
+        </section>
+
+        <div class="gradient-divider"></div>
+
+        <!-- Services -->
+        <section class="services-section" id="services-section">
+            <div class="services-label reveal">Hizmetlerimiz</div>
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <div class="service-card__number">01</div>
+                    <h3 class="service-card__title">WebGL & 3D Deneyim</h3>
+                    <p class="service-card__desc">Three.js, GLSL shader ve gerçek zamanlı 3D sahne tasarımıyla tarayıcıda sınır tanımayan immersive deneyimler.</p>
+                </div>
+                <div class="service-card reveal reveal-delay-1">
+                    <div class="service-card__number">02</div>
+                    <h3 class="service-card__title">Marka Kimliği</h3>
+                    <p class="service-card__desc">Stratejik konumlandırma, tipografi sistemi, renk paleti ve dijital kimlik rehberleri ile markanızı yeniden tanımlıyoruz.</p>
+                </div>
+                <div class="service-card reveal reveal-delay-2">
+                    <div class="service-card__number">03</div>
+                    <h3 class="service-card__title">Etkileşimli Web</h3>
+                    <p class="service-card__desc">Scroll-driven animasyonlar, mikro-etkileşimler ve performans odaklı frontend geliştirme ile ödüllü web siteleri.</p>
+                </div>
+                <div class="service-card reveal reveal-delay-3">
+                    <div class="service-card__number">04</div>
+                    <h3 class="service-card__title">Dijital Ürün</h3>
+                    <p class="service-card__desc">SaaS platformları, mobil uygulamalar ve dashboard'lar için kullanıcı odaklı UI/UX tasarımı ve geliştirmesi.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="cta-label reveal">Bir Sonraki Adım</div>
+            <h2 class="cta-title reveal reveal-delay-1">Projenizi <span style="color:#e8443a">Dijital Bir Şahesere</span> Dönüştürelim</h2>
+            <a href="#" class="cta-btn reveal reveal-delay-2">
+                Bize Ulaşın
+                <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+        </section>
+
+        <!-- Footer -->
+        <footer class="site-footer">
+            <div class="site-footer__brand">İLERİDÜZEY®</div>
+            <div class="site-footer__copy">© 2026 İleri Düzey Dijital Stüdyo. Tüm hakları saklıdır.</div>
+        </footer>
+    </div>
+
+    <!-- ============================================
+         CUSTOM CURSOR & SCROLL REVEAL SCRIPTS
+         ============================================ -->
+    <script>
+        // Custom cursor
+        const cursor = document.getElementById('cursor');
+        const cursorDot = document.getElementById('cursor-dot');
+        let cx = 0, cy = 0, dx = 0, dy = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            dx = e.clientX; dy = e.clientY;
+            cursorDot.style.left = dx + 'px';
+            cursorDot.style.top = dy + 'px';
+        });
+
+        function animateCursor() {
+            cx += (dx - cx) * 0.12;
+            cy += (dy - cy) * 0.12;
+            cursor.style.left = cx + 'px';
+            cursor.style.top = cy + 'px';
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Hover effect on interactive elements
+        document.querySelectorAll('a, button, .showreel-play-btn, .project-card, .cta-btn, .service-card').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
+        });
+
+        // Scroll reveal with IntersectionObserver
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+    </script>
+    <script type="module">
+        import * as THREE from 'three';
+        import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
+        import { RGBELoader } from 'three/addons/loaders/RGBELoader.js';
+        import { RectAreaLightUniformsLib } from 'three/addons/lights/RectAreaLightUniformsLib.js';
+        import { Reflector } from 'three/addons/objects/Reflector.js';
+
+        // ============================================
+        // DOM REFERENCES
+        // ============================================
+        const container   = document.getElementById('three-container');
+        const homeScreen  = document.getElementById('home-screen');
+        const heroText    = document.getElementById('hero-text');
+        const loadingScreen = document.getElementById('loading-screen');
+        const loadingBar    = document.getElementById('loading-bar');
+
+        let W = window.innerWidth;
+        let H = window.innerHeight;
+
+        // ============================================
+        // ANIMATION CONSTANTS (from specification)
+        // ============================================
+        const START_Z       = 800;     // Camera start Z
+        const END_Z         = -65;     // Camera end Z
+        const TOTAL_Z_RANGE = START_Z - END_Z; // 865
+        const START_X       = 143.5;   // Camera start X offset
+        const MOUSE_ROT_MULT = 0.175;  // Y-rotation mouse multiplier
+        const CAMERA_ROT_EASE = 0.025; // Lerp factor per frame
+        const DISAPPEAR_AT  = 0.8805;  // startDisappearAt threshold
+        const FOV           = 59.64;   // Fixed FOV
+
+        // ============================================
+        // 1. SCENE SETUP
+        // ============================================
+        const scene = new THREE.Scene();
+
+        const camera = new THREE.PerspectiveCamera(FOV, W / H, 1, 10000);
+        camera.position.set(START_X, 0, START_Z);
+
+        const renderer = new THREE.WebGLRenderer({
+            antialias: true,
+            alpha: true,
+            powerPreference: 'high-performance'
+        });
+        renderer.setSize(W, H);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.2;
+        renderer.outputEncoding = THREE.sRGBEncoding;
+        container.appendChild(renderer.domElement);
+
+        // ============================================
+        // 2. LOADING MANAGER
+        // ============================================
+        let assetsLoaded = 0;
+        const totalAssets = 2; // OBJ + HDR
+
+        function onAssetLoaded() {
+            assetsLoaded++;
+            const pct = Math.round((assetsLoaded / totalAssets) * 100);
+            loadingBar.style.width = pct + '%';
+            if (assetsLoaded >= totalAssets) {
+                setTimeout(() => {
+                    loadingScreen.classList.add('loaded');
+                }, 400);
+            }
+        }
+
+        // ============================================
+        // 3. ENVIRONMENT MAP (HDR)
+        // ============================================
+        new RGBELoader().load(
+            'assets/matprev_env.hdr',
+            (texture) => {
+                texture.mapping = THREE.EquirectangularReflectionMapping;
+                scene.environment = texture;
+                onAssetLoaded();
+            },
+            undefined,
+            () => {
+                console.warn('HDR yüklenemedi, fallback aydınlatma kullanılıyor.');
+                onAssetLoaded();
+            }
+        );
+
+        // ============================================
+        // 4. LIGHTS
+        // Per spec: 2x RectAreaLight symmetric
+        //   + ambient for base visibility
+        //   + directional for specular highlights
+        // ============================================
+        RectAreaLightUniformsLib.init();
+
+        // Ambient (baseline so black isn't invisible)
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.15);
+        scene.add(ambientLight);
+
+        // Right RectAreaLight — pos: (350, 149, 0), intensity: 3.35, size: 477x477
+        const rectLight1 = new THREE.RectAreaLight(0xffffff, 3.35, 477, 477);
+        rectLight1.position.set(350, 149, 0);
+        rectLight1.lookAt(0, 100, 0);
+        scene.add(rectLight1);
+
+        // Left RectAreaLight — pos: (-350, 149, 0), intensity: 3.35, size: 477x477
+        const rectLight2 = new THREE.RectAreaLight(0xffffff, 3.35, 477, 477);
+        rectLight2.position.set(-350, 149, 0);
+        rectLight2.lookAt(0, 100, 0);
+        scene.add(rectLight2);
+
+        // Additional directional for specular edges
+        const dirLight = new THREE.DirectionalLight(0xffffff, 1.5);
+        dirLight.position.set(0, 200, 400);
+        scene.add(dirLight);
+
+        // Subtle rim light from behind
+        const backLight = new THREE.PointLight(0x334466, 2, 2000);
+        backLight.position.set(0, 100, -300);
+        scene.add(backLight);
+
+        // ============================================
+        // 5. REFLECTOR (Floor Mirror)
+        // Per spec: pos (0, -204.4, 0), rot x=-90°
+        //   reflection strength: 0.7183
+        // ============================================
+        const reflector = new Reflector(
+            new THREE.PlaneGeometry(2000, 2000),
+            {
+                clipBias: 0.003,
+                textureWidth: Math.floor(W * 0.5),
+                textureHeight: Math.floor(H * 0.5),
+                color: 0x888888  // Higher = more reflective
+            }
+        );
+        reflector.position.set(0, -204.4, 0);
+        reflector.rotation.x = -Math.PI / 2;
+        scene.add(reflector);
+
+        // ============================================
+        // 6. LOAD 'A' MODEL (OBJ)
+        //
+        // OBJ analysis confirmed:
+        //   Object 1 (line 406): Outer A (black shell)
+        //     BBox: x[-102, 102] y[0, 216] z[-51, 51]
+        //     1416 vertices → MeshPhysicalMaterial
+        //
+        //   Object 2 (line 946): Inner A (red triangle)
+        //     BBox: x[-56, 54] y[0, 170] z[-51, 51]
+        //     756 vertices → MeshStandardMaterial
+        // ============================================
+        let aModel = null;
+
+        new OBJLoader().load(
+            'assets/model.obj',
+            (obj) => {
+                aModel = obj;
+
+                obj.traverse((child) => {
+                    if (!child.isMesh) return;
+
+                    // Compute bounding box to distinguish inner vs outer
+                    child.geometry.computeBoundingBox();
+                    const bbox = child.geometry.boundingBox;
+                    const xSpan = bbox.max.x - bbox.min.x;
+
+                    // Outer A has xSpan ~204 (x[-102, 102])
+                    // Inner A has xSpan ~110 (x[-56, 54])
+                    if (xSpan > 150) {
+                        // OUTER A — Black glossy shell
+                        child.material = new THREE.MeshPhysicalMaterial({
+                            color: new THREE.Color(0x000000),
+                            roughness: 0.327,
+                            metalness: 0,
+                            reflectivity: 1.0,
+                            envMapIntensity: 0.548,
+                            clearcoat: 1.0,
+                            clearcoatRoughness: 0.05,
+                            emissive: new THREE.Color(0x050505), // Tiny self-illumination
+                            emissiveIntensity: 0.3
+                        });
+                        child.name = 'OuterA';
+                    } else {
+                        // INNER A — Dark red triangle surface
+                        child.material = new THREE.MeshStandardMaterial({
+                            color: new THREE.Color(0x510303),
+                            roughness: 0.7,
+                            metalness: 0,
+                            emissive: new THREE.Color(0x200000),
+                            emissiveIntensity: 0.5
+                        });
+                        child.name = 'InnerA';
+                    }
+
+                    child.castShadow = true;
+                    child.receiveShadow = true;
+                });
+
+                // Center model at origin
+                obj.position.set(0, 0, 0);
+                scene.add(obj);
+                onAssetLoaded();
+
+                console.log('✅ A modeli yüklendi:', obj.children.length, 'mesh');
+                obj.children.forEach((c, i) => {
+                    if (c.isMesh) {
+                        c.geometry.computeBoundingBox();
+                        console.log(`  Mesh[${i}] "${c.name}": vertices=${c.geometry.attributes.position.count}, bbox=`, c.geometry.boundingBox);
+                    }
+                });
+            },
+            (xhr) => {
+                // Progress
+                if (xhr.lengthComputable) {
+                    const pct = Math.round((xhr.loaded / xhr.total) * 50);
+                    loadingBar.style.width = pct + '%';
+                }
+            },
+            (err) => {
+                console.error('OBJ yükleme hatası:', err);
+                onAssetLoaded();
+            }
+        );
+
+        // ============================================
+        // 7. SCROLL & MOUSE STATE
+        // ============================================
+        let currentRotY = 0;
+        let mouseX = 0; // Normalized -1 to 1
+        let scaling = 0; // 0 → 1
+
+        // Mouse tracking
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / W) * 2 - 1;
+        });
+
+        // Touch tracking (mobile)
+        document.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 0) {
+                mouseX = (e.touches[0].clientX / W) * 2 - 1;
+            }
+        });
+
+        // ============================================
+        // 8. RENDER LOOP
+        // ============================================
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // --- Calculate scroll scaling (0 → 1) ---
+            const rect = homeScreen.getBoundingClientRect();
+            const scrollRange = homeScreen.offsetHeight - H;
+            const scrolled = Math.max(0, -rect.top);
+            scaling = Math.max(0, Math.min(1, scrolled / scrollRange));
+
+            // ---- CAMERA Z: Linear (800 → -65) ----
+            camera.position.z = START_Z - (TOTAL_Z_RANGE * scaling);
+
+            // ---- CAMERA X: Quadratic ease-out (143.5 → 0) ----
+            const xFact = (1 - scaling) * (1 - scaling);
+            camera.position.x = START_X * xFact;
+
+            // ---- CAMERA Y: Fixed at 0 ----
+            camera.position.y = 0;
+
+            // ---- CAMERA ROTATION Y: Lerp w/ mouse ----
+            const targetRotY = MOUSE_ROT_MULT * (1 - scaling) * mouseX;
+            currentRotY += (targetRotY - currentRotY) * CAMERA_ROT_EASE;
+            camera.rotation.y = currentRotY;
+
+            // ---- HERO TEXT: Fade & slide out (0 → 0.35) ----
+            if (scaling < 0.35) {
+                const t = scaling / 0.35;
+                heroText.style.opacity = 1 - t;
+                heroText.style.transform = `translateY(${t * -80}px)`;
+            } else {
+                heroText.style.opacity = '0';
+                heroText.style.pointerEvents = 'none';
+            }
+
+            // ---- 3D CANVAS FADE (startDisappearAt: 0.8805) ----
+            if (scaling > DISAPPEAR_AT) {
+                const fade = (scaling - DISAPPEAR_AT) / (1 - DISAPPEAR_AT);
+                renderer.domElement.style.opacity = String(Math.max(0, 1 - fade));
+            } else {
+                renderer.domElement.style.opacity = '1';
+            }
+
+            // ---- FLUID BG also fades at end ----
+            const fluidCanvas = document.getElementById('fluid-canvas');
+            if (scaling > DISAPPEAR_AT) {
+                const fade = (scaling - DISAPPEAR_AT) / (1 - DISAPPEAR_AT);
+                fluidCanvas.style.opacity = String(Math.max(0, 1 - fade));
+            } else {
+                fluidCanvas.style.opacity = '1';
+            }
+
+            // Render Three.js scene
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        // ============================================
+        // 9. WINDOW RESIZE
+        // ============================================
+        window.addEventListener('resize', () => {
+            W = window.innerWidth;
+            H = window.innerHeight;
+            camera.aspect = W / H;
+            camera.updateProjectionMatrix();
+            renderer.setSize(W, H);
+        });
+
+        // ============================================
+        // 10. FLUID / SMOKE BACKGROUND SHADER
+        //
+        // Per spec: Navier-Stokes-inspired FBM noise
+        // Colors: dark green, turquoise, purple (nebula)
+        // ============================================
+        (function initFluidBackground() {
+            const canvas = document.getElementById('fluid-canvas');
+            const gl = canvas.getContext('webgl2') || canvas.getContext('webgl');
+            if (!gl) return;
+
+            // Render at half resolution for perf
+            canvas.width  = Math.floor(W * 0.5);
+            canvas.height = Math.floor(H * 0.5);
+
+            const vertSrc = `#version 300 es
+                in vec2 position;
+                out vec2 vUv;
+                void main() {
+                    vUv = position * 0.5 + 0.5;
+                    gl_Position = vec4(position, 0.0, 1.0);
+                }
+            `;
+
+            const fragSrc = `#version 300 es
+                precision highp float;
+                uniform float uTime;
+                uniform vec2  uResolution;
+                in vec2 vUv;
+                out vec4 fragColor;
+
+                float hash(vec2 p) {
+                    return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
+                }
+
+                float noise(vec2 p) {
+                    vec2 i = floor(p);
+                    vec2 f = fract(p);
+                    vec2 u = f * f * (3.0 - 2.0 * f);
+                    return mix(
+                        mix(hash(i), hash(i + vec2(1,0)), u.x),
+                        mix(hash(i + vec2(0,1)), hash(i + vec2(1,1)), u.x),
+                        u.y
+                    );
+                }
+
+                float fbm(vec2 p) {
+                    float v = 0.0, a = 0.5;
+                    mat2 rot = mat2(0.8, 0.6, -0.6, 0.8);
+                    for (int i = 0; i < 4; i++) {
+                        v += a * noise(p);
+                        p = rot * p * 2.0;
+                        a *= 0.5;
+                    }
+                    return v;
+                }
+
+                void main() {
+                    vec2 uv = gl_FragCoord.xy / uResolution;
+                    uv.x *= uResolution.x / uResolution.y;
+
+                    float t = uTime * 0.04;
+
+                    // Domain warping for organic fluid feel
+                    vec2 q = vec2(
+                        fbm(uv + t * 0.7),
+                        fbm(uv + vec2(5.2, 1.3))
+                    );
+                    vec2 r = vec2(
+                        fbm(uv + 4.0 * q + vec2(1.7, 9.2) + t * 0.5),
+                        fbm(uv + 4.0 * q + vec2(8.3, 2.8) + t * 0.4)
+                    );
+                    float f = fbm(uv + 4.0 * r);
+
+                    // Color palette: deep space nebula
+                    vec3 col = vec3(0.0);
+                    col = mix(vec3(0.01, 0.04, 0.03), vec3(0.04, 0.12, 0.18), clamp(f * f * 4.0, 0.0, 1.0));
+                    col = mix(col, vec3(0.18, 0.04, 0.22), clamp(length(q), 0.0, 1.0));
+                    col = mix(col, vec3(0.0, 0.22, 0.16), clamp(length(r.x), 0.0, 1.0));
+
+                    // Final intensity based on FBM
+                    float intensity = f * f * f + 0.6 * f * f + 0.5 * f;
+
+                    // Vignette
+                    vec2 uvCenter = gl_FragCoord.xy / uResolution - 0.5;
+                    float vignette = 1.0 - dot(uvCenter, uvCenter) * 1.2;
+                    vignette = clamp(vignette, 0.0, 1.0);
+
+                    fragColor = vec4(intensity * col * vignette, 1.0);
+                }
+            `;
+
+            function compileShader(type, src) {
+                const s = gl.createShader(type);
+                gl.shaderSource(s, src);
+                gl.compileShader(s);
+                if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) {
+                    console.error('Shader compile error:', gl.getShaderInfoLog(s));
+                }
+                return s;
+            }
+
+            const prog = gl.createProgram();
+            gl.attachShader(prog, compileShader(gl.VERTEX_SHADER, vertSrc));
+            gl.attachShader(prog, compileShader(gl.FRAGMENT_SHADER, fragSrc));
+            gl.linkProgram(prog);
+            if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
+                console.error('Program link error:', gl.getProgramInfoLog(prog));
+            }
+            gl.useProgram(prog);
+
+            // Full-screen quad
+            const buf = gl.createBuffer();
+            gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+                -1, -1,  1, -1,  -1, 1,
+                 1, -1,  1,  1,  -1, 1
+            ]), gl.STATIC_DRAW);
+
+            const posLoc = gl.getAttribLocation(prog, 'position');
+            gl.enableVertexAttribArray(posLoc);
+            gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0);
+
+            const uTimeLoc = gl.getUniformLocation(prog, 'uTime');
+            const uResLoc  = gl.getUniformLocation(prog, 'uResolution');
+
+            const t0 = performance.now();
+
+            function renderFluid() {
+                // Resize check (half-res)
+                const tw = Math.floor(window.innerWidth * 0.5);
+                const th = Math.floor(window.innerHeight * 0.5);
+                if (canvas.width !== tw || canvas.height !== th) {
+                    canvas.width  = tw;
+                    canvas.height = th;
+                    gl.viewport(0, 0, tw, th);
+                }
+                gl.uniform1f(uTimeLoc, (performance.now() - t0) * 0.001);
+                gl.uniform2f(uResLoc, canvas.width, canvas.height);
+                gl.drawArrays(gl.TRIANGLES, 0, 6);
+                requestAnimationFrame(renderFluid);
+            }
+            gl.viewport(0, 0, canvas.width, canvas.height);
+            renderFluid();
+        })();
+
+    </script>
+</body>
+</html>

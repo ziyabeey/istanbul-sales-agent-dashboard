@@ -1,0 +1,128 @@
+{
+    "sektor": "tesisatci",
+    "sikSorulanlar": [
+        {
+            "soru": "Su kaçağı var, ne yapmalıyım?",
+            "cevap": "Hemen ana vanayı kapatın, elektrik güvenliğini kontrol edin, sonra bir tesisatçı çağırın. Acil durumda 7/24 hizmet veriyoruz.",
+            "aciliyet": "yuksek"
+        },
+        {
+            "soru": "Petek ısınmıyor, neden?",
+            "cevap": "Hava tutan petek ihtimali yüksek. Purgalama işlemi yapın — peteklerin üstünde hava tapasını açın. Devam ediyorsa pompa veya vana sorunu olabilir.",
+            "aciliyet": "orta"
+        },
+        {
+            "soru": "Sıcak su çıkmıyor ne yapmalıyım?",
+            "cevap": "Kombi kontrol edin — hata kodu varsa model numarasını verin. Kombi sıfırlama yapın. Çözülmezse teknik servis şart.",
+            "aciliyet": "orta"
+        },
+        {
+            "soru": "Tuvalet/lavabo tıkandı, ne yapmalıyım?",
+            "cevap": "Pompa (süpürgec) ile deneyin. Kimyasal açıcı kullanabilirsiniz ama borulara zarar verebilir. Açılmazsa profesyonel robot (spiral) ile açarız.",
+            "aciliyet": "yuksek"
+        },
+        {
+            "soru": "Kombi bakımı ne sıklıkla yapılmalı?",
+            "cevap": "Yılda 1 kez, tercihen kış öncesi (Eylül-Ekim). Filtre temizliği, basınç kontrolü, yanma ayarı, kaçak kontrolü dahil.",
+            "aciliyet": "orta"
+        },
+        {
+            "soru": "Komple banyo/mutfak tesisat yenileme ne kadar?",
+            "cevap": "Banyo tesisatı 8.000-15.000₺, mutfak 5.000-10.000₺. Kırım, döşeme, lavabo/batarya montajı ayrı. Keşif sonrası kesin fiyat.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Petek değişimi ne kadar?",
+            "cevap": "Panel radyatör: boyuta göre 3.000-6.000₺/adet (montaj dahil). Döküm petek söküm + panel geçiş ek maliyetli.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Yerden ısıtma sistemi yaptırabilir miyim?",
+            "cevap": "Evet. Yeni yapılarda veya tadilatta yapılabilir. m² bazında 500-1.000₺. Kombi uyumluluğu kontrol edilmeli.",
+            "aciliyet": "dusuk"
+        }
+    ],
+    "mevzuat": [
+        "TS 11364 Tesisatçı Yönetmeliği",
+        "Binalarda Su Tasarrufu Standartları",
+        "Doğalgaz İç Tesisleri Yönetmeliği",
+        "İş Güvenliği (kapalı alanda çalışma, gaz riski)",
+        "Belediye kanalizasyon bağlantı izni"
+    ],
+    "mevsimsellik": {
+        "kis": "Kalorifer, kombiler ve su kaçakları — en yoğun sezon. Boru donması riski. Acil çağrı sayısı 3x artar.",
+        "yaz": "Klima su giderleri ve soğuk su boruları. Yazlık ev açma/su bağlama. Havuz tesisatı.",
+        "ilkbahar": "Peyzaj sulama sistemleri. Kış hasarı onarımları. Banyo/mutfak tadilat sezonu başlar.",
+        "sonbahar": "Kış hazırlığı — kombi bakımları, petek kontrolü. En uygun bakım zamanı."
+    },
+    "rakipler": [
+        "Armut.com tesisatçı ilanları",
+        "Kombi marka yetkili servisleri (Vaillant, Baymak, Bosch)",
+        "Mahalle tesisatçıları (kayıt dışı)",
+        "Tadilat firmaları (komple paket)",
+        "DIY YouTube kanalları (basit işler)"
+    ],
+    "ortalamaSureler": {
+        "tikaniklikAcma": "30-60 dakika",
+        "suKacagiTespit": "1-2 saat",
+        "kombiBakim": "1-1.5 saat",
+        "bataryaDegisimi": "30-60 dakika",
+        "banyoTesisatYenileme": "2-4 gün",
+        "petekDegisimi": "2-4 saat/adet"
+    },
+    "populerHizmetler": [
+        "Tıkanıklık açma (robot/spiral)",
+        "Su kaçağı tespiti ve onarımı",
+        "Kombi bakımı / tamiri",
+        "Batarya (musluk) değişimi",
+        "Petek değişimi / temizliği",
+        "Banyo/mutfak tesisat yenileme",
+        "Sıhhi tesisat montajı (lavabo, klozet, duşakabin)",
+        "Yerden ısıtma sistemi",
+        "Doğalgaz tesisatı",
+        "Sulama sistemi kurulumu"
+    ],
+    "fiyatAraliklari": {
+        "tikaniklikAcma": "500-1.500₺",
+        "suKacagiOnarim": "1.000-5.000₺",
+        "kombiBakim": "800-1.500₺",
+        "bataryaDegisimi": "500-1.500₺ (batarya hariç)",
+        "petekDegisimi": "3.000-6.000₺/adet",
+        "banyoKomple": "8.000-15.000₺",
+        "yerdenIsitmaM2": "500-1.000₺/m²"
+    },
+    "musteriProfili": {
+        "demografik": "Ev sahibi/kiracı 25-60 yaş. Apartman yöneticisi (ortak alan). İşyeri sahipleri. Acil müşteri her profil.",
+        "karar": "Acil durumda hız kritik — ilk aranan gelir. Planlı işlerde 2-3 teklif alınır. Referans ve Google yorumu bakılır.",
+        "hassasiyet": "Acil ulaşılabilirlik, temiz çalışma (kırım minimizasyonu), garanti, gizli maliyet endişesi, fotoğraflı raporlama."
+    },
+    "caprazSatis": [
+        "Kombi bakımı yapan müşteriye petek temizliği ekle",
+        "Su kaçağı tamiri yapana boya badana yönlendir",
+        "Banyo tesisat yenileyen müşteriye duşakabin/batarya sat",
+        "Kombi değiştiren müşteriye yıllık bakım sözleşmesi",
+        "Tadilat projesinde elektrikçi koordinasyonu sağla"
+    ],
+    "krizSenaryolari": [
+        {
+            "tetikleyici": "Su basması / ciddi kaçak",
+            "yanit": "Telefonda: 'Ana vanayı kapatın, elektriği kesin.' 1 saat içinde yerinde ol. Hasar fotoğrafla. Sigorta rehberlik yap."
+        },
+        {
+            "tetikleyici": "Tamir sonrası tekrar kaçak",
+            "yanit": "Garanti kapsamında hemen gel. Ücretsiz onarım. Kök neden analizi yap. Müşteriyi bilgilendir."
+        },
+        {
+            "tetikleyici": "Gaz kokusu bildirimi",
+            "yanit": "ACİL: 'Pencere açın, elektrik anahtarlarına dokunmayın, binayı terk edin, 187'yi arayın.' Gaz tesisatçısı acil müdahale."
+        }
+    ],
+    "dijitalIpuclari": [
+        "Google Haritalar: 'tesisatçı yakınımda' acil aramalarda çok yüksek hacim",
+        "7/24 acil hizmet bilgisini her yerde belirt — acil müşteri bu bilgiyle seçer",
+        "WhatsApp'tan fotoğraflı teşhis: müşteri güveni artırır, fiyat şeffaflığı sağlar",
+        "Blog: 'Su kaçağı nasıl anlaşılır', 'Kombi bakımı ne zaman yapılmalı' SEO getirir",
+        "YouTube: Basit tıkanıklık açma, vana kapatma videoları uzmanlık kanıtlar",
+        "Kış öncesi kampanya: Eylül'de kombi bakımı kampanyası → yoğun dönem öncesi yakalarsın"
+    ]
+}

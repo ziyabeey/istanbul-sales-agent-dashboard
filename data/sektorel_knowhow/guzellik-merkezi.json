@@ -1,0 +1,135 @@
+{
+    "sektor": "guzellik-merkezi",
+    "sikSorulanlar": [
+        {
+            "soru": "Lazer epilasyon kaç seans sürer?",
+            "cevap": "Bölgeye göre 6-10 seans, 4-6 hafta arayla. Tüm vücut 8-10 seans ortalama. Cilt tipi ve kıl yapısına göre değişir.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Cilt bakımı fiyatları ne kadar?",
+            "cevap": "Klasik cilt bakımı 500-800₺, hydrafacial 800-1.500₺, mezoterapi 1.000-2.000₺/seans, PRP 1.500-3.000₺/seans.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Kalıcı makyaj ne kadar sürer?",
+            "cevap": "Kaş kontür 1-1.5 saat uygulama. Etki 1-3 yıl. Rötuş 6-8 hafta sonra yapılır. Dudak kontur ayrı seans.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "İpek kirpik bakımı nasıl olmalı?",
+            "cevap": "İlk 24 saat su değdirmeme. Yağlı makyaj temizleyiciden kaçınma. 2-3 haftada dolgu/yenileme seansı. Doğal kirpiğe zarar vermez.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Hamilelikte hangi işlemler yapılabilir?",
+            "cevap": "Lazer, botoks, dolgu, kimyasal peeling YAPILAMAZ. Klasik cilt bakımı, manikür, pedikür, kirpik güvenli yapılabilir.",
+            "aciliyet": "yuksek"
+        },
+        {
+            "soru": "Lazer sonrası güneşe çıkabilir miyim?",
+            "cevap": "Hayır. En az 2 hafta direkt güneş yasak. SPF 50+ güneş kremi zorunlu. Bu yüzden lazer kış aylarında önerilir.",
+            "aciliyet": "yuksek"
+        },
+        {
+            "soru": "Dolgu ve botoks arasındaki fark nedir?",
+            "cevap": "Botoks kası gevşetir (kırışıklık azaltır), dolgu hacim verir (dudak, elmacık). İkisi farklı uygulamalar. Doktor yapmalı.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "İlk kez geliyorum, ne önerirsiniz?",
+            "cevap": "Ücretsiz cilt analizi ile başlayalım. Cilt tipinize göre bakım planı oluştururuz. Genelde hydrafacial ile başlamak en iyi sonuç verir.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Paket fiyatlarınız var mı?",
+            "cevap": "Evet. 6 seans lazer paketi %20 indirimli, 4'lü cilt bakım paketi %15 indirimli. Gelin paketi (komple) özel fiyat.",
+            "aciliyet": "dusuk"
+        }
+    ],
+    "mevzuat": [
+        "Sağlık Bakanlığı Güzellik Salonu Yönetmeliği",
+        "Hijyen Standartları SB-2023",
+        "Lazer cihaz ruhsatı zorunluluğu",
+        "Estetik işlemler için hekim gereksinimi (botoks, dolgu, mezoterapi)",
+        "KVKK: Müşteri fotoğrafları/öncesi-sonrası izin belgesi zorunlu"
+    ],
+    "mevsimsellik": {
+        "kis": "Lazer epilasyon en uygun dönem (güneşten kaçınma kolay). Cilt bakımı ve nemlendrici işlemler talebi artar.",
+        "yaz": "Ağda, manikür/pedikür zirve yapar. Bronz makyaj, vücut bakımı. Lazer talebi düşer.",
+        "ilkbahar": "Düğün sezonu öncesi gelin paketleri patlar. Bahar detoksu, cilt yenileme seansları.",
+        "sonbahar": "Yaz hasarı onarımı (güneş lekeleri, kuruluk). Lazer sezonuna başlangıç. Anti-aging talebi yükselir."
+    },
+    "rakipler": [
+        "Zincir güzellik merkezleri (Aslı Güzellik vb.)",
+        "Dermatoloji klinikleri (medikal estetik)",
+        "Evde güzellik uygulamaları",
+        "Online güzellik platformları (Glossybox)",
+        "Instagram üzerinden freelance uzmanlar"
+    ],
+    "ortalamaSureler": {
+        "ciltBakimi": "45-60 dakika",
+        "hydrafacial": "30-45 dakika",
+        "lazerEpilasyonTumVucut": "1.5-2 saat",
+        "kaliciMakyajKas": "1-1.5 saat",
+        "ipekKirpik": "1-1.5 saat",
+        "manikurPedikur": "45-60 dakika",
+        "agdaTumVucut": "1-1.5 saat"
+    },
+    "populerHizmetler": [
+        "Lazer epilasyon (alexandrite/diod)",
+        "Hydrafacial cilt bakımı",
+        "Kalıcı kaş kontür (microblading)",
+        "İpek kirpik",
+        "Manikür / pedikür (protez tırnak)",
+        "Ağda (tüm vücut)",
+        "Medikal cilt bakımı (mezoterapi, PRP)",
+        "Gelin güzellik paketi",
+        "Bölgesel zayıflama"
+    ],
+    "fiyatAraliklari": {
+        "ciltBakimiKlasik": "500-800₺",
+        "hydrafacial": "800-1.500₺",
+        "lazerTekSeans": "300-600₺/bölge",
+        "lazer6PaketTumVucut": "8.000-15.000₺",
+        "kaliciKasMicroblading": "3.000-6.000₺",
+        "ipekKirpik": "600-1.200₺",
+        "gelinPaketi": "5.000-15.000₺",
+        "agdaTumVucut": "800-1.500₺"
+    },
+    "musteriProfili": {
+        "demografik": "Kadın %90, 20-50 yaş. Gelir seviyesi orta-üst. Düzenli bakım yapan sadık müşteri kitlesi.",
+        "karar": "Sosyal medya etkileme oranı çok yüksek. Arkadaş tavsiyesi ile gelir. Önce/sonra fotoğrafları karar verdirici.",
+        "hassasiyet": "Hijyen, cihaz markası/teknolojisi, uzman sertifikası. Fotoğraf paylaşımına hassas (KVKK)."
+    },
+    "caprazSatis": [
+        "Cilt bakımı yapana → ev bakım ürünleri paketi öner",
+        "Lazer müşterisine → cilt bakımı paketi ekle",
+        "Gelin paketi → arkadaşlarına grup indirimi",
+        "Manikür müşterisine → pedikür ekle (komple paket)",
+        "Tek seanslık müşteriye → paket satışı (%15-20 indirim)",
+        "Kalıcı kaş yapana → kirpik liftingöner"
+    ],
+    "krizSenaryolari": [
+        {
+            "tetikleyici": "Lazer sonrası cilt reaksiyonu/yanık",
+            "yanit": "Fotoğraf iste + acil randevu ver + soğutucu krem öner. Ciddi ise dermatoloğa yönlendir. Kayıt altına al."
+        },
+        {
+            "tetikleyici": "Kalıcı makyaj rengi beğenilmedi",
+            "yanit": "İlk 2 hafta renk %30-40 açılır, beklenmesini öner. Rötuş seansında düzeltme garantisi ver."
+        },
+        {
+            "tetikleyici": "Randevu kaçırma/geç gelme",
+            "yanit": "15dk tolerans uygula. Sık tekrar edenlere depozit sistemi başlat. İptal politikasını WA'dan hatırlat."
+        }
+    ],
+    "dijitalIpuclari": [
+        "Instagram güzellik sektörünün 1 numaralı kanalı — Reels zorunlu",
+        "Önce/sonra fotoğrafları (izinli) en çok etkileşim alır",
+        "Google Haritalar'da yorum sayısı doğrudan randevu dönüşümünü etkiler",
+        "WhatsApp randevu hatırlatması: no-show oranını %40 düşürür",
+        "Sezonsal kampanya (kış lazer, yaz bakım) planı en az 2 hafta önce duyur",
+        "TikTok: Uygulama süreçleri ve sonuçları en çok izlenen içerik"
+    ]
+}

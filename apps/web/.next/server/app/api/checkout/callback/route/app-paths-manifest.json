@@ -1,0 +1,3 @@
+{
+  "/api/checkout/callback/route": "app/api/checkout/callback/route.js"
+}

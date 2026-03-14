@@ -1,0 +1,126 @@
+{
+    "sektor": "berber",
+    "sikSorulanlar": [
+        {
+            "soru": "Saç kesim fiyatı ne kadar?",
+            "cevap": "Erkek saç kesimi 150-300₺, saç+sakal komple 200-400₺. Çocuk kesimi %30 daha uygun. Fade/skin fade ek ücret yok.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Sakal düzeltme/şekillendirme yapıyor musunuz?",
+            "cevap": "Evet. Sakal şekillendirme 80-150₺, hot towel sakal bakımı 150-250₺. Ustura ile düzeltme dahil.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Randevu alabilir miyim?",
+            "cevap": "Evet. WhatsApp veya telefonla randevu alabilirsiniz. Hafta sonu çok yoğun, önceden randevu almanızı öneririz.",
+            "aciliyet": "orta"
+        },
+        {
+            "soru": "Damat tıraşı yapıyor musunuz?",
+            "cevap": "Evet. Damat paketi: saç + sakal + cilt bakımı + kil maskesi. 500-1.000₺. Düğün günü veya önceki gün randevu.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Çocuk saç kesimi yapıyor musunuz?",
+            "cevap": "Evet. 0-12 yaş çocuk kesimi yapıyoruz. İlk saç kesimi sertifikası da veriyoruz. Oyuncak/tablet ile çocuk sakinleştirilir.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Saç boyama yapıyor musunuz?",
+            "cevap": "Evet. Erkek saç boyama (gri kapatma, renk değişimi) 200-400₺. Ağartma/beyazlatma 300-600₺. Sakal boyama 100-200₺.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Kaş aldırma/düzeltme var mı?",
+            "cevap": "Evet. Kaş şekillendirme (bıçak/cımbız) 50-100₺. Kulak kılı temizleme dahil.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Ne kadar sürer bir tıraş?",
+            "cevap": "Sadece saç kesimi 20-30 dakika. Saç+sakal 30-45 dakika. Damat paketi 1-1.5 saat.",
+            "aciliyet": "dusuk"
+        }
+    ],
+    "mevzuat": [
+        "SB Güzellik ve Berber Salonu Açma Yönetmeliği",
+        "Hijyen Standartları (tek kullanımlık jilet, sterilizasyon)",
+        "İşyeri Açma ve Çalışma Ruhsatı (belediye)",
+        "Esnaf ve Sanatkârlar Sicili kaydı",
+        "İş Sağlığı (kimyasal madde — boya, sprey)"
+    ],
+    "mevsimsellik": {
+        "kis": "İç mekan yoğunluğu artar. Sakal bakımı talebi yükselir. Cilt kuruluğu → hot towel popüler.",
+        "yaz": "Kısa kesim (fade, buzz cut) talebi patlar. Düğün sezonu → damat paketleri. Daha sık tıraş ihtiyacı.",
+        "ilkbahar": "Düğün sezonu başlangıcı. Mezuniyet sezonunda genç müşteri artışı. Saç modeli değişim talebi.",
+        "sonbahar": "Okul başlangıcı çocuk kesimleri. Daha uzun model tercihi. Sakal bırakma sezonu başlar."
+    },
+    "rakipler": [
+        "Zincir berber markaları (Figaro vb.)",
+        "Kuaför salonları (unisex)",
+        "Evde tıraş makinesi kullanımı",
+        "Alışveriş merkezi içi berberler",
+        "Instagram üzerinden freelance berberler"
+    ],
+    "ortalamaSureler": {
+        "sacKesimi": "20-30 dakika",
+        "sacSakal": "30-45 dakika",
+        "sakalBakimi": "15-20 dakika",
+        "damatPaketi": "1-1.5 saat",
+        "cocukKesimi": "15-25 dakika",
+        "sacBoyama": "30-45 dakika"
+    },
+    "populerHizmetler": [
+        "Erkek saç kesimi (fade, crop, undercut)",
+        "Sakal şekillendirme + ustura",
+        "Hot towel sakal bakımı",
+        "Damat tıraşı paketi",
+        "Çocuk saç kesimi",
+        "Saç boyama / gri kapatma",
+        "Kaş düzeltme",
+        "Yüz bakımı / kil maskesi"
+    ],
+    "fiyatAraliklari": {
+        "sacKesimi": "150-300₺",
+        "sacSakalKomple": "200-400₺",
+        "sakalBakimi": "80-150₺",
+        "hotTowel": "150-250₺",
+        "damatPaketi": "500-1.000₺",
+        "sacBoyama": "200-400₺",
+        "cocukKesimi": "100-200₺"
+    },
+    "musteriProfili": {
+        "demografik": "Erkek %95, 15-60 yaş. Her gelir seviyesi. Düzenli müşteri (2-4 haftada bir).",
+        "karar": "Alışkanlık bazlı sadakat çok güçlü. Berberini değiştirmek istemez. Arkadaş tavsiyesi ile gelir.",
+        "hassasiyet": "Hijyen (tek kullanımlık jilet), bekleme süresi, ortam rahatlığı, sohbet/sessizlik tercihi."
+    },
+    "caprazSatis": [
+        "Saç kestirene sakal bakımı öner",
+        "Düzenli müşteriye aylık paket sat (4 kesim fiyatına 5)",
+        "Damat tıraşı → sağdıç/arkadaş grubu paketi",
+        "Saç kesimi sonrası bakım ürünü (wax, saç kremi) satışı",
+        "Çocuk kesimi yapan babaya kendi kesimini öner"
+    ],
+    "krizSenaryolari": [
+        {
+            "tetikleyici": "Kesim beğenilmedi",
+            "yanit": "Hemen düzeltme teklif et (aynı gün). Müşteriyi dinle, ne istediğini tekrar sor. Gerekirse ücretsiz düzeltme."
+        },
+        {
+            "tetikleyici": "Jilet tahrişi/kesik",
+            "yanit": "Antiseptik uygula + özür dile + sonraki ziyaret ücretsiz teklif et. Hijyen prosedürünü gözden geçir."
+        },
+        {
+            "tetikleyici": "Uzun bekleme süresi şikayeti",
+            "yanit": "WhatsApp sıra sistemi kur (sıranız gelince mesaj). Randevu sistemini aktif kullan."
+        }
+    ],
+    "dijitalIpuclari": [
+        "Instagram Reels: Fade kesim timelapseları en çok izlenen berber içeriği",
+        "Google Haritalar: 'berber yakınımda' araması çok yüksek hacimli",
+        "WhatsApp sıra/randevu sistemi müşteri memnuniyetini çok artırır",
+        "Önce/sonra fotoğrafları: Sakal şekillendirme en etkileyici",
+        "TikTok: Ses efektli kesim videoları viral potansiyeli yüksek",
+        "Düzenli müşteriye doğum günü WA mesajı → sadakat artırır"
+    ]
+}

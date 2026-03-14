@@ -1,0 +1,127 @@
+{
+    "sektor": "camci",
+    "sikSorulanlar": [
+        {
+            "soru": "Isıcam fiyatı m² ne kadar?",
+            "cevap": "Ölçüye ve kalınlığa göre m²'si 1.000₺ ile 1.500₺ arası değişir. Montaj dahildir. 4+12+4 standart, low-e ısıcam %20-30 daha pahalı.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Cam balkon sistemi ne kadar?",
+            "cevap": "Katlanır cam balkon m² bazında 3.000-6.000₺. Sürgülü sistem daha uygun (2.000-4.000₺/m²). Ölçü alımı ücretsiz.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Kırık cam acil değiştirilir mi?",
+            "cevap": "Evet. Aynı gün müdahale, standart ölçülerde stoktan değişim yapılır. Özel ölçü cam sipariş 1-3 gün sürer.",
+            "aciliyet": "yuksek"
+        },
+        {
+            "soru": "Pimapen pencere değişimi ne kadar?",
+            "cevap": "Standart pencere (120x150cm) 3.000-5.000₺/adet. Renk seçeneği var (beyaz, antrasit, ahşap desen). 3+1 ev komple 25.000-45.000₺.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Sineklik montajı yapıyor musunuz?",
+            "cevap": "Evet. Menteşeli, sürgülü, plise sineklik çeşitlerimiz var. Pencere başına 300-700₺. Ölçü alımı ücretsiz.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Duşakabin camı yapıyor musunuz?",
+            "cevap": "Evet. Temperli (sertleştirilmiş) cam duşakabin. Ölçüye göre 3.000-8.000₺. 8-10mm temperli cam, su itici kaplama opsiyonel.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Ayna montajı/kesimi yapıyor musunuz?",
+            "cevap": "Evet. İstenilen ölçüde ayna kesimi, duvar montajı, banyo aynası yapıyoruz. m² bazında 800-1.500₺.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Cam buğu/terleme sorunu nasıl çözülür?",
+            "cevap": "Isıcam arası buğulanma = conta bozulmuş, cam ünitesi değişmeli. Dış buğu = normal (sıcaklık farkı). İç buğu = havalandırma yetersiz.",
+            "aciliyet": "orta"
+        }
+    ],
+    "mevzuat": [
+        "TSE Cam Standartları (TS EN 12150 Temperli Cam)",
+        "Bina Deprem Yönetmeliği (cam cephe kuralları)",
+        "İş Güvenliği: Cam taşıma, montaj ekipmanı",
+        "Enerji Kimlik Belgesi (ısıcam zorunluluğu)",
+        "Tüketici Hakları (garanti/iade)"
+    ],
+    "mevsimsellik": {
+        "kis": "Kırık cam değişimi, ısı kaybını önleme amaçlı pimapen/ısıcam yenileme. En yoğun dönem.",
+        "yaz": "Sineklik montajı, balkon camlama sistemleri (katlanır cam). Cam balkon talebi zirve.",
+        "ilkbahar": "Yeni ev/tadilat sezonu başlangıcı. Pencere yenileme projeleri. Cam balkon siparişleri.",
+        "sonbahar": "Kış hazırlığı: ısıcam değişimi, conta yenileme, cam balkon kapatma. Son fırsat dönemi."
+    },
+    "rakipler": [
+        "Büyük yapı marketleri (Koçtaş, Bauhaus)",
+        "Mahalle alüminyumcuları",
+        "PVC/pimapen bayileri (Egepen, Kömmerling)",
+        "Online cam sipariş platformları",
+        "Tadilat firmaları (komple paket)"
+    ],
+    "ortalamaSureler": {
+        "tekCamDegisimi": "1-2 saat",
+        "pimapenPencere": "2-4 saat/pencere",
+        "camBalkonSistem": "1-2 gün",
+        "dusaKabinMontaj": "3-5 saat",
+        "sineklikMontaj": "30-60 dakika/pencere",
+        "aynaMontaj": "1-2 saat"
+    },
+    "populerHizmetler": [
+        "Isıcam değişimi/yenileme",
+        "PVC pencere (pimapen) montajı",
+        "Cam balkon sistemi (katlanır/sürgülü)",
+        "Kırık cam acil değişimi",
+        "Sineklik montajı",
+        "Duşakabin cam montajı",
+        "Ayna kesimi ve montajı",
+        "Cam kapı/bölme sistemi",
+        "Dükkan vitrin camı"
+    ],
+    "fiyatAraliklari": {
+        "isicamM2": "1.000-1.500₺/m²",
+        "lowEIsicamM2": "1.300-2.000₺/m²",
+        "pimapenPencere": "3.000-5.000₺/adet",
+        "camBalkonM2": "2.000-6.000₺/m²",
+        "sineklikAdet": "300-700₺/pencere",
+        "dusakabin": "3.000-8.000₺",
+        "aynaM2": "800-1.500₺/m²"
+    },
+    "musteriProfili": {
+        "demografik": "Ev sahibi 30-60 yaş. Apartman yöneticisi (toplu iş). İşyeri sahibi (vitrin, bölme). Yeni ev/tadilat yapan çiftler.",
+        "karar": "Yerinde ölçü + teklif karşılaştırması. Marka (PVC profil) ve cam kalitesi. Garanti süresi. Referans.",
+        "hassasiyet": "Montaj kalitesi (su sızması, rüzgar sesi), garanti, temiz çalışma, fiyat şeffaflığı."
+    },
+    "caprazSatis": [
+        "Pencere değiştiren müşteriye sineklik ekle",
+        "Isıcam yenileyen müşteriye perde/jaluzi öner (partner)",
+        "Cam balkon yapan müşteriye tente/güneşlik öner",
+        "Duşakabin yapan müşteriye banyo cam rafı/ayna ekle",
+        "Apartman toplu pencere projesinde kapı girişi cam bölme teklifi"
+    ],
+    "krizSenaryolari": [
+        {
+            "tetikleyici": "Montaj sonrası su/hava sızıntısı",
+            "yanit": "Aynı gün kontrol randevusu ver. Conta/mastik sorunu ise ücretsiz düzelt. Garanti kapsamı."
+        },
+        {
+            "tetikleyici": "Cam kırıldı (montaj/taşıma sırasında)",
+            "yanit": "Sigorta var ise devreye sok. Ücretsiz yeni cam temin et ve monte et. Müşteriyi bilgilendir."
+        },
+        {
+            "tetikleyici": "Ölçü hatası (cam uymadı)",
+            "yanit": "Hemen yeni ölçü al + yeni cam sipariş et. Müşteriden ek ücret isteme — kendi hatanın maliyeti."
+        }
+    ],
+    "dijitalIpuclari": [
+        "Google Haritalar: 'camcı yakınımda' acil aramalarda yüksek hacimli",
+        "WhatsApp'tan fotoğraflı ölçü/teklif: hızlı dönüş müşteriyi kazandırır",
+        "Instagram: Cam balkon dönüşüm fotoğrafları (önce/sonra) çok etkili",
+        "Blog: 'Isıcam mı pimapen mi', 'Cam balkon fiyatları 2026' SEO getirir",
+        "Kış kampanyası: Ekim-Kasım'da ısıcam kampanyası duyur → yoğun dönem öncesi yakalarsın",
+        "YouTube: Cam balkon montaj süreci videosu güven oluşturur"
+    ]
+}

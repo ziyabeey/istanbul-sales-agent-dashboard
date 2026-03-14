@@ -1,0 +1,29 @@
+{
+  "name": "@kepenk/sites",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --port 3001",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "next": "15.1.0",
+    "@kepenk/ui": "workspace:*",
+    "@kepenk/config": "workspace:*",
+    "@kepenk/shared": "workspace:*",
+    "@kepenk/db": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "postcss": "^8",
+    "tailwindcss": "^4",
+    "autoprefixer": "^10.4.20",
+    "typescript": "^5"
+  }
+}

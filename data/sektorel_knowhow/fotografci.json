@@ -1,0 +1,137 @@
+{
+    "sektor": "fotografci",
+    "sikSorulanlar": [
+        {
+            "soru": "Düğün fotoğrafı/video paketi ne kadar?",
+            "cevap": "Sadece fotoğraf: 15.000-40.000₺. Fotoğraf+video: 25.000-80.000₺. Drone ek: 3.000-8.000₺. Albüm ayrı (5.000-15.000₺). Detay için görüşelim.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Stüdyo çekimi yapıyor musunuz?",
+            "cevap": "Evet. Portre, aile, bebek, ürün, CV fotoğrafı. Stüdyo + dış mekan kombinasyonu da mevcut. 1 saatlik seans 1.500-3.000₺.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Fotoğrafları ne zaman teslim edersiniz?",
+            "cevap": "Düğün: 4-8 hafta (seçme + düzenleme). Stüdyo: 1-2 hafta. Ürün: 3-5 iş günü. Acil teslim ek ücretli.",
+            "aciliyet": "orta"
+        },
+        {
+            "soru": "Kaç fotoğraf teslim ediyorsunuz?",
+            "cevap": "Düğün: 300-500+ fotoğraf (editli). Stüdyo portre: 15-25 editli fotoğraf/saat. Tüm kareler ham olarak da verilebilir (ek ücret).",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Dış mekan çekimi nerede yapılır?",
+            "cevap": "İstanbul: Emirgan, Kuzguncuk, Balat, Boğaz kıyısı, Belgrad Ormanı gibi popüler lokasyonlar. Mekan talebi size özel de olabilir.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Bebek/doğum çekimi ne zaman yapılmalı?",
+            "cevap": "Hamilelik: 7-8. ay. Yenidoğan: İlk 5-14 gün (en güzel uykulu pozlar). 1 yaş smash cake çekimi popüler.",
+            "aciliyet": "orta"
+        },
+        {
+            "soru": "Ürün fotoğrafçılığı yapıyor musunuz?",
+            "cevap": "Evet. E-ticaret ürün çekimi (beyaz fon + lifestyle), menü fotoğrafçılığı, takı/aksesuar makro çekim. Adet bazında veya seans bazında fiyatlandırılır.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Depozit/kapora alıyor musunuz?",
+            "cevap": "Evet. Düğün: %30-50 kapora ile tarih ayırma. Stüdyo: çekim günü ödeme. İptal koşulları sözleşmede belirtilir.",
+            "aciliyet": "orta"
+        },
+        {
+            "soru": "Ham (raw) dosyaları verir misiniz?",
+            "cevap": "Standart pakette editli JPG teslim edilir. Raw dosyalar ek ücretle verilebilir (genelde paket fiyatının %30'u ek).",
+            "aciliyet": "dusuk"
+        }
+    ],
+    "mevzuat": [
+        "Fikir ve Sanat Eserleri Kanunu (5846) — telif hakkı",
+        "KVKK: Kişi fotoğrafları kişisel veri — model izin belgesi zorunlu",
+        "Ticari kullanım izni (ürün fotoğrafında marka kullanımı)",
+        "Drone kullanımı SHGM izni gerektiren bölgelerde",
+        "Çocuk fotoğrafı: ebeveyn yazılı izni ZORUNLU"
+    ],
+    "mevsimsellik": {
+        "kis": "Stüdyo çekimleri yoğun. Yılbaşı temalı aile/çocuk çekimleri. Düğün sezonu biter → portfolio geliştirme zamanı.",
+        "yaz": "Düğün sezonu zirve (Haziran-Eylül). Dış mekan çekimleri. Tatil fotoğrafçılığı. En yoğun ve en karlı dönem.",
+        "ilkbahar": "Düğün sezonu başlangıcı (Nisan-Mayıs). Nişan çekimleri. Doğa/çiçek temalı portreler. Mezuniyet çekimleri.",
+        "sonbahar": "Düğün sezonu sonu. Sonbahar renkleri ile dış mekan çekimi. Ürün çekimleri (yılsonu e-ticaret hazırlığı)."
+    },
+    "rakipler": [
+        "Büyük fotoğraf stüdyoları",
+        "Freelance fotoğrafçılar (Instagram üzerinden)",
+        "Akıllı telefon fotoğrafçılığı (kendi çek)",
+        "Stok fotoğraf siteleri (ürün için)",
+        "AI fotoğraf düzenleme uygulamaları"
+    ],
+    "ortalamaSureler": {
+        "studyoCekimi": "1-2 saat",
+        "disMekanPortre": "1.5-3 saat",
+        "dugunCekimi": "8-14 saat (full day)",
+        "urunCekimi": "10-20 ürün/saat",
+        "teslimStüdyo": "1-2 hafta",
+        "teslimDüğün": "4-8 hafta",
+        "albumUretimi": "2-4 hafta"
+    },
+    "populerHizmetler": [
+        "Düğün fotoğraf + video",
+        "Nişan / save the date çekimi",
+        "Stüdyo portre (bireysel, aile, çocuk)",
+        "Yenidoğan / bebek çekimi",
+        "Mezuniyet çekimi",
+        "Ürün fotoğrafçılığı (e-ticaret)",
+        "Yemek / menü fotoğrafçılığı",
+        "Kurumsal çekim (headshot, ofis)",
+        "Drone fotoğraf / video",
+        "Albüm tasarım ve basımı"
+    ],
+    "fiyatAraliklari": {
+        "studyoPortre1Saat": "1.500-3.000₺",
+        "disMekanPortre": "2.000-5.000₺",
+        "dugunSadeceFoto": "15.000-40.000₺",
+        "dugunFotoVideo": "25.000-80.000₺",
+        "yeniDoganCekimi": "2.000-5.000₺",
+        "urunFotoAdet": "50-200₺/ürün",
+        "kurumsalHeadshot": "500-1.500₺/kişi",
+        "albumBasim": "5.000-15.000₺"
+    },
+    "musteriProfili": {
+        "demografik": "Düğün: çiftler 25-35 yaş, karar genelde gelin + anne. Portre: 25-45 kadın ağırlıklı. Ürün: e-ticaret girişimcileri.",
+        "karar": "Portfolio kalitesi 1 numara. Instagram portfolyosu bakılır. Tarz uyumu (doğal/dramatik/vintage). Referans ve yorum.",
+        "hassasiyet": "Fotoğraf tarzı uyumu, teslim süresi, fiyat-kalite dengesi, çekim sırasındaki rahatlık/deneyim."
+    },
+    "caprazSatis": [
+        "Düğün müşterisine nişan çekimi paketi",
+        "Portre çekimi alan müşteriye baskı/çerçeve satışı",
+        "Düğün müşterisine yıldönümü hatırlatma (gelecek yıl çekim)",
+        "Bebek çekimi yapan aileye 1 yaş / smash cake çekimi",
+        "Ürün çekimi yapan müşteriye sosyal medya içerik paketi",
+        "Düğün müşterisine drone ek paketi"
+    ],
+    "krizSenaryolari": [
+        {
+            "tetikleyici": "Çekim günü hava kötü",
+            "yanit": "Yedek iç mekan lokasyonu hazırla. Alternatif tarih öner. Yağmurda dramatik çekimler de güzel olabilir — müşteriyi ikna et."
+        },
+        {
+            "tetikleyici": "Fotoğraflar beğenilmedi",
+            "yanit": "Hangi kareler sorunlu dinle. Ek düzenleme/retouching yap. Gerekirse mini ek çekim sun. Sözleşmedeki koşulları referans al."
+        },
+        {
+            "tetikleyici": "Ekipman arızası (çekim sırasında)",
+            "yanit": "MUTLAKA yedek gövde + lens hazır olsun. Yedek kart ve batarya. Profesyonel fotoğrafçı asla tek cihazla gitmez."
+        }
+    ],
+    "dijitalIpuclari": [
+        "Instagram fotoğrafçının ana portfolyo platformu — düzenli paylaşım şart",
+        "Pinterest: Düğün/portre ilham panoları → organik müşteri çekimi",
+        "Google Haritalar: 'fotoğrafçı yakınımda' aranır — stüdyo konumlu işletmeler avantajlı",
+        "Blog: 'Düğün fotoğrafçısı nasıl seçilir', 'Bebek çekimi hazırlığı' SEO getirir",
+        "TikTok: Behind the scenes + düzenleme süreci videoları çok izlenir",
+        "Düğün platformları (dugun.com, kolaygelsin) profili: düğün müşterisi kaynağı",
+        "Referral: Memnun müşteri paylaşımı → Instagram story repost → organik büyüme"
+    ]
+}

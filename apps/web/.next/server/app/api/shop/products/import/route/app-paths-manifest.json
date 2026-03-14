@@ -1,0 +1,3 @@
+{
+  "/api/shop/products/import/route": "app/api/shop/products/import/route.js"
+}

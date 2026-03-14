@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+**/node_modules
 /.pnp
 .pnp.*
 .yarn/*
@@ -33,9 +34,16 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
-# vercel
-.vercel
+# google cloud
+.gcloudignore
+
+# ide
+.idea/
+.vscode/
+.gemini/
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+.turbo
+**/.next

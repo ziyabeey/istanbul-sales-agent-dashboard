@@ -1,0 +1,131 @@
+{
+    "sektor": "yemek-siparis",
+    "sikSorulanlar": [
+        {
+            "soru": "Minimum sipariş tutarı var mı?",
+            "cevap": "Platform ve bölgeye göre değişir. Genelde 100-200₺ minimum. Kendi kuryemizle 150₺ minimum, platformlar kendi limiti uygular.",
+            "aciliyet": "orta"
+        },
+        {
+            "soru": "Teslimat süresi ne kadar?",
+            "cevap": "Ortalama 30-45 dakika. Yoğun saatlerde (12:00-13:30, 19:00-21:00) 45-60 dakikaya uzayabilir.",
+            "aciliyet": "orta"
+        },
+        {
+            "soru": "Hangi platformlardan sipariş verebilirim?",
+            "cevap": "Yemeksepeti, Getir Yemek, Trendyol Yemek üzerinden veya direkt WhatsApp/telefon ile sipariş alıyoruz.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Alerjen bilgisi var mı?",
+            "cevap": "Evet. Menümüzde gluten, fındık, süt, yumurta alerjenleri işaretlidir. Özel diyet talebi için sipariş notuna yazın.",
+            "aciliyet": "yuksek"
+        },
+        {
+            "soru": "Kurumsal / toplu sipariş alıyor musunuz?",
+            "cevap": "Evet. 10+ kişilik siparişlerde özel fiyat. Haftalık/aylık kurumsal menü planı yapıyoruz. Fatura keseriz.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Soğuk gelen yemek ne yapılır?",
+            "cevap": "Fotoğraf çekin ve WhatsApp'tan bize ulaşın. 30 dakika içinde yenisini göndeririz veya iade yaparız.",
+            "aciliyet": "yuksek"
+        },
+        {
+            "soru": "Menü ne sıklıkla değişiyor?",
+            "cevap": "Günlük özel menü var (öğle). Ana menü sezonluk güncellenir. Haftalık yeni ürün denemesi yapıyoruz.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Kredi kartı / online ödeme kabul ediyor musunuz?",
+            "cevap": "Evet. Platformlar üzerinden online ödeme, kapıda nakit veya POS ile kredi kartı. WhatsApp siparişte havale/EFT de kabul.",
+            "aciliyet": "dusuk"
+        }
+    ],
+    "mevzuat": [
+        "Gıda Güvenliği ve Hijyen Yönetmeliği",
+        "Paketleme ve Taşıma Hijyen Standartları",
+        "Gıda İşletmeleri Kayıt Belgesi",
+        "E-ticaret kapsamında bilgilendirme yükümlülüğü",
+        "Alerjen bildirim zorunluluğu",
+        "Isı zinciri (cold chain) kuralları"
+    ],
+    "mevsimsellik": {
+        "kis": "Sıcak yemek siparişi zirve — çorba, güveç, etli yemekler. Kötü hava → sipariş hacmi %30-40 artar.",
+        "yaz": "Salata, soğuk mezeler, hafif yemekler. Genel sipariş hacmi hafif düşer. İftar menüsü (Ramazan).",
+        "ilkbahar": "Normal talep. Açık hava etkinlikleri için catering talebi. Piknik menüleri.",
+        "sonbahar": "Okul başlangıcı — öğle yemeği siparişi artar. Kurumsal siparişler hız kazanır."
+    },
+    "rakipler": [
+        "Yemeksepeti / Getir Yemek / Trendyol Yemek",
+        "Dark kitchen (sanal mutfak) operatörleri",
+        "Diğer yerel restoranlar",
+        "Hazır yemek marketleri",
+        "Ev yemekleri platformları"
+    ],
+    "ortalamaSureler": {
+        "siparisHazirlama": "15-25 dakika",
+        "teslimatSehirIci": "20-40 dakika",
+        "toplamTeslimat": "30-50 dakika",
+        "yogunSaatTeslimat": "45-70 dakika",
+        "topluSiparis": "2-3 saat önceden sipariş"
+    },
+    "populerHizmetler": [
+        "Günlük öğle menüsü (tabldot)",
+        "A la carte yemek siparişi",
+        "Kurumsal öğle yemeği (haftalık plan)",
+        "Hafta sonu brunch/kahvaltı siparişi",
+        "Catering (etkinlik, toplantı)",
+        "Özel diyet menüsü (fit, vegan)",
+        "İftar/sahur menüsü (Ramazan)",
+        "Toplu sipariş (10+ kişi)"
+    ],
+    "fiyatAraliklari": {
+        "gunlukMenu": "80-150₺",
+        "alaCarte": "100-300₺",
+        "topluSiparisKisiBasi": "70-130₺",
+        "kurumsalHaftalik": "350-650₺/kişi/hafta",
+        "cateringKisiBasi": "100-250₺",
+        "ozelDiyetMenu": "100-200₺"
+    },
+    "musteriProfili": {
+        "demografik": "25-45 yaş, çalışan profesyoneller (%60). Aileler hafta sonu (%25). Öğrenciler (%15).",
+        "karar": "Platform puanı ve yorum en belirleyici. Teslimat süresi ve yemek fotoğrafı. Fiyat-performans oranı.",
+        "hassasiyet": "Teslimat hızı, yemeğin sıcaklığı/sunumu, porsiyon boyutu, paketleme kalitesi."
+    },
+    "caprazSatis": [
+        "Yemek siparişine tatlı/içecek öner ('Yanına bir tatlı ekleyelim mi?')",
+        "Tek kişilik müşteriye 2 kişilik menü teklifi (ekonomik)",
+        "Düzenli müşteriye haftalık menü aboneliği",
+        "Kurumsal müşteriye catering teklifi",
+        "Platform müşterisine direkt sipariş indirimi (%10 — komisyon tasarrufu)",
+        "Akşam sipariş yapana ertesi gün öğle teklifi"
+    ],
+    "krizSenaryolari": [
+        {
+            "tetikleyici": "Sipariş geç geldi",
+            "yanit": "Özür + bir sonraki siparişte indirim kuponu (%15-20). Gecikme nedenini açıkla. Tekrarda ücretsiz teslimat."
+        },
+        {
+            "tetikleyici": "Yanlış sipariş gönderildi",
+            "yanit": "Fotoğrafla doğrula + 30dk içinde doğru siparişi gönder. Yanlış gelen müşteride kalsın (geri alma yok)."
+        },
+        {
+            "tetikleyici": "Yemek kalitesi şikayeti (soğuk, az, kötü)",
+            "yanit": "Fotoğraf iste + yenisini gönder veya tam iade. Mutfağa geri bildirim + kalite kontrol sıkılaştır."
+        },
+        {
+            "tetikleyici": "Platform'da olumsuz yorum",
+            "yanit": "Aynı gün yanıtla. Sorunu kabul et, çözümü açıkla. DM ile müşteriye ulaş. İkram teklifi."
+        }
+    ],
+    "dijitalIpuclari": [
+        "Platform puanı 4.5+ tutmak siparişi %50 artırır — her yoruma yanıt ver",
+        "Yemek fotoğrafı kalitesi platform'da tıklanma oranını direkt etkiler",
+        "WhatsApp sipariş: platform komisyonundan (%20-30) kurtulursun",
+        "Instagram'da günlük menü story'si: 11:00-11:30 arası paylaş (öğle kararı öncesi)",
+        "Google Haritalar: 'yemek sipariş yakınımda' yüksek hacimli sorgu",
+        "Paket tasarımı: Markalı, temiz paketleme Instagram paylaşımı artırır (UGC)",
+        "Sadakat: 10. siparişe %25 indirim gibi basit program çok etkili"
+    ]
+}

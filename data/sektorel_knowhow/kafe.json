@@ -1,0 +1,139 @@
+{
+    "sektor": "kafe",
+    "sikSorulanlar": [
+        {
+            "soru": "Menünüzde neler var?",
+            "cevap": "Filtre kahve, espresso bazlı içecekler, soğuk kahveler, çay çeşitleri, taze sıkma meyve suyu, ev yapımı pasta/kurabiye, sandviç ve tost çeşitleri.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "WiFi var mı?",
+            "cevap": "Evet. Ücretsiz WiFi mevcut. Şifreyi kasadan veya masanızdaki QR koddan alabilirsiniz.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Çalışma saatleriniz?",
+            "cevap": "Hafta içi 08:00-22:00, hafta sonu 09:00-23:00. Saat değişikliklerini Instagram'dan duyuruyoruz.",
+            "aciliyet": "orta"
+        },
+        {
+            "soru": "Özel pasta siparişi alıyor musunuz?",
+            "cevap": "Evet. Doğum günü pastası, konsept pastalar yapıyoruz. En az 2 gün önceden sipariş verin. Lezzet ve tasarım seçimi WhatsApp'tan yapılır.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Toplantı/etkinlik için yer ayırtabilir miyim?",
+            "cevap": "Evet. Küçük toplantılar (4-10 kişi) için ayrı köşe veya tüm mekân kiralama (20+ kişi) yapılabilir. Fix menü ile paket fiyat.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Kahvaltı servisi var mı?",
+            "cevap": "Evet. Hafta sonu serpme kahvaltı (kişi başı 200-400₺), hafta içi hızlı kahvaltı tabağı (100-200₺). Rezervasyon önerilir.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Glutensiz/vegan seçenek var mı?",
+            "cevap": "Evet. Menümüzde glutensiz kek, vegan brownie, bitkisel süt seçenekleri (yulaf, badem, soya) mevcut.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Toplu sipariş (ofis) alıyor musunuz?",
+            "cevap": "Evet. 10+ adet kahve/sandviç siparişinde toplu indirim. Düzenli ofis siparişi için haftalık plan yapılır.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Evcil hayvan girebilir mi?",
+            "cevap": "Açık alanımızda evcil hayvanlar kabul edilir. Kapalı alanda pet-friendly politikamız şubeye göre değişir.",
+            "aciliyet": "dusuk"
+        }
+    ],
+    "mevzuat": [
+        "Gıda İşletmeleri Kayıt Belgesi",
+        "Belediye İşyeri Açma Ruhsatı",
+        "Hijyen sertifikası (tüm çalışanlar)",
+        "TAPDK (tütün ürünleri satışı varsa)",
+        "Gürültü yönetmeliği (müzik çalma saatleri)",
+        "Çevre ve ambalaj atık beyanı"
+    ],
+    "mevsimsellik": {
+        "kis": "Sıcak içecekler (salep, sıcak çikolata, türk kahvesi) zirve. İç mekan doluluk artar. Yılbaşı temalı ürünler.",
+        "yaz": "Soğuk kahveler, frappe, smoothie patlar. Bahçe/teras açılır. Dondurmalı içecekler. Tatil sezonu etkisi.",
+        "ilkbahar": "Brunch sezonu başlar. Açık alan talebi artar. Anneler Günü özel pasta siparişleri.",
+        "sonbahar": "Pumpkin spice / tarçınlı içecekler trendi. Okul başlangıcı — öğrenci müşteri geri döner."
+    },
+    "rakipler": [
+        "Starbucks / Kahve Dünyası / Gloria Jean's",
+        "Bağımsız 3. dalga kahveciler",
+        "Fırın/pastaneler (pasta + kahve)",
+        "Evde kahve hazırlama trendi (Chemex, V60)",
+        "Ofis kahve makineleri"
+    ],
+    "ortalamaSureler": {
+        "espressoHazirlama": "3-5 dakika",
+        "filtreKahve": "5-8 dakika",
+        "pastaKesim": "2-3 dakika",
+        "sandvicHazirlama": "8-12 dakika",
+        "kahvaltiHazirlik": "15-25 dakika",
+        "ozelPasta": "2-3 gün önceden sipariş"
+    },
+    "populerHizmetler": [
+        "Espresso bazlı kahveler (latte, cappuccino, americano)",
+        "Filtre / pour-over kahve",
+        "Ev yapımı pasta & kurabiye",
+        "Serpme kahvaltı (hafta sonu)",
+        "Soğuk kahve / iced latte",
+        "Özel pasta siparişi",
+        "Sandviç / tost / wrap",
+        "Toplu ofis siparişi",
+        "Etkinlik mekan kiralama"
+    ],
+    "fiyatAraliklari": {
+        "espressoIcecekler": "60-120₺",
+        "filtreKahve": "50-90₺",
+        "pastaKesim": "80-150₺",
+        "sandvic": "100-200₺",
+        "kahvaltiKisiBasi": "100-400₺",
+        "ozelPasta": "500-2.000₺",
+        "topluSiparis10Adet": "%10-15 indirimli"
+    },
+    "musteriProfili": {
+        "demografik": "18-45 yaş ağırlıklı. Öğrenciler, freelancerlar, genç profesyoneller. Kadın müşteri oranı %55-60.",
+        "karar": "Ortam (dekorasyon, müzik, aydınlatma) ilk izlenim. Kahve kalitesi sadakat belirler. Instagram'da paylaşılabilirlik önemli.",
+        "hassasiyet": "WiFi hızı, priz sayısı (çalışanlar için), gürültü seviyesi, kahve çekirdeği kalitesi, vegan alternatiflerin varlığı."
+    },
+    "caprazSatis": [
+        "Kahve alan müşteriye pasta/kurabiye öner ('Yanına bir dilim cheesecake?')",
+        "Düzenli müşteriye kahve kartı (8. kahve bedava)",
+        "Kahvaltıya gelen müşteriye özel pasta siparişi tanıt",
+        "Ofis siparişi alan şirkete etkinlik mekanı teklif et",
+        "Akşam müşterisine 'happy hour' indirimli içecek",
+        "Kahve çekirdeği / French press satışı (perakende)"
+    ],
+    "krizSenaryolari": [
+        {
+            "tetikleyici": "Kahve/yiyecek kalitesi şikayeti",
+            "yanit": "Ücretsiz yenisini yap. Özür dile. Barista'ya geri bildirim ver. Müşteriye bir sonraki ziyaret ikramı."
+        },
+        {
+            "tetikleyici": "WiFi çalışmıyor",
+            "yanit": "Modem reset + müşteriye bilgi ver. Yedek mobil hotspot hazırla. WiFi sorununu 1 saat içinde çöz."
+        },
+        {
+            "tetikleyici": "Uzun kuyruk/bekleme",
+            "yanit": "Ekstra personeli devreye al. Bekleyen müşteriye küçük ikram sun. WhatsApp'tan sipariş alma sistemi kur."
+        },
+        {
+            "tetikleyici": "Olumsuz Google yorumu",
+            "yanit": "Aynı gün yanıtla. Kişisel ve samimi tonda. Sorunu kabul et + çözümü belirt + tekrar davet et."
+        }
+    ],
+    "dijitalIpuclari": [
+        "Instagram mekân estetiği: Instagrammable köşeler müşteri çeker — iyi aydınlatma + dekor",
+        "Google Haritalar: 'kafe yakınımda' çok aranan sorgu — yorum + fotoğraf yükle",
+        "Sabah kahvesi rutini: 07:30-09:00 arası Instagram story ile günlük menü paylaş",
+        "UGC (kullanıcı içeriği): Müşterilerin fotoğraflarını repost et — organik büyüme",
+        "TikTok: Latte art, pasta yapım süreci, barista çalışmaları çok izlenir",
+        "Sadakat programı (dijital): Tekrar ziyareti %40 artırır",
+        "Mevsimsel özel içecekler: Sınırlı süre sunumu FOMO etkisi yaratır"
+    ]
+}

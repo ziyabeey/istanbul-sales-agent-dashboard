@@ -1,0 +1,138 @@
+{
+    "sektor": "muhasebeci",
+    "sikSorulanlar": [
+        {
+            "soru": "Şirket kurmak istiyorum, ne yapmalıyım?",
+            "cevap": "Şahıs şirketi veya limited şirket seçimine göre süreç değişir. Şahıs: vergi dairesine başvuru (1-2 gün). Limited: noter + ticaret sicili (3-5 iş günü). Detay için görüşme ayarlayalım.",
+            "aciliyet": "orta"
+        },
+        {
+            "soru": "Aylık muhasebe ücreti ne kadar?",
+            "cevap": "Şahıs şirketi: 1.500-3.000₺/ay, limited şirket: 3.000-6.000₺/ay, anonim şirket: 5.000-10.000₺/ay. İşlem hacmine göre değişir.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "E-fatura/e-arşiv zorunlu mu?",
+            "cevap": "2024 itibariyle brüt 3M TL ve üzeri ciro yapanlar e-fatura, tüm mükelefler e-arşiv zorunlu. Geçiş sürecinde yardımcı oluruz.",
+            "aciliyet": "orta"
+        },
+        {
+            "soru": "Vergi beyannamelerini siz veriyor musunuz?",
+            "cevap": "Evet. KDV, muhtasar, gelir/kurumlar vergisi, Ba-Bs formları, SGK bildirgeleri hepsini biz veririz. Sizden sadece belgeleri isteriz.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Vergi borcu yapılandırması nasıl yapılır?",
+            "cevap": "7440 sayılı kanun kapsamında yapılandırma başvurusu yapılır. Borcun türü ve miktarına göre taksit planı çıkar. Başvuru süreleri dönemsel.",
+            "aciliyet": "orta"
+        },
+        {
+            "soru": "SGK prim borcu var, ne olur?",
+            "cevap": "Gecikme zammı + gecikme cezası uygulanır. Yapılandırma dönemlerinde başvuru yapılabilir. İşçi işten çıkarma bloğu olabilir.",
+            "aciliyet": "yuksek"
+        },
+        {
+            "soru": "Devlet teşviklerinden yararlanabilir miyim?",
+            "cevap": "İşkur, KOSGEB, yatırım teşviği, genç girişimci muafiyeti gibi birçok teşvik var. İşletmenize uygun teşvikleri araştırırız.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Maaş bordrosu ve SGK işlemleri dahil mi?",
+            "cevap": "Evet. İşe giriş/çıkış bildirgeleri, aylık SGK primleri, maaş bordroları, kıdem/ihbar hesaplamaları hep dahil.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Online görüşme yapabiliyor muyuz?",
+            "cevap": "Evet. Zoom/Google Meet ile online görüşme, belge paylaşımı WhatsApp/email ile yapılır. Fiziksel dosya taşımanıza gerek yok.",
+            "aciliyet": "dusuk"
+        }
+    ],
+    "mevzuat": [
+        "3568 sayılı SMMM/YMM Kanunu",
+        "213 sayılı Vergi Usul Kanunu",
+        "5510 sayılı SGK Kanunu",
+        "6102 sayılı Türk Ticaret Kanunu",
+        "E-fatura / E-defter zorunlulukları",
+        "KDV Kanunu",
+        "Gelir Vergisi / Kurumlar Vergisi Kanunu",
+        "KVKK: Müşteri mali verileri hassas veri"
+    ],
+    "yasalUyarilar": [
+        "AI vergi veya mali danışmanlık veremez — 'Mali müşavirinize danışın' zorunlu",
+        "Vergi oranları ve mevzuat sürekli değişir — güncel bilgi için uzman gerekli",
+        "Tüzel kişi kurulumu hukuki sorumluluk taşır — profesyonel rehberlik şart"
+    ],
+    "mevsimsellik": {
+        "kis": "Yılsonu kapanışı (Aralık-Ocak) → en yoğun dönem. Gelir vergisi hazırlığı. Envanter çıkarma.",
+        "yaz": "Göreceli sakin dönem. Temmuz: Geçici vergi beyannamesi. Ağustos: Tatil dönemi, hazırlık.",
+        "ilkbahar": "Mart: Yıllık gelir vergisi beyannamesi. Nisan: Kurumlar vergisi. Beyanname sezonu çok yoğun.",
+        "sonbahar": "Ekim: Geçici vergi. Kasım: SGK teşvik başvuruları. Bütçe planlaması dönemi."
+    },
+    "rakipler": [
+        "Büyük muhasebe firmaları (Big 4 alt segmenti)",
+        "Online muhasebe platformları (Paraşüt, Logo, Mikro)",
+        "Freelance muhasebeciler",
+        "Vergi danışmanlık firmaları",
+        "Entegre ERP çözümleri"
+    ],
+    "ortalamaSureler": {
+        "beyannameHazirlama": "1-3 iş günü",
+        "sirketKurulusSahis": "1-2 iş günü",
+        "sirketKurulusLimited": "3-5 iş günü",
+        "sgkIseGiris": "Aynı gün",
+        "vergiYapilandirma": "1-2 hafta (başvuru süreci)"
+    },
+    "populerHizmetler": [
+        "Aylık muhasebe tutma",
+        "Vergi beyannamesi hazırlama ve verme",
+        "SGK işlemleri (bordro, bildirge)",
+        "Şirket kuruluş danışmanlığı",
+        "E-fatura / E-defter geçişi",
+        "Devlet teşviki araştırma ve başvurusu",
+        "Vergi planlaması ve optimizasyonu",
+        "Mali analiz ve raporlama",
+        "Kıdem/ihbar tazminatı hesaplama"
+    ],
+    "fiyatAraliklari": {
+        "aylikSahisSirketi": "1.500-3.000₺/ay",
+        "aylikLimitedSirket": "3.000-6.000₺/ay",
+        "aylikAnonimSirket": "5.000-10.000₺/ay",
+        "sirketKurulusDanismanlik": "3.000-8.000₺",
+        "eFaturaGecis": "1.000-3.000₺",
+        "ozelDanismanlik": "500-1.500₺/saat"
+    },
+    "musteriProfili": {
+        "demografik": "İşletme sahipleri, 30-60 yaş. KOBİ'ler (%80). Serbest meslek (doktor, avukat, mühendis). Yeni girişimciler.",
+        "karar": "Güven ve referans en önemli. Ulaşılabilirlik (telefon/WhatsApp). Beyanname hatası riski endişesi. Maliyet/fiyat dengesi.",
+        "hassasiyet": "Mali gizlilik, zamanında beyanname verme, vergi cezası riski, SGK sorunları. WhatsApp'tan hızlı cevap beklentisi."
+    },
+    "caprazSatis": [
+        "Yeni şirket kuran müşteriye SGK işlemleri paketi",
+        "KOBİ müşteriye KOSGEB/İşkur teşvik danışmanlığı",
+        "E-fatura geçişi yapan müşteriye muhasebe yazılımı desteği",
+        "Maaş bordrosu yapılan müşteriye iş hukuku danışmanlığı (avukat yönlendir)",
+        "Vergi planlaması → yatırım danışmanlığı yönlendirmesi"
+    ],
+    "krizSenaryolari": [
+        {
+            "tetikleyici": "Beyanname süresi geçirildi / ceza geldi",
+            "yanit": "Derhal düzeltme beyannamesi ver. Ceza miktarını hesapla. Pişmanlık dilekçesi seçeneğini değerlendir. Müşteriyi bilgilendir."
+        },
+        {
+            "tetikleyici": "Vergi incelemesi / denetim bildirimi",
+            "yanit": "Panik yapma. Tüm belgeleri hazırla. İnceleme sürecinde müşteriyle birlikte ol. Gerekirse YMM/avukat desteği al."
+        },
+        {
+            "tetikleyici": "Müşteri maliyet şikayeti",
+            "yanit": "Yapılan işleri detaylı listele. Alternatif paket sun. Değer teklifi vurgula (ceza riski, teşvik kazancı)."
+        }
+    ],
+    "dijitalIpuclari": [
+        "LinkedIn profesyonel ağda en etkili kanal — vergi ipuçları paylaş",
+        "Blog: 'E-fatura nedir', 'Şirket nasıl kurulur' SEO'da çok aranan sorgular",
+        "WhatsApp: Beyanname hatırlatmaları müşteri sadakati artırır",
+        "Google Haritalar: 'muhasebeci yakınımda' lokal arama çok yüksek",
+        "YouTube: Vergi bilgilendirme videoları uzun vadeli organik trafik",
+        "Instagram: Basit infografikler (vergi tarihleri, teşvik bilgileri) paylaşılabilir içerik"
+    ]
+}

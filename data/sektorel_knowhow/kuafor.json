@@ -1,0 +1,132 @@
+{
+    "sektor": "kuafor",
+    "sikSorulanlar": [
+        {
+            "soru": "Saçım boyadan zarar gördü ne yapmalıyım?",
+            "cevap": "48 saat beklemenizi öneririm. Protein bakım maskesi uygulayın. Devam ederse lütfen salona gelin.",
+            "aciliyet": "orta"
+        },
+        {
+            "soru": "Keratin ne kadar sürer?",
+            "cevap": "İşlem 2-4 saat sürer, 72 saat ıslatmayın. Sülfatsız şampuan kullanın. Etki 3-6 ay. Bakım ürünleri ile uzar.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Randevu nasıl alabilirim?",
+            "cevap": "WhatsApp üzerinden mesaj atın veya telefon edin. Hafta sonu için hafta başında rezervasyon yapmanızı öneririz.",
+            "aciliyet": "orta"
+        },
+        {
+            "soru": "Ombre ve balayage farkı nedir?",
+            "cevap": "Ombre daha dramatik geçiş, balayage daha doğal ve el yapımı görünüm sunar. Her ikisi de bakım gerektirmez.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Saç boyama ne kadar?",
+            "cevap": "Tek renk: 800-1.500₺, röfle/balyaj: 1.500-3.000₺, ombre: 2.000-4.000₺. Saç uzunluğu ve kalınlığına göre değişir.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Gelin saçı + makyaj ne kadar?",
+            "cevap": "Gelin paketi (saç + makyaj + deneme): 5.000-15.000₺. Deneme seansı düğünden 1-2 hafta önce. Erken rezervasyon şart.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Saç dökülmesi için ne önerirsiniz?",
+            "cevap": "Önce bir dermatoloğa danışın. PRP, mezoterapi veya saç bakımı kürü uygulayabiliriz ama tıbbi teşhis öncelikli.",
+            "aciliyet": "orta"
+        },
+        {
+            "soru": "Çocuk saç kesimi yapıyor musunuz?",
+            "cevap": "Evet. Çocuk dostu ortam, oyuncak ve tablet ile rahat deneyim. Çocuk kesimi yetişkinin %40-50 altında fiyatlandırılır.",
+            "aciliyet": "dusuk"
+        }
+    ],
+    "mevzuat": [
+        "Sağlık Bakanlığı Güzellik Salonu Yönetmeliği",
+        "Hijyen Standartları SB-2023",
+        "İşyeri Açma ve Çalışma Ruhsatı",
+        "Esnaf ve Sanatkârlar Sicili",
+        "KVKK: Müşteri fotoğrafları izin belgesi",
+        "Kimyasal madde kullanımı iş güvenliği"
+    ],
+    "mevsimsellik": {
+        "yaz": "Renk ve röfle talebi artar, randevu doluluk oranı yüksek. Düğün sezonu → gelin paketleri.",
+        "kis": "Keratin ve bakım talepleri artar — ısıtmalı ürünler sezonu. Yılbaşı partisi öncesi yoğunluk.",
+        "ilkbahar": "Bahar temizliği saç bakımları. Düğün sezonu başlangıcı. Mezuniyet saçları. Renk değişimi talebi.",
+        "sonbahar": "Renk yenileme sezonu. Bakım kürleri. Kış hazırlığı (nemlendirici bakımlar)."
+    },
+    "rakipler": [
+        "Zincir kuaför salonları (Moda, Figaro)",
+        "Ev kuaförü (freelance, Instagram üzerinden)",
+        "Güzellik merkezleri (komple hizmet)",
+        "Online saç bakım ürünleri (evde bakım trendi)",
+        "Berber (erkek müşteriler)"
+    ],
+    "ortalamaSureler": {
+        "sacKesimi": "30-45 dakika",
+        "sacBoyama": "1.5-2.5 saat",
+        "balyajOmbre": "2.5-4 saat",
+        "keratinBakim": "2-4 saat",
+        "fon": "30-45 dakika",
+        "gelinSacMakyaj": "2-3 saat",
+        "sacBakim": "45-60 dakika"
+    },
+    "populerHizmetler": [
+        "Saç kesimi (kadın/erkek)",
+        "Renk uygulaması (tek renk, röfle, balyaj, ombre)",
+        "Keratin bakımı / brezilya fönü",
+        "Saç bakımı kürleri",
+        "Fön ve şekillendirme",
+        "Gelin saç + makyaj paketi",
+        "Saç kaynak (mikro, boncuk, keratin)",
+        "Çocuk saç kesimi",
+        "Manikür / pedikür (varsa)"
+    ],
+    "fiyatAraliklari": {
+        "kadinSacKesimi": "300-700₺",
+        "erkekSacKesimi": "150-300₺",
+        "tekRenkBoya": "800-1.500₺",
+        "balyajOmbre": "1.500-4.000₺",
+        "keratinBakim": "2.000-5.000₺",
+        "fon": "200-500₺",
+        "gelinPaketi": "5.000-15.000₺",
+        "sacKaynak": "3.000-10.000₺"
+    },
+    "musteriProfili": {
+        "demografik": "Kadın %85, 18-55 yaş. Düzenli müşteri (4-8 haftada bir). Gelin segment: 22-35 yaş.",
+        "karar": "Instagram portfolyosu bakılır. Arkadaş tavsiyesi güçlü. Kuaförle kişisel ilişki/güven belirleyici.",
+        "hassasiyet": "Saç sağlığı endişesi, boya sonucu beklenti, hijyen, randevu zamanlaması, fiyat-kalite dengesi."
+    },
+    "caprazSatis": [
+        "Boya yapan müşteriye bakım kürü paketi sat",
+        "Keratin yapana sülfatsız şampuan/bakım ürünleri sat",
+        "Gelin paketine nedime/anne saçı ekle",
+        "Düzenli müşteriye sadakat kartı (5. kesim bedava)",
+        "Saç kesimi yapan müşteriye kaş şekillendirme öner",
+        "Yaz öncesi saç bakım paketi kampanyası"
+    ],
+    "krizSenaryolari": [
+        {
+            "tetikleyici": "Boya rengi beklentiyi karşılamadı",
+            "yanit": "Müşteriyi dinle. Fotoğraf karşılaştır. Düzeltme seansı sun (ücretsiz veya maliyetine). İlk 1 hafta renk değişimi normaldir."
+        },
+        {
+            "tetikleyici": "Saç hasarı/kopma şikayeti",
+            "yanit": "Ciddiye al. Saç testi yap. Acil bakım kürü uygula. Gerekirse dermatoloğa yönlendir. Bir sonraki bakım ücretsiz."
+        },
+        {
+            "tetikleyici": "Randevu yoğunluğu / uzun bekleme",
+            "yanit": "WhatsApp randevu hatırlatma sistemi kur. Geç kalan müşteriye alternatif zaman sun. Bekleme alanına ikram koy."
+        }
+    ],
+    "dijitalIpuclari": [
+        "Instagram kuaförün 1 numaralı pazarlama aracı — her çalışmayı paylaş",
+        "Önce/sonra fotoğrafları en çok kaydetme alan içerik tipi",
+        "Google Haritalar: 'kuaför yakınımda' çok yüksek hacimli — yorum çok önemli",
+        "WhatsApp randevu: no-show oranını %40 düşürür",
+        "TikTok: Saç dönüşüm videoları (color melt, balayage) viral potansiyeli yüksek",
+        "Reels: Fön çekimi, boya süreci, keratin sonucu — izlenme çok yüksek",
+        "Gelin sezonu öncesi (Ocak-Şubat) erken rezervasyon kampanyası yap"
+    ]
+}

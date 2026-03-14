@@ -1,0 +1,125 @@
+{
+    "sektor": "mobilyaci",
+    "sikSorulanlar": [
+        {
+            "soru": "Mutfak dolabi yaptirmak istiyorum, fiyat ne kadar?",
+            "cevap": "Mutfak dolabi metre bazinda fiyatlandirilir. Membran kapak 4.000-6.000₺/m, lake kapak 6.000-9.000₺/m, akrilik 8.000-12.000₺/m. Tezgah, aksesuar ve montaj ayri. Ücretsiz ölçü aliriz.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Vestiyer/giyinme odasi yaptirabilir miyim?",
+            "cevap": "Evet. Oda boyutlarina göre ray sistemi, cekmece modülleri ve aydinlatma ile tasarlariz. Ölçü alimi + 3D tasarim ücretsiz.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "MDF mi sunta mi kullaniyorsunuz?",
+            "cevap": "Govde icin 1. sinif yonga levha (E1 sinifi, formaldehit düsük), kapak icin MDF tercih ediyoruz. Talebe göre masif agac veya bambu da yapilir.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Kac günde teslim edersiniz?",
+            "cevap": "Mutfak dolabi ortalama 15-20 is günü, banyo dolabi 10-15 gün, vestiyer 12-18 gün. Malzeme temini süresi degisebilir.",
+            "aciliyet": "orta"
+        },
+        {
+            "soru": "Eski mutfagi söküp yenisini yapar misiniz?",
+            "cevap": "Evet. Söküm + yeni montaj birlikte yapilir. Tesisatci koordinasyonu gerekirse biz ayarlariz.",
+            "aciliyet": "orta"
+        },
+        {
+            "soru": "Garanti var mi?",
+            "cevap": "Iscilik 2 yil, mentese ve ray aksesuarlari marka garantili (Blum/Hettich 5 yil). Kapak renk solmasi 3 yil garanti.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Tadilat sirasinda evde kalabilir miyiz?",
+            "cevap": "Mutfak montaji 1-2 gün sürer, bu sürede mutfak kullanilmaz. Banyo dolabi montaji yarim gün. Öncesinde plan yapariz.",
+            "aciliyet": "orta"
+        },
+        {
+            "soru": "Fiyata tezgah dahil mi?",
+            "cevap": "Genelde ayri. Granit tezgah 1.500-3.000₺/m, kuvars 2.500-5.000₺/m, kompakt laminat 1.000-2.000₺/m. Ölçüde birlikte hesaplariz.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "3D tasarim yapiyor musunuz?",
+            "cevap": "Evet. Ölçü sonrasi 3D modelleme ile renk, düzen ve aksesuar secimini birlikte yapariz. Revizyon siniri yok.",
+            "aciliyet": "dusuk"
+        }
+    ],
+    "mevzuat": [
+        "TS 11815 Ahsap Mobilya Genel Kurallar",
+        "E1 Sinifi Formaldehit Emisyon Standardi",
+        "Tüketici Haklari Kanunu (garanti/iade)",
+        "Is Güvenligi: Atölye ortami, toz maskesi, göz koruma zorunlulugu"
+    ],
+    "mevsimsellik": {
+        "kis": "Ev yenileme sezonu — mutfak ve banyo siparisleri artar. Isitma sistemi montaj koordinasyonu gerekebilir.",
+        "yaz": "Tadilat sezonu — yaz tatilinde ev bos kalinca büyük projeler yapilir. Dis cephe ahsap isi de olabilir.",
+        "ilkbahar": "Düğün sezonu oncesi yatak odasi ve çeyiz mobilyasi talebi yükselir.",
+        "sonbahar": "Okul oncesi çocuk odasi ve çalisma masasi talepleri. Yilbasi oncesi hediye siparis baslar."
+    },
+    "rakipler": [
+        "IKEA",
+        "Bellona / Istikbal / Dogtas mağazalari",
+        "Armut.com mobilyaci ilanları",
+        "Yerel marangoz atolyeleri",
+        "Online mobilya siteleri (Vivense, Koctas)"
+    ],
+    "ortalamaSureler": {
+        "mutfakDolabi": "15-20 iş günü",
+        "banyoDolabi": "10-15 iş günü",
+        "vestiyerGiyinmeOdasi": "12-18 iş günü",
+        "tvUnitesi": "7-10 iş günü",
+        "olcuAlimi": "1-2 saat (yerinde)"
+    },
+    "populerHizmetler": [
+        "Mutfak dolabi (membran/lake/akrilik)",
+        "Banyo dolabi + ayna ünite",
+        "Vestiyer / giyinme odasi",
+        "TV ünitesi + kitaplik",
+        "Cocuk odasi mobilya seti",
+        "Ofis mobilyasi (masa, dolap, raf)",
+        "Tezgah degisimi (granit/kuvars)"
+    ],
+    "fiyatAraliklari": {
+        "mutfakDolabiMetre": "4.000-12.000₺/metre",
+        "banyoDolabi": "8.000-25.000₺",
+        "vestiyer": "15.000-40.000₺",
+        "tvUnitesi": "5.000-15.000₺",
+        "tezgahMetre": "1.000-5.000₺/metre"
+    },
+    "musteriProfili": {
+        "demografik": "25-55 yaş, ev sahibi veya kiracı (uzun süreli), çift veya aile",
+        "karar": "Genelde 2 kişi karar verir (eş birlikte). Kadın müşteri renk/tasarım, erkek müşteri fiyat/malzeme odaklı.",
+        "hassasiyet": "Fiyat transparanlığı, garanti süresi, teslim tarihi kesinliği, referans/örnek iş görmek istiyor."
+    },
+    "caprazSatis": [
+        "Mutfak yapan müşteriye banyo dolabı teklif et",
+        "Vestiyer yapana yatak odası mobilyası öner",
+        "Tezgah değişimi yapana dolap yenileme kampanyası",
+        "Ev taşınan müşteriye komple ev mobilyası paketi",
+        "Ofis mobilyası yapana toplantı masası + raf sistemi"
+    ],
+    "krizSenaryolari": [
+        {
+            "tetikleyici": "Teslim tarihi gecikti",
+            "yanit": "Derhal bilgilendirme WA mesajı + yeni tarih + küçük aksesuar hediye (çekmece organizer gibi)"
+        },
+        {
+            "tetikleyici": "Renk/model beklentiyi karşılamadı",
+            "yanit": "Fotoğraf iste + 3D tasarımı tekrar göster + kapak değişimi maliyetini paylaş (genelde makul)"
+        },
+        {
+            "tetikleyici": "Montaj sırasında hasar",
+            "yanit": "Fotoğrafla + sigorta süreci başlat + aynı gün onarım/değişim planı"
+        }
+    ],
+    "dijitalIpuclari": [
+        "Önce/sonra fotoğrafları en çok etkileşim alır — her projeden mutlaka çek",
+        "3D render görselleri sosyal medyada 3x daha fazla kaydetme alır",
+        "Google Haritalar'da 'mobilyacı + ilçe' aramasında öne çıkmak için 10+ yorum hedefle",
+        "Instagram Reels: Montaj timelapse videoları viral potansiyeli yüksek",
+        "WhatsApp kataloğu: En popüler 10 mutfak modelini hazır katalog olarak paylaş"
+    ]
+}

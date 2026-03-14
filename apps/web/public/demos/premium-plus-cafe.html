@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth bg-black">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA // Premium Coffee Roastery</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        kepenk: {
+                            50: '#fcfcfc',
+                            100: '#f5f5f5',
+                            200: '#e5e5e5',
+                            300: '#d4d4d4',
+                            400: '#a3a3a3',
+                            500: '#737373',
+                            600: '#525252',
+                            700: '#404040',
+                            800: '#262626',
+                            900: '#171717',
+                            950: '#0a0a0a',
+                        },
+                        espresso: {
+                            50: '#fdf8f6',
+                            100: '#f2e8e5',
+                            200: '#eaddd7',
+                            300: '#e0cec7',
+                            400: '#d2bab0',
+                            500: '#a07d70',
+                            600: '#4a332a', // Main Dark Espresso
+                            700: '#38251e',
+                            800: '#211511',
+                            900: '#140c0a',
+                        },
+                        crema: '#DEC5A3', // Cream / Gold accent
+                        charcoal: '#0F0F0F',
+                    },
+                    fontFamily: {
+                        sans: ['"Satoshi"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                        display: ['"Clash Display"', 'sans-serif']
+                    },
+                    backgroundImage: {
+                        'noise': 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.65\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E")',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts & Custom Fonts (Fontshare) -->
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600&f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" rel="stylesheet" />
+
+    <style>
+        :root {
+            --kepenk-primary: #0F0F0F;
+            --kepenk-text: #F5F5F5;
+            --kepenk-accent: #DEC5A3; /* Crema */
+        }
+
+        body {
+            background-color: var(--kepenk-primary);
+            color: var(--kepenk-text);
+            overflow-x: hidden;
+            cursor: none; /* Custom fluid cursor */
+            font-family: 'Satoshi', sans-serif;
+        }
+
+        /* ------------------------------------- */
+        /* 1. Lusion / Ceremony Coffee Aesthetics */
+        /* ------------------------------------- */
+        
+        /* Organic Noise Overlay */
+        .bg-grain {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: var(--bg-noise);
+            opacity: 0.04;
+            pointer-events: none;
+            z-index: 999;
+            mix-blend-mode: overlay;
+        }
+
+        /* Fluid Typography & Layout */
+        h1, h2, h3, .font-display { font-family: 'Clash Display', sans-serif; }
+        .font-serif-italic { font-family: 'Playfair Display', serif; font-style: italic; }
+
+        /* Very thin, elegant borders */
+        .border-crema-10 { border-color: rgba(222, 197, 163, 0.1); }
+        .border-crema-30 { border-color: rgba(222, 197, 163, 0.3); }
+
+        /* Glassmorphism Frosted Panels */
+        .glass-panel {
+            background: rgba(15, 15, 15, 0.6);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(222, 197, 163, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Aura Button Hover Effects */
+        .btn-aura {
+            position: relative;
+            background: transparent;
+            color: var(--kepenk-accent);
+            border: 1px solid rgba(222, 197, 163, 0.4);
+            border-radius: 9999px;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn-aura::after {
+            content: '';
+            position: absolute;
+            bottom: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: var(--kepenk-accent);
+            border-radius: 40%;
+            transform: translateY(100%) rotate(45deg);
+            transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+            z-index: -1;
+        }
+        .btn-aura:hover {
+            color: var(--kepenk-primary);
+            border-color: var(--kepenk-accent);
+        }
+        .btn-aura:hover::after {
+            transform: translateY(-20%) rotate(0deg);
+        }
+
+        /* Organic Menu Item Hover */
+        .menu-item-card {
+            transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .menu-item-img-wrapper {
+            overflow: hidden;
+            border-radius: 12rem 12rem 0 0; /* Arch shape */
+            aspect-ratio: 3/4;
+            transition: border-radius 0.5s ease;
+        }
+        .menu-item-img {
+            width: 100%; height: 100%; object-fit: cover;
+            transform: scale(1.05);
+            transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .menu-item-card:hover .menu-item-img {
+            transform: scale(1);
+        }
+
+        /* ------------------------------------- */
+        /* 2. Custom Liquid Cursor               */
+        /* ------------------------------------- */
+        #fluid-cursor {
+            position: fixed;
+            top: 0; left: 0;
+            width: 12px; height: 12px;
+            background: var(--kepenk-accent);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 99999;
+            transition: width 0.3s, height 0.3s, background-color 0.3s, mix-blend-mode 0.3s;
+            mix-blend-mode: difference;
+        }
+        #fluid-cursor-follower {
+            position: fixed;
+            top: 0; left: 0;
+            width: 40px; height: 40px;
+            border: 1px solid rgba(222, 197, 163, 0.5);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 99998;
+            transition: all 0.15s ease-out; /* Slight delay for follower effect */
+        }
+        body.hovering-link #fluid-cursor {
+            width: 80px; height: 80px;
+            background: var(--kepenk-accent);
+            mix-blend-mode: overlay;
+        }
+        body.hovering-link #fluid-cursor-follower {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(1.5);
+        }
+
+        /* Scroll Reveals (Smooth Organic) */
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: opacity 1.2s cubic-bezier(0.19, 1, 0.22, 1), transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .reveal-up.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Soft Glow Text */
+        .glow-crema {
+            text-shadow: 0 0 40px rgba(222, 197, 163, 0.2);
+        }
+
+        /* ------------------------------------- */
+        /* 3. Off-Canvas Cart & Modal UI         */
+        /* ------------------------------------- */
+        .overlay-bg {
+            position: fixed; inset: 0;
+            background: rgba(10, 8, 7, 0.85); /* Dark espresso tint */
+            backdrop-filter: blur(12px);
+            z-index: 100;
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+        .overlay-bg.active {
+            opacity: 1; pointer-events: auto;
+        }
+        
+        #cart-drawer {
+            position: fixed; top: 0; right: -100%;
+            width: 100%; max-width: 420px; height: 100vh;
+            background: var(--kepenk-primary);
+            border-left: 1px solid rgba(222, 197, 163, 0.1);
+            z-index: 101;
+            transition: right 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        #cart-drawer.open { right: 0; }
+
+        /* Canvas z-index fixes */
+        #hero-canvas {
+            position: absolute; inset: 0;
+            pointer-events: none; z-index: 0;
+            /* Filter to make it look like thick coffee smoke */
+            filter: blur(6px) contrast(3); 
+        }
+        
+        /* Wizard Form Animations */
+        .wizard-step {
+            transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        /* Form Inputs */
+        .input-aura {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(222, 197, 163, 0.2);
+            padding: 1rem 0;
+            color: var(--kepenk-text);
+            font-size: 1.1rem;
+            transition: border-color 0.3s;
+        }
+        .input-aura:focus {
+            outline: none;
+            border-color: var(--kepenk-accent);
+        }
+        .input-aura::placeholder {
+            color: rgba(245, 245, 245, 0.3);
+            font-family: 'Satoshi', sans-serif;
+            font-weight: 300;
+        }
+    </style>
+</head>
+<body class="selection:bg-crema selection:text-charcoal">
+
+    <!-- Global Noise Overlay -->
+    <div class="bg-grain"></div>
+
+    <!-- Custom Cursor -->
+    <div id="fluid-cursor" class="hidden md:block"></div>
+    <div id="fluid-cursor-follower" class="hidden md:block"></div>
+
+    <!-- HEADER / NAVIGATION -->
+    <header id="main-header" class="fixed top-0 w-full z-50 border-b border-crema-10 transition-all duration-500 bg-transparent">
+        <div class="max-w-[1400px] mx-auto px-6 h-24 flex items-center justify-between">
+            
+            <!-- Minimal Logo -->
+            <a href="#" class="font-display font-medium text-2xl tracking-[0.15em] interactive-el" data-kepenk-editable="text">
+                AURA<span class="text-crema">.</span>
+            </a>
+
+            <!-- Nav Links -->
+            <nav class="hidden md:flex items-center gap-12 text-sm tracking-wide text-gray-300">
+                <a href="#about" class="hover:text-crema transition-colors interactive-el" data-kepenk-editable="text">Miras</a>
+                <a href="#menu" class="hover:text-crema transition-colors interactive-el" data-kepenk-editable="text">Seçki</a>
+                <a href="#roastery" class="hover:text-crema transition-colors interactive-el" data-kepenk-editable="text">Kavurma Ağı</a>
+            </nav>
+
+            <!-- Actions -->
+            <div class="flex items-center gap-8">
+                <!-- Cart Trigger -->
+                <button id="cart-trigger" class="relative text-gray-300 hover:text-crema transition-colors interactive-el group">
+                    <span class="uppercase text-xs tracking-widest mr-2 group-hover:opacity-100 opacity-60 transition-opacity">Sepet</span>
+                    <span class="inline-flex items-center justify-center w-6 h-6 border border-crema-30 rounded-full text-xs" id="cart-badge">0</span>
+                </button>
+                <button onclick="bookingFlow.open()" class="hidden md:flex btn-aura px-6 py-2.5 text-xs tracking-widest uppercase interactive-el" data-kepenk-editable="text">
+                    Rezervasyon
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- ============================================== -->
+        <!-- 1. HERO MATRIX SECTION (HTML5 Fluid Canvas)    -->
+        <!-- ============================================== -->
+        <section data-kepenk-section="hero" class="relative w-full h-screen min-h-[800px] flex items-center justify-center bg-charcoal overflow-hidden" id="hero-section">
+            
+            <!-- WebGL/Canvas Simulation Layer (Liquid Smoke/Coffee effect) -->
+            <canvas id="hero-canvas"></canvas>
+
+            <!-- Dark Vignette Overlay -->
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(10,10,10,0.8)_100%)] pointer-events-none z-10"></div>
+
+            <div class="relative z-20 w-full max-w-[1400px] mx-auto px-6 text-center">
+                
+                <div class="inline-block mb-6 overflow-hidden reveal-up">
+                    <span class="block font-serif-italic text-crema text-lg md:text-xl tracking-wide opacity-80" data-kepenk-editable="text">Sanat ve bilimin kesiştiği yudum.</span>
+                </div>
+                
+                <h1 class="font-display font-medium text-6xl md:text-8xl lg:text-[10rem] leading-[0.85] tracking-tight glow-crema reveal-up" style="transition-delay: 0.1s;" data-kepenk-editable="text">
+                    SIVI<br>METAMORFOZ
+                </h1>
+                
+                <p class="text-gray-400 font-light text-base md:text-lg max-w-lg mx-auto mt-10 leading-relaxed reveal-up" style="transition-delay: 0.2s" data-kepenk-editable="text">
+                    Nadir mikrolot çekirdeklerin, ustalıkla kavrulup bardağınıza düştüğü o kusursuz an. Yeni nesil lüks kahve deneyimini Aura'da keşfedin.
+                </p>
+                
+                <div class="mt-12 reveal-up" style="transition-delay: 0.3s">
+                    <button onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})" class="btn-aura px-10 py-4 text-sm tracking-widest uppercase interactive-el" data-kepenk-editable="text">
+                        Koleksiyonu İncele
+                    </button>
+                </div>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 z-20 opacity-50">
+                <span class="text-[10px] uppercase tracking-widest font-light writing-vertical">Aşağı Kaydır</span>
+                <div class="w-[1px] h-12 bg-gradient-to-b from-crema to-transparent"></div>
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- 2. MENU / E-COMMERCE (State Management)        -->
+        <!-- ============================================== -->
+        <section data-kepenk-section="menu" class="relative w-full py-32 bg-espresso-900 z-10" id="menu">
+            <div class="max-w-[1400px] mx-auto px-6">
+                <!-- Header -->
+                <div class="flex flex-col items-center text-center mb-24 reveal-up">
+                    <span class="text-crema font-serif-italic text-xl mb-4" data-kepenk-editable="text">Özel Seçki</span>
+                    <h2 class="font-display text-4xl md:text-6xl text-white font-medium" data-kepenk-editable="text">İMZA LEZZETLER</h2>
+                    <div class="w-12 h-[1px] bg-crema/40 mt-8"></div>
+                </div>
+
+                <!-- Products Grid -->
+                <div class="grid md:grid-cols-3 gap-x-8 gap-y-16">
+                    
+                    <!-- Product Card 1 -->
+                    <div class="menu-item-card group cursor-none interactive-el reveal-up">
+                        <div class="menu-item-img-wrapper mb-6 relative">
+                            <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=800&auto=format&fit=crop" alt="Pour Over" class="menu-item-img" data-kepenk-editable="image">
+                            <!-- Hover Add Button Overlay -->
+                            <div class="absolute inset-0 bg-espresso-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                                <span class="text-crema border border-crema px-6 py-2 rounded-full uppercase tracking-widest text-xs backdrop-blur-sm">Sepete Ekle</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-display text-2xl text-white mb-2" data-kepenk-editable="text">Etiyopya Yirgacheffe</h3>
+                                <p class="text-sm text-gray-400 font-light" data-kepenk-editable="text">V60 Pour Over • Yasemin, Bergamot, Earl Grey</p>
+                            </div>
+                            <span class="text-crema font-serif-italic text-xl">₺240</span>
+                        </div>
+                        <!-- Hidden Add button for click event -->
+                        <button class="add-cart-btn absolute inset-0 w-full h-full opacity-0" data-id="item_01" data-name="Etiyopya Yirgacheffe V60" data-price="240"></button>
+                    </div>
+
+                    <!-- Product Card 2 -->
+                    <div class="menu-item-card group cursor-none interactive-el reveal-up" style="transition-delay: 0.1s;">
+                        <div class="menu-item-img-wrapper mb-6 relative mt-0 md:mt-12"> <!-- Staggered layout -->
+                            <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=800&auto=format&fit=crop" alt="Latte" class="menu-item-img" data-kepenk-editable="image">
+                            <div class="absolute inset-0 bg-espresso-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                                <span class="text-crema border border-crema px-6 py-2 rounded-full uppercase tracking-widest text-xs backdrop-blur-sm">Sepete Ekle</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-display text-2xl text-white mb-2" data-kepenk-editable="text">Kavrulmuş Fındık Latte</h3>
+                                <p class="text-sm text-gray-400 font-light" data-kepenk-editable="text">Espresso, Kadife Süt, Karamelize Fındık</p>
+                            </div>
+                            <span class="text-crema font-serif-italic text-xl">₺180</span>
+                        </div>
+                        <button class="add-cart-btn absolute inset-0 w-full h-full opacity-0" data-id="item_02" data-name="Kavrulmuş Fındık Latte" data-price="180"></button>
+                    </div>
+
+                    <!-- Product Card 3 -->
+                    <div class="menu-item-card group cursor-none interactive-el reveal-up" style="transition-delay: 0.2s;">
+                        <div class="menu-item-img-wrapper mb-6 relative">
+                            <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=800&auto=format&fit=crop" alt="Cold Brew" class="menu-item-img" data-kepenk-editable="image">
+                            <div class="absolute inset-0 bg-espresso-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                                <span class="text-crema border border-crema px-6 py-2 rounded-full uppercase tracking-widest text-xs backdrop-blur-sm">Sepete Ekle</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-display text-2xl text-white mb-2" data-kepenk-editable="text">Nitro Cold Brew</h3>
+                                <p class="text-sm text-gray-400 font-light" data-kepenk-editable="text">18 Saat Demleme • Bitter Çikolata, Kiraz</p>
+                            </div>
+                            <span class="text-crema font-serif-italic text-xl">₺210</span>
+                        </div>
+                        <button class="add-cart-btn absolute inset-0 w-full h-full opacity-0" data-id="item_03" data-name="Nitro Cold Brew" data-price="210"></button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- 3. RESERVATION CTA                             -->
+        <!-- ============================================== -->
+        <section class="relative py-32 bg-espresso-600 overflow-hidden" id="roastery">
+            <!-- Background Image -->
+            <div class="absolute inset-0 opacity-20 mix-blend-multiply">
+                <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=2000&auto=format&fit=crop" class="w-full h-full object-cover" data-kepenk-editable="image">
+            </div>
+            
+            <div class="relative z-10 max-w-[1400px] mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+                <div class="reveal-up">
+                    <span class="text-crema font-serif-italic text-2xl mb-6 block" data-kepenk-editable="text">Aura Deneyimi</span>
+                    <h2 class="text-5xl md:text-7xl font-display mb-8 leading-tight font-medium text-white" data-kepenk-editable="text">ZAMANI DURDURAN MEKAN.</h2>
+                    <p class="text-espresso-200 font-light text-lg max-w-md mb-12 leading-relaxed" data-kepenk-editable="text">
+                        Sade, asil ve konforlu mimarimizde; kahvenin kavrulma kokusuna eşlik eden şömine ateşi ile özel bir masanız var. Yoğun gününüze lüks bir mola verin.
+                    </p>
+                    <button onclick="bookingFlow.open()" class="btn-aura px-10 py-5 text-sm tracking-widest uppercase interactive-el bg-charcoal">
+                        Masa Rezerve Et
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-charcoal border-t border-white/5 pt-24 pb-12 relative overflow-hidden">
+        <div class="max-w-[1400px] mx-auto px-6 grid md:grid-cols-4 gap-12 mb-16 relative z-10">
+            <div class="col-span-2">
+                <a href="#" class="font-display font-medium text-4xl tracking-[0.1em] text-white mb-6 block">AURA<span class="text-crema">.</span></a>
+                <p class="text-gray-500 font-light max-w-sm">İstanbul'un kalbinde, dünya standartlarında Specialty Coffee 3rd Wave Roastery deneyimi.</p>
+            </div>
+            <div>
+                <h4 class="text-crema font-serif-italic text-lg mb-6">İletişim</h4>
+                <div class="space-y-3 text-gray-400 font-light text-sm">
+                    <p>Nişantaşı, Teşvikiye Cd.<br>Şişli, İstanbul</p>
+                    <p>hello@auracoffee.com</p>
+                    <p>+90 (555) 123 45 67</p>
+                </div>
+            </div>
+            <div>
+                <h4 class="text-crema font-serif-italic text-lg mb-6">Sosyal</h4>
+                <div class="flex flex-col space-y-3 text-gray-400 font-light text-sm">
+                    <a href="#" class="hover:text-crema transition-colors interactive-el w-max">Instagram</a>
+                    <a href="#" class="hover:text-crema transition-colors interactive-el w-max">Twitter</a>
+                    <a href="#" class="hover:text-crema transition-colors interactive-el w-max">Spotify Playlist</a>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-[1400px] mx-auto px-6 border-t border-white/5 pt-8 flex justify-between text-xs text-gray-600 font-light">
+            <span>© 2026 Aura Roastery. Tüm hakları saklıdır.</span>
+            <span>Awwwards Premium Plus Demo by Kepenk.ai</span>
+        </div>
+    </footer>
+
+
+    <!-- ============================================== -->
+    <!-- OFF-CANVAS CART UI (State Managed)             -->
+    <!-- ============================================== -->
+    <div id="cart-bg" class="overlay-bg"></div>
+    <div id="cart-drawer" class="glass-panel text-white">
+        <div class="h-full flex flex-col p-8">
+            <div class="flex justify-between items-center border-b border-crema-10 pb-6 mb-8">
+                <h3 class="font-display text-2xl font-medium text-crema tracking-wide">SİPARİŞİNİZ</h3>
+                <button id="cart-close" class="text-gray-400 hover:text-white interactive-el transition-transform hover:rotate-90">
+                    <span class="material-symbols-outlined font-light text-[28px]">close</span>
+                </button>
+            </div>
+            
+            <div id="cart-items" class="flex-grow overflow-y-auto space-y-6 pr-2">
+                <!-- JS Canvas renders items here -->
+                <div id="cart-empty" class="text-gray-500 font-light italic">Sepetiniz şu an boş. Birkaç espresso çekirdeği eklemeye ne dersiniz?</div>
+            </div>
+            
+            <div class="border-t border-crema-10 pt-6 mt-8">
+                <div class="flex justify-between text-gray-400 font-light mb-3">
+                    <span>Ara Toplam</span>
+                    <span id="cart-sub">₺0</span>
+                </div>
+                <!-- Premium Cafe Delivery / Tip mock -->
+                <div class="flex justify-between text-gray-400 font-light mb-6">
+                    <span>Servis Bedeli (%10)</span>
+                    <span id="cart-tax">₺0</span>
+                </div>
+                <div class="flex justify-between text-white text-2xl font-display font-medium mb-8 pt-4 border-t border-white/5">
+                    <span>Toplam</span>
+                    <span id="cart-tot">₺0</span>
+                </div>
+                
+                <button class="w-full btn-aura py-4 bg-crema text-charcoal !rounded-none hover:bg-white interactive-el text-sm tracking-widest uppercase font-medium" onclick="alert('Ödeme sayfasına yönlendiriliyorsunuz...')">
+                    Siparişi Tamamla
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ============================================== -->
+    <!-- MODAL WIZARD: OTONOM REZERVASYON               -->
+    <!-- ============================================== -->
+    <div id="wizard-bg" class="overlay-bg flex items-center justify-center p-4">
+        <!-- Wizard Card (Glass) -->
+        <div id="wizard-card" class="glass-panel w-full max-w-2xl min-h-[500px] flex flex-col transform scale-95 opacity-0 transition-all duration-500 rounded-2xl overflow-hidden shadow-2xl">
+            
+            <div class="relative flex-grow flex">
+                <!-- Left Image/Branding Side -->
+                <div class="hidden md:block w-2/5 bg-espresso-900 border-r border-crema-10 relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=800&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-luminosity">
+                    <div class="absolute inset-x-0 bottom-10 text-center">
+                        <span class="font-display text-3xl text-crema mb-2 block tracking-widest">AURA</span>
+                        <span class="text-gray-400 font-serif-italic text-sm">Özel Masa Rezervasyonu</span>
+                    </div>
+                </div>
+
+                <!-- Right Form Side -->
+                <div class="w-full md:w-3/5 p-10 flex flex-col relative text-white">
+                    <button onclick="bookingFlow.close()" class="absolute top-6 right-6 text-gray-500 hover:text-white interactive-el">
+                        <span class="material-symbols-outlined font-light text-[24px]">close</span>
+                    </button>
+                    
+                    <h3 class="font-display text-3xl mb-1 mt-4">Rezervasyon</h3>
+                    <p class="text-sm text-gray-400 font-light mb-8 pb-4 border-b border-crema-10">Lütfen detayları belirleyin.</p>
+
+                    <!-- Steps Container -->
+                    <div class="relative flex-grow overflow-hidden">
+                        
+                        <!-- STEP 1: Guests -->
+                        <div id="step-1" class="absolute inset-0 wizard-step flex flex-col translate-x-0 opacity-100 bg-transparent">
+                            <label class="text-crema font-serif-italic mb-6 text-xl">Kişi Sayısı</label>
+                            <div class="grid grid-cols-2 gap-4 mb-auto">
+                                <button onclick="bookingFlow.goto(2)" class="border border-crema-30 hover:border-crema hover:bg-crema/10 py-4 rounded-xl text-center transition-all interactive-el font-light text-lg">1 - 2 Kişi</button>
+                                <button onclick="bookingFlow.goto(2)" class="border border-crema-30 hover:border-crema hover:bg-crema/10 py-4 rounded-xl text-center transition-all interactive-el font-light text-lg">3 - 4 Kişi</button>
+                                <button onclick="bookingFlow.goto(2)" class="border border-crema-30 hover:border-crema hover:bg-crema/10 py-4 rounded-xl text-center transition-all interactive-el font-light text-lg">5+ Kişi</button>
+                                <button onclick="bookingFlow.goto(2)" class="border border-crema-30 hover:border-crema hover:bg-crema/10 py-4 rounded-xl text-center transition-all interactive-el font-light text-lg text-crema">VIP Alanı</button>
+                            </div>
+                        </div>
+
+                        <!-- STEP 2: DateTime -->
+                        <div id="step-2" class="absolute inset-0 wizard-step flex flex-col translate-x-full opacity-0 bg-transparent">
+                            <label class="text-crema font-serif-italic mb-6 text-xl">Tarih & Saat</label>
+                            <input type="datetime-local" class="input-aura mb-12 bg-transparent text-white" style="color-scheme: dark;">
+                            
+                            <div class="flex justify-between mt-auto">
+                                <button onclick="bookingFlow.goto(1)" class="text-gray-500 hover:text-white text-sm tracking-widest interactive-el">GERİ</button>
+                                <button onclick="bookingFlow.goto(3)" class="text-crema hover:text-white font-medium text-sm tracking-widest uppercase interactive-el border-b border-crema pb-1 hover:border-white transition-all">Devam Et</button>
+                            </div>
+                        </div>
+
+                        <!-- STEP 3: Contact Info -->
+                        <div id="step-3" class="absolute inset-0 wizard-step flex flex-col translate-x-full opacity-0 bg-transparent">
+                            <label class="text-crema font-serif-italic mb-6 text-xl">İletişim Bilgileri</label>
+                            <div class="space-y-4 mb-auto">
+                                <input type="text" placeholder="Ad Soyad" class="input-aura">
+                                <input type="tel" placeholder="Telefon Numarası" class="input-aura">
+                            </div>
+                            
+                            <div class="flex justify-between mt-auto pt-8">
+                                <button onclick="bookingFlow.goto(2)" class="text-gray-500 hover:text-white text-sm tracking-widest interactive-el">GERİ</button>
+                                <button onclick="bookingFlow.goto(4)" class="text-charcoal bg-crema hover:bg-white px-6 py-3 font-medium text-sm tracking-widest uppercase interactive-el transition-all rounded-full">Onayla</button>
+                            </div>
+                        </div>
+
+                        <!-- STEP 4: Success -->
+                        <div id="step-4" class="absolute inset-0 wizard-step flex flex-col items-center justify-center text-center translate-x-full opacity-0 bg-transparent">
+                            <div class="w-20 h-20 bg-crema/10 rounded-full flex items-center justify-center mb-6 border border-crema-30">
+                                <span class="material-symbols-outlined text-crema text-4xl">done</span>
+                            </div>
+                            <h4 class="font-display text-4xl mb-4 text-white">Harika.</h4>
+                            <p class="text-gray-400 font-light mb-8 max-w-[200px]">Masanız sizin için ayrıldı. Kokuyu takip etmeniz yeterli.</p>
+                            <button onclick="bookingFlow.close()" class="text-crema hover:text-white font-medium text-sm tracking-widest uppercase interactive-el border-b border-crema pb-1">Kapat</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ============================================== -->
+    <!-- AI BARISTA CHATBOT (Bottom Right)              -->
+    <!-- ============================================== -->
+    <div id="chat-container" class="fixed bottom-8 right-8 z-50 flex flex-col items-end">
+        
+        <!-- Chat Window (Glass) -->
+        <div id="chat-window" class="glass-panel w-[350px] h-[450px] mb-6 flex flex-col rounded-2xl overflow-hidden opacity-0 pointer-events-none transform translate-y-8 transition-all duration-500 shadow-2xl">
+            <!-- Header -->
+            <div class="p-5 border-b border-crema-10 flex items-center justify-between bg-charcoal/50">
+                <div class="flex items-center gap-3 text-white">
+                    <div class="w-8 h-8 rounded-full bg-espresso-600 flex items-center justify-center border border-crema-30">
+                        <span class="material-symbols-outlined text-crema text-[18px]">local_cafe</span>
+                    </div>
+                    <div>
+                        <div class="font-display font-medium tracking-wide">AI Barista</div>
+                        <div class="text-[10px] text-crema font-light flex items-center gap-1">
+                            <span class="w-1.5 h-1.5 bg-green-500 rounded-full block"></span> Çevrimiçi
+                        </div>
+                    </div>
+                </div>
+                <button id="chat-close" class="text-gray-400 hover:text-white interactive-el">
+                    <span class="material-symbols-outlined font-light">keyboard_arrow_down</span>
+                </button>
+            </div>
+            
+            <!-- Messages Stream -->
+            <div id="chat-stream" class="flex-grow overflow-y-auto p-5 space-y-4 font-light text-sm text-gray-200 scroll-smooth flex flex-col bg-transparent">
+                <div class="bg-espresso-800/80 border border-crema-10 p-4 rounded-2xl rounded-tl-sm self-start max-w-[85%]">
+                    Merhaba! Bugün sıcak bir Etiyopya V60 mı istersiniz, yoksa soğuk bir Nitro mu? Size kahve seçimi konusunda yardımcı olabilirim.
+                </div>
+            </div>
+
+            <!-- Typing Indicator -->
+            <div id="chat-typing" class="hidden px-5 pb-3">
+                <div class="bg-espresso-800/80 border border-crema-10 p-3 rounded-2xl rounded-tl-sm self-start w-max flex gap-1 items-center">
+                    <div class="w-1.5 h-1.5 bg-crema rounded-full animate-bounce"></div>
+                    <div class="w-1.5 h-1.5 bg-crema rounded-full animate-bounce" style="animation-delay: 0.1s"></div>
+                    <div class="w-1.5 h-1.5 bg-crema rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+                </div>
+            </div>
+
+            <!-- Input Form -->
+            <form id="chat-form" class="p-4 border-t border-crema-10 flex bg-charcoal/80">
+                <input type="text" id="chat-input" class="flex-grow bg-transparent border-none text-white font-light text-sm focus:outline-none placeholder-gray-500" autocomplete="off" placeholder="Tavsiye isteyin...">
+                <button type="submit" class="text-crema hover:text-white ml-3 interactive-el transform transition-transform hover:scale-110">
+                    <span class="material-symbols-outlined cursor-none">send</span>
+                </button>
+            </form>
+        </div>
+
+        <!-- Chat Trigger Button -->
+        <button id="chat-open" class="btn-aura w-16 h-16 rounded-full bg-espresso-600 text-crema flex items-center justify-center shadow-2xl group interactive-el border-none">
+            <span class="material-symbols-outlined text-[28px] group-hover:rotate-12 transition-transform">auto_awesome</span>
+        </button>
+    </div>
+
+
+    <!-- ============================================== -->
+    <!-- SYSTEM LOGIC, STATE MANAGEMENT & CANVAS ENGINE -->
+    <!-- ============================================== -->
+    <script>
+        class AuraCafeApp {
+            constructor() {
+                this.initCursor();
+                this.initScrollObservers();
+                this.initCartState();
+                this.initWizard();
+                this.initChatbot();
+                this.initFluidCanvas(); // Abstract smoke/liquid particle effect
+            }
+
+            // 1. Fluid Custom Cursor (Ceremony Coffee style)
+            initCursor() {
+                const cursor = document.getElementById('fluid-cursor');
+                const follower = document.getElementById('fluid-cursor-follower');
+                const interactives = document.querySelectorAll('.interactive-el, button, a, input');
+                
+                let mouseX = window.innerWidth / 2;
+                let mouseY = window.innerHeight / 2;
+                let followerX = mouseX;
+                let followerY = mouseY;
+                
+                document.addEventListener('mousemove', (e) => {
+                    if(window.innerWidth > 768) {
+                        mouseX = e.clientX;
+                        mouseY = e.clientY;
+                        cursor.style.left = mouseX + 'px';
+                        cursor.style.top = mouseY + 'px';
+                    }
+                });
+
+                // Spring physics for follower
+                const animateFollower = () => {
+                    followerX += (mouseX - followerX) * 0.15;
+                    followerY += (mouseY - followerY) * 0.15;
+                    follower.style.left = followerX + 'px';
+                    follower.style.top = followerY + 'px';
+                    requestAnimationFrame(animateFollower);
+                }
+                if(window.innerWidth > 768) animateFollower();
+
+                interactives.forEach(el => {
+                    el.addEventListener('mouseenter', () => document.body.classList.add('hovering-link'));
+                    el.addEventListener('mouseleave', () => document.body.classList.remove('hovering-link'));
+                });
+            }
+
+            // 2. Scroll Revealer (Smooth Organic)
+            initScrollObservers() {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.15 });
+
+                document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
+            }
+
+            // 3. Cart State Management (Vanilla JS)
+            initCartState() {
+                this.store = {
+                    items: JSON.parse(localStorage.getItem('aura_cart')) || [],
+                };
+                
+                this.dom = {
+                    drawer: document.getElementById('cart-drawer'),
+                    bg: document.getElementById('cart-bg'),
+                    trigger: document.getElementById('cart-trigger'),
+                    close: document.getElementById('cart-close'),
+                    badge: document.getElementById('cart-badge'),
+                    itemsContainer: document.getElementById('cart-items'),
+                    emptyMsg: document.getElementById('cart-empty'),
+                    subEl: document.getElementById('cart-sub'),
+                    taxEl: document.getElementById('cart-tax'),
+                    totEl: document.getElementById('cart-tot'),
+                    addBtns: document.querySelectorAll('.add-cart-btn')
+                };
+
+                this.dom.trigger.addEventListener('click', () => this.toggleCart());
+                this.dom.close.addEventListener('click', () => this.toggleCart());
+                this.dom.bg.addEventListener('click', () => this.toggleCart());
+
+                this.dom.addBtns.forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const dat = e.currentTarget.dataset;
+                        this.dispatchCartAction('ADD', { id: dat.id, name: dat.name, price: parseInt(dat.price) });
+                        if(!this.dom.drawer.classList.contains('open')) this.toggleCart();
+                    });
+                });
+
+                this.renderCart();
+            }
+
+            toggleCart() {
+                this.dom.drawer.classList.toggle('open');
+                this.dom.bg.classList.toggle('active');
+            }
+
+            dispatchCartAction(type, payload) {
+                if(type === 'ADD') {
+                    const existing = this.store.items.find(i => i.id === payload.id);
+                    if(existing) existing.qty += 1;
+                    else this.store.items.push({...payload, qty: 1});
+                } else if(type === 'REMOVE') {
+                    this.store.items = this.store.items.filter(i => i.id !== payload.id);
+                } else if(type === 'DECREASE') {
+                    const existing = this.store.items.find(i => i.id === payload.id);
+                    if(existing && existing.qty > 1) existing.qty -= 1;
+                    else this.store.items = this.store.items.filter(i => i.id !== payload.id);
+                }
+                
+                localStorage.setItem('aura_cart', JSON.stringify(this.store.items));
+                this.renderCart();
+            }
+
+            renderCart() {
+                const { items } = this.store;
+                const count = items.reduce((a, b) => a + b.qty, 0);
+                this.dom.badge.textContent = count;
+
+                if(count === 0) {
+                    this.dom.emptyMsg.style.display = 'block';
+                    this.dom.itemsContainer.innerHTML = '';
+                    this.dom.itemsContainer.appendChild(this.dom.emptyMsg);
+                    this.dom.subEl.textContent = '₺0';
+                    this.dom.taxEl.textContent = '₺0';
+                    this.dom.totEl.textContent = '₺0';
+                    return;
+                }
+
+                this.dom.emptyMsg.style.display = 'none';
+                let html = '';
+                let subTotal = 0;
+
+                items.forEach(item => {
+                    const itemTotal = item.price * item.qty;
+                    subTotal += itemTotal;
+                    html += `
+                        <div class="flex justify-between items-center group">
+                            <div>
+                                <h4 class="font-display text-lg">${item.name}</h4>
+                                <div class="text-sm text-gray-500 font-serif-italic">₺${item.price} / adet</div>
+                            </div>
+                            <div class="flex items-center gap-4 bg-espresso-800 rounded-full px-3 py-1 border border-crema-10">
+                                <button class="text-gray-400 hover:text-crema interactive-el dec-btn" data-id="${item.id}">-</button>
+                                <span class="text-white w-4 text-center text-sm">${item.qty}</span>
+                                <button class="text-gray-400 hover:text-crema interactive-el add-btn" data-id="${item.id}">+</button>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                this.dom.itemsContainer.innerHTML = html;
+                
+                this.dom.itemsContainer.querySelectorAll('.dec-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => this.dispatchCartAction('DECREASE', {id: e.currentTarget.dataset.id}));
+                });
+                this.dom.itemsContainer.querySelectorAll('.add-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => this.dispatchCartAction('ADD', {id: e.currentTarget.dataset.id}));
+                });
+
+                const serviceFee = subTotal * 0.10;
+                const total = subTotal + serviceFee;
+
+                this.dom.subEl.textContent = `₺${subTotal}`;
+                this.dom.taxEl.textContent = `₺${Math.round(serviceFee)}`;
+                this.dom.totEl.textContent = `₺${Math.round(total)}`;
+            }
+
+            // 4. Booking Wizard Logic (Pürüzsüz Form Geçişi)
+            initWizard() {
+                const bg = document.getElementById('wizard-bg');
+                window.bookingFlow = {
+                    currentStep: 1,
+                    open: () => {
+                        bg.classList.add('active');
+                        setTimeout(() => {
+                            document.getElementById('wizard-card').classList.remove('scale-95', 'opacity-0');
+                        }, 10);
+                        this.goto(1);
+                    },
+                    close: () => {
+                        document.getElementById('wizard-card').classList.add('scale-95', 'opacity-0');
+                        setTimeout(() => { bg.classList.remove('active'); }, 500);
+                        setTimeout(() => { window.bookingFlow.goto(1); }, 600); 
+                    },
+                    goto: (stepIdx) => {
+                        for(let i=1; i<=4; i++) {
+                            const step = document.getElementById(`step-${i}`);
+                            if(i === stepIdx) {
+                                step.classList.remove('translate-x-full', '-translate-x-full', 'opacity-0', 'pointer-events-none');
+                                step.classList.add('translate-x-0', 'opacity-100');
+                                step.style.zIndex = '10';
+                            } else if(i < stepIdx) {
+                                step.classList.remove('translate-x-0', 'translate-x-full', 'opacity-100');
+                                step.classList.add('-translate-x-full', 'opacity-0', 'pointer-events-none');
+                                step.style.zIndex = '0';
+                            } else {
+                                step.classList.remove('translate-x-0', '-translate-x-full', 'opacity-100');
+                                step.classList.add('translate-x-full', 'opacity-0', 'pointer-events-none');
+                                step.style.zIndex = '0';
+                            }
+                        }
+                        this.currentStep = stepIdx;
+                    }
+                };
+            }
+
+            // 5. AI Barista Chatbot
+            initChatbot() {
+                const openBtn = document.getElementById('chat-open');
+                const closeBtn = document.getElementById('chat-close');
+                const win = document.getElementById('chat-window');
+                const form = document.getElementById('chat-form');
+                const input = document.getElementById('chat-input');
+                const stream = document.getElementById('chat-stream');
+                const typing = document.getElementById('chat-typing');
+                
+                let isOpen = false;
+
+                const toggle = () => {
+                    isOpen = !isOpen;
+                    if(isOpen) {
+                        win.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-8');
+                        openBtn.classList.add('scale-0', 'opacity-0'); // Hide trigger button smoothly
+                        setTimeout(() => input.focus(), 300);
+                    } else {
+                        win.classList.add('opacity-0', 'pointer-events-none', 'translate-y-8');
+                        openBtn.classList.remove('scale-0', 'opacity-0');
+                    }
+                };
+
+                openBtn.addEventListener('click', toggle);
+                closeBtn.addEventListener('click', toggle);
+
+                const appendUserMsg = (txt) => {
+                    const el = document.createElement('div');
+                    el.className = 'bg-white/10 border border-white/5 p-4 py-3 rounded-2xl rounded-tr-sm self-end max-w-[85%] text-white';
+                    el.textContent = txt;
+                    stream.appendChild(el);
+                    stream.scrollTop = stream.scrollHeight;
+                };
+
+                const appendAIMsg = (txt) => {
+                    const el = document.createElement('div');
+                    el.className = 'bg-espresso-800/80 border border-crema-10 p-4 rounded-2xl rounded-tl-sm self-start max-w-[85%] origin-bottom-left animate-in fade-in zoom-in duration-300';
+                    el.innerHTML = txt; // Allowing basic formatting
+                    stream.appendChild(el);
+                    stream.scrollTop = stream.scrollHeight;
+                };
+
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const txt = input.value.trim();
+                    if(!txt) return;
+
+                    appendUserMsg(txt);
+                    input.value = '';
+
+                    // Mock AI Response Logic with Delay
+                    setTimeout(() => {
+                        typing.classList.remove('hidden');
+                        stream.scrollTop = stream.scrollHeight;
+                        
+                        setTimeout(() => {
+                            typing.classList.add('hidden');
+                            let resp = "İlginç bir tercih. Baristalarımız sizin için özel bir karışım hazırlayabilir.";
+                            
+                            const t = txt.toLowerCase();
+                            if(t.includes('soğuk') || t.includes('yaz') || t.includes('buz')) {
+                                resp = "Sıcak günler için <span class='text-crema'>Nitro Cold Brew</span> harikadır. Kremsi köpüğü ve çikolata notaları ile ferahlatır.";
+                            } else if(t.includes('tatlı') || t.includes('süt')) {
+                                resp = "Tatlı bir şeyler isterseniz <span class='text-crema'>Kavrulmuş Fındık Latte</span> imza içeceğimizdir. Kadife gibi hissettirir.";
+                            } else if(t.includes('sert') || t.includes('filtre') || t.includes('v60')) {
+                                resp = "<span class='text-crema'>Etiyopya Yirgacheffe V60</span> tam size göre. Çiçeksi notaları ve parlak asiditesi ile gerçek bir uyanış sağlar.";
+                            }
+                            
+                            appendAIMsg(resp);
+                        }, 1500 + Math.random()*1000);
+                    }, 400);
+                });
+            }
+
+            // 6. Fluid/Smoke Canvas Background (Awwwards Caffe Design style)
+            initFluidCanvas() {
+                const canvas = document.getElementById('hero-canvas');
+                const ctx = canvas.getContext('2d');
+                let w, h;
+                
+                // Color palette mimicking thick coffee crema / smoke
+                const colors = ['rgba(222, 197, 163, 0.3)', 'rgba(74, 51, 42, 0.4)', 'rgba(20, 12, 10, 0.5)'];
+                
+                let particles = [];
+                const pconfig = {
+                    count: window.innerWidth > 768 ? 150 : 60,
+                    mouseRadius: 150,
+                };
+
+                // Mouse interaction state
+                let mouse = { x: -1000, y: -1000 };
+
+                const resize = () => {
+                    const hero = document.getElementById('hero-section');
+                    w = canvas.width = hero.offsetWidth;
+                    h = canvas.height = hero.offsetHeight;
+                    createParticles();
+                };
+
+                document.getElementById('hero-section').addEventListener('mousemove', (e) => {
+                    const rect = canvas.getBoundingClientRect();
+                    mouse.x = e.clientX - rect.left;
+                    mouse.y = e.clientY - rect.top;
+                });
+                document.getElementById('hero-section').addEventListener('mouseleave', () => {
+                    mouse.x = -1000; mouse.y = -1000;
+                });
+
+                class SmokeParticle {
+                    constructor() {
+                        this.init();
+                        // Randomly scatter initially instead of starting from bottom
+                        this.y = Math.random() * h;
+                    }
+
+                    init() {
+                        this.x = Math.random() * w;
+                        this.y = h + Math.random() * 100; // Start slightly below screen
+                        this.size = Math.random() * 40 + 20; // Large blurred circles
+                        this.life = Math.random() * 200 + 100; // Lifespan mapping to opacity
+                        this.age = 0;
+                        // Slow, organic upward drift
+                        this.vx = (Math.random() - 0.5) * 0.5;
+                        this.vy = -(Math.random() * 1.5 + 0.5); 
+                        // Oscillation (wave)
+                        this.angle = Math.random() * Math.PI * 2;
+                        this.angularVelocity = (Math.random() - 0.5) * 0.05;
+                        
+                        this.color = colors[Math.floor(Math.random() * colors.length)];
+                    }
+
+                    update() {
+                        this.age++;
+                        // Wavy horizontal motion
+                        this.angle += this.angularVelocity;
+                        this.x += Math.sin(this.angle) * 0.5;
+                        
+                        // Drift
+                        this.x += this.vx;
+                        this.y += this.vy;
+
+                        // Mouse distortion (Repel & Swirl)
+                        let dx = mouse.x - this.x;
+                        let dy = mouse.y - this.y;
+                        let dist = Math.sqrt(dx*dx + dy*dy);
+                        
+                        if(dist < pconfig.mouseRadius) {
+                            let force = (pconfig.mouseRadius - dist) / pconfig.mouseRadius;
+                            // Push away gently and create a swirl
+                            this.x -= (dx / dist) * force * 3;
+                            this.y -= (dy / dist) * force * 3;
+                            this.x += (dy / dist) * force * 2; // Swirl X
+                            this.y -= (dx / dist) * force * 2; // Swirl Y
+                        }
+
+                        // Reset when off screen or dead
+                        if(this.y < -100 || this.age > this.life || this.x < -100 || this.x > w + 100) {
+                            this.init();
+                        }
+                    }
+
+                    draw() {
+                        // Opacity fades in and out based on lifeycle
+                        let opFade = 1;
+                        if(this.age < 50) opFade = this.age / 50;
+                        else if(this.life - this.age < 50) opFade = (this.life - this.age) / 50;
+
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                        ctx.fillStyle = this.color;
+                        ctx.globalAlpha = opFade;
+                        ctx.fill();
+                        ctx.globalAlpha = 1;
+                    }
+                }
+
+                function createParticles() {
+                    particles = [];
+                    for(let i=0; i < pconfig.count; i++) {
+                        particles.push(new SmokeParticle());
+                    }
+                }
+
+                function render() {
+                    // Slight clear to leave trails (creates liquid blend effect combined with CSS filter)
+                    ctx.fillStyle = 'rgba(10, 10, 10, 0.4)'; 
+                    ctx.fillRect(0, 0, w, h);
+
+                    // Set overlapping behavior
+                    ctx.globalCompositeOperation = 'lighter';
+
+                    for(let i=0; i<particles.length; i++) {
+                        particles[i].update();
+                        particles[i].draw();
+                    }
+                    
+                    ctx.globalCompositeOperation = 'source-over';
+                    requestAnimationFrame(render);
+                }
+
+                window.addEventListener('resize', resize);
+                resize();
+                render();
+            }
+        }
+
+        // Initialize App
+        window.onload = () => {
+            window.AuraApp = new AuraCafeApp();
+        };
+
+    </script>
+</body>
+</html>

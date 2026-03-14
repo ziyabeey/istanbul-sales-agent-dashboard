@@ -1,30 +1,41 @@
 {
-    "currency": "TRY",
-    "base_prices": {
-        "temel": 399,
-        "standart": 799,
-        "buyume": 1499,
-        "premium": 2999,
-        "premium_plus": 4499
-    },
-    "setup_fees": {
-        "temel": 0,
-        "standart": 990,
-        "buyume": 1990,
-        "premium": 2800,
-        "premium_plus": 3500
-    },
-    "guardrails": {
-        "max_discount_percentage": 15,
-        "min_allowed_prices": {
-            "temel": 339,
-            "standart": 679,
-            "buyume": 1274,
-            "premium": 2549,
-            "premium_plus": 3824
+    "paketler": {
+        "TEMEL": {
+            "aylik": 399,
+            "taksit": 449,
+            "kurulum": 0
         },
-        "free_setup_allowed": false,
-        "max_setup_discount_percentage": 20
+        "STANDART": {
+            "aylik": 799,
+            "taksit": 899,
+            "kurulum": 990
+        },
+        "BUYUME": {
+            "aylik": 1499,
+            "taksit": 1699,
+            "kurulum": 1990
+        },
+        "PREMIUM": {
+            "aylik": 2999,
+            "taksit": 3399,
+            "kurulum": 2800
+        },
+        "PREMIUMPLUS": {
+            "aylik": 4499,
+            "taksit": 4999,
+            "kurulum": 3500
+        }
     },
-    "system_prompt_instruction": "Asla min_allowed_prices değerlerinin altında fiyat teklif etme. Bedava kurulum (free_setup_allowed) tanımlı değilse asla ücretsiz kurulum sözü verme. Sadece 15% maksimum indirim yetkin var."
+    "kurallar": {
+        "maksIndirimiOrani": 0.15,
+        "minFiyatlar": {
+            "TEMEL": 340,
+            "STANDART": 680,
+            "BUYUME": 1275,
+            "PREMIUM": 2550,
+            "PREMIUMPLUS": 3825
+        },
+        "uyari": "Bu değerlerin dışında fiyat VEREMEZSIN. Hiçbir koşulda."
+    },
+    "guncellenmeTarihi": "2026-01-01"
 }

@@ -1,0 +1,137 @@
+{
+    "sektor": "restoran",
+    "sikSorulanlar": [
+        {
+            "soru": "Rezervasyon yapabilir miyim?",
+            "cevap": "Evet. Tarih, saat ve kişi sayısını bildirin. Hafta sonu ve özel günlerde önceden rezervasyon şart. WhatsApp'tan veya telefonla alıyoruz.",
+            "aciliyet": "orta"
+        },
+        {
+            "soru": "Menüde vegan/vejetaryen seçenek var mı?",
+            "cevap": "Evet. Menümüzde vegan ve vejetaryen alternatifler işaretli. Alerjen tablosu da mevcut. Özel diyet talebi için önceden bilgi verin.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Doğum günü/özel gün kutlaması yapılıyor mu?",
+            "cevap": "Evet. Doğum günü pastası organizasyonu, balon süsleme, özel masa düzeni yapıyoruz. En az 2 gün önceden bilgi verin.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Paket servis/gel-al var mı?",
+            "cevap": "Evet. Kendi kuryemiz veya Yemeksepeti/Getir üzerinden sipariş verebilirsiniz. Gel-al siparişlerde %10 indirim.",
+            "aciliyet": "orta"
+        },
+        {
+            "soru": "İş yemeği/toplantı için ayrı bölüm var mı?",
+            "cevap": "Evet. 8-20 kişilik özel bölüm veya VIP oda mevcuttur. Fix menü seçenekleri ile iş yemeği paketi sunuyoruz.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Çocuk menüsü var mı?",
+            "cevap": "Evet. Çocuk porsiyonu + çocuk menüsü mevcut. Mama ısıtma ve çocuk sandalyesi mevcuttur.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Alkol servisi var mı?",
+            "cevap": "Ruhsatımıza göre değişir. [Ruhsat durumuna göre cevapla]. İçecek menümüzü WhatsApp'tan paylaşabiliriz.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Açık alan / bahçe var mı?",
+            "cevap": "Mevsime ve şubemize göre değişir. Yaz aylarında teras/bahçe açıktır. Kış aylarında kapalı alan ısıtmalıdır.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Catering / toplu yemek hizmeti var mı?",
+            "cevap": "Evet. 20+ kişilik etkinlikler için catering yapıyoruz. Tabldot, açık büfe veya kokteyl menü seçenekleri mevcut.",
+            "aciliyet": "dusuk"
+        }
+    ],
+    "mevzuat": [
+        "Gıda Güvenliği ve Hijyen Yönetmeliği",
+        "İşyeri Açma ve Çalışma Ruhsatı (belediye)",
+        "Gıda İşletmeleri Kayıt/Onay Belgesi (Tarım Bakanlığı)",
+        "Alkollü İçki Satış Ruhsatı (varsa)",
+        "Çalışma saatleri kısıtlamaları (ilçe bazlı)",
+        "Alerjen bildirimi zorunluluğu (AB uyumlu)",
+        "Gürültü yönetmeliği (açık alan)"
+    ],
+    "mevsimsellik": {
+        "kis": "Sıcak yemekler, çorbalar, güveç talebi. Yılbaşı/yılsonu akşam yemekleri. Kapalı alan yoğunluğu.",
+        "yaz": "Hafif menüler, salata, deniz ürünleri. Açık alan/teras talep patlar. İftar menüsü (Ramazan'da).",
+        "ilkbahar": "Taze sebze menüleri. Düğün/nişan yemekleri başlar. Anneler Günü özel menüsü.",
+        "sonbahar": "Av eti, mantar sezonu. Okul başlangıcı — aile yemekleri. Kurumsal yılsonu planlamaları başlar."
+    },
+    "rakipler": [
+        "Yemeksepeti / Getir Yemek (online platform)",
+        "Zincir restoranlar (Big Chefs, Nusr-Et vb.)",
+        "Mahalle lokantalari",
+        "Ev yapımı yemek platformları",
+        "Dark kitchen (sanal mutfak) operasyonları"
+    ],
+    "ortalamaSureler": {
+        "masaHazirlik": "5-10 dakika",
+        "siparisHazirlama": "15-30 dakika",
+        "yemekServisi": "45-90 dakika (tam öğün)",
+        "paketServis": "30-45 dakika",
+        "cateringHazirlik": "2-5 gün önceden sipariş"
+    },
+    "populerHizmetler": [
+        "Restoran içi yemek servisi",
+        "Paket servis / gel-al",
+        "Catering (toplu yemek)",
+        "Özel gün organizasyonu (doğum günü, nişan)",
+        "İş yemeği paketi (fix menü)",
+        "Brunch / kahvaltı servisi",
+        "Açık büfe organizasyonu",
+        "Mevsimsel özel menü"
+    ],
+    "fiyatAraliklari": {
+        "kisiBasiOrtalamaOgun": "200-500₺",
+        "isYemegiFixMenu": "350-700₺/kişi",
+        "ozelGunPaketi": "5.000-20.000₺ (grup)",
+        "cateringKisiBasi": "150-400₺",
+        "brunchKisiBasi": "200-400₺",
+        "paketServisOrtalama": "150-350₺"
+    },
+    "musteriProfili": {
+        "demografik": "Geniş yelpaze: 20-60 yaş, aileler, çiftler, iş insanları. Gelir seviyesi menü segmentine göre.",
+        "karar": "Yorum/puan etkisi çok yüksek (%80). Instagram fotoğrafları karar verdirici. Arkadaş tavsiyesi güçlü.",
+        "hassasiyet": "Hijyen, servis hızı, lezzet tutarlılığı, fiyat-performans oranı. Google/TripAdvisor puanı bakılır."
+    },
+    "caprazSatis": [
+        "Akşam yemeği müşterisine brunch/kahvaltı duyur",
+        "Doğum günü yapana yıldönümü hatırlatma kaydı al",
+        "Gel-al müşterisine restoranda yeme daveti (özel indirim)",
+        "İş yemeği yapana catering teklifi",
+        "Düzenli müşteriye sadakat kartı / stamp programı",
+        "Mevsimsel menü değişikliğini düzenli müşteriye duyur"
+    ],
+    "krizSenaryolari": [
+        {
+            "tetikleyici": "Olumsuz Google/TripAdvisor yorumu",
+            "yanit": "24 saat içinde profesyonel yanıt: özür + çözüm + tekrar davet. Asla tartışma. DM ile detay al."
+        },
+        {
+            "tetikleyici": "Yemekten rahatsızlanma iddiası",
+            "yanit": "Ciddiye al, geçmiş olsun mesajı gönder. Mutfak günlüğünü kontrol et. Gerekirse sağlık müdürlüğü bildirimi yap."
+        },
+        {
+            "tetikleyici": "Uzun bekleme süresi şikayeti",
+            "yanit": "Özür + ikram (tatlı/içecek) sun. Mutfak akışını optimize et. Yoğun saatlerde uyarı sistemi kur."
+        },
+        {
+            "tetikleyici": "Rezervasyon karışıklığı",
+            "yanit": "Müşteriyi bekletme, alternatif masa bul veya yakın tarihte ücretsiz tatlılı davet et."
+        }
+    ],
+    "dijitalIpuclari": [
+        "Instagram yemek fotoğrafı: doğal ışık, üstten çekim, taze sunum — profesyonel fotoğrafçılık şart",
+        "Google Haritalar'da 'restoran yakınımda' en yüksek hacimli sorgulardan",
+        "Menüyü online paylaş (QR menu): müşteri gelmeden karar verir",
+        "WhatsApp'tan günün özel menüsünü paylaş → dönüşüm oranı yüksek",
+        "TripAdvisor/Google yorum sayısı ve puanı SEO'da direkt sıralama etkisi",
+        "Reels: Yemek hazırlama (behind the scenes) videoları çok izlenir",
+        "Sadakat programı (dijital stamp kartı) tekrar ziyareti %35 artırır"
+    ]
+}

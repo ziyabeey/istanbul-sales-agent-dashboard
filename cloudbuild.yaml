@@ -1,0 +1,30 @@
+steps:
+  # 1. Docker İmajını GCP Artifact Registry üzerine derleme
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'europe-west3-docker.pkg.dev/$PROJECT_ID/kepenk-repo/kepenk-ai-frontend:$COMMIT_SHA', '.']
+
+  # 2. İmajı Artifact Registry'ye itme (Pushting)
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'europe-west3-docker.pkg.dev/$PROJECT_ID/kepenk-repo/kepenk-ai-frontend:$COMMIT_SHA']
+
+  # 3. Google Cloud Run'a Deploy etme (Sıfır Kesinti)
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
+    args:
+      - 'run'
+      - 'deploy'
+      - 'kepenk-ai'
+      - '--image'
+      - 'europe-west3-docker.pkg.dev/$PROJECT_ID/kepenk-repo/kepenk-ai-frontend:$COMMIT_SHA'
+      - '--region'
+      - 'europe-west3'
+      - '--platform'
+      - 'managed'
+      - '--allow-unauthenticated'
+      - '--port'
+      - '8080'
+      - '--memory'
+      - '1024Mi'
+
+images:
+  - 'europe-west3-docker.pkg.dev/$PROJECT_ID/kepenk-repo/kepenk-ai-frontend:$COMMIT_SHA'

@@ -1,0 +1,135 @@
+{
+    "sektor": "egitim-kurs",
+    "sikSorulanlar": [
+        {
+            "soru": "Hangi kurslar var?",
+            "cevap": "İngilizce, Almanca, YDS/YÖKDİL hazırlık, matematik, fen bilimleri, kodlama, müzik, resim, dans gibi alanlarımız mevcut. Yaş grubuna göre farklı programlarımız var.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Ücretsiz deneme dersi var mı?",
+            "cevap": "Evet. İlk deneme dersi ücretsiz. Seviye tespiti yapılır ve uygun program önerilir. Randevu için bize ulaşın.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Online ders yapıyor musunuz?",
+            "cevap": "Evet. Zoom/Google Meet ile birebir veya grup dersleri yapıyoruz. Hibrit model (hem yüz yüze hem online) de mevcut.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Kurs ücreti ne kadar?",
+            "cevap": "Ders türü ve sıklığına göre: Grup dersi 2.000-5.000₺/ay, birebir 500-1.000₺/seans. Dönemlik (3 ay) paketlerde %15-20 indirim.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Çocuğum için hangi yaşta başlamak uygun?",
+            "cevap": "Dil eğitimi: 4 yaşından itibaren oyun bazlı. Müzik: 5-6 yaş. Kodlama: 7-8 yaş. Akademik destek: okul çağından itibaren.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Sertifika veriyor musunuz?",
+            "cevap": "Evet. MEB onaylı sertifika programlarımız var. Uluslararası sertifika hazırlığı (Cambridge, IELTS, TOEFL) da yapıyoruz.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Grup büyüklüğü kaç kişi?",
+            "cevap": "Mini grup: 3-6 kişi (ideal). Standart grup: 8-12 kişi. Birebir özel ders de mevcut. Küçük gruplar daha etkili.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Hangi günler/saatlerde ders var?",
+            "cevap": "Hafta içi: 10:00-21:00, hafta sonu: 10:00-18:00. Çocuklar: okul sonrası 15:00-18:00. Yetişkinler: akşam 19:00-21:00 popüler.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Başarı garantisi var mı?",
+            "cevap": "Garanti kelimesini kullanmıyoruz ama öğrenci takibi, düzenli sınav ve geri bildirim sistemi ile ilerleme ölçüyoruz. Hedefler ilk görüşmede belirlenir.",
+            "aciliyet": "dusuk"
+        }
+    ],
+    "mevzuat": [
+        "5580 sayılı Özel Öğretim Kurumları Kanunu",
+        "MEB Özel Eğitim Kurumları Yönetmeliği",
+        "Öğretmen/Eğitimci yetki belgesi zorunluluğu",
+        "KVKK: Öğrenci bilgileri (özellikle çocuk verisi)",
+        "Tüketici hakları (iade koşulları)",
+        "Reklam: 'Garantili başarı' ifadesi kullanılamaz"
+    ],
+    "mevsimsellik": {
+        "kis": "Sınav hazırlık dönemi (Ocak-Şubat karne, Mart LGS/YKS). Kayıtlar yoğun. Kış kampı programları.",
+        "yaz": "Yaz okulu / yaz kampı en yoğun dönem. Dil kursu talebi patlar. Yeni dönem erken kayıt.",
+        "ilkbahar": "Sınav hazırlık yoğunluğu (LGS: Haziran, YKS: Haziran). Yeni dönem tanıtım/kampanya dönemi.",
+        "sonbahar": "Yeni eğitim dönemi başlangıcı (Eylül). En yüksek kayıt dönemi. Erken kayıt indirimleri."
+    },
+    "rakipler": [
+        "Büyük kurs zincirleri (Bahçeşehir, Final, FMV)",
+        "Online eğitim platformları (Udemy, Cambly, iTalki)",
+        "Özel öğretmenler (freelance)",
+        "YouTube/ücretsiz eğitim içerikleri",
+        "Belediye kültür merkezi kursları (ücretsiz)"
+    ],
+    "ortalamaSureler": {
+        "seviyeTespiti": "30-45 dakika",
+        "grupDersi": "45-60 dakika",
+        "birebirDers": "45-60 dakika",
+        "donemSuresi": "3 ay (12 hafta)",
+        "yazOkulu": "4-8 hafta",
+        "sinavHazirlik": "6-12 ay"
+    },
+    "populerHizmetler": [
+        "Yabancı dil kursu (İngilizce, Almanca, vb.)",
+        "Sınav hazırlık (LGS, YKS, YDS, IELTS)",
+        "Akademik destek (matematik, fen, Türkçe)",
+        "Kodlama / robotik / yapay zeka kursu",
+        "Müzik eğitimi (piyano, gitar, keman)",
+        "Resim / sanat atölyesi",
+        "Çocuk gelişim programları",
+        "Kurumsal dil eğitimi",
+        "Online birebir ders"
+    ],
+    "fiyatAraliklari": {
+        "grupDersiAylik": "2.000-5.000₺/ay",
+        "birebirDers": "500-1.000₺/seans",
+        "donemlikPaket3Ay": "5.000-12.000₺",
+        "yazOkulu4Hafta": "4.000-10.000₺",
+        "sinavHazirlikYillik": "15.000-40.000₺",
+        "kurumsalEgitim": "3.000-10.000₺/modül",
+        "onlineDers": "300-700₺/seans"
+    },
+    "musteriProfili": {
+        "demografik": "Çocuk kursu: ebeveynler (30-45 yaş, karar veren genelde anne). Yetişkin kursu: 20-40 yaş, kariyer odaklı. Kurumsal: HR departmanları.",
+        "karar": "Ebeveynler: referans, öğretmen kalitesi, sonuçlar (sınav başarı oranı). Yetişkinler: esneklik, online seçenek, sertifika.",
+        "hassasiyet": "Öğretmen kalitesi, küçük sınıf boyutu, ilerleme takibi, para iadesi koşulları."
+    },
+    "caprazSatis": [
+        "Dil kursu alan öğrenciye sınav hazırlık (IELTS, TOEFL) paketi",
+        "Çocuk kursu alan ailelere yaz okulu erken kayıt",
+        "Birebir ders alan öğrenciye grup dersi (sosyalleşme + maliyet)",
+        "Sınav hazırlık bitiren öğrenciye hobi kursu (müzik, sanat)",
+        "Kurumsal dil eğitimi → bireysel devam programı",
+        "3 aylık paket alan müşteriye 6 aya uzatma indirimi"
+    ],
+    "krizSenaryolari": [
+        {
+            "tetikleyici": "Öğrenci/ebeveyn ilerleme göremediğinden şikayetçi",
+            "yanit": "İlerleme raporunu paylaş. Öğretmen ile toplantı ayarla. Program revizyonu öner. Gerekirse öğretmen değişikliği."
+        },
+        {
+            "tetikleyici": "Kurs iptali / para iadesi talebi",
+            "yanit": "Sözleşme koşullarını referans göster. Kalan seanslara dondurak/devir seçeneği sun. Haklı nedenle tam/kısmi iade."
+        },
+        {
+            "tetikleyici": "Öğretmen ayrıldı / değişti",
+            "yanit": "Önceden bilgilendirme. Yeni öğretmeni tanıt. Geçiş sürecinde ek destek sun. Uyumsuzlukta alternatif öğretmen."
+        }
+    ],
+    "dijitalIpuclari": [
+        "Instagram: Öğrenci başarı hikayeleri, sınıf atmosferi fotoğrafları",
+        "Google Haritalar: 'dil kursu yakınımda', 'matematik kursu' lokalde çok aranır",
+        "Blog: 'İngilizce öğrenme yöntemleri', 'LGS hazırlık stratejileri' SEO'da çok aranan",
+        "WhatsApp: Veli bilgilendirme grubu → düzenli ilerleme raporu",
+        "YouTube: Kısa eğitim videoları → uzmanlık kanıtı + organik öğrenci kazanımı",
+        "TikTok: Eğlenceli dil ipuçları, quiz'ler → genç kitle çekimi",
+        "Erken kayıt kampanyası: dönem başlamadan 1 ay önce %20 indirim → doluluk garantisi"
+    ]
+}

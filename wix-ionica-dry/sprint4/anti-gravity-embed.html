@@ -1,0 +1,366 @@
+<!-- ═══════════════════════════════════════════════════════════
+     ANTI-GRAVITY FLOATING PRODUCT EFEKTİ — HTML Gömme Widget
+     ═══════════════════════════════════════════════════════════
+     Wix Editör > ⊕ Ekle > Gömülü Kod > HTML Gömme > ⊕
+     Widget boyutu: 350px x 500px
+     Arka plan: Şeffaf
+     Widget ID: #htmlAntiGravity (veya #htmlAntiGravityGold / #htmlAntiGravityPro)
+     ═══════════════════════════════════════════════════════════ -->
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: transparent;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    perspective: 1200px;
+    font-family: system-ui, sans-serif;
+  }
+
+  .floating-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* ── Ürün Ana Konteyner ── */
+  .tilt-wrapper {
+    position: relative;
+    z-index: 2;
+    transition: transform 0.12s ease-out;
+    transform-style: preserve-3d;
+  }
+
+  .product-float {
+    animation: floatUpDown 4.5s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+    filter: drop-shadow(0 30px 45px rgba(0,0,0,0.25));
+    will-change: transform;
+  }
+
+  .product-float img {
+    max-width: 260px;
+    max-height: 400px;
+    object-fit: contain;
+    display: block;
+  }
+
+  /* ── Floating Animasyonu ── */
+  @keyframes floatUpDown {
+    0%, 100% {
+      transform: translateY(0px) rotateY(0deg) rotateX(0deg);
+    }
+    20% {
+      transform: translateY(-18px) rotateY(1.5deg) rotateX(0.8deg);
+    }
+    50% {
+      transform: translateY(-35px) rotateY(0deg) rotateX(-0.5deg);
+    }
+    70% {
+      transform: translateY(-22px) rotateY(-1.2deg) rotateX(0.3deg);
+    }
+  }
+
+  /* ── Zemin Gölgesi ── */
+  .shadow-ellipse {
+    position: absolute;
+    bottom: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 160px;
+    height: 16px;
+    background: radial-gradient(ellipse, rgba(0,0,0,0.22) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: shadowPulse 4.5s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+    z-index: 1;
+  }
+
+  @keyframes shadowPulse {
+    0%, 100% {
+      transform: translateX(-50%) scale(1);
+      opacity: 0.35;
+    }
+    50% {
+      transform: translateX(-50%) scale(0.55);
+      opacity: 0.1;
+    }
+  }
+
+  /* ── Su Damlacık Parçacıkları ── */
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    animation: particleFloat 3s ease-in-out infinite;
+    will-change: transform;
+    pointer-events: none;
+  }
+
+  .particle.water {
+    background: rgba(100, 180, 255, 0.5);
+  }
+  .particle.gold {
+    background: rgba(245, 197, 24, 0.5);
+  }
+
+  /* 12 parçacık konumlandırma */
+  .particle:nth-child(1)  { left:12%; top:25%; width:4px; height:4px; animation-delay:0s; animation-duration:3.2s; }
+  .particle:nth-child(2)  { left:75%; top:40%; width:3px; height:3px; animation-delay:0.4s; animation-duration:3.8s; }
+  .particle:nth-child(3)  { left:35%; top:65%; width:5px; height:5px; animation-delay:0.8s; animation-duration:2.9s; }
+  .particle:nth-child(4)  { left:85%; top:18%; width:3px; height:3px; animation-delay:1.2s; animation-duration:4.1s; }
+  .particle:nth-child(5)  { left:8%;  top:55%; width:4px; height:4px; animation-delay:1.6s; animation-duration:3.5s; }
+  .particle:nth-child(6)  { left:62%; top:78%; width:3px; height:3px; animation-delay:0.6s; animation-duration:3.7s; }
+  .particle:nth-child(7)  { left:28%; top:12%; width:5px; height:5px; animation-delay:1.0s; animation-duration:4.3s; }
+  .particle:nth-child(8)  { left:88%; top:60%; width:3px; height:3px; animation-delay:0.2s; animation-duration:3.4s; }
+  .particle:nth-child(9)  { left:48%; top:85%; width:4px; height:4px; animation-delay:1.4s; animation-duration:3.1s; }
+  .particle:nth-child(10) { left:18%; top:42%; width:3px; height:3px; animation-delay:1.8s; animation-duration:3.9s; }
+  .particle:nth-child(11) { left:72%; top:22%; width:4px; height:4px; animation-delay:0.9s; animation-duration:4.0s; }
+  .particle:nth-child(12) { left:55%; top:50%; width:3px; height:3px; animation-delay:2.0s; animation-duration:3.3s; }
+
+  @keyframes particleFloat {
+    0%, 100% {
+      transform: translateY(0) translateX(0) scale(1);
+      opacity: 0.5;
+    }
+    33% {
+      transform: translateY(-22px) translateX(8px) scale(1.3);
+      opacity: 0.9;
+    }
+    66% {
+      transform: translateY(-8px) translateX(-6px) scale(0.7);
+      opacity: 0.3;
+    }
+  }
+
+  /* ── Işık Halkası (Glow Ring) ── */
+  .glow-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--glow-color, rgba(100,180,255,0.07)) 0%, transparent 65%);
+    animation: glowPulse 5s ease-in-out infinite;
+    z-index: 0;
+  }
+
+  @keyframes glowPulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.45; }
+    50% { transform: translate(-50%, -50%) scale(1.18); opacity: 0.85; }
+  }
+
+  /* ── Su Dalgası (Water Ripple) ── */
+  .ripple {
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 200px;
+    border: 1.5px solid rgba(100, 180, 255, 0.15);
+    border-radius: 50%;
+    animation: rippleExpand 3s ease-out infinite;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .ripple:nth-child(2) { animation-delay: 1s; }
+  .ripple:nth-child(3) { animation-delay: 2s; }
+
+  @keyframes rippleExpand {
+    0%   { transform: translateX(-50%) scale(0.3); opacity: 0.6; }
+    100% { transform: translateX(-50%) scale(1.5); opacity: 0; }
+  }
+
+  /* ── Performans: reduced-motion ── */
+  @media (prefers-reduced-motion: reduce) {
+    .product-float { animation: none; transform: translateY(-12px); }
+    .particle { animation: none; opacity: 0; }
+    .glow-ring { animation: none; }
+    .shadow-ellipse { animation: none; transform: translateX(-50%) scale(0.8); }
+    .ripple { animation: none; opacity: 0; }
+  }
+</style>
+</head>
+<body>
+  <div class="floating-container" id="floatContainer">
+    <!-- Işık halkası -->
+    <div class="glow-ring" id="glowRing"></div>
+
+    <!-- Su dalgaları -->
+    <div class="ripple"></div>
+    <div class="ripple"></div>
+    <div class="ripple"></div>
+
+    <!-- Su damlacık parçacıkları (varsayılan: water) -->
+    <div class="particle water"></div>
+    <div class="particle water"></div>
+    <div class="particle water"></div>
+    <div class="particle water"></div>
+    <div class="particle water"></div>
+    <div class="particle water"></div>
+    <div class="particle water"></div>
+    <div class="particle water"></div>
+    <div class="particle water"></div>
+    <div class="particle water"></div>
+    <div class="particle water"></div>
+    <div class="particle water"></div>
+
+    <!-- Ürün görseli (3D tilt wrapper) -->
+    <div class="tilt-wrapper" id="tiltWrapper">
+      <div class="product-float">
+        <!-- Varsayılan placeholder — Velo'dan postMessage ile güncellenecek -->
+        <img id="productImg" 
+             src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='350' fill='%23e0e0e0'%3E%3Crect width='200' height='350' rx='16'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' font-size='14' fill='%23999'%3EÜrün Görseli%3C/text%3E%3C/svg%3E"
+             alt="Ionica Dry Ürünü" />
+      </div>
+    </div>
+
+    <!-- Zemin gölgesi -->
+    <div class="shadow-ellipse"></div>
+  </div>
+
+  <script>
+    // ─── MOUSE İLE 3D PARALLAX TILT ─────────────────────────
+
+    const container = document.getElementById('floatContainer');
+    const tiltWrapper = document.getElementById('tiltWrapper');
+    const glowRing = document.getElementById('glowRing');
+    const productImg = document.getElementById('productImg');
+
+    // Desktop: Mouse tracking
+    container.addEventListener('mousemove', (e) => {
+      const rect = container.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+      tiltWrapper.style.transform =
+        `rotateX(${y * -12}deg) rotateY(${x * 12}deg)`;
+
+      // Glow ring mouse'u takip etsin
+      glowRing.style.left = `${50 + x * 15}%`;
+      glowRing.style.top = `${50 + y * 15}%`;
+    });
+
+    container.addEventListener('mouseleave', () => {
+      tiltWrapper.style.transform = 'rotateX(0deg) rotateY(0deg)';
+      glowRing.style.left = '50%';
+      glowRing.style.top = '50%';
+    });
+
+    // ─── MOBİL: TOUCH + GYROSCOPE ──────────────────────────
+
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+      container.addEventListener('touchmove', (e) => {
+        e.preventDefault();
+        const touch = e.touches[0];
+        const rect = container.getBoundingClientRect();
+        const x = (touch.clientX - rect.left) / rect.width - 0.5;
+        const y = (touch.clientY - rect.top) / rect.height - 0.5;
+        tiltWrapper.style.transform =
+          `rotateX(${y * -8}deg) rotateY(${x * 8}deg)`;
+      }, { passive: false });
+
+      // Gyroscope desteği
+      if (window.DeviceOrientationEvent) {
+        window.addEventListener('deviceorientation', (e) => {
+          const tiltX = Math.min(Math.max(e.gamma || 0, -15), 15);
+          const tiltY = Math.min(Math.max((e.beta || 45) - 45, -15), 15);
+          tiltWrapper.style.transform =
+            `rotateX(${tiltY * 0.5}deg) rotateY(${tiltX * 0.5}deg)`;
+        });
+      }
+
+      // Mobilde performans: fazla parçacıkları gizle
+      document.querySelectorAll('.particle').forEach((p, i) => {
+        if (i > 5) p.style.display = 'none';
+      });
+    }
+
+    // ─── WIX VELO İLE İLETİŞİM (postMessage) ──────────────
+
+    window.addEventListener('message', (event) => {
+      const data = event.data;
+      if (!data || !data.type) return;
+
+      switch (data.type) {
+        case 'updateProduct':
+          if (data.imageUrl) {
+            productImg.src = data.imageUrl;
+            productImg.alt = data.altText || 'Ionica Dry Ürünü';
+          }
+          break;
+
+        case 'setGlowColor':
+          // Renk: "245,197,24" (altın) veya "100,180,255" (mavi)
+          if (data.color) {
+            const rgba = `rgba(${data.color}, 0.07)`;
+            glowRing.style.background =
+              `radial-gradient(circle, rgba(${data.color},0.1) 0%, transparent 65%)`;
+            
+            // Parçacık renklerini de güncelle
+            const particles = document.querySelectorAll('.particle');
+            particles.forEach(p => {
+              p.style.background = `rgba(${data.color}, 0.5)`;
+            });
+
+            // Ripple renklerini güncelle
+            const ripples = document.querySelectorAll('.ripple');
+            ripples.forEach(r => {
+              r.style.borderColor = `rgba(${data.color}, 0.15)`;
+            });
+          }
+          break;
+
+        case 'triggerBounce':
+          // Sepete ekleme animasyonu
+          tiltWrapper.style.transition = 'transform 0.3s ease';
+          tiltWrapper.style.transform = 'scale(1.15) rotateY(10deg)';
+          setTimeout(() => {
+            tiltWrapper.style.transform = 'scale(0.95) rotateY(-5deg)';
+            setTimeout(() => {
+              tiltWrapper.style.transition = 'transform 0.12s ease-out';
+              tiltWrapper.style.transform = '';
+            }, 200);
+          }, 300);
+          break;
+
+        case 'setTheme':
+          // Tema: "gold" veya "pro"
+          if (data.theme === 'gold') {
+            document.body.style.background = 'transparent';
+            // Altın parçacıklar
+            window.postMessage({ type: 'setGlowColor', color: '245,197,24' }, '*');
+          } else if (data.theme === 'pro') {
+            window.postMessage({ type: 'setGlowColor', color: '100,180,255' }, '*');
+          }
+          break;
+      }
+    });
+
+    // ─── INTERSECTION OBSERVER — Performans ─────────────────
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const floatEl = document.querySelector('.product-float');
+        if (entry.isIntersecting) {
+          floatEl.style.animationPlayState = 'running';
+        } else {
+          floatEl.style.animationPlayState = 'paused';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    observer.observe(container);
+  </script>
+</body>
+</html>

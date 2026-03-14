@@ -1,0 +1,13 @@
+var R=require("../../../../chunks/[turbopack]_runtime.js")("server/app/api/site/provision/route.js")
+R.c("server/chunks/XinXia_apps_web_src_data_sektorKatalogu_ts_47709e3c._.js")
+R.c("server/chunks/[root-of-the-server]__a28d6b90._.js")
+R.c("server/chunks/093be_next_2445ddb1._.js")
+R.c("server/chunks/8eab7_@google_generative-ai_dist_index_mjs_2daad1ea._.js")
+R.c("server/chunks/XinXia_apps_web_src_data_moduller_ts_4a069b38._.js")
+R.c("server/chunks/XinXia_apps_web_src_06dad807._.js")
+R.c("server/chunks/b2fdf_zod_v4_classic_external_bf65326f.js")
+R.c("server/chunks/[root-of-the-server]__127560c9._.js")
+R.c("server/chunks/XinXia_apps_web_src_99de262b._.js")
+R.c("server/chunks/5ceb9_apps_web__next-internal_server_app_api_site_provision_route_actions_f364f388.js")
+R.m(768757)
+module.exports=R.m(768757).exports

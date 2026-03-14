@@ -1,0 +1,135 @@
+{
+    "sektor": "mimar-tasarimci",
+    "sikSorulanlar": [
+        {
+            "soru": "Ev tadilati/dekorasyon projesi ne kadar?",
+            "cevap": "Tasarım ücreti m² bazında 200-500₺/m² veya oda bazında 5.000-15.000₺. Uygulama ayrı. İlk keşif görüşmesi ücretsiz.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "3D görselleştirme yapıyor musunuz?",
+            "cevap": "Evet. Mekan tasarımı sonrası fotorealistik 3D render hazırlıyoruz. Onay sonrası uygulamaya geçiyoruz. Revizyon hakkı dahil.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Ruhsat/proje çizimi yapıyor musunuz?",
+            "cevap": "Evet. Mimari proje, statik proje, mekanik proje, elektrik projesi. Belediye ruhsat başvurusu takibi. Yapı kullanma izni.",
+            "aciliyet": "orta"
+        },
+        {
+            "soru": "İç mimar ile mimar arasındaki fark?",
+            "cevap": "Mimar: bina tasarımı, ruhsat projesi, yapı denetimi. İç mimar: iç mekan tasarımı, dekorasyon, mobilya seçimi. Bazı projeler ikisini de gerektirir.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Tadilat süreci nasıl işler?",
+            "cevap": "1) Keşif ve ölçü alma → 2) Konsept tasarım → 3) 3D görseller + onay → 4) Teknik çizimler → 5) Uygulama ekibi + denetim → 6) Teslim.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Malzeme seçiminde yardımcı oluyor musunuz?",
+            "cevap": "Evet. Fayans, parke, boya, aydınlatma, mobilya seçiminde rehberlik yapıyoruz. Tedarikçi bağlantıları ve toplu alım avantajımız var.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Ofis/mağaza tasarımı da yapıyor musunuz?",
+            "cevap": "Evet. Ofis, mağaza, restoran, otel, klinik gibi ticari mekan tasarımları yapıyoruz. Kurumsal kimlik entegrasyonu dahil.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Proje süresi ne kadar?",
+            "cevap": "Tasarım süreci: tek oda 2-3 hafta, komple ev 4-8 hafta. Uygulama: tek oda 1-2 hafta, komple tadilat 2-4 ay.",
+            "aciliyet": "orta"
+        },
+        {
+            "soru": "Bütçemi aşar mısınız?",
+            "cevap": "Bütçe ilk görüşmede belirlenir ve tasarım buna göre yapılır. %10-15 tolerans marjı olabilir. Süreç boyunca maliyet takibi yaparız.",
+            "aciliyet": "orta"
+        }
+    ],
+    "mevzuat": [
+        "3458 sayılı Mühendislik ve Mimarlık Kanunu",
+        "Mimarlar Odası (TMMOB) mesleki yetki belgesi",
+        "İmar Kanunu (3194) — ruhsat zorunlulukları",
+        "Yapı Denetimi Kanunu (4708)",
+        "Deprem Yönetmeliği (TBDY 2018)",
+        "Enerji Kimlik Belgesi zorunluluğu",
+        "Fikri mülkiyet: Mimari eser telif hakkı"
+    ],
+    "mevsimsellik": {
+        "kis": "İç mekan projeleri yoğun. Planlama/tasarım dönemi. Bahar uygulaması için projeler hazırlanır.",
+        "yaz": "İnşaat/tadilat sezonu zirve. Dış cephe, bahçe/peyzaj projeleri. Tatilde boş ev → büyük tadilat fırsatı.",
+        "ilkbahar": "Tadilat sezonu başlangıcı. Yeni proje talepleri artar. İnşaat ruhsat başvuruları.",
+        "sonbahar": "Kış öncesi iç mekan yenileme. Yılsonu teslim hedefli projeler. Planlama dönemi başlar."
+    },
+    "rakipler": [
+        "Büyük mimarlık ofisleri",
+        "Online iç tasarım platformları (Houzz, Modoko)",
+        "Tadilat firmaları (tasarımsız uygulama)",
+        "DIY dekorasyon trendi (Pinterest, YouTube)",
+        "Dekorasyon mağazaları (IKEA, Maisons du Monde)"
+    ],
+    "ortalamaSureler": {
+        "ilkKesifGorusme": "1-2 saat (yerinde)",
+        "konseptTasarim": "1-2 hafta",
+        "tekOdaTasarim": "2-3 hafta",
+        "kompleEvTasarim": "4-8 hafta",
+        "3dRender": "3-5 iş günü/oda",
+        "tadilatUygulama": "2 hafta - 4 ay (kapsama göre)"
+    },
+    "populerHizmetler": [
+        "Ev iç mekan tasarımı",
+        "Mutfak / banyo yenileme projesi",
+        "Ofis / mağaza tasarımı",
+        "3D görselleştirme (render)",
+        "Mimari proje çizimi (ruhsat)",
+        "Tadilat yönetimi ve denetimi",
+        "Mobilya ve malzeme danışmanlığı",
+        "Peyzaj / bahçe tasarımı",
+        "Restoran / kafe konsept tasarımı"
+    ],
+    "fiyatAraliklari": {
+        "tasarimMetreKare": "200-500₺/m²",
+        "tekOdaTasarim": "5.000-15.000₺",
+        "kompleEvTasarim": "20.000-80.000₺",
+        "mimariProje": "30-60₺/m² (bina alanı)",
+        "3dRenderOda": "2.000-5.000₺/oda",
+        "ticarMekanTasarim": "300-800₺/m²",
+        "tadilatDenetimi": "Toplam bedelinin %10-15'i"
+    },
+    "musteriProfili": {
+        "demografik": "30-55 yaş, orta-üst gelir. Yeni ev alan çiftler, mağaza/ofis açan girişimciler, tadilat yapan ev sahipleri.",
+        "karar": "Portfolyo en önemli karar faktörü. Referans ve önceki iş görselleri. Tarz uyumu (modern, rustik, minimal).",
+        "hassasiyet": "Bütçe kontrolü, teslim tarihi, tasarım-beklenti uyumu, malzeme kalitesi, iletişim sıklığı."
+    },
+    "caprazSatis": [
+        "Ev tasarımı yapan müşteriye mobilyacı yönlendir (partnered discount)",
+        "Tadilat projesinde elektrikçi/tesisatçı/boyacı koordinasyonu",
+        "Ofis tasarımı yapan müşteriye tabela/grafik tasarım öner",
+        "Tamamlanan projeyi profesyonel fotoğrafçıya çektir (portföy + müşteri hediyesi)",
+        "Restoran tasarımı yapan müşteriye menü/konsept danışmanlığı"
+    ],
+    "krizSenaryolari": [
+        {
+            "tetikleyici": "Tasarım beğenilmedi",
+            "yanit": "Detaylı geri bildirim al. Moodboard üzerinde tercihleri netleştir. Sözleşmedeki revizyon hakkını kullan. Yeni alternatifler sun."
+        },
+        {
+            "tetikleyici": "Tadilat bütçeyi aştı",
+            "yanit": "Maliyet raporunu detaylı paylaş. Aşım nedenini açıkla. Alternatif malzeme/çözüm öner. Kalan işler için önceliklendirme yap."
+        },
+        {
+            "tetikleyici": "Tadilat gecikti",
+            "yanit": "Güncel ilerleme raporu paylaş. Gecikme nedenini açıkla. Yeni takvim ver. Kritik teslim tarihlerini koru."
+        }
+    ],
+    "dijitalIpuclari": [
+        "Instagram ve Pinterest ana pazarlama kanalları — portfolyo görselleri profesyonel çekilmeli",
+        "Önce/sonra tadilat fotoğrafları en çok etkileşim alan içerik",
+        "Houzz/Behance profili profesyonel ağda güven oluşturur",
+        "Blog: 'Küçük mekan büyük gösterme ipuçları' gibi yazılar SEO getirir",
+        "YouTube: Tadilat timelapse videoları viral potansiyeli yüksek",
+        "Google Haritalar: 'iç mimar yakınımda' araması artıyor — yorum sayısı önemli",
+        "3D render paylaşımları teknik yetkinlik gösterir"
+    ]
+}

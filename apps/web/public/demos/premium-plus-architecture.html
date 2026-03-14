@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="tr" class="bg-[#EAE7E1] text-[#2A2A2A] h-full antialiased cursor-default">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAISON FLUIDITÉ | Luxury Architecture</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        stone: {
+                            100: '#F5F5F0',
+                            200: '#EAE7E1',
+                            300: '#D8D4CC',
+                            400: '#B8B4AC',
+                            800: '#4A4A4A',
+                            900: '#2A2A2A'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Inter"', 'sans-serif'],
+                        mono: ['"Space Mono"', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Space+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,200,0,0" rel="stylesheet" />
+
+    <style>
+        body { margin: 0; padding: 0; background-color: #EAE7E1; color: #2A2A2A; overflow-x: hidden; }
+        ::-webkit-scrollbar { width: 0px; background: transparent; }
+
+        /* Custom Cursor */
+        #cursor-dot {
+            position: fixed;
+            top: 0; left: 0;
+            width: 8px; height: 8px;
+            background-color: #2A2A2A;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 10000;
+            transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease, mix-blend-mode 0.3s ease;
+        }
+        
+        #cursor-ring {
+            position: fixed;
+            top: 0; left: 0;
+            width: 40px; height: 40px;
+            border: 1px solid rgba(42, 42, 42, 0.5);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 9999;
+            transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* Hover states for cursor */
+        body.cursor-view-project #cursor-dot {
+            width: 90px; height: 90px;
+            background-color: #2A2A2A;
+            mix-blend-mode: normal;
+        }
+        body.cursor-view-project #cursor-dot::after {
+            content: 'VIEW';
+            color: #EAE7E1;
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 2px;
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        body.cursor-view-project #cursor-ring { opacity: 0; }
+
+        /* Horizontal Scroll Layout */
+        .scroll-container {
+            /* Height calculated by JS based on total scrollable width */
+            position: relative;
+        }
+        
+        .sticky-wrapper {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .gallery-track {
+            display: flex;
+            height: 100vh;
+            will-change: transform; /* Hint to browser for GPU acceleration */
+        }
+        
+        .gallery-item {
+            width: 100vw;
+            height: 100vh;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Typography sizing for impact */
+        .text-huge {
+            font-size: clamp(6rem, 15vw, 18rem);
+            line-height: 0.85;
+            letter-spacing: -0.02em;
+        }
+        
+        /* Image Masks */
+        .image-mask {
+            overflow: hidden;
+            position: relative;
+        }
+        .image-mask img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .gallery-item:hover .image-mask img {
+            transform: scale(1.05);
+        }
+
+        /* Modal Overlay */
+        .wizard-overlay {
+            position: fixed; inset: 0;
+            background: rgba(234, 231, 225, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 100;
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .wizard-overlay.active { opacity: 1; pointer-events: auto; }
+        
+        /* Fixed UI Layer */
+        .ui-fixed {
+            position: fixed; inset: 0;
+            pointer-events: none; z-index: 50;
+        }
+        .ui-interactive { pointer-events: auto; }
+
+    </style>
+</head>
+<body>
+
+    <!-- Fixed UI Layer -->
+    <div class="ui-fixed flex flex-col justify-between p-8 mix-blend-difference text-[#EAE7E1]">
+        <header class="flex justify-between items-start">
+            <div class="text-xs font-mono uppercase tracking-widest leading-relaxed">
+                <span class="opacity-50 block">Architecture</span>
+                <span>& Design</span>
+            </div>
+            
+            <a href="#" class="font-serif italic text-2xl tracking-wide ui-interactive" data-kepenk-editable="text">Maison Fluidité</a>
+            
+            <button onclick="projectWizard.open()" class="font-mono text-xs uppercase tracking-widest border-b border-current pb-1 hover:opacity-50 transition-opacity ui-interactive" data-kepenk-editable="text">
+                Start Project
+            </button>
+        </header>
+
+        <footer class="flex justify-between items-end">
+            <div class="flex items-center gap-4 text-xs font-mono uppercase tracking-widest opacity-50">
+                <span>Scroll</span>
+                <div class="w-12 h-[1px] bg-current"></div>
+            </div>
+            <div class="text-xs font-mono uppercase tracking-widest opacity-50 text-right">
+                <span id="progress-indicator">01 / 05</span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scroll Track -->
+    <div class="scroll-container" id="scroll-container">
+        <div class="sticky-wrapper">
+            <div class="gallery-track" id="gallery-track">
+                
+                <!-- Section 01: Hero Intro -->
+                <section class="gallery-item bg-stone-200" data-kepenk-section="intro">
+                    <div class="w-full max-w-[90vw] mx-auto">
+                        <h1 class="font-serif italic text-huge text-stone-900 tracking-tighter" data-kepenk-editable="text">
+                            Shaping<br>Boundaries
+                        </h1>
+                        <p class="font-mono text-xs uppercase tracking-[0.2em] text-stone-400 mt-12 max-w-sm leading-relaxed" data-kepenk-editable="text">
+                            We design absolute masterpieces for the elite, merging raw natural materials with minimalist spatial logic.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Section 02: Featured Project 1 -->
+                <section class="gallery-item bg-stone-200" data-kepenk-section="project-1">
+                    <div class="w-full px-[10vw] flex items-center justify-between gap-16">
+                        <div class="w-1/3 flex-shrink-0 relative z-10 -mr-24 mb-32">
+                            <h2 class="font-serif italic text-7xl text-stone-900 mb-6" data-kepenk-editable="text">The Obsidian<br>Villa</h2>
+                            <p class="font-sans font-light text-stone-500 text-sm leading-relaxed mb-8 max-w-xs" data-kepenk-editable="text">A monumental structure crafted entirely from black basalt and concrete, resting on the cliffs of the Aegean.</p>
+                            <span class="font-mono text-xs uppercase tracking-widest border-b border-stone-800 pb-1">View Details</span>
+                        </div>
+                        <div class="w-[60vw] h-[75vh] hover-trigger relative" id="ripple-container-1">
+                            <!-- This canvas replaces the image for the liquid effect -->
+                            <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" alt="Villa Exterior" class="hidden ripple-source" data-kepenk-editable="image">
+                            <canvas class="absolute inset-0 w-full h-full object-cover"></canvas>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 03: Featured Project 2 -->
+                <section class="gallery-item bg-stone-900 text-stone-200" data-kepenk-section="project-2">
+                     <div class="w-full px-[10vw] flex items-center justify-between gap-16 flex-row-reverse">
+                        <div class="w-1/3 flex-shrink-0 relative z-10 -ml-24 mt-32 text-right">
+                            <h2 class="font-serif italic text-7xl mb-6" data-kepenk-editable="text">Luminous<br>Sanctuary</h2>
+                            <p class="font-sans font-light text-stone-400 text-sm leading-relaxed mb-8 max-w-xs ml-auto" data-kepenk-editable="text">Harnessing natural light through precise geometric incisions, creating a constantly shifting interior atmosphere.</p>
+                            <span class="font-mono text-xs uppercase tracking-widest border-b border-stone-200 pb-1">View Details</span>
+                        </div>
+                        <div class="w-[60vw] h-[75vh] hover-trigger relative" id="ripple-container-2">
+                            <!-- This canvas replaces the image for the liquid effect -->
+                            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" alt="Minimalist Interior" class="hidden ripple-source" data-kepenk-editable="image">
+                            <canvas class="absolute inset-0 w-full h-full object-cover"></canvas>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Section 04: Philosophy -->
+                <section class="gallery-item bg-stone-200" data-kepenk-section="philosophy">
+                    <div class="text-center max-w-3xl px-8">
+                        <span class="font-mono text-xs uppercase tracking-[0.2em] text-stone-400 mb-8 block">Philosophy</span>
+                        <h2 class="font-serif italic text-5xl md:text-7xl leading-tight text-stone-900 mb-12" data-kepenk-editable="text">
+                            "True luxury is space, light, and the absence of the unnecessary."
+                        </h2>
+                    </div>
+                </section>
+
+                <!-- Section 05: Contact / Call to Action -->
+                <section class="gallery-item bg-stone-100" data-kepenk-section="contact">
+                    <div class="w-full h-full flex items-center justify-center relative">
+                        <div class="text-center z-10 bg-stone-100 p-16 rounded-full border border-stone-300">
+                            <h2 class="font-serif italic text-6xl text-stone-900 mb-6" data-kepenk-editable="text">Ready to Build?</h2>
+                            <button onclick="projectWizard.open()" class="bg-stone-900 text-stone-100 px-10 py-5 font-mono text-xs uppercase tracking-widest hover:bg-stone-700 transition-colors" data-kepenk-editable="text">
+                                Initiate Vision
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </div>
+    
+    <!-- Wizard Overlay -->
+    <div id="wizard-overlay" class="wizard-overlay flex items-center justify-center p-4">
+        <div id="wizard-card" class="bg-stone-100 w-full max-w-3xl h-[600px] border border-stone-300 flex flex-col transform scale-95 opacity-0 transition-all duration-700 shadow-2xl relative overflow-hidden">
+            
+            <!-- Header -->
+            <div class="px-12 py-8 flex justify-between items-center z-10">
+                <div class="font-mono text-[10px] text-stone-900 tracking-[0.2em] uppercase">Project Initiation</div>
+                <button onclick="projectWizard.close()" class="text-stone-400 hover:text-stone-900 transition-colors ui-interactive"><span class="material-symbols-outlined font-light text-[24px]">close</span></button>
+            </div>
+            
+            <!-- Progress Steps Text -->
+            <div class="px-12 pt-2 flex justify-between font-serif italic text-sm text-stone-400 z-10">
+                <span id="wizard-label-1" class="text-stone-900 transition-colors">I. Vision</span>
+                <span id="wizard-label-2" class="transition-colors">II. Scale</span>
+                <span id="wizard-label-3" class="transition-colors">III. Identity</span>
+            </div>
+
+            <div class="relative flex-grow overflow-hidden font-serif z-10 mt-8">
+                
+                <!-- STEP 1: Style -->
+                <div id="wizard-step-1" class="absolute inset-0 px-12 pb-12 transition-all duration-500 flex flex-col justify-center translate-x-0 opacity-100">
+                    <h4 class="text-4xl text-stone-900 mb-10 font-sans font-light">What is the core aesthetic?</h4>
+                    <div class="grid grid-cols-2 gap-4">
+                        <button onclick="projectWizard.saveData('style', 'Minimalist'); projectWizard.goto(2)" class="border border-stone-300 p-8 text-left hover:border-stone-900 transition-all group">
+                            <span class="block text-2xl mb-2 text-stone-900 group-hover:italic transition-all">Pure Minimalism</span>
+                            <span class="text-stone-500 text-xs font-mono tracking-wider font-sans">Concrete, glass, negative space</span>
+                        </button>
+                        <button onclick="projectWizard.saveData('style', 'Brutalism'); projectWizard.goto(2)" class="border border-stone-300 p-8 text-left hover:border-stone-900 transition-all group">
+                            <span class="block text-2xl mb-2 text-stone-900 group-hover:italic transition-all">Organic Brutalism</span>
+                            <span class="text-stone-500 text-xs font-mono tracking-wider font-sans">Raw stone, wood, heavy masses</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- STEP 2: Budget/Scale -->
+                <div id="wizard-step-2" class="absolute inset-0 px-12 pb-12 transition-all duration-500 flex flex-col justify-center translate-x-full opacity-0">
+                    <button onclick="projectWizard.goto(1)" class="absolute top-0 left-12 text-stone-400 hover:text-stone-900 flex items-center gap-2 text-xs font-mono uppercase tracking-widest transition-colors mb-4">
+                        <span class="material-symbols-outlined text-[14px]">arrow_back</span> Return
+                    </button>
+                    
+                    <h4 class="text-4xl text-stone-900 mb-10 font-sans font-light">Determine the scale.</h4>
+                    <div class="space-y-6 max-w-md">
+                        <div>
+                            <label class="block text-xs font-mono uppercase tracking-widest text-stone-500 mb-3 block">Estimated Area (sqm)</label>
+                            <input type="number" id="input-area" placeholder="e.g. 1500" class="w-full bg-transparent border-b border-stone-300 pb-2 text-2xl text-stone-900 focus:outline-none focus:border-stone-900 transition-colors font-serif italic placeholder:text-stone-300">
+                        </div>
+                        <div class="pt-8">
+                            <button onclick="projectWizard.saveData('area', document.getElementById('input-area').value); projectWizard.goto(3)" class="bg-stone-900 text-stone-100 hover:bg-stone-700 px-8 py-4 uppercase tracking-widest font-mono text-xs transition-all w-full">Proceed to Identity</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 3: Identity & Contact -->
+                <div id="wizard-step-3" class="absolute inset-0 px-12 pb-12 transition-all duration-500 flex flex-col justify-center translate-x-full opacity-0">
+                    <button onclick="projectWizard.goto(2)" class="absolute top-0 left-12 text-stone-400 hover:text-stone-900 flex items-center gap-2 text-xs font-mono uppercase tracking-widest transition-colors mb-4">
+                        <span class="material-symbols-outlined text-[14px]">arrow_back</span> Return
+                    </button>
+
+                    <h4 class="text-4xl text-stone-900 mb-10 font-sans font-light">Who shall we address?</h4>
+                    <div class="space-y-6 max-w-md">
+                        <div class="grid grid-cols-2 gap-6">
+                            <input type="text" id="wiz-fname" placeholder="First Name" class="w-full bg-transparent border-b border-stone-300 pb-2 text-xl text-stone-900 focus:outline-none focus:border-stone-900 placeholder-stone-300 italic font-serif">
+                            <input type="text" id="wiz-lname" placeholder="Last Name" class="w-full bg-transparent border-b border-stone-300 pb-2 text-xl text-stone-900 focus:outline-none focus:border-stone-900 placeholder-stone-300 italic font-serif">
+                        </div>
+                        <input type="email" id="wiz-email" placeholder="Private Email" class="w-full bg-transparent border-b border-stone-300 pb-2 text-xl text-stone-900 focus:outline-none focus:border-stone-900 placeholder-stone-300 italic font-serif mt-6">
+                        
+                        <div class="pt-8">
+                            <button onclick="projectWizard.submit()" class="border border-stone-900 text-stone-900 hover:bg-stone-900 hover:text-stone-100 px-8 py-4 uppercase tracking-widest font-mono text-xs transition-all w-full">Finalize Request</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 4: Success -->
+                <div id="wizard-step-4" class="absolute inset-0 px-12 pb-12 transition-all duration-500 flex flex-col items-center justify-center translate-x-full opacity-0 text-center">
+                    <div class="mb-8 relative flex items-center justify-center">
+                        <div class="w-24 h-24 border border-stone-300 rounded-full flex items-center justify-center">
+                            <div class="w-20 h-20 border border-stone-900/10 rounded-full flex items-center justify-center animate-[spin_10s_linear_infinite]">
+                                <div class="w-1 h-1 bg-stone-900 rounded-full absolute top-0"></div>
+                            </div>
+                        </div>
+                        <span class="material-symbols-outlined text-stone-900 text-4xl font-light absolute">done</span>
+                    </div>
+                    
+                    <h4 class="text-4xl text-stone-900 mb-4 font-serif italic">Vision Accepted.</h4>
+                    <p class="text-stone-500 mb-10 max-w-sm font-sans font-light leading-relaxed">Our senior architects will review your brief. A secure communication channel will be established via your provided email.</p>
+                    <button onclick="projectWizard.close()" class="text-xs font-mono uppercase tracking-widest text-stone-900 border-b border-stone-900 pb-1 hover:opacity-50 transition-colors">Return to Gallery</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+    <!-- Custom Cursor DOM -->
+    <div id="cursor-ring"></div>
+    <div id="cursor-dot"></div>
+
+    <script>
+        // --- Custom Cursor ---
+        const cursorDot = document.getElementById('cursor-dot');
+        const cursorRing = document.getElementById('cursor-ring');
+        
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        let dotX = mouseX;
+        let dotY = mouseY;
+        let ringX = mouseX;
+        let ringY = mouseY;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        const hoverTriggers = document.querySelectorAll('.hover-trigger');
+        hoverTriggers.forEach(el => {
+            el.addEventListener('mouseenter', () => document.body.classList.add('cursor-view-project'));
+            el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-view-project'));
+        });
+
+        // --- Core Engine ---
+        class ScrollEngine {
+            constructor() {
+                this.container = document.getElementById('scroll-container');
+                this.track = document.getElementById('gallery-track');
+                
+                // State
+                this.targetScrollX = 0;
+                this.currentScrollX = 0;
+                this.lerpEase = 0.08;
+                this.scrollWidth = 0;
+                this.windowWidth = window.innerWidth;
+                
+                this.init();
+            }
+            
+            init() {
+                this.calculateDimensions();
+                window.addEventListener('resize', () => this.calculateDimensions());
+                window.addEventListener('scroll', () => this.onScroll());
+                
+                // Start RAF Loop
+                this.loop();
+            }
+            
+            calculateDimensions() {
+                this.windowWidth = window.innerWidth;
+                // Total width is number of sections * window width
+                const numSections = document.querySelectorAll('.gallery-item').length;
+                this.scrollWidth = numSections * this.windowWidth;
+                
+                // To convert horizontal scroll to vertical, we make the body height equal to the scrollable width
+                this.container.style.height = `${this.scrollWidth}px`;
+                this.track.style.width = `${this.scrollWidth}px`;
+            }
+            
+            onScroll() {
+                // Calculate percentage of scroll
+                const maxScrollY = document.body.scrollHeight - window.innerHeight;
+                // Clamp below 0 and above 1
+                const pct = Math.min(Math.max(window.scrollY / maxScrollY, 0), 1);
+                
+                // Map to horizontal target
+                const maxScrollX = this.scrollWidth - this.windowWidth;
+                this.targetScrollX = pct * maxScrollX;
+                
+                // Update indicator
+                const currentSection = Math.min(Math.floor(pct * document.querySelectorAll('.gallery-item').length) + 1, document.querySelectorAll('.gallery-item').length);
+                document.getElementById('progress-indicator').textContent = `0${currentSection} / 05`;
+            }
+            
+            loop() {
+                // Lerp core
+                this.currentScrollX += (this.targetScrollX - this.currentScrollX) * this.lerpEase;
+                
+                // Apply transform to slide the track horizontally
+                // We use translate3d to force GPU acceleration
+                this.track.style.transform = `translate3d(-${this.currentScrollX}px, 0, 0)`;
+                
+                // Lerp Cursor Elements
+                dotX += (mouseX - dotX) * 0.2;
+                dotY += (mouseY - dotY) * 0.2;
+                ringX += (mouseX - ringX) * 0.1;
+                ringY += (mouseY - ringY) * 0.1;
+                
+                cursorDot.style.left = `${dotX}px`;
+                cursorDot.style.top = `${dotY}px`;
+                cursorRing.style.left = `${ringX}px`;
+                cursorRing.style.top = `${ringY}px`;
+                
+                requestAnimationFrame(() => this.loop());
+            }
+        }
+
+        // --- Vanilla JS Canvas Liquid Ripple Engine ---
+        // A high performance 2D pixel displacement algorithm based on Hugo Elias's water equations
+        class LiquidRipple {
+            constructor(containerId) {
+                this.container = document.getElementById(containerId);
+                if(!this.container) return;
+                
+                this.canvas = this.container.querySelector('canvas');
+                this.ctx = this.canvas.getContext('2d', { willReadFrequently: true });
+                this.img = this.container.querySelector('.ripple-source');
+                
+                this.width = 0;
+                this.height = 0;
+                this.halfWidth = 0;
+                this.halfHeight = 0;
+                this.size = 0;
+                this.oldind = 0;
+                this.newind = 0;
+                this.ripplemap = [];
+                this.lastMap = [];
+                this.mapind = 0;
+                this.texture = null;
+                this.ripple = null;
+                
+                // Need to handle CORS if fetching from unsplash for pixels, so we load using a new Image with crossOrigin
+                const imgLoader = new Image();
+                imgLoader.crossOrigin = "Anonymous";
+                imgLoader.onload = () => {
+                    this.initCanvas(imgLoader);
+                    this.bindEvents();
+                    this.loop();
+                };
+                imgLoader.src = this.img.src;
+            }
+            
+            initCanvas(img) {
+                // Downscale resolution for performance (calculating every pixel is heavy)
+                const scale = 0.5;
+                const rect = this.container.getBoundingClientRect();
+                this.width = Math.floor(rect.width * scale);
+                this.height = Math.floor(rect.height * scale);
+                this.halfWidth = this.width >> 1;
+                this.halfHeight = this.height >> 1;
+                this.size = this.width * (this.height + 2) * 2;
+                
+                this.canvas.width = this.width;
+                this.canvas.height = this.height;
+                
+                // Draw image and get Texture
+                this.ctx.drawImage(img, 0, 0, this.width, this.height);
+                this.texture = this.ctx.getImageData(0, 0, this.width, this.height);
+                this.ripple = this.ctx.getImageData(0, 0, this.width, this.height);
+                
+                for (let i = 0; i < this.size; i++) {
+                    this.lastMap[i] = 0;
+                    this.ripplemap[i] = 0;
+                }
+            }
+            
+            bindEvents() {
+                this.container.addEventListener('mousemove', (e) => {
+                    const rect = this.canvas.getBoundingClientRect();
+                    // Maps mouse position from screen to scaled canvas
+                    const dropX = Math.floor((e.clientX - rect.left) * (this.width / rect.width));
+                    const dropY = Math.floor((e.clientY - rect.top) * (this.height / rect.height));
+                    this.drop(dropX, dropY, 5, 2048); // Drop radius and strength
+                });
+            }
+            
+            drop(x, y, radius, strength) {
+                // Create a drop splash at x,y
+                for (let j = y - radius; j < y + radius; j++) {
+                    for (let k = x - radius; k < x + radius; k++) {
+                        if (j >= 0 && j < this.height && k >= 0 && k < this.width) {
+                            this.ripplemap[this.oldind + (j * this.width) + k] += strength;
+                        }
+                    }
+                }
+            }
+            
+            loop() {
+                requestAnimationFrame(() => this.loop());
+                if (!this.texture) return;
+                
+                let i = this.oldind;
+                this.oldind = this.newind;
+                this.newind = i;
+                
+                i = 0;
+                let mapind = this.oldind;
+                const width = this.width;
+                const height = this.height;
+                const textureData = this.texture.data;
+                const rippleData = this.ripple.data;
+                
+                for (let y = 0; y < height; y++) {
+                    for (let x = 0; x < width; x++) {
+                        // The famous Elias water equation
+                        let data = (
+                            this.ripplemap[mapind - width] + 
+                            this.ripplemap[mapind + width] + 
+                            this.ripplemap[mapind - 1] + 
+                            this.ripplemap[mapind + 1]
+                        ) >> 1;
+                        
+                        data -= this.ripplemap[this.newind + i];
+                        data -= data >> 5; // Damping/Viscosity
+                        
+                        this.ripplemap[this.newind + i] = data;
+                        data = 1024 - data;
+                        
+                        let oldData = this.lastMap[i];
+                        this.lastMap[i] = data;
+                        
+                        if (oldData !== data) {
+                            // Find corresponding pixel from texture and displace it
+                            let xDisplace = (((x - this.halfWidth) * data / 1024) << 0) + this.halfWidth;
+                            let yDisplace = (((y - this.halfHeight) * data / 1024) << 0) + this.halfHeight;
+                            
+                            // Bounds checking
+                            if (xDisplace >= width) xDisplace = width - 1;
+                            if (xDisplace < 0) xDisplace = 0;
+                            if (yDisplace >= height) yDisplace = height - 1;
+                            if (yDisplace < 0) yDisplace = 0;
+                            
+                            const newPixel = (xDisplace + (yDisplace * width)) * 4;
+                            const tIndex = i * 4;
+                            
+                            rippleData[tIndex] = textureData[newPixel];
+                            rippleData[tIndex + 1] = textureData[newPixel + 1];
+                            rippleData[tIndex + 2] = textureData[newPixel + 2];
+                        }
+                        mapind++;
+                        i++;
+                    }
+                }
+                
+                this.ctx.putImageData(this.ripple, 0, 0);
+            }
+        }
+
+        // --- State Management: Project Wizard ---
+        class ProjectWizard {
+            constructor() {
+                this.step = 1;
+                this.bg = document.getElementById('wizard-overlay');
+                this.card = document.getElementById('wizard-card');
+                this.data = {};
+                
+                // Try restore prep from localStorage
+                const saved = localStorage.getItem('maison_wizard_step');
+                if(saved) {
+                    this.step = parseInt(saved);
+                    console.log("Restoring session state to step:", this.step);
+                }
+            }
+            
+            open() {
+                this.bg.classList.add('active');
+                setTimeout(() => {
+                    this.card.classList.remove('scale-95', 'opacity-0');
+                }, 10);
+                this.goto(this.step > 3 ? 1 : this.step); // Reset if it was successful before
+            }
+            
+            close() {
+                this.card.classList.add('scale-95', 'opacity-0');
+                setTimeout(() => { this.bg.classList.remove('active'); }, 300);
+            }
+
+            saveData(key, value) {
+                this.data[key] = value;
+                localStorage.setItem('maison_wizard_data', JSON.stringify(this.data));
+            }
+
+            submit() {
+                this.saveData('fname', document.getElementById('wiz-fname').value);
+                this.saveData('lname', document.getElementById('wiz-lname').value);
+                this.saveData('email', document.getElementById('wiz-email').value);
+                console.log("Submitting VIP Project Request: ", this.data);
+                this.goto(4);
+            }
+
+            goto(stepIdx) {
+                for (let i = 1; i <= 4; i++) {
+                    const el = document.getElementById(`wizard-step-${i}`);
+                    if (!el) continue;
+                    
+                    if (i === stepIdx) {
+                        el.classList.remove('translate-x-full', '-translate-x-full', 'opacity-0');
+                        el.classList.add('translate-x-0', 'opacity-100');
+                        el.style.zIndex = '10';
+                    } else if (i < stepIdx) {
+                        el.classList.remove('translate-x-0', 'translate-x-full', 'opacity-100');
+                        el.classList.add('-translate-x-full', 'opacity-0');
+                        el.style.zIndex = '0';
+                    } else {
+                        el.classList.remove('translate-x-0', '-translate-x-full', 'opacity-100');
+                        el.classList.add('translate-x-full', 'opacity-0');
+                        el.style.zIndex = '0';
+                    }
+                    
+                    // Update Header labels
+                    const lbl = document.getElementById(`wizard-label-${i}`);
+                    if(lbl && stepIdx <= 3) {
+                        if(i === stepIdx) {
+                            lbl.classList.remove('text-stone-400');
+                            lbl.classList.add('text-stone-900');
+                        } else {
+                            lbl.classList.remove('text-stone-900');
+                            lbl.classList.add('text-stone-400');
+                        }
+                    }
+                }
+                
+                this.step = stepIdx;
+                if(stepIdx < 4) localStorage.setItem('maison_wizard_step', stepIdx);
+                else localStorage.removeItem('maison_wizard_step');
+            }
+        }
+
+        // Initialize App
+        document.addEventListener('DOMContentLoaded', () => {
+            window.appScroll = new ScrollEngine();
+            window.ripple1 = new LiquidRipple('ripple-container-1');
+            window.ripple2 = new LiquidRipple('ripple-container-2');
+            window.projectWizard = new ProjectWizard();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+{
+    "sektor": "eczane",
+    "sikSorulanlar": [
+        {
+            "soru": "Nöbetçi eczane hangisi?",
+            "cevap": "Güncel nöbetçi eczane bilgisi için 182'yi arayabilir veya nobetcieczane.org sitesinden bakabilirsiniz. Bizim nöbet günlerimizi WhatsApp'tan paylaşıyoruz.",
+            "aciliyet": "yuksek"
+        },
+        {
+            "soru": "Reçetemi gönderip ilacımı hazırlatabilir miyim?",
+            "cevap": "Evet. Reçete fotoğrafını WhatsApp'tan gönderin, biz hazırlayalım. Teslim alırken kimlik ve SGK kartınızı getirin.",
+            "aciliyet": "orta"
+        },
+        {
+            "soru": "SGK'lı ilaç alabilir miyim?",
+            "cevap": "Evet. E-reçete ile SGK'lı ilaç verilir. Doktor provizyon açtıysa TC kimlik numaranızla sorgularız.",
+            "aciliyet": "orta"
+        },
+        {
+            "soru": "İlaç etkileşimi konusunda bilgi alabilir miyim?",
+            "cevap": "Eczacımız ilaç etkileşimi konusunda bilgi verir. Kullandığınız tüm ilaçları (reçeteli/reçetesiz) bildirin. Ciddi durumda doktorunuza yönlendiririz.",
+            "aciliyet": "yuksek"
+        },
+        {
+            "soru": "Kan basıncı/şeker ölçümü yapıyor musunuz?",
+            "cevap": "Evet. Tansiyon ve kan şekeri ölçümü ücretsiz. BMI hesaplama da yapıyoruz. Sadece tarama amaçlı — tanı için doktor gerekli.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Eve ilaç teslimatı var mı?",
+            "cevap": "Evet. Belirli saat aralıklarında motokurye ile ilaç teslimatı yapıyoruz. Reçeteli ilaçlar için kimlik doğrulama gerekir.",
+            "aciliyet": "orta"
+        },
+        {
+            "soru": "Dermoeczacılık ürünleri var mı?",
+            "cevap": "Evet. La Roche-Posay, Vichy, Avene, Bioderma gibi dermoeczacılık markaları mevcuttur. Cilt tipinize göre eczacımız öneride bulunur.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Vitamin/takviye almalı mıyım?",
+            "cevap": "Yaş, yaşam tarzı ve sağlık durumunuza göre eczacımız öneride bulunur. D vitamini, demir, omega-3 en çok sorulan takviyeler. Doktor tavsiyesi önerilir.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Bebek maması/bezi var mı?",
+            "cevap": "Evet. Bebek maması, bez, biberon, emzik, bebek bakım ürünleri mevcuttur. Düzenli alımlarda bilgilendirme yaparız.",
+            "aciliyet": "dusuk"
+        }
+    ],
+    "mevzuat": [
+        "6197 sayılı Eczacılar Kanunu",
+        "İlaç Takip Sistemi (İTS) zorunluluğu",
+        "SGK Sözleşme esasları",
+        "Reçete gizliliği ve hasta mahremiyeti",
+        "KVKK: Sağlık verileri özel nitelikli kişisel veri",
+        "Eczane Nöbet Yönetmeliği",
+        "Reklam yasağı: İlaç adı ile reklam yapılamaz"
+    ],
+    "yasalUyarilar": [
+        "AI asla ilaç tavsiyesi veremez — 'Eczacınıza danışınız' yönlendirmesi zorunlu",
+        "Reçeteli ilaç bilgisi paylaşılamaz",
+        "Tanı koyma, tedavi önerme YASAK — sadece bilgilendirme",
+        "İlaç fiyatı değişken — güncel fiyat eczaneden sorulmalı"
+    ],
+    "mevsimsellik": {
+        "kis": "Grip/soğuk algınlığı ilaçları, C vitamini, D vitamini talebi patlar. Antibiyotik reçetesi artar.",
+        "yaz": "Güneş kremi, böcek kovucu, ishal ilaçları, seyahat sağlık seti. Alerji ilaçları devam.",
+        "ilkbahar": "Alerji (polen) sezonu — antihistaminik talebi zirve. Bahar yorgunluğu → vitamin takviyeleri.",
+        "sonbahar": "Grip aşısı sezonu (Ekim-Kasım). Bağışıklık destekleyiciler. Okul başlangıcı → çocuk vitamini."
+    },
+    "rakipler": [
+        "Online eczane platformları (eczanemburada gibi)",
+        "Dermoeczacılık web siteleri",
+        "Marketlerde satılan OTC ürünler",
+        "Sağlık uygulamaları (ilaç hatırlatma)",
+        "Diğer mahalle eczaneleri"
+    ],
+    "ortalamaSureler": {
+        "receteHazirlama": "5-15 dakika",
+        "tansiyonOlcum": "5 dakika",
+        "dermoDanisma": "10-15 dakika",
+        "eveTeslimat": "30-60 dakika",
+        "nobetSaat": "Akşam 19:00 - sabah 08:30"
+    },
+    "populerHizmetler": [
+        "Reçeteli ilaç dispensing",
+        "SGK'lı ilaç servisi",
+        "Dermoeczacılık danışmanlığı",
+        "Tansiyon / şeker ölçümü (ücretsiz)",
+        "Eve ilaç teslimatı",
+        "Reçete fotoğrafı ile sipariş (WhatsApp)",
+        "Vitamin / takviye danışmanlığı",
+        "Bebek bakım ürünleri",
+        "İlaç hatırlatma hizmeti"
+    ],
+    "fiyatAraliklari": {
+        "not": "İlaç fiyatları Sağlık Bakanlığı tarafından belirlenir, eczane belirleyemez.",
+        "dermoUrunler": "Marka ve ürüne göre — eczacıdan bilgi alın",
+        "vitaminTakviye": "100-500₺ (ürüne göre)",
+        "eveTeslimat": "Ücretsiz veya 20-50₺ (mesafeye göre)",
+        "tansiyonOlcum": "Ücretsiz"
+    },
+    "musteriProfili": {
+        "demografik": "Tüm yaş grupları. Kronik hasta takibi (40+), genç anneler (bebek ürünleri), 20-35 yaş (dermoeczacılık).",
+        "karar": "Doktor reçetesi yönlendirici. Mahalle sadakati güçlü. Eczacıya güven ve danışmanlık kalitesi belirleyici.",
+        "hassasiyet": "Gizlilik (ilaç bilgisi), doğru bilgi, samimi yaklaşım, nöbet saatlerinde ulaşılabilirlik."
+    },
+    "caprazSatis": [
+        "Reçeteli ilaç alan müşteriye ilgili OTC ürün öner (örn: antibiyotik → probiyotik)",
+        "Güneş kremi alan müşteriye after-sun ve nemlendirici öner",
+        "Bebek ürünü alan anneye vitamin/takviye bilgisi ver",
+        "Kronik hasta takibi: ilacı bitmeden hatırlatma WA mesajı gönder",
+        "Dermoeczacılık: cilt bakım rutini seti (temizleyici + nemlendirici + SPF)"
+    ],
+    "krizSenaryolari": [
+        {
+            "tetikleyici": "İlaç bulunamıyor (stok yok)",
+            "yanit": "En yakın stoklu eczaneyi ara ve yönlendir. Alternatif eşdeğer ilaç varsa doktora sor ve öner."
+        },
+        {
+            "tetikleyici": "Müşteri yan etki bildiriyor",
+            "yanit": "Ciddiye al. Doktora yönlendir. TÜFAM (Türkiye Farmakovijilans Merkezi) bildirimi yap. Asla kendi başına karar verme."
+        },
+        {
+            "tetikleyici": "Nöbet sırasında yoğunluk",
+            "yanit": "Sıra numarası sistemi kur. Acil durumları önceliklendir. WhatsApp'tan sıra bilgisi paylaş."
+        }
+    ],
+    "dijitalIpuclari": [
+        "Google Haritalar'da 'eczane yakınımda' en çok aranan sorgulardan — konum bilgisi güncel tut",
+        "Nöbet günlerini sosyal medyada ve WhatsApp'ta düzenli paylaş",
+        "Sağlık bilgilendirme postları (mevsimsel): alerji, grip, güneş koruması",
+        "WhatsApp reçete gönderme: müşteri rahatlığı çok yüksek",
+        "İlaç hatırlatma servisi: kronik hasta sadakati %80+ tutar",
+        "Dermoeczacılık Instagram: ürün tanıtımı + cilt bakım ipuçları"
+    ]
+}

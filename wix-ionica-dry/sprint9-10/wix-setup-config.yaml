@@ -1,0 +1,160 @@
+# Ionica Dry — Wix Kurulum Rehberi
+# ═══════════════════════════════════════════════════════════
+# Sprint 9: SEO, Performans & Pazarlama Yapılandırması
+# Sprint 10: Gelişmiş Animasyonlar & Mikro Etkileşimler
+# ═══════════════════════════════════════════════════════════
+
+#──────────────────────────────────────────────────────────
+# A. SAYFA SEO META VERİLERİ
+#──────────────────────────────────────────────────────────
+
+# Her sayfa için: Wix Editör > Sayfalar ve Menü > (Sayfa) > ⚙ > SEO
+
+ANASAYFA:
+  title: "Ionica Dry | Premium Su Arıtma Cihazları — FilmTec™ & Vontron™"
+  description: "Ionica Dry ile evinizde saf ve temiz su. FilmTec™ membran, kaçak su sensörü, 100 gün iade garantisi. GOLD ve PRO serisi arıtma cihazları."
+  keywords: "su arıtma cihazı, ionica dry, filmtec membran, vontron, kaçak su sensörü, su arıtma, reverse osmosis"
+
+ÜRÜNLER:
+  title: "Ürünlerimiz | Ionica Dry — GOLD & PRO Serisi Su Arıtma"
+  description: "Ionica Dry su arıtma ürünleri — GOLD serisi altın parçacıklı membran, PRO serisi profesyonel arıtma. Ücretsiz kargo, 100 gün iade."
+
+BLOG:
+  title: "Blog | Ionica Dry — Su Arıtma Bilgileri & Sağlıklı Yaşam"
+  description: "Su kalitesi, arıtma teknolojileri, sağlıklı içme suyu hakkında uzman makaleler ve rehberler."
+
+HAKKIMIZDA:
+  title: "Hakkımızda | Ionica Dry — Temiz Su Misyonumuz"
+  description: "Ionica Dry'ın hikayesi, misyonu ve vizyonu. Türkiye'nin en güvenilir su arıtma markası."
+
+100_GÜN_İADE:
+  title: "100 Gün İade Garantisi | Ionica Dry"
+  description: "Ionica Dry ürünlerinden memnun kalmadıysanız 100 gün içinde koşulsuz iade edin. Güvenle deneyin."
+
+SSS:
+  title: "Sıkça Sorulan Sorular | Ionica Dry"
+  description: "Su arıtma cihazları hakkında merak ettiğiniz her şey. Kurulum, bakım, filtre değişimi ve daha fazlası."
+
+İLETİŞİM:
+  title: "İletişim | Ionica Dry — Bize Ulaşın"
+  description: "Ionica Dry ile iletişime geçin. WhatsApp, telefon, e-posta veya iletişim formu ile destek alın."
+
+
+#──────────────────────────────────────────────────────────
+# B. SOSYAL PAYLAŞIM (Open Graph)
+#──────────────────────────────────────────────────────────
+# Wix Editör > Ayarlar > Sosyal Paylaşım
+
+og_image: "ionica-dry-og-cover.jpg"  # 1200x630px marka görseli
+og_title: "Ionica Dry — Premium Su Arıtma Cihazları"
+og_description: "FilmTec™ membran, kaçak su sensörü, 100 gün iade. Evinizde saf su."
+twitter_card: "summary_large_image"
+
+
+#──────────────────────────────────────────────────────────
+# C. PAZARLAMA ENTEGRASYONLARİ
+#──────────────────────────────────────────────────────────
+# Wix Editör > Ayarlar > Pazarlama Entegrasyonları
+
+google_analytics: "G-XXXXXXXXXX"        # GA4 ölçüm kimliği
+facebook_pixel: "XXXXXXXXXXXXXXXXXX"     # Meta Pixel ID
+google_search_console: "doğrulama kodu"  # HTML etiketi veya DNS
+google_ads: "AW-XXXXXXXXX"              # Dönüşüm izleme
+
+# Not: Tüm bunlar Wix Ayarlar > Pazarlama Entegrasyonları menüsünden eklenir.
+
+
+#──────────────────────────────────────────────────────────
+# D. RENK & FONT TEMASI
+#──────────────────────────────────────────────────────────
+# Wix Editör > Site Tasarımı > Renk Teması
+
+PRIMARY_COLORS:
+  sarı:     "#F5C518"  # Ana vurgu rengi (CTA, badge)
+  pembe:    "#FFB6C1"  # İkincil vurgu (kadınsı ürünler)
+  yeşil:    "#4A6741"  # Doğa / güven rengi
+  koyu:     "#1A1A1A"  # Metin, koyu arka plan
+  açık:     "#F8F6F2"  # Sayfa arka planı (krem beyaz)
+  beyaz:    "#FFFFFF"  # Kart arka planı
+
+FONT_THEME:
+  başlıklar: "Playfair Display"    # Serif — premium his
+  alt_başlık: "Inter"              # Sans-serif — modern temiz
+  body:      "Inter"               # Sans-serif — okunabilirlik
+  nav:       "Inter Medium"        # Navigasyon
+  büyük_sayı: "DM Serif Display"   # İstatistik sayıları
+
+# Google Fonts URL:
+# https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap
+
+
+#──────────────────────────────────────────────────────────
+# E. PERFORMANS KONTROL LİSTESİ
+#──────────────────────────────────────────────────────────
+
+GOREVLER:
+  - [x] Görseller WebP — Wix otomatik dönüştürür, yükleme sırasında optimize et
+  - [ ] Ayarlar > Görüntü Keskinleştirici aktif et
+  - [ ] Anti-gravity HTML: will-change kullanıldı ✓
+  - [ ] Anti-gravity HTML: IntersectionObserver ile viewport dışında pause ✓
+  - [ ] Lazy loading — Wix varsayılan olarak yapar ✓
+  - [ ] CSS prefers-reduced-motion — eklendi ✓
+  - [ ] Mobilde parçacık sayısı azaltıldı (12→6) ✓
+  - [ ] Header scroll: debounce ekle (performans)
+  - [ ] Font preconnect — Wix otomatik yapar
+
+
+#──────────────────────────────────────────────────────────
+# F. ERİŞİLEBİLİRLİK
+#──────────────────────────────────────────────────────────
+# Wix Ayarlar > Erişilebilirlik Sihirbazı
+
+GOREVLER:
+  - [ ] Tüm görsellere alt text ekle
+  - [ ] Renk kontrastı minimum 4.5:1 (AA seviye)
+  - [ ] Klavye navigasyonu test et (Tab, Enter, Escape)
+  - [ ] ARIA etiketleri — Wix otomatik ekler, özel widget'lar için ekle
+  - [ ] Focus visible stilleri — HTML embed'lerde :focus outline ekle
+
+
+#──────────────────────────────────────────────────────────
+# G. GİZLİLİK & ÇEREZLER
+#──────────────────────────────────────────────────────────
+# Wix Ayarlar > Gizlilik ve Çerezler
+
+GOREVLER:
+  - [ ] KVKK/GDPR çerez banner'ı aktif et
+  - [ ] Gizlilik Politikası sayfası oluştur ve footer'a bağla
+  - [ ] Kullanım Şartları sayfası oluştur
+  - [ ] Mesafeli Satış Sözleşmesi (e-ticaret zorunlu)
+
+
+#──────────────────────────────────────────────────────────
+# H. SPRINT 10: GELİŞMİŞ ANİMASYONLAR
+#──────────────────────────────────────────────────────────
+
+# A) Her section için — Wix yerleşik animasyonlar:
+#    Sağ tık > Animasyon ve Efektler > seçenekler:
+SECTION_ANIMATIONS:
+  heroSection:       { animasyon: "Fade In",   yön: "alt",  hız: "hızlı" }
+  productShowcase:   { animasyon: "Float In",  yön: "alt",  hız: "orta" }
+  featuresGrid:      { animasyon: "Slide In",  yön: "alt",  hız: "orta",  gecikme: "sıralı" }
+  testimonials:      { animasyon: "Fade In",   yön: "-",    hız: "yavaş" }
+  blogPreview:       { animasyon: "Slide In",  yön: "sağ",  hız: "orta" }
+  contactCTA:        { animasyon: "Float In",  yön: "alt",  hız: "hızlı" }
+
+# B) Lottie animasyonlar:
+#    Ekle > Gömülü Kod > Lottie
+#    JSON dosyaları LottieFiles.com'dan indirilebilir:
+LOTTIE_ONERILER:
+  su_damlası:   "https://lottiefiles.com/animations/water-drop"
+  kalkan:       "https://lottiefiles.com/animations/shield-check"
+  filtre:       "https://lottiefiles.com/animations/filter-funnel"
+  iade_ok:      "https://lottiefiles.com/animations/return-arrow"
+  yıldız:       "https://lottiefiles.com/animations/star-rating"
+
+# C) Mikro etkileşimler (Velo ile):
+#    - Buton hover: scale(1.05) + gölge derinleşir
+#    - Kart hover: translateY(-6px) + gölge genişler
+#    - Menü link hover: underline slide-in animasyonu
+#    - Sayfa geçişleri: Wix > Site Tasarımı > Sayfa Geçişleri > "Cross Fade"

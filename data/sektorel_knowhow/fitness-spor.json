@@ -1,0 +1,134 @@
+{
+    "sektor": "fitness-spor",
+    "sikSorulanlar": [
+        {
+            "soru": "Üyelik ücretleri ne kadar?",
+            "cevap": "Aylık 1.000-3.000₺, 3 aylık 2.500-7.000₺, yıllık 8.000-20.000₺. PT (kişisel antrenör) ayrı: seans başı 500-1.500₺. Kampanya dönemlerinde indirimler var.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Ücretsiz deneme var mı?",
+            "cevap": "Evet. 1 günlük ücretsiz deneme hakkı var. Salon turu + fitness danışmanı ile tanışma. Randevu ile gelin.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Grup dersleri var mı?",
+            "cevap": "Evet. Pilates, yoga, spinning, CrossFit, boks, zumba, HIIT, fonksiyonel antrenman. Haftalık ders programı WhatsApp'tan paylaşılır.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "PT (kişisel antrenör) gerekli mi?",
+            "cevap": "Başlangıçta şiddetle önerilir (doğru form, sakatlık önleme). En az 1 ay PT sonrası bağımsız devam edebilirsiniz. Hedef bazlı programlar 3-6 ay.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Sağlık sorunum var, spor yapabilir miyim?",
+            "cevap": "Doktor raporu ile gelin. Diyabet, kalp, ortopedik sorunlar için özel program hazırlanır. PT eşliğinde güvenli egzersiz yapılır.",
+            "aciliyet": "yuksek"
+        },
+        {
+            "soru": "Sauna/hamam/havuz var mı?",
+            "cevap": "Şubeye göre değişir. Sauna, buhar odası, duş, kilitli dolap standart. Havuz ve hamam premium şubelerde mevcut.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Kadın/erkek ayrı bölüm var mı?",
+            "cevap": "Bazı şubelerde kadınlara özel salon/saat dilimi var. Karma çalışma standart. Kadın-only grup dersleri de mevcut.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Üyeliğimi dondurabilir miyim?",
+            "cevap": "Evet. Sağlık raporu veya uzun seyahat durumunda aylık dondurma hakkı. Yıllık üyelikte toplam 1 ay dondurma ücretsiz.",
+            "aciliyet": "orta"
+        },
+        {
+            "soru": "Beslenme desteği var mı?",
+            "cevap": "Evet. Diyetisyen işbirliği ile beslenme planı. PT paketi ile birlikte beslenme rehberi dahil. Supplement danışmanlığı da yapılır.",
+            "aciliyet": "dusuk"
+        }
+    ],
+    "mevzuat": [
+        "Özel Beden Eğitimi ve Spor Tesisleri Yönetmeliği",
+        "Gençlik ve Spor Bakanlığı işyeri tescil belgesi",
+        "Antrenör/PT lisans belgesi zorunluluğu",
+        "Hijyen ve temizlik standartları",
+        "İş güvenliği (cihaz bakımı, acil müdahale ekipmanı)",
+        "KVKK: Üye sağlık bilgileri"
+    ],
+    "mevsimsellik": {
+        "kis": "Yılbaşı kararları (Ocak) → en yüksek kayıt dönemi. Kilo verme motivasyonu. Kapalı alan spor talebi artar.",
+        "yaz": "Yaz öncesi (Nisan-Mayıs) form motivasyonu. Yaz aylarında üyelik düşer (tatil, açık hava). Yaz kampanyası gerekli.",
+        "ilkbahar": "Yaz hazırlığı başlar. Kadın üyeliklerde artış. Outdoor grup dersleri başlar (park antrenmanı).",
+        "sonbahar": "Dönüş sezonu. Yeni dönem kayıtları. Kış için hazırlık motivasyonu. Kampanya dönemi."
+    },
+    "rakipler": [
+        "Büyük spor salonu zincirleri (MAC, Sports International)",
+        "Butik stüdyolar (yoga, pilates, CrossFit box)",
+        "Online fitness platformları (Sweat, Nike Training)",
+        "YouTube / Instagram fitness influencerları (ücretsiz)",
+        "Belediye spor tesisleri (ucuz/ücretsiz)"
+    ],
+    "ortalamaSureler": {
+        "salonTuru": "15-20 dakika",
+        "bireyselAntrenman": "45-60 dakika",
+        "grupDersi": "45-60 dakika",
+        "ptSeansi": "50-60 dakika",
+        "saunaDusSonrasi": "30-45 dakika"
+    },
+    "populerHizmetler": [
+        "Fitness salonu üyeliği",
+        "Kişisel antrenör (PT) seansları",
+        "Grup dersleri (pilates, yoga, spinning, CrossFit)",
+        "Fonksiyonel antrenman",
+        "Beslenme danışmanlığı",
+        "Vücut analizi (InBody)",
+        "Sauna / buhar odası",
+        "Yüzme havuzu (premium)",
+        "Boks / dövüş sanatları"
+    ],
+    "fiyatAraliklari": {
+        "aylikUyelik": "1.000-3.000₺",
+        "3AylikUyelik": "2.500-7.000₺",
+        "yillikUyelik": "8.000-20.000₺",
+        "ptSeansi": "500-1.500₺",
+        "pt10Paket": "4.500-12.000₺",
+        "grupDersiAylik": "800-2.000₺ (sınırsız)",
+        "vucutAnalizi": "200-500₺"
+    },
+    "musteriProfili": {
+        "demografik": "20-45 yaş, kadın %55 erkek %45. Ofis çalışanı (%50), öğrenci (%20), ev hanımı (%15). Gelir seviyesi orta-üst.",
+        "karar": "Lokasyon (ev/iş yakınlığı) 1 numara. Salon temizliği ve cihaz kalitesi. PT kalitesi. Arkadaş grubu etkisi.",
+        "hassasiyet": "Hijyen, kalabalık (yoğun saatler), cihaz bekleme süresi, soyunma odası temizliği, müzik sesi."
+    },
+    "caprazSatis": [
+        "Salon üyeliğine PT paketi ekle (ilk 1 ay indirimli)",
+        "PT müşterisine beslenme danışmanlığı sat",
+        "Bireysel üyeliğe arkadaş getir kampanyası (ikisine %15 indirim)",
+        "Grup dersi alan üyeye salon üyeliği teklif et",
+        "Yıllık üyelik alan müşteriye vücut analizi hediye",
+        "Supplement satışı (protein, BCAA) — salon içi market"
+    ],
+    "krizSenaryolari": [
+        {
+            "tetikleyici": "Sakatlık şikayeti (salon içi)",
+            "yanit": "İlk yardım uygula. Gerekirse ambulans çağır. Olay raporu tut. Sigorta bilgilendir. Takip mesajı gönder."
+        },
+        {
+            "tetikleyici": "Üyelik iptali / para iadesi talebi",
+            "yanit": "Sözleşme koşullarını açıkla. Dondurma seçeneği sun. Haklı nedenle (sağlık, taşınma) esnek ol."
+        },
+        {
+            "tetikleyici": "Hijyen şikayeti",
+            "yanit": "Hemen kontrol et ve düzelt. Üyeye bilgi ver. Temizlik rutinini sıkılaştır. Tüm üyelere bilgilendirme."
+        }
+    ],
+    "dijitalIpuclari": [
+        "Instagram: Dönüşüm fotoğrafları (izinli) en güçlü sosyal kanıt",
+        "TikTok: Egzersiz ipuçları, formüller, PT çalışmaları çok izlenir",
+        "Google Haritalar: 'spor salonu yakınımda' çok aranan sorgu — yorum ve fotoğraf kritik",
+        "WhatsApp: Günlük ders programı + motivasyon mesajı üyelik tutma oranını artırır",
+        "Blog: 'Evde yapılabilecek egzersizler', 'Protein ihtiyacı hesaplama' SEO getirir",
+        "Ocak kampanyası: Yılın en yüksek kayıt dönemi — erken Aralık'ta duyuru başla",
+        "Referral programı: Arkadaş getir → 1 ay uzatma → organik büyüme"
+    ]
+}

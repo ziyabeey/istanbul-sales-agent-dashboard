@@ -1,0 +1,101 @@
+// ═══════════════════════════════════════════════════════════
+// notifications.jsw — Wix Backend (Arka Uç)
+// ═══════════════════════════════════════════════════════════
+// Wix: Kod Dosyaları > Backend > notifications.jsw
+// ═══════════════════════════════════════════════════════════
+
+import wixData from 'wix-data';
+import { triggeredEmails } from 'wix-crm-backend';
+
+/**
+ * İletişim formu gönderimini işle
+ * @param {Object} formData - { name, email, phone, subject, message, timestamp }
+ */
+export async function sendNotification(formData) {
+    // 1. CMS'e kaydet
+    const record = {
+        title: `Yeni İletişim: ${formData.name}`,
+        name: formData.name,
+        email: formData.email || '',
+        phone: formData.phone,
+        subject: formData.subject || 'Genel Bilgi',
+        message: formData.message || '',
+        status: 'Yeni',
+        createdAt: new Date(),
+    };
+
+    try {
+        await wixData.insert("ContactSubmissions", record);
+    } catch (err) {
+        console.error("CMS kayıt hatası:", err);
+    }
+
+    // 2. E-posta bildirimi gönder (Wix Triggered Emails)
+    try {
+        await triggeredEmails.emailContact(
+            "contactFormSubmission", // Template ID (Wix E-posta Otomasyonlarından oluşturun)
+            formData.email,
+            {
+                variables: {
+                    customerName: formData.name,
+                    customerPhone: formData.phone,
+                    customerMessage: formData.message,
+                    customerSubject: formData.subject || 'Genel',
+                }
+            }
+        );
+    } catch (err) {
+        console.error("E-posta gönderim hatası:", err);
+        // E-posta hatası form gönderimini engellemesin
+    }
+
+    return { success: true, id: record._id };
+}
+
+/**
+ * İade talebi oluştur
+ * @param {Object} data - { name, phone, orderId, reason }
+ */
+export async function createReturnRequest(data) {
+    const record = {
+        title: `İade Talebi: ${data.orderId}`,
+        name: data.name,
+        phone: data.phone,
+        orderId: data.orderId,
+        reason: data.reason || 'Belirtilmedi',
+        status: 'Bekliyor',
+        createdAt: new Date(),
+    };
+
+    try {
+        const result = await wixData.insert("ReturnRequests", record);
+        return { success: true, requestId: result._id };
+    } catch (err) {
+        console.error("İade kayıt hatası:", err);
+        throw new Error("İade talebi oluşturulamadı.");
+    }
+}
+
+/**
+ * Newsletter aboneliği kaydet
+ * @param {string} email 
+ */
+export async function subscribeNewsletter(email) {
+    // Mükerrer kontrol
+    const existing = await wixData.query("Subscribers")
+        .eq("email", email)
+        .find();
+
+    if (existing.items.length > 0) {
+        return { success: true, message: "Zaten abonesiniz." };
+    }
+
+    await wixData.insert("Subscribers", {
+        title: email,
+        email: email,
+        subscribedAt: new Date(),
+        active: true,
+    });
+
+    return { success: true, message: "Abone oldunuz!" };
+}

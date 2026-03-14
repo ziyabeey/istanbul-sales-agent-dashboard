@@ -1,0 +1,144 @@
+{
+    "sektor": "veteriner",
+    "sikSorulanlar": [
+        {
+            "soru": "Acil durumda ne yapmalıyım?",
+            "cevap": "Zehirlenme, kaza, nefes darlığı, şiddetli kusma/ishal → hemen arayın. 7/24 acil hattımız var. Evde yapabileceğiniz ilk müdahaleyi telefonda anlatırız.",
+            "aciliyet": "yuksek"
+        },
+        {
+            "soru": "Aşı takvimi nasıl?",
+            "cevap": "Yavru: 6-8 haftalıktan başlayarak 3 doz karma aşı + kuduz. Yetişkin: yıllık karma + kuduz hatırlatma. İç/dış parazit aylık.",
+            "aciliyet": "orta"
+        },
+        {
+            "soru": "Kısırlaştırma ne zaman yapılmalı?",
+            "cevap": "Kedilerde 5-6 ay, köpeklerde 6-12 ay (ırka göre). Ameliyat süresi 30-60dk. Toparlanma 7-10 gün. Şişmanlama riski için diyet planı veririz.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Muayene ücreti ne kadar?",
+            "cevap": "Genel muayene 300-500₺. Acil muayene (mesai dışı) %50 ek. Aşı, kan tahlili, görüntüleme ayrı ücretlendirilir.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Evcil hayvanım kusuyur/ishal oluyor ne yapmalıyım?",
+            "cevap": "12 saat aç bırakın, su verin. Devam ederse, kanlıysa veya hayvanda halsizlik varsa hemen gelin. Yavru ve yaşlı hayvanlarda acil.",
+            "aciliyet": "yuksek"
+        },
+        {
+            "soru": "Pet otel / pansiyon hizmetiniz var mı?",
+            "cevap": "Evet. Günlük konaklama: kedi 150-250₺, köpek 200-400₺ (boyuta göre). Veteriner gözetiminde, günlük yürüyüş dahil.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Diş temizliği gerekli mi?",
+            "cevap": "Evet. 2-3 yaşından sonra diş taşı oluşumu başlar. Anestezi altında diş temizliği önerilir. Kötü ağız kokusu uyarı işareti.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Microchip taktırmalı mıyım?",
+            "cevap": "Yasal zorunluluk (köpeklerde). Kedilerde şiddetle önerilir. Kaybolma durumunda bulunma şansı %80 artar. Ücret 200-400₺.",
+            "aciliyet": "orta"
+        },
+        {
+            "soru": "Egzotik hayvan bakıyor musunuz?",
+            "cevap": "Kuş, tavşan, hamster, kaplumbağa, iguana muayenesi yapıyoruz. Yılan ve özel türler için uzman yönlendirmesi yaparız.",
+            "aciliyet": "dusuk"
+        }
+    ],
+    "mevzuat": [
+        "5996 sayılı Veteriner Hizmetleri Kanunu",
+        "Hayvan Hakları Kanunu (5199)",
+        "Kuduz Aşısı Zorunluluğu",
+        "Microchip kayıt zorunluluğu (köpek)",
+        "Narkotik ilaç kayıt tutma yükümlülüğü",
+        "Hayvan Sağlığı Zabıtası Kanunu",
+        "KVKK: Hayvan sahibi bilgileri"
+    ],
+    "yasalUyarilar": [
+        "AI asla veteriner tavsiyesi veremez — 'Veterinerinize danışın' zorunlu",
+        "İlaç dozajı veya tedavi önerisi YASAK",
+        "Acil durumda doğrudan kliniğe yönlendir"
+    ],
+    "mevsimsellik": {
+        "kis": "Soğuk hava → solunum yolu enfeksiyonları. Antifreeze zehirlenmesi riski. Kış bakımı (tırnak, tüy).",
+        "yaz": "Kene/pire sezonu zirve. Sıcak çarpması riski. Tatile giden sahipler → pet otel talebi patlar.",
+        "ilkbahar": "Alerji sezonu (hayvanlar da etkilenir). Kısırlaştırma sezonu. Yavru sezonu → ilk muayene/aşılar.",
+        "sonbahar": "Kış hazırlığı: aşı hatırlatma, parazit kontrolü. Tüy dökülmesi artışı. İç parazit taraması."
+    },
+    "rakipler": [
+        "Büyük veteriner klinik zincirleri",
+        "Online veteriner danışma platformları",
+        "Pet shop'lar (bakım ürünleri)",
+        "Hayvan hastaneleri (üniversite)",
+        "Evde veteriner hizmeti uygulamaları"
+    ],
+    "ortalamaSureler": {
+        "genelMuayene": "15-30 dakika",
+        "asiUygulama": "10-15 dakika",
+        "kisirLastirma": "30-60 dakika ameliyat + 2-3 saat gözetim",
+        "disTemizligi": "30-45 dakika (anestezi dahil)",
+        "kanTahlili": "15 dakika (sonuç 1-24 saat)",
+        "acilMuayene": "Hemen"
+    },
+    "populerHizmetler": [
+        "Genel sağlık muayenesi",
+        "Aşılama (karma, kuduz, iç/dış parazit)",
+        "Kısırlaştırma ameliyatı",
+        "Diş taşı temizliği",
+        "Kan tahlili / idrar tahlili",
+        "Ultrason / röntgen",
+        "Microchip takma",
+        "Pet otel / pansiyon",
+        "Tırnak kesimi / kulak temizliği",
+        "Acil müdahale (7/24)"
+    ],
+    "fiyatAraliklari": {
+        "genelMuayene": "300-500₺",
+        "karmaAsi": "200-400₺",
+        "kuduzAsi": "150-300₺",
+        "kisirLastirmaKedi": "1.500-3.000₺",
+        "kisirLastirmaKopek": "2.000-5.000₺",
+        "disTemizligi": "1.000-2.500₺",
+        "kanTahlili": "300-800₺",
+        "ultrason": "400-800₺",
+        "petOtelGunluk": "150-400₺",
+        "microchip": "200-400₺"
+    },
+    "musteriProfili": {
+        "demografik": "25-55 yaş, hayvan sahipleri. Kadın %60. Gelir seviyesi orta-üst (pet bakımı masraflı).",
+        "karar": "Duygusal bağ çok güçlü — hayvanı 'aile üyesi' olarak görür. Güven ve şefkat en önemli kriter.",
+        "hassasiyet": "Hayvanına nasıl davranıldığı, veterinerin iletişimi, fiyat şeffaflığı, acil ulaşılabilirlik."
+    },
+    "caprazSatis": [
+        "Aşı randevusunda genel check-up öner",
+        "Kısırlaştırma sonrası diyet mama tavsiyesi + satışı",
+        "Yaz öncesi kene/pire koruma paketi (3 aylık)",
+        "Tatil döneminde pet otel → sadık müşteri kazanımı",
+        "Diş temizliği sonrası diş bakım ürünleri öner",
+        "Yaşlı hayvan check-up paketi (kan + ultrason + muayene)"
+    ],
+    "krizSenaryolari": [
+        {
+            "tetikleyici": "Hayvan acil durumda (zehirlenme, kaza)",
+            "yanit": "Telefonda ilk müdahale yönlendir. Hemen kliniğe çağır. Acil ekibi hazırla. Sahibi sakinleştir."
+        },
+        {
+            "tetikleyici": "Tedavi sonrası komplikasyon",
+            "yanit": "Ücretsiz kontrol muayenesi. Detaylı bilgilendirme. Gerekirse yatış. Şeffaf iletişim."
+        },
+        {
+            "tetikleyici": "Hayvan kaybı (ölüm)",
+            "yanit": "Empati ve şefkat göster. Acele etme. Anı hediyesi (patili çerçeve gibi) ver. Zamanla yeni evcil hayvan danışmanlığı."
+        }
+    ],
+    "dijitalIpuclari": [
+        "Instagram'da hasta hayvan iyileşme hikayeleri en çok etkileşim alır",
+        "Google Haritalar: 'veteriner yakınımda' acil aramalarda kritik — 7/24 bilgisini güncelle",
+        "WhatsApp aşı hatırlatması: müşteri sadakatini %60+ artırır",
+        "Blog: 'Kedilerde aşı takvimi', 'Köpeklerde ilk yardım' gibi bilgi içerikleri SEO getirir",
+        "Facebook grup paylaşımları: hayvan sahipleri toplulukları çok aktif",
+        "TikTok: Sevimli hasta hayvan videoları (izinli) viral potansiyeli çok yüksek"
+    ]
+}

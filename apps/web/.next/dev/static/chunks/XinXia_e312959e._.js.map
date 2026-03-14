@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///Users/admin/Desktop/istanbul-sales-agent-dashboard/XinXia/apps/web/src/app/dashboard/editor/page.tsx"],"sourcesContent":["'use client'\n\nimport { redirect } from 'next/navigation'\n\n/**\n * Eski editor sayfası. Artık tüm site düzenleme işlemleri\n * /dashboard/sitem/editor üzerinden yapılıyor.\n */\nexport default function EditorRedirectPage() {\n    redirect('/dashboard/sitem/editor')\n}\n"],"names":[],"mappings":";;;;AAEA;AAFA;;AAQe,SAAS;IACpB,IAAA,oWAAQ,EAAC;AACb;KAFwB"}},
+    {"offset": {"line": 23, "column": 0}, "map": {"version":3,"sources":["file:///Users/admin/Desktop/istanbul-sales-agent-dashboard/XinXia/node_modules/.pnpm/next%4016.1.6_%40babel%2Bcore%407.29.0_%40opentelemetry%2Bapi%401.9.0_react-dom%4019.2.3_react%4019.2.3__react%4019.2.3/node_modules/next/navigation.js"],"sourcesContent":["module.exports = require('./dist/client/components/navigation')\n"],"names":[],"mappings":"AAAA,OAAO,OAAO","ignoreList":[0]}}]
+}

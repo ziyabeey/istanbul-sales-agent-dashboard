@@ -1,0 +1,288 @@
+
+> @kepenk/web@0.1.0 build /Users/admin/Desktop/istanbul-sales-agent-dashboard/XinXia/apps/web
+> next build
+
+⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /Users/admin/Desktop/istanbul-sales-agent-dashboard/package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * /Users/admin/Desktop/istanbul-sales-agent-dashboard/XinXia/pnpm-lock.yaml
+
+▲ Next.js 16.1.6 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 50s
+  Running TypeScript ...
+  Collecting page data using 7 workers ...
+Pricing data could not be loaded.
+[Agent7] ANTHROPIC_API_KEY bulunamadı, mocking mode.
+[Agent7] ANTHROPIC_API_KEY bulunamadı, mocking mode.
+GEMINI_API_KEY eksik, üretim ortamında hata verecektir.
+GEMINI_API_KEY eksik, üretim ortamında hata verecektir.
+GEMINI_API_KEY eksik, üretim ortamında hata verecektir.
+⚠ Using edge runtime on a page currently disables static generation for that page
+Pricing data could not be loaded.
+Pricing data could not be loaded.
+  Generating static pages using 7 workers (0/1274) ...
+  Generating static pages using 7 workers (318/1274) 
+[Agent7] ANTHROPIC_API_KEY bulunamadı, mocking mode.
+  Generating static pages using 7 workers (636/1274) 
+  Generating static pages using 7 workers (955/1274) 
+The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+✓ Generating static pages using 7 workers (1274/1274) in 13.2s
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /.well-known/agent.json
+├ ● /[sektor]
+│ ├ /elektrikci
+│ ├ /tesisatci
+│ ├ /boyaci
+│ └ [+23 more paths]
+├ ● /[sektor]/[ilce]
+│ ├ /elektrikci/adalar
+│ ├ /elektrikci/arnavutkoy
+│ ├ /elektrikci/atasehir
+│ └ [+1011 more paths]
+├ ○ /admin
+├ ○ /admin/ajanlar
+├ ○ /admin/altyapi
+├ ○ /admin/esnaflar
+├ ○ /admin/finans
+├ ○ /admin/login
+├ ○ /admin/marketing
+├ ○ /admin/numara-merkezi
+├ ƒ /api/.well-known/agent.json
+├ ƒ /api/a2a
+├ ƒ /api/adk/rpc
+├ ƒ /api/admin/ajan-loglar
+├ ƒ /api/admin/esnaf
+├ ƒ /api/admin/esnaf/[id]
+├ ƒ /api/admin/impersonate
+├ ƒ /api/admin/kota
+├ ƒ /api/admin/login
+├ ƒ /api/admin/marketing/email-kampanya
+├ ƒ /api/admin/marketing/google-ads
+├ ƒ /api/admin/marketing/lead-tara
+├ ƒ /api/admin/marketing/leadler
+├ ƒ /api/admin/numara-havuzu
+├ ƒ /api/admin/numara-havuzu/[id]/twilio-esitle
+├ ƒ /api/admin/stats
+├ ƒ /api/ads
+├ ƒ /api/ai/price-suggestion
+├ ƒ /api/ai/product-description
+├ ƒ /api/ajan/[ajanAdi]
+├ ƒ /api/ajan/tetikle
+├ ƒ /api/analytics/churn
+├ ƒ /api/auth/[...nextauth]
+├ ƒ /api/auth/cikis
+├ ƒ /api/auth/giris-kodu-dogrula
+├ ƒ /api/auth/giris-kodu-gonder
+├ ƒ /api/auth/google
+├ ƒ /api/auth/google/callback
+├ ƒ /api/auth/google/init
+├ ƒ /api/auth/me
+├ ƒ /api/auth/onboarding-otp-dogrula
+├ ƒ /api/auth/onboarding-otp-gonder
+├ ƒ /api/b2b/eslestir
+├ ƒ /api/b2b/finans
+├ ƒ /api/b2b/kampanya
+├ ƒ /api/b2b/siparisler
+├ ƒ /api/bulten
+├ ƒ /api/checkout/callback
+├ ƒ /api/checkout/initialize
+├ ƒ /api/checkout/installments
+├ ƒ /api/ciro-anket
+├ ƒ /api/cron/buyume-skoru
+├ ƒ /api/cron/churn-scan
+├ ƒ /api/cron/data-purge
+├ ƒ /api/cron/dinamik-fiyat
+├ ƒ /api/cron/esnaf-hafiza
+├ ƒ /api/cron/gmb-yorum-kontrol
+├ ƒ /api/cron/google-reviews
+├ ƒ /api/cron/kampanya-motoru
+├ ƒ /api/cron/kolektif-zeka
+├ ƒ /api/cron/konusma-ozeti
+├ ƒ /api/cron/kuyruk-isleyici
+├ ƒ /api/cron/kvkk
+├ ƒ /api/cron/kvkk-purge
+├ ƒ /api/cron/lookalike-guncelle
+├ ƒ /api/cron/marketing-check
+├ ƒ /api/cron/mesaj-isleyici
+├ ƒ /api/cron/morning-message
+├ ƒ /api/cron/otonom-isletme
+├ ƒ /api/cron/rakip-analiz
+├ ƒ /api/cron/reklam-performans
+├ ƒ /api/cron/saglik-skor
+├ ƒ /api/cron/sezon-uyari
+├ ƒ /api/cron/tahsilat-hatirlatici
+├ ƒ /api/cron/weekly-report
+├ ƒ /api/cron/worker
+├ ƒ /api/cron/yenileme-hatirlatici
+├ ƒ /api/dashboard/[esnafId]
+├ ƒ /api/dashboard/ai-roi
+├ ƒ /api/dashboard/bildirimler
+├ ƒ /api/dashboard/buyume-skoru
+├ ƒ /api/dashboard/gelir-tahmini
+├ ƒ /api/dashboard/konusmalar
+├ ƒ /api/dashboard/konusmalar/mesajlar
+├ ƒ /api/dashboard/konusmalar/sesli
+├ ƒ /api/dashboard/musteriler
+├ ƒ /api/dashboard/omnichannel
+├ ƒ /api/dashboard/reklamlar
+├ ƒ /api/dashboard/sentiment
+├ ƒ /api/dashboard/stream
+├ ƒ /api/dashboard/summary
+├ ƒ /api/domain/durum
+├ ƒ /api/domain/register
+├ ƒ /api/domain/sec
+├ ƒ /api/editor/ai
+├ ƒ /api/esnaf/[id]
+├ ƒ /api/finans/bilanco
+├ ƒ /api/finans/cari-hesap-ekle
+├ ƒ /api/finans/gider-ekle
+├ ƒ /api/health
+├ ƒ /api/hr/personel
+├ ƒ /api/icerik
+├ ƒ /api/icerik/durum
+├ ƒ /api/icerik/uret
+├ ƒ /api/iletisim
+├ ƒ /api/instagram/dm-webhook
+├ ƒ /api/instagram/webhook
+├ ƒ /api/kariyer-basvuru
+├ ƒ /api/kurumsal-teklif
+├ ƒ /api/lead/scan
+├ ƒ /api/onboarding/complete
+├ ƒ /api/onboarding/submit
+├ ƒ /api/payment/callback
+├ ƒ /api/payment/create
+├ ƒ /api/payment/iptal
+├ ƒ /api/push/register
+├ ƒ /api/randevu
+├ ƒ /api/randevu/[id]
+├ ƒ /api/referans
+├ ƒ /api/reklam/kampanya
+├ ƒ /api/reviews
+├ ƒ /api/santiye
+├ ƒ /api/shop/categories
+├ ƒ /api/shop/coupons
+├ ƒ /api/shop/feeds/google
+├ ƒ /api/shop/feeds/meta
+├ ƒ /api/shop/inventory/bulk-update
+├ ƒ /api/shop/orders
+├ ƒ /api/shop/orders/[id]/refund
+├ ƒ /api/shop/orders/[id]/ship
+├ ƒ /api/shop/products
+├ ƒ /api/shop/products/[id]
+├ ƒ /api/shop/products/export
+├ ƒ /api/shop/products/import
+├ ƒ /api/shop/shipping
+├ ƒ /api/shop/sms
+├ ƒ /api/site/ai-edit
+├ ƒ /api/site/ai-rewrite
+├ ƒ /api/site/guncelle
+├ ƒ /api/site/preview/[esnafId]
+├ ƒ /api/site/provision
+├ ƒ /api/site/publish
+├ ƒ /api/site/uret
+├ ƒ /api/site/versiyonlar
+├ ƒ /api/storefront/[shopSlug]
+├ ƒ /api/vapi
+├ ƒ /api/wa/musteri-mesaji
+├ ƒ /api/whatsapp
+├ ƒ /api/whatsapp/proactive
+├ ƒ /api/worker/ai-task
+├ ƒ /api/workers/site-ureticisi
+├ ƒ /api/yorumlar
+├ ○ /dashboard
+├ ○ /dashboard/abonelik
+├ ○ /dashboard/ajanlar
+├ ○ /dashboard/b2b
+├ ○ /dashboard/bildirimler
+├ ○ /dashboard/domain
+├ ○ /dashboard/editor
+├ ○ /dashboard/ekip
+├ ○ /dashboard/entegrasyonlar
+├ ○ /dashboard/finans
+├ ○ /dashboard/icerik
+├ ○ /dashboard/konusmalar
+├ ○ /dashboard/kriz
+├ ○ /dashboard/magaza
+├ ○ /dashboard/magaza/import
+├ ○ /dashboard/magaza/pazarlama
+├ ○ /dashboard/magaza/reklam
+├ ○ /dashboard/magaza/siparisler
+├ ○ /dashboard/magaza/sms
+├ ○ /dashboard/magaza/urunler
+├ ○ /dashboard/musteriler
+├ ○ /dashboard/profil
+├ ○ /dashboard/raporlar
+├ ○ /dashboard/reklamlar
+├ ○ /dashboard/sitem
+├ ○ /dashboard/sitem/domain
+├ ○ /dashboard/sitem/editor
+├ ○ /dashboard/sitem/moduller
+├ ○ /demolar
+├ ○ /demolar/elektronik
+├ ○ /demolar/eticaret
+├ ○ /demolar/organik
+├ ○ /demolar/vitrin
+├ ○ /entegrasyonlar
+├ ○ /fiyatlar
+├ ○ /giris
+├ ○ /gizlilik
+├ ○ /hakkimizda
+├ ○ /iade-kosullari
+├ ƒ /icon
+├ ○ /iletisim
+├ ○ /kariyer
+├ ○ /kullanim-kosullari
+├ ○ /kurumsal
+├ ○ /kvkk
+├ ○ /login
+├ ƒ /magaza/[shopSlug]
+├ ○ /moduller
+├ ○ /nasil-calisir
+├ ○ /odeme
+├ ○ /odeme/basarili
+├ ○ /odeme/basarisiz
+├ ○ /odeme/sonuc
+├ ○ /onboarding
+├ ○ /onboarding/detaylar
+├ ○ /onboarding/isletme
+├ ○ /onboarding/onizleme
+├ ○ /onboarding/sektor
+├ ○ /ozellikler
+├ ○ /ozellikler/otomatik-e-fatura
+├ ○ /ozellikler/randevu-ve-kapora
+├ ○ /ozellikler/santiye-gunlugu
+├ ○ /ozellikler/sosyal-medya-ve-reklam
+├ ○ /ozellikler/yapay-zeka-asistani
+├ ○ /robots.txt
+├ ○ /sablonlar
+├ ○ /satis-sozlesmesi
+├ ● /sektorler/[sektor]
+│ ├ /sektorler/elektrikci
+│ ├ /sektorler/tesisatci
+│ ├ /sektorler/boyaci
+│ └ [+23 more paths]
+├ ○ /sektorler/[sektor/]
+├ ○ /sitemap.xml
+├ ƒ /sites/[domain]
+├ ○ /tedarik
+├ ○ /website-ornek
+└ ○ /yardim
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+

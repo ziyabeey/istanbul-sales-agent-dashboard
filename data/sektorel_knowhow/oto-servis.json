@@ -1,0 +1,138 @@
+{
+    "sektor": "oto-servis",
+    "sikSorulanlar": [
+        {
+            "soru": "Periyodik bakım ne zaman yapılmalı?",
+            "cevap": "Genel kural: 10.000 km veya 6 ayda bir (hangisi önce gelirse). Yağ değişimi, filtre, fren kontrolü dahil. Araç kitapçığında önerilen aralıkları esas alın.",
+            "aciliyet": "orta"
+        },
+        {
+            "soru": "Yağ değişimi ne kadar?",
+            "cevap": "Araç modeline göre 1.500-4.000₺ (yağ + filtre + işçilik). Sentetik yağ daha pahalı ama daha uzun ömürlü. Marka ve viskozite önemli.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Lastik değişimi ne zaman yapılmalı?",
+            "cevap": "Diş derinliği 1.6mm altına düştüğünde. Kış lastiği: Ekim-Mart zorunlu. Yaz lastiği: Nisan-Eylül. Lastik yaşı 5+ yılsa değiştirilmeli.",
+            "aciliyet": "orta"
+        },
+        {
+            "soru": "Fren sesi geliyor, tehlikeli mi?",
+            "cevap": "Cızırtı sesi = balata aşınmış, değiştirmeli. Sürtünme sesi = disk sorunu olabilir. Fren pedalı yumuşak = hidrolik kaçağı. Tümü acil kontrol gerektirir.",
+            "aciliyet": "yuksek"
+        },
+        {
+            "soru": "Motor arıza lambası yandı, ne yapmalıyım?",
+            "cevap": "Sabit yanıyorsa: motor yönetim sistemi uyarısı, en kısa sürede servise gelin. Yanıp sönüyorsa: acil durum, derhal durun ve çekici çağırın.",
+            "aciliyet": "yuksek"
+        },
+        {
+            "soru": "Klima bakımı gerekli mi?",
+            "cevap": "Evet. Yılda 1 kez gaz kontrolü + kabin filtresi değişimi. Soğutmuyor veya koku varsa bakteriyel temizlik gerekir. Yaz öncesi yapılmalı.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Çekici hizmeti var mı?",
+            "cevap": "Evet. 7/24 çekici hizmetimiz var. Şehir içi 500-1.500₺, şehirlerarası km bazında ücretlendirilir. Sigortalı çekici.",
+            "aciliyet": "yuksek"
+        },
+        {
+            "soru": "Araç ekspertiz yapıyor musunuz?",
+            "cevap": "Evet. Alım-satım öncesi detaylı ekspertiz: boya ölçümü, mekanik kontrol, OBD arıza tarama, test sürüşü. 500-1.500₺.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Garantisi devam eden araçta bakım yaptırabilir miyim?",
+            "cevap": "Evet. Yetkili servis dışında bakım garantiyi bozmaz (Rekabet Kurulu kararı). Orijinal eşdeğer parça + kayıtlı işlem yeterli.",
+            "aciliyet": "orta"
+        }
+    ],
+    "mevzuat": [
+        "Karayolları Trafik Kanunu (2918)",
+        "Motorlu Araç Servis İstasyonları Yönetmeliği",
+        "TSE standartları (yedek parça)",
+        "Kış lastiği zorunluluğu (1 Aralık - 1 Nisan)",
+        "Muayene istasyonu standartları",
+        "Atık yağ ve tehlikeli atık yönetimi",
+        "Rekabet Kurulu: Yetkisiz servis garanti kararı"
+    ],
+    "mevsimsellik": {
+        "kis": "Kış lastiği değişimi patlar (Ekim-Kasım). Akü sorunları artar. Antifriz kontrolü. Soğukta marş problemi.",
+        "yaz": "Klima bakımı zirve. Yaz lastiği değişimi. Tatil öncesi genel kontrol. Aşırı ısı → soğutma sistemi arızaları.",
+        "ilkbahar": "Kış sonrası genel bakım. Yaz lastiğine geçiş. Fren + süspansiyon kontrolü (kış hasarları).",
+        "sonbahar": "Kış hazırlığı: lastik, akü, antifriz, silecek. Periyodik bakım talebi artar."
+    },
+    "rakipler": [
+        "Yetkili servisler (marka bayileri)",
+        "Zincir oto servisler (Brisa, Petlas mağazaları)",
+        "Lastik bayileri (Michelin, Pirelli, Goodyear)",
+        "Online araç bakım platformları (Araç Doktoru)",
+        "Mobil servis hizmetleri"
+    ],
+    "ortalamaSureler": {
+        "yagDegisimi": "30-45 dakika",
+        "lastikDegisimi4Adet": "30-45 dakika",
+        "frenBakim": "1-2 saat",
+        "klimaBakim": "1-2 saat",
+        "periyodikBakim": "2-4 saat",
+        "motorTamir": "1-5 gün (arızaya göre)",
+        "ekspertiz": "1-2 saat"
+    },
+    "populerHizmetler": [
+        "Periyodik bakım (yağ + filtre)",
+        "Lastik değişimi / balans / rot ayarı",
+        "Fren bakımı (balata + disk)",
+        "Klima bakımı / gaz dolumu",
+        "Akü değişimi",
+        "Motor arıza teşhisi (OBD)",
+        "Araç ekspertiz",
+        "Çekici hizmeti (7/24)",
+        "Egzoz sistemi bakımı",
+        "Triger seti değişimi"
+    ],
+    "fiyatAraliklari": {
+        "yagDegisimi": "1.500-4.000₺",
+        "lastikDegisimi4Adet": "4.000-12.000₺ (lastik dahil)",
+        "balataDegisimi": "1.500-4.000₺",
+        "klimaBakim": "1.000-2.500₺",
+        "akuDegisimi": "2.000-5.000₺",
+        "trigerSeti": "3.000-8.000₺",
+        "ekspertiz": "500-1.500₺",
+        "cekici": "500-1.500₺ (şehir içi)"
+    },
+    "musteriProfili": {
+        "demografik": "Araç sahibi: 25-60 yaş, erkek ağırlıklı (%70). Her gelir seviyesi. Ticari araç sahipleri (filo) ayrı segment.",
+        "karar": "Güven ve referans en önemli. Şeffaf fiyat. OBD raporlu teşhis. Garanti belgesi. Arkadaş/komşu tavsiyesi.",
+        "hassasiyet": "Gereksiz parça değişimi endişesi, fiyat şeffaflığı, bekleme süresi, parça orijinalliği."
+    },
+    "caprazSatis": [
+        "Yağ değişimine gelen müşteriye genel kontrol (fren, lastik, akü) öner",
+        "Lastik değişimi yapana rot-balans + fren kontrolü",
+        "Kış bakımı paketi (lastik + antifriz + akü + silecek)",
+        "Ekspertiz yapan müşteriye düzenli bakım paketi sat",
+        "Ticari araç sahiplerine filo bakım anlaşması",
+        "Sigorta yenileme döneminde kasko + bakım paketi"
+    ],
+    "krizSenaryolari": [
+        {
+            "tetikleyici": "Tamir sonrası aynı arıza tekrarladı",
+            "yanit": "Ücretsiz kontrol yap. Hatayı kabul et ise ücretsiz düzelt. İş emri + garanti belgesi referans göster."
+        },
+        {
+            "tetikleyici": "Araca hasar verildi (servis sırasında)",
+            "yanit": "Sigorta devreye sok. Fotoğrafla belgele. Onarım veya tazminat teklif et. Şeffaf iletişim."
+        },
+        {
+            "tetikleyici": "Fiyat tartışması (beklenenden yüksek)",
+            "yanit": "Detaylı iş emri göster. Parça fiyatlarını belgeyle sun. OBD raporu ile gereklilik kanıtla. Alternatif (orijinal eşdeğer parça) öner."
+        }
+    ],
+    "dijitalIpuclari": [
+        "Google Haritalar: 'oto servis yakınımda' en çok aranan sorgulardan — yorum kritik",
+        "WhatsApp: Randevu + iş emri fotoğrafı → güven oluşturur",
+        "YouTube: 'Arabanızda bu sesi duyuyorsanız...' tarzı teşhis videoları çok izlenir",
+        "Instagram: Önce/sonra (motor, fren, lastik) görselleri teknik güven oluşturur",
+        "Blog: 'Kış lastiği ne zaman takılmalı', 'Motor yağı seçimi' SEO'da çok aranır",
+        "SMS/WA hatırlatma: Bakım zamanı geldiğinde otomatik mesaj → tekrar ziyaret"
+    ]
+}

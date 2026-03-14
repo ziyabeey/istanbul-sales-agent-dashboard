@@ -1,0 +1,134 @@
+{
+    "sektor": "elektrikci",
+    "sikSorulanlar": [
+        {
+            "soru": "Monofaz trifaz dönüşümü ne kadar?",
+            "cevap": "Belediye ek güç talebi ve tesisat dahil 8.000-15.000₺ arası. İlçe ve hat durumuna göre değişir.",
+            "aciliyet": "orta"
+        },
+        {
+            "soru": "Sigorta attı ne yapmalıyım?",
+            "cevap": "Dağıtım panosundaki kaçak akım rölesini kontrol edin. Atmaya devam ediyorsa elektrikçi çağırın — risk var.",
+            "aciliyet": "yuksek"
+        },
+        {
+            "soru": "Topraklama zorunlu mu?",
+            "cevap": "Evet. Elektrik İç Tesisleri Yönetmeliği'ne göre zorunlu. Topraklama olmadan sigorta sertifikası alınamaz.",
+            "aciliyet": "orta"
+        },
+        {
+            "soru": "Ev elektrik arızası acil mi?",
+            "cevap": "Kıvılcım veya yanık kokusu varsa evet, hemen profesyonel arayın. Sadece ışık sönmüşse sigorta panelini kontrol edin.",
+            "aciliyet": "yuksek"
+        },
+        {
+            "soru": "Klima montajı ne kadar?",
+            "cevap": "Standart split klima montajı 2.000-4.000₺. Dış ünite mesafesi, kat yüksekliği ve elektrik hattı durumuna göre değişir.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Komple ev elektrik tesisatı yenileme ne kadar?",
+            "cevap": "3+1 ev komple tesisat yenileme 15.000-30.000₺. Kablo, priz, anahtar, pano dahil. Boya işi ayrı. 3-5 gün sürer.",
+            "aciliyet": "orta"
+        },
+        {
+            "soru": "Güneş paneli (solar) kurulumu yapıyor musunuz?",
+            "cevap": "Evet. Çatı tipi solar panel sistemi kuruyoruz. 3-5kW ev sistemi 80.000-150.000₺. EPDK lisanssız üretim kapsamında. Amortisman 4-6 yıl.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Akıllı ev sistemi kurabilir misiniz?",
+            "cevap": "Evet. Akıllı priz, aydınlatma, perde motoru, alarm sistemi kurulumu yapıyoruz. Mevcut tesisata entegre edilir.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Elektrik kesildikten sonra bazı prizler çalışmıyor?",
+            "cevap": "Muhtemelen bir sigorta atmış. Panoyu kontrol edin. Aşağı düşmüş sigorta varsa yukarı itin. Tekrar atıyorsa kaçak vardır — çağırın.",
+            "aciliyet": "orta"
+        }
+    ],
+    "mevzuat": [
+        "TS EN 60439",
+        "Elektrik İç Tesisleri Yönetmeliği",
+        "TEİAŞ Teknik Şartname",
+        "İş Güvenliği: Yüksekte çalışma, elektrikle çalışma yönetmeliği",
+        "Enerji Verimliliği Kanunu",
+        "EPDK lisanssız üretim yönetmeliği (solar için)"
+    ],
+    "mevsimsellik": {
+        "kis": "Elektrikli ısıtma arızaları ve aşırı yük sorunları artar. Jeneratör/UPS talebi.",
+        "yaz": "Klima montaj ve bakım sezonu — önceden rezervasyon al. Aşırı yük → sigorta atmaları.",
+        "ilkbahar": "Nem kaynaklı kaçak akım sorunları. Yeni ev taşınma → priz ekleme, tesisat kontrolü.",
+        "sonbahar": "Kalorifer pompa ve ısıtma sistemi kontrolleri. Kış hazırlığı → kombi elektrik bağlantısı."
+    },
+    "rakipler": [
+        "Armut.com elektrikçi ilanları",
+        "Ustam Gelsin platformu",
+        "Mahalle elektrikçileri (kayıt dışı)",
+        "Büyük taahhüt firmaları (büyük projeler)",
+        "DIY (kendin yap) YouTube kanalları"
+    ],
+    "ortalamaSureler": {
+        "panoKontrol": "30-60 dakika",
+        "trifazDonusum": "3-5 iş günü",
+        "akimKoruma": "1-2 saat",
+        "klimaMontaj": "3-5 saat",
+        "kompleEvTesisat": "3-5 iş günü",
+        "prizEkleme": "1-2 saat"
+    },
+    "populerHizmetler": [
+        "Elektrik arıza tespiti ve onarımı",
+        "Sigorta pano değişimi / yenileme",
+        "Klima montajı / bakımı",
+        "Komple ev/ofis tesisat yenileme",
+        "Topraklama tesisatı",
+        "Aydınlatma sistemi kurulumu (spot, LED)",
+        "Akıllı ev sistemi kurulumu",
+        "Güneş paneli (solar) kurulumu",
+        "Jeneratör / UPS kurulumu",
+        "Trifaz dönüşüm"
+    ],
+    "fiyatAraliklari": {
+        "arizaTespit": "300-500₺ (geliş ücreti)",
+        "prizAnahtarDegisimi": "200-400₺/adet",
+        "panoDegisimi": "3.000-8.000₺",
+        "klimaMontaj": "2.000-4.000₺",
+        "kompleEvTesisat": "15.000-30.000₺",
+        "trifazDonusum": "8.000-15.000₺",
+        "topraklama": "2.000-5.000₺"
+    },
+    "musteriProfili": {
+        "demografik": "Ev sahibi veya kiracı, 30-60 yaş. Ticari: mağaza/ofis sahipleri, inşaat firmaları. Acil durum müşterisi yaş tanımaz.",
+        "karar": "Acil durumda hız > fiyat. Planlı işlerde fiyat karşılaştırması yapılır. Güvenilirlik ve referans kritik.",
+        "hassasiyet": "Güvenlik (elektrik tehlikeli), sertifikalı usta, fiyat şeffaflığı, garanti, temiz çalışma (duvar kırmadan)."
+    },
+    "caprazSatis": [
+        "Klima montajı yapan müşteriye yıllık bakım anlaşması",
+        "Tesisat yenileyen müşteriye akıllı ev sistemi öner",
+        "Pano değiştiren müşteriye topraklama kontrolü yap",
+        "İnşaat müşterisine komple tesisat + aydınlatma paketi",
+        "Solar panel kuran müşteriye akü/UPS sistemi öner"
+    ],
+    "krizSenaryolari": [
+        {
+            "tetikleyici": "Elektrik arızası acil (kıvılcım, duman)",
+            "yanit": "Telefonda: 'Ana sigortayı kapatın, cihazları prizden çekin.' 1 saat içinde müdahale. Acil mesai ücreti bildir."
+        },
+        {
+            "tetikleyici": "Yapılan iş sonrası tekrar arıza",
+            "yanit": "Garanti kapsamında ücretsiz kontrol ve onarım. Aynı gün randevu ver. Müşteriyi bilgilendir."
+        },
+        {
+            "tetikleyici": "Fiyat anlaşmazlığı",
+            "yanit": "İş emri/teklif formunu göster. Ek iş çıktıysa fotoğrafla belgele. Anlaşmalı fiyatın dışında ek çıkmadan bilgi ver."
+        }
+    ],
+    "dijitalIpuclari": [
+        "Google Haritalar: 'elektrikçi yakınımda' acil aramalarda çok yüksek hacimli",
+        "WhatsApp'tan fotoğraflı arıza tespiti: müşteri güveni artırır",
+        "Blog: 'Sigorta neden atar', 'Ev elektrik güvenliği' SEO'da çok aranan",
+        "YouTube: Basit elektrik kontrol videoları (sigorta resetleme) uzmanlık gösterir",
+        "7/24 acil hizmet Google profilinde belirt — acil aramalarda öne çıkarsın",
+        "Instagram: İş öncesi/sonrası pano fotoğrafları teknik güven oluşturur"
+    ]
+}

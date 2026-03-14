@@ -1,0 +1,166 @@
+<!-- ═══════════════════════════════════════════════════════════
+     MOBİL OPTİMİZASYON — Global CSS Override Embed
+     ═══════════════════════════════════════════════════════════
+     Wix: ⊕ Ekle > Gömülü Kod > HTML Gömme
+     Header bölgesine (tüm sayfalar), Boyut: 1px x 1px (gizli)
+     Veya: Ayarlar > Özel Kod > <head> bölümüne ekle
+     ═══════════════════════════════════════════════════════════ -->
+<html>
+<head>
+<style>
+  /* Bu CSS parent (Wix) sayfasına uygulanmaz, sadece iframe içinde kalır.
+     Wix'te mobil CSS için şu yöntemleri kullanın:
+     
+     YOL 1: Wix Editör > Mobil görünümde her elementi ayrı düzenle
+     YOL 2: HTML Embed widget'larındaki responsive CSS (aşağıdaki gibi)
+     YOL 3: Ayarlar > Özel Kod > Head'e CSS ekle (tüm sayfalar)
+  */
+  body { display: none; }
+</style>
+</head>
+<body>
+<!-- Bu dosya referans amaçlıdır — aşağıdaki CSS kurallarını
+     ilgili HTML Embed widget'larına uygulamanız gerekir -->
+</body>
+</html>
+
+<!-- 
+═══════════════════════════════════════════════════════════════
+REFERANS: MOBİL CSS KURALLARI
+Bu kuralları her HTML Embed widget'ının <style> bölümüne ekleyin
+═══════════════════════════════════════════════════════════════
+
+/* ── ANTI-GRAVITY EMBED (anti-gravity-embed.html) ── */
+@media (max-width: 768px) {
+  .floating-container {
+    transform: scale(0.75);
+  }
+  
+  .product-float img {
+    max-width: 180px;
+    max-height: 280px;
+  }
+  
+  /* Float yüksekliğini azalt */
+  @keyframes floatUpDown {
+    0%, 100% { transform: translateY(0px); }
+    50%      { transform: translateY(-15px); }
+  }
+  
+  /* Parçacık sayısını CSS ile azalt */
+  .particle:nth-child(n+7) { display: none !important; }
+  
+  /* Ripple küçült */
+  .ripple { width: 120px; height: 120px; }
+  
+  /* Glow küçült */
+  .glow-ring { width: 200px; height: 200px; }
+  
+  /* Gölgeyi daralt */
+  .shadow-ellipse { width: 120px; height: 12px; }
+}
+
+@media (max-width: 480px) {
+  .floating-container {
+    transform: scale(0.6);
+  }
+  
+  .product-float img {
+    max-width: 140px;
+    max-height: 220px;
+  }
+  
+  .particle:nth-child(n+5) { display: none !important; }
+  .ripple { display: none; }
+}
+
+/* ── MARQUEE EMBED (marquee-embed.html) ── */
+@media (max-width: 768px) {
+  body { height: 28px; }
+  
+  .marquee-item {
+    font-size: 10px;
+    padding: 0 20px;
+    letter-spacing: 0.05em;
+  }
+  
+  .marquee-track {
+    animation-duration: 18s;
+  }
+}
+
+/* ── GOOGLE MAPS EMBED (google-maps-embed.html) ── */
+@media (max-width: 768px) {
+  .map-card {
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+    max-width: none;
+    padding: 16px;
+  }
+  
+  .map-card-title { font-size: 14px; }
+  .map-card-addr { font-size: 12px; }
+  .map-card-btn { 
+    width: 100%; 
+    justify-content: center;
+    padding: 12px;
+  }
+}
+
+/* ── PERFORMANS — Azaltılmış Hareket ── */
+@media (prefers-reduced-motion: reduce) {
+  .product-float,
+  .ag-product   { animation: none !important; transform: translateY(-10px); }
+  .particle,
+  .ag-particle  { animation: none !important; opacity: 0 !important; }
+  .glow-ring,
+  .ag-glow      { animation: none !important; }
+  .shadow-ellipse,
+  .ag-shadow    { animation: none !important; transform: translateX(-50%) scale(0.7); }
+  .ripple,
+  .ag-ripple    { animation: none !important; opacity: 0 !important; }
+  .marquee-track { animation: none !important; }
+}
+
+
+═══════════════════════════════════════════════════════════════
+WIX EDİTÖR MOBİL AYARLARI (Manuel düzenleme)
+═══════════════════════════════════════════════════════════════
+
+Wix Editör üst çubukta 📱 ikonu ile mobil görünüme geçin.
+
+HEADER (#header1):
+  - Logo boyutunu küçültün: 120px genişlik → 80px
+  - Menü: Hamburger (☰) olarak değişir (Wix otomatik)
+  - Kayan şerit: Font 10px, yükseklik 28px
+
+HER SECTION İÇİN:
+  - 2 sütun → 1 sütun (Wix otomatik stack yapar, kontrol edin)
+  - H1: 42px → 26px
+  - H2: 32px → 20px
+  - H3: 24px → 18px
+  - Body: 16px → 14px
+  - Padding: 60px → 32px
+  - Section yükseklik: auto (sabit değil)
+
+BUTONLAR:
+  - Genişlik: %100 (stretch)
+  - Padding: 14px 24px → 12px 20px
+  - Font: 16px → 14px
+
+ANTI-GRAVITY WIDGET:
+  - Boyut: 350x500 → 250x350
+  - Ortalanmış, text üstünde
+
+FOOTER:
+  - Sütunlar: 4 → 1 (stack)
+  - Sosyal ikonlar: ortalanmış
+  - Telif hakkı: ortalanmış
+
+WHATSAPP BUTONU:
+  - Sabit: sağ alt köşe
+  - Boyut: 56x56px
+  - z-index: en üstte
+
+-->

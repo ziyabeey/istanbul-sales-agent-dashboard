@@ -1,0 +1,138 @@
+{
+    "sektor": "diyetisyen",
+    "sikSorulanlar": [
+        {
+            "soru": "İlk görüşme nasıl oluyor?",
+            "cevap": "İlk seansta vücut analizi (yağ oranı, kas kütlesi, BMI), beslenme alışkanlıkları sorgulaması ve hedef belirleme yapılır. 45-60 dakika sürer.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Online danışmanlık var mı?",
+            "cevap": "Evet. Zoom/WhatsApp video görüşme ile online diyet programı yapıyoruz. Ölçümler bant metre + fotoğraf ile takip edilir.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Ayda kaç kilo verilir?",
+            "cevap": "Sağlıklı kilo verme hızı ayda 2-4 kg. Hızlı diyetler kas kaybına ve yo-yo etkisine yol açar. Uzun vadeli yaşam tarzı değişikliği hedefleriz.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Diyet listesi ücretli mi?",
+            "cevap": "İlk görüşme + kişisel diyet listesi 500-1.000₺. Aylık takip 400-800₺. Paket programlarda (3 ay) %15-20 indirim.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Diyabet/tiroid/böbrek hastasıyım, diyet yapabilir miyim?",
+            "cevap": "Evet ama mutlaka doktorunuzla koordineli çalışırız. Hastalığa özel beslenme programı hazırlarız. Kan tahlili sonuçlarınızı getirin.",
+            "aciliyet": "yuksek"
+        },
+        {
+            "soru": "Hamilelikte diyet yapılabilir mi?",
+            "cevap": "Kilo verme diyeti hayır ama sağlıklı beslenme programı evet. Hamilelikte beslenme planı (trimesterlere göre) + vitamin desteği rehberliği yapıyoruz.",
+            "aciliyet": "yuksek"
+        },
+        {
+            "soru": "Sporcu beslenmesi programı var mı?",
+            "cevap": "Evet. Spor türüne göre (fitness, koşu, futbol) makro/mikro besin planlaması. Antrenman öncesi/sonrası beslenme. Takviye danışmanlığı.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Kaç seansta sonuç alırım?",
+            "cevap": "İlk 2 haftada enerji artışı hissedilir. 1 ayda belirgin sonuçlar. Hedef kilo için ortalama 3-6 ay süreç. Takip çok önemli.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Çocuğum için beslenme programı yapılır mı?",
+            "cevap": "Evet. Çocuk ve ergen beslenmesi uzman çocuk diyetisyeni gerektirir. Büyüme-gelişme odaklı, kısıtlayıcı olmayan program hazırlanır.",
+            "aciliyet": "orta"
+        }
+    ],
+    "mevzuat": [
+        "Diyetisyen Meslek Kanunu (5258)",
+        "Sağlık Bakanlığı Diyetisyen Muayenehane Yönetmeliği",
+        "Reklam Kurulu: 'Garantili kilo verme' iddiası YASAK",
+        "İlaç / takviye satışı sınırlamaları",
+        "KVKK: Sağlık verileri özel nitelikli kişisel veri",
+        "Online danışmanlık: e-sağlık yönetmeliği"
+    ],
+    "yasalUyarilar": [
+        "AI asla diyet listesi veremez — 'Diyetisyeninize danışın' zorunlu",
+        "Kilo verme garantisi verilmez",
+        "Hastalık durumunda mutlaka doktor koordinasyonu gerektiğini belirt",
+        "Takviye/ilaç önerisi sadece yüz yüze danışmanlıkta yapılabilir"
+    ],
+    "mevsimsellik": {
+        "kis": "Yılbaşı sonrası diyet patlaması (Ocak). Kış depresyonu → duygusal yeme danışmanlığı. Sıcak/doyurucu ama sağlıklı tarifler.",
+        "yaz": "Bikini sezonu öncesi (Nisan-Mayıs) en yoğun dönem. Hafif yaz tarifleri. Hidrasyon odaklı beslenme.",
+        "ilkbahar": "Detoks/bahar temizliği trendi. Düğün öncesi kilo verme. Spor başlangıcı → beslenme desteği.",
+        "sonbahar": "Okul başlangıcı → çocuk beslenmesi talebi. Kış hazırlığı. Bağışıklık güçlendirici beslenme."
+    },
+    "rakipler": [
+        "Online diyet platformları (Diyetkolik vb.)",
+        "Instagram diyetisyenleri (influencer)",
+        "Zayıflama merkezleri",
+        "Hazır diyet yemek servisleri",
+        "Mobil uygulamalar (MyFitnessPal, Yazio)"
+    ],
+    "ortalamaSureler": {
+        "ilkGorusme": "45-60 dakika",
+        "takipSeansi": "20-30 dakika",
+        "vucutAnalizi": "15-20 dakika",
+        "onlineSeans": "30-45 dakika",
+        "diyetListesiHazirlama": "1-2 iş günü"
+    },
+    "populerHizmetler": [
+        "Kilo verme / alma programı",
+        "Hastalığa özel beslenme (diyabet, tiroid, böbrek)",
+        "Hamilelik beslenmesi",
+        "Sporcu beslenmesi",
+        "Çocuk / ergen beslenmesi",
+        "Online diyet danışmanlığı",
+        "Kurumsal wellness / beslenme semineri",
+        "Detoks / anti-aging beslenme",
+        "Yeme bozukluğu danışmanlığı"
+    ],
+    "fiyatAraliklari": {
+        "ilkGorusmeVucutAnalizi": "500-1.000₺",
+        "aylikTakipProgrami": "400-800₺/seans",
+        "3AylikPaket": "3.000-6.000₺",
+        "6AylikPaket": "5.000-10.000₺",
+        "onlineSeans": "300-600₺",
+        "kurumsalSeminer": "3.000-8.000₺/seans"
+    },
+    "musteriProfili": {
+        "demografik": "Kadın %75, 25-50 yaş. Orta-üst gelir. Sağlık bilinci yüksek. Kronik hastalık yönetimi arayan 40+ yaş grubu.",
+        "karar": "Sonuç fotoğrafları ve müşteri referansları etkili. Diyetisyenin uzmanlık alanı ve kişisel yaklaşımı belirleyici.",
+        "hassasiyet": "Gizlilik (kilo/sağlık bilgisi), yargılayıcı olmayan yaklaşım, esnek ve uygulanabilir listeler, takip disiplini."
+    },
+    "caprazSatis": [
+        "Diyet programı alan müşteriye fitness/spor salonu yönlendir",
+        "Cilt sorunları olan müşteriye beslenme bazlı cilt bakımı öner",
+        "Kilo verme müşterisine psikolojik destek (yeme bozukluğu) yönlendir",
+        "Online müşteriyi yüz yüze seansa davet et (daha iyi sonuç)",
+        "3 aylık program alan müşteriye 6 aya uzatma teklifi (indirimli)",
+        "Kurumsal seminer → bireysel danışmanlık dönüşümü"
+    ],
+    "krizSenaryolari": [
+        {
+            "tetikleyici": "Müşteri kilo veremediğinden şikayetçi",
+            "yanit": "Diyet uyumunu değerlendir (yemek günlüğü kontrol). Metabolik test öner. Programı revize et. Motivasyonel görüşme."
+        },
+        {
+            "tetikleyici": "Sağlık sorunu bildirimi (baş dönmesi, halsizlik)",
+            "yanit": "Programı derhal durdur. Doktora yönlendir. Kan tahlili iste. Sonuca göre programı güncelle."
+        },
+        {
+            "tetikleyici": "Müşteri programı bırakmak istiyor",
+            "yanit": "Sebebini dinle. Esneklik sun (online seansa geç, sıklık azalt). Gelinen noktayı hatırlat. Zorlamadan motive et."
+        }
+    ],
+    "dijitalIpuclari": [
+        "Instagram'da sağlıklı tarif videoları en çok kaydetme alan içerik",
+        "Blog: 'Diyette ne yemeli', 'Kilo verdiren yiyecekler' SEO'da çok aranan sorgular",
+        "WhatsApp takip: Haftalık motivasyon mesajı + ölçüm hatırlatması müşteri sadakati artırır",
+        "Önce/sonra fotoğrafları (izinli): en güçlü sosyal kanıt",
+        "TikTok: 'Diyetisyen olarak bir günde ne yerim' videoları çok izlenir",
+        "YouTube: Detaylı beslenme eğitim videoları uzun vadeli organik trafik getirir"
+    ]
+}

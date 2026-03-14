@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YEREZ — Antigravity Design / Süzülmek Bir Yaşam Biçimi</title>
+  <style>
+    /* VARIABLES & RESET */
+    :root {
+      --space-black: #0a0a0f;
+      --molten-gold: #c9a84c;
+      --gold-light: #fff5d6;
+      --anti-cyan: #00f5ff;
+      --polar-white: #f8f8ff;
+      --obsidian: #1e1e2e;
+      --font-serif: Georgia, 'Times New Roman', serif;
+      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; cursor: none; }
+    body {
+      background-color: var(--space-black); color: var(--polar-white);
+      font-family: var(--font-sans); overflow-x: hidden; position: relative;
+    }
+    a { text-decoration: none; color: inherit; cursor: none; }
+    ul { list-style: none; }
+    button { background: none; border: none; cursor: none; color: inherit; font-family: inherit; }
+    input { font-family: inherit; }
+
+    /* UTILITIES */
+    .serif { font-family: var(--font-serif); }
+    .gold-text { color: var(--molten-gold); }
+    .gold-gradient {
+      background: linear-gradient(135deg, var(--molten-gold), var(--gold-light), var(--molten-gold));
+      background-size: 200%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: gold-shimmer 3s linear infinite;
+    }
+    .tracking-widest { letter-spacing: 0.2em; text-transform: uppercase; font-size: 0.8rem; }
+    
+    /* CUSTOM CURSOR */
+    .cursor-dot {
+      position: fixed; top: 0; left: 0; width: 6px; height: 6px;
+      background: var(--molten-gold); border-radius: 50%;
+      transform: translate(-50%, -50%); pointer-events: none; z-index: 9999;
+    }
+    .cursor-ring {
+      position: fixed; top: 0; left: 0; width: 40px; height: 40px;
+      border: 1px solid rgba(201, 168, 76, 0.4); border-radius: 50%;
+      transform: translate(-50%, -50%); pointer-events: none; z-index: 9998;
+      transition: width 0.2s, height 0.2s, background 0.2s, border-color 0.2s;
+    }
+    .cursor-ring.hovered {
+      width: 60px; height: 60px; border-color: var(--anti-cyan);
+      background: rgba(0, 245, 255, 0.05);
+    }
+    
+    /* KEYFRAMES */
+    @keyframes yerez-float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      25% { transform: translateY(-8px) rotate(0.5deg); }
+      75% { transform: translateY(-4px) rotate(-0.5deg); }
+    }
+    @keyframes particle-drift {
+      0% { transform: translate(0, 100vh) scale(0); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translate(var(--drift-x, 20px), -100px) scale(1); opacity: 0; }
+    }
+    @keyframes gold-shimmer {
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    @keyframes gravity-reverse {
+      0% { transform: translateY(60px); opacity: 0; filter: blur(4px); }
+      100% { transform: translateY(0); opacity: 1; filter: blur(0); }
+    }
+    @keyframes orbit {
+      from { transform: rotate(0deg) translateX(140px) rotate(0deg); }
+      to { transform: rotate(360deg) translateX(140px) rotate(-360deg); }
+    }
+    @keyframes breathe-glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(0,245,255,0.2), 0 0 40px rgba(201,168,76,0.1); }
+      50% { box-shadow: 0 0 60px rgba(0,245,255,0.5), 0 0 100px rgba(201,168,76,0.4); }
+    }
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    @keyframes chair-float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(2deg); }
+    }
+
+    /* LOADING SCREEN */
+    #loader {
+      position: fixed; inset: 0; background: var(--space-black); z-index: 10000;
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 1s ease-in-out;
+    }
+    #loader.hidden { opacity: 0; pointer-events: none; }
+    .loader-logo { font-size: 3rem; font-family: var(--font-serif); letter-spacing: 0.3em; animation: yerez-float 3s ease-in-out infinite; color: var(--polar-white); }
+
+    /* NAVBAR */
+    .navbar {
+      position: fixed; top: 0; width: 100%; padding: 1.5rem 4rem; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      transition: all 0.4s ease; border-bottom: 1px solid transparent;
+    }
+    .navbar.scrolled {
+      background: rgba(10, 10, 15, 0.7); backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(201,168,76,0.3);
+      padding: 1rem 4rem;
+    }
+    .nav-left .hamburger {
+      width: 30px; height: 20px; position: relative; display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .hamburger span { display: block; height: 1px; width: 100%; background: var(--polar-white); transition: 0.3s; }
+    .nav-center .logo { display:flex; font-family: var(--font-serif); font-size: 1.8rem; letter-spacing: 4px; font-weight: normal; }
+    .nav-center .logo span { display: inline-block; animation: yerez-float 4s ease-in-out infinite; }
+    .nav-center .logo span:nth-child(1) { animation-delay: 0.0s; }
+    .nav-center .logo span:nth-child(2) { animation-delay: 0.2s; }
+    .nav-center .logo span:nth-child(3) { animation-delay: 0.4s; }
+    .nav-center .logo span:nth-child(4) { animation-delay: 0.6s; }
+    .nav-center .logo span:nth-child(5) { animation-delay: 0.8s; }
+    .nav-right { display: flex; align-items: center; gap: 2rem; }
+    .lang-toggle { font-size: 0.9rem; font-weight: 500; letter-spacing: 1px; transition: color 0.3s; }
+    .lang-toggle .active { color: var(--molten-gold); }
+    .lang-toggle span { opacity: 0.5; transition: 0.3s; }
+    .lang-toggle span.active { opacity: 1; }
+    .nav-icons { display: flex; gap: 1.5rem; }
+    .nav-icons svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; transition: transform 0.3s, stroke 0.3s; }
+    .nav-icons svg:hover { transform: translateY(-3px); stroke: var(--molten-gold); }
+
+    /* INTERSECTION REVEAL CLASSES */
+    .reveal-up { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+    .reveal-up.in-view { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay: 0.1s; } .delay-2 { transition-delay: 0.2s; } .delay-3 { transition-delay: 0.3s; }
+
+    /* 1. HERO SECTION */
+    .hero {
+      position: relative; width: 100vw; height: 100vh;
+      display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+      overflow: hidden; padding: 0 2rem;
+    }
+    .particles-container { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+    .particle {
+      position: absolute; background: white; border-radius: 50%;
+      animation: particle-drift linear infinite; opacity: 0;
+    }
+    .hero-content { position: relative; z-index: 10; max-width: 1000px; display: flex; flex-direction: column; align-items: center; }
+    .hero-label {
+      font-size: 0.8rem; letter-spacing: 0.3em; margin-bottom: 2rem;
+      color: var(--molten-gold); overflow: hidden;
+    }
+    .hero-label span { display: inline-block; animation: gravity-reverse 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+    .hero-title {
+      font-size: clamp(3rem, 6vw, 6rem); font-family: var(--font-serif);
+      line-height: 1.1; margin-bottom: 1.5rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.3em;
+    }
+    .hero-title .word {
+      display: inline-block; opacity: 0; transform: translateY(60px);
+      animation: gravity-reverse 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    }
+    .hero-subtitle { margin-top: 1rem; margin-bottom: 3rem; opacity: 0; animation: fade-in 1s 1.5s forwards; }
+    @keyframes fade-in { to { opacity: 1; } }
+    
+    .cta-button {
+      position: relative; padding: 1rem 3rem; background: transparent;
+      border: 1px solid rgba(201,168,76,0.5); color: var(--polar-white);
+      font-family: var(--font-sans); letter-spacing: 2px; text-transform: uppercase; font-size: 0.85rem;
+      border-radius: 30px; transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+      overflow: hidden; display: inline-flex; align-items: center; justify-content: center;
+    }
+    .cta-button::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(201,168,76,0.1), rgba(0,245,255,0.05));
+      opacity: 0; transition: 0.4s;
+    }
+    .cta-button:hover {
+      transform: translateY(-8px); border-color: var(--molten-gold);
+      box-shadow: 0 10px 30px rgba(201,168,76,0.2), 0 0 15px rgba(201,168,76,0.4) inset;
+    }
+    .cta-button:hover::before { opacity: 1; }
+    .cta-button span { position: relative; z-index: 1; pointer-events: none; }
+
+    /* Abstract shapes */
+    .hero-shape {
+      position: absolute; right: 5%; bottom: 15%; width: 200px; height: 300px;
+      /* CSS silhouette of a chair using polygons */
+      clip-path: polygon(20% 0%, 40% 0%, 50% 40%, 90% 45%, 90% 60%, 50% 55%, 40% 100%, 20% 100%, 30% 60%, 0% 55%, 0% 45%, 30% 40%);
+      background: linear-gradient(45deg, rgba(30,30,46,0.5), rgba(201,168,76,0.2));
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      animation: chair-float 8s ease-in-out infinite; z-index: 1;
+    }
+
+    .scroll-indicator {
+      position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 10px; opacity: 0.6;
+    }
+    .scroll-indicator .arrow { animation: bounce 2s infinite; font-size: 1.2rem; }
+    @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-10px); } 60% { transform: translateY(-5px); } }
+
+    /* 2. COLLECTION SHOWCASE */
+    .collection-sec { padding: 8rem 4rem; position: relative; background: var(--space-black); }
+    .sec-header { text-align: center; margin-bottom: 5rem; }
+    .sec-header h2 { font-size: 3rem; margin-bottom: 1rem; }
+    
+    .grid-container {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem; max-width: 1400px; margin: 0 auto;
+    }
+    .card {
+      position: relative; height: 450px; background: var(--obsidian);
+      border-radius: 12px; overflow: hidden; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; padding: 2rem;
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.6s, background 0.6s;
+    }
+    .card::after {
+      content: ''; position: absolute; inset: -2px; z-index: -1;
+      background: linear-gradient(135deg, var(--molten-gold), transparent, var(--anti-cyan));
+      opacity: 0; transition: 0.6s; border-radius: 14px;
+    }
+    .card:hover { transform: translateY(-15px); background: rgba(30,30,46,0.8); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+    .card:hover::after { opacity: 0.4; }
+    
+    .card-shape { width: 120px; height: 120px; background: rgba(255,255,255,0.05); margin-bottom: 3rem; transition: 0.6s; position: relative;}
+    .card:hover .card-shape { transform: scale(1.1) rotate(15deg); background: rgba(201,168,76,0.1); box-shadow: 0 0 30px rgba(201,168,76,0.2); }
+    
+    .shape-1 { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; animation: morph 8s ease-in-out infinite; }
+    .shape-2 { width: 80px; height: 160px; border-radius: 40px; }
+    .shape-3 { border-radius: 50%; box-shadow: inset 20px 20px 40px rgba(0,0,0,0.5); }
+    .shape-4 { clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); }
+    .shape-5 { border-radius: 5px; transform: rotate(45deg); }
+    .shape-6 { width: 100px; border-radius: 50%; border: 4px solid rgba(255,255,255,0.1); background: transparent; }
+    @keyframes morph { 0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; } 50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; } }
+
+    .card-title { font-size: 1.2rem; font-family: var(--font-serif); text-align: center; opacity: 0.8; transition: 0.3s; }
+    .card:hover .card-title { opacity: 1; color: var(--molten-gold); }
+
+    /* 3. FEATURED PRODUCT */
+    .featured-sec { padding: 8rem 4rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; max-width: 1400px; margin: 0 auto; }
+    .feature-left { position: relative; height: 600px; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at center, rgba(30,30,46,0.8) 0%, transparent 70%); border-radius: 20px; }
+    .graviton-base { width: 300px; height: 350px; background: linear-gradient(145deg, #2a2a3a, #11111a); border-radius: 40px 40px 100px 100px / 80px 80px 60px 60px; position: relative; animation: chair-float 6s ease-in-out infinite; box-shadow: -20px 30px 50px rgba(0,0,0,0.5), inset 10px 10px 20px rgba(255,255,255,0.05); }
+    .graviton-base::before { content: ''; position: absolute; top: -50px; left: 50px; right: 50px; height: 180px; background: linear-gradient(145deg, #333344, #1a1a24); border-radius: 30px 30px 10px 10px; transform: perspective(300px) rotateX(20deg); box-shadow: inset 0 5px 15px rgba(255,255,255,0.1); }
+    .particle-ring { position: absolute; width: 450px; height: 450px; border: 1px dashed rgba(201,168,76,0.3); border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%, -50%); animation: orbit-ring 20s linear infinite; pointer-events: none; }
+    .particle-point { position: absolute; width: 8px; height: 8px; background: var(--anti-cyan); border-radius: 50%; top: 0; left: 50%; transform: translate(-50%, -50%); box-shadow: 0 0 15px var(--anti-cyan); }
+    .particle-ring::after { content: ''; position: absolute; width: 6px; height: 6px; background: var(--molten-gold); border-radius: 50%; bottom: 10%; right: 10%; box-shadow: 0 0 15px var(--molten-gold); }
+    @keyframes orbit-ring { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+    
+    .feature-right { display: flex; flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+    .feature-title { font-size: clamp(3rem, 5vw, 5rem); margin: 0; line-height: 1; }
+    .feature-subtitle { font-size: 1.5rem; color: rgba(255,255,255,0.6); font-family: var(--font-serif); font-style: italic; }
+    .feature-desc { font-size: 1.1rem; line-height: 1.8; color: rgba(255,255,255,0.8); max-width: 500px; margin-bottom: 1rem; }
+    
+    /* 4. MARQUEE */
+    .marquee-container { width: 100vw; overflow: hidden; background: var(--molten-gold); color: var(--space-black); padding: 1.5rem 0; position: relative; margin: 4rem 0; transform: rotate(-2deg) scale(1.05); }
+    .marquee-content { display: flex; width: max-content; animation: marquee 30s linear infinite; }
+    .marquee-text { font-size: 2rem; font-family: var(--font-sans); font-weight: 700; display: flex; align-items: center; white-space: nowrap; padding-right: 2rem; }
+    .marquee-dot { display: inline-block; width: 8px; height: 8px; background: var(--space-black); border-radius: 50%; margin: 0 2rem; }
+    
+    /* 5. STORY 1 */
+    .story-1 { display: flex; height: 80vh; min-height: 600px; margin-bottom: 8rem; }
+    .s1-left { width: 40%; background: #f0e8d8; color: var(--space-black); padding: 5rem; display: flex; flex-direction: column; justify-content: center; }
+    .s1-right { width: 60%; background: var(--space-black); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    
+    .css-lamp { position: relative; width: 100px; height: 100px; border-radius: 50%; background: var(--polar-white); animation: breathe-glow 4s infinite ease-in-out; z-index: 2; margin-top: -100px; }
+    .css-lamp::before { content: ''; position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); width: 2px; height: 300px; background: rgba(255,255,255,0.2); }
+    .lamp-beam { position: absolute; top: calc(50% + 50px); left: 50%; transform: translateX(-50%); width: 400px; height: 600px; background: linear-gradient(180deg, rgba(201,168,76,0.3) 0%, transparent 100%); clip-path: polygon(45% 0, 55% 0, 100% 100%, 0 100%); z-index: 1; opacity: 0.6; animation: beam-flicker 6s infinite alternate; }
+    @keyframes beam-flicker { 0% { opacity: 0.4; } 100% { opacity: 0.7; } }
+    
+    .s1-left h2 { font-size: clamp(3rem, 5vw, 5rem); line-height: 1; margin: 1rem 0; color: var(--space-black); }
+    .link-arrow { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; margin-top: 2rem; font-size: 1.1rem; border-bottom: 1px solid transparent; padding-bottom: 2px; transition: 0.3s; }
+    .link-arrow:hover { gap: 15px; border-bottom-color: var(--space-black); }
+    
+    /* 6. STORY 2 */
+    .story-2 { display: flex; flex-direction: row-reverse; padding: 4rem; max-width: 1400px; margin: 0 auto 8rem auto; align-items: center; gap: 6rem; }
+    .s2-text { flex: 1; }
+    .s2-visual { flex: 1; position: relative; height: 500px; display: flex; align-items: center; justify-content: center; }
+    .organic-shape { width: 400px; height: 400px; background: repeating-radial-gradient(circle at 30% 30%, rgba(30,30,46,1), rgba(30,30,46,1) 10px, rgba(40,40,56,1) 10px, rgba(40,40,56,1) 20px); border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; animation: morph 12s ease-in-out infinite reverse, chair-float 7s infinite ease-in-out; box-shadow: inset -30px -30px 60px rgba(0,0,0,0.6), 0 30px 60px rgba(0,0,0,0.4); position: relative; }
+    .organic-shape::after { content: ''; position: absolute; width: 150px; height: 100px; background: var(--obsidian); border-radius: 50%; bottom: -20px; right: -20px; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+    
+    .s2-text h2 { font-size: clamp(3rem, 4vw, 4rem); margin: 1rem 0; }
+    .s2-text p { color: rgba(255,255,255,0.7); font-size: 1.1rem; line-height: 1.8; margin-bottom: 2rem; }
+
+    /* 7. PARALLAX QUOTE */
+    .parallax-quote { height: 100vh; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; overflow: hidden; }
+    .par-bg { position: absolute; inset: -10%; background: radial-gradient(circle at center, rgba(30,30,46,0.5) 0%, var(--space-black) 80%); z-index: 0; }
+    .par-circle { position: absolute; width: 60vw; height: 60vw; border: 1px solid rgba(201,168,76,0.1); border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%, -50%); animation: pulse-ring 10s ease-out infinite; z-index: 0; }
+    @keyframes pulse-ring { 0% { transform: translate(-50%, -50%) scale(0.8); opacity: 1; } 100% { transform: translate(-50%, -50%) scale(1.5); opacity: 0; border-color: rgba(0,245,255,0.1); } }
+    .quote-content { position: relative; z-index: 10; max-width: 800px; padding: 0 2rem; }
+    .huge-quote { font-family: var(--font-serif); font-size: clamp(2.5rem, 4vw, 4rem); font-style: italic; line-height: 1.3; margin-bottom: 2rem; color: var(--polar-white); }
+    .quote-author { font-size: 1rem; color: var(--molten-gold); letter-spacing: 2px; text-transform: uppercase; }
+
+    /* 8. NEWSLETTER */
+    .newsletter { padding: 8rem 4rem; text-align: center; background: linear-gradient(to top, #111116, var(--space-black)); }
+    .news-wrapper { max-width: 600px; margin: 0 auto; }
+    .newsletter h2 { font-size: 2.5rem; margin-bottom: 2rem; }
+    .input-group { display: flex; position: relative; border-radius: 30px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 5px; overflow: hidden; backdrop-filter: blur(10px); transition: border-color 0.3s; }
+    .input-group:focus-within { border-color: var(--molten-gold); }
+    .input-group input { flex: 1; background: transparent; border: none; padding: 1rem 1.5rem; color: white; outline: none; font-size: 1rem; }
+    .input-group input::placeholder { color: rgba(255,255,255,0.3); }
+    .input-group button { background: var(--molten-gold); color: var(--space-black); padding: 0 2rem; border-radius: 25px; font-weight: bold; transition: 0.3s; cursor: none;}
+    .input-group button:hover { background: var(--white); box-shadow: 0 0 20px rgba(201,168,76,0.6); }
+
+    /* 9. FOOTER */
+    .footer { padding: 6rem 4rem 2rem 4rem; border-top: 1px solid rgba(255,255,255,0.05); background: #08080c; display: flex; flex-direction: column; }
+    .f-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 4rem; flex-wrap: wrap; gap: 3rem; }
+    .f-logo { font-family: var(--font-serif); font-size: 2rem; letter-spacing: 3px; color: var(--polar-white); display: flex;}
+    .f-logo span { animation: yerez-float 4s infinite; }
+    .f-logo span:nth-child(2) { animation-delay: 0.2s; } .f-logo span:nth-child(3) { animation-delay: 0.4s; }
+    .f-logo span:nth-child(4) { animation-delay: 0.6s; } .f-logo span:nth-child(5) { animation-delay: 0.8s; }
+    
+    .f-links { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 4rem; }
+    .f-links a { color: rgba(255,255,255,0.6); transition: 0.3s; font-size: 0.95rem; }
+    .f-links a:hover { color: var(--molten-gold); transform: translateX(5px); display: inline-block; }
+    
+    .f-socials { display: flex; gap: 1rem; }
+    .social-icon { width: 40px; height: 40px; border: 1px solid rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
+    .social-icon:hover { border-color: var(--anti-cyan); color: var(--anti-cyan); transform: translateY(-3px); }
+    
+    .f-bottom { display: flex; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 2rem; font-size: 0.85rem; color: rgba(255,255,255,0.4); }
+    .f-bottom-links { display: flex; gap: 2rem; }
+    .f-bottom-links a:hover { color: white; }
+
+    /* RESPONSIVE MEDIA QUERIES */
+    @media (max-width: 900px) {
+      .story-1, .story-2 { flex-direction: column; height: auto; padding: 2rem; margin-bottom: 4rem; }
+      .s1-left, .s1-right, .s2-text, .s2-visual { width: 100%; min-height: 400px; padding: 3rem 2rem; }
+      .featured-sec { grid-template-columns: 1fr; padding: 4rem 2rem; }
+      .feature-left { height: 400px; }
+      .graviton-base { transform: scale(0.8); }
+      .particle-ring { width: 300px; height: 300px; }
+      .navbar { padding: 1rem 2rem; }
+      .hero-title { font-size: clamp(2rem, 8vw, 3rem); }
+      .hero-shape { right: -20px; bottom: 5%; width: 150px; height: 200px; }
+      .grid-container { grid-template-columns: 1fr; }
+      .f-top { flex-direction: column; }
+    }
+    
+    /* PREFERS REDUCED MOTION */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+      .cursor-dot, .cursor-ring { display: none; }
+      html, body, a, button { cursor: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LOADING SCREEN -->
+  <div id="loader">
+    <div class="loader-logo">
+      <span>Y</span><span>E</span><span>R</span><span>E</span><span>Z</span>
+    </div>
+  </div>
+
+  <!-- CUSTOM CURSOR -->
+  <div class="cursor-dot" id="cursor-dot"></div>
+  <div class="cursor-ring" id="cursor-ring"></div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-left">
+      <button class="hamburger mag-btn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-center">
+      <div class="logo">
+        <span>Y</span><span>E</span><span>R</span><span>E</span><span>Z</span>
+      </div>
+    </div>
+    <div class="nav-right">
+      <button class="lang-toggle mag-btn" id="lang-btn">
+        <span id="tr-label" class="active">TR</span> / <span id="en-label">EN</span>
+      </button>
+      <div class="nav-icons">
+        <a href="#" class="mag-btn" aria-label="Wishlist">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+        </a>
+        <a href="#" class="mag-btn" aria-label="Cart">
+          <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 1. HERO SECTION -->
+  <section class="hero">
+    <div class="particles-container" id="particles"></div>
+    <div class="hero-shape"></div>
+    
+    <div class="hero-content">
+      <div class="hero-label tracking-widest reveal-up">
+        <span data-tr="YEREZ SUNAR" data-en="YEREZ PRESENTS">YEREZ SUNAR</span>
+      </div>
+      <h1 class="hero-title serif" id="hero-heading">
+        <!-- JS fills this for animation -->
+      </h1>
+      <div class="hero-subtitle tracking-widest reveal-up delay-2">
+        <span data-tr="KÜTLEÇEKİM SERİSİ" data-en="GRAVITON SERIES">KÜTLEÇEKİM SERİSİ</span>
+      </div>
+      <a href="#collection" class="cta-button mag-btn reveal-up delay-3">
+        <span data-tr="KOLEKSİYONU KEŞFET" data-en="EXPLORE COLLECTION">KOLEKSİYONU KEŞFET</span>
+      </a>
+    </div>
+    
+    <div class="scroll-indicator">
+      <span class="arrow">↓</span>
+    </div>
+  </section>
+
+  <!-- 2. COLLECTION SHOWCASE -->
+  <section class="collection-sec" id="collection">
+    <div class="sec-header reveal-up">
+      <h2 class="serif gold-text" data-tr="Evrenimizi Keşfet" data-en="Shop Our Universe">Evrenimizi Keşfet</h2>
+      <p class="tracking-widest" data-tr="Sıfır Yerçekimi Koleksiyonları" data-en="Zero Gravity Collections">Sıfır Yerçekimi Koleksiyonları</p>
+    </div>
+    <div class="grid-container">
+      <!-- Card 1 -->
+      <a href="#" class="card reveal-up">
+        <div class="card-shape shape-1"></div>
+        <h3 class="card-title" data-tr="Süzülme Serisi" data-en="Flotation Series">Süzülme Serisi</h3>
+      </a>
+      <!-- Card 2 -->
+      <a href="#" class="card reveal-up delay-1">
+        <div class="card-shape shape-2"></div>
+        <h3 class="card-title" data-tr="Işık Heykelleri" data-en="Light Sculptures">Işık Heykelleri</h3>
+      </a>
+      <!-- Card 3 -->
+      <a href="#" class="card reveal-up delay-2">
+        <div class="card-shape shape-3"></div>
+        <h3 class="card-title" data-tr="Yerden Yükselen" data-en="Rising Textiles">Yerden Yükselen</h3>
+      </a>
+      <!-- Card 4 -->
+      <a href="#" class="card reveal-up">
+        <div class="card-shape shape-4"></div>
+        <h3 class="card-title" data-tr="Duvar Portalleri" data-en="Wall Portals">Duvar Portalleri</h3>
+      </a>
+      <!-- Card 5 -->
+      <a href="#" class="card reveal-up delay-1">
+        <div class="card-shape shape-5"></div>
+        <h3 class="card-title" data-tr="Kozmetik Ritüeli" data-en="Gravity Ritual">Kozmetik Ritüeli</h3>
+      </a>
+      <!-- Card 6 -->
+      <a href="#" class="card reveal-up delay-2">
+        <div class="card-shape shape-6"></div>
+        <h3 class="card-title" data-tr="Ses Halleri" data-en="Sound Chambers">Ses Halleri</h3>
+      </a>
+    </div>
+  </section>
+
+  <!-- 3. FEATURED PRODUCT -->
+  <section class="featured-sec">
+    <div class="feature-left reveal-up">
+      <div class="particle-ring"><div class="particle-point"></div></div>
+      <div class="graviton-base"></div>
+    </div>
+    <div class="feature-right reveal-up delay-1">
+      <span class="tracking-widest gold-text" data-tr="YEREZ SUNAR" data-en="YEREZ PRESENTS">YEREZ SUNAR</span>
+      <h2 class="feature-title serif gold-gradient" data-tr="KÜTLEÇEKİM" data-en="GRAVITON">KÜTLEÇEKİM</h2>
+      <span class="feature-subtitle" data-tr="Lounge Koltuğu" data-en="Lounge Chair">Lounge Koltuğu</span>
+      <p class="feature-desc" data-tr="Türk el işçiliğinin sıfır-G yorumu. Her dikişi bir bilinç durumu, her eğrisi bir yörüngedir. Kütleçekim Koltuğu, oturmanın ötesinde bir deneyim sunar — süzülmenin kendisi." data-en="A zero-G interpretation of Turkish craftsmanship. Each stitch is a state of consciousness, every curve an orbit. The Graviton Lounge Chair offers more than seating — it offers the act of floating itself.">
+        Türk el işçiliğinin sıfır-G yorumu. Her dikişi bir bilinç durumu, her eğrisi bir yörüngedir. Kütleçekim Koltuğu, oturmanın ötesinde bir deneyim sunar — süzülmenin kendisi.
+      </p>
+      <a href="#" class="cta-button mag-btn" style="margin-top:1rem;">
+        <span data-tr="ÜRÜNÜ KEŞFET" data-en="DISCOVER PRODUCT">ÜRÜNÜ KEŞFET</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- 4. MARQUEE -->
+  <div class="marquee-container">
+    <div class="marquee-content" id="marquee-content">
+      <!-- JS fills this -->
+    </div>
+  </div>
+
+  <!-- 5. STORY SECTION 1 -->
+  <section class="story-1">
+    <div class="s1-left reveal-up">
+      <span class="tracking-widest" data-tr="YEREZ SUNAR" data-en="YEREZ PRESENTS">YEREZ SUNAR</span>
+      <h2 class="serif" data-tr="IŞIĞIN" data-en="OF LIGHT">IŞIĞIN</h2>
+      <span class="serif" style="font-size:1.5rem; font-style:italic;" data-tr="Heykel Olduğu An" data-en="The Moment It Becomes Sculpture">Heykel Olduğu An</span>
+      <p style="margin-top:1rem;" data-tr="Işık, mekânı heykele dönüştürdüğünde." data-en="When light transforms space into sculpture.">Işık, mekânı heykele dönüştürdüğünde.</p>
+      <a href="#" class="link-arrow mag-btn">
+        <span data-tr="Yeni Koleksiyonu Gör" data-en="Explore New Collection">Yeni Koleksiyonu Gör</span> &rarr;
+      </a>
+    </div>
+    <div class="s1-right reveal-up delay-1">
+      <div class="css-lamp"></div>
+      <div class="lamp-beam"></div>
+    </div>
+  </section>
+
+  <!-- 6. STORY SECTION 2 -->
+  <section class="story-2">
+    <div class="s2-text reveal-up">
+      <span class="tracking-widest gold-text" data-tr="ÜRÜN HİKAYESİ" data-en="PRODUCT STORY">ÜRÜN HİKAYESİ</span>
+      <h2 class="serif" data-tr="Tarih ile Geleceğin Arasında" data-en="Between History And Future">Tarih ile Geleceğin Arasında</h2>
+      <p data-tr="Geleneksel dokuma tekniklerinin modern antigravity prensipleriyle buluştuğu nokta. Yüzen çayır dokusu ile mekanınızda doğanın ağırlıksız halini yaşayın." data-en="Where traditional weaving techniques meet modern antigravity principles. Experience the weightless state of nature in your space with the floating meadow texture.">
+        Geleneksel dokuma tekniklerinin modern antigravity prensipleriyle buluştuğu nokta. Yüzen çayır dokusu ile mekanınızda doğanın ağırlıksız halini yaşayın.
+      </p>
+      <a href="#" class="cta-button mag-btn">
+        <span data-tr="HİKAYEYİ OKU" data-en="READ STORY">HİKAYEYİ OKU</span>
+      </a>
+    </div>
+    <div class="s2-visual reveal-up delay-1">
+      <div class="organic-shape"></div>
+    </div>
+  </section>
+
+  <!-- 7. PARALLAX QUOTE -->
+  <section class="parallax-quote" id="parallax-section">
+    <div class="par-bg" id="par-bg"></div>
+    <div class="par-circle"></div>
+    <div class="quote-content reveal-up">
+      <p class="huge-quote" id="par-text" data-tr="Tasarım, ağırlığın unutulduğu andır." data-en="Design is the moment when weight is forgotten.">
+        "Tasarım, ağırlığın unutulduğu andır."
+      </p>
+      <span class="quote-author">— Arif Yerez, <span data-tr="Kurucu" data-en="Founder">Kurucu</span></span>
+    </div>
+  </section>
+
+  <!-- 8. NEWSLETTER -->
+  <section class="newsletter reveal-up">
+    <div class="news-wrapper">
+      <h2 class="serif gold-text" data-tr="EVRENİMİZE KATIL" data-en="JOIN OUR UNIVERSE">EVRENİMİZE KATIL</h2>
+      <div class="input-group">
+        <input type="email" id="email-input" placeholder="e-posta@adresiniz.com" data-tr-placeholder="e-posta@adresiniz.com" data-en-placeholder="your@email.com">
+        <button class="mag-btn" data-tr="GÖNDER" data-en="SEND">GÖNDER</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. FOOTER -->
+  <footer class="footer">
+    <div class="f-top">
+      <div class="f-logo">
+        <span>Y</span><span>E</span><span>R</span><span>E</span><span>Z</span>
+      </div>
+      <div class="f-links">
+        <a href="#" data-tr="Mağaza Bulucu" data-en="Store Locator">Mağaza Bulucu</a>
+        <a href="#" data-tr="Malzeme Kütüphanesi" data-en="Material Library">Malzeme Kütüphanesi</a>
+        <a href="#" data-tr="Kargo & İade" data-en="Shipping & Returns">Kargo & İade</a>
+        <a href="#" data-tr="SSS" data-en="FAQ">SSS</a>
+        <a href="#" data-tr="Bülten" data-en="Newsletter">Bülten</a>
+        <a href="#" data-tr="Kariyer" data-en="Careers">Kariyer</a>
+      </div>
+      <div class="f-socials">
+        <a href="#" class="social-icon mag-btn">In</a>
+        <a href="#" class="social-icon mag-btn">Ig</a>
+        <a href="#" class="social-icon mag-btn">Pt</a>
+        <a href="#" class="social-icon mag-btn">Vm</a>
+      </div>
+    </div>
+    <div class="f-bottom">
+      <div class="f-bottom-links">
+        <a href="#" data-tr="Gizlilik" data-en="Privacy">Gizlilik</a>
+        <a href="#" data-tr="Çerezler" data-en="Cookies">Çerezler</a>
+        <a href="#" data-tr="Şartlar" data-en="Terms">Şartlar</a>
+      </div>
+      <div>&copy; 2026 Yerez — Istanbul</div>
+    </div>
+  </footer>
+
+  <!-- VANILLA JS -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // 1. LOADER & HERO TEXT
+      setTimeout(() => {
+        document.getElementById('loader').classList.add('hidden');
+      }, 1500);
+
+      // Hero Text Split
+      const trHeading = "SÜZÜLMEK BİR YAŞAM BİÇİMİ".split(" ");
+      const enHeading = "FLOATING IS A WAY OF LIFE".split(" ");
+      const heroHeading = document.getElementById('hero-heading');
+      
+      const renderHeading = (arr) => {
+        heroHeading.innerHTML = "";
+        arr.forEach((word, idx) => {
+          const span = document.createElement("span");
+          span.className = "word";
+          span.style.animationDelay = `${0.3 + (idx * 0.15)}s`;
+          span.innerText = word + "\u00A0";
+          heroHeading.appendChild(span);
+        });
+      };
+      
+      // 2. LANGUAGE TOGGLE LOGIC
+      let currentLang = localStorage.getItem("yerez_lang") || "tr";
+      const langBtn = document.getElementById("lang-btn");
+      const trLabel = document.getElementById("tr-label");
+      const enLabel = document.getElementById("en-label");
+      
+      const applyLang = (lang) => {
+        currentLang = lang;
+        localStorage.setItem("yerez_lang", lang);
+        
+        if(lang === "en") {
+          enLabel.classList.add("active"); trLabel.classList.remove("active");
+          document.querySelectorAll("[data-en]").forEach(el => {
+            if(el.tagName.toLowerCase() === 'input' || el.tagName.toLowerCase() === 'textarea') {
+              el.placeholder = el.getAttribute("data-en-placeholder") || el.getAttribute("data-en");
+            } else {
+              el.innerHTML = el.getAttribute("data-en");
+            }
+          });
+          renderHeading(enHeading);
+        } else {
+          trLabel.classList.add("active"); enLabel.classList.remove("active");
+          document.querySelectorAll("[data-tr]").forEach(el => {
+            if(el.tagName.toLowerCase() === 'input' || el.tagName.toLowerCase() === 'textarea') {
+               el.placeholder = el.getAttribute("data-tr-placeholder") || el.getAttribute("data-tr");
+            } else {
+               el.innerHTML = el.getAttribute("data-tr");
+            }
+          });
+          renderHeading(trHeading);
+        }
+      };
+      
+      applyLang(currentLang);
+      
+      langBtn.addEventListener("click", () => {
+        applyLang(currentLang === "tr" ? "en" : "tr");
+        // re-trigger animation for hero text by removing and adding class
+        const words = document.querySelectorAll('.word');
+        words.forEach(w => {
+           w.style.animation = 'none';
+           w.offsetHeight; /* trigger reflow */
+           w.style.animation = null; 
+        });
+      });
+
+      // 3. CUSTOM CURSOR WITH LERP
+      const cursorDot = document.getElementById('cursor-dot');
+      const cursorRing = document.getElementById('cursor-ring');
+      let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
+      let ringX = mouseX, ringY = mouseY;
+      
+      window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX; mouseY = e.clientY;
+        cursorDot.style.left = `${mouseX}px`;
+        cursorDot.style.top = `${mouseY}px`;
+      });
+      
+      const renderCursor = () => {
+        ringX += (mouseX - ringX) * 0.15; // lerp smooth factor
+        ringY += (mouseY - ringY) * 0.15;
+        cursorRing.style.left = `${ringX}px`;
+        cursorRing.style.top = `${ringY}px`;
+        requestAnimationFrame(renderCursor);
+      };
+      renderCursor();
+      
+      // Cursor Hover States
+      document.querySelectorAll('a, button, .card').forEach(el => {
+        el.addEventListener('mouseenter', () => cursorRing.classList.add('hovered'));
+        el.addEventListener('mouseleave', () => cursorRing.classList.remove('hovered'));
+      });
+
+      // 4. MAGNETIC BUTTONS
+      document.querySelectorAll('.mag-btn').forEach(btn => {
+        btn.addEventListener('mousemove', (e) => {
+          const rect = btn.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+          btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+        });
+        btn.addEventListener('mouseleave', () => {
+          btn.style.transform = `translate(0px, 0px)`;
+        });
+      });
+
+      // 5. NAVBAR SCROLL EFFECT & PARALLAX BACKGROUND
+      const navbar = document.getElementById('navbar');
+      const parBg = document.getElementById('par-bg');
+      
+      window.addEventListener('scroll', () => {
+        if(window.scrollY > 50) navbar.classList.add('scrolled');
+        else navbar.classList.remove('scrolled');
+        
+        // Simple parallax for parBg (if in view)
+        const parSec = document.getElementById('parallax-section');
+        const rect = parSec.getBoundingClientRect();
+        if(rect.top < window.innerHeight && rect.bottom > 0) {
+           parBg.style.transform = `translateY(${(window.innerHeight - rect.top)*0.1}px)`;
+        }
+      });
+
+      // 6. INTERSECTION OBSERVER FOR REVEAL
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            // Do not unobserve if you want them to animate again, but usually unobserve is cleaner
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      
+      document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
+
+      // 7. BACKGROUND PARTICLES
+      const particlesContainer = document.getElementById('particles');
+      for(let i=0; i<50; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        const size = Math.random() * 3 + 1;
+        p.style.width = `${size}px`;
+        p.style.height = `${size}px`;
+        p.style.left = `${Math.random() * 100}vw`;
+        p.style.top = `${Math.random() * 100}vh`;
+        // customize animation
+        const dur = Math.random() * 10 + 10;
+        p.style.animationDuration = `${dur}s`;
+        p.style.animationDelay = `${Math.random() * 5}s`;
+        p.style.setProperty('--drift-x', `${(Math.random() - 0.5) * 100}px`);
+        particlesContainer.appendChild(p);
+      }
+
+      // 8. MARQUEE CONTENT BUILDER
+      const t = "YERÇEKIMINDEN ÖZGÜR · FREE FROM GRAVITY · ISTANBUL · DUBAI · TOKYO · YEREZ · SÜZÜL · FLOAT · TASARIM RUHTUR · DESIGN IS SOUL · ";
+      const mContent = document.getElementById('marquee-content');
+      // Append multiple times for seamless illusion
+      for(let i=0; i<4; i++) {
+        const span = document.createElement('div');
+        span.className = 'marquee-text';
+        span.innerText = t;
+        mContent.appendChild(span);
+      }
+    });
+  </script>
+</body>
+</html>

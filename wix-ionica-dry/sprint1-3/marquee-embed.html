@@ -1,0 +1,107 @@
+<!-- ═══════════════════════════════════════════════════════════
+     KAYAN ŞERİT BANT — HTML Gömme Widget
+     Wix Editör > ⊕ Ekle > Gömülü Kod > HTML Gömme
+     Boyut: %100 genişlik x 36px yükseklik
+     Arka plan: Şeffaf
+     ═══════════════════════════════════════════════════════════ -->
+<html>
+<head>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #1a1a1a;
+    overflow: hidden;
+    height: 36px;
+    display: flex;
+    align-items: center;
+  }
+
+  .marquee-track {
+    display: flex;
+    animation: marqueeScroll 25s linear infinite;
+    white-space: nowrap;
+  }
+
+  .marquee-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 32px;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: #F5C518;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .marquee-item::after {
+    content: '•';
+    margin-left: 32px;
+    color: rgba(245, 197, 24, 0.3);
+    font-size: 8px;
+  }
+
+  @keyframes marqueeScroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Hover'da yavaşla */
+  .marquee-track:hover {
+    animation-duration: 60s;
+  }
+
+  /* Kenar fade efekti */
+  body::before, body::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 60px;
+    height: 100%;
+    z-index: 5;
+    pointer-events: none;
+  }
+  body::before {
+    left: 0;
+    background: linear-gradient(to right, #1a1a1a, transparent);
+  }
+  body::after {
+    right: 0;
+    background: linear-gradient(to left, #1a1a1a, transparent);
+  }
+</style>
+</head>
+<body>
+  <div class="marquee-track" id="track">
+    <!-- İçerik JS ile iki kez oluşturulacak (sonsuz döngü için) -->
+  </div>
+
+  <script>
+    const defaultMessages = [
+      "🚚 Ücretsiz Kargo",
+      "💧 FilmTec™ Membran",
+      "🔍 Kaçak Su Sensörü",
+      "↩️ 100 Gün İade",
+      "🏆 Vontron™ Teknolojisi",
+      "⭐ 4.9/5 Müşteri Puanı"
+    ];
+
+    function buildMarquee(messages) {
+      const track = document.getElementById('track');
+      // İki kez tekrarla: sonsuz döngü illüzyonu
+      const html = messages.map(m => `<span class="marquee-item">${m}</span>`).join('');
+      track.innerHTML = html + html;
+    }
+
+    buildMarquee(defaultMessages);
+
+    // Wix Velo'dan mesaj al (postMessage)
+    window.addEventListener('message', (event) => {
+      if (event.data && event.data.type === 'setMessages') {
+        buildMarquee(event.data.messages);
+      }
+    });
+  </script>
+</body>
+</html>

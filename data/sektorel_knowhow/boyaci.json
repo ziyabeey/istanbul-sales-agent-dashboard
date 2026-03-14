@@ -1,0 +1,130 @@
+{
+    "sektor": "boyaci",
+    "sikSorulanlar": [
+        {
+            "soru": "3+1 boş ev boya badana ne kadar sürer ve ne kadar tutar?",
+            "cevap": "Malzemeli ve işçilik dahil ortalama 12.000₺ - 18.000₺ arası değişir. Sadece işçilik isterseniz 8.000₺ civarı. 2 ustayla 2-3 günde teslim edebiliriz.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Dış cephe boyası ne kadar?",
+            "cevap": "m² bazında 150-300₺. İskele kurulumu ayrı (bina yüksekliğine göre). 4 katlı apartman dış cephe 80.000-150.000₺ arası.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Hangi boya markası kullanıyorsunuz?",
+            "cevap": "Marshall, Filli Boya, Jotun, Dyo kullanıyoruz. Müşteri tercihi öncelikli. Silinebilir ve anti-bakteriyel boyalar da var.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Rutubet/küf sorunu var, boya ile çözülür mü?",
+            "cevap": "Önce rutubet kaynağı tespit edilmeli (dış izolasyon, tesisat kaçağı). Sadece boya çözmez. Anti-küf astar + neme dayanıklı boya uygulanır.",
+            "aciliyet": "orta"
+        },
+        {
+            "soru": "Dekoratif boya (saten, metalik, efekt) yapıyor musunuz?",
+            "cevap": "Evet. Saten, metalik, beton efekt, taş doku, sıva efekti yapıyoruz. m² fiyatı standart boyanın 2-3 katı. Numune uygulama yapılır.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Evde eşyalar varken boya yapılır mı?",
+            "cevap": "Yapılır ama eşyaları örtmemiz gerekir. Boş evde kalite daha iyi, süre daha kısa. Eşyaları bir odaya toplama hizmetimiz var.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Boya kokusu ne kadar sürer?",
+            "cevap": "Su bazlı boyalar: 2-4 saat. Yağlı boyalar: 24-48 saat. İyi havalandırma şart. Kokusuz boya seçenekleri de mevcut (daha pahalı).",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Alçı/macun/kartonpiyer dahil mi?",
+            "cevap": "Boya öncesi macun + zımpara standart pakete dahil. Alçı tamiri ve kartonpiyer ek ücretli. Büyük hasarlar ayrı değerlendirilir.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Renk seçiminde yardımcı oluyor musunuz?",
+            "cevap": "Evet. Renk kataloğu ve numune uygulama yapıyoruz. Odanın ışığına ve mobilyalara göre öneride bulunuruz.",
+            "aciliyet": "dusuk"
+        }
+    ],
+    "mevzuat": [
+        "İş Güvenliği Sertifikasyonu",
+        "Mesleki Yeterlilik Belgesi",
+        "Yüksekte Çalışma Yönetmeliği (dış cephe, iskele)",
+        "VOC (uçucu organik bileşik) sınır değerleri",
+        "Bina Yönetim Planı (apartman dış cephe kararı — kat malikleri onayı)"
+    ],
+    "mevsimsellik": {
+        "kis": "İç cephe boyaları ve rutubet önleyici uygulamalar. Nem yüzünden dış cephe yapılmaz.",
+        "yaz": "Dış cephe, taşınma sezonu tamiratları çok yoğun. En uygun dış boya mevsimi. Fiyatlar %10-20 artar.",
+        "ilkbahar": "Bahar temizliği ile birlikte iç boya talebi artar. Düğün sezonu öncesi ev yenileme.",
+        "sonbahar": "Kış öncesi son dış cephe fırsatı. İç mekan hazırlığı. Nem sorunları belirginleşir."
+    },
+    "rakipler": [
+        "Armut.com boyacı ilanları",
+        "Koçtaş Usta Bul platformu",
+        "Kendin yap (DIY) trendi",
+        "Tadilat firmaları (komple paket)",
+        "Mahalle boyacıları (kayıt dışı)"
+    ],
+    "ortalamaSureler": {
+        "tekOdaBoya": "1 gün",
+        "kompleEv3+1": "2-3 gün",
+        "disCepheApartman": "1-3 hafta",
+        "dekoratifBoya": "2-4 gün (tek oda)",
+        "macunZimpara": "1 gün (ön hazırlık)"
+    },
+    "populerHizmetler": [
+        "İç cephe boya badana",
+        "Dış cephe boyama",
+        "Dekoratif boya (saten, metalik, efekt)",
+        "Alçı tamiri + macun + zımpara",
+        "Kartonpiyer montajı",
+        "Rutubet/küf izolasyonu + boya",
+        "Tavan boyama",
+        "Duvar kağıdı yapıştırma/sökme"
+    ],
+    "fiyatAraliklari": {
+        "icCepheM2": "80-150₺/m²",
+        "kompleEv3+1Malzemeli": "12.000-18.000₺",
+        "kompleEv3+1SadeceIscilik": "6.000-10.000₺",
+        "disCepheM2": "150-300₺/m²",
+        "dekoratifBoyaM2": "200-500₺/m²",
+        "alciTamirOda": "1.000-3.000₺",
+        "duvarKagidiM2": "100-250₺/m²"
+    },
+    "musteriProfili": {
+        "demografik": "Ev sahibi veya kiracı (uzun süreli), 30-55 yaş. Kadın müşteri renk/estetik, erkek müşteri fiyat/süre odaklı.",
+        "karar": "Referans ve önceki iş fotoğrafları önemli. Yerinde keşif + teklif karşılaştırması yapılır. 2-3 teklif alır.",
+        "hassasiyet": "Temiz çalışma (eşya koruma), koku, süre tahmini kesinliği, malzeme kalitesi, gizli maliyet endişesi."
+    },
+    "caprazSatis": [
+        "Boya yapan müşteriye elektrikçi öner (priz değişimi, spot lamba)",
+        "İç boya yaptırana kartonpiyer/alçı dekor teklif et",
+        "Dış cephe boyayan apartmana mantolama öneri",
+        "Rutubet çözümü yapan müşteriye tesisatçı yönlendir",
+        "Taşınma boyası müşterisine temizlik hizmeti öner"
+    ],
+    "krizSenaryolari": [
+        {
+            "tetikleyici": "Boya rengi beklentiyi karşılamadı",
+            "yanit": "Kuru halini göster (ıslakken farklı). Numune duvarı uygula. Revizyon gerekirse ek boya maliyetini paylaş."
+        },
+        {
+            "tetikleyici": "Eşyaya boya sıçradı",
+            "yanit": "Hemen temizle. Kalıcı hasar varsa fotoğrafla + tazminat/onarım teklif et. Sigorta varsa devreye sok."
+        },
+        {
+            "tetikleyici": "Boya çatladı/döküldü (kısa sürede)",
+            "yanit": "Ücretsiz kontrol yap. Astar eksikliği/nem sorunu tespit et. Garanti kapsamında onar. Nem kaynağını çöz."
+        }
+    ],
+    "dijitalIpuclari": [
+        "Önce/sonra fotoğrafları Instagram'da en çok etkileşim alan içerik",
+        "Google Haritalar: 'boyacı yakınımda' çok aranan sorgu",
+        "WhatsApp'tan fotoğraflı teklif: müşteri güvenini artırır",
+        "Blog: 'Ev boyama maliyeti 2026', 'Renk seçimi rehberi' SEO getirir",
+        "TikTok: Boya dönüşümü timelapse videoları viral potansiyeli yüksek",
+        "Renk danışmanlığı içeriği: marka bilinirliği + uzmanlık kanıtı"
+    ]
+}

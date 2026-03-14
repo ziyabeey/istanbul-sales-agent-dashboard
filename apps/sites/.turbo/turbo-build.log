@@ -1,0 +1,30 @@
+
+> @kepenk/sites@0.1.0 build /Users/admin/Desktop/istanbul-sales-agent-dashboard/XinXia/apps/sites
+> next build
+
+ ⚠ Invalid next.config.ts options detected: 
+ ⚠     Unrecognized key(s) in object: 'turbopack'
+ ⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+   ▲ Next.js 15.1.0
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/3) ...
+ ✓ Generating static pages (3/3)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                              Size     First Load JS
+┌ ○ /_not-found                          980 B           106 kB
+└ ƒ /[domain]                            137 B           105 kB
++ First Load JS shared by all            105 kB
+  ├ chunks/819-bdc000ddeeb9bea0.js       50.4 kB
+  ├ chunks/9d6802fb-345983399c7d2b5a.js  52.9 kB
+  └ other shared chunks (total)          1.88 kB
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

@@ -1,0 +1,127 @@
+{
+    "sektor": "terzi",
+    "sikSorulanlar": [
+        {
+            "soru": "Paça boyu kısaltma ve daraltma ne kadar?",
+            "cevap": "Paça boyu kısaltma 100-150₺, daraltma 200-300₺. Kumaş tipine göre değişir. Aynı gün veya ertesi gün teslim.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Elbise/takım elbise diktirebilir miyim?",
+            "cevap": "Evet. Özel dikim: takım elbise 5.000-15.000₺, elbise 2.000-8.000₺ (kumaş hariç). Ölçü alımı + prova + teslim 2-4 hafta.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Fermuar değişimi ne kadar?",
+            "cevap": "Pantolon fermuar: 150-250₺, mont/kaban fermuar: 300-600₺, elbise fermuar: 200-400₺. Fermuar malzemesi dahil.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Gelin/damatlık tadilat yapıyor musunuz?",
+            "cevap": "Evet. Gelin elbisesi daraltma/genişletme, boy ayarı, detay ekleme. 1.000-3.000₺. Düğünden en az 2 hafta önce gelin.",
+            "aciliyet": "orta"
+        },
+        {
+            "soru": "Online sipariş verip kargo ile gönderebilir miyim?",
+            "cevap": "Basit tadilatlar (paça, bel) için ölçüleri WhatsApp'tan gönderebilirsiniz. Karmaşık işler için prova gerekir, yüz yüze gelin.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Kilo aldım/verdim, elbiselerime ne yapabilirim?",
+            "cevap": "Daraltma veya genişletme yapılabilir. Genişletme sınırlıdır (dikiş payına bağlı). 1-2 beden daraltma rahat yapılır.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Perde dikimi/tadilat yapıyor musunuz?",
+            "cevap": "Evet. Perde dikimi, boy kısaltma, kat değişimi, fon perde yapıyoruz. Kumaş siz getirin veya beraber seçelim.",
+            "aciliyet": "dusuk"
+        },
+        {
+            "soru": "Ne kadar sürede teslim edersiniz?",
+            "cevap": "Basit tadilat (paça, fermuar): aynı gün veya ertesi gün. Daraltma/genişletme: 2-3 gün. Özel dikim: 2-4 hafta.",
+            "aciliyet": "orta"
+        }
+    ],
+    "mevzuat": [
+        "Esnaf ve Sanatkârlar Odası Temel Kuralları",
+        "Mesleki Yeterlilik Belgesi (opsiyonel ama güven artırır)",
+        "Tüketici Hakları (iş garantisi, iade koşulları)",
+        "İş Güvenliği (dikiş makinesi, ütü, buhar)"
+    ],
+    "mevsimsellik": {
+        "kis": "Kaban fermuar değişimi, kaban/mont daraltma işlemleri. Yılbaşı partisi elbise tadilatı.",
+        "yaz": "Abiye tadilatları, düğün sezonu elbiseleri, pantolon boyu kısaltma. En yoğun dönem.",
+        "ilkbahar": "Düğün sezonu başlangıcı. Gelin/damatlık tadilatı. Bahar gardrop değişimi → daraltma/kısaltma.",
+        "sonbahar": "Okul başlangıcı — forma tadilatı. Kışlık giyim hazırlığı. Mont fermuar tamirleri başlar."
+    },
+    "rakipler": [
+        "Kuru temizleme tadilatları",
+        "AVM içi hızlı terziler",
+        "Online tadilat servisleri",
+        "Fast fashion (yeni al, tamir ettirme)",
+        "DIY dikiş makinesi kullanımı"
+    ],
+    "ortalamaSureler": {
+        "pacaKisaltma": "15-30 dakika (bekleme ile teslim)",
+        "fermuarDegisimi": "30-60 dakika",
+        "daraltmaGenisletme": "1-3 gün",
+        "ozelDikimTakimElbise": "2-4 hafta",
+        "gelinElbiseTadilat": "1-2 hafta",
+        "perdeDikimi": "2-5 gün"
+    },
+    "populerHizmetler": [
+        "Pantolon paça kısaltma/daraltma",
+        "Fermuar değişimi (pantolon, mont, elbise)",
+        "Elbise/takım elbise daraltma/genişletme",
+        "Gelin/damatlık tadilatı",
+        "Özel dikim (takım elbise, elbise, gömlek)",
+        "Perde dikimi/tadilatı",
+        "Deri/süet onarımı",
+        "Düğme/astar değişimi",
+        "Forma/üniforma tadilatı"
+    ],
+    "fiyatAraliklari": {
+        "pacaKisaltma": "100-150₺",
+        "pacaDaraltma": "200-300₺",
+        "fermuarPantolon": "150-250₺",
+        "fermuarMont": "300-600₺",
+        "daraltma1Beden": "300-600₺",
+        "ozelDikimTakimElbise": "5.000-15.000₺",
+        "gelinElbiseTadilat": "1.000-3.000₺",
+        "perdeDikimiM": "50-150₺/metre"
+    },
+    "musteriProfili": {
+        "demografik": "Kadın %60, erkek %40. 25-60 yaş. Düğün sezonu: gelinler. İş dünyası: takım elbise müşterisi.",
+        "karar": "Hız (acil tadilat), kalite (düzgün dikiş), fiyat. Düzenli müşteri sadakati yüksek. Referans güçlü.",
+        "hassasiyet": "Kıyafete zarar verme endişesi, teslim süresi kesinliği, fiyat önceden bilme, kalıp/prova deneyimi."
+    },
+    "caprazSatis": [
+        "Pantolon tadilatına gelen müşteriye gömlek/ceket tadilatı sor",
+        "Düğün tadilatı yapana davetli kıyafeti tadilatı öner",
+        "Kilo verip daraltma yaptıran müşteriye diğer kıyafetler için de teklif ver",
+        "Perde dikimi yapan müşteriye kırlent/masa örtüsü öner",
+        "Özel dikim müşterisine kumaş seçimi danışmanlığı (partner kumaşçı)"
+    ],
+    "krizSenaryolari": [
+        {
+            "tetikleyici": "Kıyafet hasar gördü (yanlış kesim, yırtık)",
+            "yanit": "Derhal kabul et. Onarım mümkünse onar. Değilse piyasa değerinde tazminat teklif et. Sigorta devreye sok."
+        },
+        {
+            "tetikleyici": "Teslim tarihi kaçırıldı (düğün/toplantı öncesi)",
+            "yanit": "Acil fazla mesai yap. Teslim et. Gecikme indirimi uygula. Bir sonraki iş ücretsiz teklif et."
+        },
+        {
+            "tetikleyici": "Müşteri sonuçtan memnun değil",
+            "yanit": "Sorunu dinle. Gerekirse ücretsiz revizyon yap. Prova aşamasında onay almak gelecekte bunu önler."
+        }
+    ],
+    "dijitalIpuclari": [
+        "Instagram: Özel dikim ve dönüşüm fotoğrafları (önce/sonra) çok etkili",
+        "Google Haritalar: 'terzi yakınımda' lokalde çok aranır — yorum sayısı önemli",
+        "WhatsApp: Fotoğraflı tadilat teklifi → hızlı dönüş, müşteri kazanımı",
+        "Blog: 'Takım elbise ölçü rehberi', 'Fermuar değişimi fiyatları' SEO getirir",
+        "Düğün sezonu öncesi gelin/damatlık tadilat kampanyası duyur",
+        "TikTok: Dikiş/tadilat timelapse videoları — zanaatkarlık ilgi çeker"
+    ]
+}
