@@ -58,7 +58,7 @@ Bu işletme için web sitesi içeriklerini üret.`
 
         return NextResponse.json({ ok: true, icerik: json })
     } catch (e: any) {
-        console.error('[AI İÇERİK ÜRET HATA]', e)
+        // console.error('[AI İÇERİK ÜRET HATA]', e)
         return NextResponse.json({ error: e.message }, { status: 500 })
     }
 }

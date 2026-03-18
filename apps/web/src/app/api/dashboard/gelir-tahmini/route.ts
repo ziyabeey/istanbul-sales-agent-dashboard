@@ -13,7 +13,7 @@ export async function GET(req: Request) {
         const tahmin = await gelirTahminEt(esnafId)
         return NextResponse.json(tahmin)
     } catch (error) {
-        console.error('[GELİR TAHMİNİ HATA]', error)
+        // console.error('[GELİR TAHMİNİ HATA]', error)
         return NextResponse.json({ error: 'Sunucu hatası' }, { status: 500 })
     }
 }

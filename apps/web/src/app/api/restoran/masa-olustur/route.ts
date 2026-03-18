@@ -68,7 +68,7 @@ export async function POST(request: Request) {
         })
     } catch (error: unknown) {
         const message = error instanceof Error ? error.message : 'Bilinmeyen hata'
-        console.error('[MASA OLUŞTUR HATA]', message)
+        // console.error('[MASA OLUŞTUR HATA]', message)
         return NextResponse.json({ error: message }, { status: 500 })
     }
 }

@@ -22,7 +22,7 @@ export function PricingCard({ tier, title, price, description, features, isRecom
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5, delay }}
-            className={`relative flex flex-col p-6 sm:p-8 rounded-3xl ${isRecommended ? 'bg-background text-white border-2 border-rust ring-4 ring-rust/20 shadow-2xl shadow-rust/10 scale-105 z-10' : 'bg-white text-foreground border border-border-light/30 shadow-sm'} overflow-hidden h-full`}
+            className={`relative flex flex-col p-6 sm:p-8 rounded-3xl ${isRecommended ? 'bg-ink text-white border-2 border-rust ring-4 ring-rust/20 shadow-2xl shadow-rust/10 scale-105 z-10' : 'bg-white text-foreground border border-border-light/30 shadow-sm'} overflow-hidden h-full`}
         >
             {isRecommended && (
                 <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-rust to-gold" />
@@ -41,19 +41,19 @@ export function PricingCard({ tier, title, price, description, features, isRecom
             )}
 
             <h3 className="text-2xl font-syne font-extrabold mb-2">{title}</h3>
-            <p className={`text-sm mb-6 ${isRecommended ? 'text-muted-foreground-light' : 'text-muted-foreground'}`}>{description}</p>
+            <p className={`text-sm mb-6 ${isRecommended ? 'text-muted-foreground' : 'text-muted-foreground'}`}>{description}</p>
 
             <div className="mb-6">
                 <span className="text-4xl font-extrabold font-syne">{price}</span>
-                <span className={`text-sm ${isRecommended ? 'text-muted-foreground-light' : 'text-muted-foreground'}`}> /ay</span>
+                <span className={`text-sm ${isRecommended ? 'text-muted-foreground' : 'text-muted-foreground'}`}> /ay</span>
             </div>
 
-            <Link href="/kayit" className={`w-full py-4 text-center rounded-xl font-bold transition-all mb-8 ${isRecommended ? 'bg-rust hover:bg-rust-dark text-white shadow-lg' : 'bg-background hover:bg-background-light text-white'}`}>
+            <Link href="/kayit" className={`w-full py-4 text-center rounded-xl font-bold transition-all mb-8 ${isRecommended ? 'bg-rust hover:bg-rust-dark text-white shadow-lg' : 'bg-foreground hover:bg-foreground/90 text-white'}`}>
                 {primaryCtaText}
             </Link>
 
             <div className="flex-1">
-                <p className={`text-xs font-bold uppercase tracking-widest mb-4 ${isRecommended ? 'text-muted-foreground-light' : 'text-muted-foreground-dark'}`}>
+                <p className={`text-xs font-bold uppercase tracking-widest mb-4 ${isRecommended ? 'text-muted-foreground' : 'text-muted-foreground-dark'}`}>
                     Paket İçeriği:
                 </p>
                 <ul className="flex flex-col gap-3">
@@ -62,7 +62,7 @@ export function PricingCard({ tier, title, price, description, features, isRecom
                             <span className={`shrink-0 mt-0.5 ${isRecommended ? 'text-rust' : 'text-sage'}`}>
                                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
                             </span>
-                            <span className={`text-sm leading-tight ${isRecommended ? 'text-muted-foreground-light' : 'text-muted-foreground-dark'}`}>
+                            <span className={`text-sm leading-tight ${isRecommended ? 'text-muted-foreground' : 'text-muted-foreground-dark'}`}>
                                 {feature}
                             </span>
                         </li>

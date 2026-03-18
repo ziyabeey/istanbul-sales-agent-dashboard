@@ -21,7 +21,7 @@ export async function GET(request: Request) {
 
         return NextResponse.json({ success: true, message: `${esnaflarRef.docs.length} esnaf için pazarlama kontrolü yapıldı.` })
     } catch (e: any) {
-        console.error('[Marketing Cron Error]', e)
+        // console.error('[Marketing Cron Error]', e)
         return NextResponse.json({ error: e.message }, { status: 500 })
     }
 }

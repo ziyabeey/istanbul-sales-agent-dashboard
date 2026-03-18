@@ -74,7 +74,7 @@ export async function POST(
       tahminiTeslim: sonuc.tahminiTeslim,
     })
   } catch (error: any) {
-    console.error('[KARGO HATA]', error)
+    // console.error('[KARGO HATA]', error)
     return NextResponse.json({ error: error.message }, { status: 500 })
   }
 }

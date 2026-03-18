@@ -184,7 +184,7 @@ export async function POST(request: Request) {
         })
     } catch (error: unknown) {
         const message = error instanceof Error ? error.message : 'Bilinmeyen hata'
-        console.error('[MENU SİHİRBAZI HATA]', message)
+        // console.error('[MENU SİHİRBAZI HATA]', message)
         return NextResponse.json({ error: message }, { status: 500 })
     }
 }

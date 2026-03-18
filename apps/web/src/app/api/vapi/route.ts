@@ -107,7 +107,7 @@ export async function POST(req: Request) {
 
         return NextResponse.json({ ok: true })
     } catch (error: any) {
-        console.error("[Vapi Webhook Hatası]", error)
+        // console.error("[Vapi Webhook Hatası]", error)
         return NextResponse.json({ error: "Internal Error" }, { status: 500 })
     }
 }

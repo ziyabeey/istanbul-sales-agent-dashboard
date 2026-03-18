@@ -47,7 +47,7 @@ export async function POST(req: Request) {
             sonGun: iptalTarihi?.toISOString() ?? null,
         })
     } catch (error: any) {
-        console.error('[İptal API Hatası]', error)
+        // console.error('[İptal API Hatası]', error)
         return NextResponse.json({ error: 'Internal Error' }, { status: 500 })
     }
 }

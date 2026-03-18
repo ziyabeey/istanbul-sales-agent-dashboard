@@ -1,5 +1,6 @@
 Dockerfile
 .dockerignore
+.gcloudignore
 node_modules
 npm-debug.log
 README.md
@@ -16,3 +17,12 @@ README.md
 /docs
 /brain
 .gemini
+google-cloud-sdk
+dev.log
+out
+.turbo
+.DS_Store
+*.tmp
+firebase-debug.log
+tsconfig.tsbuildinfo
+wix-ionica-dry

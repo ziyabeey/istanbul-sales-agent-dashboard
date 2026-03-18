@@ -1,56 +1,131 @@
+/**
+ * Firestore Security Rules — kepenk.ai
+ *
+ * Multi-tenant RBAC with role-based access control.
+ * Roles: owner > admin > editor > viewer
+ */
 rules_version = '2';
+
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // Esnaflar: sadece kendi belgesini okuyabilir, yazmak yasak (Admin SDK yazar)
-    match /esnaflar/{esnafId} {
-      allow read: if request.auth != null && request.auth.uid == esnafId;
+    // ═══ HELPER FUNCTIONS ═══
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function getUserRole(siteId) {
+      return request.auth.token.sites[siteId];
+    }
+
+    function hasRole(siteId, role) {
+      return isSignedIn() && getUserRole(siteId) == role;
+    }
+
+    function hasAnyRole(siteId, roles) {
+      return isSignedIn() && getUserRole(siteId) in roles;
+    }
+
+    function isOwnerOrAdmin(siteId) {
+      return hasAnyRole(siteId, ['owner', 'admin']);
+    }
+
+    function canRead(siteId) {
+      return hasAnyRole(siteId, ['owner', 'admin', 'editor', 'viewer']);
+    }
+
+    function canWrite(siteId) {
+      return hasAnyRole(siteId, ['owner', 'admin', 'editor']);
+    }
+
+    function canDelete(siteId) {
+      return isOwnerOrAdmin(siteId);
+    }
+
+    // ═══ SITES ═══
+
+    match /sites/{siteId} {
+      allow read: if canRead(siteId);
+      allow update: if isOwnerOrAdmin(siteId);
+      allow delete: if hasRole(siteId, 'owner');
+
+      // Products
+      match /products/{productId} {
+        allow read: if canRead(siteId);
+        allow create, update: if canWrite(siteId);
+        allow delete: if canDelete(siteId);
+      }
+
+      // Orders
+      match /orders/{orderId} {
+        allow read: if canRead(siteId);
+        allow create: if canWrite(siteId);
+        allow update: if canWrite(siteId);
+      }
+
+      // Members
+      match /members/{memberId} {
+        allow read: if canRead(siteId);
+        allow create: if isOwnerOrAdmin(siteId);
+        allow update: if isOwnerOrAdmin(siteId);
+        allow delete: if canDelete(siteId);
+      }
+
+      // Transactions (accounting)
+      match /transactions/{txId} {
+        allow read: if canRead(siteId);
+        allow create: if canWrite(siteId);
+        allow update: if isOwnerOrAdmin(siteId);
+      }
+
+      // Bookings
+      match /bookings/{bookingId} {
+        allow read: if canRead(siteId);
+        allow create, update: if canWrite(siteId);
+        allow delete: if canDelete(siteId);
+      }
+
+      // Customer conversations (WhatsApp)
+      match /conversations/{convId} {
+        allow read: if canRead(siteId);
+        allow write: if canWrite(siteId);
+
+        match /messages/{msgId} {
+          allow read: if canRead(siteId);
+          allow create: if canWrite(siteId);
+        }
+      }
+
+      // AI Usage tracking
+      match /aiUsage/{period} {
+        allow read: if isOwnerOrAdmin(siteId);
+        allow write: if false; // Only server writes
+      }
+
+      // Counters (distributed)
+      match /counters/{counterId} {
+        allow read: if canRead(siteId);
+        allow write: if false; // Only server writes
+      }
+    }
+
+    // ═══ PLATFORM (admin only) ═══
+
+    match /platform/{document=**} {
+      allow read: if request.auth.token.admin == true;
+      allow write: if false; // Only server writes
+    }
+
+    // ═══ PUBLIC (QR menu, public site) ═══
+
+    match /public/{siteId}/menu/{menuId} {
+      allow read: if true; // Public menu for QR ordering
       allow write: if false;
     }
 
-    // Yorumlar: giriş yapmış kullanıcı okuyabilir
-    match /yorumlar/{yorumId} {
-      allow read: if request.auth != null;
-      allow write: if false;
-    }
+    // ═══ DEFAULT DENY ═══
 
-    // İçerikler: giriş yapmış kullanıcı okuyabilir
-    match /icerikler/{icerikId} {
-      allow read: if request.auth != null;
-      allow write: if false;
-    }
-
-    // Agent logları: sadece backend okuyabilir (Admin SDK bypass eder)
-    match /agent_logs/{logId} {
-      allow read: if false;
-      allow write: if false;
-    }
-
-    // Kota kullanım: sadece backend
-    match /kota_kullanim/{kotaId} {
-      allow read: if false;
-      allow write: if false;
-    }
-
-    // Karaliste: sadece backend
-    match /karaliste/{listeId} {
-      allow read: if false;
-      allow write: if false;
-    }
-
-    // Leadler: sadece backend
-    match /leads/{leadId} {
-      allow read: if false;
-      allow write: if false;
-    }
-
-    // Hatalar: sadece backend
-    match /hatalar/{hataId} {
-      allow read: if false;
-      allow write: if false;
-    }
-
-    // Varsayılan: her şeyi reddet
     match /{document=**} {
       allow read, write: if false;
     }

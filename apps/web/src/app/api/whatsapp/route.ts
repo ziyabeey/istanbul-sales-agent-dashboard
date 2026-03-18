@@ -123,7 +123,7 @@ ${dinamikFiyatStrateji.sistemTalimati}
             { headers: { 'Content-Type': 'text/xml' } }
         )
     } catch (error: any) {
-        console.error('[WA WEBHOOK HATA]', error)
+        // console.error('[WA WEBHOOK HATA]', error)
         return new Response(
             `<?xml version="1.0" encoding="UTF-8"?><Response><Message>Teknik bir sorun yaşıyoruz. Lütfen birazdan tekrar deneyin.</Message></Response>`,
             { headers: { 'Content-Type': 'text/xml' } }

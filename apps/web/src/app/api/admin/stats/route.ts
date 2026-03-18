@@ -11,7 +11,7 @@ import { PAKET_FIYATLARI } from '@/types'
  */
 export async function GET(request: Request) {
     const token = request.headers.get('x-admin-token')
-    if (token !== (process.env.ADMIN_TOKEN || 'kepenk-admin-2026')) {
+    if (!process.env.ADMIN_SECRET_TOKEN || token !== process.env.ADMIN_SECRET_TOKEN) {
         return NextResponse.json({ error: 'Yetkisiz erişim' }, { status: 401 })
     }
 

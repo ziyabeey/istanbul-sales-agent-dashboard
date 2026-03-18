@@ -85,7 +85,7 @@ export async function POST(request: Request) {
 
                     islenmiş.push({ ad, ilce, leadSkoru })
                 } catch (e: any) {
-                    console.error(`[LEAD SCAN] ${isletme.ad}:`, e.message)
+                    // console.error(`[LEAD SCAN] ${isletme.ad}:`, e.message)
                 }
             }))
 
@@ -105,7 +105,7 @@ export async function POST(request: Request) {
                 `Kayıt edilen: ${islenmiş.length} lead\n\n` +
                 `<b>Top 5 Lead:</b>\n` +
                 topLeadlar.map(l => `• ${l.ad} (${l.ilce}) — Skor: ${l.leadSkoru}`).join('\n')
-            ).catch(console.error)
+            ).catch(() => {})
         }
 
         return NextResponse.json({
@@ -115,7 +115,7 @@ export async function POST(request: Request) {
             topLeadlar,
         })
     } catch (error: any) {
-        console.error('[LEAD SCAN]', error)
+        // console.error('[LEAD SCAN]', error)
         return NextResponse.json({ error: error.message }, { status: 500 })
     }
 }

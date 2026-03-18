@@ -19,9 +19,9 @@
   --color-border: var(--border);
   --color-input: var(--input);
 
-  /* Legacy Core Brand Colors (preserved for backward compatibility if needed) */
+  /* Core Brand Colors */
   --color-ink: #0E0D0B;
-  --color-dgray: #1E293B; /* slate-800 equivalent previously hardcoded */
+  --color-dgray: #1E293B;
   --color-rust: #C04B1E;
   --color-rust-light: #E06030;
   --color-cream: #F8F4EE;
@@ -32,50 +32,113 @@
   --color-stone: #7A7060;
   --color-stone-light: #ADA596;
 
+  /* New Primary (Indigo) + AI Accent */
+  --color-indigo: #4F46E5;
+  --color-indigo-light: #6366F1;
+  --color-indigo-dark: #4338CA;
+  --color-ai: #8B5CF6;
+  --color-ai-light: #A78BFA;
+
   --font-sans: var(--font-inter), "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-syne: var(--font-display), "Plus Jakarta Sans", sans-serif;
   --font-lora: var(--font-display), "Plus Jakarta Sans", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
 @layer base {
   :root {
-    /* Light Mode (kepenk.ai default cream theme) */
-    --background: #F8F4EE; /* cream */
-    --foreground: #0E0D0B; /* ink */
+    /* Light Mode (KPNK white theme) */
+    --background: #FFFFFF;
+    --foreground: #0E0D0B;
     --card: #ffffff;
     --card-foreground: #0E0D0B;
     --popover: #ffffff;
     --popover-foreground: #0E0D0B;
-    --primary: #C04B1E; /* rust */
-    --primary-foreground: #F8F4EE;
-    --secondary: #EFE9DF; /* warm */
+    --primary: #4F46E5;
+    --primary-foreground: #FFFFFF;
+    --secondary: #F3F4F6;
     --secondary-foreground: #0E0D0B;
-    --muted: #EFE9DF;
-    --muted-foreground: #7A7060; /* stone */
-    --accent: #EFE9DF;
-    --accent-foreground: #0E0D0B;
+    --muted: #F9FAFB;
+    --muted-foreground: #6B7280;
+    --accent: #EEF2FF;
+    --accent-foreground: #4338CA;
     --border: #e5e7eb;
     --input: #e5e7eb;
+
+    /* ═══ Esnaf Site Tema Token'ları (varsayılan) ═══ */
+    --site-bg: #FFFFFF;
+    --site-bg-alt: #F9FAFB;
+    --site-surface: #FFFFFF;
+    --site-text: #111827;
+    --site-text-secondary: #6B7280;
+    --site-primary: #4F46E5;
+    --site-primary-hover: #4338CA;
+    --site-primary-text: #FFFFFF;
+    --site-secondary: #1E1E2E;
+    --site-accent: #F59E0B;
+    --site-border: #E5E7EB;
+    --site-radius: 8px;
   }
 
   .dark {
     /* Dark Mode (admin/b2b premium dark theme) */
-    --background: #0f172a; /* slate-900 */
-    --foreground: #f8fafc; /* slate-50 */
-    --card: #1e293b; /* slate-800 */
+    --background: #0f172a;
+    --foreground: #f8fafc;
+    --card: #1e293b;
     --card-foreground: #f8fafc;
     --popover: #1e293b;
     --popover-foreground: #f8fafc;
-    --primary: #C04B1E; /* rust */
+    --primary: #C04B1E;
     --primary-foreground: #ffffff;
-    --secondary: #334155; /* slate-700 */
+    --secondary: #334155;
     --secondary-foreground: #f8fafc;
     --muted: #1e293b;
-    --muted-foreground: #94a3b8; /* slate-400 */
+    --muted-foreground: #94a3b8;
     --accent: #334155;
     --accent-foreground: #f8fafc;
-    --border: #334155; /* slate-700 */
+    --border: #334155;
     --input: #334155;
+
+    /* ═══ Dashboard Token'ları (--kp-*) ═══ */
+    --kp-bg: #0F0F1A;
+    --kp-surface: #1E1E2E;
+    --kp-surface-elevated: #2A2A3C;
+    --kp-surface-hover: #353548;
+    --kp-surface-active: #3D3D52;
+    --kp-surface-selected: #2D2B3D;
+    --kp-border: #404058;
+    --kp-border-subtle: #2E2E42;
+    --kp-border-focus: #C84B31;
+    --kp-text: #F5F0E8;
+    --kp-text-secondary: #9CA3AF;
+    --kp-text-muted: #6B7280;
+    --kp-text-disabled: #4B5563;
+    --kp-rust: #C84B31;
+    --kp-rust-hover: #B5432B;
+    --kp-rust-active: #A03B25;
+    --kp-rust-subtle: rgba(200, 75, 49, 0.15);
+    --kp-ai: #8B5CF6;
+    --kp-ai-hover: #7C4FE0;
+    --kp-ai-subtle: rgba(139, 92, 246, 0.15);
+    --kp-ai-glow: 0 0 20px rgba(139, 92, 246, 0.3);
+    --kp-blue: #3B82F6;
+    --kp-success: #22C55E;
+    --kp-warning: #F59E0B;
+    --kp-error: #EF4444;
+    --kp-info: #3B82F6;
+    --kp-shadow-sm: 0 2px 4px rgba(0,0,0,0.2);
+    --kp-shadow-md: 0 4px 12px rgba(0,0,0,0.25);
+    --kp-shadow-lg: 0 8px 24px rgba(0,0,0,0.3);
+  }
+
+  /* ═══ Motion Token'ları ═══ */
+  :root {
+    --kp-duration-fast: 100ms;
+    --kp-duration-normal: 200ms;
+    --kp-duration-slow: 300ms;
+    --kp-ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+    --kp-ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --kp-ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
 }
 
@@ -112,12 +175,41 @@
   }
 
   a:focus-visible {
-    @apply outline-none ring-2 ring-rust ring-offset-2 rounded;
+    @apply outline-none ring-2 ring-primary ring-offset-2 rounded;
   }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+}
+
+/* ═══ Tema Mağazası ═══ */
+.template-card-overlay { opacity: 0; transition: opacity 0.3s ease; }
+.template-card:hover .template-card-overlay { opacity: 1; }
+.template-card:hover .template-card-image { transform: scale(1.02); }
+.template-card-image { transition: transform 0.4s ease; }
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.dropdown-enter { animation: dropdownFadeIn 0.2s ease forwards; }
+@keyframes dropdownFadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.inspirational-card { transition: box-shadow 0.3s ease; }
+.inspirational-card:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
+.dotted-bg {
+  background-image: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* ═══ Reduced Motion ═══ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

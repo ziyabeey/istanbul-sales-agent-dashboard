@@ -1,0 +1,4 @@
+'use client'
+import { HeaderMinimalSticky as _h, HeroFullscreenOverlay as _hero, ServicesCardGrid as _svc, AboutSplitLeft as _about, WorkingHoursCompact as _wh, ContactSimpleForm as _contact, MapFullWidth as _map, FooterMinimal as _f, WhatsAppFloating as _wa, CookieBannerBottomBar as _ck, MenuTabCategories as _menu, DailySpecialBanner as _daily, ThemeRenderer, RESTORAN_SOFRA_CONFIG, RESTORAN_SOFRA_BUSINESS } from '@kepenk/templates'
+void _h; void _hero; void _svc; void _about; void _wh; void _contact; void _map; void _f; void _wa; void _ck; void _menu; void _daily
+export default function Client() { const t = RESTORAN_SOFRA_CONFIG; return <div lang="tr"><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ '@context': 'https://schema.org', '@type': 'Restaurant', name: RESTORAN_SOFRA_BUSINESS.name, telephone: RESTORAN_SOFRA_BUSINESS.phone }) }} /><ThemeRenderer theme={t} page={t.pages[0]!} business={RESTORAN_SOFRA_BUSINESS} /></div> }

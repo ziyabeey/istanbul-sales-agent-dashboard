@@ -2,16 +2,24 @@
 
 import { useEffect, useRef } from 'react'
 import { useEditorStore } from '../store/editor-store'
-import { IconEdit, IconCopy, IconAI, IconGlobe, IconPalette, IconEye, IconEyeOff, IconCode, IconType, IconTrash } from './Icons'
+import { IconEdit, IconCopy, IconPalette, IconEye, IconEyeOff, IconCode, IconTrash } from './Icons'
 
 /**
  * ContextMenu — Custom right-click menu for the editor.
  * Polished with SVG icons, keyboard shortcuts, and smooth animation.
+ * All actions are fully functional.
  */
 export default function ContextMenu() {
     const contextMenu = useEditorStore(s => s.contextMenu)
     const closeContextMenu = useEditorStore(s => s.closeContextMenu)
     const openInlineEdit = useEditorStore(s => s.openInlineEdit)
+    const undo = useEditorStore(s => s.undo)
+    const redo = useEditorStore(s => s.redo)
+    const undoStack = useEditorStore(s => s.undoStack)
+    const redoStack = useEditorStore(s => s.redoStack)
+    const siteData = useEditorStore(s => s.siteData)
+    const updateSiteData = useEditorStore(s => s.updateSiteData)
+    const setRightPanelOpen = useEditorStore(s => s.setRightPanelOpen)
     const menuRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
@@ -40,6 +48,9 @@ export default function ContextMenu() {
     const isText = contextMenu.targetType === 'text'
     const hasField = contextMenu.targetField !== ''
 
+    /* modulId is now provided directly by the editor bridge */
+    const modulId = contextMenu.modulId || null
+
     const handleEdit = () => {
         if (hasField) {
             openInlineEdit({
@@ -55,6 +66,29 @@ export default function ContextMenu() {
         if (contextMenu.targetText) navigator.clipboard.writeText(contextMenu.targetText).catch(() => {})
         closeContextMenu()
     }
+
+    const handleDesignPanel = () => {
+        setRightPanelOpen(true)
+        closeContextMenu()
+    }
+
+    const handleHideModule = () => {
+        if (!siteData || !modulId) { closeContextMenu(); return }
+        const gizli: string[] = (siteData as any).gizliModuller || []
+        const isHidden = gizli.includes(modulId)
+        updateSiteData({ gizliModuller: isHidden ? gizli.filter((m: string) => m !== modulId) : [...gizli, modulId] } as any)
+        closeContextMenu()
+    }
+
+    const handleDeleteModule = () => {
+        if (!siteData || !modulId) { closeContextMenu(); return }
+        if (!confirm(`"${modulId}" modülünü silmek istediğinize emin misiniz?`)) { closeContextMenu(); return }
+        updateSiteData({ moduller: siteData.moduller.filter(m => m !== modulId) })
+        closeContextMenu()
+    }
+
+    const handleUndo = () => { undo(); closeContextMenu() }
+    const handleRedo = () => { redo(); closeContextMenu() }
 
     return (
         <>
@@ -81,6 +115,7 @@ export default function ContextMenu() {
                 .ke-ctx-item.primary { color:#2563eb; }
                 .ke-ctx-item.primary:hover { background:#eff6ff; }
                 .ke-ctx-item.destructive:hover { background:#fef2f2;color:#ef4444; }
+                .ke-ctx-item.disabled { opacity:0.35; pointer-events:none; }
                 .ke-ctx-icon { width:18px;height:18px;flex-shrink:0;display:flex;align-items:center;justify-content:center;opacity:0.7; }
                 .ke-ctx-item:hover .ke-ctx-icon { opacity:1; }
                 .ke-ctx-label { flex:1; }
@@ -134,31 +169,45 @@ export default function ContextMenu() {
 
                     <div className="ke-ctx-sep" />
 
-                    {/* AI actions */}
-                    {isText && (
-                        <>
-                            <button className="ke-ctx-item" onClick={() => closeContextMenu()}>
-                                <span className="ke-ctx-icon"><IconAI size={15} /></span>
-                                <span className="ke-ctx-label">AI ile Yeniden Yaz</span>
-                            </button>
-                            <button className="ke-ctx-item" onClick={() => closeContextMenu()}>
-                                <span className="ke-ctx-icon"><IconGlobe size={15} /></span>
-                                <span className="ke-ctx-label">İngilizce&apos;ye Çevir</span>
-                            </button>
-                        </>
-                    )}
+                    {/* Undo / Redo */}
+                    <button className={`ke-ctx-item${undoStack.length === 0 ? ' disabled' : ''}`} onClick={handleUndo}>
+                        <span className="ke-ctx-icon" style={{ fontSize: 16 }}>↩</span>
+                        <span className="ke-ctx-label">Geri Al</span>
+                        <span className="ke-ctx-shortcut">⌘Z</span>
+                    </button>
+                    <button className={`ke-ctx-item${redoStack.length === 0 ? ' disabled' : ''}`} onClick={handleRedo}>
+                        <span className="ke-ctx-icon" style={{ fontSize: 16 }}>↪</span>
+                        <span className="ke-ctx-label">İleri Sar</span>
+                        <span className="ke-ctx-shortcut">⌘⇧Z</span>
+                    </button>
 
                     <div className="ke-ctx-sep" />
 
-                    {/* Style shortcuts */}
-                    <button className="ke-ctx-item" onClick={() => closeContextMenu()}>
+                    {/* Design panel */}
+                    <button className="ke-ctx-item" onClick={handleDesignPanel}>
                         <span className="ke-ctx-icon"><IconPalette size={15} /></span>
                         <span className="ke-ctx-label">Tasarımı Düzenle</span>
                     </button>
-                    <button className="ke-ctx-item" onClick={() => closeContextMenu()}>
-                        <span className="ke-ctx-icon"><IconEye size={15} /></span>
-                        <span className="ke-ctx-label">Gizle / Göster</span>
-                    </button>
+
+                    {/* Hide / Show module */}
+                    {modulId && (
+                        <button className="ke-ctx-item" onClick={handleHideModule}>
+                            <span className="ke-ctx-icon">{((siteData as any)?.gizliModuller || []).includes(modulId) ? <IconEye size={15} /> : <IconEyeOff size={15} />}</span>
+                            <span className="ke-ctx-label">{((siteData as any)?.gizliModuller || []).includes(modulId) ? 'Göster' : 'Gizle'}</span>
+                        </button>
+                    )}
+
+                    {/* Delete module */}
+                    {modulId && (
+                        <>
+                            <div className="ke-ctx-sep" />
+                            <button className="ke-ctx-item destructive" onClick={handleDeleteModule}>
+                                <span className="ke-ctx-icon"><IconTrash size={15} /></span>
+                                <span className="ke-ctx-label">Modülü Sil</span>
+                                <span className="ke-ctx-shortcut">⌫</span>
+                            </button>
+                        </>
+                    )}
 
                     <div className="ke-ctx-sep" />
 

@@ -86,7 +86,7 @@ export async function GET() {
 
                 islenen++
             } catch (err: any) {
-                console.error(`[KUYRUK] İşlem ${id} hata:`, err.message)
+                // console.error(`[KUYRUK] İşlem ${id} hata:`, err.message)
                 await islemHata(id, err.message)
             }
         }
@@ -97,7 +97,7 @@ export async function GET() {
             mesaj: `${islenen}/${islemler.length} işlem tamamlandı`,
         })
     } catch (error: any) {
-        console.error('[KUYRUK İŞLEYİCİ HATA]', error)
+        // console.error('[KUYRUK İŞLEYİCİ HATA]', error)
         return NextResponse.json({ error: error.message }, { status: 500 })
     }
 }

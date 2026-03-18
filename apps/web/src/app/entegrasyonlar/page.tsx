@@ -24,7 +24,7 @@ export default function EntegrasyonlarPage() {
                 <h1 className="text-4xl md:text-6xl font-syne font-extrabold mb-6">
                     Sınırları <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">Ortadan Kaldırın</span>
                 </h1>
-                <p className="text-lg md:text-xl text-muted-foreground-light/80 max-w-2xl mx-auto mb-10 leading-relaxed">
+                <p className="text-lg md:text-xl text-muted-foreground/80 max-w-2xl mx-auto mb-10 leading-relaxed">
                     Kullandığınız mevcut muhasebe, pazaryeri, takvim ve ödeme yazılımları çöpe gitmez. kepenk.ai tüm bu sistemlerin ortasına yerleşip orkestra şefi gibi yönetimi devralır.
                 </p>
             </section>
@@ -36,7 +36,7 @@ export default function EntegrasyonlarPage() {
                         <div key={i} className={`bg-background/50 backdrop-blur-md rounded-3xl p-8 border ${int.color} transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl`}>
                             <div className="text-4xl mb-6">{int.icon}</div>
                             <h3 className="text-xl font-syne font-bold text-white mb-3">{int.name}</h3>
-                            <p className="text-muted-foreground-light/80 text-sm leading-relaxed">{int.desc}</p>
+                            <p className="text-muted-foreground/80 text-sm leading-relaxed">{int.desc}</p>
                         </div>
                     ))}
                 </div>
@@ -47,7 +47,7 @@ export default function EntegrasyonlarPage() {
                 <div className="w-full bg-gradient-to-br from-ink to-[#1a2b3c] rounded-[3rem] p-12 text-center border border-white/10 shadow-2xl relative overflow-hidden">
                     <div className="absolute inset-0 bg-sage/5 blur-3xl pointer-events-none" />
                     <h2 className="text-3xl font-syne font-bold mb-4 relative z-10">Özel Bir Yazılım Mı Kullanıyorsunuz?</h2>
-                    <p className="text-muted-foreground-light mb-8 max-w-xl mx-auto relative z-10">Premium ve PremiumPlus paketlerimizde Webhook API uç noktalarımızı dilediğiniz kendi yerel ERP ve MRP sisteminize doğrudan bağlayabilirsiniz.</p>
+                    <p className="text-muted-foreground mb-8 max-w-xl mx-auto relative z-10">Premium ve PremiumPlus paketlerimizde Webhook API uç noktalarımızı dilediğiniz kendi yerel ERP ve MRP sisteminize doğrudan bağlayabilirsiniz.</p>
                     <Link href="/fiyatlar" className="relative z-10 inline-block bg-white text-foreground font-bold py-3 px-8 rounded-full transition-all hover:scale-105">
                         Paketleri İncele
                     </Link>

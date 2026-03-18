@@ -114,7 +114,7 @@ export default function ReklamlarPage() {
                 const aktif = Array.isArray(data) ? data.find((r: any) => r.durum === 'aktif') : null
                 setAktifKampanya(aktif || null)
             })
-            .catch(() => {})
+            .catch(() => { toast.error('Reklam verileri yüklenemedi') })
             .finally(() => setLoading(false))
     }, [esnafId])
 

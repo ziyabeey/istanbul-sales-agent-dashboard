@@ -13,7 +13,7 @@ export async function GET(request: Request) {
 
     // System Env olarak merkezi Verify Token tanımı olmalı (Örn: kepenk_ig_webhook_2024)
     if (mode === 'subscribe' && token === process.env.META_WEBHOOK_VERIFY_TOKEN) {
-        console.log('[Instagram Webhook] Doğrulandı!')
+        // console.log('[Instagram Webhook] Doğrulandı!')
         return new NextResponse(challenge, { status: 200 })
     }
 
@@ -44,7 +44,7 @@ export async function POST(request: Request) {
                     .get()
 
                 if (esnafRef.empty) {
-                    console.log(`[Instagram] Hedef Esnaf Bulunamadı veya Pasif: ${igAccountId}`)
+                    // console.log(`[Instagram] Hedef Esnaf Bulunamadı veya Pasif: ${igAccountId}`)
                     return NextResponse.json({ status: 'ignored' }, { status: 200 })
                 }
 
@@ -98,7 +98,7 @@ export async function POST(request: Request) {
         return NextResponse.json({ status: 'event_ignored' }, { status: 200 })
 
     } catch (error: any) {
-        console.error('[INSTAGRAM WEBHOOK HATA]', error)
+        // console.error('[INSTAGRAM WEBHOOK HATA]', error)
         // Webhook tarafını 200 dönmek zorundayız ki Meta tekrar tekrar aynı mesagi kuyrukta darlamasın. (Retry Hell)
         return NextResponse.json({ error: error.message }, { status: 200 })
     }

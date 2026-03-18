@@ -15,8 +15,8 @@ export default function GizlilikPage() {
                     <h1 className="text-3xl md:text-5xl font-extrabold font-syne text-foreground mb-6">
                         Gizlilik <span className="text-rust">Politikası</span>
                     </h1>
-                    <p className="text-muted-foreground-light text-lg font-lora italic leading-relaxed">
-                        [ŞİRKET UNVANI] olarak, kullanıcılarımızın hizmetlerimizden güvenli ve eksiksiz şekilde faydalanmalarını
+                    <p className="text-muted-foreground text-lg font-lora italic leading-relaxed">
+                        yzt.digital olarak, kullanıcılarımızın hizmetlerimizden güvenli ve eksiksiz şekilde faydalanmalarını
                         sağlamak amacıyla, gizliliğinizi korumaya büyük önem veriyoruz. Bu "Gizlilik Politikası",
                         ziyaretçilerimizin veya üyelerimizin kişisel verilerinin kanuna uygun olarak şeffaf bir şekilde işlenmesini şart koşar.
                     </p>

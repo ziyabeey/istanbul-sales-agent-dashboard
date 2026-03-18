@@ -23,7 +23,7 @@ export default function YZAsistaniPage() {
                     Siz Uyurken Bile <span className="text-rust">Satış Yapan</span><br />
                     Sanal Sekreteriniz
                 </h1>
-                <p className="text-lg md:text-xl text-muted-foreground-light/80 max-w-3xl mx-auto mb-10 leading-relaxed">
+                <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-10 leading-relaxed">
                     Müşterileriniz WhatsApp'tan yazdığı anda sektörünüze özel eğitilmiş yapay zekamız devreye girer. Soru yanıtlar, takvimi doldurur ve sizi angaryadan kurtarır.
                 </p>
                 <Link href="/kayit" className="inline-block bg-rust hover:bg-rust-dark text-white font-bold py-4 px-8 rounded-xl transition-all shadow-lg hover:shadow-rust/20">
@@ -35,19 +35,19 @@ export default function YZAsistaniPage() {
             <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-32">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     <div className="flex flex-col gap-6">
-                        <h2 className="text-3xl font-syne font-bold text-white mb-4">Neden Standart Bir Chatbot Değil?</h2>
+                        <h2 className="text-3xl font-syne font-bold text-foreground mb-4">Neden Standart Bir Chatbot Değil?</h2>
                         <div className="flex flex-col gap-8">
-                            <div className="bg-white/5 border border-white/10 p-6 rounded-2xl backdrop-blur-sm">
+                            <div className="bg-white border border-foreground/10 p-6 rounded-2xl shadow-sm">
                                 <h3 className="text-xl font-bold text-sage mb-2">1. Kesinlikle "Bot" Gibi Konuşmaz</h3>
-                                <p className="text-muted-foreground-light">Hazır cevaplardan oluşan menüler kullanmaz. Müşterinin derdini tıpkı gerçek bir insan gibi dinler, anlar ve firmanızın belirlediği ses tonuyla doğal bir sohbet kurar.</p>
+                                <p className="text-muted-foreground">Hazır cevaplardan oluşan menüler kullanmaz. Müşterinin derdini tıpkı gerçek bir insan gibi dinler, anlar ve firmanızın belirlediği ses tonuyla doğal bir sohbet kurar.</p>
                             </div>
-                            <div className="bg-white/5 border border-white/10 p-6 rounded-2xl backdrop-blur-sm">
+                            <div className="bg-white border border-foreground/10 p-6 rounded-2xl shadow-sm">
                                 <h3 className="text-xl font-bold text-rust mb-2">2. Sadece Sektörünüzü Bilir</h3>
-                                <p className="text-muted-foreground-light">Eğer bir kuaförseniz keratin bakımını veya balyajı bilir; bir tesisatçıysanız Pimaş borularından ve kaçak tespiti cihazından anlar.</p>
+                                <p className="text-muted-foreground">Eğer bir kuaförseniz keratin bakımını veya balyajı bilir; bir tesisatçıysanız Pimaş borularından ve kaçak tespiti cihazından anlar.</p>
                             </div>
-                            <div className="bg-white/5 border border-white/10 p-6 rounded-2xl backdrop-blur-sm">
+                            <div className="bg-white border border-foreground/10 p-6 rounded-2xl shadow-sm">
                                 <h3 className="text-xl font-bold text-gold mb-2">3. Randevu ve Fiyat Kapatıcısıdır</h3>
-                                <p className="text-muted-foreground-light">Müşteriyi sadece dinlemekle kalmaz, ustaca sorular sorarak fiyatı netleştirir, takvimi satar veya ofis görüşmesine ikna eder (Lead Generation).</p>
+                                <p className="text-muted-foreground">Müşteriyi sadece dinlemekle kalmaz, ustaca sorular sorarak fiyatı netleştirir, takvimi satar veya ofis görüşmesine ikna eder (Lead Generation).</p>
                             </div>
                         </div>
                     </div>

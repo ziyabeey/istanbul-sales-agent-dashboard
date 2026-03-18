@@ -84,7 +84,7 @@ export async function GET(request: Request) {
 
         return NextResponse.json({ uyarilan: uyarilan.length, arsivlenen: arsivlenen.length, silinen: silinen.length })
     } catch (error: any) {
-        console.error('[KVKK CRON HATA]', error)
+        // console.error('[KVKK CRON HATA]', error)
         await telegramGonder(`🔴 KVKK Cron hatası: ${error.message}`)
         return NextResponse.json({ error: error.message }, { status: 500 })
     }

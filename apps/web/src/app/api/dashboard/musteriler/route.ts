@@ -31,7 +31,7 @@ export async function GET(req: Request) {
 
         return NextResponse.json(musteriler)
     } catch (error) {
-        console.error('[MUSTERILER API HATA]', error)
+        // console.error('[MUSTERILER API HATA]', error)
         return NextResponse.json({ error: 'Sunucu hatası' }, { status: 500 })
     }
 }

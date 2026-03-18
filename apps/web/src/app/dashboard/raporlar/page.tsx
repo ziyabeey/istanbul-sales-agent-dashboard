@@ -25,16 +25,21 @@ export default function RaporlarPage() {
     async function handleCiroGonder(skor: number) {
         setCiroSkor(skor)
         setCiroGonderildi(true)
-        // Firestore'a yaz
-        await fetch('/api/ciro-anket', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                esnafId: esnaf?.id,
-                skor,
-                hafta: new Date().toISOString().split('T')[0],
-            }),
-        }).catch(console.error)
+        try {
+            const res = await fetch('/api/ciro-anket', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    esnafId: esnaf?.id,
+                    skor,
+                    hafta: new Date().toISOString().split('T')[0],
+                }),
+            })
+            if (!res.ok) throw new Error()
+        } catch {
+            setCiroGonderildi(false)
+            setCiroSkor(null)
+        }
     }
 
     return (
@@ -118,7 +123,7 @@ export default function RaporlarPage() {
                 )}
             </div>
 
-            <p className="text-muted-foreground-light text-xs text-center">
+            <p className="text-muted-foreground text-xs text-center">
                 Google Analytics entegrasyonu yakında — gerçek veriler gelecek.
             </p>
         </div>

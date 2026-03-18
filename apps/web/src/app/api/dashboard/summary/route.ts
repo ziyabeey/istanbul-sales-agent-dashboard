@@ -56,7 +56,7 @@ export async function GET(req: Request) {
             saglikOnerileri: ['Google yorumlarınıza hızlı yanıt veriyorsunuz', 'Aferin']
         })
     } catch (error) {
-        console.error('[Dashboard Summary Hatası]', error)
+        // console.error('[Dashboard Summary Hatası]', error)
         return NextResponse.json({ error: 'Internal Error' }, { status: 500 })
     }
 }

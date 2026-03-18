@@ -50,7 +50,7 @@ export async function GET(req: Request) {
 
         return NextResponse.json({ ok: true, islenen: esnafDocs.size, mesaj: 'Tahsilat ajanları çalıştırıldı' })
     } catch (error: any) {
-        console.error('[CRON TAHSILAT HATASI]', error)
+        // console.error('[CRON TAHSILAT HATASI]', error)
         return NextResponse.json({ error: 'Internal Error' }, { status: 500 })
     }
 }

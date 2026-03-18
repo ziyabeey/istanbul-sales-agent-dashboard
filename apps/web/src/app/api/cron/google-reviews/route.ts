@@ -16,7 +16,7 @@ export async function GET(request: Request) {
             return new NextResponse('Yetkisiz Erişim (Invalid Secret)', { status: 401 })
         }
 
-        console.log('[CRON GOOGLE REVIEWS] Yorum Tarama Başlatılıyor...')
+        // console.log('[CRON GOOGLE REVIEWS] Yorum Tarama Başlatılıyor...')
 
         // Google Entegrasyonu aktif olan tüm esnafları çek
         const esnaflarRef = await adminDb.collection('esnaflar')
@@ -78,7 +78,7 @@ Bu bir Google Haritalar (My Business) yorumudur. Müşteriye uygun profesyonel y
             }
         }
 
-        console.log(`[CRON GOOGLE REVIEWS] Bitti. ${islenenYorumSayisi} yeni yoruma otomatik yanıt yazıldı.`)
+        // console.log(`[CRON GOOGLE REVIEWS] Bitti. ${islenenYorumSayisi} yeni yoruma otomatik yanıt yazıldı.`)
         return NextResponse.json({
             status: 'ok',
             mesaj: `Google Yorum Taraması Tamamlandı. ${islenenYorumSayisi} yanıt verildi.`,
@@ -86,7 +86,7 @@ Bu bir Google Haritalar (My Business) yorumudur. Müşteriye uygun profesyonel y
         })
 
     } catch (error: any) {
-        console.error('[CRON GOOGLE REVIEWS HATA]', error)
+        // console.error('[CRON GOOGLE REVIEWS HATA]', error)
         return NextResponse.json({ error: error.message }, { status: 500 })
     }
 }

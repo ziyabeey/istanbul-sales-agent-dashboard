@@ -63,7 +63,7 @@ export async function POST(request: Request) {
                 temaId || esnafData.temaId || 'toprak'
             )
         } catch (err) {
-            console.warn('[PUBLISH] Versiyon kaydetme hatası (devam ediliyor):', err)
+            // console.warn('[PUBLISH] Versiyon kaydetme hatası (devam ediliyor):', err)
         }
 
         // ── ISR Cache Bust — tüm domain varyantlarını temizle ───────────────
@@ -92,7 +92,7 @@ export async function POST(request: Request) {
             temizlenenTaglar.push(`${slug}.kepenk.ai`)
         }
 
-        console.log(`[PUBLISH] ✅ ${esnafId} yayınlandı. Cache temizlendi:`, temizlenenTaglar)
+        // console.log(`[PUBLISH] ✅ ${esnafId} yayınlandı. Cache temizlendi:`, temizlenenTaglar)
 
         return NextResponse.json({
             ok: true,
@@ -101,7 +101,7 @@ export async function POST(request: Request) {
             versiyonKaydedildi: true,
         })
     } catch (error: any) {
-        console.error('[PUBLISH] Hata:', error.message)
+        // console.error('[PUBLISH] Hata:', error.message)
         return NextResponse.json(
             { error: 'Yayınlama başarısız', detay: error.message },
             { status: 500 }

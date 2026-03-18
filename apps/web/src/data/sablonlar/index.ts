@@ -38,7 +38,8 @@ export interface Sablon {
     kategori?: 'jenerik' | 'sektor'
 }
 
-export const SABLONLAR: Sablon[] = [
+/** @deprecated Use UNIFIED_SABLONLAR from ./unified-catalog for the full 200-theme catalog */
+export const LEGACY_SABLONLAR: Sablon[] = [
     // --- Jenerik Şablonlar ---
     {
         id: 'sablon-temel',
@@ -256,5 +257,65 @@ export const SABLONLAR: Sablon[] = [
         etiketler: ['Market', 'Taze', 'Yeşil'],
         kategori: 'sektor',
         moduller: ['eticaret-vitrin', 'kampanya-afisi', 'gunun-ozel', 'calisma-saatleri', 'duyuru-bandi', 'kvkk-gizlilik', 'cerez-bildirimi', 'whatsapp-canli']
+    },
+
+    // --- Yeni Nesil Mimari (Asansör Pilot) ---
+    {
+        id: 'asansor-engelli',
+        ad: 'Erişim',
+        aciklama: 'Saf HTML/Tailwind mimarisi. Engelli ve merdiven asansörlerine özel, ultra-hızlı temel sürüm.',
+        minPaket: 'TEMEL',
+        htmlKodu: '<div/>',
+        icon: '🦽',
+        etiketler: ['Asansör', 'Erişim', 'HTML'],
+        kategori: 'sektor',
+        moduller: []
+    },
+    {
+        id: 'asansor-bina',
+        ad: 'Vizyon',
+        aciklama: 'Vanilla JS tab' + 'ları ve slider bileşenleri içeren, kurumsal asansör montaj firması şablonu.',
+        minPaket: 'STANDART',
+        htmlKodu: '<div/>',
+        icon: '🏢',
+        etiketler: ['Asansör', 'Bina', 'JS'],
+        kategori: 'sektor',
+        moduller: []
+    },
+    {
+        id: 'asansor-yuk',
+        ad: 'Ağır Yük',
+        aciklama: 'Asimetrik CSS gridleri ve scroll animasyonlarıyla tasarlanmış endüstriyel yük platformu demosu.',
+        minPaket: 'BUYUME',
+        htmlKodu: '<div/>',
+        icon: '🏗️',
+        etiketler: ['Asansör', 'Endüstri', 'CSS'],
+        kategori: 'sektor',
+        moduller: []
+    },
+    {
+        id: 'asansor-lux',
+        ad: 'Elevate Lux',
+        aciklama: 'Glassmorphism UI ve Framer Motion ile tasarlanmış Next.js lüks rezidans asansörü deneyimi.',
+        minPaket: 'PREMIUM',
+        htmlKodu: '<div/>',
+        icon: '✨',
+        etiketler: ['Asansör', 'Lüks', 'Motion'],
+        kategori: 'sektor',
+        moduller: []
+    },
+    {
+        id: 'asansor-panoramik',
+        ad: 'Orion 3D',
+        aciklama: 'Awwwards seviyesi! Özelleştirilmiş manyetik imleç ve WebGL/Canvas destekli sonsuz kuyuda parallax yolculuğu.',
+        minPaket: 'PREMIUMPLUS',
+        htmlKodu: '<div/>',
+        icon: '🌌',
+        etiketler: ['Asansör', 'Canvas', 'WebGL'],
+        kategori: 'sektor',
+        moduller: []
     }
 ]
+
+// Re-export unified catalog as the new primary SABLONLAR
+export { UNIFIED_SABLONLAR as SABLONLAR } from './unified-catalog'

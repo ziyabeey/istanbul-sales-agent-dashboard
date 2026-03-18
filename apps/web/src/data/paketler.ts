@@ -17,9 +17,9 @@ export const PAKETLER: Paket[] = [
     {
         id: 'temel',
         name: 'TEMEL',
-        aylikFiyat: 399,
-        yillikFiyatAylik: 339,
-        fiyatYillik: 4068,
+        aylikFiyat: 999,
+        yillikFiyatAylik: 849,
+        fiyatYillik: 10188,
         teknoloji: 'Statik HTML Site',
         aiKredi: '100 İşlem / Ay',
         ozellikler: ['Standart İletişim Formu', 'WhatsApp Destek Butonu', 'kepenk.ai Subdomain'],
@@ -29,9 +29,9 @@ export const PAKETLER: Paket[] = [
     {
         id: 'standart',
         name: 'STANDART',
-        aylikFiyat: 799,
-        yillikFiyatAylik: 679,
-        fiyatYillik: 8148,
+        aylikFiyat: 1799,
+        yillikFiyatAylik: 1529,
+        fiyatYillik: 18348,
         teknoloji: 'Statik HTML Site',
         aiKredi: '250 İşlem / Ay',
         ozellikler: ['Müşteri CRM (Temel)', 'Sosyal Medya İçerik Önerileri', 'Temel SEO Optimizasyonu'],
@@ -41,9 +41,9 @@ export const PAKETLER: Paket[] = [
     {
         id: 'buyume',
         name: 'BÜYÜME',
-        aylikFiyat: 1499,
-        yillikFiyatAylik: 1274,
-        fiyatYillik: 15288,
+        aylikFiyat: 2999,
+        yillikFiyatAylik: 2549,
+        fiyatYillik: 30588,
         teknoloji: 'Next.js Dinamik Site',
         aiKredi: '750 İşlem / Ay',
         ozellikler: ['AI Randevu & Rezervasyon', 'WhatsApp Otomasyonu', 'Ön Ödeme (Kapora) Alma'],
@@ -53,9 +53,9 @@ export const PAKETLER: Paket[] = [
     {
         id: 'premium',
         name: 'PREMIUM',
-        aylikFiyat: 2999,
-        yillikFiyatAylik: 2549,
-        fiyatYillik: 30588,
+        aylikFiyat: 4999,
+        yillikFiyatAylik: 4249,
+        fiyatYillik: 50988,
         teknoloji: '3D & Parallax Animasyon',
         aiKredi: '2.000 İşlem / Ay',
         ozellikler: ['Hediye .com.tr Domain', 'Google/Meta Reklam Asistanı', 'Kriz & Yorum Yönetimi'],
@@ -65,9 +65,9 @@ export const PAKETLER: Paket[] = [
     {
         id: 'premiumplus',
         name: 'PREMIUM PLUS',
-        aylikFiyat: 4499,
-        yillikFiyatAylik: 3824,
-        fiyatYillik: 45888,
+        aylikFiyat: 7499,
+        yillikFiyatAylik: 6374,
+        fiyatYillik: 76488,
         teknoloji: 'Özel Tasarım 3D Matrix',
         aiKredi: '5.000 İşlem / Ay',
         ozellikler: ['Hediye .com veya .com.tr', 'Trendyol/Yemeksepeti Entegre', 'Kişisel AI Asistan (7/24)'],
@@ -78,11 +78,11 @@ export const PAKETLER: Paket[] = [
 
 // Geriye dönük uyumluluk (Eski yapılar bunu bekliyor olabilir)
 export const PAKET_FIYATLARI_AYLIK: Record<string, number> = {
-    TEMEL: 399,
-    STANDART: 799,
-    BUYUME: 1499,
-    PREMIUM: 2999,
-    PREMIUMPLUS: 4499,
+    TEMEL: 999,
+    STANDART: 1799,
+    BUYUME: 2999,
+    PREMIUM: 4999,
+    PREMIUMPLUS: 7499,
 }
 
 // Geriye dönük uyumluluk

@@ -13,8 +13,7 @@ export async function GET(req: Request) {
     try {
         // 1. Authorization
         const authHeader = req.headers.get("authorization");
-        if (authHeader !== `Bearer ${process.env.CRON_SECRET || 'test_secret'}`) {
-            console.warn("[Data Purge] Unauthorized attempt");
+        if (!process.env.CRON_SECRET || authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
 
@@ -42,7 +41,7 @@ export async function GET(req: Request) {
             metadata: { purged_count: simulatedDeletedAccountsCount }
         });
 
-        console.log(`[DATA PURGE] Permanently deleted ${simulatedDeletedAccountsCount} merchant sites and databases according to KVKK policies.`);
+        // Data purge completed
 
         return NextResponse.json({
             success: true,
@@ -52,7 +51,7 @@ export async function GET(req: Request) {
         }, { status: 200 });
 
     } catch (error: any) {
-        console.error("Data Purge Error:", error);
+        // Data Purge Error
         await logAgentAction({
             agentId: "system_cron",
             actionType: "SYSTEM_ERROR",

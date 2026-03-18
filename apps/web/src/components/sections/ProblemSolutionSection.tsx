@@ -2,130 +2,180 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { CheckCircle2, XCircle } from "lucide-react";
+import { CheckCircle2, XCircle, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
-/**
- * Standard interface for comparison items between traditional methods and kepenk.ai.
- */
-interface ComparisonItem {
-    title: string;
-    issues: string[];
-    kepenkSolves: boolean;
-}
-
-/**
- * Static data array defining the comparisons. 
- * Extracted outside the component to avoid unnecessary re-allocations on render.
- */
-const comparisons: ComparisonItem[] = [
-    {
-        title: "Geleneksel Ajanslar",
-        issues: ["7.000 - 18.000₺ aylık maliyet", "Yavaş süreç ve bürokrasi", "Sadece 09:00 - 18:00 arası müsaitlik"],
-        kepenkSolves: false,
-    },
-    {
-        title: "Hazır Site Platformları",
-        issues: ["Yabancı dil zorunluluğu", "Teknik karmaşa (Domain, Hosting)", "Kişisel destek eksikliği"],
-        kepenkSolves: false,
-    },
-    {
-        title: "Serbest Çalışanlar (Freelance)",
-        issues: ["Sistemsizlik ve garantisizlik", "Aniden ortadan kaybolma riski", "Her iş için ayrı bütçe talebi"],
-        kepenkSolves: false,
-    },
-    {
-        title: "kepenk.ai Asistanı",
-        issues: ["Aylık 399₺'den başlayan fiyatlar", "2 dakikada anında kurulum", "7/24 Kesintisiz çalışma & destek"],
-        kepenkSolves: true,
-    }
+const painPoints = [
+  {
+    title: "Geleneksel Ajanslar",
+    issues: [
+      "7.000 - 18.000₺ aylık maliyet",
+      "Yavaş süreç ve bürokrasi",
+      "Sadece 09:00 - 18:00 arası müsaitlik",
+    ],
+  },
+  {
+    title: "Hazır Site Platformları",
+    issues: [
+      "Yabancı dil zorunluluğu",
+      "Teknik karmaşa (Domain, Hosting)",
+      "Kişisel destek eksikliği",
+    ],
+  },
+  {
+    title: "Serbest Çalışanlar",
+    issues: [
+      "Sistemsizlik ve garantisizlik",
+      "Aniden ortadan kaybolma riski",
+      "Her iş için ayrı bütçe talebi",
+    ],
+  },
 ];
 
-/**
- * ProblemSolutionSection Component
- * 
- * Displays a comparative matrix highlighting the pain points of alternative solutions
- * (agencies, DIY builders, freelancers) versus the benefits of kepenk.ai.
- *
- * @returns {JSX.Element} The rendered Problem/Solution section.
- */
+const kepenkSolutions = [
+  "Aylık 399₺'den başlayan fiyatlar",
+  "2 dakikada anında kurulum",
+  "7/24 kesintisiz çalışma & destek",
+  "Tek platformda her şey dahil",
+  "30 gün para iade garantisi",
+];
+
 export default function ProblemSolutionSection() {
+  return (
+    <section className="py-24 sm:py-32 bg-[#F9FAFB] relative overflow-hidden">
+      {/* Subtle texture */}
+      <div className="absolute inset-0 opacity-[0.02]" style={{
+        backgroundImage: `radial-gradient(circle, #000 1px, transparent 1px)`,
+        backgroundSize: "24px 24px",
+      }} />
 
-    return (
-        <section className="py-20">
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-primary font-mono text-sm uppercase tracking-[0.2em] mb-4"
+          >
+            Neden KPNK?
+          </motion.p>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 font-syne mb-5"
+          >
+            Diğerlerinden{" "}
+            <span className="text-primary">Farkı Ne?</span>
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-lg text-gray-500"
+          >
+            Esnafın bütçesini ve zamanını yormayan, sorunsuz bir dijital ortaklık sunuyoruz.
+          </motion.p>
+        </div>
 
-                <div className="text-center max-w-3xl mx-auto mb-16">
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-3xl md:text-4xl font-bold text-foreground mb-4"
-                    >
-                        Neden <span className="text-rust">kepenk.ai</span>? Diğerlerinden Farkı Ne?
-                    </motion.h2>
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1 }}
-                        className="text-lg text-muted-foreground"
-                    >
-                        Esnafın bütçesini ve zamanını yormayan, sorunsuz bir dijital ortaklık sunuyoruz.
-                    </motion.p>
+        {/* Split Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+          {/* Left: Pain Points */}
+          <div className="space-y-4">
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="text-sm font-semibold text-red-600 uppercase tracking-wider mb-4"
+            >
+              ✗ Mevcut Alternatifler
+            </motion.p>
+            {painPoints.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm"
+              >
+                <h3 className="text-lg font-bold text-gray-900 mb-3 font-syne">{item.title}</h3>
+                <ul className="space-y-2.5">
+                  {item.issues.map((issue, idx) => (
+                    <li key={idx} className="flex items-start gap-3">
+                      <XCircle className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />
+                      <span className="text-gray-500 text-sm">{issue}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Right: kepenk.ai Solution */}
+          <div>
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="text-sm font-semibold text-primary uppercase tracking-wider mb-4"
+            >
+              ✓ KPNK Çözümü
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="bg-gradient-to-br from-indigo-600/10 via-violet-50 to-indigo-50 rounded-3xl p-8 border border-primary/20 shadow-sm relative overflow-hidden"
+            >
+              {/* Glow */}
+              <div className="absolute top-0 right-0 w-40 h-40 bg-primary/10 rounded-full blur-[80px]" />
+
+              <div className="relative z-10">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-12 h-12 rounded-2xl bg-primary flex items-center justify-center">
+                    <span className="text-white font-bold text-lg">K</span>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900 font-syne">KPNK Asistanı</h3>
+                    <p className="text-primary text-sm font-medium">Hepsi bir arada çözüm</p>
+                  </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 perspective-1000">
-                    {comparisons.map((item, index) => {
-                        const isKepenk = item.kepenkSolves;
-                        return (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 30, rotateX: 10 }}
-                                whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-                                whileHover={{ 
-                                    scale: isKepenk ? 1.05 : 1.02, 
-                                    rotateY: index < 2 ? 5 : -5,
-                                    rotateX: 5,
-                                    z: isKepenk ? 50 : 20,
-                                    transition: { duration: 0.3 }
-                                }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.1, duration: 0.5 }}
-                                style={{ transformStyle: "preserve-3d" }}
-                                className={`relative rounded-3xl p-6 md:p-8 border backdrop-blur-xl transition-all duration-300 flex flex-col ${isKepenk
-                                    ? 'bg-gradient-to-br from-rust/20 via-orange-900/10 to-transparent border-rust/50 shadow-[0_10px_40px_rgba(220,70,30,0.2)] z-20'
-                                    : 'bg-white/5 border-white/10 text-foreground z-10'
-                                    }`}
-                            >
-                                {/* Light reflection sweep on hover */}
-                                <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
-                                    <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/5 to-white/0 opacity-0 hover:opacity-100 transition-opacity duration-500 transform -skew-x-12 translate-x-[-100%] hover:translate-x-[200%]" />
-                                </div>
+                <ul className="space-y-4 mb-8">
+                  {kepenkSolutions.map((solution, idx) => (
+                    <motion.li
+                      key={idx}
+                      initial={{ opacity: 0, x: 20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.3 + idx * 0.08 }}
+                      className="flex items-start gap-3"
+                    >
+                      <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                      <span className="text-gray-700 font-medium text-sm">{solution}</span>
+                    </motion.li>
+                  ))}
+                </ul>
 
-                                <h3 className={`relative z-10 text-xl font-syne font-bold mb-6 pb-4 border-b ${isKepenk ? 'border-rust/30 text-rust drop-shadow-md' : 'border-white/10 text-white'}`}>
-                                    {item.title}
-                                </h3>
-
-                                <ul className="relative z-10 space-y-4 flex-grow font-lora">
-                                    {item.issues.map((issue, idx) => (
-                                        <li key={idx} className="flex items-start gap-3">
-                                            {isKepenk ? (
-                                                <CheckCircle2 className="w-5 h-5 text-rust shrink-0 mt-0.5 drop-shadow-sm" />
-                                            ) : (
-                                                <XCircle className="w-5 h-5 text-muted-foreground shrink-0 mt-0.5" />
-                                            )}
-                                            <span className={isKepenk ? 'text-white font-medium' : 'text-muted-foreground-300'}>
-                                                {issue}
-                                            </span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </motion.div>
-                        );
-                    })}
-                </div>
-
-            </div>
-        </section>
-    );
+                <Link href="/onboarding">
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-xl font-semibold text-sm hover:shadow-lg hover:shadow-[0_0_20px_rgba(79,70,229,0.2)] transition-all"
+                  >
+                    Hemen Dene
+                    <ArrowRight className="w-4 h-4" />
+                  </motion.div>
+                </Link>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }

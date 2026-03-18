@@ -24,7 +24,8 @@ function getOAuth2Client() {
  * State parametresinin HMAC imzasını doğrular (CSRF koruması).
  */
 function stateDogrula(state: string): string | null {
-    const secret = process.env.GOOGLE_OAUTH_CLIENT_SECRET || 'fallback-secret'
+    const secret = process.env.GOOGLE_OAUTH_CLIENT_SECRET
+    if (!secret) return null
     const parts = state.split('.')
     if (parts.length !== 2) return null
 
@@ -53,7 +54,7 @@ export async function GET(request: Request) {
 
         // Google'dan hata döndüyse
         if (error) {
-            console.error('[GOOGLE CALLBACK] OAuth hatası:', error)
+            // console.error('[GOOGLE CALLBACK] OAuth hatası:', error)
             return NextResponse.redirect(
                 new URL('/dashboard/sitem?gmb_error=denied', process.env.NEXT_PUBLIC_APP_URL!)
             )
@@ -68,7 +69,7 @@ export async function GET(request: Request) {
         // ── CSRF doğrulaması ────────────────────────────────────────────────
         const esnafId = stateDogrula(state)
         if (!esnafId) {
-            console.error('[GOOGLE CALLBACK] Geçersiz state (CSRF)')
+            // console.error('[GOOGLE CALLBACK] Geçersiz state (CSRF)')
             return NextResponse.redirect(
                 new URL('/dashboard/sitem?gmb_error=csrf', process.env.NEXT_PUBLIC_APP_URL!)
             )
@@ -79,7 +80,7 @@ export async function GET(request: Request) {
         const { tokens } = await oauth2Client.getToken(code)
 
         if (!tokens.refresh_token) {
-            console.error('[GOOGLE CALLBACK] refresh_token alınamadı')
+            // console.error('[GOOGLE CALLBACK] refresh_token alınamadı')
             return NextResponse.redirect(
                 new URL('/dashboard/sitem?gmb_error=no_refresh', process.env.NEXT_PUBLIC_APP_URL!)
             )
@@ -111,14 +112,14 @@ export async function GET(request: Request) {
                     : null,
             }, { merge: true })
 
-        console.log(`[GOOGLE CALLBACK] ✅ ${esnafId} GMB bağlantısı başarılı`)
+        // console.log(`[GOOGLE CALLBACK] ✅ ${esnafId} GMB bağlantısı başarılı`)
 
         // ── Dashboard'a yönlendir ───────────────────────────────────────────
         return NextResponse.redirect(
             new URL('/dashboard/sitem?gmb=success', process.env.NEXT_PUBLIC_APP_URL!)
         )
     } catch (error: any) {
-        console.error('[GOOGLE CALLBACK] Hata:', error.message)
+        // console.error('[GOOGLE CALLBACK] Hata:', error.message)
         return NextResponse.redirect(
             new URL('/dashboard/sitem?gmb_error=server', process.env.NEXT_PUBLIC_APP_URL!)
         )

@@ -41,7 +41,7 @@ export async function POST(request: Request) {
 
         return NextResponse.json({ ok: true, mesaj: 'Bülten kaydı başarılı' })
     } catch (error: any) {
-        console.error('[BULTEN POST]', error)
+        // console.error('[BULTEN POST]', error)
         return NextResponse.json({ error: 'Kayıt başarısız' }, { status: 500 })
     }
 }

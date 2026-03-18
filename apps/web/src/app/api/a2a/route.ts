@@ -35,7 +35,7 @@ export async function POST(request: Request) {
         });
 
     } catch (error: any) {
-        console.error('[A2A Protcol Error]:', error);
+        // console.error('[A2A Protcol Error]:', error);
         return NextResponse.json(
             { jsonrpc: '2.0', error: { code: -32603, message: 'Internal error processing the agent task.' }, id: null },
             { status: 500 }

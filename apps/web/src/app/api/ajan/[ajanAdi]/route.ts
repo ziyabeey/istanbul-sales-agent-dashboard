@@ -68,7 +68,7 @@ export async function POST(
             cikti,
         })
     } catch (error: any) {
-        console.error('[AJAN ROUTE]', error)
+        // console.error('[AJAN ROUTE]', error)
         return NextResponse.json({ error: error.message }, { status: 500 })
     }
 }

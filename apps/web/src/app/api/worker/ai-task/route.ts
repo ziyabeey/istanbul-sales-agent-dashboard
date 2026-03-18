@@ -45,7 +45,7 @@ export async function POST(request: Request) {
         const body: GorevPayload = await request.json()
         const { tip, esnafId, data } = body
 
-        console.log(`[WORKER] 🔄 Görev başlatıldı: ${tip} | esnaf: ${esnafId || 'N/A'}`)
+        // console.log(`[WORKER] 🔄 Görev başlatıldı: ${tip} | esnaf: ${esnafId || 'N/A'}`)
 
         let sonuc: any
 
@@ -150,7 +150,7 @@ export async function POST(request: Request) {
         })
     } catch (error: any) {
         const sure = ((Date.now() - baslama) / 1000).toFixed(1)
-        console.error(`[WORKER] ❌ Görev hata (${sure}s):`, error.message)
+        // console.error(`[WORKER] ❌ Görev hata (${sure}s):`, error.message)
 
         // Hata logu
         try {

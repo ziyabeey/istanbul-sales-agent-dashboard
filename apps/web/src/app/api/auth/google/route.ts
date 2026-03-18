@@ -71,7 +71,7 @@ export async function POST(req: Request) {
     await oturumOlustur(doc.id, response)
     return response
   } catch (error: any) {
-    console.error('[Google Auth]', error)
+    // console.error('[Google Auth]', error)
     return NextResponse.json({ error: 'Sunucu hatası' }, { status: 500 })
   }
 }

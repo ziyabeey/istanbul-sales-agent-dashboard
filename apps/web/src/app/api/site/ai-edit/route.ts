@@ -50,7 +50,7 @@ KURALLAR:
             htmlUzunluk: html.length,
         })
     } catch (e: any) {
-        console.error('[AI-EDIT] Hata:', e.message)
+        // console.error('[AI-EDIT] Hata:', e.message)
         return NextResponse.json({ error: e.message }, { status: 500 })
     }
 }

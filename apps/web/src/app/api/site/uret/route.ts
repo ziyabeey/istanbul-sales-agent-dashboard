@@ -38,7 +38,7 @@ export async function POST(request: Request) {
         })
     } catch (e: any) {
         await doc.ref.update({ siteUretimDevamEdiyor: false })
-        console.error('[SİTE ÜRET KUYRUK]', e)
+        // console.error('[SİTE ÜRET KUYRUK]', e)
         return NextResponse.json({ error: 'Kuyruğa eklenemedi' }, { status: 500 })
     }
 }

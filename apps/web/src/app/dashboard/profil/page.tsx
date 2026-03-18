@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { useEsnaf } from '@/context/EsnafContext'
+import { toast } from 'sonner'
 
 export default function ProfilPage() {
     const { esnaf, esnafId } = useEsnaf()
@@ -19,6 +20,12 @@ export default function ProfilPage() {
     const [mesaj, setMesaj] = useState('')
 
     async function handleKaydet() {
+        // Validate phone
+        const telefonDigits = form.telefon.replace(/[^0-9]/g, '')
+        if (form.telefon && telefonDigits.length < 10) {
+            toast.error('Gecerli bir telefon numarasi girin (en az 10 hane)')
+            return
+        }
         setKaydediliyor(true)
         try {
             const res = await fetch(`/api/esnaf/${esnafId}`, {
@@ -42,11 +49,18 @@ export default function ProfilPage() {
     async function handleBildirimToggle(alan: keyof typeof bildirimler) {
         const yeni = { ...bildirimler, [alan]: !bildirimler[alan] }
         setBildirimler(yeni)
-        await fetch(`/api/esnaf/${esnafId}`, {
-            method: 'PATCH',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ bildirimAyarlari: yeni }),
-        }).catch(() => { })
+        try {
+            const res = await fetch(`/api/esnaf/${esnafId}`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ bildirimAyarlari: yeni }),
+            })
+            if (!res.ok) throw new Error()
+            toast.success('Bildirim ayarları güncellendi')
+        } catch {
+            setBildirimler(bildirimler) // rollback
+            toast.error('Bildirim ayarları kaydedilemedi')
+        }
     }
 
     const alanEtiketleri: Record<string, string> = {
@@ -183,16 +197,22 @@ export default function ProfilPage() {
                             <button
                                 onClick={async () => {
                                     if (!instagramInput) return
-                                    await fetch(`/api/esnaf/${esnafId}`, {
-                                        method: 'PATCH',
-                                        headers: { 'Content-Type': 'application/json' },
-                                        body: JSON.stringify({
-                                            instagramUsername: instagramInput,
-                                            instagramUrl: `https://instagram.com/${instagramInput}`,
-                                        }),
-                                    })
-                                    setInstagramEkleModu(false)
-                                    window.location.reload()
+                                    try {
+                                        const res = await fetch(`/api/esnaf/${esnafId}`, {
+                                            method: 'PATCH',
+                                            headers: { 'Content-Type': 'application/json' },
+                                            body: JSON.stringify({
+                                                instagramUsername: instagramInput,
+                                                instagramUrl: `https://instagram.com/${instagramInput}`,
+                                            }),
+                                        })
+                                        if (!res.ok) throw new Error()
+                                        toast.success('Instagram hesabı bağlandı')
+                                        setInstagramEkleModu(false)
+                                        window.location.reload()
+                                    } catch {
+                                        toast.error('Instagram bağlanamadı. Tekrar deneyin.')
+                                    }
                                 }}
                                 className="flex-1 bg-rust text-foreground py-2 rounded-lg text-sm font-bold"
                             >
@@ -225,6 +245,8 @@ export default function ProfilPage() {
                             onClick={() => handleBildirimToggle(alan)}
                             className={`w-12 h-6 rounded-full transition-all relative ${bildirimler[alan] ? 'bg-rust' : 'bg-stone/40'
                                 }`}
+                            role="switch"
+                            aria-checked={bildirimler[alan]}
                             aria-label={etiket}
                         >
                             <span

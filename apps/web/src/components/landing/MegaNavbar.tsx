@@ -27,8 +27,10 @@ export function MegaNavbar() {
             <div className="max-w-[1280px] mx-auto px-6 h-20 flex items-center justify-between">
                 
                 {/* Logo */}
-                <Link href="/" className="text-2xl font-bold tracking-tighter text-white" onClick={() => setActiveGroup(null)}>
-                    kepenk<span className="text-[#7c3aed]">.ai</span>
+                <Link href="/" className="flex items-center gap-2 cursor-pointer group" onClick={() => setActiveGroup(null)}>
+                    <span className="font-syne font-extrabold text-xl tracking-tight text-white">
+                        KPNK
+                    </span>
                 </Link>
 
                 {/* Menü Öğeleri */}
@@ -43,7 +45,7 @@ export function MegaNavbar() {
                 {/* CTA Butonları */}
                 <div className="hidden md:flex items-center gap-4">
                     <Link href="/giris" className="text-sm font-medium text-slate-300 hover:text-white transition-colors">Giriş Yap</Link>
-                    <Link href="/onboarding/sektor" className="bg-[#7c3aed] text-white text-sm font-medium px-5 py-2.5 rounded-full hover:bg-[#6d28d9] transition-colors">
+                    <Link href="/onboarding" className="bg-[#7c3aed] text-white text-sm font-medium px-5 py-2.5 rounded-full hover:bg-[#6d28d9] transition-colors">
                         Başlayın →
                     </Link>
                 </div>

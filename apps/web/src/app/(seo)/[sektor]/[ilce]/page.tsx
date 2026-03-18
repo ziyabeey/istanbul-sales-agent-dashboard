@@ -65,7 +65,7 @@ export default async function IlceSektorPage({ params }: { params: Promise<{ sek
           <h1 className="font-syne font-extrabold text-3xl md:text-5xl mb-4 leading-tight">
             {ilceAd} <span className="text-rust">{sektorData.ad}</span>
           </h1>
-          <p className="text-muted-foreground-light text-lg max-w-2xl mx-auto mb-8 leading-relaxed">
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-8 leading-relaxed">
             {sektorData.heroBaslik || sektorData.slogan}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -134,7 +134,7 @@ export default async function IlceSektorPage({ params }: { params: Promise<{ sek
           <h2 className="font-syne font-bold text-3xl mb-4">
             {ilceAd}&apos;da Öne Çıkın
           </h2>
-          <p className="text-muted-foreground-light mb-8">
+          <p className="text-muted-foreground mb-8">
             {sektorData.altBaslik || `${ilceAd}'daki ${sektorData.ad.toLowerCase()} işletmeniz için AI destekli web sitesi ve dijital asistan.`}
           </p>
           <Link

@@ -1,9 +1,10 @@
 'use client'
 
-import { useState, useCallback, useRef } from 'react'
+import { useState, useCallback, useMemo, useRef } from 'react'
 import { useEditorStore } from '../store/editor-store'
 import { DEMOLAR } from '@/data/demoVitrinData'
 import { PREMIUM_TEMPLATES } from '../data/premiumTemplates'
+import SectionInspector from './panels/SectionInspector'
 
 /** Convert Unsplash ID (like 'photo-xxx') or full URL to valid img src */
 function unsplashUrl(val?: string): string {
@@ -21,6 +22,16 @@ export default function RightPanel() {
     const updateSiteData = useEditorStore(s => s.updateSiteData)
     const rightPanelOpen = useEditorStore(s => s.rightPanelOpen)
     const setRightPanelOpen = useEditorStore(s => s.setRightPanelOpen)
+    const selectedSectionId = useEditorStore(s => s.selectedSectionId)
+    const pages = useEditorStore(s => s.pages)
+    const activePageId = useEditorStore(s => s.activePageId)
+
+    /* Derive selected section from pages */
+    const selectedSection = useMemo(() => {
+        if (!selectedSectionId) return null
+        const activePage = pages.find(p => p.id === activePageId)
+        return activePage?.sections.find(s => s.instanceId === selectedSectionId) ?? null
+    }, [selectedSectionId, pages, activePageId])
 
     if (!rightPanelOpen || !siteData) return null
 
@@ -217,7 +228,7 @@ export default function RightPanel() {
                             <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
                             <path d="M18.5 2.5a2.12 2.12 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
                         </svg>
-                        Site Düzenle
+                        {selectedSection ? `${selectedSection.icon} ${selectedSection.name}` : 'Site Düzenle'}
                     </span>
                     <button className="ke-rp-close" onClick={() => setRightPanelOpen(false)}>
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
@@ -225,11 +236,17 @@ export default function RightPanel() {
                 </div>
 
                 <div className="ke-rp-body">
-                    <HeroSection />
-                    <ContentSection />
-                    <DesignSection />
-                    <SectorSection />
-                    {siteData.paket === 'PREMIUMPLUS' && <PremiumSection />}
+                    {selectedSection ? (
+                        <SectionInspector section={selectedSection} />
+                    ) : (
+                        <>
+                            <HeroSection />
+                            <ContentSection />
+                            <DesignSection />
+                            <SectorSection />
+                            {siteData.paket === 'PREMIUMPLUS' && <PremiumSection />}
+                        </>
+                    )}
                 </div>
             </div>
         </>

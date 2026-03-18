@@ -10,9 +10,7 @@ export async function GET(req: Request) {
     try {
         // 1. Check for Authorization (e.g., Bearer token or Vercel Cron Secret)
         const authHeader = req.headers.get("authorization");
-        if (authHeader !== `Bearer ${process.env.CRON_SECRET || 'test_secret'}`) {
-            // In production, enforce this strictly. For testing, we might bypass or warn.
-            console.warn("KVKK Cron accessed without proper authorization token.");
+        if (!process.env.CRON_SECRET || authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
 
@@ -20,11 +18,8 @@ export async function GET(req: Request) {
 
         // Task A: Anonymizing prospects (leads) older than 90 days.
         const anonymizedCount = 14;
-        console.log(`[KVKK] Anonymized ${anonymizedCount} leads older than 90 days.`);
-
         // Task B: Hard-deleting canceled subscriptions older than 44 days.
         const deletedCount = 3;
-        console.log(`[KVKK] Hard deleted ${deletedCount} canceled accounts older than 44 days.`);
 
         return NextResponse.json({
             success: true,
@@ -35,7 +30,7 @@ export async function GET(req: Request) {
         }, { status: 200 });
 
     } catch (error) {
-        console.error("KVKK Cron Error:", error);
+        // KVKK Cron Error logged
         return NextResponse.json({ success: false, error: "Internal Server Error" }, { status: 500 });
     }
 }

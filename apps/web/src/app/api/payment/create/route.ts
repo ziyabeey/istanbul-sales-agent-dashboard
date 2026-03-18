@@ -135,7 +135,7 @@ export async function POST(request: Request) {
         })
     } catch (error: unknown) {
         const message = error instanceof Error ? error.message : 'Bilinmeyen hata'
-        console.error('[PAYMENT CREATE HATA]', message)
+        // console.error('[PAYMENT CREATE HATA]', message)
         return NextResponse.json({ error: message }, { status: 500 })
     }
 }

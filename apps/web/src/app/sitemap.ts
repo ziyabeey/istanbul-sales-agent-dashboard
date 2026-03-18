@@ -1,5 +1,7 @@
 import { MetadataRoute } from 'next'
 import { SEKTORLER } from '@/data/sektorler'
+import { MODULLER } from '@/data/moduller'
+import { PAKETLER } from '@/data/paketler'
 
 const BASE = 'https://kepenk.ai'
 
@@ -48,5 +50,107 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   )
 
-  return [...statikSayfalar, ...sektorSayfalar, ...ilceSayfalar]
+  // 4. Destek sayfaları (destek.kepenk.ai canonical)
+  const DESTEK_BASE = 'https://destek.kepenk.ai'
+
+  const destekHubSayfalar: MetadataRoute.Sitemap = [
+    '/destek',
+    '/destek/baslangic',
+    '/destek/editor',
+    '/destek/whatsapp',
+    '/destek/google-yorumlar',
+    '/destek/odeme-fatura',
+    '/destek/seo-rehberi',
+    '/destek/sss',
+    '/destek/iletisim',
+    '/destek/moduller',
+    '/destek/sektorler',
+    '/destek/paketler',
+  ].map(path => ({
+    url:             `${DESTEK_BASE}${path}`,
+    lastModified:    new Date(),
+    changeFrequency: 'monthly' as const,
+    priority:        0.8,
+  }))
+
+  const destekMakaleSayfalar: MetadataRoute.Sitemap = [
+    '/destek/baslangic/ilk-kurulum',
+    '/destek/baslangic/paket-secimi',
+    '/destek/baslangic/isletme-bilgileri',
+    '/destek/baslangic/whatsapp-baglantisi',
+    '/destek/editor/kullanim-kilavuzu',
+    '/destek/editor/blok-ekleme-silme',
+    '/destek/editor/tema-ve-renkler',
+    '/destek/editor/gorsel-yukleme',
+    '/destek/editor/seo-ayarlari',
+    '/destek/editor/domain-baglama',
+    '/destek/editor/yayinlama',
+    '/destek/whatsapp/kurulum',
+    '/destek/whatsapp/otomatik-yanitlar',
+    '/destek/whatsapp/sss',
+    '/destek/google-yorumlar/kurulum',
+    '/destek/google-yorumlar/otomatik-yanitlar',
+    '/destek/odeme-fatura/odeme-yontemleri',
+    '/destek/odeme-fatura/fatura-indirme',
+    '/destek/odeme-fatura/paket-degistirme',
+    '/destek/seo-rehberi/temel-seo',
+    '/destek/seo-rehberi/google-my-business',
+  ].map(path => ({
+    url:             `${DESTEK_BASE}${path}`,
+    lastModified:    new Date(),
+    changeFrequency: 'monthly' as const,
+    priority:        0.7,
+  }))
+
+  // Dinamik destek sayfaları
+  const destekModulSayfalar: MetadataRoute.Sitemap = MODULLER.map(m => ({
+    url:             `${DESTEK_BASE}/destek/moduller/${m.id}`,
+    lastModified:    new Date(),
+    changeFrequency: 'monthly' as const,
+    priority:        0.7,
+  }))
+
+  const destekSektorSayfalar: MetadataRoute.Sitemap = SEKTORLER.map(s => ({
+    url:             `${DESTEK_BASE}/destek/sektorler/${s.id}`,
+    lastModified:    new Date(),
+    changeFrequency: 'monthly' as const,
+    priority:        0.7,
+  }))
+
+  const destekPaketSayfalar: MetadataRoute.Sitemap = PAKETLER.map(p => ({
+    url:             `${DESTEK_BASE}/destek/paketler/${p.id}`,
+    lastModified:    new Date(),
+    changeFrequency: 'monthly' as const,
+    priority:        0.7,
+  }))
+
+  // Sorun giderme + Talep sayfaları
+  const destekSorunGidermeSayfalar: MetadataRoute.Sitemap = [
+    '/destek/sorun-giderme',
+    '/destek/sorun-giderme/odeme-sorunlari',
+    '/destek/sorun-giderme/giris-sorunlari',
+    '/destek/sorun-giderme/site-sorunlari',
+    '/destek/sorun-giderme/whatsapp-sorunlari',
+    '/destek/sorun-giderme/domain-sorunlari',
+    '/destek/sorun-giderme/editor-sorunlari',
+    '/destek/talep',
+    '/destek/talep/takip',
+  ].map(path => ({
+    url:             `${DESTEK_BASE}${path}`,
+    lastModified:    new Date(),
+    changeFrequency: 'monthly' as const,
+    priority:        0.7,
+  }))
+
+  return [
+    ...statikSayfalar,
+    ...sektorSayfalar,
+    ...ilceSayfalar,
+    ...destekHubSayfalar,
+    ...destekMakaleSayfalar,
+    ...destekModulSayfalar,
+    ...destekSektorSayfalar,
+    ...destekPaketSayfalar,
+    ...destekSorunGidermeSayfalar,
+  ]
 }

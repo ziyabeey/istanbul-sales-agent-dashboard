@@ -21,7 +21,7 @@ export async function GET(req: Request) {
 
         return NextResponse.json(reklamlar)
     } catch (error) {
-        console.error('[REKLAMLAR API HATA]', error)
+        // console.error('[REKLAMLAR API HATA]', error)
         return NextResponse.json({ error: 'Sunucu hatası' }, { status: 500 })
     }
 }

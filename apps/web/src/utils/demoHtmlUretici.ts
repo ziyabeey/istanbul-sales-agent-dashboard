@@ -6,6 +6,7 @@
  */
 
 import type { DemoSector } from '@/data/demoVitrinData'
+import { MODULLER } from '@/data/moduller'
 
 // ── Yardımcılar ───────────────────────────────────────────────────
 
@@ -391,7 +392,7 @@ function varsayilanIcerik(d: DemoSector): SektorIcerik {
 
 // ── Özgün Şablon Üreticileri ──────────────────────────────────────────
 
-function htmlYerelEsnaf(d: DemoSector, ic: SektorIcerik, ik: string[], dark: boolean, navBg: string, navBorder: string, cardBg: string, cardBorder: string, sub: string, footBg: string, oFrom: string, oTo: string, logo: string, moduleSectionsHtml: string = ''): string {
+function htmlYerelEsnaf(d: DemoSector, ic: SektorIcerik, ik: string[], dark: boolean, navBg: string, navBorder: string, cardBg: string, cardBorder: string, sub: string, footBg: string, oFrom: string, oTo: string, logo: string, moduleSectionsHtml: string = '', ec?: EditorCSS): string {
   const menuSection = ic.menuItems ? `
 <section class="section" id="menu">
   <div class="section-label">Menü</div>
@@ -406,9 +407,9 @@ function htmlYerelEsnaf(d: DemoSector, ic: SektorIcerik, ik: string[], dark: boo
 
   return `<!DOCTYPE html><html lang="tr"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<link href="https://fonts.googleapis.com/css2?family=${d.font.replace(/ /g, '+')}:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,400;1,700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="${ec?.fontsLink || `https://fonts.googleapis.com/css2?family=${d.font.replace(/ /g, '+')}:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,400;1,700&family=Inter:wght@300;400;600;700&display=swap`}" rel="stylesheet">
 <style>
-:root{--bg:${d.bg};--text:${d.text};--accent:${d.accent};--muted:${sub};--card:${cardBg};--border:${cardBorder};--nav-h:72px;--fd:'${d.font}',serif;--fb:'Inter',system-ui,sans-serif}
+:root{--bg:${d.bg};--text:${d.text};--accent:${d.accent};--muted:${sub};--card:${cardBg};--border:${cardBorder};--nav-h:72px;--fd:'${ec?.headingFont || d.font}',serif;--fb:'${ec?.bodyFont || 'Inter'}',system-ui,sans-serif${ec?.designVars || ''}}
 *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
 body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
@@ -492,13 +493,13 @@ ${DEMO_SCRIPT}
 </body></html>`
 }
 
-function htmlProfesyonel(d: DemoSector, ic: SektorIcerik, ik: string[], dark: boolean, navBg: string, navBorder: string, cardBg: string, cardBorder: string, sub: string, footBg: string, moduleSectionsHtml: string = ''): string {
+function htmlProfesyonel(d: DemoSector, ic: SektorIcerik, ik: string[], dark: boolean, navBg: string, navBorder: string, cardBg: string, cardBorder: string, sub: string, footBg: string, moduleSectionsHtml: string = '', ec?: EditorCSS): string {
   // Profesyonel/Kurumsal Şablon: Sol Menu Sidebar, Sağ Split Content, Köşeli ve Temiz Hatlar
   return `<!DOCTYPE html><html lang="tr"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<link href="https://fonts.googleapis.com/css2?family=${d.font.replace(/ /g, '+')}:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="${ec?.fontsLink || `https://fonts.googleapis.com/css2?family=${d.font.replace(/ /g, '+')}:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@300;400;500;600;700&display=swap`}" rel="stylesheet">
 <style>
-:root{--bg:${d.bg};--text:${d.text};--accent:${d.accent};--muted:${sub};--card:${cardBg};--border:${cardBorder};--sidebar:280px;--fd:'${d.font}',serif;--fb:'Space Grotesk',sans-serif}
+:root{--bg:${d.bg};--text:${d.text};--accent:${d.accent};--muted:${sub};--card:${cardBg};--border:${cardBorder};--sidebar:280px;--fd:'${ec?.headingFont || d.font}',serif;--fb:'${ec?.bodyFont || 'Space Grotesk'}',sans-serif${ec?.designVars || ''}}
 *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
 body{font-family:var(--fb);background:var(--bg);color:var(--text);display:flex}
 .sidebar{width:var(--sidebar);height:100vh;position:fixed;left:0;top:0;background:${dark ? 'rgba(0,0,0,0.2)' : 'rgba(255,255,255,0.5)'};border-right:1px solid var(--border);padding:40px;display:flex;flex-direction:column;justify-content:space-between}
@@ -580,13 +581,13 @@ ${DEMO_SCRIPT}
 </body></html>`
 }
 
-function htmlSaglikGuzellik(d: DemoSector, ic: SektorIcerik, ik: string[], dark: boolean, navBg: string, navBorder: string, cardBg: string, cardBorder: string, sub: string, footBg: string, moduleSectionsHtml: string = ''): string {
+function htmlSaglikGuzellik(d: DemoSector, ic: SektorIcerik, ik: string[], dark: boolean, navBg: string, navBorder: string, cardBg: string, cardBorder: string, sub: string, footBg: string, moduleSectionsHtml: string = '', ec?: EditorCSS): string {
   // Sağlık & Güzellik Şablon: Yuvarlak hatlar, ortalanmış, floating nav, soft renkler ve organik formlar
   return `<!DOCTYPE html><html lang="tr"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<link href="https://fonts.googleapis.com/css2?family=${d.font.replace(/ /g, '+')}:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="${ec?.fontsLink || `https://fonts.googleapis.com/css2?family=${d.font.replace(/ /g, '+')}:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Nunito:wght@300;400;600;700&display=swap`}" rel="stylesheet">
 <style>
-:root{--bg:${d.bg};--text:${d.text};--accent:${d.accent};--muted:${sub};--card:${cardBg};--border:${cardBorder};--nav-h:60px;--fd:'${d.font}',serif;--fb:'Nunito',sans-serif}
+:root{--bg:${d.bg};--text:${d.text};--accent:${d.accent};--muted:${sub};--card:${cardBg};--border:${cardBorder};--nav-h:60px;--fd:'${ec?.headingFont || d.font}',serif;--fb:'${ec?.bodyFont || 'Nunito'}',sans-serif${ec?.designVars || ''}}
 *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
 body{font-family:var(--fb);background:var(--bg);color:var(--text);text-align:center;padding-top:100px}
 .nav-wrap{position:fixed;top:24px;left:0;width:100%;z-index:99;display:flex;justify-content:center;padding:0 20px}
@@ -648,9 +649,18 @@ ${DEMO_SCRIPT}
 
 // ── Modüler Bölüm Generatörleri ──────────────────────────────────────────
 
+interface EditorCSS {
+  headingFont: string
+  bodyFont: string
+  designVars: string
+  fontsLink: string
+}
+
 interface SectionCtx {
   d: DemoSector; ic: SektorIcerik; dark: boolean; sub: string
   cardBg: string; cardBorder: string; footBg: string
+  modulConfig?: Record<string, Record<string, unknown>>
+  gizliModuller?: string[]
 }
 
 function sectionIletisimFormu(ctx: SectionCtx): string {
@@ -832,7 +842,191 @@ function sectionCta(ctx: SectionCtx): string {
 </section>`
 }
 
-// ── Modül → Section eşleme ──────────────────────────────────────────
+// ── Integration Module Section Generators ─────────────────────────────
+
+function sectionHaritaYolTarifi(ctx: SectionCtx): string {
+  const { d, dark } = ctx
+  const cfg = ctx.modulConfig?.['harita-yol-tarifi'] || {}
+  const mapHeight = (cfg.mapHeight as number) || 400
+  const adres = (cfg.adres as string) || (d as any).adres || 'İstanbul, Türkiye'
+  const telefon = (cfg.telefon as string) || (d as any).telefon || ''
+  const zoom = (cfg.zoom as number) || 15
+  const mapQuery = (cfg.mapQuery as string) || adres
+  
+  return `<section class="section" id="harita-yol-tarifi" data-modul="harita-yol-tarifi" style="padding:80px 48px;max-width:1200px;margin:0 auto">
+  <div class="section-label">Konum & Yol Tarifi</div>
+  <div class="section-title" style="margin-bottom:32px">Bizi Ziyaret Edin</div>
+  <div style="display:grid;grid-template-columns:1fr 340px;gap:24px;align-items:stretch">
+    <div style="border-radius:20px;overflow:hidden;height:${mapHeight}px;background:${dark?'rgba(255,255,255,0.03)':'#e8f0fe'};border:1px solid var(--border);position:relative">
+      <iframe src="https://maps.google.com/maps?q=${encodeURIComponent(mapQuery)}&z=${zoom}&output=embed" style="width:100%;height:100%;border:none" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:18px;padding:28px 24px;flex:1;display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;align-items:center;gap:12px">
+          <div style="width:44px;height:44px;border-radius:12px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff;flex-shrink:0">📍</div>
+          <div>
+            <div style="font-size:12px;color:var(--muted);font-weight:600;margin-bottom:2px">Adres</div>
+            <div style="font-size:14px;font-weight:600;line-height:1.4">${adres}</div>
+          </div>
+        </div>
+        ${telefon ? `<div style="display:flex;align-items:center;gap:12px">
+          <div style="width:44px;height:44px;border-radius:12px;background:${dark?'rgba(255,255,255,0.06)':'rgba(0,0,0,0.04)'};display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">📞</div>
+          <div>
+            <div style="font-size:12px;color:var(--muted);font-weight:600;margin-bottom:2px">Telefon</div>
+            <div style="font-size:14px;font-weight:600">${telefon}</div>
+          </div>
+        </div>` : ''}
+        <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapQuery)}" target="_blank" rel="noopener" style="display:block;text-align:center;padding:14px;background:var(--accent);color:#fff;border-radius:12px;font-weight:700;font-size:14px;text-decoration:none;margin-top:auto">
+          🗺️ Yol Tarifi Al
+        </a>
+      </div>
+    </div>
+  </div>
+  <style>@media(max-width:768px){#harita-yol-tarifi>div:last-child>div{grid-template-columns:1fr!important}}</style>
+</section>`
+}
+
+function sectionGoogleYorumlar(ctx: SectionCtx): string {
+  const cfg = ctx.modulConfig?.['google-yorumlar'] || {}
+  const reviewCount = Math.min((cfg.gosterilecekYorumSayisi as number) || 6, 8)
+  const minStars = (cfg.minimumPuan as number) || 4
+  const reviews = [
+    { name: 'Ayşe K.', text: 'Harika bir deneyimdi! Kesinlikle herkese tavsiye ederim. Çok profesyonel yaklaşım.', stars: 5, ago: '2 hafta önce' },
+    { name: 'Mehmet B.', text: 'Profesyonel ekip, kaliteli hizmet. Çok memnun kaldım, tekrar geleceğim.', stars: 5, ago: '1 ay önce' },
+    { name: 'Zeynep T.', text: 'İlk ziyaretimde çok olumlu etkilendim. Kesinlikle tavsiye ediyorum.', stars: 5, ago: '3 hafta önce' },
+    { name: 'Can D.', text: 'Fiyat performans açısından çok iyi. Hızlı ve güler yüzlü hizmet aldık.', stars: 4, ago: '1 ay önce' },
+    { name: 'Elif S.', text: 'Çok güzel bir ortam, personel ilgili. Beklentilerimi karşıladı.', stars: 5, ago: '2 ay önce' },
+    { name: 'Ahmet Y.', text: 'Hem kalite hem de fiyat olarak uygun. Lokasyon da merkezi.', stars: 4, ago: '3 ay önce' },
+    { name: 'Fatma Ö.', text: 'Çocuklarla birlikte geldik, herkes çok ilgiliydi. Teşekkürler.', stars: 5, ago: '1 hafta önce' },
+    { name: 'Burak K.', text: 'Güzel bir deneyimdi, ilgiyle karşılanıyorsunuz.', stars: 4, ago: '2 ay önce' },
+  ].filter(r => r.stars >= minStars).slice(0, reviewCount)
+
+  return `<section class="section" id="google-yorumlar" data-modul="google-yorumlar" style="padding:80px 48px;max-width:1200px;margin:0 auto">
+  <div class="section-label">Google Yorumları</div>
+  <div style="display:flex;align-items:center;gap:16px;margin-bottom:32px">
+    <div class="section-title" style="margin-bottom:0">Müşterilerimiz Ne Diyor?</div>
+    <div style="display:flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--border);padding:6px 14px;border-radius:99px">
+      <span style="color:#f5a623;font-size:16px">★</span>
+      <span style="font-weight:800;font-size:15px">4.8</span>
+      <span style="font-size:12px;color:var(--muted)">(${120 + Math.floor(Math.random() * 80)})</span>
+      <img src="https://www.google.com/favicon.ico" style="width:14px;height:14px;margin-left:4px" alt="Google">
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+    ${reviews.map(r => `<div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="width:40px;height:40px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:16px;color:#fff;font-weight:700">${r.name[0]}</div>
+        <div>
+          <div style="font-weight:700;font-size:14px">${r.name}</div>
+          <div style="font-size:11px;color:var(--muted)">${r.ago}</div>
+        </div>
+        <img src="https://www.google.com/favicon.ico" style="width:14px;height:14px;margin-left:auto;opacity:0.5" alt="">
+      </div>
+      <div style="color:#f5a623;font-size:14px;letter-spacing:2px">${'★'.repeat(r.stars)}${'☆'.repeat(5-r.stars)}</div>
+      <p style="font-size:13px;color:var(--muted);line-height:1.6;margin:0;flex:1">"${r.text}"</p>
+    </div>`).join('')}
+  </div>
+  <div style="text-align:center;margin-top:24px">
+    <a href="#" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:var(--card);border:1px solid var(--border);border-radius:99px;font-size:13px;font-weight:700;color:var(--text);text-decoration:none;transition:all .2s">
+      <img src="https://www.google.com/favicon.ico" style="width:16px;height:16px" alt="Google"> Google'da Değerlendir
+    </a>
+  </div>
+  <style>@media(max-width:768px){#google-yorumlar div[style*="grid-template-columns:repeat(3"]{grid-template-columns:1fr!important}}</style>
+</section>`
+}
+
+function sectionInstagramFeed(ctx: SectionCtx): string {
+  const { d, dark } = ctx
+  const cfg = ctx.modulConfig?.['instagram-feed'] || ctx.modulConfig?.['instagram-canli-akis'] || {}
+  const username = (cfg.kullaniciAdi as string) || d.heroBaslik.split(' ')[0].toLowerCase()
+  const postCount = (cfg.gonderiSayisi as number) || 6
+  const imgs = [
+    d.unsplash,
+    'photo-1497366216548-37526070297c', 'photo-1497366811353-6870744d04b2',
+    'photo-1504384308090-c894fdcc538d', 'photo-1460925895917-afdab827c52f',
+    'photo-1497215842964-222b430dc094', 'photo-1534438327276-14e5300c3a48',
+    'photo-1551836022-deb4988cc6c0'
+  ].slice(0, postCount)
+
+  return `<section class="section" id="instagram-feed" data-modul="instagram-feed" style="padding:80px 48px;max-width:1200px;margin:0 auto">
+  <div class="section-label">Instagram</div>
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:32px">
+    <div style="display:flex;align-items:center;gap:14px">
+      <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);padding:3px">
+        <div style="width:100%;height:100%;border-radius:50%;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;color:var(--accent)">${username[0]?.toUpperCase() || 'K'}</div>
+      </div>
+      <div>
+        <div style="font-weight:800;font-size:16px">@${username}</div>
+        <div style="font-size:12px;color:var(--muted)">${250 + Math.floor(Math.random() * 500)} takipçi</div>
+      </div>
+    </div>
+    <a href="https://instagram.com/${username}" target="_blank" rel="noopener" style="padding:8px 20px;background:linear-gradient(45deg,#f09433,#dc2743,#bc1888);color:#fff;border-radius:8px;font-size:13px;font-weight:700;text-decoration:none">Takip Et</a>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+    ${imgs.map((img, i) => `<div style="aspect-ratio:1;border-radius:12px;overflow:hidden;position:relative;cursor:pointer">
+      <img src="https://images.unsplash.com/${img}?w=400&q=75&auto=format" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" alt="Post ${i+1}">
+      <div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0'">
+        <span style="color:#fff;font-size:13px;font-weight:700">❤️ ${20+Math.floor(Math.random()*80)}</span>
+      </div>
+    </div>`).join('')}
+  </div>
+  <style>@media(max-width:768px){#instagram-feed div[style*="grid-template-columns:repeat(3"]{grid-template-columns:repeat(2,1fr)!important}}</style>
+</section>`
+}
+
+function sectionCalismaSaatleri(ctx: SectionCtx): string {
+  const { dark } = ctx
+  const cfg = ctx.modulConfig?.['calisma-saatleri'] || {}
+  const saatler = [
+    { gun: 'Pazartesi', saat: '09:00 - 18:00' },
+    { gun: 'Salı', saat: '09:00 - 18:00' },
+    { gun: 'Çarşamba', saat: '09:00 - 18:00' },
+    { gun: 'Perşembe', saat: '09:00 - 18:00' },
+    { gun: 'Cuma', saat: '09:00 - 18:00' },
+    { gun: 'Cumartesi', saat: '10:00 - 15:00' },
+    { gun: 'Pazar', saat: 'Kapalı' },
+  ]
+  const today = new Date().getDay()
+  const dayIdx = today === 0 ? 6 : today - 1
+
+  return `<section class="section" id="calisma-saatleri" data-modul="calisma-saatleri" style="padding:80px 48px;max-width:600px;margin:0 auto">
+  <div class="section-label">Çalışma Saatleri</div>
+  <div class="section-title" style="margin-bottom:32px">Açık Olduğumuz Saatler</div>
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:hidden">
+    ${saatler.map((s, i) => `<div style="display:flex;align-items:center;justify-content:space-between;padding:16px 24px;${i < saatler.length - 1 ? `border-bottom:1px solid ${dark?'rgba(255,255,255,0.06)':'rgba(0,0,0,0.05)'}` : ''};${i === dayIdx ? `background:${dark?'rgba(255,255,255,0.04)':'rgba(59,130,246,0.04)'}` : ''}">
+      <div style="display:flex;align-items:center;gap:10px">
+        ${i === dayIdx ? '<div style="width:8px;height:8px;border-radius:50%;background:#22c55e"></div>' : ''}
+        <span style="font-weight:${i === dayIdx ? '700' : '500'};font-size:14px">${s.gun}</span>
+        ${i === dayIdx ? '<span style="font-size:10px;background:#22c55e;color:#fff;padding:2px 8px;border-radius:99px;font-weight:700">Bugün</span>' : ''}
+      </div>
+      <span style="font-weight:600;font-size:14px;color:${s.saat === 'Kapalı' ? '#ef4444' : 'var(--accent)'}">${s.saat}</span>
+    </div>`).join('')}
+  </div>
+</section>`
+}
+
+function sectionKampanya(ctx: SectionCtx): string {
+  const { d, dark } = ctx
+  return `<section class="section" id="kampanya" data-modul="kampanya" style="padding:60px 48px;max-width:1200px;margin:0 auto">
+  <div style="background:linear-gradient(135deg, var(--accent), ${dark?'rgba(255,255,255,0.1)':'rgba(0,0,0,0.8)'});border-radius:24px;padding:48px;text-align:center;position:relative;overflow:hidden;color:#fff">
+    <div style="position:absolute;inset:0;background:url('https://images.unsplash.com/${d.unsplash}?w=1200&q=60&auto=format') center/cover;opacity:0.15"></div>
+    <div style="position:relative;z-index:1">
+      <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;opacity:0.8;margin-bottom:12px">🔥 Özel Kampanya</div>
+      <h2 style="font-family:var(--fd);font-size:2rem;font-weight:800;margin-bottom:12px;line-height:1.2">İlk Ziyaretinize %20 İndirim!</h2>
+      <p style="font-size:15px;opacity:0.85;margin-bottom:28px;max-width:500px;margin-left:auto;margin-right:auto;line-height:1.6">Sınırlı süre ile geçerli kampanyamızdan yararlanın. Hemen randevu alın!</p>
+      <div style="display:flex;gap:16px;justify-content:center;margin-bottom:24px">
+        ${['Gün', 'Saat', 'Dk', 'Sn'].map((l, i) => `<div style="text-align:center">
+          <div style="width:56px;height:56px;background:rgba(255,255,255,0.2);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:800;backdrop-filter:blur(4px)">${[7,12,45,30][i]}</div>
+          <div style="font-size:10px;margin-top:6px;opacity:0.7;font-weight:600">${l}</div>
+        </div>`).join('')}
+      </div>
+      <button onclick="openModal('Kampanyadan Yararlan', 'Bilgilerinizi bırakın, kampanya kodumuzu size iletelim.')" style="padding:16px 36px;background:#fff;color:var(--accent);border:none;border-radius:99px;font-weight:800;font-size:15px;cursor:pointer;font-family:inherit;box-shadow:0 8px 24px rgba(0,0,0,0.2)">Hemen Faydalanın →</button>
+    </div>
+  </div>
+</section>`
+}
+
+
 
 type SectionGenerator = (ctx: SectionCtx) => string
 
@@ -861,7 +1055,16 @@ const MODULE_SECTION_MAP: Record<string, SectionGenerator> = {
   'cta-banner': sectionCta,
   'online-randevu': sectionIletisimFormu,
   'online-siparis': sectionIletisimFormu,
+  // ── Integration Modules ──
+  'harita-yol-tarifi': sectionHaritaYolTarifi,
+  'google-yorumlar': sectionGoogleYorumlar,
+  'instagram-feed': sectionInstagramFeed,
+  'instagram-canli-akis': sectionInstagramFeed,
+  'calisma-saatleri': sectionCalismaSaatleri,
+  'kampanya': sectionKampanya,
+  'pop-up-kampanya': sectionKampanya,
 }
+
 
 function buildModuleSections(moduller: string[], ctx: SectionCtx): string {
   // Bazı modüller section üretmez (hizmetler, hero gibi çekirdek bölümler zaten template'de var)
@@ -869,15 +1072,26 @@ function buildModuleSections(moduller: string[], ctx: SectionCtx): string {
   
   return moduller
     .filter(m => !skipModules.includes(m))
+    .filter(m => !(ctx.gizliModuller || []).includes(m))
     .map(m => {
+      // 1) Named section generator (MODULE_SECTION_MAP)
       const gen = MODULE_SECTION_MAP[m]
-      return gen ? gen(ctx) : ''
+      if (gen) return gen(ctx)
+      
+      // 2) Fallback to MODULLER[].htmlSablon — enables cross-site module sharing
+      //    CSS variables (--renk-vurgu, --renk-arkaplan etc.) ensure theme inheritance
+      const modulData = MODULLER.find(mod => mod.id === m)
+      if (modulData?.htmlSablon) {
+        return `<!-- modul: ${m} -->\n${modulData.htmlSablon}\n<!-- /modul: ${m} -->`
+      }
+      
+      return ''
     })
     .filter(Boolean)
     .join('\n')
 }
 
-export function demoHtmlUret(d: DemoSector, moduller?: string[]): string {
+export function demoHtmlUret(d: DemoSector, moduller?: string[], modulConfig?: Record<string, Record<string, unknown>>, gizliModuller?: string[], editorOpts?: { fontSettings?: { heading: string; body: string; headingWeight: number; bodyWeight: number }; designSettings?: { borderRadius?: string; buttonStyle?: string; shadowLevel?: string; animationLevel?: string; darkMode?: boolean } }): string {
   const dark = isDark(d.bg)
   const ic = ICERIKLER[d.id] || varsayilanIcerik(d)
   const ik = IK[d.id] || ['🎯', '⭐', '💎']
@@ -892,19 +1106,34 @@ export function demoHtmlUret(d: DemoSector, moduller?: string[]): string {
   const logo = d.heroBaslik.split(' ')[0]
 
   // Build module sections if moduller provided
-  const ctx: SectionCtx = { d, ic, dark, sub, cardBg, cardBorder, footBg }
+  const ctx: SectionCtx = { d, ic, dark, sub, cardBg, cardBorder, footBg, modulConfig, gizliModuller }
   const moduleSectionsHtml = moduller && moduller.length > 0 ? buildModuleSections(moduller, ctx) : ''
+
+  // Compute editor font/design overrides
+  const _fs = editorOpts?.fontSettings
+  const _ds = editorOpts?.designSettings
+  const _headingFont = _fs?.heading || d.font
+  const _bodyFont = _fs?.body || 'Inter'
+  const _radius = _ds?.borderRadius === 'none' ? '0px' : _ds?.borderRadius === 'small' ? '6px' : _ds?.borderRadius === 'large' ? '20px' : _ds?.borderRadius === 'pill' ? '9999px' : '12px'
+  const _shadowMap: Record<string, string> = { none: 'none', subtle: '0 1px 3px rgba(0,0,0,0.06),0 1px 2px rgba(0,0,0,0.04)', medium: '0 4px 16px rgba(0,0,0,0.08),0 2px 4px rgba(0,0,0,0.04)', strong: '0 10px 40px rgba(0,0,0,0.12),0 4px 8px rgba(0,0,0,0.06)' }
+  const _shadow = _shadowMap[_ds?.shadowLevel || 'subtle'] || _shadowMap.subtle
+  const _animMap: Record<string, string> = { none: '0s', minimal: '0.2s', standard: '0.35s', playful: '0.5s' }
+  const _anim = _animMap[_ds?.animationLevel || 'standard'] || '0.35s'
+  const _designVars = `;--radius:${_radius};--shadow-card:${_shadow};--transition-speed:${_anim}`
+  const _fontsLink = `https://fonts.googleapis.com/css2?family=${_headingFont.replace(/ /g, '+')}:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=${_bodyFont.replace(/ /g, '+')}:wght@300;400;500;600;700&display=swap`
+
+  const editorCSS = { headingFont: _headingFont, bodyFont: _bodyFont, designVars: _designVars, fontsLink: _fontsLink }
 
   switch (d.kategori) {
     case 'profesyonel':
-      return htmlProfesyonel(d, ic, ik, dark, navBg, navBorder, cardBg, cardBorder, sub, footBg, moduleSectionsHtml);
+      return htmlProfesyonel(d, ic, ik, dark, navBg, navBorder, cardBg, cardBorder, sub, footBg, moduleSectionsHtml, editorCSS);
     case 'saglik-guzellik':
-      return htmlSaglikGuzellik(d, ic, ik, dark, navBg, navBorder, cardBg, cardBorder, sub, footBg, moduleSectionsHtml);
+      return htmlSaglikGuzellik(d, ic, ik, dark, navBg, navBorder, cardBg, cardBorder, sub, footBg, moduleSectionsHtml, editorCSS);
     case 'etkinlik':
-      return htmlProfesyonel(d, ic, ik, dark, navBg, navBorder, cardBg, cardBorder, sub, footBg, moduleSectionsHtml);
+      return htmlProfesyonel(d, ic, ik, dark, navBg, navBorder, cardBg, cardBorder, sub, footBg, moduleSectionsHtml, editorCSS);
     case 'yerel-esnaf':
     default:
-      return htmlYerelEsnaf(d, ic, ik, dark, navBg, navBorder, cardBg, cardBorder, sub, footBg, oFrom, oTo, logo, moduleSectionsHtml);
+      return htmlYerelEsnaf(d, ic, ik, dark, navBg, navBorder, cardBg, cardBorder, sub, footBg, oFrom, oTo, logo, moduleSectionsHtml, editorCSS);
   }
 }
 export const DEMO_MODAL_HTML = `

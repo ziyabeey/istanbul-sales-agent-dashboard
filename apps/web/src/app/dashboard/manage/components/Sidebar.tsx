@@ -22,18 +22,46 @@ const MENU: (MenuItem | 'divider')[] = [
     { id: 'sales', icon: <SvgDollar />, label: 'Satış', href: `${BASE}/satis`, hasSubmenu: true },
     { id: 'catalog', icon: <SvgCart />, label: 'Katalog', href: `${BASE}/katalog`, hasSubmenu: true },
     { id: 'blog', icon: <SvgBlog />, label: 'Blog', href: `${BASE}/blog`, hasSubmenu: true },
+    { id: 'blog-motoru', icon: <SvgBrain />, label: 'AI Blog Motoru', href: `${BASE}/blog-motoru`, badge: { type: 'new', text: 'YENİ' } },
+    { id: 'restoran', icon: <SvgCart />, label: 'Restoran OS', href: `${BASE}/restoran`, hasSubmenu: true },
+    { id: 'mutfak', icon: <SvgZap />, label: 'Mutfak (KDS)', href: `${BASE}/restoran/mutfak` },
+    { id: 'qr-siparis', icon: <SvgGrid />, label: 'QR Sipariş', href: `${BASE}/restoran/qr-siparis`, badge: { type: 'new', text: 'YENİ' } },
+    { id: 'garson', icon: <SvgPeople />, label: 'Garson Paneli', href: `${BASE}/restoran/garson` },
     { id: 'apps', icon: <SvgGrid />, label: 'Uygulamalar', href: `${BASE}/uygulamalar`, badge: { type: 'count', text: '1' }, hasSubmenu: true },
     'divider',
     { id: 'site', icon: <SvgDevice />, label: 'Site ve Mobil Uygulama', href: `${BASE}/site`, hasSubmenu: true },
+    { id: 'editor', icon: <SvgCode />, label: 'Standart Editör', href: `${BASE}/editor` },
+    { id: 'ai-editor', icon: <SvgBrain />, label: 'AI Editör', href: `${BASE}/editor/ai`, badge: { type: 'new', text: 'YENİ' } },
     { id: 'marketing', icon: <SvgMegaphone />, label: 'Pazarlama', href: `${BASE}/pazarlama`, hasSubmenu: true },
+    { id: 'icerik', icon: <SvgPalette />, label: 'İçerik Stüdyo', href: `${BASE}/icerik-studyo`, badge: { type: 'new', text: 'YENİ' } },
+    { id: 'eposta', icon: <SvgMail />, label: 'E-posta Stüdyo', href: `${BASE}/eposta`, hasSubmenu: true },
     { id: 'payments', icon: <SvgWallet />, label: 'Ödeme Alma', href: `${BASE}/odemeler`, hasSubmenu: true },
-    { id: 'inbox', icon: <SvgMail />, label: 'Gelen Kutusu', href: `${BASE}/gelen-kutusu`, badge: { type: 'gray', text: '2' } },
-    { id: 'crm', icon: <SvgPeople />, label: 'Mevcut ve Potansiyel Müşteriler', href: `${BASE}/crm`, hasSubmenu: true },
+    { id: 'whatsapp', icon: <SvgPhone />, label: 'WhatsApp AI', href: `${BASE}/whatsapp`, badge: { type: 'new', text: 'YENİ' } },
+    { id: 'inbox', icon: <SvgInbox />, label: 'Gelen Kutusu', href: `${BASE}/gelen-kutusu`, badge: { type: 'gray', text: '2' } },
+    { id: 'crm', icon: <SvgPeople />, label: 'CRM — Müşteriler', href: `${BASE}/crm`, hasSubmenu: true },
+    { id: 'muhasebe', icon: <SvgCoins />, label: 'Muhasebe', href: `${BASE}/muhasebe`, badge: { type: 'new', text: 'YENİ' } },
     { id: 'analytics', icon: <SvgChart />, label: 'Analizler', href: `${BASE}/analizler`, hasSubmenu: true },
     { id: 'automations', icon: <SvgZap />, label: 'Otomasyonlar', href: `${BASE}/otomasyonlar`, hasSubmenu: true },
+    { id: 'b2b', icon: <SvgShop />, label: 'B2B Pazar', href: `${BASE}/b2b-pazar` },
+    { id: 'partner', icon: <SvgHandshake />, label: 'Partner Programı', href: `${BASE}/partner`, badge: { type: 'new', text: 'YENİ' } },
+    { id: 'ai-tracking', icon: <SvgBrain />, label: 'AI Tracking', href: `${BASE}/ai-tracking`, badge: { type: 'new', text: 'YENİ' } },
+    { id: 'mobil', icon: <SvgPhone />, label: 'Mobil Uygulama', href: `${BASE}/mobil` },
     'divider',
-    { id: 'settings', icon: <SvgGear />, label: 'Ayarlar', href: `${BASE}/ayarlar` },
+    { id: 'settings', icon: <SvgGear />, label: 'Ayarlar', href: `${BASE}/ayarlar`, hasSubmenu: true },
+    { id: 'ekip', icon: <SvgPeople />, label: 'Ekip Yönetimi', href: `${BASE}/ayarlar/ekip` },
+    { id: 'sablonlar', icon: <SvgPalette />, label: 'Şablon Galerisi', href: `${BASE}/site/sablonlar`, badge: { type: 'new', text: 'YENİ' } },
     { id: 'cms', icon: <SvgTable />, label: 'CMS', href: `${BASE}/cms` },
+    { id: 'destek', icon: <SvgInbox />, label: 'Destek Merkezi', href: `${BASE}/destek`, badge: { type: 'new', text: 'YENİ' } },
+    { id: 'studio-editor', icon: <SvgPalette />, label: 'Stüdyo Editör', href: `${BASE}/icerik-studyo/editor`, badge: { type: 'new', text: 'YENİ' } },
+    { id: 'pazarlama-oto', icon: <SvgZap />, label: '360° Pazarlama', href: `${BASE}/pazarlama/otomasyon`, badge: { type: 'new', text: 'YENİ' } },
+    { id: 'influencer', icon: <SvgPeople />, label: 'Influencer Ağı', href: `${BASE}/influencer`, badge: { type: 'new', text: 'YENİ' } },
+    { id: 'tedarik', icon: <SvgCart />, label: 'B2B Tedarik', href: `${BASE}/tedarik`, badge: { type: 'new', text: 'YENİ' } },
+    { id: 'pazaryeri', icon: <SvgGrid />, label: 'Hizmet Pazaryeri', href: `${BASE}/pazaryeri`, badge: { type: 'new', text: 'YENİ' } },
+    { id: 'usta-panel', icon: <SvgPeople />, label: 'Usta Paneli', href: `${BASE}/pazaryeri/usta` },
+    { id: 'chatbot', icon: <SvgInbox />, label: 'Şirket Asistanı', href: `${BASE}/chatbot`, badge: { type: 'new', text: 'YENİ' } },
+    { id: 'akilli', icon: <SvgZap />, label: 'Akıllı Özellikler', href: `${BASE}/akilli`, badge: { type: 'new', text: 'YENİ' } },
+    { id: 'lansman', icon: <SvgCode />, label: 'Lansman Kontrol', href: `${BASE}/lansman`, badge: { type: 'new', text: 'YENİ' } },
+    { id: 'admin', icon: <SvgGear />, label: 'Super Admin', href: `${BASE}/admin` },
     { id: 'devtools', icon: <SvgCode />, label: 'Geliştirici Araçları', href: `${BASE}/gelistirici`, hasSubmenu: true },
 ]
 
@@ -95,3 +123,10 @@ function SvgZap() { return <svg width="18" height="18" viewBox="0 0 24 24" fill=
 function SvgGear() { return <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg> }
 function SvgTable() { return <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></svg> }
 function SvgCode() { return <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg> }
+function SvgPalette() { return <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg> }
+function SvgCoins() { return <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><line x1="7" y1="6" x2="7" y2="10"/><line x1="9" y1="8" x2="5" y2="8"/></svg> }
+function SvgShop() { return <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 9l1-4h16l1 4"/><path d="M3 9v11a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V9"/><path d="M9 21V9"/></svg> }
+function SvgInbox() { return <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg> }
+function SvgHandshake() { return <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M11 17a1 1 0 0 1-1 1H6l-4-4 6.77-6.77a1 1 0 0 1 1.41 0L11 8"/><path d="M13 7a1 1 0 0 1 1-1h4l4 4-6.77 6.77a1 1 0 0 1-1.41 0L13 16"/><path d="M8 12l4 4"/></svg> }
+function SvgBrain() { return <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 2a4 4 0 0 0-4 4v1a3 3 0 0 0-3 3 3 3 0 0 0 0 4 3 3 0 0 0 3 3v1a4 4 0 0 0 8 0v-1a3 3 0 0 0 3-3 3 3 0 0 0 0-4 3 3 0 0 0-3-3V6a4 4 0 0 0-4-4z"/><path d="M12 2v20"/></svg> }
+function SvgPhone() { return <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg> }

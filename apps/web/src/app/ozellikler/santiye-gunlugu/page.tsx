@@ -88,7 +88,7 @@ export default function SantiyeGunluguPage() {
                             Şantiye Günlüğü<br />
                             <span className="text-rust">Müşteriniz Her Şeyi Görür</span>
                         </h1>
-                        <p className="text-muted-foreground-light text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
+                        <p className="text-muted-foreground text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
                             Müteahhit, mimar ve iç mimar için tasarlandı. Şantiyeden çektiğiniz fotoğraflar
                             otomatik günlüğe eklenir, müşteri kendi telefonundan takip eder.
                         </p>
@@ -125,7 +125,7 @@ export default function SantiyeGunluguPage() {
                             >
                                 <span className="text-rust font-mono font-bold text-sm block mb-3">{adim.no}</span>
                                 <h3 className="text-foreground font-bold text-sm mb-2">{adim.baslik}</h3>
-                                <p className="text-muted-foreground-light text-xs leading-relaxed">{adim.aciklama}</p>
+                                <p className="text-muted-foreground text-xs leading-relaxed">{adim.aciklama}</p>
                             </motion.div>
                         ))}
                     </div>
@@ -155,7 +155,7 @@ export default function SantiyeGunluguPage() {
                                     <Icon className="w-5 h-5" style={{ color: renk }} />
                                 </div>
                                 <h3 className="text-foreground font-bold text-base mb-2">{baslik}</h3>
-                                <p className="text-muted-foreground-light text-sm leading-relaxed">{aciklama}</p>
+                                <p className="text-muted-foreground text-sm leading-relaxed">{aciklama}</p>
                             </motion.div>
                         ))}
                     </div>
@@ -174,8 +174,8 @@ export default function SantiyeGunluguPage() {
                             className="bg-background border border-white/10 rounded-3xl p-6 font-mono text-xs"
                         >
                             <div className="flex items-center gap-2 mb-4">
-                                <Smartphone className="w-4 h-4 text-muted-foreground-light" />
-                                <span className="text-muted-foreground-light">Müşteri paylaşım linki</span>
+                                <Smartphone className="w-4 h-4 text-muted-foreground" />
+                                <span className="text-muted-foreground">Müşteri paylaşım linki</span>
                             </div>
                             <div className="space-y-3">
                                 {[
@@ -259,7 +259,7 @@ export default function SantiyeGunluguPage() {
                             >
                                 <span className="text-3xl mb-3 block">{item.emoji}</span>
                                 <h3 className="text-foreground font-bold text-sm mb-2">{item.baslik}</h3>
-                                <p className="text-muted-foreground-light text-xs leading-relaxed">{item.aciklama}</p>
+                                <p className="text-muted-foreground text-xs leading-relaxed">{item.aciklama}</p>
                             </motion.div>
                         ))}
                     </div>
@@ -273,7 +273,7 @@ export default function SantiyeGunluguPage() {
                     <h2 className="text-2xl font-extrabold text-foreground font-syne mb-3">
                         Şantiyenizi Dijital Yapın
                     </h2>
-                    <p className="text-muted-foreground-light text-sm mb-8">
+                    <p className="text-muted-foreground text-sm mb-8">
                         Premium veya üzeri pakette şantiye günlüğü dahil. Müşteri şeffaflığı ile referanslarınız artar.
                     </p>
                     <Link href="/onboarding">

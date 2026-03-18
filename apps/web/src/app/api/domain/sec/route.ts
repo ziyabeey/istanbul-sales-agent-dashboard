@@ -65,15 +65,13 @@ export async function POST(req: Request) {
                     `Esnaf: ${esnaf.isletmeAdiTam}\n` +
                     `Domain: ${secilenDomain}\n` +
                     `Hata: ${tescil.hata}`
-                ).catch(console.error)
+                ).catch(() => {})
                 return
             }
 
             // 2. Pages'e bağla (slug varsa)
             if (esnaf.slug) {
-                await domainPagesBagla(secilenDomain, esnaf.slug).catch(e =>
-                    console.error('[DOMAIN PAGES BAĞLA]', e.message)
-                )
+                await domainPagesBagla(secilenDomain, esnaf.slug).catch(() => {})
             }
 
             // 3. Firestore güncelle
@@ -95,17 +93,17 @@ export async function POST(req: Request) {
                 `Sorun yaşarsanız: ${process.env.NEXT_PUBLIC_APP_URL}/yardim`,
                 esnafId,
                 'domain_tescil_basarili'
-            ).catch(console.error)
+            ).catch(() => {})
 
             // 5. Telegram
             await telegramGonder(
                 `🌐 Domain tescil edildi!\n` +
                 `${esnaf.isletmeAdiTam}: ${secilenDomain}\n` +
                 `Paket: ${esnaf.paket}`
-            ).catch(console.error)
+            ).catch(() => {})
         }).catch(e => {
-            console.error('[DOMAIN SEC]', e)
-            docRef.update({ 'domain.durum': 'hata', 'domain.hata': e.message }).catch(console.error)
+            // console.error('[DOMAIN SEC]', e)
+            docRef.update({ 'domain.durum': 'hata', 'domain.hata': e.message }).catch(() => {})
         })
 
         return NextResponse.json({
@@ -113,7 +111,7 @@ export async function POST(req: Request) {
             mesaj: 'Domain tescil süreci başladı, 5-10 dakika içinde hazır olacak',
         })
     } catch (e: any) {
-        console.error('[DOMAIN SEC]', e)
+        // console.error('[DOMAIN SEC]', e)
         return NextResponse.json({ error: 'Sunucu hatası' }, { status: 500 })
     }
 }

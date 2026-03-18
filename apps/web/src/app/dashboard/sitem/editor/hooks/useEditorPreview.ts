@@ -27,13 +27,16 @@ export function useEditorPreview() {
             bg: data.bg,
             accent: data.accent,
             text: data.text,
-            font: data.font,
+            font: data.fontSettings?.heading || data.font,
             unsplash: data.unsplash,
             heroBaslik: data.heroBaslik,
             heroAlt: data.heroAlt,
             hizmetler: data.hizmetler,
         }
-        return demoHtmlUret(demoSector, data.moduller)
+        return demoHtmlUret(demoSector, data.moduller, data.modulConfig, data.gizliModuller, {
+            fontSettings: data.fontSettings,
+            designSettings: data.designSettings,
+        })
     }, [])
 
     const generatePremium = useCallback(async (data: SiteData): Promise<string | null> => {

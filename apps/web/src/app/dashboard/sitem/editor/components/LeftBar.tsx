@@ -1,10 +1,63 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useRef, useEffect, useCallback } from 'react'
 import { useEditorStore } from '../store/editor-store'
 import { SEKTORLER, type Sektor } from '@/data/sektorler'
 import { DEMOLAR } from '@/data/demoVitrinData'
+import { MODULLER } from '@/data/moduller'
+import { SABLONLAR, type Sablon } from '@/data/sablonlar'
+import { PREMIUM_TEMPLATES } from '../data/premiumTemplates'
 import MediaPanel from './MediaPanel'
+import ModuleContentEditor from './ModuleContentEditor'
+import FontExplorerPanel from './panels/FontExplorerPanel'
+import GlobalStylePanel from './panels/GlobalStylePanel'
+import MediaLibraryPanel from './panels/MediaLibraryPanel'
+
+/* ── Module Live Preview (iframe mini-preview) ── */
+function ModulePreview({ modulId, accent = '#3b82f6', bg = '#0f172a', text = '#f8fafc' }: { modulId: string; accent?: string; bg?: string; text?: string }) {
+    const iframeRef = useRef<HTMLIFrameElement>(null)
+    const containerRef = useRef<HTMLDivElement>(null)
+    const [visible, setVisible] = useState(false)
+
+    // Lazy load — only render iframe when visible
+    useEffect(() => {
+        const el = containerRef.current
+        if (!el) return
+        const obs = new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) { setVisible(true); obs.disconnect() }
+        }, { rootMargin: '100px' })
+        obs.observe(el)
+        return () => obs.disconnect()
+    }, [])
+
+    const modul = MODULLER.find(m => m.id === modulId)
+    if (!modul?.htmlSablon) return null
+
+    // Build mini HTML with CSS variables injected
+    const miniHtml = `<!DOCTYPE html><html><head><style>
+        :root { --renk-arkaplan: ${bg}; --renk-kart: ${bg}11; --renk-metin: ${text}; --renk-alt: ${text}99; --renk-vurgu: ${accent}; --font-baslik: 'Inter', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; overflow: hidden; background: ${bg}; }
+        section { padding: 20px 10px !important; }
+        img { max-width: 100%; height: auto; }
+        button, a { pointer-events: none; }
+    </style></head><body>${modul.htmlSablon.replace(/<script[\s\S]*?<\/script>/g, '')}</body></html>`
+
+    return (
+        <div ref={containerRef} className="ke-mod-preview">
+            {visible && (
+                <iframe
+                    ref={iframeRef}
+                    srcDoc={miniHtml}
+                    sandbox=""
+                    scrolling="no"
+                    className="ke-mod-preview-iframe"
+                    title={`${modulId} preview`}
+                />
+            )}
+        </div>
+    )
+}
 
 /* ── Section Thumbnail SVG Previews ── */
 function SectionThumbnail({ type, accent = '#3b82f6' }: { type: string; accent?: string }) {
@@ -271,6 +324,7 @@ const MODUL_BILGI: Record<string, { ad: string; aciklama: string; kategori: stri
     // İçerik & Tanıtım
     'galeri': { ad: 'Galeri', aciklama: 'Fotoğraf galerisi', kategori: 'İçerik' },
     'instagram-feed': { ad: 'Instagram Feed', aciklama: 'IG postları', kategori: 'İçerik' },
+    'instagram-canli-akis': { ad: 'Instagram Canlı', aciklama: 'IG canlı akış', kategori: 'İçerik' },
     'video-tanitim': { ad: 'Video Tanıtım', aciklama: 'Tanıtım videosu', kategori: 'İçerik' },
     'blog-makaleler': { ad: 'Blog', aciklama: 'Makale ve yazılar', kategori: 'İçerik' },
     'hakkimizda-hikaye': { ad: 'Hakkımızda', aciklama: 'İşletme hikayesi', kategori: 'İçerik' },
@@ -349,7 +403,9 @@ const PAKET_MODUL_LIMITI: Record<string, number> = {
 
 const LEFT_BAR_ITEMS = [
     { id: 'modules', icon: (<svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="3" width="7" height="7" rx="2" fill="currentColor" /><rect x="12" y="3" width="7" height="7" rx="2" fill="currentColor" opacity=".5" /><rect x="3" y="12" width="7" height="7" rx="2" fill="currentColor" opacity=".5" /><rect x="12" y="12" width="7" height="7" rx="2" fill="currentColor" opacity=".3" /></svg>), label: 'Modüller' },
+    { id: 'templates', icon: (<svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="2" y="2" width="18" height="18" rx="3" stroke="currentColor" strokeWidth="1.5" /><rect x="2" y="2" width="18" height="7" rx="3" fill="currentColor" opacity=".3" /><rect x="5" y="12" width="5" height="5" rx="1" fill="currentColor" opacity=".5" /><rect x="12" y="12" width="5" height="5" rx="1" fill="currentColor" opacity=".3" /></svg>), label: 'Şablonlar' },
     { id: 'design', icon: (<svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="8" cy="7" r="4" fill="#3B82F6" /><circle cx="14" cy="7" r="4" fill="#F59E0B" /><circle cx="11" cy="13" r="4" fill="#10B981" /></svg>), label: 'Tasarım' },
+    { id: 'fonts', icon: (<svg width="22" height="22" viewBox="0 0 22 22" fill="none"><text x="3" y="17" fill="currentColor" fontSize="15" fontWeight="800" fontFamily="serif">Aa</text></svg>), label: 'Yazı Tipi' },
     { id: 'pages', icon: (<svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="4" y="2" width="14" height="18" rx="2" fill="currentColor" /><rect x="7" y="8" width="8" height="1.5" rx=".5" fill="#fff" /><rect x="7" y="12" width="8" height="1.5" rx=".5" fill="#fff" /></svg>), label: 'Sayfalar' },
     { id: 'media', icon: (<svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="2" y="4" width="18" height="14" rx="2" fill="currentColor" /><circle cx="7.5" cy="9" r="1.5" fill="#fff" /><path d="M2 15l5-4 3 2 5-4 5 4v3a2 2 0 01-2 2H4a2 2 0 01-2-2v-1z" fill="#fff" opacity=".6" /></svg>), label: 'Medya' },
     { id: 'embed', icon: (<svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M8 6l-5 5 5 5M14 6l5 5-5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>), label: 'Kod' },
@@ -400,6 +456,21 @@ export default function LeftBar() {
                 .ke-mod-badge { font-size: 8px; font-weight: 800; padding: 2px 5px; border-radius: 4px; background: #fef3c7; color: #92400e; position: absolute; top: 6px; right: 6px; }
                 .ke-mod-check { position: absolute; top: 6px; right: 6px; width: 18px; height: 18px; background: #22c55e; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
 
+                /* Live preview iframe */
+                .ke-mod-preview { width: 100%; height: 68px; overflow: hidden; position: relative; background: #0f172a; border-bottom: 1px solid #f1f5f9; border-radius: 9px 9px 0 0; }
+                .ke-mod-preview-iframe { width: 800px; height: 450px; border: none; transform: scale(0.15); transform-origin: top left; pointer-events: none; position: absolute; top: 0; left: 0; }
+
+                /* Module config panel */
+                .ke-mod-config-btn { width: 22px; height: 22px; border: none; background: rgba(37,99,235,0.1); border-radius: 6px; cursor: pointer; color: #2563eb; font-size: 12px; display: flex; align-items: center; justify-content: center; transition: 0.15s; flex-shrink: 0; }
+                .ke-mod-config-btn:hover { background: rgba(37,99,235,0.2); }
+                .ke-mod-config-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 9999; display: flex; align-items: center; justify-content: center; }
+                .ke-mod-config-panel { background: #fff; border-radius: 16px; padding: 24px; width: 360px; max-height: 80vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+                .ke-mod-config-title { font-size: 16px; font-weight: 700; color: #17191c; margin-bottom: 16px; }
+                .ke-mod-config-field { margin-bottom: 14px; }
+                .ke-mod-config-label { font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+                .ke-mod-config-input { width: 100%; padding: 8px 10px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 12px; outline: none; font-family: inherit; box-sizing: border-box; }
+                .ke-mod-config-input:focus { border-color: #3b82f6; box-shadow: 0 0 0 2px rgba(59,130,246,0.08); }
+
                 /* Paket info */
                 .ke-paket-info { margin: 8px 12px; padding: 10px 12px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 10px; display: flex; align-items: center; gap: 8px; }
                 .ke-paket-name { font-size: 12px; font-weight: 800; color: #166534; }
@@ -437,9 +508,11 @@ export default function LeftBar() {
                         <div className="ke-lb-panel-head">
                             <span className="ke-lb-panel-title">
                                 {activeLeftPanel === 'modules' && 'Modüller'}
+                                {activeLeftPanel === 'templates' && 'Şablonlar'}
                                 {activeLeftPanel === 'design' && 'Site Tasarımı'}
+                                {activeLeftPanel === 'fonts' && 'Yazı Tipleri'}
                                 {activeLeftPanel === 'pages' && 'Sayfalar'}
-                                {activeLeftPanel === 'media' && 'Medya'}
+                                {activeLeftPanel === 'media' && 'Medya Kütüphanesi'}
                                 {activeLeftPanel === 'embed' && 'Gömülü Kod'}
                                 {activeLeftPanel === 'apps' && 'Eklentiler'}
                                 {activeLeftPanel === 'seo' && 'SEO'}
@@ -452,9 +525,11 @@ export default function LeftBar() {
                         </div>
                         <div className="ke-lb-panel-body">
                             {activeLeftPanel === 'modules' && <ModuleCatalog />}
+                            {activeLeftPanel === 'templates' && <SablonlarPanel />}
                             {activeLeftPanel === 'design' && <DesignPanel />}
+                            {activeLeftPanel === 'fonts' && <FontExplorerPanel />}
                             {activeLeftPanel === 'pages' && <PagesPanel />}
-                            {activeLeftPanel === 'media' && <MediaPanel />}
+                            {activeLeftPanel === 'media' && <MediaLibraryPanel />}
                             {activeLeftPanel === 'embed' && <EmbedPanel />}
                             {activeLeftPanel === 'apps' && <AppMarketPanel />}
                             {activeLeftPanel === 'seo' && <SeoPanel />}
@@ -465,6 +540,207 @@ export default function LeftBar() {
                 )}
             </div>
         </>
+    )
+}
+
+/* ═══════ Template (Şablon) Market Panel ═══════ */
+const PAKET_SIRASI = ['TEMEL', 'STANDART', 'BUYUME', 'PREMIUM', 'PREMIUMPLUS']
+const TIER_BADGE: Record<string, { label: string; color: string; bg: string }> = {
+    TEMEL: { label: 'Temel', color: '#15803d', bg: '#dcfce7' },
+    STANDART: { label: 'Standart', color: '#1d4ed8', bg: '#dbeafe' },
+    BUYUME: { label: 'Büyüme', color: '#7c3aed', bg: '#ede9fe' },
+    PREMIUM: { label: 'Premium', color: '#b45309', bg: '#fef3c7' },
+    PREMIUMPLUS: { label: 'Premium+', color: '#991b1b', bg: '#fee2e2' },
+}
+
+function SablonlarPanel() {
+    const siteData = useEditorStore(s => s.siteData)
+    const activeSablonId = useEditorStore(s => s.activeSablonId)
+    const applySablon = useEditorStore(s => s.applySablon)
+    const [filter, setFilter] = useState<'all' | 'jenerik' | 'sektor'>('all')
+    const [search, setSearch] = useState('')
+    const [previewId, setPreviewId] = useState<string | null>(null)
+
+    const paket = siteData?.paket || 'STANDART'
+    const paketIdx = PAKET_SIRASI.indexOf(paket)
+
+    const filtered = useMemo(() => {
+        return SABLONLAR.filter(s => {
+            if (filter === 'jenerik' && s.kategori !== 'jenerik') return false
+            if (filter === 'sektor' && s.kategori !== 'sektor') return false
+            if (search) {
+                const q = search.toLowerCase()
+                return s.ad.toLowerCase().includes(q) || s.aciklama.toLowerCase().includes(q) || (s.etiketler || []).some(e => e.toLowerCase().includes(q))
+            }
+            return true
+        })
+    }, [filter, search])
+
+    const handleApply = (s: Sablon) => {
+        const isLocked = PAKET_SIRASI.indexOf(s.minPaket) > paketIdx
+        if (isLocked) return
+        if (confirm(`"${s.ad}" şablonu uygulanacak. Mevcut modül listeniz bu şablonun modülleriyle değişecek. Devam?`)) {
+            applySablon(s.id, s.moduller || [])
+        }
+    }
+
+    if (!siteData) return <PlaceholderPanel text="Site verisi yükleniyor" emoji="⏳" />
+
+    return (
+        <div>
+            {/* Search */}
+            <div style={{ padding: '8px 12px' }}>
+                <input
+                    className="ke-mod-search"
+                    placeholder="Şablon ara..."
+                    value={search}
+                    onChange={e => setSearch(e.target.value)}
+                />
+            </div>
+
+            {/* Filter tabs */}
+            <div style={{ display: 'flex', gap: 4, padding: '0 12px 10px', flexWrap: 'wrap' }}>
+                {([['all', 'Tümü'], ['jenerik', 'Jenerik'], ['sektor', 'Sektörel']] as const).map(([key, label]) => (
+                    <button
+                        key={key}
+                        onClick={() => setFilter(key)}
+                        style={{
+                            padding: '5px 12px', borderRadius: 6, border: filter === key ? '1.5px solid #7c3aed' : '1px solid #e2e8f0',
+                            background: filter === key ? '#f5f3ff' : '#fff', color: filter === key ? '#7c3aed' : '#64748b',
+                            fontSize: 11, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit',
+                        }}
+                    >
+                        {label}
+                    </button>
+                ))}
+                <span style={{ fontSize: 10, color: '#94a3b8', alignSelf: 'center', marginLeft: 'auto' }}>{filtered.length} şablon</span>
+            </div>
+
+            {/* Template cards */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 6, padding: '0 12px 16px' }}>
+                {filtered.map(s => {
+                    const isActive = activeSablonId === s.id
+                    const isLocked = PAKET_SIRASI.indexOf(s.minPaket) > paketIdx
+                    const tier = TIER_BADGE[s.minPaket] || TIER_BADGE.STANDART
+
+                    return (
+                        <div
+                            key={s.id}
+                            style={{
+                                background: isActive ? '#f5f3ff' : '#f8fafc',
+                                border: isActive ? '2px solid #7c3aed' : '1px solid #e2e8f0',
+                                borderRadius: 12, padding: 14, position: 'relative',
+                                opacity: isLocked ? 0.65 : 1,
+                                transition: 'all 0.15s',
+                                cursor: isLocked ? 'not-allowed' : 'pointer',
+                            }}
+                        >
+                            {/* Locked overlay */}
+                            {isLocked && (
+                                <div style={{
+                                    position: 'absolute', inset: 0, borderRadius: 12,
+                                    background: 'rgba(255,255,255,0.5)', zIndex: 2,
+                                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                    backdropFilter: 'blur(1px)',
+                                }}>
+                                    <span style={{ fontSize: 20 }}>🔒</span>
+                                </div>
+                            )}
+
+                            {/* Header row */}
+                            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
+                                <span style={{ fontSize: 22 }}>{s.icon || '📄'}</span>
+                                <div style={{ flex: 1 }}>
+                                    <div style={{ fontSize: 13, fontWeight: 800, color: '#0f172a' }}>{s.ad}</div>
+                                    <div style={{ display: 'flex', gap: 4, marginTop: 2 }}>
+                                        <span style={{
+                                            fontSize: 9, fontWeight: 700, padding: '1px 6px', borderRadius: 4,
+                                            background: tier.bg, color: tier.color,
+                                        }}>{tier.label}</span>
+                                        {s.kategori === 'sektor' && (
+                                            <span style={{ fontSize: 9, fontWeight: 600, padding: '1px 6px', borderRadius: 4, background: '#f1f5f9', color: '#64748b' }}>Sektörel</span>
+                                        )}
+                                    </div>
+                                </div>
+                                {isActive && <span style={{ fontSize: 10, fontWeight: 700, color: '#7c3aed' }}>✓ Aktif</span>}
+                            </div>
+
+                            {/* Description */}
+                            <div style={{ fontSize: 11, color: '#64748b', lineHeight: 1.5, marginBottom: 8 }}>{s.aciklama}</div>
+
+                            {/* Tags */}
+                            {s.etiketler && (
+                                <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginBottom: 8 }}>
+                                    {s.etiketler.map(e => (
+                                        <span key={e} style={{ fontSize: 9, padding: '2px 7px', borderRadius: 4, background: '#f1f5f9', color: '#475569', fontWeight: 600 }}>{e}</span>
+                                    ))}
+                                </div>
+                            )}
+
+                            {/* Module count + Apply button */}
+                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                                <span style={{ fontSize: 10, color: '#94a3b8' }}>
+                                    📦 {(s.moduller || []).length} modül
+                                </span>
+                                {!isLocked && !isActive && (
+                                    <button
+                                        onClick={() => handleApply(s)}
+                                        style={{
+                                            padding: '5px 14px', borderRadius: 6, border: 'none',
+                                            background: 'linear-gradient(135deg, #7c3aed, #3b82f6)',
+                                            color: '#fff', fontSize: 11, fontWeight: 700, cursor: 'pointer',
+                                            fontFamily: 'inherit', transition: '0.15s',
+                                        }}
+                                    >
+                                        Uygula
+                                    </button>
+                                )}
+                            </div>
+                        </div>
+                    )
+                })}
+            </div>
+
+            {/* Premium+ Exclusive Collection */}
+            <div style={{ padding: '0 12px 16px' }}>
+                <div style={{
+                    background: 'linear-gradient(135deg, #1a0a2e, #0a0a1a)', borderRadius: 12, padding: 16,
+                    border: '1px solid rgba(168, 85, 247, 0.3)',
+                }}>
+                    <div style={{ fontSize: 14, fontWeight: 800, color: '#e9d5ff', marginBottom: 4 }}>✨ Premium+ Koleksiyon</div>
+                    <div style={{ fontSize: 10, color: '#a78bfa', marginBottom: 12 }}>El yapımı Awwwards-seviye tasarımlar. Premium+ paket gerektirir.</div>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                        {PREMIUM_TEMPLATES.map(t => {
+                            const isPLocked = paket !== 'PREMIUMPLUS'
+                            return (
+                                <div key={t.id} style={{
+                                    background: 'rgba(255,255,255,0.05)', borderRadius: 10, padding: 12,
+                                    border: '1px solid rgba(168,85,247,0.15)',
+                                    opacity: isPLocked ? 0.5 : 1, position: 'relative',
+                                }}>
+                                    {isPLocked && (
+                                        <div style={{
+                                            position: 'absolute', inset: 0, borderRadius: 10,
+                                            background: 'rgba(0,0,0,0.3)', zIndex: 2, backdropFilter: 'blur(2px)',
+                                            display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                        }}>
+                                            <span style={{ fontSize: 16 }}>🔒</span>
+                                        </div>
+                                    )}
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                                        <span style={{ fontSize: 20 }}>{t.emoji}</span>
+                                        <div>
+                                            <div style={{ fontSize: 12, fontWeight: 700, color: '#f5f3ff' }}>{t.ad}</div>
+                                            <span style={{ fontSize: 9, fontWeight: 600, padding: '1px 6px', borderRadius: 3, background: 'rgba(168,85,247,0.2)', color: '#c4b5fd' }}>{t.sektor}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            )
+                        })}
+                    </div>
+                </div>
+            </div>
+        </div>
     )
 }
 
@@ -512,6 +788,9 @@ function ModuleCatalog() {
         return map
     }, [allModules])
 
+    const [configModul, setConfigModul] = useState<string | null>(null)
+    const [contentEditModul, setContentEditModul] = useState<string | null>(null)
+
     const toggleModule = (modulId: string, isLocked: boolean) => {
         if (isLocked) return
         const current = [...activeModules]
@@ -522,6 +801,13 @@ function ModuleCatalog() {
             current.push(modulId)
         }
         updateSiteData({ moduller: current })
+
+        // Sync to backend (aktifWebModulleri)
+        fetch('/api/esnaf/sync-moduller', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ moduller: current })
+        }).catch(() => { /* silent fail — local state is authoritative */ })
     }
 
     // Drag handlers for reordering active modules
@@ -584,6 +870,14 @@ function ModuleCatalog() {
                             const info = MODUL_BILGI[m]
                             if (!info) return null
                             const isDropHere = dropTarget === m
+                            const hasConfig = [
+                                'urun-listesi', 'katalog', 'galeri', 'menu', 'iletisim-formu', 'calisma-saatleri', 'google-yorumlar',
+                                'randevu', 'sss-genis', 'ekip-uyeleri', 'hakkimizda-hikaye', 'rakamlarla-biz', 'video-tanitim', 'blog-makaleler',
+                                'kampanya-afisi', 'kvkk-gizlilik', 'duyuru-bandi', 'sosyal-medya', 'whatsapp-canli', 'bize-ulasin-sticky',
+                                'indirim-kuponu', 'eticaret-vitrin', 'whatsapp-teklif', 'musteri-referanslari', 'oncesi-sonrasi-slider',
+                                'online-rezervasyon', 'acil-buton', 'harita-yol-tarifi', 'instagram-feed', 'instagram-canli-akis'
+                            ].includes(m)
+                            const hasContent = ['sss-genis', 'ekip-uyeleri', 'musteri-referanslari', 'menu', 'hakkimizda-hikaye', 'rakamlarla-biz', 'hizmet-fiyat-listesi', 'kampanya-afisi', 'google-yorumlar'].includes(m)
 
                             return (
                                 <div
@@ -608,6 +902,25 @@ function ModuleCatalog() {
                                         <circle cx="9" cy="19" r="1"/><circle cx="15" cy="19" r="1"/>
                                     </svg>
                                     <span style={{ flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{info.ad}</span>
+                                    {hasContent && (
+                                        <button
+                                            onClick={(e) => { e.stopPropagation(); setContentEditModul(m) }}
+                                            className="ke-mod-config-btn"
+                                            title="İçerik Düzenle"
+                                            style={{ background: 'rgba(34,197,94,0.1)', color: '#16a34a' }}
+                                        >
+                                            ✏️
+                                        </button>
+                                    )}
+                                    {hasConfig && (
+                                        <button
+                                            onClick={(e) => { e.stopPropagation(); setConfigModul(m) }}
+                                            className="ke-mod-config-btn"
+                                            title="Ayarlar"
+                                        >
+                                            ⚙️
+                                        </button>
+                                    )}
                                     <button
                                         onClick={(e) => { e.stopPropagation(); toggleModule(m, false) }}
                                         style={{ border: 'none', background: 'none', cursor: 'pointer', color: '#ef4444', fontSize: 14, padding: 2, lineHeight: 1, display: 'flex' }}
@@ -639,26 +952,40 @@ function ModuleCatalog() {
                             const info = MODUL_BILGI[m]
                             if (!info) return null
                             const isActive = activeModules.includes(m)
-                            const isLocked = !isActive && activeModules.length >= limit
-                            const isPremiumPlus = info.kategori === 'Premium+'
+                            const modulData = MODULLER.find(mod => mod.id === m)
+                            const modulMinPaket = modulData?.minPaket || 'TEMEL'
+                            const tierLocked = PAKET_SIRASI.indexOf(modulMinPaket) > PAKET_SIRASI.indexOf(paket)
+                            const isLocked = tierLocked || (!isActive && activeModules.length >= limit)
+                            const tier = TIER_BADGE[modulMinPaket] || TIER_BADGE.TEMEL
 
                             return (
                                 <div
                                     key={m}
-                                    className={`ke-mod-item${isActive ? ' active' : ''}${isLocked || (isPremiumPlus && paket !== 'PREMIUMPLUS') ? ' locked' : ''}`}
+                                    className={`ke-mod-item${isActive ? ' active' : ''}${isLocked ? ' locked' : ''}`}
                                     onClick={() => {
-                                        if (isPremiumPlus && paket !== 'PREMIUMPLUS') return
+                                        if (tierLocked) return
                                         toggleModule(m, isLocked)
                                     }}
                                 >
-                                    <div className="ke-mod-thumb"><SectionThumbnail type={MODUL_THUMBNAIL[m] || 'default'} /></div>
+                                    {/* Live preview or SVG fallback */}
+                                    {modulData?.htmlSablon ? (
+                                        <ModulePreview modulId={m} accent={siteData?.accent} bg={siteData?.bg} text={siteData?.text} />
+                                    ) : (
+                                        <div className="ke-mod-thumb"><SectionThumbnail type={MODUL_THUMBNAIL[m] || 'default'} /></div>
+                                    )}
                                     <div className="ke-mod-info">
-                                        <div className="ke-mod-name">{info.ad}</div>
+                                        <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+                                            <span className="ke-mod-name">{info.ad}</span>
+                                            <span style={{
+                                                fontSize: 8, fontWeight: 700, padding: '1px 5px', borderRadius: 3,
+                                                background: tier.bg, color: tier.color, lineHeight: '14px', whiteSpace: 'nowrap',
+                                            }}>{tier.label}</span>
+                                        </div>
                                         <div className="ke-mod-desc">{info.aciklama}</div>
                                     </div>
                                     {isActive && <span className="ke-mod-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="#fff"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>}
-                                    {isPremiumPlus && paket !== 'PREMIUMPLUS' && <span className="ke-mod-badge">P+</span>}
-                                    {isLocked && !isPremiumPlus && <span className="ke-mod-lock">🔒</span>}
+                                    {tierLocked && <span className="ke-mod-lock">🔒</span>}
+                                    {!tierLocked && isLocked && <span className="ke-mod-lock">🔒</span>}
                                 </div>
                             )
                         })}
@@ -674,115 +1001,853 @@ function ModuleCatalog() {
                     ✏️ İçerik Düzenle
                 </button>
             </div>
+
+            {/* Module Config Panel */}
+            {configModul && (
+                <ModuleConfigPanel
+                    modulId={configModul}
+                    siteData={siteData}
+                    updateSiteData={updateSiteData}
+                    onClose={() => setConfigModul(null)}
+                />
+            )}
+
+            {/* Module Content Editor */}
+            {contentEditModul && (
+                <ModuleContentEditor
+                    modulId={contentEditModul}
+                    siteData={siteData}
+                    updateSiteData={updateSiteData}
+                    onClose={() => setContentEditModul(null)}
+                />
+            )}
         </div>
     )
 }
 
 /* ═══════ Design Panel ═══════ */
-function DesignPanel() {
-    const siteData = useEditorStore(s => s.siteData)
-    const updateSiteData = useEditorStore(s => s.updateSiteData)
+/* ═══════ Module Config Panel ═══════ */
+const COLOR_SWATCHES = ['#ffffff','#f8fafc','#f1f5f9','#0f172a','#1e293b','#0d0d0d','#eff6ff','#fef3c7','#f0fdf4','#fdf2f8','#2563eb','#dc2626','#059669','#d97706','#7c3aed','#ec4899']
+const ANIM_OPTIONS = [{v:'none',l:'Yok'},{v:'fade',l:'Fade In'},{v:'slide-up',l:'Aşağıdan Gel'},{v:'slide-left',l:'Soldan Gel'},{v:'zoom',l:'Zoom In'},{v:'bounce',l:'Bounce'}]
 
-    const THEMES = [
-        { id: 'dark-1', name: 'Gece', bg: '#0f172a', accent: '#3b82f6', text: '#f8fafc' },
-        { id: 'dark-2', name: 'Kömür', bg: '#0d0d0d', accent: '#e63946', text: '#f5f5f5' },
-        { id: 'warm', name: 'Toprak', bg: '#1e0f05', accent: '#c2440e', text: '#f5ede0' },
-        { id: 'elegant', name: 'Zarif', bg: '#faf4ed', accent: '#c2773a', text: '#2c1a0e' },
-        { id: 'forest', name: 'Orman', bg: '#f0faf4', accent: '#52b788', text: '#1b4332' },
-        { id: 'ocean', name: 'Okyanus', bg: '#f0f8ff', accent: '#2e86de', text: '#0a2a4a' },
-        { id: 'neon', name: 'Neon', bg: '#0a0a0f', accent: '#7c3aed', text: '#f0e6ff' },
-        { id: 'pastel', name: 'Pastel', bg: '#fdf8f9', accent: '#d4709a', text: '#2d1527' },
-    ]
+function ModuleConfigPanel({ modulId, siteData, updateSiteData, onClose }: {
+    modulId: string
+    siteData: any
+    updateSiteData: (data: any) => void
+    onClose: () => void
+}) {
+    const [tab, setTab] = useState<'genel'|'stil'>('genel')
+    const config = siteData?.modulConfig?.[modulId] || {}
+    const updateConfig = (updates: Record<string, any>) => {
+        const current = siteData?.modulConfig || {}
+        updateSiteData({
+            modulConfig: {
+                ...current,
+                [modulId]: { ...config, ...updates }
+            }
+        })
+    }
 
-    const FONTS = [
-        { id: 'inter', name: 'Inter', family: 'Inter' },
-        { id: 'playfair', name: 'Playfair Display', family: 'Playfair Display' },
-        { id: 'poppins', name: 'Poppins', family: 'Poppins' },
-        { id: 'roboto', name: 'Roboto', family: 'Roboto' },
-        { id: 'montserrat', name: 'Montserrat', family: 'Montserrat' },
-        { id: 'outfit', name: 'Outfit', family: 'Outfit' },
-        { id: 'raleway', name: 'Raleway', family: 'Raleway' },
-        { id: 'dm-sans', name: 'DM Sans', family: 'DM Sans' },
-    ]
+    const info = MODUL_BILGI[modulId]
+    if (!info) return null
 
     return (
-        <div>
-            {/* ── Quick Themes ── */}
-            <div className="ke-design-section">
-                <div className="ke-design-label">Hızlı Tema</div>
-                <div className="ke-theme-grid">
-                    {THEMES.map(t => (
-                        <div
-                            key={t.id}
-                            className={`ke-theme-card${siteData?.bg === t.bg ? ' active' : ''}`}
-                            onClick={() => updateSiteData({ bg: t.bg, accent: t.accent, text: t.text })}
-                        >
-                            <div className="ke-theme-dots">
-                                <div className="ke-theme-dot" style={{ background: t.bg }} />
-                                <div className="ke-theme-dot" style={{ background: t.accent }} />
-                                <div className="ke-theme-dot" style={{ background: t.text }} />
-                            </div>
-                            <div className="ke-theme-name">{t.name}</div>
-                        </div>
+        <div className="ke-mod-config-overlay" onClick={onClose}>
+            <div className="ke-mod-config-panel" onClick={e => e.stopPropagation()} style={{ width: 400 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
+                    <div className="ke-mod-config-title">⚙️ {info.ad} Ayarları</div>
+                    <button
+                        onClick={onClose}
+                        style={{ border: 'none', background: '#f1f5f9', borderRadius: 6, width: 28, height: 28, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14 }}
+                    >✕</button>
+                </div>
+                {/* Tab bar */}
+                <div style={{ display: 'flex', gap: 4, marginBottom: 16, background: '#f1f5f9', borderRadius: 8, padding: 3 }}>
+                    {(['genel','stil'] as const).map(t => (
+                        <button key={t} onClick={() => setTab(t)} style={{ flex: 1, padding: '7px 0', border: 'none', borderRadius: 6, fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', background: tab === t ? '#fff' : 'transparent', color: tab === t ? '#2563eb' : '#64748b', boxShadow: tab === t ? '0 1px 3px rgba(0,0,0,0.08)' : 'none', transition: '0.15s' }}>
+                            {t === 'genel' ? '⚙️ Genel' : '🎨 Stil'}
+                        </button>
                     ))}
                 </div>
-            </div>
+                {/* ═══ GENEL TAB ═══ */}
+                {tab === 'genel' && <>
+                {/* Product modules */}
+                {(modulId === 'urun-listesi' || modulId === 'katalog') && (
+                    <>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Görünüm</div>
+                            <select
+                                className="ke-mod-config-input"
+                                value={config.gorunum || 'grid'}
+                                onChange={e => updateConfig({ gorunum: e.target.value })}
+                            >
+                                <option value="grid">Grid (Kart)</option>
+                                <option value="list">Liste</option>
+                            </select>
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Sütun Sayısı</div>
+                            <select
+                                className="ke-mod-config-input"
+                                value={config.sutun || '3'}
+                                onChange={e => updateConfig({ sutun: e.target.value })}
+                            >
+                                <option value="2">2 Sütun</option>
+                                <option value="3">3 Sütun</option>
+                                <option value="4">4 Sütun</option>
+                            </select>
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', fontSize: 12 }}>
+                                <input type="checkbox" checked={config.fiyatGoster !== false} onChange={e => updateConfig({ fiyatGoster: e.target.checked })} />
+                                Fiyat göster
+                            </label>
+                        </div>
+                        <div style={{ padding: '10px 12px', background: '#eff6ff', borderRadius: 8, fontSize: 11, color: '#1e40af', lineHeight: 1.5 }}>
+                            💡 Ürünlerinizi <strong>Yönetim → Mağaza Ürünleri</strong> sayfasından ekleyip düzenleyebilirsiniz.
+                        </div>
+                    </>
+                )}
 
-            <div style={{ height: 1, background: '#e2e8f0', margin: '0 16px' }} />
+                {/* Gallery module */}
+                {modulId === 'galeri' && (
+                    <>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Kolon Sayısı</div>
+                            <select
+                                className="ke-mod-config-input"
+                                value={config.kolon || '3'}
+                                onChange={e => updateConfig({ kolon: e.target.value })}
+                            >
+                                <option value="2">2 Kolon</option>
+                                <option value="3">3 Kolon</option>
+                                <option value="4">4 Kolon</option>
+                            </select>
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', fontSize: 12 }}>
+                                <input type="checkbox" checked={config.lightbox !== false} onChange={e => updateConfig({ lightbox: e.target.checked })} />
+                                Lightbox (büyütme) açık
+                            </label>
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Görsel Yüksekliği</div>
+                            <select className="ke-mod-config-input" value={config.yukseklik || '200'} onChange={e => updateConfig({ yukseklik: e.target.value })}>
+                                <option value="150">Küçük (150px)</option>
+                                <option value="200">Orta (200px)</option>
+                                <option value="280">Büyük (280px)</option>
+                                <option value="auto">Otomatik</option>
+                            </select>
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Hover Efekti</div>
+                            <select className="ke-mod-config-input" value={config.hoverEfekt || 'zoom'} onChange={e => updateConfig({ hoverEfekt: e.target.value })}>
+                                <option value="none">Yok</option>
+                                <option value="zoom">Yakınlaştır</option>
+                                <option value="brightness">Parlaklık</option>
+                                <option value="blur">Bulanıklaş</option>
+                            </select>
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Görsel Köşe: {config.imgRadius ?? 8}px</div>
+                            <input type="range" min="0" max="24" value={config.imgRadius ?? 8} onChange={e => updateConfig({ imgRadius: +e.target.value })} style={{ width: '100%', accentColor: '#2563eb' }} />
+                        </div>
+                    </>
+                )}
 
-            {/* ── Custom Colors ── */}
-            <div className="ke-design-section">
-                <div className="ke-design-label">Özel Renkler</div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-                    {[
-                        { key: 'bg', label: 'Arka Plan', val: siteData?.bg || '#0f172a' },
-                        { key: 'accent', label: 'Vurgu Rengi', val: siteData?.accent || '#3b82f6' },
-                        { key: 'text', label: 'Metin Rengi', val: siteData?.text || '#f8fafc' },
-                    ].map(c => (
-                        <div key={c.key} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                {/* Menu module */}
+                {modulId === 'menu' && (
+                    <>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Fiyat Biçimi</div>
+                            <select
+                                className="ke-mod-config-input"
+                                value={config.fiyatBicimi || 'tl'}
+                                onChange={e => updateConfig({ fiyatBicimi: e.target.value })}
+                            >
+                                <option value="tl">₺ Türk Lirası</option>
+                                <option value="gizle">Fiyat Gizle</option>
+                                <option value="teklif">Fiyat Sorun</option>
+                            </select>
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Düzen</div>
+                            <select
+                                className="ke-mod-config-input"
+                                value={config.duzen || 'sekmeli'}
+                                onChange={e => updateConfig({ duzen: e.target.value })}
+                            >
+                                <option value="sekmeli">Sekmeli</option>
+                                <option value="accordion">Akordiyon</option>
+                                <option value="tek-liste">Tek Liste</option>
+                            </select>
+                        </div>
+                    </>
+                )}
+
+                {/* Contact form */}
+                {modulId === 'iletisim-formu' && (
+                    <>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Buton Metni</div>
                             <input
-                                type="color"
-                                value={c.val}
-                                onChange={e => updateSiteData({ [c.key]: e.target.value })}
-                                style={{ width: 32, height: 32, border: '2px solid #e2e8f0', borderRadius: 8, cursor: 'pointer', padding: 2, background: '#fff' }}
+                                className="ke-mod-config-input"
+                                value={config.butonMetni || 'Mesajı Gönder'}
+                                onChange={e => updateConfig({ butonMetni: e.target.value })}
                             />
-                            <div style={{ flex: 1 }}>
-                                <div style={{ fontSize: 11, fontWeight: 700, color: '#334155' }}>{c.label}</div>
-                                <div style={{ fontSize: 10, color: '#94a3b8', fontFamily: 'monospace' }}>{c.val}</div>
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', fontSize: 12 }}>
+                                <input type="checkbox" checked={config.emailAlan !== false} onChange={e => updateConfig({ emailAlan: e.target.checked })} />
+                                E-posta alanı göster
+                            </label>
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Form Başlığı</div>
+                            <input className="ke-mod-config-input" value={config.formBaslik || 'Bize Ulaşın'} onChange={e => updateConfig({ formBaslik: e.target.value })} />
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Başarı Mesajı</div>
+                            <input className="ke-mod-config-input" value={config.basariMesaj || 'Mesajınız gönderildi!'} onChange={e => updateConfig({ basariMesaj: e.target.value })} />
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Alıcı E-posta</div>
+                            <input className="ke-mod-config-input" type="email" value={config.aliciEmail || ''} onChange={e => updateConfig({ aliciEmail: e.target.value })} placeholder="info@isletme.com" />
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', fontSize: 12 }}>
+                                <input type="checkbox" checked={config.telefonAlan !== false} onChange={e => updateConfig({ telefonAlan: e.target.checked })} />
+                                Telefon alanı göster
+                            </label>
+                        </div>
+                    </>
+                )}
+
+                {/* Working hours */}
+                {modulId === 'calisma-saatleri' && (
+                    <div className="ke-mod-config-field">
+                        <div className="ke-mod-config-label">Saatler</div>
+                        {['Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi', 'Pazar'].map(gun => (
+                            <div key={gun} style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
+                                <span style={{ width: 75, fontSize: 11, fontWeight: 600, color: '#475569' }}>{gun}</span>
+                                <input
+                                    className="ke-mod-config-input"
+                                    style={{ width: 'auto', flex: 1 }}
+                                    value={config[gun.toLowerCase()] || '09:00 - 18:00'}
+                                    onChange={e => updateConfig({ [gun.toLowerCase()]: e.target.value })}
+                                    placeholder="09:00 - 18:00"
+                                />
+                            </div>
+                        ))}
+                    </div>
+                )}
+
+                {/* Google Reviews */}
+                {modulId === 'google-yorumlar' && (
+                    <>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Google Place ID</div>
+                            <input className="ke-mod-config-input" value={config.placeId || ''} onChange={e => updateConfig({ placeId: e.target.value })} placeholder="ChIJ..." />
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Google Yorum Bırakma Linki</div>
+                            <input className="ke-mod-config-input" value={config.gmbLink || ''} onChange={e => updateConfig({ gmbLink: e.target.value })} placeholder="https://g.page/r/..." />
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Gösterilecek Yorum Sayısı</div>
+                            <select className="ke-mod-config-input" value={config.yorumSayisi || '5'} onChange={e => updateConfig({ yorumSayisi: e.target.value })}>
+                                <option value="3">3</option><option value="5">5</option><option value="6">6</option><option value="10">10</option>
+                            </select>
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Min. Yıldız Filtresi</div>
+                            <select className="ke-mod-config-input" value={config.minYildiz || '1'} onChange={e => updateConfig({ minYildiz: e.target.value })}>
+                                <option value="1">Tüm yorumlar</option><option value="3">3+ yıldız</option><option value="4">4+ yıldız</option><option value="5">Sadece 5 yıldız</option>
+                            </select>
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Görünüm</div>
+                            <select className="ke-mod-config-input" value={config.gorunum || 'grid'} onChange={e => updateConfig({ gorunum: e.target.value })}>
+                                <option value="grid">Grid</option><option value="slider">Slider</option><option value="liste">Liste</option>
+                            </select>
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', fontSize: 12 }}>
+                                <input type="checkbox" checked={config.ctaGoster !== false} onChange={e => updateConfig({ ctaGoster: e.target.checked })} />
+                                "Google'da Değerlendirin" butonu göster
+                            </label>
+                        </div>
+                        <div style={{ padding: '10px 12px', background: '#fef3c7', borderRadius: 8, fontSize: 11, color: '#92400e', lineHeight: 1.5 }}>
+                            ⭐ Yorumlarınızı <strong>✏️ İçerik Düzenle</strong> butonundan ekleyip düzenleyebilirsiniz.
+                        </div>
+                    </>
+                )}
+
+                {/* Google Maps — Harita & Yol Tarifi */}
+                {modulId === 'harita-yol-tarifi' && (
+                    <>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">İşletme Adresi</div>
+                            <textarea className="ke-mod-config-input" rows={2} value={config.adres || ''} onChange={e => updateConfig({ adres: e.target.value })} placeholder="Atatürk Cad. No:12, Kadıköy/İstanbul" style={{ resize: 'vertical' }} />
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Harita Arama Sorgusu</div>
+                            <input className="ke-mod-config-input" value={config.haritaQuery || ''} onChange={e => updateConfig({ haritaQuery: e.target.value })} placeholder="İşletme Adı+İlçe+Şehir" />
+                            <span style={{ fontSize: 10, color: '#94a3b8', marginTop: 4, display: 'block' }}>Google Maps'te görünecek arama metni</span>
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Google Place ID (opsiyonel)</div>
+                            <input className="ke-mod-config-input" value={config.placeId || ''} onChange={e => updateConfig({ placeId: e.target.value })} placeholder="ChIJ..." />
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Telefon Numarası</div>
+                            <input className="ke-mod-config-input" value={config.telefon || ''} onChange={e => updateConfig({ telefon: e.target.value })} placeholder="0212 XXX XX XX" />
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Harita Yüksekliği: {config.haritaHeight ?? 300}px</div>
+                            <input type="range" min="200" max="500" step="25" value={config.haritaHeight ?? 300} onChange={e => updateConfig({ haritaHeight: +e.target.value })} style={{ width: '100%', accentColor: '#2563eb' }} />
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Yakınlaştırma (Zoom)</div>
+                            <select className="ke-mod-config-input" value={config.zoom || '15'} onChange={e => updateConfig({ zoom: e.target.value })}>
+                                <option value="12">Geniş (12)</option><option value="14">Orta (14)</option><option value="15">Yakın (15)</option><option value="17">Çok Yakın (17)</option>
+                            </select>
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', fontSize: 12 }}>
+                                <input type="checkbox" checked={!!config.uyduGoruntu} onChange={e => updateConfig({ uyduGoruntu: e.target.checked })} />
+                                Uydu görüntüsü
+                            </label>
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', fontSize: 12 }}>
+                                <input type="checkbox" checked={config.araButonu !== false} onChange={e => updateConfig({ araButonu: e.target.checked })} />
+                                "Hemen Ara" butonu göster
+                            </label>
+                        </div>
+                    </>
+                )}
+
+                {/* Instagram Feed */}
+                {(modulId === 'instagram-feed' || modulId === 'instagram-canli-akis') && (
+                    <>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Instagram Kullanıcı Adı</div>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+                                <span style={{ color: '#64748b', fontSize: 14, fontWeight: 700 }}>@</span>
+                                <input className="ke-mod-config-input" value={config.username || ''} onChange={e => updateConfig({ username: e.target.value })} placeholder="kullaniciadi" style={{ flex: 1 }} />
                             </div>
                         </div>
-                    ))}
-                </div>
-            </div>
-
-            <div style={{ height: 1, background: '#e2e8f0', margin: '0 16px' }} />
-
-            {/* ── Font Selection ── */}
-            <div className="ke-design-section">
-                <div className="ke-design-label">Yazı Tipi</div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-                    {FONTS.map(f => (
-                        <div
-                            key={f.id}
-                            onClick={() => updateSiteData({ font: f.family })}
-                            style={{
-                                padding: '10px 12px', borderRadius: 8, cursor: 'pointer',
-                                display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                                border: siteData?.font === f.family ? '1.5px solid #3b82f6' : '1px solid #e2e8f0',
-                                background: siteData?.font === f.family ? '#eff6ff' : '#fff',
-                                transition: 'all 0.12s',
-                            }}
-                        >
-                            <span style={{ fontSize: 13, fontWeight: 600, color: '#334155', fontFamily: f.family }}>{f.name}</span>
-                            {siteData?.font === f.family && (
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="#3b82f6"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>
-                            )}
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Gösterilecek Gönderi Sayısı</div>
+                            <select className="ke-mod-config-input" value={config.gonderiSayisi || '6'} onChange={e => updateConfig({ gonderiSayisi: e.target.value })}>
+                                <option value="3">3</option><option value="6">6</option><option value="9">9</option><option value="12">12</option>
+                            </select>
                         </div>
-                    ))}
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Görünüm</div>
+                            <select className="ke-mod-config-input" value={config.gorunum || 'grid'} onChange={e => updateConfig({ gorunum: e.target.value })}>
+                                <option value="grid">Grid (kare)</option><option value="slider">Slider (kaydırmalı)</option><option value="masonry">Masonry</option>
+                            </select>
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Takip Butonu Metni</div>
+                            <input className="ke-mod-config-input" value={config.takipMetni || 'Instagram\'da Takip Et'} onChange={e => updateConfig({ takipMetni: e.target.value })} />
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', fontSize: 12 }}>
+                                <input type="checkbox" checked={config.profilGoster !== false} onChange={e => updateConfig({ profilGoster: e.target.checked })} />
+                                Profil bilgisi göster
+                            </label>
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', fontSize: 12 }}>
+                                <input type="checkbox" checked={config.takipButonu !== false} onChange={e => updateConfig({ takipButonu: e.target.checked })} />
+                                Takip Et butonu göster
+                            </label>
+                        </div>
+                        <div style={{ padding: '10px 12px', background: '#fce7f3', borderRadius: 8, fontSize: 11, color: '#9d174d', lineHeight: 1.5 }}>
+                            📸 Instagram API entegrasyonu gerektirir. E-posta gönderin: <strong>destek@kepenk.ai</strong>
+                        </div>
+                    </>
+                )}
+
+                {/* Randevu Sistemi */}
+                {(modulId === 'randevu' || modulId === 'online-rezervasyon') && (
+                    <>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Randevu Süresi</div>
+                            <select className="ke-mod-config-input" value={config.sure || '60'} onChange={e => updateConfig({ sure: e.target.value })}>
+                                <option value="30">30 dakika</option>
+                                <option value="45">45 dakika</option>
+                                <option value="60">1 saat</option>
+                                <option value="90">1.5 saat</option>
+                                <option value="120">2 saat</option>
+                            </select>
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Müsait Günler</div>
+                            {['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'].map((g, i) => (
+                                <label key={g} style={{ display: 'inline-flex', alignItems: 'center', gap: 4, marginRight: 8, fontSize: 11, cursor: 'pointer' }}>
+                                    <input type="checkbox" checked={config.gunler ? config.gunler.includes(i) : i < 6} onChange={e => {
+                                        const curr = config.gunler || [0,1,2,3,4,5]
+                                        updateConfig({ gunler: e.target.checked ? [...curr, i] : curr.filter((x: number) => x !== i) })
+                                    }} />{g}
+                                </label>
+                            ))}
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Başlangıç Saati</div>
+                            <input className="ke-mod-config-input" type="time" value={config.baslangic || '09:00'} onChange={e => updateConfig({ baslangic: e.target.value })} />
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Bitiş Saati</div>
+                            <input className="ke-mod-config-input" type="time" value={config.bitis || '18:00'} onChange={e => updateConfig({ bitis: e.target.value })} />
+                        </div>
+                    </>
+                )}
+
+                {/* SSS */}
+                {modulId === 'sss-genis' && (
+                    <>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Başlık</div>
+                            <input className="ke-mod-config-input" value={config.baslik || 'Sıkça Sorulan Sorular'} onChange={e => updateConfig({ baslik: e.target.value })} />
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Açılış Şekli</div>
+                            <select className="ke-mod-config-input" value={config.acilis || 'tek'} onChange={e => updateConfig({ acilis: e.target.value })}>
+                                <option value="tek">Bir seferde bir aç</option>
+                                <option value="coklu">Birden fazla açık olabilir</option>
+                                <option value="hepsi">Hepsi açık başlasın</option>
+                            </select>
+                        </div>
+                    </>
+                )}
+
+                {/* Ekip */}
+                {modulId === 'ekip-uyeleri' && (
+                    <>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Kart Düzeni</div>
+                            <select className="ke-mod-config-input" value={config.duzen || 'grid'} onChange={e => updateConfig({ duzen: e.target.value })}>
+                                <option value="grid">Grid (3 sütun)</option>
+                                <option value="slider">Slider</option>
+                                <option value="liste">Liste</option>
+                            </select>
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', fontSize: 12 }}>
+                                <input type="checkbox" checked={config.gorselGoster !== false} onChange={e => updateConfig({ gorselGoster: e.target.checked })} />
+                                Fotoğraf göster
+                            </label>
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', fontSize: 12 }}>
+                                <input type="checkbox" checked={config.sosyalGoster !== false} onChange={e => updateConfig({ sosyalGoster: e.target.checked })} />
+                                Sosyal medya ikonları göster
+                            </label>
+                        </div>
+                    </>
+                )}
+
+                {/* Hakkımızda */}
+                {modulId === 'hakkimizda-hikaye' && (
+                    <>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Yerleşim</div>
+                            <select className="ke-mod-config-input" value={config.yerlesim || 'sol'} onChange={e => updateConfig({ yerlesim: e.target.value })}>
+                                <option value="sol">Görsel Sol</option>
+                                <option value="sag">Görsel Sağ</option>
+                                <option value="orta">Ortalı (Üstte Görsel)</option>
+                            </select>
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Başlık</div>
+                            <input className="ke-mod-config-input" value={config.baslik || 'Hakkımızda'} onChange={e => updateConfig({ baslik: e.target.value })} />
+                        </div>
+                    </>
+                )}
+
+                {/* İstatistikler */}
+                {modulId === 'rakamlarla-biz' && (
+                    <>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Animasyon Hızı</div>
+                            <select className="ke-mod-config-input" value={config.animHiz || 'normal'} onChange={e => updateConfig({ animHiz: e.target.value })}>
+                                <option value="yavas">Yavaş (3s)</option>
+                                <option value="normal">Normal (2s)</option>
+                                <option value="hizli">Hızlı (1s)</option>
+                            </select>
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', fontSize: 12 }}>
+                                <input type="checkbox" checked={config.animasyon !== false} onChange={e => updateConfig({ animasyon: e.target.checked })} />
+                                Sayaç animasyonu aktif
+                            </label>
+                        </div>
+                    </>
+                )}
+
+                {/* Video */}
+                {modulId === 'video-tanitim' && (
+                    <>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Video URL</div>
+                            <input className="ke-mod-config-input" value={config.videoUrl || ''} onChange={e => updateConfig({ videoUrl: e.target.value })} placeholder="https://youtube.com/watch?v=..." />
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', fontSize: 12 }}>
+                                <input type="checkbox" checked={!!config.autoplay} onChange={e => updateConfig({ autoplay: e.target.checked })} />
+                                Otomatik oynat
+                            </label>
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', fontSize: 12 }}>
+                                <input type="checkbox" checked={config.muted !== false} onChange={e => updateConfig({ muted: e.target.checked })} />
+                                Sessiz başla
+                            </label>
+                        </div>
+                    </>
+                )}
+
+                {/* Blog */}
+                {modulId === 'blog-makaleler' && (
+                    <>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Gösterilecek Yazı Sayısı</div>
+                            <select className="ke-mod-config-input" value={config.yaziSayisi || '3'} onChange={e => updateConfig({ yaziSayisi: e.target.value })}>
+                                <option value="3">3</option>
+                                <option value="6">6</option>
+                                <option value="9">9</option>
+                            </select>
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Görünüm</div>
+                            <select className="ke-mod-config-input" value={config.gorunum || 'grid'} onChange={e => updateConfig({ gorunum: e.target.value })}>
+                                <option value="grid">Grid</option>
+                                <option value="list">Liste</option>
+                            </select>
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', fontSize: 12 }}>
+                                <input type="checkbox" checked={config.tarihGoster !== false} onChange={e => updateConfig({ tarihGoster: e.target.checked })} />
+                                Tarih göster
+                            </label>
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', fontSize: 12 }}>
+                                <input type="checkbox" checked={config.okumaGoster !== false} onChange={e => updateConfig({ okumaGoster: e.target.checked })} />
+                                Okunma süresi göster
+                            </label>
+                        </div>
+                    </>
+                )}
+
+                {/* Kampanya */}
+                {modulId === 'kampanya-afisi' && (
+                    <>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Kampanya Başlığı</div>
+                            <input className="ke-mod-config-input" value={config.baslik || ''} onChange={e => updateConfig({ baslik: e.target.value })} placeholder="Yaz İndirimi!" />
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Son Tarih</div>
+                            <input className="ke-mod-config-input" type="date" value={config.sonTarih || ''} onChange={e => updateConfig({ sonTarih: e.target.value })} />
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', fontSize: 12 }}>
+                                <input type="checkbox" checked={config.countdown !== false} onChange={e => updateConfig({ countdown: e.target.checked })} />
+                                Geri sayım göster
+                            </label>
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Açıklama Metni</div>
+                            <textarea className="ke-mod-config-input" rows={2} value={config.aciklama || ''} onChange={e => updateConfig({ aciklama: e.target.value })} placeholder="Kaçırılmayacak fırsatlar..." style={{ resize: 'vertical' }} />
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">CTA Buton Metni</div>
+                            <input className="ke-mod-config-input" value={config.ctaMetin || 'Fırsatı Yakala'} onChange={e => updateConfig({ ctaMetin: e.target.value })} />
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">CTA Link</div>
+                            <input className="ke-mod-config-input" value={config.ctaLink || ''} onChange={e => updateConfig({ ctaLink: e.target.value })} placeholder="https://..." />
+                        </div>
+                    </>
+                )}
+
+                {/* KVKK */}
+                {modulId === 'kvkk-gizlilik' && (
+                    <>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">İşletme Unvanı</div>
+                            <input className="ke-mod-config-input" value={config.unvan || ''} onChange={e => updateConfig({ unvan: e.target.value })} placeholder="ABC Ltd. Şti." />
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">İşletme Adresi</div>
+                            <input className="ke-mod-config-input" value={config.adres || ''} onChange={e => updateConfig({ adres: e.target.value })} />
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">E-posta (Veri Sorumlusu)</div>
+                            <input className="ke-mod-config-input" value={config.email || ''} onChange={e => updateConfig({ email: e.target.value })} placeholder="kvkk@sirket.com" />
+                        </div>
+                    </>
+                )}
+
+                {/* Duyuru Barı */}
+                {modulId === 'duyuru-bandi' && (
+                    <>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Duyuru Mesajı</div>
+                            <input className="ke-mod-config-input" value={config.mesaj || ''} onChange={e => updateConfig({ mesaj: e.target.value })} placeholder="🎉 Yeni sezon ürünleri geldi!" />
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', fontSize: 12 }}>
+                                <input type="checkbox" checked={config.kapatilabilir !== false} onChange={e => updateConfig({ kapatilabilir: e.target.checked })} />
+                                Kapatılabilir
+                            </label>
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Link (opsiyonel)</div>
+                            <input className="ke-mod-config-input" value={config.link || ''} onChange={e => updateConfig({ link: e.target.value })} placeholder="https://..." />
+                        </div>
+                    </>
+                )}
+
+                {/* Sosyal Medya */}
+                {modulId === 'sosyal-medya' && (
+                    <>
+                        {[{k: 'instagram', l: '📸 Instagram', p: '@kullanici'},
+                          {k: 'facebook', l: '👤 Facebook', p: 'facebook.com/...'},
+                          {k: 'twitter', l: '🐦 X (Twitter)', p: '@kullanici'},
+                          {k: 'tiktok', l: '🎵 TikTok', p: '@kullanici'},
+                          {k: 'youtube', l: '📺 YouTube', p: 'youtube.com/...'},
+                          {k: 'linkedin', l: '💼 LinkedIn', p: 'linkedin.com/...'}].map(s => (
+                            <div key={s.k} className="ke-mod-config-field">
+                                <div className="ke-mod-config-label">{s.l}</div>
+                                <input className="ke-mod-config-input" value={config[s.k] || ''} onChange={e => updateConfig({ [s.k]: e.target.value })} placeholder={s.p} />
+                            </div>
+                        ))}
+                    </>
+                )}
+
+                {/* WhatsApp Balonu */}
+                {modulId === 'whatsapp-canli' && (
+                    <>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">WhatsApp Numarası</div>
+                            <input className="ke-mod-config-input" value={config.numara || ''} onChange={e => updateConfig({ numara: e.target.value })} placeholder="5XX XXX XX XX" />
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Karşılama Mesajı</div>
+                            <input className="ke-mod-config-input" value={config.mesaj || 'Merhaba, bilgi almak istiyorum'} onChange={e => updateConfig({ mesaj: e.target.value })} />
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Konum</div>
+                            <select className="ke-mod-config-input" value={config.konum || 'sag'} onChange={e => updateConfig({ konum: e.target.value })}>
+                                <option value="sag">Sağ Alt</option>
+                                <option value="sol">Sol Alt</option>
+                            </select>
+                        </div>
+                    </>
+                )}
+
+                {/* Sabit İletişim Çubuğu */}
+                {modulId === 'bize-ulasin-sticky' && (
+                    <>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Telefon Numarası</div>
+                            <input className="ke-mod-config-input" value={config.telefon || ''} onChange={e => updateConfig({ telefon: e.target.value })} placeholder="0212 XXX XX XX" />
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">WhatsApp Numarası</div>
+                            <input className="ke-mod-config-input" value={config.whatsapp || ''} onChange={e => updateConfig({ whatsapp: e.target.value })} placeholder="5XX XXX XX XX" />
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', fontSize: 12 }}>
+                                <input type="checkbox" checked={config.araGoster !== false} onChange={e => updateConfig({ araGoster: e.target.checked })} />
+                                "Hemen Ara" butonu göster
+                            </label>
+                        </div>
+                    </>
+                )}
+
+                {/* Acil Çağrı Butonu */}
+                {modulId === 'acil-buton' && (
+                    <>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Telefon Numarası</div>
+                            <input className="ke-mod-config-input" value={config.telefon || ''} onChange={e => updateConfig({ telefon: e.target.value })} placeholder="0212 XXX XX XX" />
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Buton Rengi</div>
+                            <input className="ke-mod-config-input" type="color" value={config.renk || '#ea004b'} onChange={e => updateConfig({ renk: e.target.value })} style={{ height: 36, padding: 2 }} />
+                        </div>
+                    </>
+                )}
+
+                {/* Kupon Kodu */}
+                {modulId === 'indirim-kuponu' && (
+                    <>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Kupon Kodu</div>
+                            <input className="ke-mod-config-input" value={config.kod || ''} onChange={e => updateConfig({ kod: e.target.value })} placeholder="KEPENK20" />
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">İndirim Miktarı</div>
+                            <input className="ke-mod-config-input" value={config.miktar || ''} onChange={e => updateConfig({ miktar: e.target.value })} placeholder="%20 veya 100₺" />
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Son Tarih</div>
+                            <input className="ke-mod-config-input" type="date" value={config.sonTarih || ''} onChange={e => updateConfig({ sonTarih: e.target.value })} />
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Şart (opsiyonel)</div>
+                            <input className="ke-mod-config-input" value={config.sart || ''} onChange={e => updateConfig({ sart: e.target.value })} placeholder="500₺ üzeri alışverişlerde" />
+                        </div>
+                    </>
+                )}
+
+                {/* E-Ticaret Vitrin */}
+                {modulId === 'eticaret-vitrin' && (
+                    <>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Sütun Sayısı</div>
+                            <select className="ke-mod-config-input" value={config.sutun || '3'} onChange={e => updateConfig({ sutun: e.target.value })}>
+                                <option value="2">2 Sütun</option>
+                                <option value="3">3 Sütun</option>
+                                <option value="4">4 Sütun</option>
+                            </select>
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', fontSize: 12 }}>
+                                <input type="checkbox" checked={config.kategoriGoster !== false} onChange={e => updateConfig({ kategoriGoster: e.target.checked })} />
+                                Kategori tabları göster
+                            </label>
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', fontSize: 12 }}>
+                                <input type="checkbox" checked={config.stokBadge !== false} onChange={e => updateConfig({ stokBadge: e.target.checked })} />
+                                Stok durumu badge göster
+                            </label>
+                        </div>
+                        <div style={{ padding: '10px 12px', background: '#eff6ff', borderRadius: 8, fontSize: 11, color: '#1e40af', lineHeight: 1.5 }}>
+                            💡 Ürünlerinizi <strong>Yönetim → Mağaza Ürünleri</strong> sayfasından ekleyip düzenleyebilirsiniz.
+                        </div>
+                    </>
+                )}
+
+                {/* Teklif Al */}
+                {modulId === 'whatsapp-teklif' && (
+                    <>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Buton Metni</div>
+                            <input className="ke-mod-config-input" value={config.butonMetni || 'Teklif İste'} onChange={e => updateConfig({ butonMetni: e.target.value })} />
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">WhatsApp Numarası</div>
+                            <input className="ke-mod-config-input" value={config.numara || ''} onChange={e => updateConfig({ numara: e.target.value })} placeholder="5XX XXX XX XX" />
+                        </div>
+                    </>
+                )}
+
+                {/* Referanslar */}
+                {modulId === 'musteri-referanslari' && (
+                    <>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Görünüm</div>
+                            <select className="ke-mod-config-input" value={config.gorunum || 'slider'} onChange={e => updateConfig({ gorunum: e.target.value })}>
+                                <option value="slider">Slider (kaydırmalı)</option>
+                                <option value="grid">Grid</option>
+                            </select>
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', fontSize: 12 }}>
+                                <input type="checkbox" checked={config.logoGoster !== false} onChange={e => updateConfig({ logoGoster: e.target.checked })} />
+                                Logo göster
+                            </label>
+                        </div>
+                    </>
+                )}
+
+                {/* Öncesi/Sonrası */}
+                {modulId === 'oncesi-sonrasi-slider' && (
+                    <>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Öncesi Görsel URL</div>
+                            <input className="ke-mod-config-input" value={config.oncesiUrl || ''} onChange={e => updateConfig({ oncesiUrl: e.target.value })} placeholder="https://..." />
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Sonrası Görsel URL</div>
+                            <input className="ke-mod-config-input" value={config.sonrasiUrl || ''} onChange={e => updateConfig({ sonrasiUrl: e.target.value })} placeholder="https://..." />
+                        </div>
+                    </>
+                )}
+                </>}
+
+                {/* ═══ STİL TAB ═══ */}
+                {tab === 'stil' && (
+                    <>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Bölüm Başlığı (opsiyonel)</div>
+                            <input className="ke-mod-config-input" value={config.sectionTitle || ''} onChange={e => updateConfig({ sectionTitle: e.target.value })} placeholder={info.ad} />
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Arka Plan Rengi</div>
+                            <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginBottom: 6 }}>
+                                {COLOR_SWATCHES.map(c => (
+                                    <button key={c} onClick={() => updateConfig({ bgColor: c })} style={{ width: 24, height: 24, borderRadius: 6, border: config.bgColor === c ? '2px solid #2563eb' : '1px solid #e2e8f0', background: c, cursor: 'pointer', transition: '0.15s' }} />
+                                ))}
+                            </div>
+                            <input className="ke-mod-config-input" type="color" value={config.bgColor || '#ffffff'} onChange={e => updateConfig({ bgColor: e.target.value })} style={{ height: 32, padding: 2 }} />
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Metin Rengi</div>
+                            <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginBottom: 6 }}>
+                                {['#0f172a','#1e293b','#334155','#475569','#64748b','#ffffff','#f8fafc','#e2e8f0'].map(c => (
+                                    <button key={c} onClick={() => updateConfig({ textColor: c })} style={{ width: 24, height: 24, borderRadius: 6, border: config.textColor === c ? '2px solid #2563eb' : '1px solid #cbd5e1', background: c, cursor: 'pointer' }} />
+                                ))}
+                            </div>
+                            <input className="ke-mod-config-input" type="color" value={config.textColor || '#0f172a'} onChange={e => updateConfig({ textColor: e.target.value })} style={{ height: 32, padding: 2 }} />
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Dolgu (Padding): {config.padding ?? 40}px</div>
+                            <input type="range" min="0" max="80" step="4" value={config.padding ?? 40} onChange={e => updateConfig({ padding: +e.target.value })} style={{ width: '100%', accentColor: '#2563eb' }} />
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Köşe Yuvarlaklığı: {config.borderRadius ?? 0}px</div>
+                            <input type="range" min="0" max="32" step="2" value={config.borderRadius ?? 0} onChange={e => updateConfig({ borderRadius: +e.target.value })} style={{ width: '100%', accentColor: '#2563eb' }} />
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', fontSize: 12 }}>
+                                <input type="checkbox" checked={!!config.shadow} onChange={e => updateConfig({ shadow: e.target.checked })} />
+                                Gölge efekti
+                            </label>
+                        </div>
+                        <div className="ke-mod-config-field">
+                            <div className="ke-mod-config-label">Giriş Animasyonu</div>
+                            <select className="ke-mod-config-input" value={config.animation || 'none'} onChange={e => updateConfig({ animation: e.target.value })}>
+                                {ANIM_OPTIONS.map(a => <option key={a.v} value={a.v}>{a.l}</option>)}
+                            </select>
+                        </div>
+                    </>
+                )}
+
+                <div style={{ marginTop: 16, display: 'flex', justifyContent: 'flex-end' }}>
+                    <button
+                        onClick={onClose}
+                        style={{ padding: '8px 20px', background: '#2563eb', color: '#fff', border: 'none', borderRadius: 8, fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}
+                    >
+                        Tamam
+                    </button>
                 </div>
             </div>
         </div>
     )
+}
+
+function DesignPanel() {
+    return <GlobalStylePanel />
 }
 
 /* ═══════ Pages Panel ═══════ */

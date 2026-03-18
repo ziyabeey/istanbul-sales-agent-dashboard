@@ -14,9 +14,7 @@ import { FieldValue, Timestamp } from 'firebase-admin/firestore'
 export async function GET(req: Request) {
     // Basit auth kontrolü (Cloud Scheduler header veya API key)
     const authHeader = req.headers.get('authorization')
-    const cronSecret = process.env.CRON_SECRET || 'kepenk-cron-2026'
-    if (authHeader !== `Bearer ${cronSecret}`) {
-        console.warn('[temizleyici] ⚠️ Yetkisiz erişim denemesi')
+    if (!process.env.CRON_SECRET || authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
         return NextResponse.json({ error: 'Yetkisiz' }, { status: 401 })
     }
 
@@ -49,15 +47,12 @@ export async function GET(req: Request) {
                     })
 
                     temizlenen++
-                    console.log(
-                        `[temizleyici] 🗑️ Randevu süresi doldu: ${randevuDoc.id} ` +
-                        `(${data.tarih} ${data.baslangic_saat}) — Saat tekrar açıldı`
-                    )
+                    // Randevu suresi doldu, saat tekrar acildi
                 }
             }
         }
 
-        console.log(`[temizleyici] ✅ Tamamlandı. ${temizlenen} randevu temizlendi.`)
+        // Temizlik tamamlandi
 
         return NextResponse.json({
             success: true,
@@ -67,7 +62,7 @@ export async function GET(req: Request) {
 
     } catch (err: unknown) {
         const msg = err instanceof Error ? err.message : 'Bilinmeyen hata'
-        console.error('[temizleyici] ❌ Hata:', msg)
+        // Temizleyici hata
         return NextResponse.json({ error: msg }, { status: 500 })
     }
 }

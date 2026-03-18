@@ -42,7 +42,7 @@ export async function GET(req: Request) {
 
         return NextResponse.json(mesajlar)
     } catch (err) {
-        console.error('[MESAJLAR API]', err)
+        // console.error('[MESAJLAR API]', err)
         return NextResponse.json({ error: 'DB Fetch Error' }, { status: 500 })
     }
 }

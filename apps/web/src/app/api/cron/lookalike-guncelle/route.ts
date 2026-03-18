@@ -12,12 +12,12 @@ export async function GET(req: Request) {
         const esnaflar = await adminDb.collection('esnaflar').where('aktif', '==', true).get()
 
         for (const d of esnaflar.docs) {
-            await lookalikeDateOlustur(d.id).catch(e => console.error(`Lookalike Hatasi ${d.id}`, e))
+            await lookalikeDateOlustur(d.id).catch(() => {})
         }
 
         return NextResponse.json({ ok: true })
     } catch (error) {
-        console.error('[CRON LOOKALIKE HATA]', error)
+        // console.error('[CRON LOOKALIKE HATA]', error)
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
     }
 }

@@ -45,7 +45,7 @@ export async function POST(request: Request) {
 
         return NextResponse.json({ id: ref.id, metin, hashtagler })
     } catch (error: any) {
-        console.error('[İÇERİK ÜRET HATA]', error)
+        // console.error('[İÇERİK ÜRET HATA]', error)
         return NextResponse.json({ error: error.message }, { status: 500 })
     }
 }

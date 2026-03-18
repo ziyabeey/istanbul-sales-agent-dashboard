@@ -54,7 +54,7 @@ export async function POST(request: Request) {
                         // Rate limit — saniyede 3 istek
                         await new Promise(r => setTimeout(r, 350))
                     } catch (e) {
-                        console.error(`[İÇERİK HATA] ${platform} ${gun}:`, e)
+                        // console.error(`[İÇERİK HATA] ${platform} ${gun}:`, e)
                     }
                 }
             }
@@ -64,7 +64,7 @@ export async function POST(request: Request) {
 
         return NextResponse.json({ error: 'Bilinmeyen ajan/aksiyon' }, { status: 400 })
     } catch (error: any) {
-        console.error('[AJAN TETİKLE HATA]', error)
+        // console.error('[AJAN TETİKLE HATA]', error)
         return NextResponse.json({ error: error.message }, { status: 500 })
     }
 }
@@ -137,7 +137,7 @@ async function generateWithGemini(prompt: string): Promise<{ metin: string; hash
         )
 
         if (!res.ok) {
-            console.error('[GEMINI HATA]', res.status, await res.text())
+            // console.error('[GEMINI HATA]', res.status, await res.text())
             return { metin: 'İçerik hazırlanıyor...', hashtagler: ['#kepenkai'] }
         }
 
@@ -149,7 +149,7 @@ async function generateWithGemini(prompt: string): Promise<{ metin: string; hash
             hashtagler: parsed.hashtagler || [],
         }
     } catch (e) {
-        console.error('[GEMINI PARSE HATA]', e)
+        // console.error('[GEMINI PARSE HATA]', e)
         return { metin: 'İçerik hazırlanıyor...', hashtagler: ['#kepenkai'] }
     }
 }

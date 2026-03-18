@@ -1,30 +1,46 @@
 # ── Build Stage ──────────────────────────────────────────────────────────────
 FROM node:20-alpine AS base
 RUN apk add --no-cache libc6-compat
+RUN corepack enable && corepack prepare pnpm@9.1.0 --activate
 
 # ── Dependencies ─────────────────────────────────────────────────────────────
 FROM base AS deps
 WORKDIR /app
-COPY package.json package-lock.json ./
-RUN npm ci --omit=dev
+
+# Monorepo manifest dosyaları (pnpm cache katmanı)
+COPY package.json pnpm-workspace.yaml pnpm-lock.yaml ./
+COPY apps/web/package.json apps/web/package.json
+COPY apps/sites/package.json apps/sites/package.json
+COPY packages/agents/package.json packages/agents/package.json
+COPY packages/booking-schema/package.json packages/booking-schema/package.json
+COPY packages/cloudflare/package.json packages/cloudflare/package.json
+COPY packages/config/package.json packages/config/package.json
+COPY packages/crm-schema/package.json packages/crm-schema/package.json
+COPY packages/db/package.json packages/db/package.json
+COPY packages/ecom-schema/package.json packages/ecom-schema/package.json
+COPY packages/publish-engine/package.json packages/publish-engine/package.json
+COPY packages/renderer/package.json packages/renderer/package.json
+COPY packages/shared/package.json packages/shared/package.json
+COPY packages/site-schema/package.json packages/site-schema/package.json
+COPY packages/ui/package.json packages/ui/package.json
+
+RUN pnpm install --frozen-lockfile
 
 # ── Builder ──────────────────────────────────────────────────────────────────
 FROM base AS builder
 WORKDIR /app
 
-# Önce package dosyaları → npm ci (Docker cache katmanı)
-COPY package.json package-lock.json ./
-RUN npm ci
+# Bağımlılıkları kopyala
+COPY --from=deps /app/ ./
 
 # Kaynak kodu kopyala
 COPY . .
 
-# Build-time env (telemetry kapat, public URL)
+# Build-time env
 ENV NEXT_TELEMETRY_DISABLED=1
-ENV NEXT_PRIVATE_STANDALONE=true
 
-# Next.js standalone build
-RUN npm run build
+# Tüm workspace paketlerini derle + web build
+RUN pnpm --filter @kepenk/web build
 
 # ── Runner (Production) ─────────────────────────────────────────────────────
 FROM node:20-alpine AS runner
@@ -40,11 +56,11 @@ RUN addgroup --system --gid 1001 nodejs && \
     adduser --system --uid 1001 nextjs
 
 # Sadece gerekli dosyalar (minimal imaj)
-COPY --from=builder /app/public ./public
+COPY --from=builder /app/apps/web/public ./public
 
-# Standalone output — tüm bağımlılıklar dahil (~150MB)
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+# Standalone output — tüm bağımlılıklar dahil
+COPY --from=builder --chown=nextjs:nodejs /app/apps/web/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/apps/web/.next/static ./.next/static
 
 # Data klasörü (sektör şablonları vb.)
 COPY --from=builder --chown=nextjs:nodejs /app/data ./data 2>/dev/null || true

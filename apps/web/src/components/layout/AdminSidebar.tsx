@@ -30,7 +30,7 @@ export default function AdminSidebar() {
         <aside className="hidden md:flex flex-col w-60 bg-slate-950 border-r border-border/50 flex-shrink-0 min-h-screen">
             <div className="h-14 flex items-center px-5 border-b border-border/50">
                 <span className="font-syne text-base font-bold tracking-tight text-slate-100">
-                    KEPENK <span className="text-muted-foreground font-normal text-sm">Admin</span>
+                    KPNK <span className="text-muted-foreground font-normal text-sm">Admin</span>
                 </span>
             </div>
 

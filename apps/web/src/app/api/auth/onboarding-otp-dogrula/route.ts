@@ -18,7 +18,7 @@ export async function POST(req: Request) {
 
         return NextResponse.json({ ok: true })
     } catch (error: any) {
-        console.error('[ONBOARDING OTP DOĞRULA]', error)
+        // console.error('[ONBOARDING OTP DOĞRULA]', error)
         return NextResponse.json({ error: 'Sunucu hatası' }, { status: 500 })
     }
 }

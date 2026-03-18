@@ -14,7 +14,7 @@ export async function POST(request: Request) {
 
         return NextResponse.json({ ok: true, subdomainUrl: siteUrl })
     } catch (error: any) {
-        console.error('[SITE PROVISION YENi]', error)
+        // console.error('[SITE PROVISION YENi]', error)
         return NextResponse.json({ error: error.message }, { status: 500 })
     }
 }

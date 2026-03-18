@@ -50,7 +50,7 @@ const DEGERLER = [
 const EKIP = [
     {
         isim: 'Ahmet Yılmaz', unvan: 'CEO & Kurucu',
-        hikaye: 'Babasının bakkalını 5 yıl boyunca dijitalleştirmeye çalışırken kepenk.ai fikrini buldu.',
+        hikaye: 'Babasının bakkalını 5 yıl boyunca dijitalleştirmeye çalışırken KPNK fikrini buldu.',
         renk: '#c04b1e', emoji: '🏪',
     },
     {
@@ -74,12 +74,12 @@ const FAZ = [
     {
         no: '02', baslik: 'Finans, Tedarik & Ekip',
         aciklama: 'Fatura otomasyonu, tedarikçi ağı ve çok kullanıcılı ekip yönetimi.',
-        durum: 'Devam ediyor', renkClass: 'bg-rust/20 text-rust border-rust/30',
+        durum: 'Devam ediyor', renkClass: 'bg-primary/20 text-primary border-primary/30',
     },
     {
         no: '03', baslik: '1M Esnaf Standardı',
         aciklama: '1 milyon esnafın dijital vitrini ve tamamen otonom operasyon altyapısı.',
-        durum: '2026+', renkClass: 'bg-white/10 text-muted-foreground border-white/15',
+        durum: '2026+', renkClass: 'bg-gray-100 text-muted-foreground border-gray-200',
     },
 ];
 
@@ -91,7 +91,7 @@ export default function HakkimizdaPage() {
             {/* ── HERO ── */}
             <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden perspective-1000">
                 <div className="absolute inset-0 pointer-events-none">
-                    <div className="absolute top-1/4 left-1/3 w-[600px] h-[600px] bg-rust/5 rounded-full blur-3xl animate-pulse" />
+                    <div className="absolute top-1/4 left-1/3 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl animate-pulse" />
                     <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-steel/6 rounded-full blur-3xl animate-pulse" />
                 </div>
                 
@@ -102,15 +102,15 @@ export default function HakkimizdaPage() {
                         transition={{ duration: 0.8, ease: "easeOut" }}
                         className="flex-1 text-center md:text-left"
                     >
-                        <div className="inline-flex items-center gap-2 bg-rust/10 border border-rust/20 rounded-full px-4 py-1.5 mb-6 backdrop-blur-sm">
-                            <span className="text-rust text-xs font-mono uppercase tracking-widest">Biz Kimiz</span>
+                        <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-4 py-1.5 mb-6 backdrop-blur-sm">
+                            <span className="text-primary text-xs font-mono uppercase tracking-widest">Biz Kimiz</span>
                         </div>
                         <h1 className="text-4xl md:text-5xl lg:text-7xl font-extrabold text-foreground font-syne tracking-tight leading-[1.1] mb-5 drop-shadow-lg">
                             Kepenkleri <br/>
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-rust to-gold">Dijitale</span>{' '}
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-gold">Dijitale</span>{' '}
                             Açıyoruz
                         </h1>
-                        <p className="text-muted-foreground-100 text-lg leading-relaxed max-w-xl mx-auto md:mx-0 mb-10 font-lora">
+                        <p className="text-muted-foreground text-lg leading-relaxed max-w-xl mx-auto md:mx-0 mb-10 font-lora">
                             Mahalle esnafının büyük teknolojiyle aynı masada rekabet edebilmesi için
                             yapay zekayı sade, erişilebilir ve ölçülebilir hale getiriyoruz.
                         </p>
@@ -134,10 +134,10 @@ export default function HakkimizdaPage() {
                             className="absolute inset-0 flex items-center justify-center"
                             style={{ transformStyle: "preserve-3d" }}
                         >
-                            <div className="relative w-64 h-64 bg-gradient-to-br from-rust/20 via-rust/10 to-transparent rounded-3xl backdrop-blur-3xl border border-rust/30 flex items-center justify-center shadow-[0_20px_60px_rgba(220,70,30,0.3)] shadow-rust/20 transform rotate-12 rotate-x-12 rotate-y-12 z-20 overflow-hidden">
+                            <div className="relative w-64 h-64 bg-gradient-to-br from-primary/20 via-primary/10 to-transparent rounded-3xl backdrop-blur-3xl border border-primary/30 flex items-center justify-center shadow-[0_20px_60px_rgba(99,102,241,0.3)] shadow-primary/20 transform rotate-12 rotate-x-12 rotate-y-12 z-20 overflow-hidden">
                                 {/* Sweep reflection */}
-                                <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/10 to-white/0 transform -skew-x-12 translate-x-[-100%] animate-[shimmer_3s_infinite]" />
-                                <Cuboid className="w-32 h-32 text-rust drop-shadow-2xl" />
+                                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-gray-100 to-transparent transform -skew-x-12 translate-x-[-100%] animate-[shimmer_3s_infinite]" />
+                                <Cuboid className="w-32 h-32 text-primary drop-shadow-2xl" />
                             </div>
                             
                             {/* Floating decorative elements */}
@@ -149,7 +149,7 @@ export default function HakkimizdaPage() {
                             <motion.div 
                                 animate={{ z: [0, -50, 0], y: [0, 20, 0] }}
                                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                                className="absolute -bottom-8 -left-8 w-32 h-32 rounded-full border border-rust/20 backdrop-blur-md" 
+                                className="absolute -bottom-8 -left-8 w-32 h-32 rounded-full border border-primary/20 backdrop-blur-md" 
                             />
                         </motion.div>
                     </motion.div>
@@ -157,7 +157,7 @@ export default function HakkimizdaPage() {
             </section>
 
             {/* ── METRİKLER ── */}
-            <section className="py-12 px-4 sm:px-6 lg:px-8 bg-white/[0.02] border-y border-white/5 relative z-10">
+            <section className="py-12 px-4 sm:px-6 lg:px-8 bg-gray-50 border-y border-gray-200 relative z-10">
                 <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 perspective-1000">
                     {METRIKLER.map(({ label, value, suffix, icon: Icon, renk }, i) => (
                         <motion.div
@@ -174,20 +174,20 @@ export default function HakkimizdaPage() {
                             style={{ transformStyle: "preserve-3d", boxShadow: `0 10px 30px -10px ${renk}15` }}
                             viewport={{ once: true }}
                             transition={{ delay: i * 0.1, duration: 0.5 }}
-                            className="group relative rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-md p-6 text-center hover:border-white/20 hover:shadow-2xl hover:bg-white/[0.05] transition-all overflow-hidden"
+                            className="group relative rounded-3xl border border-gray-200 bg-white shadow-sm p-6 text-center hover:border-gray-300 hover:shadow-lg transition-all overflow-hidden"
                         >
-                            <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/5 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] pointer-events-none" />
-                            
+                            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-gray-100/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] pointer-events-none" />
+
                             <div className="relative z-10">
                                 <div className="w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform shadow-inner" style={{ backgroundColor: `${renk}18`, border: `1px solid ${renk}30` }}>
                                     <Icon className="w-6 h-6" style={{ color: renk }} />
                                 </div>
-                                <p className="text-3xl md:text-4xl font-syne font-extrabold text-white drop-shadow-md">
+                                <p className="text-3xl md:text-4xl font-syne font-extrabold text-foreground">
                                     {typeof value === 'number'
                                         ? <Counter target={value} suffix={suffix} />
                                         : value}
                                 </p>
-                                <p className="text-sm text-muted-foreground-300 mt-2 font-medium">{label}</p>
+                                <p className="text-sm text-muted-foreground mt-2 font-medium">{label}</p>
                             </div>
                         </motion.div>
                     ))}
@@ -198,19 +198,19 @@ export default function HakkimizdaPage() {
             <section className="py-20 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     <motion.div initial={{ opacity: 0, x: -24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-                        <p className="text-rust font-mono text-xs uppercase tracking-[0.3em] mb-4">Kuruluş Hikayemiz</p>
+                        <p className="text-primary font-mono text-xs uppercase tracking-[0.3em] mb-4">Kuruluş Hikayemiz</p>
                         <h2 className="text-3xl font-extrabold text-foreground font-syne mb-5 leading-tight">
                             Bir Bakkalın Dijital Dönüşüm Çabası Bizi Buraya Getirdi
                         </h2>
-                        <p className="text-muted-foreground-light leading-relaxed mb-4">
+                        <p className="text-muted-foreground leading-relaxed mb-4">
                             2020'de bir bakkalın oğlu, babasının işini WhatsApp mesajlarıyla yönetmeye çalıştığını
                             gördü. Sipariş takibi defterle, müşteri yanıtları geç, Google yorumları yanıtsız.
                         </p>
-                        <p className="text-muted-foreground-light leading-relaxed mb-4">
+                        <p className="text-muted-foreground leading-relaxed mb-4">
                             Büyük şirketlerin CRM ve otomasyon araçları vardı. Küçük esnafın yoktu.
-                            Bu eşitsizlik kepenk.ai'yi doğurdu.
+                            Bu eşitsizlik KPNK'yi doğurdu.
                         </p>
-                        <p className="text-muted-foreground-light leading-relaxed">
+                        <p className="text-muted-foreground leading-relaxed">
                             Bugün 28 sektörde, 1.200'den fazla işletmede AI asistanları çalışıyor.
                             Müşteri mesajları yanıtsız kalmıyor, Google yorumları cevapsız kalmıyor.
                         </p>
@@ -236,7 +236,7 @@ export default function HakkimizdaPage() {
                                 </div>
                                 <div>
                                     <span className="text-xs font-mono font-bold" style={{ color: renk }}>{yil}</span>
-                                    <p className="text-muted-foreground-light text-sm mt-0.5">{olay}</p>
+                                    <p className="text-muted-foreground text-sm mt-0.5">{olay}</p>
                                 </div>
                             </div>
                         ))}
@@ -245,10 +245,10 @@ export default function HakkimizdaPage() {
             </section>
 
             {/* ── DEĞERLER ── */}
-            <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white/[0.02] border-y border-white/5">
+            <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 border-y border-gray-200">
                 <div className="max-w-5xl mx-auto perspective-1000">
                     <div className="text-center mb-16">
-                        <p className="text-rust font-mono text-xs uppercase tracking-[0.3em] mb-4">Değerlerimiz</p>
+                        <p className="text-primary font-mono text-xs uppercase tracking-[0.3em] mb-4">Değerlerimiz</p>
                         <h2 className="text-3xl md:text-4xl font-extrabold text-foreground font-syne drop-shadow-md">Bizi Biz Yapan İlkeler</h2>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
@@ -267,17 +267,17 @@ export default function HakkimizdaPage() {
                                 style={{ transformStyle: "preserve-3d", boxShadow: `0 10px 40px -20px ${renk}30` }}
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.1, duration: 0.5 }}
-                                className="group relative bg-white/[0.03] backdrop-blur-md border border-white/10 rounded-3xl p-8 hover:border-white/20 transition-all flex gap-5 overflow-hidden shadow-lg hover:shadow-2xl"
+                                className="group relative bg-white shadow-sm border border-gray-200 rounded-3xl p-8 hover:border-gray-300 transition-all flex gap-5 overflow-hidden shadow-lg hover:shadow-lg"
                             >
                                 {/* Light sweep */}
-                                <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/5 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] pointer-events-none" />
+                                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-gray-100/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] pointer-events-none" />
 
-                                <div className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform relative z-10 shadow-inner border border-white/5" style={{ backgroundColor: `${renk}20` }}>
+                                <div className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform relative z-10 shadow-inner border border-gray-200" style={{ backgroundColor: `${renk}20` }}>
                                     <Icon className="w-6 h-6" style={{ color: renk }} />
                                 </div>
                                 <div className="relative z-10">
-                                    <h3 className="text-white font-syne font-bold text-lg mb-2">{baslik}</h3>
-                                    <p className="text-muted-foreground-300 font-lora text-sm leading-relaxed">{aciklama}</p>
+                                    <h3 className="text-foreground font-syne font-bold text-lg mb-2">{baslik}</h3>
+                                    <p className="text-muted-foreground font-lora text-sm leading-relaxed">{aciklama}</p>
                                 </div>
                             </motion.div>
                         ))}
@@ -289,7 +289,7 @@ export default function HakkimizdaPage() {
             <section className="py-20 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-6xl mx-auto perspective-1000">
                     <div className="text-center mb-16">
-                        <p className="text-rust font-mono text-xs uppercase tracking-[0.3em] mb-4">Ekip</p>
+                        <p className="text-primary font-mono text-xs uppercase tracking-[0.3em] mb-4">Ekip</p>
                         <h2 className="text-3xl md:text-4xl font-extrabold text-foreground font-syne drop-shadow-md">İşin Mutfağındakiler</h2>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
@@ -308,9 +308,9 @@ export default function HakkimizdaPage() {
                                 style={{ transformStyle: "preserve-3d" }}
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.15, duration: 0.6 }}
-                                className="group relative bg-white/[0.03] backdrop-blur-md border border-white/10 rounded-3xl p-8 text-center hover:border-white/20 transition-all flex flex-col items-center overflow-hidden hover:shadow-[0_20px_40px_rgba(0,0,0,0.5)]"
+                                className="group relative bg-white shadow-sm border border-gray-200 rounded-3xl p-8 text-center hover:border-gray-300 transition-all flex flex-col items-center overflow-hidden hover:shadow-xl"
                             >
-                                <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+                                <div className="absolute inset-0 bg-gradient-to-b from-gray-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
                                 
                                 <div
                                     className="relative z-10 w-20 h-20 rounded-2xl flex items-center justify-center mb-6 text-4xl group-hover:scale-110 group-hover:-rotate-3 transition-transform shadow-lg border"
@@ -318,27 +318,27 @@ export default function HakkimizdaPage() {
                                 >
                                     {emoji}
                                 </div>
-                                <h3 className="relative z-10 text-white font-syne font-bold text-xl mb-1">{isim}</h3>
+                                <h3 className="relative z-10 text-foreground font-syne font-bold text-xl mb-1">{isim}</h3>
                                 <p className="relative z-10 text-xs font-mono uppercase tracking-wider mb-5" style={{ color: renk }}>{unvan}</p>
-                                <p className="relative z-10 text-muted-foreground-300 font-lora text-sm leading-relaxed">{hikaye}</p>
+                                <p className="relative z-10 text-muted-foreground font-lora text-sm leading-relaxed">{hikaye}</p>
                             </motion.div>
                         ))}
                     </div>
                     <div className="text-center mt-12 relative z-10">
-                        <Link href="/kariyer" className="inline-flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-medium py-3 px-8 rounded-full transition-all text-sm group">
-                            Ekibimize katılmak ister misin? <span className="text-rust font-bold group-hover:translate-x-1 transition-transform">Açık pozisyonları gör →</span>
+                        <Link href="/kariyer" className="inline-flex items-center justify-center gap-2 bg-gray-50 hover:bg-gray-100 border border-gray-200 text-foreground font-medium py-3 px-8 rounded-full transition-all text-sm group">
+                            Ekibimize katılmak ister misin? <span className="text-primary font-bold group-hover:translate-x-1 transition-transform">Açık pozisyonları gör →</span>
                         </Link>
                     </div>
                 </div>
             </section>
 
             {/* ── YOL HARİTASI ── */}
-            <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white/[0.02] border-y border-white/5 relative z-10 overflow-hidden">
-                <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-rust/5 rounded-full blur-3xl pointer-events-none" />
+            <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 border-y border-gray-200 relative z-10 overflow-hidden">
+                <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
                 <div className="max-w-5xl mx-auto perspective-1000">
                     <div className="text-center mb-16 relative z-10">
-                        <p className="text-rust font-mono text-xs uppercase tracking-[0.3em] mb-4">Vizyon</p>
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-white font-syne drop-shadow-md">5 Yıllık Yol Haritamız</h2>
+                        <p className="text-primary font-mono text-xs uppercase tracking-[0.3em] mb-4">Vizyon</p>
+                        <h2 className="text-3xl md:text-4xl font-extrabold text-foreground font-syne">5 Yıllık Yol Haritamız</h2>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {FAZ.map(({ no, baslik, aciklama, durum, renkClass }, i) => (
@@ -356,17 +356,17 @@ export default function HakkimizdaPage() {
                                 style={{ transformStyle: "preserve-3d" }}
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.2, duration: 0.6 }}
-                                className="group relative bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-3xl p-8 hover:border-white/20 transition-all shadow-lg hover:shadow-2xl overflow-hidden"
+                                className="group relative bg-white shadow-sm border border-gray-200 rounded-3xl p-8 hover:border-gray-300 transition-all shadow-lg hover:shadow-lg overflow-hidden"
                             >
                                 {/* Light sweep */}
-                                <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/5 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] pointer-events-none" />
-                                
-                                <span className="absolute -top-4 -right-4 text-8xl font-black text-white/[0.03] pointer-events-none font-syne z-0 group-hover:text-white/[0.05] transition-colors">{no}</span>
+                                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-gray-100/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] pointer-events-none" />
+
+                                <span className="absolute -top-4 -right-4 text-8xl font-black text-gray-100 pointer-events-none font-syne z-0 group-hover:text-gray-200 transition-colors">{no}</span>
                                 
                                 <div className="relative z-10">
-                                    <span className="text-rust font-mono font-bold text-lg block mb-4 border-b border-rust/20 pb-2 inline-block drop-shadow-sm">{no}</span>
-                                    <h3 className="text-white font-syne font-bold text-xl mb-3">{baslik}</h3>
-                                    <p className="text-muted-foreground-300 font-lora text-sm leading-relaxed mb-6 h-16">{aciklama}</p>
+                                    <span className="text-primary font-mono font-bold text-lg block mb-4 border-b border-primary/20 pb-2 inline-block drop-shadow-sm">{no}</span>
+                                    <h3 className="text-foreground font-syne font-bold text-xl mb-3">{baslik}</h3>
+                                    <p className="text-muted-foreground font-lora text-sm leading-relaxed mb-6 h-16">{aciklama}</p>
                                     <span className={`text-xs font-bold px-4 py-1.5 rounded-full border shadow-sm backdrop-blur-md ${renkClass}`}>{durum}</span>
                                 </div>
                             </motion.div>
@@ -377,21 +377,21 @@ export default function HakkimizdaPage() {
 
             {/* ── CTA ── */}
             <section className="py-16 px-4 sm:px-6 lg:px-8">
-                <div className="max-w-2xl mx-auto text-center bg-rust/10 border border-rust/20 rounded-3xl p-10">
+                <div className="max-w-2xl mx-auto text-center bg-primary/10 border border-primary/20 rounded-3xl p-10">
                     <h2 className="text-2xl font-extrabold text-foreground font-syne mb-3">
                         Misyonumuza Ortak Ol
                     </h2>
-                    <p className="text-muted-foreground-light text-sm mb-8">
+                    <p className="text-muted-foreground text-sm mb-8">
                         Ekibimize katılmak veya esnafını dijitalleştirmek — her iki yolda da bekliyoruz.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-3 justify-center">
                         <Link href="/kariyer">
-                            <button className="bg-rust hover:bg-rust/90 text-foreground font-bold px-8 py-3.5 rounded-xl transition-colors text-sm">
+                            <button className="bg-primary hover:bg-primary/90 text-foreground font-bold px-8 py-3.5 rounded-xl transition-colors text-sm">
                                 Kariyer Fırsatları →
                             </button>
                         </Link>
                         <Link href="/onboarding">
-                            <button className="border border-white/20 text-foreground hover:bg-white/10 font-semibold px-8 py-3.5 rounded-xl transition-colors text-sm">
+                            <button className="border border-gray-200 text-foreground hover:bg-gray-50 font-semibold px-8 py-3.5 rounded-xl transition-colors text-sm">
                                 Platformu Dene
                             </button>
                         </Link>

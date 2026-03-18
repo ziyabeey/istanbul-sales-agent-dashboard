@@ -91,7 +91,7 @@ export async function POST(request: Request) {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ esnafId }),
-        }).catch(console.error)
+        }).catch(() => {})
 
         // Telegram bildirimi (sessizce — hata olsa bile devam)
         telegramGonder(
@@ -101,11 +101,11 @@ export async function POST(request: Request) {
             `Paket: ${adim1.paket || 'TEMEL'}\n` +
             `Tel: ${telefon}\n` +
             `ID: <code>${esnafId}</code>`
-        ).catch(console.error)
+        ).catch(() => {})
 
         return NextResponse.json({ esnafId })
     } catch (error: any) {
-        console.error('[ONBOARDING COMPLETE]', error)
+        // console.error('[ONBOARDING COMPLETE]', error)
         return NextResponse.json(
             { error: 'Kayıt sırasında hata oluştu' },
             { status: 500 }

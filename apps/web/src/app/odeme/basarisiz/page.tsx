@@ -1,5 +1,6 @@
 'use client'
 import { useRouter } from 'next/navigation'
+import { waLink } from '@/data/iletisim'
 
 export default function OdemeBasarisiz() {
   const router = useRouter()
@@ -37,12 +38,12 @@ export default function OdemeBasarisiz() {
         <div className="space-y-3">
           <button
             onClick={() => router.push('/odeme')}
-            className="w-full bg-rust text-foreground font-syne font-bold py-4 rounded-2xl"
+            className="w-full bg-rust text-white font-syne font-bold py-4 rounded-2xl"
           >
             Tekrar Dene →
           </button>
           <a
-            href="https://wa.me/908500000000?text=Ödeme%20sorunum%20var"
+            href={waLink('Ödeme sorunum var')}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center w-full border border-border

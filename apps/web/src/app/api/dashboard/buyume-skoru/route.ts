@@ -18,7 +18,7 @@ export async function GET(req: Request) {
 
         return NextResponse.json(doc.data())
     } catch (error) {
-        console.error('[BUYUME SKORU API HATA]', error)
+        // console.error('[BUYUME SKORU API HATA]', error)
         return NextResponse.json({ error: 'Sunucu hatası' }, { status: 500 })
     }
 }

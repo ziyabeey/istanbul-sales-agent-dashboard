@@ -7,10 +7,13 @@ export async function POST(req: Request) {
     try {
         // İç güvenlik: Sadece Cloud Tasks veya tanımlı yetkililer tetikleyebilir
         const token = req.headers.get('x-cloud-task-secret')
-        const beklenenToken = process.env.CRON_SECRET || 'dev-secret-123'
+        const beklenenToken = process.env.CRON_SECRET
+        if (!beklenenToken) {
+            return NextResponse.json({ error: 'CRON_SECRET tanımlı değil' }, { status: 500 })
+        }
 
         if (token !== beklenenToken) {
-            console.error('[WORKER: Site Üreticisi] Yetkisiz erişim denemesi')
+            // Yetkisiz erisim denemesi
             return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
         }
 
@@ -18,20 +21,20 @@ export async function POST(req: Request) {
         const { esnafId } = body
 
         if (!esnafId) {
-            console.error('[WORKER: Site Üreticisi] Eksik parametre: esnafId')
+            // Eksik parametre
             return NextResponse.json({ error: 'esnafId gerekli' }, { status: 400 })
         }
 
-        console.log(`[WORKER: Site Üreticisi] ${esnafId} için site üretimi başlatılıyor...`)
+        // Site uretimi baslatiliyor
 
         // Gerçek üretimi tetikle
         const url = await esnafSiteUret(esnafId)
 
-        console.log(`[WORKER: Site Üreticisi] Başarılı: ${url}`)
+        // Site uretimi basarili
         return NextResponse.json({ ok: true, url })
 
     } catch (error: any) {
-        console.error(`[WORKER: Site Üreticisi] Kritik Hata:`, error)
+        // Kritik hata
         // Cloud Tasks'ın hata durumunda retry mekanizmasını tetiklemesi için 500 dönüyoruz
         return NextResponse.json({ error: error.message }, { status: 500 })
     }

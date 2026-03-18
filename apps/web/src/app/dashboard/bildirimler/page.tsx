@@ -95,7 +95,7 @@ export default function BildirimlerPage() {
                                     <div className="flex-grow">
                                         <div className="flex justify-between items-start mb-1">
                                             <h3 className={`font-semibold ${notif.read ? 'text-foreground' : 'text-rust'}`}>{notif.title}</h3>
-                                            <span className="text-xs text-muted-foreground-light">{notif.date}</span>
+                                            <span className="text-xs text-muted-foreground">{notif.date}</span>
                                         </div>
                                         <p className="text-sm text-muted-foreground leading-relaxed">{notif.desc}</p>
                                     </div>

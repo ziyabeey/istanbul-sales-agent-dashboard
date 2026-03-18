@@ -62,7 +62,7 @@ export async function POST(request: Request) {
                 { token, locale: 'TR' },
                 async (err: Error | null, result: IyzipayRetrieveResult) => {
                     if (err || result?.paymentStatus !== 'SUCCESS') {
-                        console.error('[İYZİCO CALLBACK HATA]', err || result)
+                        // console.error('[İYZİCO CALLBACK HATA]', err || result)
                         resolve(
                             NextResponse.redirect(
                                 `${process.env.NEXT_PUBLIC_APP_URL}/odeme/basarisiz`
@@ -90,7 +90,7 @@ export async function POST(request: Request) {
                             await paketSenaryosuCalistir(esnafId, esnafPaket, result.paymentId || '')
                         } catch (senaryoErr: unknown) {
                             const hata = senaryoErr instanceof Error ? senaryoErr.message : String(senaryoErr)
-                            console.error('[PAKET SENARYO HATA]', hata)
+                            // console.error('[PAKET SENARYO HATA]', hata)
 
                             // Kritik: Ödeme alındı ama senaryo çalışmadı → Firestore'a kaydet
                             await adminDb.collection('basarisizSenaryolar').add({
@@ -120,7 +120,7 @@ export async function POST(request: Request) {
                         )
                     } catch (innerErr: unknown) {
                         const message = innerErr instanceof Error ? innerErr.message : 'Bilinmeyen hata'
-                        console.error('[CALLBACK INNER HATA]', message)
+                        // console.error('[CALLBACK INNER HATA]', message)
                         resolve(
                             NextResponse.redirect(
                                 `${process.env.NEXT_PUBLIC_APP_URL}/odeme/basarisiz`
@@ -132,7 +132,7 @@ export async function POST(request: Request) {
         })
     } catch (error: unknown) {
         const message = error instanceof Error ? error.message : 'Bilinmeyen hata'
-        console.error('[PAYMENT CALLBACK HATA]', message)
+        // console.error('[PAYMENT CALLBACK HATA]', message)
         return NextResponse.redirect(
             `${process.env.NEXT_PUBLIC_APP_URL}/odeme/basarisiz`
         )

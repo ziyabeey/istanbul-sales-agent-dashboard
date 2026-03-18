@@ -10,12 +10,12 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: 'Gerekli veriler eksik' }, { status: 400 });
         }
 
-        console.log(`[AI Editor API] Bölüm: ${sectionType} için Ajan 9 tetikleniyor... İstek: "${prompt}"`);
-        
+        // console.log(`[AI Editor API] Bölüm: ${sectionType} için Ajan 9 tetikleniyor... İstek: "${prompt}"`);
+
         // Ajan 9'u çağır
         const newContent = await agent9.editSection(sectionType, currentContent, prompt);
-        
-        console.log('[AI Editor API] Ajan 9 başarıyla JSON döndürdü.');
+
+        // console.log('[AI Editor API] Ajan 9 başarıyla JSON döndürdü.');
 
         return NextResponse.json({ 
             success: true, 
@@ -23,7 +23,7 @@ export async function POST(req: Request) {
         });
 
     } catch (error: any) {
-        console.error('[AI Editor API] Hata:', error);
+        // console.error('[AI Editor API] Hata:', error);
         return NextResponse.json({ error: error.message || 'İç sunucu hatası.' }, { status: 500 });
     }
 }

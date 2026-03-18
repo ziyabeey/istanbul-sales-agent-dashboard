@@ -117,7 +117,7 @@ export default function RestoranIsletimSistemiPage() {
                     <Link href="/onboarding" className="inline-flex items-center justify-center bg-gradient-to-r from-orange-600 to-rose-500 hover:from-orange-500 hover:to-rose-400 text-white font-bold py-4 px-8 rounded-xl transition-all shadow-lg shadow-orange-900/30 text-lg">
                         🚀 Ücretsiz Deneyin
                     </Link>
-                    <Link href="/fiyatlar" className="inline-flex items-center justify-center bg-white/5 border border-white/10 text-foreground font-bold py-4 px-8 rounded-xl hover:bg-white/10 transition-all text-lg">
+                    <Link href="/fiyatlar" className="inline-flex items-center justify-center bg-foreground/5 border border-foreground/10 text-foreground font-bold py-4 px-8 rounded-xl hover:bg-white/10 transition-all text-lg">
                         💰 Fiyatları İncele
                     </Link>
                 </div>
@@ -142,8 +142,8 @@ export default function RestoranIsletimSistemiPage() {
                                 <div className={`w-12 h-12 ${adim.renk} rounded-full flex items-center justify-center text-white text-xl font-black shrink-0 shadow-lg relative z-10`}>
                                     {adim.ikon}
                                 </div>
-                                <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex-1 hover:bg-white/[0.05] transition-colors">
-                                    <h3 className="text-white font-bold text-base mb-1">
+                                <div className="bg-white border border-foreground/10 rounded-2xl p-4 flex-1 hover:bg-foreground/5 transition-colors">
+                                    <h3 className="text-foreground font-bold text-base mb-1">
                                         <span className="text-muted-foreground mr-2">{adim.no}.</span>
                                         {adim.baslik}
                                     </h3>
@@ -168,11 +168,11 @@ export default function RestoranIsletimSistemiPage() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {MODULLER.map((m, i) => (
-                        <div key={i} className="group relative bg-white/[0.02] border border-white/10 rounded-3xl p-6 hover:bg-white/[0.05] transition-all overflow-hidden">
+                        <div key={i} className="group relative bg-white border border-white/10 rounded-3xl p-6 hover:bg-foreground/5 transition-all overflow-hidden">
                             {/* Gradient glow */}
                             <div className={`absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br ${m.renkClass} rounded-full opacity-10 blur-xl group-hover:opacity-20 transition-opacity`} />
 
-                            <h3 className="text-xl font-bold text-white mb-2 relative z-10">
+                            <h3 className="text-xl font-bold text-foreground mb-2 relative z-10">
                                 {m.baslik}
                             </h3>
                             <p className="text-muted-foreground text-sm mb-4 leading-relaxed relative z-10">
@@ -306,7 +306,7 @@ export default function RestoranIsletimSistemiPage() {
                                         </div>
                                         <div className="text-[9px] text-orange-400 font-mono font-bold">00:45</div>
                                     </div>
-                                    <div className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-lg px-2 py-1.5">
+                                    <div className="flex items-center gap-2 bg-foreground/5 border border-foreground/10 rounded-lg px-2 py-1.5">
                                         <span className="text-[10px]">🧹</span>
                                         <div className="flex-1">
                                             <div className="text-[9px] text-white/70 font-bold">Masa 12 — Temizle</div>
@@ -486,10 +486,10 @@ export default function RestoranIsletimSistemiPage() {
                     5 dakikada kurulum, sıfır eğitim zorunluluğu.
                 </p>
                 <div className="flex flex-col sm:flex-row justify-center gap-4">
-                    <Link href="/iletisim" className="inline-flex items-center justify-center bg-white/5 border border-white/10 text-foreground font-semibold py-3 px-6 rounded-xl hover:bg-white/10 transition-all">
+                    <Link href="/iletisim" className="inline-flex items-center justify-center bg-foreground/5 border border-foreground/10 text-foreground font-semibold py-3 px-6 rounded-xl hover:bg-white/10 transition-all">
                         📞 Bize Ulaşın
                     </Link>
-                    <Link href="/demolar/vitrin?s=restoran" className="inline-flex items-center justify-center bg-white/5 border border-white/10 text-foreground font-semibold py-3 px-6 rounded-xl hover:bg-white/10 transition-all">
+                    <Link href="/demolar/vitrin?s=restoran" className="inline-flex items-center justify-center bg-foreground/5 border border-foreground/10 text-foreground font-semibold py-3 px-6 rounded-xl hover:bg-white/10 transition-all">
                         🎬 Demo İzleyin
                     </Link>
                 </div>

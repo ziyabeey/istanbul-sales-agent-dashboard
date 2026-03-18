@@ -1,6 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useEsnaf } from '@/context/EsnafContext';
+import { toast } from 'sonner';
 
 type AgentLogType = 'HATA' | 'GÜNCELLEME' | 'ONAY_BEKLİYOR' | 'BİLGİ';
 
@@ -17,58 +19,36 @@ interface AgentLog {
     isRead: boolean;
 }
 
-const MOCK_LOGS: AgentLog[] = [
-    {
-        id: 'log-1',
-        agentId: 'a4',
-        agentName: 'Ajan 4',
-        agentRole: 'Instagram Yöneticisi',
-        agentAvatar: '📸',
-        type: 'ONAY_BEKLİYOR',
-        message: 'Bu haftaki 3 adet berber dükkanı Instagram postu hazır. Yayınlansın mı?',
-        actionText: 'Postları İncele ve Onayla',
-        timestamp: '10 dk önce',
-        isRead: false
-    },
-    {
-        id: 'log-2',
-        agentId: 'a3',
-        agentName: 'Ajan 3',
-        agentRole: 'WhatsApp Asistanı',
-        agentAvatar: '💬',
-        type: 'BİLGİ',
-        message: 'Bugün WhatsApp üzerinden 4 yeni randevu alındı ve Google Takvime eklendi.',
-        timestamp: '2 saat önce',
-        isRead: false
-    },
-    {
-        id: 'log-3',
-        agentId: 'a12',
-        agentName: 'Ajan 12',
-        agentRole: 'SEO Optimizatörü',
-        agentAvatar: '🔍',
-        type: 'GÜNCELLEME',
-        message: 'Sitenizin "Şişli Berber" kelimesindeki sıralaması Google\'da 4 sıra yükseldi.',
-        timestamp: '1 gün önce',
-        isRead: true
-    },
-    {
-        id: 'log-4',
-        agentId: 'a15',
-        agentName: 'Ajan 15',
-        agentRole: 'Kriz Yöneticisi',
-        agentAvatar: '🚨',
-        type: 'HATA',
-        message: 'Google Ads reklam bakiye limitiniz dolmak üzere. Reklamlar 2 saat içinde durdurulabilir.',
-        actionText: 'Bakiye Yükle',
-        timestamp: '2 gün önce',
-        isRead: true
-    }
-];
-
 export default function AjanlarKontrolMerkezi() {
-    const [logs, setLogs] = useState<AgentLog[]>(MOCK_LOGS);
+    const { esnaf } = useEsnaf();
+    const [logs, setLogs] = useState<AgentLog[]>([]);
     const [filter, setFilter] = useState<'HEPSİ' | AgentLogType>('HEPSİ');
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        if (!esnaf?.id) { setLoading(false); return; }
+
+        fetch(`/api/dashboard/bildirimler?esnafId=${esnaf.id}`, { credentials: 'include' })
+            .then(r => r.ok ? r.json() : { bildirimler: [] })
+            .then(data => {
+                if (data.bildirimler?.length) {
+                    setLogs(data.bildirimler.map((b: any, i: number) => ({
+                        id: b.id || `log-${i}`,
+                        agentId: b.agentId || 'system',
+                        agentName: b.agentName || 'Sistem',
+                        agentRole: b.agentRole || 'Bildirim',
+                        agentAvatar: b.agentAvatar || '🔔',
+                        type: b.type || 'BİLGİ',
+                        message: b.message || b.mesaj || '',
+                        actionText: b.actionText,
+                        timestamp: b.timestamp || b.tarih || '',
+                        isRead: b.isRead ?? false,
+                    })));
+                }
+            })
+            .catch(() => { toast.error('Ajan verileri yüklenemedi') })
+            .finally(() => setLoading(false));
+    }, [esnaf?.id]);
 
     const unreadCount = logs.filter(l => !l.isRead).length;
 
@@ -103,7 +83,7 @@ export default function AjanlarKontrolMerkezi() {
 
     return (
         <div className="max-w-4xl mx-auto animate-in fade-in slide-in-from-bottom-8 duration-500">
-            
+
             {/* Header */}
             <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
                 <div>
@@ -148,62 +128,72 @@ export default function AjanlarKontrolMerkezi() {
                 )}
             </div>
 
-            {/* Log List */}
-            <div className="space-y-4">
-                {filteredLogs.map(log => (
-                    <div key={log.id} className={`p-5 rounded-2xl border transition-all ${log.isRead ? 'bg-[#11111a] border-white/5' : 'bg-[#1a1a2e] border-[#7c3aed]/30 shadow-lg shadow-[#7c3aed]/5'}`}>
-                        <div className="flex gap-4">
-                            
-                            {/* Avatar */}
-                            <div className="flex-shrink-0 w-12 h-12 rounded-full bg-black/50 border border-white/10 flex items-center justify-center text-2xl">
-                                {log.agentAvatar}
-                            </div>
+            {/* Loading */}
+            {loading && (
+                <div className="py-20 text-center">
+                    <span className="text-4xl mb-3 block animate-pulse">🤖</span>
+                    <p className="text-slate-400 font-medium">Ajan logları yükleniyor...</p>
+                </div>
+            )}
 
-                            {/* Content */}
-                            <div className="flex-1">
-                                <div className="flex items-start justify-between mb-1">
-                                    <div>
-                                        <div className="flex items-center gap-2 mb-0.5">
-                                            <span className="font-bold text-white">{log.agentName}</span>
-                                            <span className="text-xs text-slate-500 px-2 py-0.5 rounded-full bg-white/5 border border-white/5">{log.agentRole}</span>
-                                            {!log.isRead && <span className="w-2 h-2 rounded-full bg-[#7c3aed] animate-pulse ml-1" />}
-                                        </div>
-                                    </div>
-                                    <span className="text-xs text-slate-500 font-medium whitespace-nowrap">{log.timestamp}</span>
+            {/* Log List */}
+            {!loading && (
+                <div className="space-y-4">
+                    {filteredLogs.map(log => (
+                        <div key={log.id} className={`p-5 rounded-2xl border transition-all ${log.isRead ? 'bg-[#11111a] border-white/5' : 'bg-[#1a1a2e] border-[#7c3aed]/30 shadow-lg shadow-[#7c3aed]/5'}`}>
+                            <div className="flex gap-4">
+
+                                {/* Avatar */}
+                                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-black/50 border border-white/10 flex items-center justify-center text-2xl">
+                                    {log.agentAvatar}
                                 </div>
 
-                                <p className="text-slate-300 text-sm leading-relaxed mb-3">
-                                    {log.message}
-                                </p>
+                                {/* Content */}
+                                <div className="flex-1">
+                                    <div className="flex items-start justify-between mb-1">
+                                        <div>
+                                            <div className="flex items-center gap-2 mb-0.5">
+                                                <span className="font-bold text-white">{log.agentName}</span>
+                                                <span className="text-xs text-slate-500 px-2 py-0.5 rounded-full bg-white/5 border border-white/5">{log.agentRole}</span>
+                                                {!log.isRead && <span className="w-2 h-2 rounded-full bg-[#7c3aed] animate-pulse ml-1" />}
+                                            </div>
+                                        </div>
+                                        <span className="text-xs text-slate-500 font-medium whitespace-nowrap">{log.timestamp}</span>
+                                    </div>
 
-                                {/* Badges & Actions */}
-                                <div className="flex flex-wrap items-center gap-3">
-                                    <span className={`text-[10px] font-bold px-2 py-1 rounded border uppercase flex items-center gap-1 ${getTypeColor(log.type)}`}>
-                                        {getTypeIcon(log.type)} {log.type.replace('_', ' ')}
-                                    </span>
-                                    
-                                    {log.actionText && (
-                                        <button className={`text-xs font-bold px-4 py-1.5 rounded-lg transition-colors ${
-                                            log.type === 'HATA' ? 'bg-red-500 hover:bg-red-600 text-white' : 
-                                            log.type === 'ONAY_BEKLİYOR' ? 'bg-[#7c3aed] hover:bg-[#6d28d9] text-white' : 
-                                            'bg-white text-black hover:bg-slate-200'
-                                        }`}>
-                                            {log.actionText}
-                                        </button>
-                                    )}
+                                    <p className="text-slate-300 text-sm leading-relaxed mb-3">
+                                        {log.message}
+                                    </p>
+
+                                    {/* Badges & Actions */}
+                                    <div className="flex flex-wrap items-center gap-3">
+                                        <span className={`text-[10px] font-bold px-2 py-1 rounded border uppercase flex items-center gap-1 ${getTypeColor(log.type)}`}>
+                                            {getTypeIcon(log.type)} {log.type.replace('_', ' ')}
+                                        </span>
+
+                                        {log.actionText && (
+                                            <button className={`text-xs font-bold px-4 py-1.5 rounded-lg transition-colors ${
+                                                log.type === 'HATA' ? 'bg-red-500 hover:bg-red-600 text-white' :
+                                                log.type === 'ONAY_BEKLİYOR' ? 'bg-[#7c3aed] hover:bg-[#6d28d9] text-white' :
+                                                'bg-white text-black hover:bg-slate-200'
+                                            }`}>
+                                                {log.actionText}
+                                            </button>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
 
-                {filteredLogs.length === 0 && (
-                    <div className="py-20 text-center border border-white/5 rounded-2xl border-dashed">
-                        <span className="text-4xl mb-3 block">📭</span>
-                        <p className="text-slate-400 font-medium">Bu kategoride gösterilecek kayıt yok.</p>
-                    </div>
-                )}
-            </div>
+                    {filteredLogs.length === 0 && (
+                        <div className="py-20 text-center border border-white/5 rounded-2xl border-dashed">
+                            <span className="text-4xl mb-3 block">📭</span>
+                            <p className="text-slate-400 font-medium">Bu kategoride gösterilecek kayıt yok.</p>
+                        </div>
+                    )}
+                </div>
+            )}
         </div>
     );
 }

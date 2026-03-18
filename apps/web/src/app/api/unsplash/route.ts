@@ -58,11 +58,13 @@ export async function GET(req: NextRequest) {
 
         /* 3b. Custom query */
         if (query) {
+            const color = searchParams.get('color') || undefined
             const params: UnsplashQuery = {
                 query,
                 perPage: count,
                 orientation: (searchParams.get('orientation') as 'landscape' | 'portrait') || 'landscape',
                 contentFilter: 'high',
+                ...(color && { color }),
             }
             const result = await service.search(params)
             return NextResponse.json(
@@ -88,7 +90,7 @@ export async function GET(req: NextRequest) {
             }
         )
     } catch (error) {
-        console.error('[API/unsplash] Error:', error)
+        // console.error('[API/unsplash] Error:', error)
         return NextResponse.json(
             { error: 'Internal server error', photos: [] },
             { status: 500 }

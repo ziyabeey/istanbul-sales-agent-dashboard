@@ -39,9 +39,9 @@ export default function RaporlarPage() {
             <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {RAPOR_TURLERI.map((r, i) => (
-                        <div key={i} className="group relative bg-white/[0.02] border border-white/10 rounded-3xl p-6 hover:bg-white/[0.05] transition-all overflow-hidden">
+                        <div key={i} className="group relative bg-white border border-foreground/10 rounded-3xl p-6 hover:bg-foreground/5 transition-all overflow-hidden">
                             <div className={`absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br ${r.renk} rounded-full opacity-10 blur-3xl group-hover:opacity-20 transition-opacity`} />
-                            <h3 className="text-lg font-bold text-white mb-2 relative z-10">{r.baslik}</h3>
+                            <h3 className="text-lg font-bold text-foreground mb-2 relative z-10">{r.baslik}</h3>
                             <p className="text-muted-foreground text-sm leading-relaxed relative z-10">{r.aciklama}</p>
                         </div>
                     ))}
@@ -51,7 +51,7 @@ export default function RaporlarPage() {
             {/* CTA */}
             <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <div className="bg-gradient-to-r from-blue-600/10 to-purple-600/10 border border-blue-500/20 rounded-3xl p-8 md:p-12">
-                    <h2 className="text-2xl md:text-3xl font-syne font-extrabold mb-4 text-white">
+                    <h2 className="text-2xl md:text-3xl font-syne font-extrabold mb-4 text-foreground">
                         Veriye Dayalı Kararlar Alın
                     </h2>
                     <p className="text-muted-foreground mb-8 max-w-xl mx-auto">

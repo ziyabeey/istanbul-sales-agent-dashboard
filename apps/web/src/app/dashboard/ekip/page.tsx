@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useEsnaf } from '@/context/EsnafContext'
+import { toast } from 'sonner'
 
 interface Personel {
     id: string
@@ -40,7 +41,9 @@ export default function EkipPage() {
                     const data = await res.json()
                     setPersoneller(data)
                 }
-            } catch (err) { }
+            } catch {
+                toast.error('Ekip verileri yüklenemedi')
+            }
             setLoading(false)
         }
         fetchEkip()
@@ -61,7 +64,9 @@ export default function EkipPage() {
             const res = await fetch(`/api/hr/personel?esnafId=${esnafId}`)
             const data = await res.json()
             setPersoneller(data)
-        } catch (error) { }
+        } catch {
+            toast.error('Personel kaydedilemedi. Tekrar deneyin.')
+        }
         setIslem(false)
     }
 

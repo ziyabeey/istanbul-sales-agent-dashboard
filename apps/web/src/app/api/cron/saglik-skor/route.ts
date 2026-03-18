@@ -59,7 +59,7 @@ export async function GET(request: Request) {
 
         return NextResponse.json({ basarili, hatali, ortalama, sure })
     } catch (error: any) {
-        console.error('[SAGLIK SKOR CRON]', error)
+        // console.error('[SAGLIK SKOR CRON]', error)
         return NextResponse.json({ error: error.message }, { status: 500 })
     }
 }

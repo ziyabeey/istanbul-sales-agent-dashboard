@@ -168,7 +168,7 @@ function SektorelSorularAdimi({
     return (
       <div className="w-full max-w-sm text-center py-8">
         <p className="text-4xl mb-3">✨</p>
-        <p className="text-muted-foreground-light text-sm">
+        <p className="text-muted-foreground text-sm">
           Bu sektör için ek soru bulunmuyor. Bir sonraki adıma geçebilirsiniz.
         </p>
       </div>
@@ -285,7 +285,7 @@ function Adim3GorselKimlik({
             <div className="text-center">
                 <p className="text-4xl mb-3">🎨</p>
                 <h3 className="text-foreground font-syne font-extrabold text-xl">Görsel Kimlik</h3>
-                <p className="text-muted-foreground-light text-sm mt-2">Sitenizin rengi ve tarzını seçin</p>
+                <p className="text-muted-foreground text-sm mt-2">Sitenizin rengi ve tarzını seçin</p>
             </div>
 
             <div className="flex bg-white/5 backdrop-blur-md rounded-xl p-1 gap-1 border border-white/10">
@@ -533,45 +533,9 @@ function ModulSecimAdimi({
 const steps = [
     {
         id: "welcome",
-        title: "İşletme Bilgilerin",
-        description: "Dijital dükkanını hazırlamak için birkaç bilgi lazım. Sadece 2 dakika!",
+        title: "İşletmenizi Tanıyalım",
+        description: "Birkaç temel bilgi yeterli — siteniz dakikalar içinde hazır.",
         icon: <Store className="w-12 h-12 text-rust mb-4" />
-    },
-    {
-        id: "gmb",
-        title: "Dijital Varlıkların",
-        description: "Google, Instagram, Facebook hesapların varsa bağla. Yoksa biz buluruz!",
-        icon: <LinkIcon className="w-12 h-12 text-steel mb-4" />
-    },
-    {
-        id: "palette",
-        title: "Sitenizin Rengi",
-        description: "Yapay zeka bu renk paletini kullanarak sitenizi tasarlayacak.",
-        icon: <Palette className="w-12 h-12 text-rust mb-4" />
-    },
-    {
-        id: "moduller",
-        title: "Site Özellikleri",
-        description: "Sitenize eklenecek özellikleri seçin. Yapay zeka seçtiğiniz modülleri siteye entegre edecek.",
-        icon: <LayoutGrid className="w-12 h-12 text-steel mb-4" />
-    },
-    {
-        id: "sektorel",
-        title: "Sektörel Detaylar",
-        description: "İşletmenize özel birkaç soru — sitenizi daha doğru kurgulamamız için.",
-        icon: <ClipboardList className="w-12 h-12 text-steel mb-4" />
-    },
-    {
-        id: "whatsapp",
-        title: "İletişim Bilgilerin",
-        description: "Müşterilerine otomatik WhatsApp mesajları gönderebilmemiz için numaranı doğrula.",
-        icon: <MessageCircle className="w-12 h-12 text-muted-foreground mb-4" />
-    },
-    {
-        id: "photo",
-        title: "Dükkanının Fotoğrafı",
-        description: "Vitrinini göster! Bu fotoğrafı ileride sosyal medya içeriklerinde kullanacağız.",
-        icon: <Camera className="w-12 h-12 text-gold mb-4" />
     },
     {
         id: "onaylar",
@@ -581,8 +545,8 @@ const steps = [
     },
     {
         id: "first_post",
-        title: "Kepengini Astık! 🎉",
-        description: "Her şey hazır! Dijital esnaf rozetini kazan ve kepengini aç.",
+        title: "Harika! Siteniz Hazırlanıyor",
+        description: "Yapay zeka sitenizi oluşturuyor — birkaç saniye yeterli.",
         icon: <Award className="w-12 h-12 text-rust mb-4" />
     }
 ];
@@ -651,11 +615,8 @@ export default function OnboardingWizard() {
             if (!formData.ad || formData.ad.length < 2) e.ad = 'Adınız en az 2 karakter olmalı';
             if (!formData.isletmeAdi || formData.isletmeAdi.length < 2) e.isletmeAdi = 'İşletme adı en az 2 karakter olmalı';
             if (!formData.sektor) e.sektor = 'Sektör seçiniz';
-        }
-        if (step === 'whatsapp') {
             const tel = formData.telefon.replace(/\s/g, '');
-            if (!TELEFON_REGEX.test(tel)) e.telefon = 'Geçerli bir telefon numarası giriniz';
-            if (!telefonDogrulandi) e.telefonDogrulama = 'Telefon numaranızı doğrulamanız gerekiyor';
+            if (tel && !TELEFON_REGEX.test(tel)) e.telefon = 'Geçerli bir telefon numarası giriniz';
         }
         if (step === 'onaylar') {
             if (!formData.kvkkOnay) e.kvkkOnay = 'Devam etmek için aydınlatma metnini kabul etmeniz gerekiyor';
@@ -823,7 +784,7 @@ export default function OnboardingWizard() {
 
     return (
         <div className="max-w-2xl mx-auto p-4 sm:p-8">
-            <div className="text-center mb-6 text-sm font-medium text-muted-foreground-light">
+            <div className="text-center mb-6 text-sm font-medium text-muted-foreground">
                 Adım {currentStepIndex + 1} / {steps.length}
             </div>
 
@@ -832,7 +793,7 @@ export default function OnboardingWizard() {
                 <div className="flex justify-between mb-2">
                     {steps.map((s, idx) => (
                         <div key={s.id} className="flex flex-col items-center">
-                            <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-colors duration-300 ${idx <= currentStepIndex ? "bg-rust text-foreground shadow-md shadow-rust/20" : "bg-warm text-muted-foreground"}`}>
+                            <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-colors duration-300 ${idx <= currentStepIndex ? "bg-rust text-white shadow-md shadow-rust/20" : "bg-warm text-muted-foreground"}`}>
                                 {idx < currentStepIndex ? <CheckCircle2 className="w-5 h-5" /> : idx + 1}
                             </div>
                         </div>
@@ -870,7 +831,7 @@ export default function OnboardingWizard() {
                             {currentStep.icon}
                         </motion.div>
                         <h2 className="text-3xl font-extrabold text-white mb-3 font-syne tracking-tight mt-2 drop-shadow-md">{currentStep.title}</h2>
-                        <p className="text-muted-foreground-300 font-lora leading-relaxed mb-8 max-w-sm text-[15px]">
+                        <p className="text-muted-foreground font-lora leading-relaxed mb-8 max-w-sm text-[15px]">
                             {currentStep.description}
                         </p>
 
@@ -928,6 +889,15 @@ export default function OnboardingWizard() {
                                         className="w-full px-4 py-3 rounded-xl border bg-white/5 backdrop-blur-sm text-white placeholder-white/40 border-white/10 focus:outline-none focus:ring-2 focus:ring-rust/50 focus:border-rust focus:bg-white/10 transition-all"
                                     />
                                 </div>
+                                <input
+                                    type="tel"
+                                    name="telefon"
+                                    value={formData.telefon}
+                                    onChange={handleChange}
+                                    placeholder="Telefon (opsiyonel — 05XX XXX XXXX)"
+                                    className={`w-full px-4 py-3 rounded-xl border bg-white/5 backdrop-blur-sm text-white placeholder-white/40 transition-all ${hatalar.telefon ? 'border-red-400 focus:ring-red-400' : 'border-white/10 focus:border-rust focus:bg-white/10 focus:ring-rust/50'} focus:outline-none focus:ring-2`}
+                                />
+                                {hatalar.telefon && <p className="text-red-400 text-xs mt-1 text-left">{hatalar.telefon}</p>}
                             </div>
 
                             {/* Sektör Seçim Grid */}

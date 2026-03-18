@@ -1,19 +1,44 @@
 import { NextResponse } from 'next/server'
 import { adminDb } from '@/lib/firebaseAdmin'
-import { apiGuard } from '@/lib/apiGuard'
+import { oturumDogrulaServer } from '@/lib/sessionManager'
 import { zodGuard, esnafGuncelleSema, type EsnafGuncelleInput } from '@/lib/zodSemalar'
+
+/**
+ * Oturum veya admin token doğrulama.
+ * Session cookie'den esnafId alır ve erişilen id ile eşleştirir.
+ * Admin token varsa her şeye erişim verir.
+ */
+async function yetkiKontrol(request: Request, hedefId: string): Promise<{ ok: true } | { ok: false; response: NextResponse }> {
+    // 1) Admin token — tam erişim
+    const adminToken = request.headers.get('x-admin-token')
+    if (adminToken && adminToken === process.env.ADMIN_SECRET_TOKEN) {
+        return { ok: true }
+    }
+
+    // 2) Session cookie — sadece kendi verisine erişim
+    const oturumEsnafId = await oturumDogrulaServer()
+    if (oturumEsnafId && oturumEsnafId === hedefId) {
+        return { ok: true }
+    }
+
+    return {
+        ok: false,
+        response: NextResponse.json({ error: 'Yetkisiz erişim' }, { status: 403 })
+    }
+}
 
 // GET — Esnaf bilgisi getir
 export async function GET(
     request: Request,
     { params }: { params: Promise<{ id: string }> }
 ) {
-    // ── Auth Guard ──
-    const guard = await apiGuard(request, { requireAdminToken: true })
-    if (!guard.ok) return guard.response
+    const { id } = await params
+
+    // ── Auth: session cookie VEYA admin token ──
+    const yetki = await yetkiKontrol(request, id)
+    if (!yetki.ok) return yetki.response
 
     try {
-        const { id } = await params
         const doc = await adminDb.collection('esnaflar').doc(id).get()
         if (!doc.exists) {
             return NextResponse.json({ error: 'Esnaf bulunamadı' }, { status: 404 })
@@ -38,12 +63,13 @@ export async function PATCH(
     request: Request,
     { params }: { params: Promise<{ id: string }> }
 ) {
-    // ── Auth Guard ──
-    const guard = await apiGuard(request, { requireAdminToken: true })
-    if (!guard.ok) return guard.response
+    const { id } = await params
+
+    // ── Auth: session cookie VEYA admin token ──
+    const yetki = await yetkiKontrol(request, id)
+    if (!yetki.ok) return yetki.response
 
     try {
-        const { id } = await params
         const body = await request.json()
 
         // ── Zod Validation ──

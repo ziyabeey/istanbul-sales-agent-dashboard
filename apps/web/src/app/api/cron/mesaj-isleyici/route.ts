@@ -48,7 +48,7 @@ export async function GET(req: Request) {
                 await doc.ref.update({ durum: 'tamamlandi' })
             } catch (e: unknown) {
                 const hataMesaji = e instanceof Error ? e.message : String(e)
-                console.error(`[CRON KUYRUK HATASI] Doc: ${doc.id}`, hataMesaji)
+                // console.error(`[CRON KUYRUK HATASI] Doc: ${doc.id}`, hataMesaji)
                 await doc.ref.update({ durum: 'hata', hataNotu: hataMesaji })
             }
         })
@@ -59,7 +59,7 @@ export async function GET(req: Request) {
         return NextResponse.json({ ok: true, islenen: bekleyenMesajlar.size })
     } catch (error: unknown) {
         const message = error instanceof Error ? error.message : 'Bilinmeyen hata'
-        console.error('[CRON MESAJ İŞLEYİCİ HATA]', message)
+        // console.error('[CRON MESAJ İŞLEYİCİ HATA]', message)
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
     }
 }

@@ -57,10 +57,10 @@ export async function POST(req: Request) {
                 process.env.TWILIO_AUTH_TOKEN!
             )
             mesajMetni = `[Sesli mesaj]: ${transkript} `
-            console.log('[SES TRANSKRİPT]', transkript)
+            // console.log('[SES TRANSKRİPT]', transkript)
         } catch (e) {
             mesajMetni = '[Sesli mesaj gönderdiniz — anlayamadım, yazarak tekrar yazar mısınız?]'
-            console.error('[SES CEVIREMEDIM]', e)
+            // console.error('[SES CEVIREMEDIM]', e)
         }
     }
 
@@ -76,7 +76,7 @@ export async function POST(req: Request) {
     }
 
     musteriMesajiKuyrugaAl({ esnafId, musteriNumara, mesaj: mesajMetni, oturumId })
-        .catch(e => console.error('[MUSTERI MESAJI]', e))
+        .catch(() => {})
 
     return new NextResponse('<Response/>', {
         headers: { 'Content-Type': 'text/xml' }

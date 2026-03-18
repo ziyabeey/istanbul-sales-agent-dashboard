@@ -109,7 +109,7 @@ export async function GET(req: Request) {
 
         return NextResponse.json({ success: true })
     } catch (error: any) {
-        console.error('Kolektif Zeka Cron Hatası:', error)
+        // console.error('Kolektif Zeka Cron Hatası:', error)
         return NextResponse.json({ error: error.message }, { status: 500 })
     }
 }

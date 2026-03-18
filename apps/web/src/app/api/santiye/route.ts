@@ -38,11 +38,11 @@ export async function POST(request: Request) {
             `Proje: ${projeAdi}\n` +
             `Konum: ${konum || '-'}\n` +
             `İlerleme: %${tamamlanmaYuzde ?? 0}`
-        ).catch(console.error)
+        ).catch(() => {})
 
         return NextResponse.json({ projeId: projeRef.id, mesaj: 'Proje eklendi' })
     } catch (error: any) {
-        console.error('[SANTIYE POST]', error)
+        // console.error('[SANTIYE POST]', error)
         return NextResponse.json({ error: 'Proje eklenemedi' }, { status: 500 })
     }
 }
@@ -98,7 +98,7 @@ export async function PATCH(request: Request) {
 
         return NextResponse.json({ ok: true, mesaj: 'Proje güncellendi' })
     } catch (error: any) {
-        console.error('[SANTIYE PATCH]', error)
+        // console.error('[SANTIYE PATCH]', error)
         return NextResponse.json({ error: 'Güncelleme başarısız' }, { status: 500 })
     }
 }

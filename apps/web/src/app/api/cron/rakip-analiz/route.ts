@@ -91,7 +91,7 @@ export async function GET(request: Request) {
 
         return NextResponse.json({ basarili, hatali, sure })
     } catch (error: any) {
-        console.error('[RAKIP ANALIZ CRON]', error)
+        // console.error('[RAKIP ANALIZ CRON]', error)
         return NextResponse.json({ error: error.message }, { status: 500 })
     }
 }

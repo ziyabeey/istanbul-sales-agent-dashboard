@@ -42,6 +42,33 @@ export interface DragState {
     dropTargetIndex: number | null
 }
 
+/* ── Font Settings ── */
+export interface FontSettings {
+    heading: string       // e.g. 'Playfair Display'
+    body: string          // e.g. 'Inter'
+    headingWeight: number // 700 | 800 | 900
+    bodyWeight: number    // 400 | 500
+}
+
+/* ── Design Settings ── */
+export interface DesignSettings {
+    borderRadius: 'none' | 'small' | 'medium' | 'large' | 'pill'
+    buttonStyle: 'solid' | 'outline' | 'ghost' | 'pill'
+    shadowLevel: 'none' | 'subtle' | 'medium' | 'strong'
+    animationLevel: 'none' | 'minimal' | 'standard' | 'playful'
+    darkMode: boolean
+}
+
+/* ── Media Item ── */
+export interface MediaItem {
+    id: string
+    url: string
+    alt: string
+    folder: string
+    fileName: string
+    createdAt: string
+}
+
 /* ── Site Data (demo sync) ── */
 export interface SiteData {
     sektorId: number
@@ -59,6 +86,11 @@ export interface SiteData {
     adres: string
     paket: string
     moduller: string[]
+    modulConfig?: Record<string, Record<string, unknown>>
+    modulIcerik?: Record<string, unknown[]>
+    gizliModuller?: string[]
+    fontSettings?: FontSettings
+    designSettings?: DesignSettings
 }
 
 /* ── Context Menu ── */
@@ -70,6 +102,7 @@ export interface ContextMenuState {
     targetText: string
     targetField: string
     elementPath: string
+    modulId?: string
 }
 
 /* ── Inline Edit ── */
@@ -145,18 +178,26 @@ interface EditorState {
     /* Drag */
     dragState: DragState
 
-    /* Undo / Redo */
-    undoStack: EditorPage[][]
-    redoStack: EditorPage[][]
+    /* Undo / Redo (includes both pages + siteData) */
+    undoStack: { pages: EditorPage[]; siteData: SiteData | null }[]
+    redoStack: { pages: EditorPage[]; siteData: SiteData | null }[]
 
     /* Dirty flag */
     isDirty: boolean
     isSaving: boolean
     saveSuccess: boolean
+    lastSavedAt: Date | null
+    autosaveStatus: 'idle' | 'saving' | 'saved' | 'error'
 
     /* Site data (demo sync) */
     siteData: SiteData | null
     generatedHtml: string
+    activeSablonId: string | null
+
+    /* Editor Mode */
+    editorMode: 'standard' | 'ai'
+    aiTokensUsed: number
+    aiTokensLimit: number
 
     /* Context Menu */
     contextMenu: ContextMenuState | null
@@ -200,11 +241,16 @@ interface EditorState {
     setSiteData: (data: SiteData) => void
     updateSiteData: (partial: Partial<SiteData>) => void
     setGeneratedHtml: (html: string) => void
+    applySablon: (sablonId: string, moduller: string[]) => void
+    setEditorMode: (mode: 'standard' | 'ai') => void
+    setAiTokensUsed: (n: number) => void
 
     /* Save */
     setSaving: (v: boolean) => void
     setSaveSuccess: (v: boolean) => void
     markDirty: () => void
+    setLastSavedAt: (d: Date) => void
+    setAutosaveStatus: (s: 'idle' | 'saving' | 'saved' | 'error') => void
 
     /* Context Menu */
     openContextMenu: (cm: ContextMenuState) => void
@@ -231,6 +277,16 @@ interface EditorState {
     removePage: (pageId: string) => void
     renamePage: (pageId: string, name: string, slug?: string) => void
     reorderPages: (newPages: EditorPage[]) => void
+
+    /* Font & Design Settings */
+    updateFontSettings: (partial: Partial<FontSettings>) => void
+    updateDesignSettings: (partial: Partial<DesignSettings>) => void
+
+    /* Media Library */
+    mediaLibrary: MediaItem[]
+    setMediaLibrary: (items: MediaItem[]) => void
+    addMediaItem: (item: MediaItem) => void
+    removeMediaItem: (id: string) => void
 
     /* Undo / Redo */
     undo: () => void
@@ -284,8 +340,14 @@ export const useEditorStore = create<EditorState>((set, get) => ({
     isDirty: false,
     isSaving: false,
     saveSuccess: false,
+    lastSavedAt: null,
+    autosaveStatus: 'idle',
     siteData: null,
     generatedHtml: '',
+    activeSablonId: null,
+    editorMode: 'standard',
+    aiTokensUsed: 0,
+    aiTokensLimit: 50,
     contextMenu: null,
     inlineEdit: null,
     imageEdit: null,
@@ -298,6 +360,7 @@ export const useEditorStore = create<EditorState>((set, get) => ({
     },
     settingsModalOpen: false,
     settingsModalTab: 'business',
+    mediaLibrary: [],
 
     setActivePageId: (id) => set({ activePageId: id }),
     setDeviceMode: (mode) => set({ deviceMode: mode }),
@@ -411,16 +474,47 @@ export const useEditorStore = create<EditorState>((set, get) => ({
         dragState: { isDragging: false, dragType: null, dropTargetIndex: null },
     }),
 
-    setSiteData: (data) => set({ siteData: data, isDirty: true }),
-    updateSiteData: (partial) => set(s => ({
-        siteData: s.siteData ? { ...s.siteData, ...partial } : null,
-        isDirty: true,
-    })),
+    setSiteData: (data) => {
+        const s = get()
+        // Push undo snapshot before changing siteData
+        set({
+            undoStack: [...s.undoStack.slice(-19), { pages: s.pages, siteData: s.siteData }],
+            redoStack: [],
+            siteData: data,
+            isDirty: true,
+        })
+    },
+    updateSiteData: (partial) => {
+        const s = get()
+        if (!s.siteData) return
+        set({
+            undoStack: [...s.undoStack.slice(-19), { pages: s.pages, siteData: s.siteData }],
+            redoStack: [],
+            siteData: { ...s.siteData, ...partial },
+            isDirty: true,
+        })
+    },
     setGeneratedHtml: (html) => set({ generatedHtml: html }),
+    applySablon: (sablonId, moduller) => {
+        const s = get()
+        if (!s.siteData) return
+        set({
+            undoStack: [...s.undoStack.slice(-19), { pages: s.pages, siteData: s.siteData }],
+            redoStack: [],
+            siteData: { ...s.siteData, moduller },
+            activeSablonId: sablonId,
+            isDirty: true,
+        })
+    },
+
+    setEditorMode: (mode) => set({ editorMode: mode }),
+    setAiTokensUsed: (n) => set({ aiTokensUsed: n }),
 
     setSaving: (v) => set({ isSaving: v }),
     setSaveSuccess: (v) => set({ saveSuccess: v }),
     markDirty: () => set({ isDirty: true }),
+    setLastSavedAt: (d) => set({ lastSavedAt: d }),
+    setAutosaveStatus: (s) => set({ autosaveStatus: s }),
 
     /* Context Menu */
     openContextMenu: (cm) => set({ contextMenu: cm, inlineEdit: null }),
@@ -527,8 +621,41 @@ export const useEditorStore = create<EditorState>((set, get) => ({
         set({ pages: newPages, isDirty: true })
     },
 
+    /* Font & Design Settings */
+    updateFontSettings: (partial) => {
+        const s = get()
+        if (!s.siteData) return
+        set({
+            undoStack: [...s.undoStack.slice(-19), { pages: s.pages, siteData: s.siteData }],
+            redoStack: [],
+            siteData: {
+                ...s.siteData,
+                fontSettings: { ...(s.siteData.fontSettings || { heading: s.siteData.font || 'Inter', body: 'Inter', headingWeight: 700, bodyWeight: 400 }), ...partial },
+            },
+            isDirty: true,
+        })
+    },
+    updateDesignSettings: (partial) => {
+        const s = get()
+        if (!s.siteData) return
+        set({
+            undoStack: [...s.undoStack.slice(-19), { pages: s.pages, siteData: s.siteData }],
+            redoStack: [],
+            siteData: {
+                ...s.siteData,
+                designSettings: { ...(s.siteData.designSettings || { borderRadius: 'medium', buttonStyle: 'solid', shadowLevel: 'subtle', animationLevel: 'standard', darkMode: false }), ...partial },
+            },
+            isDirty: true,
+        })
+    },
+
+    /* Media Library */
+    setMediaLibrary: (items) => set({ mediaLibrary: items }),
+    addMediaItem: (item) => set(s => ({ mediaLibrary: [item, ...s.mediaLibrary] })),
+    removeMediaItem: (id) => set(s => ({ mediaLibrary: s.mediaLibrary.filter(m => m.id !== id) })),
+
     pushUndo: () => set(s => ({
-        undoStack: [...s.undoStack.slice(-19), s.pages],
+        undoStack: [...s.undoStack.slice(-19), { pages: s.pages, siteData: s.siteData }],
         redoStack: [],
     })),
 
@@ -537,8 +664,9 @@ export const useEditorStore = create<EditorState>((set, get) => ({
         const prev = s.undoStack[s.undoStack.length - 1]
         return {
             undoStack: s.undoStack.slice(0, -1),
-            redoStack: [...s.redoStack, s.pages],
-            pages: prev,
+            redoStack: [...s.redoStack, { pages: s.pages, siteData: s.siteData }],
+            pages: prev.pages,
+            siteData: prev.siteData,
             isDirty: true,
         }
     }),
@@ -548,8 +676,9 @@ export const useEditorStore = create<EditorState>((set, get) => ({
         const next = s.redoStack[s.redoStack.length - 1]
         return {
             redoStack: s.redoStack.slice(0, -1),
-            undoStack: [...s.undoStack, s.pages],
-            pages: next,
+            undoStack: [...s.undoStack, { pages: s.pages, siteData: s.siteData }],
+            pages: next.pages,
+            siteData: next.siteData,
             isDirty: true,
         }
     }),

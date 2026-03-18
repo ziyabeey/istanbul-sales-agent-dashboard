@@ -14,11 +14,14 @@ import ContextMenu from './ContextMenu'
 import InlineEditPanel from './InlineEditPanel'
 import ImageEditOverlay from './ImageEditOverlay'
 import SettingsModal from './SettingsModal'
+import AIEditorMode from './AIEditorMode'
+import { useAutosave } from '../hooks/useAutosave'
 
 export default function EditorShell() {
     const isDirty = useEditorStore(s => s.isDirty)
     const siteData = useEditorStore(s => s.siteData)
     const setSiteData = useEditorStore(s => s.setSiteData)
+    const editorMode = useEditorStore(s => s.editorMode)
     const { esnaf, loading: esnafLoading } = useEsnaf()
     const [mounted, setMounted] = useState(false)
 
@@ -63,6 +66,9 @@ export default function EditorShell() {
     /* Activate the preview hook — watches siteData, generates HTML */
     useEditorPreview()
 
+    /* Activate autosave — 3s debounce + ⌘S */
+    useAutosave()
+
     /* Global keyboard shortcuts for editor UX */
     useEffect(() => {
         const handler = (e: KeyboardEvent) => {
@@ -103,16 +109,22 @@ export default function EditorShell() {
         <>
             <style>{`
                 .ke-editor-root { position: fixed; inset: 0; display: flex; flex-direction: column; z-index: 99999; font-family: 'Inter', system-ui, -apple-system, sans-serif; background: #e8ecf1; -webkit-font-smoothing: antialiased; isolation: isolate; }
-                .ke-editor-body { flex: 1; display: flex; overflow: hidden; }
+                .ke-editor-body { flex: 1; display: flex; overflow: hidden; position: relative; }
                 .ke-editor-root *, .ke-editor-root *::before, .ke-editor-root *::after { box-sizing: border-box; }
             `}
             </style>
             <div className="ke-editor-root">
                 <TopBar />
                 <div className="ke-editor-body">
-                    <LeftBar />
-                    <Canvas />
-                    <RightPanel />
+                    {editorMode === 'ai' ? (
+                        <AIEditorMode />
+                    ) : (
+                        <>
+                            <LeftBar />
+                            <Canvas />
+                            <RightPanel />
+                        </>
+                    )}
                 </div>
                 <ContextMenu />
                 <InlineEditPanel />

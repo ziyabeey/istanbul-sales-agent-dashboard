@@ -73,7 +73,7 @@ export async function POST(request: Request) {
 
         return NextResponse.json({ yorumId: yorumRef.id, taslak: yanitTaslagi })
     } catch (error: any) {
-        console.error('[REVIEWS HATA]', error)
+        // console.error('[REVIEWS HATA]', error)
         return NextResponse.json({ error: 'Sunucu hatası' }, { status: 500 })
     }
 }

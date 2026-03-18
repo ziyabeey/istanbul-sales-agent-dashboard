@@ -115,7 +115,7 @@ export async function GET(req: Request) {
         })
     } catch (error: unknown) {
         const message = error instanceof Error ? error.message : 'Bilinmeyen hata'
-        console.error('[BİLANÇO GETİRME HATASI]', message)
+        // console.error('[BİLANÇO GETİRME HATASI]', message)
         return NextResponse.json({ error: 'Internal Error' }, { status: 500 })
     }
 }

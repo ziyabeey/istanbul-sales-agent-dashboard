@@ -84,7 +84,7 @@ export default function TedarikPage() {
                             Malzemenizi <span className="text-gold">Güvenle</span> ve<br />
                             <span className="text-rust">Ucuza</span> Alın
                         </h1>
-                        <p className="text-muted-foreground-light text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
+                        <p className="text-muted-foreground text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
                             kepenk.ai aboneleri olarak doğrulanmış tedarikçilerden toplu fiyatlarla sipariş verin.
                             Ürün sorunlarında kepenk güvencesi devreye girer.
                         </p>
@@ -95,7 +95,7 @@ export default function TedarikPage() {
                                 { icon: BadgePercent, label: "%20-35 Esnaf İndirimi", renk: "#d4a843" },
                                 { icon: Truck, label: "kepenk Güvencesi", renk: "#c04b1e" },
                             ].map(({ icon: Icon, label, renk }) => (
-                                <div key={label} className="flex items-center gap-2 text-sm text-muted-foreground-light">
+                                <div key={label} className="flex items-center gap-2 text-sm text-muted-foreground">
                                     <Icon className="w-4 h-4" style={{ color: renk }} />
                                     <span>{label}</span>
                                 </div>
@@ -138,7 +138,7 @@ export default function TedarikPage() {
                                     </span>
                                 </div>
 
-                                <p className="text-muted-foreground-light text-xs leading-relaxed mb-4">{kat.aciklama}</p>
+                                <p className="text-muted-foreground text-xs leading-relaxed mb-4">{kat.aciklama}</p>
 
                                 <div className="flex flex-wrap gap-1.5 mb-4">
                                     {kat.urunler.slice(0, 3).map((u, ui) => (
@@ -147,7 +147,7 @@ export default function TedarikPage() {
                                         </span>
                                     ))}
                                     {kat.urunler.length > 3 && (
-                                        <span className="text-xs text-muted-foreground-light px-2 py-0.5">
+                                        <span className="text-xs text-muted-foreground px-2 py-0.5">
                                             +{kat.urunler.length - 3} daha
                                         </span>
                                     )}
@@ -158,7 +158,7 @@ export default function TedarikPage() {
                                         <p className="text-muted-foreground text-xs mb-3">Tüm ürünler:</p>
                                         <ul className="space-y-1.5">
                                             {kat.urunler.map((u, ui) => (
-                                                <li key={ui} className="flex items-center gap-2 text-xs text-muted-foreground-light">
+                                                <li key={ui} className="flex items-center gap-2 text-xs text-muted-foreground">
                                                     <CheckCircle2 className="w-3 h-3 text-gold flex-shrink-0" />
                                                     {u}
                                                 </li>
@@ -183,7 +183,7 @@ export default function TedarikPage() {
                     <h2 className="text-2xl font-extrabold text-foreground font-syne mb-4">
                         Tedarikçi misiniz?
                     </h2>
-                    <p className="text-muted-foreground-light mb-6">
+                    <p className="text-muted-foreground mb-6">
                         1.200+ aktif esnaf müşterinize ulaşın. Ağımıza katılmak için başvurun.
                     </p>
                     <Link href="/iletisim">
@@ -197,7 +197,7 @@ export default function TedarikPage() {
             {/* CTA */}
             <section className="py-16 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-2xl mx-auto text-center">
-                    <p className="text-muted-foreground-light text-sm mb-4">
+                    <p className="text-muted-foreground text-sm mb-4">
                         Tedarik ağına erişim için aktif kepenk.ai aboneliği gereklidir.
                     </p>
                     <Link href="/onboarding">

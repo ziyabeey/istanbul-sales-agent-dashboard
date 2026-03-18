@@ -67,7 +67,7 @@ export async function POST(
       { status: 502 }
     )
   } catch (error: any) {
-    console.error('[İADE HATA]', error)
+    // console.error('[İADE HATA]', error)
     return NextResponse.json({ error: error.message }, { status: 500 })
   }
 }

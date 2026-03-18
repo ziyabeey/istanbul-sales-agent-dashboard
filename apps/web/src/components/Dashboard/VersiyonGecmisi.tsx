@@ -111,10 +111,10 @@ export default function VersiyonGecmisi({ esnafId, acik, onKapat, onRollback }: 
                                 </div>
                                 <div>
                                     <h2 className="text-white font-syne font-bold text-lg">Zaman Makinesi</h2>
-                                    <p className="text-muted-foreground-400 text-xs">Son {versiyonlar.length} versiyon</p>
+                                    <p className="text-muted-foreground text-xs">Son {versiyonlar.length} versiyon</p>
                                 </div>
                             </div>
-                            <button onClick={onKapat} className="text-muted-foreground-400 hover:text-white transition p-2">
+                            <button onClick={onKapat} className="text-muted-foreground hover:text-white transition p-2">
                                 <X className="w-5 h-5" />
                             </button>
                         </div>
@@ -124,13 +124,13 @@ export default function VersiyonGecmisi({ esnafId, acik, onKapat, onRollback }: 
                             {yukleniyor ? (
                                 <div className="flex flex-col items-center justify-center py-20 gap-3">
                                     <div className="w-8 h-8 border-2 border-rust/30 border-t-rust rounded-full animate-spin" />
-                                    <span className="text-muted-foreground-400 text-sm">Yükleniyor...</span>
+                                    <span className="text-muted-foreground text-sm">Yükleniyor...</span>
                                 </div>
                             ) : versiyonlar.length === 0 ? (
                                 <div className="text-center py-20">
                                     <FileJson className="w-12 h-12 text-muted-foreground-600 mx-auto mb-3" />
-                                    <p className="text-muted-foreground-400 text-sm">Henüz kayıtlı versiyon yok</p>
-                                    <p className="text-muted-foreground-500 text-xs mt-1">Site güncellendiğinde otomatik kaydedilir</p>
+                                    <p className="text-muted-foreground text-sm">Henüz kayıtlı versiyon yok</p>
+                                    <p className="text-muted-foreground text-xs mt-1">Site güncellendiğinde otomatik kaydedilir</p>
                                 </div>
                             ) : (
                                 versiyonlar.map((v, i) => (
@@ -164,7 +164,7 @@ export default function VersiyonGecmisi({ esnafId, acik, onKapat, onRollback }: 
                                                         </span>
                                                     )}
                                                 </div>
-                                                <p className="text-muted-foreground-400 text-xs mt-1">
+                                                <p className="text-muted-foreground text-xs mt-1">
                                                     {tarihFormat(v.yayin_tarihi)} · {v.boyut_kb} KB
                                                 </p>
                                             </div>
@@ -188,7 +188,7 @@ export default function VersiyonGecmisi({ esnafId, acik, onKapat, onRollback }: 
                                             <button
                                                 onClick={() => versiyonuSil(v.id)}
                                                 disabled={!!islemYapilan || i === 0}
-                                                className="p-2 rounded-xl hover:bg-red-500/20 text-muted-foreground-500 hover:text-red-400 transition disabled:opacity-20"
+                                                className="p-2 rounded-xl hover:bg-red-500/20 text-muted-foreground hover:text-red-400 transition disabled:opacity-20"
                                                 title="Sil"
                                             >
                                                 <Trash2 className="w-3.5 h-3.5" />
@@ -201,7 +201,7 @@ export default function VersiyonGecmisi({ esnafId, acik, onKapat, onRollback }: 
 
                         {/* Footer */}
                         <div className="px-6 py-4 border-t border-white/10">
-                            <p className="text-muted-foreground-500 text-[11px] text-center">
+                            <p className="text-muted-foreground text-[11px] text-center">
                                 Son 15 versiyon saklanır · Eski versiyonlar otomatik silinir
                             </p>
                         </div>

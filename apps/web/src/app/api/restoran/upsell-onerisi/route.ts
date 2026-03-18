@@ -30,7 +30,7 @@ export async function POST(request: Request) {
 
         return NextResponse.json({ oneri })
     } catch (error: unknown) {
-        console.error('[UPSELL API]', error instanceof Error ? error.message : error)
+        // console.error('[UPSELL API]', error instanceof Error ? error.message : error)
         return NextResponse.json({ oneri: null })
     }
 }

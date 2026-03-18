@@ -133,12 +133,12 @@ export async function POST(request: Request) {
     if (secret && signature) {
         try {
             if (!hmacDogrula(rawBody, signature, secret)) {
-                console.error(`[WEBHOOK] HMAC doğrulama başarısız: ${platform}`)
+                // console.error(`[WEBHOOK] HMAC doğrulama başarısız: ${platform}`)
                 return NextResponse.json({ ok: true }) // Still 200
             }
         } catch {
             // timingSafeEqual farklı uzunlukta buffer'larda hata verir
-            console.error(`[WEBHOOK] HMAC karşılaştırma hatası: ${platform}`)
+            // console.error(`[WEBHOOK] HMAC karşılaştırma hatası: ${platform}`)
             return NextResponse.json({ ok: true })
         }
     }
@@ -158,7 +158,7 @@ export async function POST(request: Request) {
         .get()
 
     if (esnafSnap.empty) {
-        console.warn(`[WEBHOOK] Esnaf bulunamadı: ${platform}/${merchantId}`)
+        // console.warn(`[WEBHOOK] Esnaf bulunamadı: ${platform}/${merchantId}`)
         return NextResponse.json({ ok: true, message: 'Esnaf eşlenemedi' })
     }
 
@@ -173,14 +173,14 @@ export async function POST(request: Request) {
             normalizedOrder = normalizeYemeksepeti(body as unknown as YemeksepetiPayload, esnafId)
         }
     } catch (e: unknown) {
-        console.error(`[WEBHOOK] Normalize hatası:`, e instanceof Error ? e.message : e)
+        // console.error(`[WEBHOOK] Normalize hatası:`, e instanceof Error ? e.message : e)
         return NextResponse.json({ ok: true })
     }
 
     // ── Zod Validate ──
     const parsed = kepenkOrderSema.safeParse(normalizedOrder)
     if (!parsed.success) {
-        console.error(`[WEBHOOK] Zod validation hatası:`, parsed.error.issues)
+        // console.error(`[WEBHOOK] Zod validation hatası:`, parsed.error.issues)
         return NextResponse.json({ ok: true })
     }
 
@@ -193,7 +193,7 @@ export async function POST(request: Request) {
 
     if (idempDoc.exists) {
         // Duplicate! → 200 OK dön, mutfağa DÜŞÜRMEMELİ
-        console.log(`[WEBHOOK] DUPLICATE engellendi: ${idempotencyKey}`)
+        // console.log(`[WEBHOOK] DUPLICATE engellendi: ${idempotencyKey}`)
         return NextResponse.json({ ok: true, duplicate: true })
     }
 

@@ -118,7 +118,7 @@ export default function MusterilerPage() {
                                 </div>
                                 <div className="flex gap-1">
                                     {m.etiketler.slice(0, 2).map(e => (
-                                        <span key={e} className="text-[10px] uppercase tracking-widest px-2 py-0.5 rounded-sm bg-background text-muted-foreground-light">
+                                        <span key={e} className="text-[10px] uppercase tracking-widest px-2 py-0.5 rounded-sm bg-background text-muted-foreground">
                                             {e}
                                         </span>
                                     ))}

@@ -151,7 +151,7 @@ export async function POST(request: Request) {
         })
     } catch (error: unknown) {
         const message = error instanceof Error ? error.message : 'Bilinmeyen hata'
-        console.error('[B2B SİPARİŞ ONAY HATA]', message)
+        // console.error('[B2B SİPARİŞ ONAY HATA]', message)
 
         // Stok yetersiz → özel status
         if (message.includes('Stok tükendi') || message.includes('bulunamadı')) {

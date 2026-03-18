@@ -14,7 +14,7 @@ export default function SosyalMedyaPage() {
                 <h1 className="text-4xl md:text-6xl font-syne font-extrabold mb-6">
                     Kendi Kendine Bütçe Basan <span className="text-purple-400">Pazarlama Ajansı.</span>
                 </h1>
-                <p className="text-lg md:text-xl text-muted-foreground-light/80 max-w-2xl mx-auto mb-10 leading-relaxed">
+                <p className="text-lg md:text-xl text-muted-foreground/80 max-w-2xl mx-auto mb-10 leading-relaxed">
                     Cironuz mu düştü? kepenk.ai o saniye Meta Ads API ve TikTok üzerinden "Flaş İndirim" kampanyaları oluşturup yerel bölgenizde (LSA) müşteri potansiyeli yaratır.
                 </p>
             </section>

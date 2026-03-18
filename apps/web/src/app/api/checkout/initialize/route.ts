@@ -67,7 +67,7 @@ export async function POST(request: Request) {
     })
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : 'Bilinmeyen hata'
-    console.error('[CHECKOUT INITIALIZE HATA]', message)
+    // console.error('[CHECKOUT INITIALIZE HATA]', message)
     return NextResponse.json({ error: message }, { status: 500 })
   }
 }

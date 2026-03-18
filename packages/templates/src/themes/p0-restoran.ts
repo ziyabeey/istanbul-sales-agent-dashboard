@@ -1,0 +1,87 @@
+/**
+ * @kepenk/templates — P0 Restoran Themes (5 themes)
+ */
+
+import type { P0ThemeDef } from './p0-themes'
+
+export const RESTORAN_THEMES: P0ThemeDef[] = [
+  {
+    id: 'restoran-sofra',
+    name: 'Sofra',
+    sectorId: 'restoran',
+    plan: 'free',
+    description: 'Sıcak ev yemekleri teması. Turuncu-krem, samimi.',
+    designPhilosophy: 'Annenizin mutfağı hissi. Lora serif başlıklarda sıcak his, turuncu accent iştah açıcı.',
+    isDark: false,
+    fonts: { heading: { family: 'Lora', weights: [400, 700] }, body: { family: 'Inter', weights: [400, 500] } },
+    cssOverrides: {
+      '--color-accent': '#C84B31', '--color-accent-hover': '#A83B25', '--color-accent-light': '#FFF0EA',
+      '--color-bg': '#FFFBF5', '--color-surface': '#FFF5EB', '--color-text': '#2C1810',
+      '--font-heading': "'Lora', serif", '--font-body': "'Inter', sans-serif",
+    },
+    homeSections: ['hero::fullscreen_overlay', 'menu_display::tab_categories', 'about::split_left', 'daily_special::banner', 'working_hours::compact', 'map::full_width', 'contact::simple_form'],
+    pages: ['home'], sectorSections: ['menu_display', 'daily_special'], animationLevel: 'css-only', demoBusinessKey: 'sofra',
+  },
+  {
+    id: 'restoran-lezzet',
+    name: 'Lezzet',
+    sectorId: 'restoran',
+    plan: 'starter',
+    description: 'Modern Türk mutfağı. Yumuşak carousel hero, galeri, rezervasyon.',
+    designPhilosophy: 'Plus Jakarta Sans — modern, yuvarlık. Turuncu-beyaz temiz. Yemek fotoğrafları ön planda.',
+    isDark: false,
+    fonts: { heading: { family: 'Plus Jakarta Sans', weights: [500, 600, 700] }, body: { family: 'Inter', weights: [400, 500] } },
+    cssOverrides: {
+      '--color-accent': '#EA580C', '--color-accent-hover': '#C2410C',
+      '--font-heading': "'Plus Jakarta Sans', sans-serif",
+    },
+    homeSections: ['hero::soft_carousel', 'menu_display::tab_categories', 'gallery::masonry', 'testimonials::carousel', 'reservation::form', 'delivery_zone::list_only', 'instagram_feed', 'working_hours::compact', 'contact::split_form_map'],
+    pages: ['home', 'menu', 'iletisim'], sectorSections: ['menu_display', 'daily_special', 'reservation', 'delivery_zone'], animationLevel: 'framer-basic', demoBusinessKey: 'lezzet',
+  },
+  {
+    id: 'restoran-nar',
+    name: 'Nâr',
+    sectorId: 'restoran',
+    plan: 'growth',
+    description: 'Fusion mutfak. Koyu, ateş kırmızısı accent, video hero.',
+    designPhilosophy: 'Ateşle pişer, tutkuyla sunulur. Syne heading — güçlü. Mutfak ateşi video hero. Kırmızı-siyah dramatik.',
+    isDark: true,
+    fonts: { heading: { family: 'Syne', weights: [600, 700, 800] }, body: { family: 'Inter', weights: [400, 500] } },
+    cssOverrides: {
+      '--color-accent': '#EF4444', '--color-accent-hover': '#DC2626',
+      '--font-heading': "'Syne', sans-serif",
+    },
+    homeSections: ['hero::video_cinematic', 'menu_display::visual_grid', 'reservation::form', 'team::mono_to_color', 'stats::dark_bar', 'gallery::horizontal_snap', 'testimonials::marquee', 'cta::full_width_banner'],
+    pages: ['home', 'menu', 'galeri', 'hakkimizda', 'iletisim'], sectorSections: ['menu_display', 'reservation'], animationLevel: 'framer-full', demoBusinessKey: 'nar',
+  },
+  {
+    id: 'restoran-tabledot',
+    name: "Table d'Hôte",
+    sectorId: 'restoran',
+    plan: 'pro',
+    description: 'Fine dining. Serif lüks, Ken Burns, editoryal şef profili.',
+    designPhilosophy: 'Lezzet bir sanattır. Cormorant Garamond ile dergi kalitesinde layout. Siyah accent zarif.',
+    isDark: false,
+    fonts: { heading: { family: 'Cormorant Garamond', weights: [400, 600, 700] }, body: { family: 'Source Sans 3', weights: [400, 600] } },
+    cssOverrides: {
+      '--color-accent': '#1A1A1A', '--color-accent-hover': '#374151', '--color-surface': '#FAF8F5',
+      '--font-heading': "'Cormorant Garamond', serif", '--font-body': "'Source Sans 3', sans-serif", },
+    homeSections: ['hero::fullscreen_kenburns', 'philosophy', 'services::editorial_zigzag', 'team::full_page_snap', 'gallery::horizontal_snap', 'testimonials::editorial_single', 'blog_preview', 'awards_press', 'booking::inline_calendar'],
+    pages: ['home', 'menu', 'sef', 'galeri', 'blog', 'iletisim'], sectorSections: ['menu_display', 'reservation', 'awards_press'], animationLevel: 'gsap-allowed', demoBusinessKey: 'tabledot',
+  },
+  {
+    id: 'restoran-zincir',
+    name: 'Zincir',
+    sectorId: 'restoran',
+    plan: 'enterprise',
+    description: 'Burger/fast food zinciri. Kırmızı, kampanya carousel, çoklu şube.',
+    designPhilosophy: 'Syne heading — enerjik. Kırmızı accent iştah açıcı. Promo carousel, sadakat programı, franchise.',
+    isDark: false,
+    fonts: { heading: { family: 'Barlow', weights: [500, 600, 700] }, body: { family: 'Inter', weights: [400, 500] } },
+    cssOverrides: {
+      '--color-accent': '#DC2626', '--color-accent-hover': '#B91C1C',
+      '--font-heading': "'Barlow', sans-serif", },
+    homeSections: ['hero::promo_carousel', 'quick_access_cards', 'menu_display::visual_grid', 'multi_location', 'loyalty_program', 'career_listings', 'franchise_section', 'delivery_zone::map_with_zones'],
+    pages: ['home', 'menu', 'subeler', 'kariyer', 'bayilik', 'iletisim'], sectorSections: ['menu_display', 'delivery_zone', 'multi_location', 'career_listings', 'franchise_section', 'loyalty_program', 'quick_access_cards'], animationLevel: 'gsap-allowed', demoBusinessKey: 'zincir',
+  },
+]

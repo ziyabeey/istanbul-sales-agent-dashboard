@@ -67,7 +67,7 @@ export async function POST(request: Request) {
         return NextResponse.json({ ok: true, adisyonId: ref.id })
     } catch (error: unknown) {
         const message = error instanceof Error ? error.message : 'Bilinmeyen hata'
-        console.error('[QR SİPARİŞ HATA]', message)
+        // console.error('[QR SİPARİŞ HATA]', message)
         return NextResponse.json({ error: message }, { status: 500 })
     }
 }

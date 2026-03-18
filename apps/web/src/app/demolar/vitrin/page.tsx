@@ -10,13 +10,22 @@ import type { DemoKategori, DemoSector } from '@/data/demoVitrinData'
 function LazyIframe({ demo }: { demo: DemoSector }) {
   const ref = useRef<HTMLDivElement>(null)
   const [loaded, setLoaded] = useState(false)
+  const [shouldLoad, setShouldLoad] = useState(false)
   const [srcdoc, setSrcdoc] = useState<string | null>(null)
 
   useEffect(() => {
     const el = ref.current
     if (!el) return
     const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setSrcdoc(demoHtmlUret(demo)); obs.unobserve(el) } },
+      ([entry]) => { 
+        if (entry.isIntersecting) { 
+          setShouldLoad(true)
+          if (!demo.path) {
+            setSrcdoc(demoHtmlUret(demo)) 
+          }
+          obs.unobserve(el) 
+        } 
+      },
       { rootMargin: '300px' }
     )
     obs.observe(el)
@@ -24,21 +33,29 @@ function LazyIframe({ demo }: { demo: DemoSector }) {
   }, [demo])
 
   return (
-    <div ref={ref} className="relative w-full h-[240px] overflow-hidden bg-background/50">
-      {!srcdoc ? (
-        <div className="w-full h-full animate-pulse bg-gradient-to-r from-ink via-dgray to-ink" />
+    <div ref={ref} className="relative w-full h-[240px] overflow-hidden bg-white">
+      {!shouldLoad ? (
+        <div className="w-full h-full animate-pulse bg-gradient-to-r from-slate-100 via-slate-200 to-slate-100" />
       ) : (
         <>
-          <iframe
-            srcDoc={srcdoc} scrolling="no" sandbox="allow-same-origin"
-            onLoad={() => setLoaded(true)}
-            style={{ width: 1440, height: 900, transform: 'scale(0.25)', transformOrigin: 'top left', pointerEvents: 'none', border: 'none', opacity: loaded ? 1 : 0, transition: 'opacity .5s' }}
-          />
-          {!loaded && <div className="absolute inset-0 animate-pulse bg-gradient-to-r from-ink via-dgray to-ink" />}
+          {demo.path ? (
+            <iframe
+              src={demo.path} scrolling="no"
+              onLoad={() => setLoaded(true)}
+              style={{ width: 1440, height: 900, transform: 'scale(0.25)', transformOrigin: 'top left', pointerEvents: 'none', border: 'none', opacity: loaded ? 1 : 0.5, backgroundColor: 'white', transition: 'opacity 0.5s' }}
+            />
+          ) : (
+            <iframe
+              srcDoc={srcdoc || ''} scrolling="no" sandbox="allow-same-origin allow-scripts"
+              onLoad={() => setLoaded(true)}
+              style={{ width: 1440, height: 900, transform: 'scale(0.25)', transformOrigin: 'top left', pointerEvents: 'none', border: 'none', opacity: loaded ? 1 : 0, transition: 'opacity .5s', backgroundColor: 'white' }}
+            />
+          )}
+          {!loaded && !demo.path && <div className="absolute inset-0 animate-pulse bg-gradient-to-r from-slate-100 via-slate-200 to-slate-100" />}
         </>
       )}
-      <div className="absolute inset-0 flex items-center justify-center bg-background/30 opacity-100 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none">
-        <span className="text-[10px] font-bold uppercase tracking-[.2em] text-foreground/50 px-3 py-1.5 border border-cream/15 rounded-full">
+      <div className="absolute inset-0 flex items-center justify-center bg-background/10 opacity-100 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none">
+        <span className="text-[10px] font-bold uppercase tracking-[.2em] text-foreground/50 bg-white/80 backdrop-blur-md px-3 py-1.5 border border-black/10 rounded-full shadow-lg">
           Canlı Önizleme
         </span>
       </div>
@@ -48,7 +65,7 @@ function LazyIframe({ demo }: { demo: DemoSector }) {
 
 // ── Modal ────────────────────────────────────────────────────────
 function DemoModal({ demo, onClose }: { demo: DemoSector; onClose: () => void }) {
-  const [srcdoc] = useState(() => demoHtmlUret(demo))
+  const [srcdoc] = useState(() => demo.path ? null : demoHtmlUret(demo))
   useEffect(() => {
     const h = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
     document.addEventListener('keydown', h)
@@ -90,8 +107,12 @@ function DemoModal({ demo, onClose }: { demo: DemoSector; onClose: () => void })
           </div>
         </div>
         {/* iframe */}
-        <div className="flex-1">
-          <iframe srcDoc={srcdoc} sandbox="allow-same-origin allow-scripts" className="w-full h-full border-0" />
+        <div className="flex-1 bg-white">
+          {demo.path ? (
+            <iframe src={demo.path} className="w-full h-full border-0" />
+          ) : (
+            <iframe srcDoc={srcdoc || ''} sandbox="allow-same-origin allow-scripts" className="w-full h-full border-0 bg-white" />
+          )}
         </div>
       </div>
     </div>
@@ -114,7 +135,8 @@ function DemoCard({ demo, onPreview, index }: { demo: DemoSector; onPreview: (d:
   return (
     <div
       ref={ref}
-      className="group bg-card border border-border/30 rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-rust/5 hover:border-rust/30"
+      onClick={() => onPreview(demo)}
+      className="group bg-card border border-border/30 rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-rust/5 hover:border-rust/30 cursor-pointer"
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? 'translateY(0)' : 'translateY(40px)',

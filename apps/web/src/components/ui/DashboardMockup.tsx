@@ -31,7 +31,7 @@ export function DashboardMockup({ children, title = "kepenk.ai | İşletim Siste
                     <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#27c93f]" />
                 </div>
                 <div className="flex-1 flex justify-center">
-                    <span className="text-muted-foreground-light/60 text-[10px] sm:text-xs font-medium tracking-wide">
+                    <span className="text-muted-foreground/60 text-[10px] sm:text-xs font-medium tracking-wide">
                         {title}
                     </span>
                 </div>

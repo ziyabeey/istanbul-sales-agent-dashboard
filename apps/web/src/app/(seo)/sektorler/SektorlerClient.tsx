@@ -63,7 +63,7 @@ export default function SektorlerClient() {
                                         {sektorler[0]?.emoji}
                                     </span>
                                     {kategori}
-                                    <span className="text-sm text-muted-foreground-400 font-normal ml-1 font-sans">
+                                    <span className="text-sm text-muted-foreground font-normal ml-1 font-sans">
                                         ({sektorler.length} sektör)
                                     </span>
                                 </h2>
@@ -99,7 +99,7 @@ export default function SektorlerClient() {
                                                         {s.ad}
                                                     </h3>
                                                 </div>
-                                                <p className="text-sm text-muted-foreground-300 leading-relaxed max-w-[95%] mb-6 font-lora">
+                                                <p className="text-sm text-muted-foreground leading-relaxed max-w-[95%] mb-6 font-lora">
                                                     {s.slogan}
                                                 </p>
                                             </div>

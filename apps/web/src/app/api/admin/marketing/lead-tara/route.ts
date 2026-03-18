@@ -39,7 +39,7 @@ export async function POST(request: Request) {
 
         if (!scanRes.ok) {
             // CRON_SECRET yoksa veya scan başarısız — basit lead oluştur
-            console.warn('[LEAD TARA] Scan API başarısız, CRON_SECRET kontrol edin')
+            // console.warn('[LEAD TARA] Scan API başarısız, CRON_SECRET kontrol edin')
             return NextResponse.json({
                 ok: true,
                 uyari: 'Lead scan tetiklendi ama CRON_SECRET gerekiyor. Lütfen .env.local dosyasına CRON_SECRET ekleyin.',

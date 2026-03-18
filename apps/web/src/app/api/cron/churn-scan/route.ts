@@ -88,7 +88,7 @@ export async function GET(request: Request) {
                     })
                 }
             } catch (e: any) {
-                console.error(`[CHURN SCAN] ${esnafId} hata:`, e.message)
+                // console.error(`[CHURN SCAN] ${esnafId} hata:`, e.message)
             }
         }
 
@@ -106,7 +106,7 @@ export async function GET(request: Request) {
                 `Risk altında: ${riskliEsnaflar.length} esnaf\n\n` +
                 `<b>En Riskli 10:</b>\n${liste}\n\n` +
                 `Süre: ${((Date.now() - baslama) / 1000).toFixed(1)}s`
-            ).catch(console.error)
+            ).catch(() => {})
         }
 
         return NextResponse.json({
@@ -116,7 +116,7 @@ export async function GET(request: Request) {
             sure_ms: Date.now() - baslama,
         })
     } catch (error: any) {
-        console.error('[CHURN SCAN CRON]', error)
+        // console.error('[CHURN SCAN CRON]', error)
         return NextResponse.json({ error: error.message }, { status: 500 })
     }
 }

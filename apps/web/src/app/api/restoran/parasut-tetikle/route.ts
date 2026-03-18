@@ -34,13 +34,13 @@ export async function POST(request: Request) {
 
         // Arka planda çalıştır — DLQ koruması ParasutAgent içinde
         parasutFaturaGonder(esnafId, adisyonId).catch((err: unknown) => {
-            console.error('[PARASUT TETIKLE]', err instanceof Error ? err.message : err)
+            // console.error('[PARASUT TETIKLE]', err instanceof Error ? err.message : err)
         })
 
         return NextResponse.json({ ok: true, mesaj: 'Fatura oluşturma başlatıldı' })
     } catch (error: unknown) {
         const message = error instanceof Error ? error.message : 'Bilinmeyen hata'
-        console.error('[PARASUT TETIKLE HATA]', message)
+        // console.error('[PARASUT TETIKLE HATA]', message)
         return NextResponse.json({ error: message }, { status: 500 })
     }
 }

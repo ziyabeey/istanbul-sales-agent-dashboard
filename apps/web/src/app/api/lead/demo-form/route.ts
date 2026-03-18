@@ -44,7 +44,7 @@ export async function POST(req: Request) {
 
         return NextResponse.json({ ok: true, id: ref.id })
     } catch (error: any) {
-        console.error('[DEMO LEAD FORM]', error)
+        // console.error('[DEMO LEAD FORM]', error)
         return NextResponse.json({ error: 'Sunucu hatası' }, { status: 500 })
     }
 }

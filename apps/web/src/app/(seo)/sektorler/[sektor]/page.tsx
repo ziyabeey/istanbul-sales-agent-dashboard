@@ -140,26 +140,26 @@ export default async function SektorLandingPage({ params }: { params: Promise<{ 
 
         return (
             <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-32">
-                <div className="bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden">
+                <div className="bg-white border border-foreground/10 rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden shadow-sm">
                     <div className="absolute top-0 right-0 w-64 h-64 bg-rust/5 rounded-full blur-[80px] -mr-32 -mt-32 pointer-events-none"></div>
                     <div className="text-center mb-10 relative z-10">
                         <div className="inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold text-rust bg-rust/10 mb-4 border border-rust/20">
                             Öne Çıkan Entegrasyonlar
                         </div>
                         <h2 className="text-3xl md:text-4xl font-syne font-bold mb-4">Mevcut Sistemlerinize <span className="text-transparent bg-clip-text bg-gradient-to-r from-cream to-stone-light">Görünmez</span> Bağlantı</h2>
-                        <p className="text-muted-foreground-light max-w-2xl mx-auto">Sektörünüzün can damarı olan pazaryerlerini yapay zekanıza bağlayın, sipariş ve randevuları tek merkezden otopilota alın.</p>
+                        <p className="text-muted-foreground max-w-2xl mx-auto">Sektörünüzün can damarı olan pazaryerlerini yapay zekanıza bağlayın, sipariş ve randevuları tek merkezden otopilota alın.</p>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
                         {hooks.map((h, i) => (
-                            <Link href="/entegrasyonlar" key={i} className="group block bg-black/20 hover:bg-black/40 border border-white/5 hover:border-white/10 p-6 rounded-2xl transition-all duration-300">
+                            <Link href="/entegrasyonlar" key={i} className="group block bg-foreground/5 hover:bg-foreground/10 border border-foreground/10 hover:border-rust/20 p-6 rounded-2xl transition-all duration-300">
                                 <div className="flex items-center gap-3 mb-4">
-                                    <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center border border-white/5">
+                                    <div className="w-10 h-10 rounded-xl bg-foreground/5 flex items-center justify-center border border-foreground/10">
                                         <span className={`font-bold text-lg ${h.renk}`}>{h.platform.charAt(0)}</span>
                                     </div>
                                     <h3 className="font-syne font-bold text-lg text-foreground group-hover:text-rust transition-colors">{h.isim}</h3>
                                 </div>
-                                <p className="text-sm text-muted-foreground-light/80 leading-relaxed">{h.desc}</p>
+                                <p className="text-sm text-muted-foreground leading-relaxed">{h.desc}</p>
                             </Link>
                         ))}
                     </div>
@@ -195,7 +195,7 @@ export default async function SektorLandingPage({ params }: { params: Promise<{ 
 
                 {/* Breadcrumb */}
                 <nav aria-label="Breadcrumb" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-2 pb-4">
-                    <ol className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground-light">
+                    <ol className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
                         <li><Link href="/" className="hover:text-rust transition-colors">Ana Sayfa</Link></li>
                         <li aria-hidden="true" className="text-muted-foreground">/</li>
                         <li><Link href="/#sektorler" className="hover:text-rust transition-colors">Sektörler</Link></li>
@@ -207,20 +207,20 @@ export default async function SektorLandingPage({ params }: { params: Promise<{ 
                 {/* Dynamic Hero */}
                 <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-24 relative mt-8 md:mt-12">
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[300px] sm:w-[500px] md:w-[800px] h-[300px] md:h-[400px] bg-rust/10 blur-[80px] md:blur-[120px] rounded-full pointer-events-none" />
-                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-muted-foreground-light text-xs md:text-sm mb-6 uppercase tracking-widest font-bold">
+                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-foreground/5 border border-foreground/10 text-muted-foreground text-xs md:text-sm mb-6 uppercase tracking-widest font-bold">
                         <span className="text-base md:text-lg">{data.emoji}</span> {data.ad} İçin Özelleştirilmiş Yapay Zeka
                     </div>
                     <h1 className="text-4xl md:text-5xl lg:text-7xl font-syne font-extrabold mb-6 leading-tight sm:px-4">
                         {data.heroBaslik || <>{data.ad} Firmalarına Özel İşletim Sistemi</>}
                     </h1>
-                    <p className="text-base md:text-lg lg:text-xl text-muted-foreground-light/90 max-w-3xl mx-auto mb-10 leading-relaxed font-medium px-4">
+                    <p className="text-base md:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto mb-10 leading-relaxed font-medium px-4">
                         {data.altBaslik || `${data.ad} sektöründeki müşteri alışkanlıklarını ezbere bilen yapay zekanızla hemen tanışın.`}
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center items-center px-6">
                         <Link href="/kayit" className="bg-rust hover:bg-rust-dark text-white font-bold py-4 px-8 md:px-10 rounded-full transition-all shadow-xl shadow-rust/20 w-full sm:w-auto text-base md:text-lg hover:scale-105">
                             Vakit Kaybetmeden Dene
                         </Link>
-                        <Link href="/#pricing" className="bg-white/5 hover:bg-white/10 text-white font-bold py-4 px-8 md:px-10 rounded-full border border-white/10 transition-all w-full sm:w-auto text-base md:text-lg">
+                        <Link href="/#pricing" className="bg-foreground/5 hover:bg-foreground/10 text-foreground font-bold py-4 px-8 md:px-10 rounded-full border border-foreground/10 transition-all w-full sm:w-auto text-base md:text-lg">
                             Fiyatları Gör
                         </Link>
                     </div>
@@ -228,20 +228,20 @@ export default async function SektorLandingPage({ params }: { params: Promise<{ 
 
                 {/* Feature / Mockup Split */}
                 <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24 md:mb-32">
-                    <div className="bg-white/5 border border-white/10 rounded-[2rem] md:rounded-[3rem] p-6 md:p-16 flex flex-col lg:flex-row items-center gap-12 md:gap-16 overflow-hidden relative">
+                    <div className="bg-white border border-foreground/10 rounded-[2rem] md:rounded-[3rem] p-6 md:p-16 flex flex-col lg:flex-row items-center gap-12 md:gap-16 overflow-hidden relative shadow-sm">
                         <div className="flex-1 z-10 w-full text-center lg:text-left">
-                            <h2 className="text-2xl md:text-3xl font-syne font-bold mb-4 md:mb-6 leading-snug">Tıpkı İçerideki Bir Çalışanınız Gibi.</h2>
-                            <p className="text-muted-foreground-light text-base md:text-lg mb-8 leading-relaxed">
+                            <h2 className="text-2xl md:text-3xl font-syne font-bold text-foreground mb-4 md:mb-6 leading-snug">Tıpkı İçerideki Bir Çalışanınız Gibi.</h2>
+                            <p className="text-muted-foreground text-base md:text-lg mb-8 leading-relaxed">
                                 Müşterilerinizin derdini anlar, kendi kendinize oluşturduğunuz katalogları arar ve doğru ürünü/hizmeti veya fiyatlamayı satar.
                                 <br className="hidden md:block" /><br className="hidden md:block" />
                                 <span className="block mt-4 md:mt-0 font-bold text-foreground">Sektör Zekası:</span> {data.knowHow?.split('.')[0] || "Müşteri verilerinizi akıllıca yorumlar."}
                             </p>
                             <div className="grid grid-cols-2 gap-3 md:gap-4 max-w-md mx-auto lg:mx-0">
-                                <div className="bg-black/20 rounded-xl p-3 md:p-4 border border-white/5 text-center lg:text-left">
+                                <div className="bg-foreground/5 rounded-xl p-3 md:p-4 border border-foreground/10 text-center lg:text-left">
                                     <div className="text-xl md:text-2xl mb-1 md:mb-2">⚡</div>
                                     <h4 className="font-bold text-xs md:text-sm text-sage">7/24 Anında Dönüş</h4>
                                 </div>
-                                <div className="bg-black/20 rounded-xl p-3 md:p-4 border border-white/5 text-center lg:text-left">
+                                <div className="bg-foreground/5 rounded-xl p-3 md:p-4 border border-foreground/10 text-center lg:text-left">
                                     <div className="text-xl md:text-2xl mb-1 md:mb-2">🎯</div>
                                     <h4 className="font-bold text-xs md:text-sm text-rust">Sıfır İnsani Hata</h4>
                                 </div>
@@ -251,7 +251,7 @@ export default async function SektorLandingPage({ params }: { params: Promise<{ 
                             {data.mockDiyalog ? (
                                 <WhatsAppMockup messages={data.mockDiyalog} delayMultiplier={0.8} />
                             ) : (
-                                <div className="w-[300px] h-[500px] bg-black/50 border border-white/10 rounded-3xl flex items-center justify-center text-sm text-muted-foreground">WhatsApp Örneği Yüklenemedi</div>
+                                <div className="w-[300px] h-[500px] bg-foreground/5 border border-foreground/10 rounded-3xl flex items-center justify-center text-sm text-muted-foreground">WhatsApp Örneği Yüklenemedi</div>
                             )}
                         </div>
                     </div>
@@ -264,13 +264,13 @@ export default async function SektorLandingPage({ params }: { params: Promise<{ 
                 <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24 md:mb-32">
                     <div className="text-center mb-10 md:mb-16">
                         <h2 className="text-2xl md:text-3xl lg:text-4xl font-syne font-extrabold mb-3 md:mb-4">Sektörünüze <span className="text-rust">Önerilen</span> Plan</h2>
-                        <p className="text-muted-foreground-light text-sm md:text-base px-4">Verilerimize göre kendi sektörünüzdeki en iyi dönüşümü aşağıdaki donanım sağlıyor.</p>
+                        <p className="text-muted-foreground text-sm md:text-base px-4">Verilerimize göre kendi sektörünüzdeki en iyi dönüşümü aşağıdaki donanım sağlıyor.</p>
                     </div>
                     <div className="max-w-lg mx-auto">
                         <PricingCard
                             tier={(data.onerilenPaket as 'TEMEL' | 'STANDART' | 'BUYUME' | 'PREMIUM' | 'PREMIUMPLUS') || 'BUYUME'}
                             title={data.onerilenPaket === 'BUYUME' ? 'Büyüme Paneli' : (data.onerilenPaket || 'Büyüme Paneli')}
-                            price={data.onerilenPaket === 'STANDART' ? '1.250 TL' : data.onerilenPaket === 'BUYUME' ? '2.500 TL' : '4.000+ TL'}
+                            price={data.onerilenPaket === 'STANDART' ? '1.799 TL' : data.onerilenPaket === 'BUYUME' ? '2.999 TL' : '4.999+ TL'}
                             description="Her şeyi otopilota alarak operasyonel verimliliği maksimuma çıkartır."
                             features={getFeatures(data.onerilenPaket || 'BUYUME')}
                             isRecommended={true}
@@ -283,9 +283,9 @@ export default async function SektorLandingPage({ params }: { params: Promise<{ 
                     <h2 className="text-2xl md:text-3xl font-syne font-bold mb-6 md:mb-8 text-center">{data.ad} Sektöründe kepenk.ai ile Neler Yapılır?</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                         {data.hizmetler.map((hizmet, i) => (
-                            <div key={i} className="bg-white/5 border border-white/10 rounded-xl p-4 md:p-5">
+                            <div key={i} className="bg-white border border-foreground/10 rounded-xl p-4 md:p-5 shadow-sm">
                                 <h3 className="font-syne font-bold text-foreground mb-2">{hizmet}</h3>
-                                <p className="text-sm text-muted-foreground-light leading-relaxed">{hizmetAciklamasi(hizmet, data.ad, i)}</p>
+                                <p className="text-sm text-muted-foreground leading-relaxed">{hizmetAciklamasi(hizmet, data.ad, i)}</p>
                             </div>
                         ))}
                     </div>
@@ -294,7 +294,7 @@ export default async function SektorLandingPage({ params }: { params: Promise<{ 
                             <h3 className="text-lg font-syne font-bold text-foreground mt-10 mb-4">En çok talep edilen hizmetler</h3>
                             <ul className="flex flex-wrap gap-2">
                                 {knowhow.populerHizmetler.map((h, i) => (
-                                    <li key={i} className="px-3 py-1.5 bg-rust/10 border border-rust/20 rounded-full text-sm text-muted-foreground-light">{h}</li>
+                                    <li key={i} className="px-3 py-1.5 bg-rust/10 border border-rust/20 rounded-full text-sm text-muted-foreground">{h}</li>
                                 ))}
                             </ul>
                         </>
@@ -306,13 +306,13 @@ export default async function SektorLandingPage({ params }: { params: Promise<{ 
                     <h2 className="text-xl md:text-2xl font-syne font-bold mb-4 md:mb-6">Mevcut Opt-in Modülleriniz</h2>
                     <div className="flex gap-2 flex-wrap mb-8 md:mb-10 justify-center md:justify-start">
                         {data.moduller.map(modul => (
-                            <span key={modul} className="px-2.5 md:px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs md:text-sm font-medium text-muted-foreground-light">
+                            <span key={modul} className="px-2.5 md:px-3 py-1 bg-foreground/5 border border-foreground/10 rounded-full text-xs md:text-sm font-medium text-muted-foreground">
                                 {modul}
                             </span>
                         ))}
                     </div>
 
-                    <div className="prose prose-invert prose-sm md:prose-lg max-w-none text-muted-foreground-light text-left">
+                    <div className="prose prose-sm md:prose-lg max-w-none text-muted-foreground text-left">
                         <h3 className="text-lg md:text-xl font-bold text-foreground">{data.ad} İşletmeleri Neden Dijitalleşmeli?</h3>
                         <p className="leading-relaxed">
                             Günümüz B2B rekabet ortamında {data.ad.toLowerCase()} sektörü, hızlı reaksiyon ve kusursuz müşteri deneyimi gerektirir.
@@ -332,12 +332,12 @@ export default async function SektorLandingPage({ params }: { params: Promise<{ 
                     <h2 id="faq-heading" className="text-2xl md:text-3xl font-syne font-bold mb-8 text-center">Sıkça Sorulan Sorular</h2>
                     <div className="space-y-3">
                         {faqItems.map((faq, i) => (
-                            <details key={i} className="group bg-white/5 border border-white/10 rounded-xl overflow-hidden">
+                            <details key={i} className="group bg-white border border-foreground/10 rounded-xl overflow-hidden shadow-sm">
                                 <summary className="px-4 py-4 md:px-5 md:py-5 cursor-pointer list-none font-syne font-bold text-foreground flex items-center justify-between gap-2">
                                     <span>{faq.soru}</span>
                                     <span className="text-rust shrink-0 transition-transform group-open:rotate-180" aria-hidden="true">▼</span>
                                 </summary>
-                                <div className="px-4 pb-4 md:px-5 md:pb-5 pt-0 text-muted-foreground-light text-sm md:text-base leading-relaxed border-t border-white/10">
+                                <div className="px-4 pb-4 md:px-5 md:pb-5 pt-0 text-muted-foreground text-sm md:text-base leading-relaxed border-t border-foreground/10">
                                     {faq.cevap}
                                 </div>
                             </details>
@@ -350,7 +350,7 @@ export default async function SektorLandingPage({ params }: { params: Promise<{ 
                     <h2 className="text-xl md:text-2xl font-syne font-bold mb-6 text-center">İlgili Sektörler</h2>
                     <div className="flex flex-wrap justify-center gap-4">
                         {ilgiliFinal.map((s) => (
-                            <Link key={s.id} href={`/sektorler/${s.id}`} className="inline-flex items-center gap-2 px-5 py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-foreground font-medium transition-colors">
+                            <Link key={s.id} href={`/sektorler/${s.id}`} className="inline-flex items-center gap-2 px-5 py-3 bg-foreground/5 hover:bg-foreground/10 border border-foreground/10 rounded-xl text-foreground font-medium transition-colors">
                                 <span>{s.emoji}</span>
                                 <span>{s.ad}</span>
                             </Link>

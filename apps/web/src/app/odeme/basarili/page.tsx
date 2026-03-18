@@ -156,7 +156,7 @@ export default function OdemeBasarili() {
 
                 <button
                     onClick={() => router.push('/dashboard')}
-                    className="w-full bg-rust text-foreground font-syne font-bold py-4 rounded-2xl text-lg"
+                    className="w-full bg-rust text-white font-syne font-bold py-4 rounded-2xl text-lg"
                 >
                     Dashboard&#39;a Git →
                 </button>

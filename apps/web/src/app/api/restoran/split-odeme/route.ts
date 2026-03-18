@@ -75,7 +75,7 @@ export async function POST(request: Request) {
         return NextResponse.json({ ok: true })
     } catch (error: unknown) {
         const message = error instanceof Error ? error.message : 'Bilinmeyen hata'
-        console.error('[SPLİT ÖDEME HATA]', message)
+        // console.error('[SPLİT ÖDEME HATA]', message)
         return NextResponse.json({ error: message }, { status: 500 })
     }
 }

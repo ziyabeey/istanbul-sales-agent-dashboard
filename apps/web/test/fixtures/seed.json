@@ -1,0 +1,96 @@
+{
+  "esnaflar": [
+    {
+      "id": "test-esnaf-kasap",
+      "isletmeAdi": "Ahmet Kasap",
+      "email": "ahmet@kepenk.test",
+      "spiSectorId": "kasap",
+      "domain": "ahmetkasap.kepenk.site",
+      "phone": "+905550000001",
+      "address": "Bahçeşehir, İstanbul",
+      "role": "owner"
+    },
+    {
+      "id": "test-esnaf-berber",
+      "isletmeAdi": "Barber Studio",
+      "email": "berber@kepenk.test",
+      "spiSectorId": "berber",
+      "domain": "barberstudio.kepenk.site",
+      "phone": "+905550000002",
+      "role": "owner"
+    }
+  ],
+  "products": [
+    {
+      "id": "prod-1",
+      "esnafId": "test-esnaf-kasap",
+      "name": "Dana Kıyma",
+      "slug": "dana-kiyma",
+      "status": "active",
+      "pricing": { "basePrice": 250, "compareAtPrice": 280, "currency": "TRY", "kdvRate": 1 },
+      "inventory": { "quantity": 50, "lowStockThreshold": 5 },
+      "variants": []
+    },
+    {
+      "id": "prod-2",
+      "esnafId": "test-esnaf-kasap",
+      "name": "Kuzu Pirzola",
+      "slug": "kuzu-pirzola",
+      "status": "active",
+      "pricing": { "basePrice": 450, "compareAtPrice": null, "currency": "TRY", "kdvRate": 1 },
+      "inventory": { "quantity": 30, "lowStockThreshold": 3 },
+      "variants": [
+        { "id": "v1", "name": "500g", "price": 450, "stock": 20 },
+        { "id": "v2", "name": "1kg", "price": 850, "stock": 10 }
+      ]
+    }
+  ],
+  "contacts": [
+    {
+      "id": "contact-1",
+      "esnafId": "test-esnaf-kasap",
+      "name": "Mehmet Yılmaz",
+      "channels": { "phones": [{ "number": "+905550001001", "primary": true }], "emails": [{ "email": "mehmet@test.com", "primary": true }] },
+      "tags": ["vip", "düzenli"],
+      "rfm": { "score": 555, "segment": "champion" },
+      "loyalty": { "tier": "gold", "points": 1250 }
+    },
+    {
+      "id": "contact-2",
+      "esnafId": "test-esnaf-kasap",
+      "name": "Ayşe Demir",
+      "channels": { "phones": [{ "number": "+905550001002", "primary": true }] },
+      "tags": ["yeni"],
+      "rfm": { "score": 111, "segment": "at_risk" }
+    }
+  ],
+  "orders": [
+    {
+      "id": "order-1",
+      "esnafId": "test-esnaf-kasap",
+      "orderNumber": "KPN-2026-00001",
+      "status": "confirmed",
+      "paymentStatus": "paid",
+      "items": [{ "productId": "prod-1", "name": "Dana Kıyma", "quantity": 2, "unitPrice": 250 }],
+      "total": 500,
+      "customerName": "Mehmet Yılmaz",
+      "customerPhone": "+905550001001",
+      "createdAt": "2026-03-15T10:00:00Z"
+    }
+  ],
+  "bookings": [
+    {
+      "id": "booking-1",
+      "esnafId": "test-esnaf-berber",
+      "serviceId": "svc-1",
+      "serviceName": "Saç Kesimi",
+      "staffId": "staff-1",
+      "date": "2026-03-16",
+      "startTime": "14:00",
+      "endTime": "14:45",
+      "status": "confirmed",
+      "customerName": "Ali Kaya",
+      "customerPhone": "+905550002001"
+    }
+  ]
+}

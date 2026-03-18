@@ -116,7 +116,7 @@ export async function POST(request: Request) {
         })
     } catch (error: unknown) {
         const message = error instanceof Error ? error.message : 'Bilinmeyen hata'
-        console.error('[MASA SİPARİŞ HATA]', message)
+        // console.error('[MASA SİPARİŞ HATA]', message)
         return NextResponse.json({ error: message }, { status: 500 })
     }
 }

@@ -1,8 +1,16 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 
 declare global { interface Window { google?: any } }
+
+function formatTelefon(value: string): string {
+  const digits = value.replace(/[^0-9]/g, '').slice(0, 11)
+  if (digits.length <= 4) return digits
+  if (digits.length <= 7) return `${digits.slice(0, 4)} ${digits.slice(4)}`
+  if (digits.length <= 9) return `${digits.slice(0, 4)} ${digits.slice(4, 7)} ${digits.slice(7)}`
+  return `${digits.slice(0, 4)} ${digits.slice(4, 7)} ${digits.slice(7, 9)} ${digits.slice(9)}`
+}
 
 export default function GirisPage() {
   const [telefon, setTelefon] = useState('')
@@ -132,12 +140,13 @@ export default function GirisPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center px-4">
+    <div className="min-h-screen bg-white flex items-center justify-center px-4">
       <div className="w-full max-w-sm space-y-6">
         {/* Logo */}
         <div className="text-center">
-          <h1 className="text-foreground font-syne font-extrabold text-3xl">
-            kepenk<span className="text-rust">.ai</span>
+          <h1 className="font-syne font-extrabold text-3xl tracking-tight flex items-center justify-center gap-2">
+            <span className="text-primary font-extrabold">KPNK</span>
+            <span className="inline-flex items-center rounded-full px-2 py-0.5 text-[11px] font-bold bg-primary/15 text-primary border border-primary/25">AI</span>
           </h1>
           <p className="text-muted-foreground text-sm mt-2">Paneline giriş yap</p>
         </div>
@@ -148,15 +157,15 @@ export default function GirisPage() {
             <>
               <div className="flex flex-col items-center gap-2">
                 {googleYukleniyor ? (
-                  <div className="w-full h-11 bg-warm/50 rounded-xl animate-pulse" />
+                  <div className="w-full h-11 bg-gray-100 rounded-xl animate-pulse" />
                 ) : (
                   <div id="google-signin-btn" className="w-full flex justify-center" />
                 )}
               </div>
               <div className="flex items-center gap-3">
-                <div className="flex-1 h-px bg-warm/40" />
+                <div className="flex-1 h-px bg-gray-200" />
                 <span className="text-muted-foreground text-xs">veya telefon ile</span>
-                <div className="flex-1 h-px bg-warm/40" />
+                <div className="flex-1 h-px bg-gray-200" />
               </div>
             </>
           )}
@@ -170,19 +179,19 @@ export default function GirisPage() {
                 <input
                   type="tel"
                   value={telefon}
-                  onChange={e => setTelefon(e.target.value)}
+                  onChange={e => setTelefon(formatTelefon(e.target.value))}
                   placeholder="05XX XXX XX XX"
-                  className="w-full mt-1.5 bg-warm text-foreground rounded-xl px-4 py-3
-                             border border-border focus:border-rust outline-none text-lg
+                  className="w-full mt-1.5 bg-gray-50text-foreground rounded-xl px-4 py-3
+                             border border-border focus:border-primary outline-none text-lg
                              font-syne tracking-wider"
                   onKeyDown={e => e.key === 'Enter' && handleTelefonGonder()}
                 />
               </div>
-              {hata && <p className="text-red-400 text-sm">{hata}</p>}
+              {hata && <p className="text-red-600 text-sm">{hata}</p>}
               <button
                 onClick={handleTelefonGonder}
                 disabled={yukleniyor}
-                className="w-full bg-rust text-foreground font-syne font-bold py-3.5
+                className="w-full bg-primary text-white font-syne font-bold py-3.5
                            rounded-xl disabled:opacity-50 text-base"
               >
                 {yukleniyor ? 'Gönderiliyor...' : 'SMS Kodu Gönder →'}
@@ -203,17 +212,17 @@ export default function GirisPage() {
                   value={dogrulamaKodu}
                   onChange={e => setDogrulamaKodu(e.target.value.slice(0, 6))}
                   placeholder="000000"
-                  className="w-full mt-1.5 bg-warm text-foreground rounded-xl px-4 py-3
-                             border border-border focus:border-rust outline-none text-2xl
+                  className="w-full mt-1.5 bg-gray-50text-foreground rounded-xl px-4 py-3
+                             border border-border focus:border-primary outline-none text-2xl
                              font-syne tracking-[0.5rem] text-center"
                   onKeyDown={e => e.key === 'Enter' && handleKodDogrula()}
                 />
               </div>
-              {hata && <p className="text-red-400 text-sm">{hata}</p>}
+              {hata && <p className="text-red-600 text-sm">{hata}</p>}
               <button
                 onClick={handleKodDogrula}
                 disabled={yukleniyor}
-                className="w-full bg-rust text-foreground font-syne font-bold py-3.5
+                className="w-full bg-primary text-white font-syne font-bold py-3.5
                            rounded-xl disabled:opacity-50"
               >
                 {yukleniyor ? 'Doğrulanıyor...' : 'Giriş Yap →'}
@@ -230,7 +239,7 @@ export default function GirisPage() {
 
         <p className="text-muted-foreground text-xs text-center">
           Henüz hesabın yok mu?{' '}
-          <a href="/onboarding" className="text-rust">Hemen başla →</a>
+          <a href="/onboarding" className="text-primary">Hemen başla →</a>
         </p>
       </div>
     </div>

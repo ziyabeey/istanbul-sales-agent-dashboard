@@ -60,7 +60,7 @@ export async function POST(req: Request) {
         }, { status: 200 });
 
     } catch (error) {
-        console.error("Churn Analytics Error:", error);
+        // console.error("Churn Analytics Error:", error);
         return NextResponse.json({ success: false, error: "Internal Server Error" }, { status: 500 });
     }
 }

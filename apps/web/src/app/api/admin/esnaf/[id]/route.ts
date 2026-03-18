@@ -51,7 +51,7 @@ export async function PATCH(
                 `${onceki.isletmeAdiTam || onceki.ad}\n` +
                 `${onceki.durum} → ${body.durum}\n` +
                 `ID: <code>${id}</code>`
-            ).catch(console.error)
+            ).catch(() => {})
         }
         if (body.paket && body.paket !== onceki.paket) {
             telegramGonder(
@@ -59,7 +59,7 @@ export async function PATCH(
                 `${onceki.isletmeAdiTam || onceki.ad}\n` +
                 `${onceki.paket} → ${body.paket}\n` +
                 `ID: <code>${id}</code>`
-            ).catch(console.error)
+            ).catch(() => {})
         }
 
         return NextResponse.json({ ok: true })
@@ -96,7 +96,7 @@ export async function DELETE(
             `${data.isletmeAdiTam || data.ad || 'İsimsiz'}\n` +
             `Paket: ${data.paket || '—'} | Durum: ${data.durum || '—'}\n` +
             `ID: <code>${id}</code>`
-        ).catch(console.error)
+        ).catch(() => {})
 
         return NextResponse.json({ ok: true })
     } catch (error: any) {

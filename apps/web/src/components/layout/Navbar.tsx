@@ -3,8 +3,39 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
+import {
+  Menu, X, ChevronDown, ChevronRight,
+  Rocket, Bot, MessageCircle, Globe, BarChart3,
+  Megaphone, Phone, UtensilsCrossed, Home,
+  Shield, Scissors, Stethoscope, Scale,
+  Dumbbell, FileText, Users, Pen, Mail, 
+  Sparkles, type LucideIcon
+} from "lucide-react";
 import { Button } from "@/components/ui/Button";
+
+/* ─────────────── İkon Eşleme ─────────────── */
+
+const ICON_MAP: Record<string, LucideIcon> = {
+  rocket: Rocket,
+  bot: Bot,
+  message: MessageCircle,
+  globe: Globe,
+  chart: BarChart3,
+  megaphone: Megaphone,
+  phone: Phone,
+  utensils: UtensilsCrossed,
+  home: Home,
+  shield: Shield,
+  scissors: Scissors,
+  stethoscope: Stethoscope,
+  scale: Scale,
+  dumbbell: Dumbbell,
+  file: FileText,
+  users: Users,
+  pen: Pen,
+  mail: Mail,
+  sparkles: Sparkles,
+};
 
 /* ─────────────── Menü Verileri ─────────────── */
 
@@ -31,25 +62,25 @@ const NAV_GROUPS: NavGroup[] = [
       {
         title: "Nasıl Çalışır?",
         items: [
-          { label: "Nasıl Çalışır?", href: "/nasil-calisir", icon: "🚀", desc: "3 adımda dijital dönüşüm" },
+          { label: "Nasıl Çalışır?", href: "/nasil-calisir", icon: "rocket", desc: "3 adımda dijital dönüşüm" },
         ],
       },
       {
         title: "Özellikler",
         items: [
-          { label: "AI Asistan", href: "/ozellikler/yapay-zeka-asistani", icon: "🤖", desc: "7/24 otonom yardımcı" },
-          { label: "WhatsApp Botu", href: "/ozellikler/whatsapp", icon: "📱", desc: "Randevu & bildirim" },
-          { label: "Web Sitesi", href: "/ozellikler/web-sitesi", icon: "🌐", desc: "AI ile üretilmiş site" },
-          { label: "Raporlar", href: "/ozellikler/raporlar", icon: "📊", desc: "Haftalık analitik" },
-          { label: "Sosyal Medya", href: "/ozellikler/sosyal-medya-ve-reklam", icon: "📢", desc: "Otomatik içerik" },
-          { label: "Sesli Asistan", href: "/ozellikler/sesli", icon: "📞", desc: "Vapi.ai entegrasyonu", badge: "Premium+" },
-          { label: "Restoran İşletim", href: "/ozellikler/restoran-isletim-sistemi", icon: "🍽️", desc: "QR sipariş → KPI radarı", badge: "Premium+" },
-          { label: "Emlak Yönetim", href: "/ozellikler/emlak-yonetim-sistemi", icon: "🏠", desc: "Portföy → Sahibinden sync", badge: "Premium+" },
+          { label: "AI Asistan", href: "/ozellikler/yapay-zeka-asistani", icon: "bot", desc: "7/24 otonom yardımcı" },
+          { label: "WhatsApp Botu", href: "/ozellikler/whatsapp", icon: "message", desc: "Randevu & bildirim" },
+          { label: "Web Sitesi", href: "/ozellikler/web-sitesi", icon: "globe", desc: "AI ile üretilmiş site" },
+          { label: "Raporlar", href: "/ozellikler/raporlar", icon: "chart", desc: "Haftalık analitik" },
+          { label: "Sosyal Medya", href: "/ozellikler/sosyal-medya-ve-reklam", icon: "megaphone", desc: "Otomatik içerik" },
+          { label: "Sesli Asistan", href: "/ozellikler/sesli", icon: "phone", desc: "Vapi.ai entegrasyonu", badge: "Premium+" },
+          { label: "Restoran İşletim", href: "/ozellikler/restoran-isletim-sistemi", icon: "utensils", desc: "QR sipariş → KPI radarı", badge: "Premium+" },
+          { label: "Emlak Yönetim", href: "/ozellikler/emlak-yonetim-sistemi", icon: "home", desc: "Portföy → Sahibinden sync", badge: "Premium+" },
         ],
       },
       {
         items: [
-          { label: "Güvenlik & KVKK", href: "/kvkk", icon: "🛡️", desc: "KVKK uyumlu altyapı" },
+          { label: "Güvenlik & KVKK", href: "/kvkk", icon: "shield", desc: "KVKK uyumlu altyapı" },
         ],
       },
     ],
@@ -62,31 +93,31 @@ const NAV_GROUPS: NavGroup[] = [
       {
         title: "Yeme & İçme",
         items: [
-          { label: "Restoran · Kafe · Fırın", href: "/sektorler/restoran", icon: "🍽️", desc: "QR sipariş, KDS, garson POS" },
+          { label: "Restoran · Kafe · Fırın", href: "/sektorler/restoran", icon: "utensils", desc: "QR sipariş, KDS, garson POS" },
         ],
       },
       {
         title: "Güzellik & Bakım",
         items: [
-          { label: "Berber · Kuaför · Estetik", href: "/sektorler/berber", icon: "✂️" },
+          { label: "Berber · Kuaför · Estetik", href: "/sektorler/berber", icon: "scissors" },
         ],
       },
       {
         title: "Sağlık",
         items: [
-          { label: "Diş · Klinik · Fizyoterapi", href: "/sektorler/dis-hekimi", icon: "🏥" },
+          { label: "Diş · Klinik · Fizyoterapi", href: "/sektorler/dis-hekimi", icon: "stethoscope" },
         ],
       },
       {
         title: "Profesyonel",
         items: [
-          { label: "Hukuk · Muhasebe · Mimarlık", href: "/sektorler/avukat", icon: "⚖️" },
+          { label: "Hukuk · Muhasebe · Mimarlık", href: "/sektorler/avukat", icon: "scale" },
         ],
       },
       {
         title: "Spor & Yaşam",
         items: [
-          { label: "Gym · Yoga · Veteriner", href: "/sektorler/veteriner", icon: "💪" },
+          { label: "Gym · Yoga · Veteriner", href: "/sektorler/veteriner", icon: "dumbbell" },
         ],
       },
     ],
@@ -98,15 +129,16 @@ const NAV_GROUPS: NavGroup[] = [
     sections: [
       {
         items: [
-          { label: "Tüm Demolar", href: "/demolar/vitrin", icon: "📄", desc: "34 sektör demo galerisi" },
+          { label: "Tema Mağazası", href: "/temalar", icon: "sparkles", desc: "200+ profesyonel şablon" },
+          { label: "Tüm Demolar", href: "/demolar/vitrin", icon: "file", desc: "34 sektör demo galerisi" },
         ],
       },
       {
         title: "Öne Çıkanlar",
         items: [
-          { label: "Restoran Demo", href: "/demolar/vitrin?s=restoran", icon: "🍽️" },
-          { label: "Berber Demo", href: "/demolar/vitrin?s=berber", icon: "💈" },
-          { label: "Gym Demo", href: "/demolar/vitrin?s=spor", icon: "💪" },
+          { label: "Restoran Demo", href: "/demolar/vitrin?s=restoran", icon: "utensils" },
+          { label: "Berber Demo", href: "/demolar/vitrin?s=berber", icon: "scissors" },
+          { label: "Gym Demo", href: "/demolar/vitrin?s=spor", icon: "dumbbell" },
         ],
       },
     ],
@@ -117,15 +149,24 @@ const NAV_GROUPS: NavGroup[] = [
     sections: [
       {
         items: [
-          { label: "Biz Kimiz?", href: "/hakkimizda", icon: "👥", desc: "yzt.digital ekibi" },
-          { label: "Blog", href: "/blog", icon: "📝", desc: "Dijital esnaf rehberi" },
-          { label: "İletişim", href: "/iletisim", icon: "📬", desc: "Bize ulaşın" },
-          { label: "Kariyer", href: "/kariyer", icon: "🚀", desc: "Ekibimize katıl" },
+          { label: "Biz Kimiz?", href: "/hakkimizda", icon: "users", desc: "yzt.digital ekibi" },
+          { label: "Blog", href: "/blog", icon: "pen", desc: "Dijital esnaf rehberi" },
+          { label: "İletişim", href: "/iletisim", icon: "mail", desc: "Bize ulaşın" },
+          { label: "Kariyer", href: "/kariyer", icon: "rocket", desc: "Ekibimize katıl" },
         ],
       },
     ],
   },
 ];
+
+/* ─────────────── İkon Render ─────────────── */
+
+function NavIcon({ name, className = "w-4 h-4" }: { name?: string; className?: string }) {
+  if (!name) return null;
+  const Icon = ICON_MAP[name];
+  if (!Icon) return null;
+  return <Icon className={className} aria-hidden="true" />;
+}
 
 /* ─────────────── Dropdown Animasyonu ─────────────── */
 
@@ -164,27 +205,24 @@ export default function Navbar() {
   }, []);
 
   const navLinkClass =
-    "text-sm font-semibold text-foreground/90 hover:text-foreground transition-colors duration-150 flex items-center gap-1 py-2 px-3 rounded-lg hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-rust";
+    "text-sm font-semibold text-foreground/80 hover:text-foreground transition-colors duration-150 flex items-center gap-1 py-2 px-3 rounded-lg hover:bg-foreground/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary";
 
   return (
     <nav
       ref={navRef}
+      aria-label="Ana navigasyon"
       className={`fixed w-full z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-background/95 backdrop-blur-md border-b border-white/10 py-3 shadow-lg shadow-ink/50"
-          : "bg-background/75 backdrop-blur-md border-b border-white/5 py-4"
+          ? "bg-background/95 backdrop-blur-md border-b border-border py-3 shadow-sm"
+          : "bg-background/80 backdrop-blur-md border-b border-border/50 py-4"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 cursor-pointer group">
-            <span className="font-syne font-extrabold text-xl tracking-tight">
-              <span className="text-rust">K</span>
-              <span className="text-foreground group-hover:text-foreground/80 transition-colors">EPENK</span>
-            </span>
-            <span className="hidden sm:inline-flex items-center rounded-full px-1.5 py-0.5 text-[10px] font-bold bg-rust/20 text-rust border border-rust/30">
-              AI
+          <Link href="/" className="flex items-center cursor-pointer group">
+            <span className="font-syne font-extrabold text-xl tracking-tight text-primary group-hover:text-primary/80 transition-colors">
+              KPNK
             </span>
           </Link>
 
@@ -193,14 +231,18 @@ export default function Navbar() {
             {NAV_GROUPS.map((group) => (
               <div key={group.id} className="relative">
                 <button
-                  className={`${navLinkClass} ${openDropdown === group.id ? "bg-white/5 text-foreground" : ""}`}
+                  className={`${navLinkClass} ${openDropdown === group.id ? "bg-foreground/5 text-foreground" : ""}`}
                   onClick={() => toggleDropdown(group.id)}
+                  aria-expanded={openDropdown === group.id}
+                  aria-haspopup="true"
+                  aria-controls={`nav-dropdown-${group.id}`}
                 >
                   {group.label}
                   <ChevronDown
                     className={`w-3.5 h-3.5 transition-transform duration-200 ${
                       openDropdown === group.id ? "rotate-180" : ""
                     }`}
+                    aria-hidden="true"
                   />
                 </button>
 
@@ -212,13 +254,16 @@ export default function Navbar() {
                       animate="visible"
                       exit="hidden"
                       transition={{ duration: 0.15 }}
-                      className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[420px] bg-background border border-white/10 rounded-2xl shadow-2xl shadow-ink/80 p-4"
+                      id={`nav-dropdown-${group.id}`}
+                      role="menu"
+                      aria-label={`${group.label} menüsü`}
+                      className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[420px] bg-card border border-border rounded-2xl shadow-xl p-4"
                     >
                       {group.sections.map((section, si) => (
                         <div key={si}>
-                          {si > 0 && <div className="border-t border-white/8 my-2" />}
+                          {si > 0 && <div className="border-t border-border/50 my-2" />}
                           {section.title && (
-                            <p className="text-[10px] font-bold uppercase tracking-[.2em] text-white/25 px-3 py-1.5">
+                            <p className="text-[10px] font-bold uppercase tracking-[.2em] text-muted-foreground px-3 py-1.5">
                               {section.title}
                             </p>
                           )}
@@ -227,20 +272,24 @@ export default function Navbar() {
                               key={item.href}
                               href={item.href}
                               onClick={() => setOpenDropdown(null)}
-                              className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/5 transition-colors group/item"
+                              className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-muted/50 transition-colors group/item"
                             >
-                              {item.icon && <span className="text-base mt-0.5 shrink-0">{item.icon}</span>}
+                              {item.icon && (
+                                <span className="mt-0.5 shrink-0 w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
+                                  <NavIcon name={item.icon} className="w-4 h-4" />
+                                </span>
+                              )}
                               <div className="flex-1 min-w-0">
-                                <span className="text-foreground text-sm font-semibold group-hover/item:text-rust transition-colors flex items-center gap-2">
+                                <span className="text-foreground text-sm font-semibold group-hover/item:text-primary transition-colors flex items-center gap-2">
                                   {item.label}
                                   {item.badge && (
-                                    <span className="text-[9px] font-bold text-purple-400 bg-purple-500/15 border border-purple-500/25 rounded-full px-1.5 py-0.5">
+                                    <span className="text-[9px] font-bold text-purple-600 dark:text-purple-400 bg-purple-100 dark:bg-purple-500/15 border border-purple-200 dark:border-purple-500/25 rounded-full px-1.5 py-0.5">
                                       {item.badge}
                                     </span>
                                   )}
                                 </span>
                                 {item.desc && (
-                                  <span className="text-white/35 text-xs mt-0.5 block">{item.desc}</span>
+                                  <span className="text-muted-foreground text-xs mt-0.5 block">{item.desc}</span>
                                 )}
                               </div>
                             </Link>
@@ -249,14 +298,14 @@ export default function Navbar() {
                       ))}
 
                       {group.footer && (
-                        <div className="border-t border-white/8 mt-2 pt-2">
+                        <div className="border-t border-border/50 mt-2 pt-2">
                           <Link
                             href={group.footer.href}
                             onClick={() => setOpenDropdown(null)}
-                            className="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-white/5 transition-colors"
+                            className="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-muted/50 transition-colors"
                           >
-                            <ChevronRight className="w-3.5 h-3.5 text-rust" />
-                            <span className="text-rust text-sm font-semibold">{group.footer.label}</span>
+                            <ChevronRight className="w-3.5 h-3.5 text-primary" />
+                            <span className="text-primary text-sm font-semibold">{group.footer.label}</span>
                           </Link>
                         </div>
                       )}
@@ -273,10 +322,10 @@ export default function Navbar() {
 
           {/* Actions */}
           <div className="hidden md:flex items-center gap-3">
-            <Link href="/giris" className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors">
+            <Link href="/giris" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
               Giriş Yap
             </Link>
-            <Link href="/onboarding" passHref legacyBehavior>
+            <Link href="/kayit" passHref legacyBehavior>
               <motion.a whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
                 <Button variant="primary" size="sm">
                   Başlayın →
@@ -288,9 +337,11 @@ export default function Navbar() {
           {/* Mobile Toggle */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-foreground/70 hover:text-foreground p-2 rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-rust"
+            className="md:hidden text-foreground/70 hover:text-foreground p-2 rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            aria-expanded={isMobileMenuOpen}
+            aria-label={isMobileMenuOpen ? "Menüyü kapat" : "Menüyü aç"}
           >
-            {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {isMobileMenuOpen ? <X className="w-5 h-5" aria-hidden="true" /> : <Menu className="w-5 h-5" aria-hidden="true" />}
           </button>
         </div>
       </div>
@@ -303,7 +354,7 @@ export default function Navbar() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-background/60 backdrop-blur-sm z-40 md:hidden"
+              className="fixed inset-0 bg-foreground/10 backdrop-blur-sm z-40 md:hidden"
               style={{ top: "60px" }}
               onClick={() => setIsMobileMenuOpen(false)}
             />
@@ -312,7 +363,7 @@ export default function Navbar() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.18 }}
-              className="absolute top-full left-0 w-full bg-background border-t border-white/10 shadow-2xl z-50 md:hidden max-h-[80vh] overflow-y-auto"
+              className="absolute top-full left-0 w-full bg-card border-t border-border shadow-xl z-50 md:hidden max-h-[80vh] overflow-y-auto"
             >
               <div className="px-4 py-6 space-y-2">
                 {NAV_GROUPS.map((group) => (
@@ -326,20 +377,20 @@ export default function Navbar() {
                 <Link
                   href="/fiyatlar"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="flex px-3 py-2.5 rounded-xl text-foreground/70 hover:text-foreground hover:bg-white/5 transition-colors text-sm font-semibold"
+                  className="flex px-3 py-2.5 rounded-xl text-foreground/80 hover:text-foreground hover:bg-muted/50 transition-colors text-sm font-semibold"
                 >
                   Fiyatlar
                 </Link>
 
-                <div className="pt-4 border-t border-white/10 flex flex-col gap-3 px-1">
+                <div className="pt-4 border-t border-border flex flex-col gap-3 px-1">
                   <Link
                     href="/giris"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="w-full text-center py-2.5 text-foreground/70 hover:text-foreground text-sm font-medium rounded-xl hover:bg-white/5 transition-colors"
+                    className="w-full text-center py-2.5 text-foreground/80 hover:text-foreground text-sm font-medium rounded-xl hover:bg-muted/50 transition-colors"
                   >
                     Giriş Yap
                   </Link>
-                  <Link href="/onboarding" onClick={() => setIsMobileMenuOpen(false)}>
+                  <Link href="/kayit" onClick={() => setIsMobileMenuOpen(false)}>
                     <Button variant="primary" size="lg" className="w-full">
                       Başlayın →
                     </Button>
@@ -360,13 +411,14 @@ function MobileNavGroup({ group, onClose }: { group: NavGroup; onClose: () => vo
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="border-b border-white/5 pb-1">
+    <div className="border-b border-border/30 pb-1">
       <button
         onClick={() => setOpen((v) => !v)}
-        className="flex items-center justify-between w-full px-3 py-2.5 rounded-xl text-foreground/80 hover:text-foreground hover:bg-white/5 transition-colors text-sm font-semibold"
+        className="flex items-center justify-between w-full px-3 py-2.5 rounded-xl text-foreground/80 hover:text-foreground hover:bg-muted/50 transition-colors text-sm font-semibold"
+        aria-expanded={open}
       >
         {group.label}
-        <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
+        <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${open ? "rotate-180" : ""}`} aria-hidden="true" />
       </button>
 
       <AnimatePresence>
@@ -382,7 +434,7 @@ function MobileNavGroup({ group, onClose }: { group: NavGroup; onClose: () => vo
               {group.sections.map((section, si) => (
                 <div key={si}>
                   {section.title && (
-                    <p className="text-[10px] font-bold uppercase tracking-widest text-white/20 px-3 py-1.5 mt-1">
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground px-3 py-1.5 mt-1">
                       {section.title}
                     </p>
                   )}
@@ -391,12 +443,16 @@ function MobileNavGroup({ group, onClose }: { group: NavGroup; onClose: () => vo
                       key={item.href}
                       href={item.href}
                       onClick={onClose}
-                      className="flex items-center gap-3 px-3 py-2 rounded-xl text-foreground/60 hover:text-foreground hover:bg-white/5 transition-colors text-sm"
+                      className="flex items-center gap-3 px-3 py-2 rounded-xl text-foreground/80 hover:text-foreground hover:bg-muted/50 transition-colors text-sm"
                     >
-                      {item.icon && <span className="text-sm">{item.icon}</span>}
+                      {item.icon && (
+                        <span className="w-7 h-7 rounded-md bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                          <NavIcon name={item.icon} className="w-3.5 h-3.5" />
+                        </span>
+                      )}
                       <span>{item.label}</span>
                       {item.badge && (
-                        <span className="text-[9px] font-bold text-purple-400 bg-purple-500/15 border border-purple-500/25 rounded-full px-1.5 py-0.5">
+                        <span className="text-[9px] font-bold text-purple-600 dark:text-purple-400 bg-purple-100 dark:bg-purple-500/15 border border-purple-200 dark:border-purple-500/25 rounded-full px-1.5 py-0.5">
                           {item.badge}
                         </span>
                       )}
@@ -408,7 +464,7 @@ function MobileNavGroup({ group, onClose }: { group: NavGroup; onClose: () => vo
                 <Link
                   href={group.footer.href}
                   onClick={onClose}
-                  className="flex items-center gap-2 px-3 py-2 rounded-xl text-rust hover:bg-white/5 transition-colors text-sm font-semibold"
+                  className="flex items-center gap-2 px-3 py-2 rounded-xl text-primary hover:bg-muted/50 transition-colors text-sm font-semibold"
                 >
                   <ChevronRight className="w-3.5 h-3.5" />
                   {group.footer.label}

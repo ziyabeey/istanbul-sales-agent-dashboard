@@ -16,16 +16,16 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: "Missing required tracking parameters" }, { status: 400 });
         }
 
-        console.log(`[Agent 15 - Ads Manager] Received Event: ${eventName} for Merchant: ${merchantId}`);
+        // console.log(`[Agent 15 - Ads Manager] Received Event: ${eventName} for Merchant: ${merchantId}`);
 
         // 1. Meta Conversions API (CAPI) Mock Dispatch
         const metaApiUrl = `https://graph.facebook.com/v19.0/${process.env.META_PIXEL_ID || 'mock_pixel'}/events`;
-        console.log(`[Agent 15] Dispatching Server Event to Meta CAPI: ${metaApiUrl}`);
+        // console.log(`[Agent 15] Dispatching Server Event to Meta CAPI: ${metaApiUrl}`);
 
         // In production: Hash userEmail and userPhone using SHA-256 before sending to Meta
 
         // 2. Google Ads Server-Side Tracking Mock Dispatch
-        console.log(`[Agent 15] Dispatching Server Event to Google Ads CAPI`);
+        // console.log(`[Agent 15] Dispatching Server Event to Google Ads CAPI`);
 
         // 3. Log to Agent 10 (Operational Brain)
         await logAgentAction({
@@ -46,7 +46,7 @@ export async function POST(req: Request) {
         }, { status: 200 });
 
     } catch (error: any) {
-        console.error("Agent 15 CAPI Error:", error);
+        // console.error("Agent 15 CAPI Error:", error);
 
         await logAgentAction({
             agentId: "agent_15",

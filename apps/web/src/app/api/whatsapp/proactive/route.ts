@@ -32,7 +32,7 @@ export async function POST(req: Request) {
         }
 
         // Simulate sending the template via WhatsApp Graph API
-        console.log(`[WhatsApp API MOCK] Sending template '${templateId}' to ${to_phone} with variables:`, templateVariables);
+        // console.log(`[WhatsApp API MOCK] Sending template '${templateId}' to ${to_phone} with variables:`, templateVariables);
 
         return NextResponse.json({
             success: true,
@@ -42,7 +42,7 @@ export async function POST(req: Request) {
         }, { status: 200 });
 
     } catch (error) {
-        console.error("Proactive Message Error:", error);
+        // console.error("Proactive Message Error:", error);
         return NextResponse.json({ success: false, error: "Internal Server Error" }, { status: 500 });
     }
 }

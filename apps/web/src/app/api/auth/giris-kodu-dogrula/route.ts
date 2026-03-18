@@ -39,7 +39,7 @@ export async function POST(req: Request) {
 
     return response
   } catch (error: any) {
-    console.error('[GİRİŞ KODU DOĞRULA]', error)
+    // console.error('[GİRİŞ KODU DOĞRULA]', error)
     return NextResponse.json({ error: 'Sunucu hatası' }, { status: 500 })
   }
 }

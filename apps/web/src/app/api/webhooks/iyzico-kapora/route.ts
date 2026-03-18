@@ -18,14 +18,14 @@ export async function POST(req: Request) {
         const { status, conversationId, token, paymentId } = body
 
         if (status !== 'success' && status !== 'SUCCESS') {
-            console.warn(`[iyzico-webhook] ⚠️ Ödeme başarısız: ${conversationId}`)
+            // console.warn(`[iyzico-webhook] ⚠️ Ödeme başarısız: ${conversationId}`)
             return NextResponse.json({ status: 'payment_failed' })
         }
 
         // conversationId format: "esnafId__randevuId"
         const parts = (conversationId as string)?.split('__')
         if (!parts || parts.length !== 2) {
-            console.error('[iyzico-webhook] ❌ Geçersiz conversationId:', conversationId)
+            // console.error('[iyzico-webhook] ❌ Geçersiz conversationId:', conversationId)
             return NextResponse.json({ error: 'Geçersiz conversationId' }, { status: 400 })
         }
 
@@ -64,8 +64,8 @@ export async function POST(req: Request) {
         ].filter(Boolean).join('\n')
 
         // WA mesajı gönderme (placeholder — gerçek entegrasyonda WA API kullanılacak)
-        console.log(`[iyzico-webhook] 📱 WA onay mesajı: ${randevu.musteri_telefon}`)
-        console.log(onayMesaji)
+        // console.log(`[iyzico-webhook] 📱 WA onay mesajı: ${randevu.musteri_telefon}`)
+        // console.log(onayMesaji)
 
         // Agent log
         await adminDb.collection('agent_logs').add({
@@ -85,7 +85,7 @@ export async function POST(req: Request) {
 
     } catch (err: unknown) {
         const msg = err instanceof Error ? err.message : 'Bilinmeyen hata'
-        console.error('[iyzico-webhook] ❌ Hata:', msg)
+        // console.error('[iyzico-webhook] ❌ Hata:', msg)
         return NextResponse.json({ error: msg }, { status: 500 })
     }
 }

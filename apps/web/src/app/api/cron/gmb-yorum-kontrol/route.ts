@@ -21,12 +21,12 @@ export async function GET(req: Request) {
         for (const doc of bekleyenYorumlar.docs) {
             const data = doc.data()
             await googleYorumYanitla(data.esnafId, doc.id, data.yorumMetni, data.yildiz)
-                .catch(e => console.error(`[GMB YANIT Hatasi] ${doc.id}`, e))
+                .catch(() => {})
         }
 
         return NextResponse.json({ ok: true, islenen: bekleyenYorumlar.size })
     } catch (error) {
-        console.error('[CRON GMB KONTROL HATA]', error)
+        // console.error('[CRON GMB KONTROL HATA]', error)
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
     }
 }

@@ -11,7 +11,7 @@ export async function GET(req: Request) {
         await reklamPerformansGuncelle()
         return NextResponse.json({ ok: true })
     } catch (error) {
-        console.error('[CRON REKLAM PERFORMANS HATA]', error)
+        // console.error('[CRON REKLAM PERFORMANS HATA]', error)
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
     }
 }

@@ -57,7 +57,7 @@ export async function GET(req: Request) {
 
     return NextResponse.json(aramalar)
   } catch (error: any) {
-    console.error('[Sesli Aramalar]', error)
+    // console.error('[Sesli Aramalar]', error)
     return NextResponse.json({ error: 'Sunucu hatası' }, { status: 500 })
   }
 }

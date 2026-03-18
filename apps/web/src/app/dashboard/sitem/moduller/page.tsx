@@ -66,13 +66,13 @@ export default function ModulYonetimPage() {
         // Sadece True olan keyleri topla
         const kaydedilecekListe = Object.keys(newState).filter(id => newState[id])
 
-        // Arka planda sessizce Firebase'e kaydet
+        // Arka planda sessizce Firebase'e kaydet (siteJson.moduller ile senkron)
         setKaydediliyor(true)
         try {
-            const res = await fetch(`/api/esnaf/${esnafId}`, {
-                method: 'PATCH',
+            const res = await fetch('/api/esnaf/sync-moduller', {
+                method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ aktifWebModulleri: kaydedilecekListe })
+                body: JSON.stringify({ moduller: kaydedilecekListe })
             })
 
             if (!res.ok) throw new Error('Kaydedilemedi')
@@ -174,7 +174,7 @@ function ModuleCard({ modul, isActive, onToggle, paket, isSecondary = false }: {
                             <Lock className="w-3 h-3" /> {modul.minPaket}
                         </span>
                     ) : (
-                        <span className="text-[10px] uppercase font-bold text-muted-foreground-light/60">{modul.minPaket}</span>
+                        <span className="text-[10px] uppercase font-bold text-muted-foreground/60">{modul.minPaket}</span>
                     )}
                 </div>
                 <p className="text-muted-foreground text-sm leading-relaxed mb-4 min-h-[40px]">

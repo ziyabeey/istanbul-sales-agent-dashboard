@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
 import { useEsnaf } from '@/context/EsnafContext'
+import { toast } from 'sonner'
 
 const PLATFORMLAR = ['instagram', 'facebook', 'tiktok', 'gmb'] as const
 type Platform = typeof PLATFORMLAR[number]
@@ -31,7 +32,9 @@ export default function IcerikPage() {
         try {
             const res = await fetch(`/api/icerik?esnafId=${esnafId}&platform=${aktifPlatform}`)
             if (res.ok) setIcerikler(await res.json())
-        } catch { }
+        } catch {
+            toast.error('İçerikler yüklenemedi')
+        }
         setYukleniyor(false)
     }
 
@@ -43,7 +46,7 @@ export default function IcerikPage() {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ icerikId: icerik.id, durum: 'kopyalandi' }),
-        }).catch(() => { })
+        }).catch(() => { /* tracking best-effort */ })
         setTimeout(() => setKopyalananId(null), 2000)
     }
 
@@ -53,19 +56,22 @@ export default function IcerikPage() {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ icerikId: icerik.id, durum: 'paylasıldı' }),
-        }).catch(() => { })
+        }).catch(() => { /* tracking best-effort */ })
     }
 
     async function handleIcerikUret() {
         setUretiyor(true)
         try {
-            await fetch('/api/icerik/uret', {
+            const res = await fetch('/api/icerik/uret', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ esnafId, platform: aktifPlatform }),
             })
+            if (!res.ok) throw new Error()
             await fetchIcerikler()
-        } catch { }
+        } catch {
+            toast.error('İçerik üretilemedi. Tekrar deneyin.')
+        }
         setUretiyor(false)
     }
 

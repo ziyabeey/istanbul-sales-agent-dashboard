@@ -128,7 +128,7 @@ function PaletKart({
                 <div className="flex items-center justify-between">
                     <div>
                         <p className="text-foreground font-syne font-bold text-sm tracking-tight">{palet.ad}</p>
-                        <p className="text-muted-foreground-light text-[11px] mt-0.5 font-medium">{palet.aciklama}</p>
+                        <p className="text-muted-foreground text-[11px] mt-0.5 font-medium">{palet.aciklama}</p>
                     </div>
                     {secili && (
                         <div className="w-6 h-6 bg-rust rounded-full flex items-center

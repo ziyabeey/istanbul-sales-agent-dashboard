@@ -12,12 +12,12 @@ export async function GET(req: Request) {
         const esnaflar = await adminDb.collection('esnaflar').where('aktif', '==', true).get()
 
         for (const d of esnaflar.docs) {
-            await fiyatOnerisiGonder(d.id).catch(e => console.error(`Fiyat Onerisi Hatasi ${d.id}`, e))
+            await fiyatOnerisiGonder(d.id).catch(() => {})
         }
 
         return NextResponse.json({ ok: true })
     } catch (error) {
-        console.error('[CRON DINAMIK FIYAT HATA]', error)
+        // console.error('[CRON DINAMIK FIYAT HATA]', error)
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
     }
 }

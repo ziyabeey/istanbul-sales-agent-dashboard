@@ -69,7 +69,7 @@ export async function GET(req: Request) {
 
         return NextResponse.json(sonuc)
     } catch (err) {
-        console.error('[KONUSMALAR API]', err)
+        // console.error('[KONUSMALAR API]', err)
         return NextResponse.json({ error: 'DB Fetch Error' }, { status: 500 })
     }
 }

@@ -77,7 +77,7 @@ export async function POST(request: Request) {
             `Paket: ${escTg(paket)} | Tel: ${escTg(telefon)}\n` +
             `ID: <code>${docRef.id}</code>`
         ).catch((e: unknown) => {
-            console.error('[ADMIN ESNAF TELEGRAM]', e instanceof Error ? e.message : e)
+            // console.error('[ADMIN ESNAF TELEGRAM]', e instanceof Error ? e.message : e)
         })
 
         return NextResponse.json({ ok: true, id: docRef.id })

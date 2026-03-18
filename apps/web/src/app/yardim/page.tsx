@@ -2,9 +2,9 @@ import React from "react";
 import Navbar from "@/components/layout/Navbar";
 import FooterTrustSection from "@/components/sections/FooterTrustSection";
 import { Metadata } from "next";
-import { Search, Book, ShieldQuestion, Zap, LayoutTemplate } from "lucide-react";
-import Link from "next/link";
+import { Book, ShieldQuestion, Zap, LayoutTemplate } from "lucide-react";
 import SSSAccordion from "./SSSAccordion";
+import { waLink } from "@/data/iletisim";
 
 export const metadata: Metadata = {
     title: "Yardım Merkezi | kepenk.ai",
@@ -46,14 +46,9 @@ export default function YardimPage() {
                     Nasıl Yardımcı <span className="text-rust">Olabiliriz?</span>
                 </h1>
 
-                <div className="relative max-w-2xl mx-auto mt-8">
-                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-                    <input
-                        type="text"
-                        placeholder="Sorunuzu, anahtar kelimeyi veya aradığınız konuyu yazın..."
-                        className="w-full bg-background px-12 py-4 rounded-xl text-foreground font-medium focus:outline-none focus:ring-2 focus:ring-rust shadow-xl"
-                    />
-                </div>
+                <p className="text-muted-foreground text-lg mt-4 max-w-2xl mx-auto">
+                    Aşağıdaki rehberlerden veya sık sorulan sorulardan aradığınız cevabı bulabilirsiniz.
+                </p>
             </section>
 
             {/* Categories */}
@@ -70,14 +65,13 @@ export default function YardimPage() {
                                 <ul className="space-y-3">
                                     {cat.links.map((link, j) => (
                                         <li key={j}>
-                                            <a href="#" className="flex items-center text-muted-foreground hover:text-rust transition-colors text-sm font-medium group">
-                                                <Book className="w-4 h-4 mr-2 text-muted-foreground-light group-hover:text-rust" />
+                                            <span className="flex items-center text-muted-foreground text-sm font-medium">
+                                                <Book className="w-4 h-4 mr-2 text-muted-foreground" />
                                                 {link}
-                                            </a>
+                                            </span>
                                         </li>
                                     ))}
                                 </ul>
-                                <a href="#" className="inline-block mt-6 text-rust text-sm font-bold hover:underline">Tümünü Gör →</a>
                             </div>
                         ))}
                     </div>
@@ -88,14 +82,12 @@ export default function YardimPage() {
                             <h2 className="text-2xl md:text-3xl font-extrabold text-foreground font-syne mb-4">
                                 Aradığınızı Bulamadınız mı?
                             </h2>
-                            <p className="text-muted-foreground-light mb-8 max-w-lg mx-auto">
+                            <p className="text-muted-foreground mb-8 max-w-lg mx-auto">
                                 Destek mühendislerimiz spesifik sorunlarınıza çözüm üretmek için buradalar. Hemen bir bilet oluşturun.
                             </p>
-                            <Link href="/iletisim" passHref legacyBehavior>
-                                <a className="inline-block bg-rust hover:bg-rust-light text-foreground font-bold px-8 py-3 rounded-xl transition-colors">
-                                    Bize Ulaşın
-                                </a>
-                            </Link>
+                            <a href="/iletisim" className="inline-block bg-rust hover:bg-rust-light text-foreground font-bold px-8 py-3 rounded-xl transition-colors">
+                                Bize Ulaşın
+                            </a>
                         </div>
                         {/* Decorative blob */}
                         <div className="absolute -left-12 -bottom-12 w-48 h-48 bg-steel rounded-full mix-blend-screen filter blur-3xl opacity-20"></div>
@@ -117,7 +109,7 @@ export default function YardimPage() {
                         WhatsApp&#39;tan bize yaz, 1 saat içinde cevap verelim.
                     </p>
                     <a
-                        href="https://wa.me/908500000000"
+                        href={waLink()}
                         className="inline-block bg-green-600 text-foreground font-bold py-3 px-6 rounded-xl text-sm"
                     >
                         💬 WhatsApp Destek

@@ -9,7 +9,7 @@ import {
     X, Check, Crown, Zap, Star, Lock, Sparkles, Loader2,
     LogOut, User, AlertTriangle
 } from 'lucide-react'
-import { SABLONLAR } from '@/data/sablonlar'
+import { LEGACY_SABLONLAR as SABLONLAR } from '@/data/sablonlar'
 import { MODULLER } from '@/data/moduller'
 import { ortakCSS, ortakNav, ortakFooter } from '@/data/sablonlar/ortak'
 import { sektorProfiliBul, profilCssDegerleri } from '@/data/sektorKatalogu'

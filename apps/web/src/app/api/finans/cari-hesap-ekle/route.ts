@@ -53,7 +53,7 @@ export async function POST(req: Request) {
         return NextResponse.json({ ok: true, id: docRef.id })
     } catch (error: unknown) {
         const message = error instanceof Error ? error.message : 'Bilinmeyen hata'
-        console.error('[CARİ EKLEME HATASI]', message)
+        // console.error('[CARİ EKLEME HATASI]', message)
         return NextResponse.json({ error: 'Internal Error' }, { status: 500 })
     }
 }

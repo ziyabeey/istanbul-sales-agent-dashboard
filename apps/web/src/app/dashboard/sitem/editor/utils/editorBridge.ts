@@ -32,6 +32,91 @@ export function editorBridgeScript(): string {
     tooltip.style.cssText = 'position:absolute;pointer-events:none;z-index:99991;background:#1e293b;color:#fff;font:600 10px/1.2 system-ui,sans-serif;padding:2px 8px;border-radius:4px;display:none;white-space:nowrap;';
     document.body.appendChild(tooltip);
 
+    // ── Module Section Overlay ─────────────────────────────────────────────
+    const modulOverlay = document.createElement('div');
+    modulOverlay.id = '__ke_mod_ov';
+    modulOverlay.style.cssText = 'position:absolute;pointer-events:none;z-index:99988;border:2px dashed rgba(99,102,241,0.4);background:rgba(99,102,241,0.03);border-radius:6px;display:none;transition:all 0.12s ease;';
+    document.body.appendChild(modulOverlay);
+
+    const modulBadge = document.createElement('div');
+    modulBadge.id = '__ke_mod_badge';
+    modulBadge.style.cssText = 'position:absolute;pointer-events:auto;z-index:99993;display:none;background:#4f46e5;color:#fff;font:700 11px/1 system-ui,sans-serif;padding:5px 10px;border-radius:8px;cursor:pointer;box-shadow:0 4px 12px rgba(79,70,229,0.3);white-space:nowrap;display:none;align-items:center;gap:6px;';
+    modulBadge.innerHTML = '<span id="__ke_mod_name"></span><span style="opacity:0.6;font-size:10px">|</span><button id="__ke_mod_cfg" style="background:none;border:none;color:#fff;cursor:pointer;font:700 11px system-ui;padding:0" title="Ayarlar">⚙️</button><button id="__ke_mod_del" style="background:none;border:none;color:#fff;cursor:pointer;font:700 11px system-ui;padding:0" title="Sil">🗑️</button>';
+    document.body.appendChild(modulBadge);
+
+    let hoveredModul = null;
+
+    // Module name friendly labels
+    const MODUL_ADLARI = {
+        'harita-yol-tarifi': '📍 Harita',
+        'google-yorumlar': '⭐ Google Yorumlar',
+        'instagram-feed': '📸 Instagram',
+        'instagram-canli-akis': '📸 Instagram Canlı',
+        'calisma-saatleri': '🕐 Çalışma Saatleri',
+        'kampanya': '🔥 Kampanya',
+        'iletisim-formu': '📧 İletişim',
+        'galeri': '🖼️ Galeri',
+        'video-tanitim': '🎥 Video',
+        'sss': '❓ SSS',
+        'yorumlar-modul': '💬 Yorumlar',
+        'blog': '📝 Blog',
+        'ekip': '👥 Ekip',
+        'istatistik': '📊 İstatistik',
+        'cta-modul': '🎯 CTA',
+        'menu': '🍽️ Menü',
+        'harita': '📍 Harita',
+    };
+
+    function findModulSection(el) {
+        let node = el;
+        while (node && node !== document.body) {
+            if (node.dataset && node.dataset.modul) return node;
+            // Also check section IDs that match module names
+            if (node.id && node.tagName === 'SECTION') return node;
+            node = node.parentElement;
+        }
+        return null;
+    }
+
+    function getModulId(section) {
+        return section.dataset?.modul || section.id || '';
+    }
+
+    function showModulOverlay(section) {
+        if (section === hoveredModul) return;
+        hoveredModul = section;
+        const rect = section.getBoundingClientRect();
+        const sx = window.scrollX, sy = window.scrollY;
+        modulOverlay.style.left = (rect.left + sx - 2) + 'px';
+        modulOverlay.style.top = (rect.top + sy - 2) + 'px';
+        modulOverlay.style.width = (rect.width + 4) + 'px';
+        modulOverlay.style.height = (rect.height + 4) + 'px';
+        modulOverlay.style.display = 'block';
+
+        const modulId = getModulId(section);
+        const label = MODUL_ADLARI[modulId] || modulId;
+        document.getElementById('__ke_mod_name').textContent = label;
+        modulBadge.style.left = (rect.left + sx + 8) + 'px';
+        modulBadge.style.top = Math.max(4, rect.top + sy - 28) + 'px';
+        modulBadge.style.display = 'flex';
+
+        // Wire action buttons
+        document.getElementById('__ke_mod_cfg').onclick = function(ev) {
+            ev.stopPropagation();
+            window.parent.postMessage({ type: 'ke-modul-action', action: 'config', modulId: modulId }, '*');
+        };
+        document.getElementById('__ke_mod_del').onclick = function(ev) {
+            ev.stopPropagation();
+            window.parent.postMessage({ type: 'ke-modul-action', action: 'delete', modulId: modulId }, '*');
+        };
+    }
+
+    function hideModulOverlay() {
+        hoveredModul = null;
+        modulOverlay.style.display = 'none';
+        modulBadge.style.display = 'none';
+    }
+
     // ── Image Hover Overlay (camera badge) ─────────────────────────────────
     const imgOverlay = document.createElement('div');
     imgOverlay.id = '__ke_img_ov';
@@ -288,9 +373,19 @@ export function editorBridgeScript(): string {
         if (e.target.id?.startsWith('__ke_')) return;
         if (e.target === activeEl) return;
         showHover(e.target);
+        // Module section overlay
+        var section = findModulSection(e.target);
+        if (section) showModulOverlay(section);
+        else hideModulOverlay();
     });
 
-    document.addEventListener('mouseout', function() { hideHover(); });
+    document.addEventListener('mouseout', function(e) {
+        hideHover();
+        // Only hide modul overlay if leaving the section entirely
+        if (e.relatedTarget && !findModulSection(e.relatedTarget)) {
+            hideModulOverlay();
+        }
+    });
 
     // Click handler — routes to text OR image editing
     document.addEventListener('click', function(e) {
@@ -326,6 +421,9 @@ export function editorBridgeScript(): string {
 
         if (activeEl) finishEdit(true);
 
+        var section = findModulSection(el);
+        var modulId = section ? getModulId(section) : '';
+
         window.parent.postMessage({
             type: 'ke-contextmenu',
             x: e.clientX,
@@ -335,6 +433,7 @@ export function editorBridgeScript(): string {
             targetText: (el.textContent || '').trim().substring(0, 200),
             targetField: getFieldName(el),
             elementPath: getElementPath(el),
+            modulId: modulId,
         }, '*');
     }, true);
 
@@ -393,7 +492,7 @@ export function editorBridgeScript(): string {
         a.addEventListener('click', function(e) { e.preventDefault(); }, true);
     });
 
-    console.log('[Kepenk Editor] Inline editing + image editing active');
+    console.log('[Kepenk Editor] Inline editing + image editing + module overlays active');
 })();
 <\\/script>`;
 }

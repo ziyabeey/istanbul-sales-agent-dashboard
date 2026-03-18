@@ -4,8 +4,9 @@ export default function TopNavbar() {
     return (
         <nav className="kpnk-navbar">
             {/* Left */}
-            <a href="/dashboard/manage" className="kpnk-nav-logo">
-                kepenk<span style={{ color: '#DC4620', fontWeight: 900 }}>.ai</span>
+            <a href="/dashboard/manage" className="kpnk-nav-logo" style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                <span style={{ fontFamily: 'Syne, sans-serif', fontWeight: 800, letterSpacing: '-0.02em' }}><span style={{ color: '#DC4620' }}>K</span>EPENK</span>
+                <span style={{ fontSize: 9, fontWeight: 700, color: '#DC4620', background: 'rgba(220,70,32,0.12)', border: '1px solid rgba(220,70,32,0.25)', borderRadius: 999, padding: '1px 6px' }}>AI</span>
             </a>
             <div className="kpnk-nav-avatar" style={{ borderColor: '#DC4620' }}>YZ</div>
             <span className="kpnk-nav-site">I...</span>

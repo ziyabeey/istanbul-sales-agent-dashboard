@@ -134,7 +134,7 @@ export default function NasilCalisirPage() {
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-foreground font-syne tracking-tight mb-6 leading-[1.1]">
                             Nasıl Çalışır?
                         </h1>
-                        <p className="text-muted-foreground-light text-lg md:text-xl leading-relaxed mb-8">
+                        <p className="text-muted-foreground text-lg md:text-xl leading-relaxed mb-8">
                             Satın aldıktan sonra sırasıyla ne olur? <br className="hidden md:block" />
                             Toplam <span className="text-foreground font-bold">20 dakika</span> içinde 7/24 dijital çalışanınız aktif.
                         </p>
@@ -190,7 +190,7 @@ export default function NasilCalisirPage() {
                                         </span>
                                     </div>
                                     <h3 className="text-foreground font-syne font-bold text-xl mb-2">{adim.baslik}</h3>
-                                    <p className="text-muted-foreground-light text-sm leading-relaxed mb-4">{adim.aciklama}</p>
+                                    <p className="text-muted-foreground text-sm leading-relaxed mb-4">{adim.aciklama}</p>
                                     <ul className="space-y-1.5">
                                         {adim.detaylar.map((d, di) => (
                                             <li key={di} className="flex items-start gap-2 text-xs text-muted-foreground">
@@ -232,7 +232,7 @@ export default function NasilCalisirPage() {
                                     {hafta.hafta}
                                 </span>
                                 <h3 className="text-foreground font-bold text-sm mb-2">{hafta.baslik}</h3>
-                                <p className="text-muted-foreground-light text-xs leading-relaxed">{hafta.icerik}</p>
+                                <p className="text-muted-foreground text-xs leading-relaxed">{hafta.icerik}</p>
                             </motion.div>
                         ))}
                     </div>
@@ -260,12 +260,12 @@ export default function NasilCalisirPage() {
                                 >
                                     <span className="text-foreground font-semibold text-sm pr-4">{item.soru}</span>
                                     <ChevronDown
-                                        className={`w-5 h-5 text-muted-foreground-light flex-shrink-0 transition-transform ${acikSSS === i ? 'rotate-180' : ''}`}
+                                        className={`w-5 h-5 text-muted-foreground flex-shrink-0 transition-transform ${acikSSS === i ? 'rotate-180' : ''}`}
                                     />
                                 </button>
                                 {acikSSS === i && (
                                     <div className="px-5 pb-5">
-                                        <p className="text-muted-foreground-light text-sm leading-relaxed">{item.cevap}</p>
+                                        <p className="text-muted-foreground text-sm leading-relaxed">{item.cevap}</p>
                                     </div>
                                 )}
                             </div>
@@ -280,7 +280,7 @@ export default function NasilCalisirPage() {
                     <h2 className="text-3xl font-extrabold text-foreground font-syne mb-3">
                         Hazır mısınız?
                     </h2>
-                    <p className="text-muted-foreground-light mb-8">
+                    <p className="text-muted-foreground mb-8">
                         20 dakikada 7/24 dijital çalışanınız aktif. Kredi kartı gerekmez.
                     </p>
                     <Link href="/onboarding">

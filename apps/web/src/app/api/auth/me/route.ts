@@ -27,7 +27,7 @@ export async function GET() {
       durum: data.durum || 'aktif',
     })
   } catch (error: any) {
-    console.error('[AUTH ME]', error)
+    // console.error('[AUTH ME]', error)
     return NextResponse.json({ error: 'Sunucu hatası' }, { status: 500 })
   }
 }

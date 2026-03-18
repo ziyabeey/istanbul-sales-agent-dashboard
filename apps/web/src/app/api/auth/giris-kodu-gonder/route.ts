@@ -59,7 +59,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ ok: true, ad: esnaf.ad || '' })
   } catch (error: any) {
-    console.error('[GİRİŞ KODU GÖNDER]', error)
+    // console.error('[GİRİŞ KODU GÖNDER]', error)
     return NextResponse.json({ error: 'Sunucu hatası' }, { status: 500 })
   }
 }

@@ -36,24 +36,28 @@ export default function SSSAccordion() {
   const [acik, setAcik] = useState<number | null>(null)
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-2" role="region" aria-label="Sık Sorulan Sorular">
       {SSS.map((item, i) => (
         <div key={i} className="bg-card rounded-2xl overflow-hidden">
           <button
             onClick={() => setAcik(acik === i ? null : i)}
             className="w-full flex items-center justify-between px-5 py-4 text-left"
+            aria-expanded={acik === i}
+            aria-controls={`sss-panel-${i}`}
+            id={`sss-header-${i}`}
           >
             <p className="text-foreground font-syne font-semibold text-sm pr-4">
               {item.soru}
             </p>
             <span
               className={`text-rust text-xl transition-transform flex-shrink-0 ${acik === i ? 'rotate-45' : ''}`}
+              aria-hidden="true"
             >
               +
             </span>
           </button>
           {acik === i && (
-            <div className="px-5 pb-4">
+            <div className="px-5 pb-4" id={`sss-panel-${i}`} role="region" aria-labelledby={`sss-header-${i}`}>
               <p className="text-muted-foreground text-sm leading-relaxed">{item.cevap}</p>
             </div>
           )}

@@ -79,7 +79,7 @@ export async function POST(req: NextRequest) {
 
         await adisyonRef.set(adisyonData)
 
-        console.log(`[alman-odeme-callback] ✅ Adisyon oluşturuldu: ${adisyonRef.id} | Masa ${masaNo} | ${toplamKurus / 100} TL`)
+        // console.log(`[alman-odeme-callback] ✅ Adisyon oluşturuldu: ${adisyonRef.id} | Masa ${masaNo} | ${toplamKurus / 100} TL`)
 
         return NextResponse.json({
             basarili: true,
@@ -89,7 +89,7 @@ export async function POST(req: NextRequest) {
         })
 
     } catch (err: any) {
-        console.error('[alman-odeme-callback] Hata:', err)
+        // console.error('[alman-odeme-callback] Hata:', err)
         return NextResponse.json(
             { hata: 'Callback işlenemedi', mesaj: err?.message },
             { status: 500 }

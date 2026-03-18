@@ -9,30 +9,30 @@ import Analytics from '@/components/Analytics'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'kepenk.ai — Türk Esnafı İçin Yapay Zeka',
+  title: 'KPNK — Türk Esnafı İçin Yapay Zeka',
   description: 'Elektrikçiden kuaföre, restoranından avukata — her esnaf için AI ile üretilmiş web sitesi, otomatik sosyal medya içeriği ve müşteri yönetimi.',
-  keywords: 'esnaf dijital varlık, türk küçük işletme, yapay zeka web sitesi, esnaf instagram, kepenk ai',
+  keywords: 'esnaf dijital varlık, türk küçük işletme, yapay zeka web sitesi, esnaf instagram, kpnk ai',
   authors: [{ name: 'yzt.digital' }],
   metadataBase: new URL('https://kepenk.ai'),
   openGraph: {
-    title: 'kepenk.ai — Esnafın Dijital Ortağı',
+    title: 'KPNK — Esnafın Dijital Ortağı',
     description: 'AI ile dakikalar içinde web sitesi, her sabah içerik, 7/24 müşteri otomasyonu.',
     url: 'https://kepenk.ai',
-    siteName: 'kepenk.ai',
+    siteName: 'KPNK',
     locale: 'tr_TR',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'kepenk.ai — Türk Esnafı İçin Yapay Zeka',
+    title: 'KPNK — Türk Esnafı İçin Yapay Zeka',
     description: 'AI ile dakikalar içinde web sitesi, her sabah içerik, 7/24 müşteri otomasyonu.',
   },
   robots: { index: true, follow: true },
   manifest: '/manifest.json',
   appleWebApp: {
     capable: true,
-    statusBarStyle: 'black-translucent',
-    title: 'kepenk.ai',
+    statusBarStyle: 'default',
+    title: 'KPNK',
   },
 }
 
@@ -41,7 +41,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
-  themeColor: '#0E0D0B',
+  themeColor: '#FFFFFF',
   viewportFit: 'cover',
 }
 
@@ -73,7 +73,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "SoftwareApplication",
-              "name": "kepenk.ai",
+              "name": "KPNK",
               "applicationCategory": "BusinessApplication",
               "operatingSystem": "Web",
               "offers": {
@@ -83,7 +83,7 @@ export default function RootLayout({
                 "highPrice": "4990",
                 "offerCount": "3"
               },
-              "description": "Kepengini aç, gerisini biz hallederiz. Yapay zeka ile esnaf dijital dönüşümü.",
+              "description": "Türk esnafı için yapay zeka ile dijital dönüşüm.",
               "publisher": {
                 "@type": "Organization",
                 "name": "yzt.digital"
@@ -91,7 +91,7 @@ export default function RootLayout({
             })
           }}
         />
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
           <EsnafProvider>
             <OfflineToast />
             <CookieBanner />

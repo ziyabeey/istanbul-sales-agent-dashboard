@@ -8,6 +8,7 @@
  */
 
 import { useState, useEffect, useCallback } from 'react'
+import { toast } from 'sonner'
 import { motion, AnimatePresence, Reorder } from 'framer-motion'
 import { initializeApp, getApps } from 'firebase/app'
 import {
@@ -109,7 +110,7 @@ export default function B2BSatisKanban() {
                     adisyonId: siparisId,
                     tip: 'b2b_toptan',
                 }),
-            }).catch(() => {})
+            }).catch(() => { toast.error('Fatura oluşturulamadı') })
         }
     }, [esnafId])
 

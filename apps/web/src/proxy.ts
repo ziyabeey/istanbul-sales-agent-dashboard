@@ -14,7 +14,8 @@ export default auth((req) => {
     const url = req.nextUrl.clone()
     const hostname = req.headers.get('host') || ''
     const { pathname } = req.nextUrl
-    const isLoggedIn = !!req.auth
+    // NextAuth veya custom JWT session (kepenk_session cookie)
+    const isLoggedIn = !!req.auth || !!req.cookies.get('kepenk_session')?.value
 
     // ═══ SUBDOMAIN ROUTING ═══
 
@@ -56,6 +57,18 @@ export default auth((req) => {
         }
     }
 
+    // ── destek.kepenk.ai → Destek/Yardım Merkezi ──
+    if (subdomain === 'destek') {
+        if (pathname === '/' || pathname === '') {
+            url.pathname = '/destek'
+            return NextResponse.rewrite(url)
+        }
+        if (!pathname.startsWith('/destek')) {
+            url.pathname = `/destek${pathname}`
+            return NextResponse.rewrite(url)
+        }
+    }
+
     // ── Redirect old editor URL to edit.kepenk.ai ──
     if (
         pathname.startsWith('/dashboard/sitem/editor') &&
@@ -77,15 +90,15 @@ export default auth((req) => {
         }
     }
 
-    // Dashboard koruması — giriş yapılmamışsa login'e yönlendir
+    // Dashboard koruması — giriş yapılmamışsa /giris'e yönlendir
     if (pathname.startsWith("/dashboard")) {
         if (!isLoggedIn) {
-            return Response.redirect(new URL(`/login?callbackUrl=${pathname}`, req.nextUrl))
+            return Response.redirect(new URL(`/giris?callbackUrl=${pathname}`, req.nextUrl))
         }
     }
 
-    // Login sayfasında zaten giriş yapmışsa dashboard'a yönlendir
-    if (pathname.startsWith("/login")) {
+    // Giriş sayfasında zaten giriş yapmışsa dashboard'a yönlendir
+    if (pathname.startsWith("/giris")) {
         if (isLoggedIn) {
             return Response.redirect(new URL("/dashboard/manage", req.nextUrl))
         }

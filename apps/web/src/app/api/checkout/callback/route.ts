@@ -48,7 +48,7 @@ export async function POST(request: Request) {
     return redirectToResult('hata', sonuc.hataMesaji || 'Ödeme başarısız oldu')
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : 'Bilinmeyen hata'
-    console.error('[CHECKOUT CALLBACK HATA]', message)
+    // console.error('[CHECKOUT CALLBACK HATA]', message)
     return redirectToResult('hata', 'Beklenmeyen bir hata oluştu')
   }
 }

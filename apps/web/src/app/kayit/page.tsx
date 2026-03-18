@@ -4,8 +4,8 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 
 /* ═══════════════════════════════════════════════
-   kepenk.ai — Kayıt Ol (Sign-Up)
-   Kepenk Registration Page
+   KPNK — Kayıt Ol (Sign-Up)
+   KPNK Registration Page
    ═══════════════════════════════════════════════ */
 
 export default function KayitPage() {
@@ -34,8 +34,8 @@ export default function KayitPage() {
                 setHata(data.error || 'Kayıt sırasında bir hata oluştu')
                 return
             }
-            // Başarılı — onboarding'e yönlendir
-            router.push(`/onboarding?email=${encodeURIComponent(email)}`)
+            // Başarılı — fiyat seçimine yönlendir (ödeme sonrası onboarding)
+            router.push(`/fiyatlar?email=${encodeURIComponent(email)}`)
         } catch {
             setHata('Bağlantı hatası. Lütfen tekrar deneyin.')
         } finally {
@@ -63,42 +63,43 @@ export default function KayitPage() {
             {/* Decorative Background Images */}
             <div style={S.decoLeft}>
                 <div style={{ ...S.decoCard, transform: 'rotate(-12deg)', top: 60, left: -40 }}>
-                    <div style={{ width: 180, height: 240, borderRadius: 12, background: 'linear-gradient(135deg, #1a1a2e, #16213e)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 8px 32px rgba(0,0,0,0.15)' }}>
+                    <div style={{ width: 180, height: 240, borderRadius: 12, background: 'linear-gradient(135deg, #E0E7FF, #EDE9FE)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 8px 32px rgba(0,0,0,0.15)' }}>
                         <span style={{ fontSize: 36, opacity: 0.3 }}>📱</span>
                     </div>
                 </div>
                 <div style={{ ...S.decoCard, transform: 'rotate(8deg)', top: 320, left: 20 }}>
-                    <div style={{ width: 160, height: 120, borderRadius: 12, background: 'linear-gradient(135deg, #533483, #0f3460)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 8px 32px rgba(0,0,0,0.15)' }}>
+                    <div style={{ width: 160, height: 120, borderRadius: 12, background: 'linear-gradient(135deg, #EDE9FE, #DBEAFE)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 8px 32px rgba(0,0,0,0.15)' }}>
                         <span style={{ fontSize: 28, opacity: 0.3 }}>🎨</span>
                     </div>
                 </div>
                 <div style={{ ...S.decoCard, transform: 'rotate(-5deg)', top: 480, left: -20 }}>
-                    <div style={{ width: 140, height: 200, borderRadius: 12, background: 'linear-gradient(135deg, #2b2d42, #8d6e63)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 8px 32px rgba(0,0,0,0.15)' }}>
+                    <div style={{ width: 140, height: 200, borderRadius: 12, background: 'linear-gradient(135deg, #F3F4F6, #FEF3C7)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 8px 32px rgba(0,0,0,0.15)' }}>
                         <span style={{ fontSize: 28, opacity: 0.3 }}>📖</span>
                     </div>
                 </div>
             </div>
             <div style={S.decoRight}>
                 <div style={{ ...S.decoCard, transform: 'rotate(15deg)', top: 80, right: -30 }}>
-                    <div style={{ width: 200, height: 150, borderRadius: 12, background: 'linear-gradient(135deg, #0f3460, #1a1a2e)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 8px 32px rgba(0,0,0,0.15)' }}>
+                    <div style={{ width: 200, height: 150, borderRadius: 12, background: 'linear-gradient(135deg, #DBEAFE, #E0E7FF)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 8px 32px rgba(0,0,0,0.15)' }}>
                         <span style={{ fontSize: 36, opacity: 0.3 }}>💻</span>
                     </div>
                 </div>
                 <div style={{ ...S.decoCard, transform: 'rotate(-10deg)', top: 280, right: 10 }}>
-                    <div style={{ width: 160, height: 220, borderRadius: 12, background: 'linear-gradient(135deg, #DC4620, #FF6B45)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 8px 32px rgba(0,0,0,0.15)' }}>
+                    <div style={{ width: 160, height: 220, borderRadius: 12, background: 'linear-gradient(135deg, #6366f1, #818cf8)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 8px 32px rgba(0,0,0,0.15)' }}>
                         <span style={{ fontSize: 28, opacity: 0.3 }}>🛍️</span>
                     </div>
                 </div>
                 <div style={{ ...S.decoCard, transform: 'rotate(7deg)', top: 520, right: -10 }}>
-                    <div style={{ width: 140, height: 110, borderRadius: 12, background: 'linear-gradient(135deg, #2d3436, #636e72)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 8px 32px rgba(0,0,0,0.15)' }}>
+                    <div style={{ width: 140, height: 110, borderRadius: 12, background: 'linear-gradient(135deg, #F3F4F6, #E5E7EB)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 8px 32px rgba(0,0,0,0.15)' }}>
                         <span style={{ fontSize: 24, opacity: 0.3 }}>📊</span>
                     </div>
                 </div>
             </div>
 
             {/* Top Left Logo */}
-            <a href="/" style={S.topLogo}>
-                kepenk<span style={{ color: '#DC4620' }}>.ai</span>
+            <a href="/" style={{ ...S.topLogo, display: 'flex', alignItems: 'center', gap: 6 }}>
+                <span style={{ color: '#6366f1', fontWeight: 800 }}>KPNK</span>
+                <span style={{ fontSize: 9, fontWeight: 700, color: '#6366f1', background: 'rgba(99,102,241,0.12)', border: '1px solid rgba(99,102,241,0.25)', borderRadius: 999, padding: '1px 6px' }}>AI</span>
             </a>
 
             {/* Center Card */}
@@ -141,14 +142,14 @@ export default function KayitPage() {
                         onKeyDown={e => e.key === 'Enter' && handleEmailSubmit()}
                         style={{
                             ...S.input,
-                            borderColor: focused ? '#DC4620' : '#d1d1d1',
+                            borderColor: focused ? '#6366f1' : '#d1d1d1',
                         }}
                     />
                     <label style={{
                         ...S.floatLabel,
                         top: (focused || email) ? -8 : 14,
                         fontSize: (focused || email) ? 11 : 14,
-                        color: focused ? '#DC4620' : '#868686',
+                        color: focused ? '#6366f1' : '#868686',
                         background: (focused || email) ? '#fff' : 'transparent',
                         padding: (focused || email) ? '0 4px' : '0',
                     }}>

@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useEsnaf } from '@/context/EsnafContext'
+import { toast } from 'sonner'
 
 interface DomainOnerisi {
     domain: string
@@ -31,16 +32,20 @@ export default function DomainPage() {
     useEffect(() => {
         if (!esnafId) return
 
-        fetch(`/api/esnaf/${esnafId}`, { credentials: 'include' }).then(r => r.json()).then(data => {
-            setPaket(data.paket || 'TEMEL')
-            if (data.domain?.domain) {
-                setMevcutDomain(data.domain.domain)
-                fetch(`/api/domain/durum?domain=${data.domain.domain}`)
-                    .then(r => r.json())
-                    .then(setDomainDurum)
-            }
-            if (data.domain?.oneriler) setOneriler(data.domain.oneriler)
-        })
+        fetch(`/api/esnaf/${esnafId}`, { credentials: 'include' })
+            .then(r => { if (!r.ok) throw new Error(); return r.json() })
+            .then(data => {
+                setPaket(data.paket || 'TEMEL')
+                if (data.domain?.domain) {
+                    setMevcutDomain(data.domain.domain)
+                    fetch(`/api/domain/durum?domain=${data.domain.domain}`)
+                        .then(r => { if (!r.ok) throw new Error(); return r.json() })
+                        .then(setDomainDurum)
+                        .catch(() => { toast.error('Domain durumu yüklenemedi') })
+                }
+                if (data.domain?.oneriler) setOneriler(data.domain.oneriler)
+            })
+            .catch(() => { toast.error('Domain bilgileri yüklenemedi') })
     }, [esnafId])
 
     const isPremium = ['PREMIUM', 'PREMIUMPLUS'].includes(paket)

@@ -119,7 +119,7 @@ export async function GET(request: Request) {
 
             } catch (err: any) {
                 hatali++
-                console.error(`[WORKER] ❌ İşlem ${id}:`, err.message)
+                // console.error(`[WORKER] ❌ İşlem ${id}:`, err.message)
                 await islemHata(id, err.message)
 
                 // 3. denemede → DLQ
@@ -151,7 +151,7 @@ export async function GET(request: Request) {
             mesaj: `${islenen}/${islemler.length} işlem tamamlandı (${sure}s)`,
         })
     } catch (error: any) {
-        console.error('[WORKER HATA]', error)
+        // console.error('[WORKER HATA]', error)
         return NextResponse.json({ error: error.message }, { status: 500 })
     }
 }

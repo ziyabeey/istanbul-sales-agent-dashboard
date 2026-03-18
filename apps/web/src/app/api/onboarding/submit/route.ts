@@ -12,9 +12,9 @@ export async function POST(req: Request) {
         }
 
         // 1. Ajan 7'yi çağır: Kısıtlı veriden muazzam JSON site içeriği üret
-        console.log(`[OnboardingAPI] Sektör: ${sektor} için Ajan 7 tetikleniyor...`);
+        // console.log(`[OnboardingAPI] Sektör: ${sektor} için Ajan 7 tetikleniyor...`);
         const generatedContent = await agent7.generateSiteContent(sektor, answers);
-        console.log('[OnboardingAPI] Ajan 7 içerik üretimini tamamladı.');
+        // console.log('[OnboardingAPI] Ajan 7 içerik üretimini tamamladı.');
 
         // 2. İleride (veya simüle edilmiş) Firestore kaydı
         // const businessRef = adminDb.collection('businesses').doc();
@@ -34,7 +34,7 @@ export async function POST(req: Request) {
         });
 
     } catch (error) {
-        console.error('[OnboardingAPI] Beklenmeyen hata:', error);
+        // console.error('[OnboardingAPI] Beklenmeyen hata:', error);
         return NextResponse.json({ error: 'İç sunucu hatası.' }, { status: 500 });
     }
 }

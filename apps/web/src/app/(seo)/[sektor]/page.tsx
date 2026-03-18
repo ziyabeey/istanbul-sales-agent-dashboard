@@ -103,7 +103,7 @@ export default async function SektorPage({ params }: Props) {
                                 {heroBaslik}
                             </h1>
 
-                            <p className="text-lg text-muted-foreground-light mb-8 max-w-lg leading-relaxed">
+                            <p className="text-lg text-muted-foreground mb-8 max-w-lg leading-relaxed">
                                 {altBaslik}
                             </p>
 
@@ -116,7 +116,7 @@ export default async function SektorPage({ params }: Props) {
                                 ].map(({ v, l, accent }) => (
                                     <div key={l}>
                                         <div className={`text-2xl font-bold font-syne ${accent ? 'text-rust' : 'text-foreground'}`}>{v}</div>
-                                        <div className="text-xs text-muted-foreground-light">{l}</div>
+                                        <div className="text-xs text-muted-foreground">{l}</div>
                                     </div>
                                 ))}
                             </div>
@@ -128,13 +128,13 @@ export default async function SektorPage({ params }: Props) {
                                     </Button>
                                 </Link>
                                 <Link href="/#pricing">
-                                    <Button size="lg" variant="outline" className="w-full sm:w-auto border-white/20 text-foreground hover:bg-white/10 hover:text-foreground">
+                                    <Button size="lg" variant="outline" className="w-full sm:w-auto border-foreground/20 text-foreground hover:bg-foreground/10 hover:text-foreground">
                                         Fiyatları Gör
                                     </Button>
                                 </Link>
                             </div>
 
-                            <div className="flex flex-wrap items-center gap-4 text-xs text-muted-foreground-light">
+                            <div className="flex flex-wrap items-center gap-4 text-xs text-muted-foreground">
                                 {['Anında Kurulum', '30 Gün İade Garantisi', 'Sözleşme Yok'].map(item => (
                                     <span key={item} className="flex items-center gap-1.5">
                                         <CheckCircle className="w-3.5 h-3.5 text-rust flex-shrink-0" />
@@ -146,7 +146,7 @@ export default async function SektorPage({ params }: Props) {
 
                         {/* Sağ: WhatsApp Mockup */}
                         <div className="relative">
-                            <div className="absolute -top-4 -right-2 sm:-right-6 bg-rust text-foreground rounded-2xl px-4 py-2.5 shadow-xl z-20 flex items-center gap-2">
+                            <div className="absolute -top-4 -right-2 sm:-right-6 bg-rust text-white rounded-2xl px-4 py-2.5 shadow-xl z-20 flex items-center gap-2">
                                 <span className="text-lg">🔔</span>
                                 <div>
                                     <div className="text-xs font-bold">Yeni Müşteri Mesajı!</div>
@@ -154,8 +154,8 @@ export default async function SektorPage({ params }: Props) {
                                 </div>
                             </div>
 
-                            <div className="bg-white/5 border border-white/10 rounded-3xl p-6 shadow-2xl backdrop-blur-sm">
-                                <div className="flex items-center gap-3 pb-4 border-b border-white/10 mb-4">
+                            <div className="bg-white border border-foreground/10 shadow-sm rounded-3xl p-6 shadow-2xl backdrop-blur-sm">
+                                <div className="flex items-center gap-3 pb-4 border-b border-foreground/10 mb-4">
                                     <div className="w-10 h-10 rounded-full bg-rust/20 border border-rust/30 flex items-center justify-center text-xl">
                                         {sektor.emoji}
                                     </div>
@@ -163,31 +163,31 @@ export default async function SektorPage({ params }: Props) {
                                         <div className="text-foreground font-semibold text-sm">kepenk.ai {sektor.ad} Asistanı</div>
                                         <div className="flex items-center gap-1.5">
                                             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                                            <span className="text-muted-foreground-light text-xs">Çevrimiçi · 7/24 aktif</span>
+                                            <span className="text-muted-foreground text-xs">Çevrimiçi · 7/24 aktif</span>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div className="space-y-3">
                                     <div className="flex justify-start">
-                                        <div className="bg-white/10 text-foreground/90 rounded-2xl rounded-tl-sm px-4 py-3 max-w-[82%] text-sm leading-relaxed">
+                                        <div className="bg-foreground/10 text-foreground/90 rounded-2xl rounded-tl-sm px-4 py-3 max-w-[82%] text-sm leading-relaxed">
                                             {diyalog.musteri}
                                         </div>
                                     </div>
                                     <div className="flex justify-end">
-                                        <div className="bg-rust text-foreground rounded-2xl rounded-tr-sm px-4 py-3 max-w-[85%] text-sm leading-relaxed">
+                                        <div className="bg-rust text-white rounded-2xl rounded-tr-sm px-4 py-3 max-w-[85%] text-sm leading-relaxed">
                                             {diyalog.ai}
                                         </div>
                                     </div>
                                     <div className="flex justify-start">
-                                        <div className="bg-white/10 text-foreground/90 rounded-2xl rounded-tl-sm px-4 py-3 max-w-[80%] text-sm">
+                                        <div className="bg-foreground/10 text-foreground/90 rounded-2xl rounded-tl-sm px-4 py-3 max-w-[80%] text-sm">
                                             Teşekkürler, harika! 🙏
                                         </div>
                                     </div>
                                 </div>
 
-                                <div className="mt-4 pt-4 border-t border-white/10 text-center">
-                                    <span className="text-muted-foreground-light text-xs">✨ AI asistanınız 7/24 yanıt veriyor</span>
+                                <div className="mt-4 pt-4 border-t border-foreground/10 text-center">
+                                    <span className="text-muted-foreground text-xs">✨ AI asistanınız 7/24 yanıt veriyor</span>
                                 </div>
                             </div>
                         </div>
@@ -211,14 +211,14 @@ export default async function SektorPage({ params }: Props) {
                                     >
                                         {PAKET_ETIKET[paketId]}
                                     </span>
-                                    <span className="text-muted-foreground-light text-sm">{sektor.ad} işletmeleri için en çok tercih edilen</span>
+                                    <span className="text-muted-foreground text-sm">{sektor.ad} işletmeleri için en çok tercih edilen</span>
                                 </div>
 
                                 <h2 className="text-foreground font-syne font-extrabold text-2xl md:text-3xl mb-2">
                                     {paket.name} Paketi
                                     <span className="text-rust ml-2">₺{paket.aylikFiyat.toLocaleString('tr-TR')}/ay</span>
                                 </h2>
-                                <p className="text-muted-foreground-light text-sm mb-6">{paket.teknoloji}</p>
+                                <p className="text-muted-foreground text-sm mb-6">{paket.teknoloji}</p>
 
                                 <ul className="space-y-2.5 mb-6">
                                     {paket.ozellikler.slice(0,3).map((f: string, i: number) => (
@@ -236,23 +236,23 @@ export default async function SektorPage({ params }: Props) {
                                         </Button>
                                     </Link>
                                     <Link href="/#pricing">
-                                        <Button variant="ghost" className="w-full sm:w-auto text-muted-foreground-light hover:text-foreground text-sm">
+                                        <Button variant="ghost" className="w-full sm:w-auto text-muted-foreground hover:text-foreground text-sm">
                                             Diğer paketleri karşılaştır
                                         </Button>
                                     </Link>
                                 </div>
                             </div>
 
-                            <div className="md:w-56 bg-white/5 border border-white/10 rounded-2xl p-5 flex-shrink-0">
+                            <div className="md:w-56 bg-white border border-foreground/10 shadow-sm rounded-2xl p-5 flex-shrink-0">
                                 <p className="text-foreground font-bold text-sm mb-3">Yıllık alırsan</p>
                                 <div className="text-3xl font-extrabold font-syne" style={{ color: PAKET_RENK[paketId] }}>
                                     ₺{paket.yillikFiyatAylik.toLocaleString('tr-TR')}
-                                    <span className="text-sm font-normal text-muted-foreground-light">/ay</span>
+                                    <span className="text-sm font-normal text-muted-foreground">/ay</span>
                                 </div>
-                                <p className="text-muted-foreground-light text-xs mt-1">%15 tasarruf · ₺{paket.fiyatYillik?.toLocaleString('tr-TR')}/yıl</p>
-                                <div className="mt-4 pt-4 border-t border-white/10">
-                                    <p className="text-xs text-muted-foreground-light">🛡️ 30 Gün Para İade Garantisi</p>
-                                    <p className="text-xs text-muted-foreground-light mt-1">❌ Kredi kartı gerekmez</p>
+                                <p className="text-muted-foreground text-xs mt-1">%15 tasarruf · ₺{paket.fiyatYillik?.toLocaleString('tr-TR')}/yıl</p>
+                                <div className="mt-4 pt-4 border-t border-foreground/10">
+                                    <p className="text-xs text-muted-foreground">🛡️ 30 Gün Para İade Garantisi</p>
+                                    <p className="text-xs text-muted-foreground mt-1">❌ Kredi kartı gerekmez</p>
                                 </div>
                             </div>
                         </div>
@@ -277,7 +277,7 @@ export default async function SektorPage({ params }: Props) {
                                 return (
                                     <div
                                         key={modul.id}
-                                        className="bg-white/5 border border-white/10 rounded-2xl p-5 hover:border-rust/30 transition-colors group"
+                                        className="bg-white border border-foreground/10 shadow-sm rounded-2xl p-5 hover:border-rust/30 transition-colors group"
                                     >
                                         <div className="flex items-start justify-between mb-3">
                                             <h3 className="text-foreground font-bold text-sm group-hover:text-rust transition-colors">{modul.ad}</h3>
@@ -288,7 +288,7 @@ export default async function SektorPage({ params }: Props) {
                                                 {modul.minPaket}
                                             </span>
                                         </div>
-                                        <p className="text-muted-foreground-light text-xs leading-relaxed">{modul.aciklama}</p>
+                                        <p className="text-muted-foreground text-xs leading-relaxed">{modul.aciklama}</p>
                                     </div>
                                 );
                             })}
@@ -313,7 +313,7 @@ export default async function SektorPage({ params }: Props) {
                                 <h2 className="text-2xl md:text-3xl font-extrabold text-foreground font-syne mb-4">
                                     AI Asistanınız {sektor.ad} Dilini Konuşur
                                 </h2>
-                                <p className="text-muted-foreground-light leading-relaxed mb-6">
+                                <p className="text-muted-foreground leading-relaxed mb-6">
                                     {sektor.knowHow}
                                 </p>
                                 {sektor.aiDavranisi && (
@@ -322,7 +322,7 @@ export default async function SektorPage({ params }: Props) {
                                             <Brain className="w-4 h-4 text-rust" />
                                             <span className="text-foreground font-bold text-sm">AI Davranış Biçimi</span>
                                         </div>
-                                        <p className="text-muted-foreground-light text-sm leading-relaxed">{sektor.aiDavranisi}</p>
+                                        <p className="text-muted-foreground text-sm leading-relaxed">{sektor.aiDavranisi}</p>
                                     </div>
                                 )}
                             </div>
@@ -334,12 +334,12 @@ export default async function SektorPage({ params }: Props) {
                                     { icon: TrendingUp, title: 'Otomatik İçerik', desc: 'Her hafta Instagram ve Google için hazır içerik. Siz sadece onaylarsınız.' },
                                     { icon: Zap, title: 'Anında Kurulum', desc: '10 dakikada hazır. Teknik bilgi gerekmez, sözleşme yok.' },
                                 ].map(({ icon: Icon, title, desc }) => (
-                                    <div key={title} className="bg-white/5 border border-white/10 rounded-2xl p-5 hover:border-rust/30 transition-colors">
+                                    <div key={title} className="bg-white border border-foreground/10 shadow-sm rounded-2xl p-5 hover:border-rust/30 transition-colors">
                                         <div className="w-9 h-9 rounded-xl bg-rust/15 flex items-center justify-center mb-3">
                                             <Icon className="w-4 h-4 text-rust" />
                                         </div>
                                         <h3 className="text-foreground font-bold text-sm mb-1.5">{title}</h3>
-                                        <p className="text-muted-foreground-light text-xs leading-relaxed">{desc}</p>
+                                        <p className="text-muted-foreground text-xs leading-relaxed">{desc}</p>
                                     </div>
                                 ))}
                             </div>
@@ -356,7 +356,7 @@ export default async function SektorPage({ params }: Props) {
                     </h2>
                     <div className="flex flex-wrap justify-center gap-2">
                         {sektor.hizmetler.map((hizmet, i) => (
-                            <div key={i} className="bg-white/5 border border-white/10 rounded-full px-4 py-2 hover:border-rust/30 transition-colors">
+                            <div key={i} className="bg-white border border-foreground/10 shadow-sm rounded-full px-4 py-2 hover:border-rust/30 transition-colors">
                                 <span className="text-foreground/80 text-sm font-medium">{hizmet}</span>
                             </div>
                         ))}
@@ -374,7 +374,7 @@ export default async function SektorPage({ params }: Props) {
                             </div>
                             <div>
                                 <h3 className="text-foreground font-bold text-base">kepenk Tedarik Ağı</h3>
-                                <p className="text-muted-foreground-light text-sm">
+                                <p className="text-muted-foreground text-sm">
                                     {sektor.ad} için malzemeleri doğrulanmış tedarikçilerden %20-35 indirimli alın.
                                     kepenk güvencesiyle sipariş verin.
                                 </p>
@@ -396,7 +396,7 @@ export default async function SektorPage({ params }: Props) {
                     <h2 className="text-3xl md:text-4xl font-extrabold text-foreground font-syne mb-4">
                         {sektor.ad} İşletmenizi Büyütmeye Hazır Mısınız?
                     </h2>
-                    <p className="text-muted-foreground-light text-lg mb-2">
+                    <p className="text-muted-foreground text-lg mb-2">
                         10 dakikada kurulumu tamamlayın. İlk 30 gün para iade garantisi.
                     </p>
                     <p className="text-muted-foreground text-sm mb-8">

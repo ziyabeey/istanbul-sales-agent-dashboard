@@ -84,14 +84,14 @@ export async function POST(request: Request) {
             }
         }
 
-        console.log(`[EDITOR] ${publish ? '🚀 Yayınlandı' : '💾 Kaydedildi'}: ${esnafId}`)
+        // console.log(`[EDITOR] ${publish ? '🚀 Yayınlandı' : '💾 Kaydedildi'}: ${esnafId}`)
 
         return NextResponse.json({
             ok: true,
             mesaj: publish ? 'Site başarıyla yayınlandı' : 'Taslak kaydedildi',
         })
     } catch (error: any) {
-        console.error('[EDITOR] Hata:', error.message)
+        // console.error('[EDITOR] Hata:', error.message)
         return NextResponse.json(
             { error: 'Kaydetme başarısız', detay: error.message },
             { status: 500 }

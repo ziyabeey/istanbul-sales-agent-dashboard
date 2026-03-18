@@ -36,7 +36,7 @@ export default function B2BPage() {
             fetch(`/api/b2b/siparisler?esnafId=${esnafId}`).then(r => r.ok ? r.json() : []),
         ])
             .then(([t, s]) => { setToptancilar(t); setSiparisler(s) })
-            .catch(() => {})
+            .catch(() => { toast.error('Tedarik verileri yüklenemedi') })
             .finally(() => setLoading(false))
     }, [esnafId, erisimVar])
 

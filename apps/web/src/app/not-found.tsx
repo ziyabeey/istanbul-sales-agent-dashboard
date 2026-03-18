@@ -9,7 +9,7 @@ export default function NotFound() {
             <h1 className="text-foreground font-syne font-extrabold text-2xl mb-2">
                 Sayfa bulunamadı
             </h1>
-            <p className="text-muted-foreground-light mb-10 font-lora italic max-w-md">
+            <p className="text-muted-foreground mb-10 font-lora italic max-w-md">
                 &ldquo;Kepengini kapamışız sanırım.&rdquo; Aradığınız sayfa taşınmış veya kaldırılmış olabilir.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
@@ -22,7 +22,7 @@ export default function NotFound() {
                     </Button>
                 </Link>
                 <Link href="/dashboard">
-                    <Button variant="ghost" size="lg" className="text-muted-foreground-light hover:text-foreground">
+                    <Button variant="ghost" size="lg" className="text-muted-foreground hover:text-foreground">
                         Dashboard
                     </Button>
                 </Link>

@@ -48,7 +48,7 @@ async function esnafaWhatsAppBildir(params: BildirimParams): Promise<void> {
         await params.randevuRef.update({ 'bildirimGonderildi.esnafWhatsapp': true })
     } catch (e: unknown) {
         const message = e instanceof Error ? e.message : 'Bilinmeyen hata'
-        console.error('[RANDEVU] WhatsApp bildirimi gönderilemedi:', message)
+        // console.error('[RANDEVU] WhatsApp bildirimi gönderilemedi:', message)
     }
 }
 
@@ -78,7 +78,7 @@ async function musteriyeEmailBildir(params: BildirimParams): Promise<void> {
         await params.randevuRef.update({ 'bildirimGonderildi.musteriEmail': true })
     } catch (e: unknown) {
         const message = e instanceof Error ? e.message : 'Bilinmeyen hata'
-        console.error('[RANDEVU] Email gönderilemedi:', message)
+        // console.error('[RANDEVU] Email gönderilemedi:', message)
     }
 }
 
@@ -90,7 +90,7 @@ function operatorTelegramBildir(params: BildirimParams): void {
         `✂️ ${escapeHtml(params.hizmet)} | ${params.trTarih} ${params.saat}\n` +
         `ID: <code>${params.randevuId}</code>`
     ).catch((e: unknown) => {
-        console.error('[RANDEVU] Telegram gönderilemedi:', e)
+        // console.error('[RANDEVU] Telegram gönderilemedi:', e)
     })
 }
 
@@ -183,7 +183,7 @@ export async function POST(request: Request) {
         })
     } catch (error: unknown) {
         const message = error instanceof Error ? error.message : 'Bilinmeyen hata'
-        console.error('[RANDEVU POST]', message)
+        // console.error('[RANDEVU POST]', message)
         return NextResponse.json({ error: 'Randevu oluşturulamadı' }, { status: 500 })
     }
 }

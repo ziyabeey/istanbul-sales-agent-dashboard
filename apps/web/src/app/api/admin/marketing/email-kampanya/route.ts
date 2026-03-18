@@ -3,7 +3,7 @@ import { adminDb } from '@/lib/firebaseAdmin'
 import { Resend } from 'resend'
 
 const ADMIN_TOKEN = process.env.ADMIN_SECRET_TOKEN!
-const resend = new Resend(process.env.RESEND_API_KEY || 're_mock_key')
+const resend = new Resend(process.env.RESEND_API_KEY || 're_mock_key_for_build')
 const FROM_EMAIL = process.env.FROM_EMAIL || 'kepenk.ai <noreply@kepenk.ai>'
 
 /**
@@ -55,7 +55,7 @@ export async function POST(request: Request) {
             )
             gonderilen += batch.length
         } catch (e) {
-            console.error('[EMAIL KAMPANYA] batch hata:', e)
+            // console.error('[EMAIL KAMPANYA] batch hata:', e)
             hata += batch.length
         }
 

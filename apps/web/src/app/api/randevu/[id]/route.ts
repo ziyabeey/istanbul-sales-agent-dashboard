@@ -52,7 +52,7 @@ export async function PATCH(
                 `randevu_${durum}`
             )
         } catch (e: any) {
-            console.error('[RANDEVU] Müşteri WhatsApp bildirimi gönderilemedi:', e.message)
+            // console.error('[RANDEVU] Müşteri WhatsApp bildirimi gönderilemedi:', e.message)
         }
 
         // Email müşteriye
@@ -76,7 +76,7 @@ export async function PATCH(
                     </div>`,
                 })
             } catch (e: any) {
-                console.error('[RANDEVU] Onay emaili gönderilemedi:', e.message)
+                // console.error('[RANDEVU] Onay emaili gönderilemedi:', e.message)
             }
         }
 
@@ -85,11 +85,11 @@ export async function PATCH(
             `📅 <b>Randevu ${durum === 'onaylandi' ? 'Onaylandı ✅' : durum === 'iptal' ? 'İptal ❌' : 'Tamamlandı 🎉'}</b>\n` +
             `${isletmeAdi} | ${randevu.musteriAd}\n` +
             `${randevu.tarih} ${randevu.saat}`
-        ).catch(console.error)
+        ).catch(() => {})
 
         return NextResponse.json({ ok: true, durum })
     } catch (error: any) {
-        console.error('[RANDEVU PATCH]', error)
+        // console.error('[RANDEVU PATCH]', error)
         return NextResponse.json({ error: 'Güncelleme başarısız' }, { status: 500 })
     }
 }
@@ -112,7 +112,7 @@ export async function DELETE(
 
         return NextResponse.json({ ok: true, mesaj: 'Randevu silindi' })
     } catch (error: any) {
-        console.error('[RANDEVU DELETE]', error)
+        // console.error('[RANDEVU DELETE]', error)
         return NextResponse.json({ error: 'Silme başarısız' }, { status: 500 })
     }
 }

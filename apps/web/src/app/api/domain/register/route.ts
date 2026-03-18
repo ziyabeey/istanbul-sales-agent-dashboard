@@ -23,7 +23,7 @@ export async function POST(req: Request) {
 
         // 2. Register Domain (Mock if no API keys)
         if (process.env.CF_API_TOKEN === 'dummy' || !process.env.CF_API_TOKEN) {
-            console.log(`[Domain API] Mock Registration for ${domain} by merchant ${merchantId}`);
+            // console.log(`[Domain API] Mock Registration for ${domain} by merchant ${merchantId}`);
         } else {
             // Mock contact data for now, real app takes this from Onboarding Step 2
             await registrar.purchaseDomain({
@@ -53,7 +53,7 @@ export async function POST(req: Request) {
         });
         
     } catch (error: any) {
-        console.error('[Domain API] Registration Error:', error);
+        // console.error('[Domain API] Registration Error:', error);
         return NextResponse.json({ error: error.message || 'Kayıt işlemi başarısız.' }, { status: 500 });
     }
 }

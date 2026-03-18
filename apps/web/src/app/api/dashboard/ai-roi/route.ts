@@ -70,7 +70,7 @@ export async function GET(request: NextRequest) {
             aylikToplamEkstraCiro: toplamAiCirosu,
         })
     } catch (e: any) {
-        console.error('[AI ROI Çekerken Hata]', e)
+        // console.error('[AI ROI Çekerken Hata]', e)
         return NextResponse.json({ error: e.message }, { status: 500 })
     }
 }

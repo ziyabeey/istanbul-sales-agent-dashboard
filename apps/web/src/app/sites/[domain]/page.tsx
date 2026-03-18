@@ -13,6 +13,7 @@
 import { notFound } from 'next/navigation'
 import { unstable_cache } from 'next/cache'
 import { adminDb } from '@/lib/firebaseAdmin'
+import DOMPurify from 'isomorphic-dompurify'
 import type { Metadata } from 'next'
 
 // ── Domain → Esnaf veri çekme (24 saat ISR cache) ──────────────────────────
@@ -127,8 +128,15 @@ export default async function EsnafSitePage({ params }: PageProps) {
         notFound()
     }
 
-    // Site HTML'i doğrudan render et
+    // Site HTML'i sanitize edip render et (XSS koruması)
     if (esnaf.siteHtml) {
+        const cleanHtml = DOMPurify.sanitize(esnaf.siteHtml, {
+            ADD_TAGS: ['style', 'link'],
+            ADD_ATTR: ['target', 'rel', 'loading', 'decoding'],
+            ALLOW_DATA_ATTR: true,
+            WHOLE_DOCUMENT: false,
+        })
+
         return (
             <html lang="tr">
                 <head>
@@ -139,7 +147,7 @@ export default async function EsnafSitePage({ params }: PageProps) {
                     <link rel="canonical" href={`https://${domain}`} />
                 </head>
                 <body
-                    dangerouslySetInnerHTML={{ __html: esnaf.siteHtml }}
+                    dangerouslySetInnerHTML={{ __html: cleanHtml }}
                     suppressHydrationWarning
                 />
             </html>

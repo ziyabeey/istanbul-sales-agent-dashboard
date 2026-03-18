@@ -2,13 +2,10 @@
 
 import React, { useState, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Search, Info, ArrowLeft, ChevronRight, Eye, Filter, Package, Layers } from 'lucide-react'
-import { SABLONLAR } from '@/data/sablonlar'
+import { Search, Info, ArrowLeft, ChevronRight, Eye, Layers } from 'lucide-react'
+import { UNIFIED_SABLONLAR, SEKTOR_FILTRELERI } from '@/data/sablonlar/unified-catalog'
 import type { Sablon } from '@/data/sablonlar'
 import { MODULLER } from '@/data/moduller'
-import { demoIcerikSec } from '@/data/demoIcerikleri'
-import { ortakCSS, ortakNav, ortakFooter } from '@/data/sablonlar/ortak'
-import { sektorProfiliBul, profilCssDegerleri } from '@/data/sektorKatalogu'
 
 // ── Paket Renkleri ──────────────────────────────────────────────────
 const PAKET_RENK: Record<string, { bg: string; text: string; border: string }> = {
@@ -20,8 +17,7 @@ const PAKET_RENK: Record<string, { bg: string; text: string; border: string }> =
 }
 
 // ── Filtre tipleri ──────────────────────────────────────────────────
-type PaketFiltre = 'HEPSI' | 'TEMEL' | 'STANDART' | 'BUYUME' | 'PREMIUM'
-type KategoriFiltre = 'HEPSI' | 'jenerik' | 'sektor'
+type PaketFiltre = 'HEPSI' | 'TEMEL' | 'STANDART' | 'BUYUME' | 'PREMIUM' | 'PREMIUMPLUS'
 
 const PAKET_FILTRELER: { key: PaketFiltre; label: string }[] = [
     { key: 'HEPSI', label: 'Tümü' },
@@ -29,109 +25,14 @@ const PAKET_FILTRELER: { key: PaketFiltre; label: string }[] = [
     { key: 'STANDART', label: 'Standart' },
     { key: 'BUYUME', label: 'Büyüme' },
     { key: 'PREMIUM', label: 'Premium' },
+    { key: 'PREMIUMPLUS', label: 'Premium+' },
 ]
 
-// Sektöre özgü gerçekçi demo içerikle HTML şablonunu önizleme için doldur
-const createPreviewHtml = (html: string, sablonId: string, etiketler?: string[]) => {
-    const d = demoIcerikSec(sablonId, etiketler)
-    
-    const profil = sektorProfiliBul(sablonId)
-    const profilCss = profil ? profilCssDegerleri(profil) : null
-
-    let preview = html
-        .replace(/\$\{ortakCSS\}/g, ortakCSS)
-        .replace(/\$\{ortakNav\}/g, ortakNav)
-        .replace(/\$\{ortakFooter\}/g, ortakFooter)
-
-    preview = preview
-        .replace(/\{\{ISLETME_ADI\}\}/g, d.isletmeAdi)
-        .replace(/\{\{ISLETME_KISAADI\}\}/g, d.kisaAd)
-        .replace(/\{\{SEKTOR\}\}/g, d.sektor)
-        .replace(/\{\{ILCE\}\}/g, d.ilce)
-        .replace(/\{\{SEHIR\}\}/g, d.sehir)
-        .replace(/\{\{TELEFON\}\}/g, d.telefon)
-        .replace(/\{\{TELEFON_GOSTERIM\}\}/g, d.telefonGosterim)
-        .replace(/\{\{WHATSAPP\}\}/g, d.whatsapp)
-        .replace(/\{\{ADRES_METNI\}\}/g, d.adres)
-        .replace(/\{\{HARITA_URL\}\}/g, `https://maps.google.com/maps?q=${encodeURIComponent(d.adres)}&output=embed`)
-        .replace(/\{\{OG_URL\}\}/g, '#')
-        .replace(/\{\{WA_MESAJ\}\}/g, encodeURIComponent(`Merhaba, ${d.isletmeAdi} hakkında bilgi almak istiyorum`))
-        .replace(/\{\{CSS_ARKAPLAN\}\}/g, profilCss?.CSS_ARKAPLAN || '#0f0f0f')
-        .replace(/\{\{CSS_KART\}\}/g, profilCss?.CSS_KART || '#1a1a1a')
-        .replace(/\{\{CSS_VURGU\}\}/g, profilCss?.CSS_VURGU || '#c9541e')
-        .replace(/\{\{CSS_HOVER\}\}/g, profilCss?.CSS_HOVER || '#a8441a')
-        .replace(/\{\{CSS_METIN\}\}/g, profilCss?.CSS_METIN || '#f5f1eb')
-        .replace(/\{\{CSS_ALT\}\}/g, profilCss?.CSS_ALT || '#94877a')
-        .replace(/\{\{CSS_GRADIENT\}\}/g, profilCss?.CSS_GRADIENT || 'linear-gradient(135deg,#1a1a2e 0%,#16213e 60%,#0f3460 100%)')
-        .replace(/\{\{FONT_BASLIK\}\}/g, profilCss?.FONT_BASLIK || 'Syne')
-        .replace(/\{\{FONT_METIN\}\}/g, profilCss?.FONT_METIN || 'Inter')
-        .replace(/\{\{HERO_BASLIK\}\}/g, d.heroBaslik)
-        .replace(/\{\{HERO_SLOGAN\}\}/g, d.heroSlogan)
-        .replace(/\{\{HERO_CTA_BIRINCIL\}\}/g, d.ctaBirincil)
-        .replace(/\{\{HERO_CTA_IKINCIL\}\}/g, d.ctaIkincil)
-        .replace(/\{\{HIZMETLER_HTML\}\}/g, d.hizmetlerHtml)
-        .replace(/\{\{NEDEN_BIZ_HTML\}\}/g, d.nedenBizHtml)
-        .replace(/\{\{YORUMLAR_HTML\}\}/g, d.yorumlarHtml)
-        .replace(/\{\{SEO_BASLIK\}\}/g, d.seoBaslik)
-        .replace(/\{\{SEO_ACIKLAMA\}\}/g, d.seoAciklama)
-        .replace(/\{\{INSTAGRAM_URL\}\}/g, '#')
-        .replace(/\{\{FACEBOOK_URL\}\}/g, '#')
-        .replace(/\{\{GMB_LINK\}\}/g, '#')
-
-    preview = preview.replace(/\{\{MODUL_([A-Z_]+)\}\}/g, (match, modulAd) => {
-        const id = modulAd.toLowerCase().replace(/_/g, '-')
-        const mod = MODULLER.find(m => m.id === id)
-        
-        if (mod && mod.htmlSablon) {
-            return mod.htmlSablon
-                .replace(/ISLETME_ADI/g, d.isletmeAdi)
-                .replace(/WHATSAPP_NUMARA/g, d.telefon)
-                .replace(/ESNAF_ID/g, 'demo-id')
-                .replace(/KEPENK_API_URL/g, 'https://kepenk.ai')
-                .replace(/TELEFON/g, d.telefonGosterim)
-                .replace(/ADRES_METNI/g, d.adres)
-                .replace(/HARITA_QUERY/g, encodeURIComponent(`${d.isletmeAdi} ${d.ilce} ${d.sehir}`))
-                .replace(/KURUCU_ADI/g, d.kisaAd)
-                .replace(/GMB_LINK/g, '#')
-                .replace(/INSTAGRAM_URL/g, '#')
-                .replace(/FACEBOOK_URL/g, '#')
-                .replace(/YOUTUBE_URL/g, '#')
-                .replace(/TIKTOK_URL/g, '#')
-                .replace(/TWITTER_URL/g, '#')
-                .replace(/BASVURU_LINK/g, '#')
-                .replace(/DUYURU_LINK/g, '#')
-                .replace(/DUYURU_METNI/g, '🎉 Yeni hizmetlerimiz yayında!')
-                .replace(/KAMPANYA_BASLIK/g, 'Özel Kampanya')
-                .replace(/KAMPANYA_ACIKLAMA/g, 'Sınırlı süre için geçerli')
-                .replace(/INDIRIM_YUZDESI/g, '20')
-                .replace(/SAATLER_JSON/g, JSON.stringify([
-                    { gun: 'Pazartesi - Cuma', saat: '09:00 - 18:00' },
-                    { gun: 'Cumartesi', saat: '10:00 - 15:00' }
-                ]))
-                .replace(/ISTATISTIKLER_JSON/g, JSON.stringify([
-                    { deger: '10+', etiket: 'Yıllık Tecrübe' },
-                    { deger: '1000+', etiket: 'Mutlu Müşteri' }
-                ]))
-                .replace(/ADIMLAR_JSON/g, JSON.stringify([
-                    { baslik: 'İletişim', aciklama: 'Bize ulaşın ve talebinizi iletin.' },
-                    { baslik: 'Planlama', aciklama: 'Sizin için en uygun planı yapalım.' },
-                    { baslik: 'Uygulama', aciklama: 'Hızlı ve güvenli şekilde uygulayalım.' }
-                ]))
-                .replace(/MAKALELER_JSON/g, JSON.stringify([
-                    { baslik: 'Sektördeki Son Trendler', oset: 'Bu yılın dikkat çeken gelişmeleri.' },
-                    { baslik: 'Nasıl Seçim Yapılmalı?', oset: 'Doğru tercihi yapmanın püf noktaları.' }
-                ]))
-                .replace(/ILANLAR_JSON/g, JSON.stringify([
-                    { baslik: 'Uzman Ekip Arkadaşı', aciklama: 'Deneyimli çalışma arkadaşları arıyoruz.' }
-                ]))
-                .replace(/HIKAYE_METNI/g, '2010 yılından beri sektörde öncü hizmet veriyoruz.')
-                .replace(/MISYON_METNI/g, 'Müşteri memnuniyetini en üst düzeyde tutmak.')
-        }
-        return '';
-    })
-
-    return preview
-}
+// Sektör filter options from unified catalog
+const SEKTOR_FILTRE_SECENEKLERI = [
+    { id: 'HEPSI', label: 'Tüm Sektörler', count: UNIFIED_SABLONLAR.length },
+    ...SEKTOR_FILTRELERI,
+]
 
 /* ─────────────────────────────────────────────────────────
    FULLSCREEN DEMO VIEW
@@ -141,11 +42,7 @@ function DemoTamEkran({ sablon, onClose }: { sablon: Sablon, onClose: () => void
     const [disabledModules, setDisabledModules] = useState<Set<string>>(new Set())
 
     // Memoize preview with module toggle support
-    const previewHtml = useMemo(
-        () => createPreviewHtml(sablon.htmlKodu, sablon.id, sablon.etiketler),
-        [sablon]
-    )
-    const paketRenk = PAKET_RENK[sablon.minPaket] || PAKET_RENK.TEMEL
+        const paketRenk = PAKET_RENK[sablon.minPaket] || PAKET_RENK.TEMEL
 
     // Modül detay listesi
     const modulDetay = useMemo(() => {
@@ -207,11 +104,11 @@ function DemoTamEkran({ sablon, onClose }: { sablon: Sablon, onClose: () => void
                         </button>
                     )}
                     <button
-                        onClick={() => window.location.href = `/sablonlar/${sablon.id}/duzenle`}
+                        onClick={() => window.location.href = `/kayit?sablon=${sablon.id}`}
                         className="bg-rust hover:bg-rust/90 text-white px-4 py-2 rounded-lg font-bold text-sm flex items-center gap-1.5 transition-all group"
                     >
-                        <span className="hidden sm:inline">Ücretsiz Düzenle</span>
-                        <span className="sm:hidden">Düzenle</span>
+                        <span className="hidden sm:inline">Bu Temayı Kullan</span>
+                        <span className="sm:hidden">Kullan</span>
                         <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                     </button>
                 </div>
@@ -222,7 +119,7 @@ function DemoTamEkran({ sablon, onClose }: { sablon: Sablon, onClose: () => void
                 <div className="flex-1 relative">
                     <iframe
                         className="w-full h-full border-none absolute inset-0"
-                        srcDoc={previewHtml}
+                        src={`/demolar/${sablon.id}`}
                         title={`${sablon.ad} Demo`}
                         style={{ background: '#fff' }}
                     />
@@ -304,9 +201,11 @@ function DemoTamEkran({ sablon, onClose }: { sablon: Sablon, onClose: () => void
 /* ─────────────────────────────────────────────────────────
    TEMPLATE CARD WITH LIVE PREVIEW THUMBNAIL
    ───────────────────────────────────────────────────────── */
-function SablonKarti({ sablon, previewHtml, onClick }: { sablon: Sablon, previewHtml: string, onClick: () => void }) {
+function SablonKarti({ sablon, onClick }: { sablon: Sablon, onClick: () => void }) {
     const paketRenk = PAKET_RENK[sablon.minPaket] || PAKET_RENK.TEMEL
-    const modulSayisi = sablon.moduller?.length || 0
+    // etiketler: [sectorLabel, planLabel, theme(Koyu/Açık), "N bölüm", "N sayfa"]
+    const bolumEtiketi = sablon.etiketler?.find(e => e.includes('bölüm'))
+    const sayfaEtiketi = sablon.etiketler?.find(e => e.includes('sayfa'))
 
     return (
         <motion.div
@@ -322,7 +221,7 @@ function SablonKarti({ sablon, previewHtml, onClick }: { sablon: Sablon, preview
                 <div className="absolute inset-0 origin-top-left" style={{ width: '400%', height: '400%', transform: 'scale(0.25)', transformOrigin: 'top left' }}>
                     <iframe
                         className="w-full h-full border-none pointer-events-none"
-                        srcDoc={previewHtml}
+                        src={`/demolar/${sablon.id}`}
                         title={`${sablon.ad} Önizleme`}
                         tabIndex={-1}
                         loading="lazy"
@@ -358,14 +257,19 @@ function SablonKarti({ sablon, previewHtml, onClick }: { sablon: Sablon, preview
                         {sablon.ad}
                     </h3>
                 </div>
-                <p className="text-white/35 text-[11px] line-clamp-1 leading-relaxed mb-2">
+                <p className="text-white/60 text-[11px] line-clamp-1 leading-relaxed mb-2">
                     {sablon.aciklama}
                 </p>
-                {/* Modül sayısı */}
-                {modulSayisi > 0 && (
-                    <div className="flex items-center gap-1.5 text-white/25 text-[10px]">
-                        <Layers className="w-3 h-3" />
-                        <span>{modulSayisi} Modül Aktif</span>
+                {/* Bölüm & sayfa bilgisi */}
+                {(bolumEtiketi || sayfaEtiketi) && (
+                    <div className="flex items-center gap-3 text-white/25 text-[10px]">
+                        {bolumEtiketi && (
+                            <span className="flex items-center gap-1">
+                                <Layers className="w-3 h-3" />
+                                {bolumEtiketi}
+                            </span>
+                        )}
+                        {sayfaEtiketi && <span>{sayfaEtiketi}</span>}
                     </div>
                 )}
             </div>
@@ -380,12 +284,12 @@ export default function SablonMarket() {
     const [arama, setArama] = useState('')
     const [seciliSablon, setSeciliSablon] = useState<Sablon | null>(null)
     const [paketFiltre, setPaketFiltre] = useState<PaketFiltre>('HEPSI')
-    const [kategoriFiltre, setKategoriFiltre] = useState<KategoriFiltre>('HEPSI')
+    const [sektorFiltre, setSektorFiltre] = useState('HEPSI')
 
     const filtrelenmisSablonlar = useMemo(() => {
-        return SABLONLAR.filter(s => {
+        return UNIFIED_SABLONLAR.filter(s => {
             // Arama
-            const aramaUygun = !arama || 
+            const aramaUygun = !arama ||
                 s.ad.toLowerCase().includes(arama.toLowerCase()) ||
                 s.aciklama.toLowerCase().includes(arama.toLowerCase()) ||
                 s.etiketler?.some(e => e.toLowerCase().includes(arama.toLowerCase()))
@@ -393,23 +297,14 @@ export default function SablonMarket() {
             // Paket filtre
             const paketUygun = paketFiltre === 'HEPSI' || s.minPaket === paketFiltre
 
-            // Kategori filtre
-            const kategoriUygun = kategoriFiltre === 'HEPSI' || s.kategori === kategoriFiltre
+            // Sektör filtre — match by sector label in etiketler[0]
+            const sektorUygun = sektorFiltre === 'HEPSI' || s.etiketler?.[0] === SEKTOR_FILTRE_SECENEKLERI.find(sf => sf.id === sektorFiltre)?.label
 
-            return aramaUygun && paketUygun && kategoriUygun
+            return aramaUygun && paketUygun && sektorUygun
         })
-    }, [arama, paketFiltre, kategoriFiltre])
+    }, [arama, paketFiltre, sektorFiltre])
 
-    // Memoize preview HTML for each template (expensive operation)
-    const previewCache = useMemo(() => {
-        const cache: Record<string, string> = {}
-        for (const s of SABLONLAR) {
-            cache[s.id] = createPreviewHtml(s.htmlKodu, s.id, s.etiketler)
-        }
-        return cache
-    }, [])
-
-    const aktifFiltreSayisi = (paketFiltre !== 'HEPSI' ? 1 : 0) + (kategoriFiltre !== 'HEPSI' ? 1 : 0)
+    const aktifFiltreSayisi = (paketFiltre !== 'HEPSI' ? 1 : 0) + (sektorFiltre !== 'HEPSI' ? 1 : 0)
 
     return (
         <div className="min-h-screen bg-[#0a0a0a] text-white pt-28 pb-24">
@@ -421,7 +316,7 @@ export default function SablonMarket() {
                         Hazır <span className="text-rust">Site Şablonları</span>
                     </h1>
                     <p className="text-base text-white/50 leading-relaxed mb-6">
-                        Sektörünüze özel, AI destekli profesyonel web sitesi şablonları. Canlı önizlemeye tıklayın.
+                        40 sektör, 200 profesyonel tema. Canlı önizlemeye tıklayın, beğendiğinizi seçin.
                     </p>
 
                     <div className="relative max-w-md mx-auto mb-6">
@@ -438,25 +333,21 @@ export default function SablonMarket() {
 
                 {/* ─── Filtre Bar ─── */}
                 <div className="flex flex-wrap items-center gap-3 mb-8">
-                    {/* Kategori filtresi */}
-                    <div className="flex items-center gap-1.5 bg-white/[0.03] border border-white/[0.06] rounded-xl p-1">
-                        {[
-                            { key: 'HEPSI' as KategoriFiltre, label: 'Tümü' },
-                            { key: 'sektor' as KategoriFiltre, label: '🏢 Sektörel' },
-                            { key: 'jenerik' as KategoriFiltre, label: '📐 Jenerik' },
-                        ].map(f => (
-                            <button
-                                key={f.key}
-                                onClick={() => setKategoriFiltre(f.key)}
-                                className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
-                                    kategoriFiltre === f.key
-                                        ? 'bg-white/10 text-white shadow-sm'
-                                        : 'text-white/40 hover:text-white/60'
-                                }`}
-                            >
-                                {f.label}
-                            </button>
-                        ))}
+                    {/* Sektör filtresi — dropdown */}
+                    <div className="relative">
+                        <select
+                            value={sektorFiltre}
+                            onChange={(e) => setSektorFiltre(e.target.value)}
+                            className="appearance-none bg-white/[0.03] border border-white/[0.06] rounded-xl px-4 py-2 pr-8 text-xs font-semibold text-white/80 focus:outline-none focus:border-rust/50 transition-all cursor-pointer"
+                            style={{ backgroundImage: 'none' }}
+                        >
+                            {SEKTOR_FILTRE_SECENEKLERI.map(sf => (
+                                <option key={sf.id} value={sf.id} className="bg-[#1a1a1a] text-white">
+                                    {sf.label} ({sf.count})
+                                </option>
+                            ))}
+                        </select>
+                        <ChevronRight className="absolute right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/30 rotate-90 pointer-events-none" />
                     </div>
 
                     {/* Paket filtresi */}
@@ -487,9 +378,19 @@ export default function SablonMarket() {
                         })}
                     </div>
 
+                    {/* Aktif filtre temizle */}
+                    {aktifFiltreSayisi > 0 && (
+                        <button
+                            onClick={() => { setPaketFiltre('HEPSI'); setSektorFiltre('HEPSI'); setArama('') }}
+                            className="text-rust/60 hover:text-rust text-xs font-medium transition-colors"
+                        >
+                            Temizle ({aktifFiltreSayisi})
+                        </button>
+                    )}
+
                     {/* Sonuç sayısı */}
                     <div className="ml-auto text-xs text-white/30">
-                        {filtrelenmisSablonlar.length} / {SABLONLAR.length} şablon
+                        {filtrelenmisSablonlar.length} / {UNIFIED_SABLONLAR.length} şablon
                     </div>
                 </div>
 
@@ -498,12 +399,7 @@ export default function SablonMarket() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                         <AnimatePresence>
                             {filtrelenmisSablonlar.map(sablon => (
-                                <SablonKarti
-                                    key={sablon.id}
-                                    sablon={sablon}
-                                    previewHtml={previewCache[sablon.id] || ''}
-                                    onClick={() => setSeciliSablon(sablon)}
-                                />
+                                <SablonKarti key={sablon.id} sablon={sablon} onClick={() => setSeciliSablon(sablon)} />
                             ))}
                         </AnimatePresence>
                     </div>
@@ -513,7 +409,7 @@ export default function SablonMarket() {
                         <h3 className="text-xl font-bold text-white mb-2">Şablon bulunamadı</h3>
                         <p className="text-white/50 mb-4">Arama kriterlerinize uygun şablon eşleşmedi.</p>
                         <button
-                            onClick={() => { setArama(''); setPaketFiltre('HEPSI'); setKategoriFiltre('HEPSI') }}
+                            onClick={() => { setArama(''); setPaketFiltre('HEPSI'); setSektorFiltre('HEPSI') }}
                             className="text-rust text-sm font-semibold hover:underline"
                         >
                             Filtreleri Temizle

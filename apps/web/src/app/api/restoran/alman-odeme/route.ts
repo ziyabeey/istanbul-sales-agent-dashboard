@@ -87,7 +87,7 @@ export async function POST(req: NextRequest) {
         })
 
     } catch (err: any) {
-        console.error('[alman-odeme] Hata:', err)
+        // console.error('[alman-odeme] Hata:', err)
         return NextResponse.json(
             { hata: 'Sunucu hatası', mesaj: err?.message },
             { status: 500 }

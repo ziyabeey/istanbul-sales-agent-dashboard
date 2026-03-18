@@ -157,7 +157,7 @@ export default function KariyerPage() {
                             Esnafın Dijital Dönüşümünü<br />
                             <span className="text-rust">Birlikte Şekillendir</span>
                         </h1>
-                        <p className="text-muted-foreground-light text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
+                        <p className="text-muted-foreground text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
                             Türkiye'de 1 milyon küçük işletmenin AI ile rekabet gücü kazanmasına yardım ediyoruz.
                             Remote-first, misyon odaklı, hızlı büyüyen bir ekip.
                         </p>
@@ -241,7 +241,7 @@ export default function KariyerPage() {
                                             className="overflow-hidden"
                                         >
                                             <div className="px-6 pb-6 border-t border-white/10 pt-5">
-                                                <p className="text-muted-foreground-light text-sm mb-4 leading-relaxed">{p.aciklama}</p>
+                                                <p className="text-muted-foreground text-sm mb-4 leading-relaxed">{p.aciklama}</p>
                                                 <h4 className="text-foreground font-semibold text-xs uppercase tracking-widest mb-3">Aradığımız Özellikler</h4>
                                                 <ul className="space-y-2 mb-5">
                                                     {p.gereksinimler.map((g, i) => (
@@ -304,7 +304,7 @@ export default function KariyerPage() {
                     <div className="text-center mb-10">
                         <p className="text-rust font-mono text-xs uppercase tracking-[0.3em] mb-3">Başvuru</p>
                         <h2 className="text-2xl md:text-3xl font-extrabold text-foreground font-syne mb-2">Ekibimize Katıl</h2>
-                        <p className="text-muted-foreground-light text-sm">Pozisyon açık olmasa bile gönder — büyürken seni hatırlayalım.</p>
+                        <p className="text-muted-foreground text-sm">Pozisyon açık olmasa bile gönder — büyürken seni hatırlayalım.</p>
                     </div>
 
                     {gonderildi ? (
@@ -315,7 +315,7 @@ export default function KariyerPage() {
                         >
                             <CheckCircle2 className="w-14 h-14 text-green-400 mx-auto mb-4" />
                             <h3 className="text-foreground font-bold text-xl mb-2">Başvurun Alındı!</h3>
-                            <p className="text-muted-foreground-light text-sm">3 iş günü içinde seninle iletişime geçeceğiz. Harika bir ekip seni bekliyor.</p>
+                            <p className="text-muted-foreground text-sm">3 iş günü içinde seninle iletişime geçeceğiz. Harika bir ekip seni bekliyor.</p>
                         </motion.div>
                     ) : (
                         <form onSubmit={handleSubmit} className="space-y-4 bg-white/5 border border-white/10 rounded-3xl p-6 md:p-8">

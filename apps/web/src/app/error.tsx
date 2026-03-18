@@ -30,7 +30,7 @@ export default function Error({
             <div className="flex gap-3 flex-wrap justify-center">
                 <button
                     onClick={reset}
-                    className="bg-rust text-foreground px-6 py-3 rounded-xl font-syne font-bold"
+                    className="bg-rust text-white px-6 py-3 rounded-xl font-syne font-bold"
                 >
                     Tekrar Dene
                 </button>

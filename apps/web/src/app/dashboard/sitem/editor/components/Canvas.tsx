@@ -19,6 +19,8 @@ export default function Canvas() {
     const closeContextMenu = useEditorStore(s => s.closeContextMenu)
     const openImageEdit = useEditorStore(s => s.openImageEdit)
     const closeImageEdit = useEditorStore(s => s.closeImageEdit)
+    const updateSiteData = useEditorStore(s => s.updateSiteData)
+    const setActiveLeftPanel = useEditorStore(s => s.setActiveLeftPanel)
     const iframeRef = useRef<HTMLIFrameElement>(null)
     const stageRef = useRef<HTMLDivElement>(null)
 
@@ -62,6 +64,7 @@ export default function Canvas() {
                     targetText: e.data.targetText,
                     targetField: e.data.targetField,
                     elementPath: e.data.elementPath,
+                    modulId: e.data.modulId || undefined,
                 })
             }
 
@@ -85,6 +88,21 @@ export default function Canvas() {
                     x: Math.max(80, x),
                     y: Math.max(80, y),
                 })
+            }
+
+            // Module action from iframe overlay badge
+            if (e.data.type === 'ke-modul-action') {
+                const { action, modulId } = e.data
+                if (action === 'config' && modulId) {
+                    // Open left panel with module config
+                    setActiveLeftPanel('moduller')
+                }
+                if (action === 'delete' && modulId) {
+                    const currentSiteData = useEditorStore.getState().siteData
+                    if (currentSiteData && confirm(`"${modulId}" modülünü silmek istediğinize emin misiniz?`)) {
+                        updateSiteData({ moduller: currentSiteData.moduller.filter(m => m !== modulId) })
+                    }
+                }
             }
         }
 

@@ -30,7 +30,10 @@ function getOAuth2Client() {
  * Format: esnafId.hmacSignature
  */
 function stateOlustur(esnafId: string): string {
-    const secret = process.env.GOOGLE_OAUTH_CLIENT_SECRET || 'fallback-secret'
+    const secret = process.env.GOOGLE_OAUTH_CLIENT_SECRET
+    if (!secret) {
+        throw new Error('GOOGLE_OAUTH_CLIENT_SECRET ortam değişkeni tanımlanmalıdır')
+    }
     const hmac = crypto.createHmac('sha256', secret).update(esnafId).digest('hex')
     return `${esnafId}.${hmac}`
 }
@@ -56,7 +59,7 @@ export async function GET(request: Request) {
         // Google OAuth sayfasına yönlendir
         return NextResponse.redirect(authUrl)
     } catch (error: any) {
-        console.error('[GOOGLE OAUTH INIT] Hata:', error.message)
+        // console.error('[GOOGLE OAUTH INIT] Hata:', error.message)
         return NextResponse.json(
             { error: 'OAuth başlatılamadı', detay: error.message },
             { status: 500 }

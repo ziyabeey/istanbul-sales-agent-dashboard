@@ -67,7 +67,7 @@ export async function GET(request: Request) {
 
         return NextResponse.json({ gonderilen, hatali, sure })
     } catch (error: any) {
-        console.error('[SEZON UYARI CRON]', error)
+        // console.error('[SEZON UYARI CRON]', error)
         return NextResponse.json({ error: error.message }, { status: 500 })
     }
 }

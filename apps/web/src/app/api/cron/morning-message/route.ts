@@ -80,7 +80,7 @@ export async function GET(request: Request) {
             mesaj: `${kuyruga} esnaf kuyruğa eklendi — Worker işleyecek`,
         })
     } catch (error: any) {
-        console.error('[SABAH CRON PUBLISHER HATA]', error)
+        // console.error('[SABAH CRON PUBLISHER HATA]', error)
         await telegramGonder(`🔴 Sabah Publisher hatası: ${error.message}`)
         return NextResponse.json({ error: error.message }, { status: 500 })
     }

@@ -15,8 +15,8 @@ export default function IadeKosullariPage() {
                     <h1 className="text-3xl md:text-5xl font-extrabold font-syne text-foreground mb-6">
                         İptal ve İade <span className="text-rust">Koşulları</span>
                     </h1>
-                    <p className="text-muted-foreground-light text-lg font-lora italic leading-relaxed">
-                        [ŞİRKET UNVANI] (kepenk.ai) olarak sunduğumuz dijital asistan ve web sitesi oluşturma
+                    <p className="text-muted-foreground text-lg font-lora italic leading-relaxed">
+                        yzt.digital (kepenk.ai) olarak sunduğumuz dijital asistan ve web sitesi oluşturma
                         hizmetlerinde yasal sınırlar ve müşteri memnuniyeti ilkelerimiz çerçevesinde iade
                         prosesimiz aşağıda özetlenmiştir.
                     </p>
@@ -57,7 +57,7 @@ export default function IadeKosullariPage() {
                         <p className="leading-relaxed">
                             Sistemsel hatalardan kaynaklanan (kepenk.ai sunucularının 48 saatten uzun süre kapalı kalması,
                             satın alınan planın özelliklerinin teknik hatadan ötürü devrede olmaması vb.) ve satıcı
-                            [ŞİRKET UNVANI] tarafından çözülemeyen teknik aksaklıklarda; kusurlu gün kadar iade
+                            yzt.digital tarafından çözülemeyen teknik aksaklıklarda; kusurlu gün kadar iade
                             veyahut kullanıcının talebiyle (Eğer hizmet hiç sağlanamamışsa) <strong>tam iade</strong> yapılmaktadır.
                         </p>
                     </div>
@@ -66,7 +66,7 @@ export default function IadeKosullariPage() {
                         <h2 className="text-2xl font-bold font-syne text-foreground mb-4">4. Ulaşım ve Talep Oluşturma</h2>
                         <p className="leading-relaxed">
                             Şikayet veya iptal talepleriniz için bize <strong>destek@kepenk.ai</strong> e-posta adresi üzerinden
-                            veya <strong>0 850 XXX XX XX</strong> numaralı WhatsApp hattımız üzerinden yazılı olarak
+                            veya <strong>WhatsApp destek hattımız</strong> üzerinden yazılı olarak
                             ulaşabilirsiniz. İadeye hak kazanılan durumlarda, ödeme yapılan kredi kartına iade işlemi
                             banka süreçlerine bağlı olarak genellikle 3 ila 7 iş günü sürmektedir.
                         </p>

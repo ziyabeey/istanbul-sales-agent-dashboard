@@ -42,7 +42,7 @@ export async function GET(request: Request) {
 
         return NextResponse.json({ basarili, hatali, sure })
     } catch (error: any) {
-        console.error('[KONUSMA OZETI CRON]', error)
+        // console.error('[KONUSMA OZETI CRON]', error)
         await telegramGonder(`Konusma ozeti cron hatasi: ${error.message}`)
         return NextResponse.json({ error: error.message }, { status: 500 })
     }

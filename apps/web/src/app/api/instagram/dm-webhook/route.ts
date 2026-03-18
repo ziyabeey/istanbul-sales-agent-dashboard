@@ -69,7 +69,7 @@ export async function POST(req: Request) {
             const sonuclar = await Promise.allSettled(islemler)
             for (const s of sonuclar) {
                 if (s.status === 'rejected') {
-                    console.error('[IG MESAJ İŞLEME HATASI]', s.reason)
+                    // console.error('[IG MESAJ İŞLEME HATASI]', s.reason)
                 }
             }
         }
@@ -77,7 +77,7 @@ export async function POST(req: Request) {
         return NextResponse.json({ ok: true })
     } catch (error: unknown) {
         const message = error instanceof Error ? error.message : 'Bilinmeyen hata'
-        console.error('[IG WEBHOOK ERROR]', message)
+        // console.error('[IG WEBHOOK ERROR]', message)
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
     }
 }
@@ -107,7 +107,7 @@ async function mesajIsle(esnafId: string, senderId: string, mesaj: string): Prom
 
             if (!response.ok) {
                 const errorBody = await response.text().catch(() => 'Unknown')
-                console.error(`[IG SEND ERROR] ${response.status}: ${errorBody}`)
+                // console.error(`[IG SEND ERROR] ${response.status}: ${errorBody}`)
             }
         },
     })

@@ -126,7 +126,7 @@ export default function FinansPage() {
                     {/* Bilanço Özeti Kartı */}
                     <div className="bg-rust/5 border border-rust/20 rounded-2xl p-5 mb-6 relative overflow-hidden">
                         <div className="absolute -right-4 -top-4 w-20 h-20 bg-rust/10 rounded-full blur-2xl"></div>
-                        <p className="text-muted-foreground-light text-xs uppercase tracking-widest font-bold mb-1">
+                        <p className="text-muted-foreground text-xs uppercase tracking-widest font-bold mb-1">
                             Aylık Net Kâr ({bilanco.donem})
                         </p>
                         <p className={`text-4xl font-syne font-extrabold ${bilanco.netKar >= 0 ? 'text-sage' : 'text-red-400'}`}>
@@ -173,8 +173,8 @@ export default function FinansPage() {
                                     <p className="text-xs text-muted-foreground mt-1">{bilanco.acikHesaplar.length} Kalan Hesap</p>
                                 </div>
                                 <div className="bg-card border border-border/30 rounded-xl p-4">
-                                    <p className="text-muted-foreground-light text-[10px] uppercase font-bold tracking-widest">Reklam / Pazarlama</p>
-                                    <p className="text-muted-foreground-light text-2xl font-syne font-extrabold mt-1">₺{bilanco.reklamHarcanan.toLocaleString()}</p>
+                                    <p className="text-muted-foreground text-[10px] uppercase font-bold tracking-widest">Reklam / Pazarlama</p>
+                                    <p className="text-muted-foreground text-2xl font-syne font-extrabold mt-1">₺{bilanco.reklamHarcanan.toLocaleString()}</p>
                                     <p className="text-xs text-muted-foreground mt-1">Son 30 Gün</p>
                                 </div>
                             </div>

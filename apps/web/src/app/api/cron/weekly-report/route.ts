@@ -72,9 +72,9 @@ export async function GET(request: Request) {
                             icerikKopya: haftalikIcerik,
                             aktifGun: 5,
                             subdomainUrl: esnaf.subdomainUrl || '',
-                        }).catch(console.error)
+                        }).catch(() => {})
                     }
-                } catch (e) { console.error('Email rapor hata:', e) }
+                } catch (e) { /* console.error('Email rapor hata:', e) */ }
             }
 
             gonderen++
@@ -101,7 +101,7 @@ export async function GET(request: Request) {
 
         return NextResponse.json({ gonderen, mrr, aktifEsnaf: aktifSnap.size })
     } catch (error: any) {
-        console.error('[HAFTALIK RAPOR HATA]', error)
+        // console.error('[HAFTALIK RAPOR HATA]', error)
         await telegramGonder(`🔴 Haftalık Rapor Cron hatası: ${error.message}`)
         return NextResponse.json({ error: error.message }, { status: 500 })
     }

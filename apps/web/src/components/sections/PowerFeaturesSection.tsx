@@ -19,9 +19,18 @@ export default function PowerFeaturesSection() {
     };
 
     return (
-        <section className="py-32 text-foreground overflow-hidden relative">
-            {/* Soft Ambient Background Texture */}
-            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03]"></div>
+        <section className="py-32 overflow-hidden relative bg-gray-50">
+            {/* Ambient glow */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                <div className="absolute top-1/4 -left-32 w-[400px] h-[400px] bg-green-500/5 rounded-full blur-[150px]" />
+                <div className="absolute bottom-1/4 -right-32 w-[400px] h-[400px] bg-indigo-500/5 rounded-full blur-[150px]" />
+            </div>
+
+            {/* Subtle Ambient Background Texture */}
+            <div className="absolute inset-0 opacity-[0.04]" style={{
+                backgroundImage: `linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px)`,
+                backgroundSize: "60px 60px",
+            }} />
 
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
 
@@ -30,7 +39,7 @@ export default function PowerFeaturesSection() {
                         initial={{ opacity: 0, scale: 0.9 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-rust/20 bg-rust/5 text-rust font-semibold text-sm mb-6"
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/20 bg-primary/10 text-primary font-semibold text-sm mb-6"
                     >
                         <Settings2 className="w-4 h-4" />
                         Otonom Satış Gücü
@@ -41,16 +50,16 @@ export default function PowerFeaturesSection() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 tracking-tight font-syne"
+                        className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 tracking-tight font-syne text-foreground"
                     >
-                        Hiçbir Müşteriyi <span className="text-transparent bg-clip-text bg-gradient-to-r from-rust to-orange-400">Kaçırmayın</span>
+                        Hiçbir Müşteriyi <span className="bg-gradient-to-r from-indigo-600 to-violet-500 bg-clip-text text-transparent">Kaçırmayın</span>
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.2 }}
-                        className="text-xl text-muted-foreground-light"
+                        className="text-xl text-muted-foreground"
                     >
                         Siz işinize odaklanın; WhatsApp mesajlarınızı ve cevapsız çağrılarınızı yapay zeka satışa dönüştürsün.
                     </motion.p>
@@ -70,15 +79,15 @@ export default function PowerFeaturesSection() {
                         }}
                         style={{ transformStyle: "preserve-3d" }}
                         viewport={{ once: true, margin: "-100px" }}
-                        className="bg-background/10 border border-white/5 rounded-[2.5rem] p-8 md:p-10 backdrop-blur-xl relative group shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+                        className="bg-white border border-gray-200 rounded-[2.5rem] p-8 md:p-10 relative group shadow-xl"
                     >
                         {/* Glow effect */}
-                        <div className="absolute -inset-0.5 bg-gradient-to-br from-green-500/20 to-transparent rounded-[2.5rem] opacity-0 group-hover:opacity-100 blur-md transition-opacity duration-500" />
+                        <div className="absolute -inset-0.5 bg-gradient-to-br from-green-500/10 to-transparent rounded-[2.5rem] opacity-0 group-hover:opacity-100 blur-md transition-opacity duration-500" />
 
                         <div className="relative z-10">
                             <div className="flex items-center justify-between mb-10">
                                 <div>
-                                    <h3 className="text-3xl font-bold font-syne mb-2 flex items-center gap-3">
+                                    <h3 className="text-3xl font-bold font-syne mb-2 flex items-center gap-3 text-foreground">
                                         <div className="w-10 h-10 rounded-full bg-[#25D366]/20 flex items-center justify-center">
                                             <MessageSquare className="w-5 h-5 text-[#25D366]" />
                                         </div>
@@ -94,15 +103,15 @@ export default function PowerFeaturesSection() {
                             {/* 3D Chat Mockup */}
                             <motion.div 
                                 style={{ transform: "translateZ(40px)" }}
-                                className="bg-[#0b141a] rounded-3xl border border-white/10 overflow-hidden shadow-2xl flex flex-col h-[320px]"
+                                className="bg-[#0b141a] rounded-3xl border border-gray-200 overflow-hidden shadow-2xl flex flex-col h-[320px]"
                             >
                                 {/* Chat Header */}
                                 <div className="bg-[#202c33] px-4 py-3 flex items-center gap-3 border-b border-white/5">
-                                    <div className="w-10 h-10 rounded-full bg-rust flex items-center justify-center text-white font-bold text-sm">
+                                    <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold text-sm">
                                         AI
                                     </div>
                                     <div>
-                                        <div className="text-white font-medium text-sm">kepenk.ai Asistanı</div>
+                                        <div className="text-white font-medium text-sm">KPNK Asistanı</div>
                                         <div className="text-[#8696a0] text-xs">çevrimiçi</div>
                                     </div>
                                 </div>
@@ -156,23 +165,23 @@ export default function PowerFeaturesSection() {
                         style={{ transformStyle: "preserve-3d" }}
                         viewport={{ once: true, margin: "-100px" }}
                         transition={{ delay: 0.2 }}
-                        className="bg-rust/5 border border-rust/20 rounded-[2.5rem] p-8 md:p-10 backdrop-blur-xl relative group shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+                        className="bg-white border border-gray-200 rounded-[2.5rem] p-8 md:p-10 relative group shadow-xl"
                     >
                         {/* Glow effect */}
-                        <div className="absolute -inset-0.5 bg-gradient-to-bl from-rust/30 to-transparent rounded-[2.5rem] opacity-0 group-hover:opacity-100 blur-md transition-opacity duration-500" />
+                        <div className="absolute -inset-0.5 bg-gradient-to-bl from-indigo-500/10 to-transparent rounded-[2.5rem] opacity-0 group-hover:opacity-100 blur-md transition-opacity duration-500" />
 
                         <div className="relative z-10">
                             <div className="flex items-center justify-between mb-10">
                                 <div>
-                                    <h3 className="text-3xl font-bold font-syne mb-2 flex items-center gap-3">
-                                        <div className="w-10 h-10 rounded-full bg-rust/20 flex items-center justify-center">
-                                            <PhoneCall className="w-5 h-5 text-rust" />
+                                    <h3 className="text-3xl font-bold font-syne mb-2 flex items-center gap-3 text-foreground">
+                                        <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                                            <PhoneCall className="w-5 h-5 text-primary" />
                                         </div>
                                         Otonom Çağrı
                                     </h3>
                                     <p className="text-muted-foreground">İnsan sesinde, sıfır gecikme.</p>
                                 </div>
-                                <span className="text-[10px] font-bold uppercase tracking-wider text-rust bg-rust/10 px-3 py-1.5 rounded-full border border-rust/20 shadow-sm">
+                                <span className="text-[10px] font-bold uppercase tracking-wider text-primary bg-primary/10 px-3 py-1.5 rounded-full border border-primary/20 shadow-sm">
                                     Premium+
                                 </span>
                             </div>
@@ -186,19 +195,19 @@ export default function PowerFeaturesSection() {
                                 <div className="absolute inset-0 bg-gradient-to-b from-[#1a1a1a] to-black flex flex-col items-center justify-between py-8">
                                     
                                     <div className="text-center">
-                                        <div className="w-20 h-20 rounded-full bg-rust/20 mx-auto mb-4 flex items-center justify-center relative">
+                                        <div className="w-20 h-20 rounded-full bg-primary/20 mx-auto mb-4 flex items-center justify-center relative">
                                             {/* Pulsing waves for speech */}
                                             <motion.div 
                                                 animate={{ scale: [1, 1.5, 2], opacity: [0.5, 0.2, 0] }}
                                                 transition={{ repeat: Infinity, duration: 1.5, ease: "easeOut" }}
-                                                className="absolute inset-0 border-2 border-rust rounded-full"
+                                                className="absolute inset-0 border-2 border-primary rounded-full"
                                             />
                                             <motion.div 
                                                 animate={{ scale: [1, 1.2, 1.8], opacity: [0.3, 0.1, 0] }}
                                                 transition={{ repeat: Infinity, duration: 1.5, ease: "easeOut", delay: 0.5 }}
-                                                className="absolute inset-0 border-2 border-rust rounded-full"
+                                                className="absolute inset-0 border-2 border-primary rounded-full"
                                             />
-                                            <Mic className="w-8 h-8 text-rust" />
+                                            <Mic className="w-8 h-8 text-primary" />
                                         </div>
                                         <h4 className="text-white text-xl font-medium">Ahmet Usta Tesisat</h4>
                                         <p className="text-[#888] text-sm mt-1">Konuşuyor... 00:15</p>

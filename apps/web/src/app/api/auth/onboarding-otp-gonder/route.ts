@@ -27,13 +27,13 @@ export async function POST(req: Request) {
             const smsResult = await otpGonderNetgsm(temizTelefon, kod)
             smsBasari = smsResult.success
         } catch (smsErr: any) {
-            console.warn('[OTP] SMS servisi hatası:', smsErr.message)
+            // console.warn('[OTP] SMS servisi hatası:', smsErr.message)
         }
 
         // SMS başarısızsa dev bypass — sabit kod 123456
         if (!smsBasari) {
             kod = '123456'
-            console.warn(`[OTP DEV BYPASS] SMS gönderilemedi. Bypass kodu aktif: ${kod} → ${temizTelefon}`)
+            // console.warn(`[OTP DEV BYPASS] SMS gönderilemedi. Bypass kodu aktif: ${kod} → ${temizTelefon}`)
         }
 
         // Firestore'a kaydet (3dk TTL)
@@ -41,7 +41,7 @@ export async function POST(req: Request) {
 
         return NextResponse.json({ ok: true })
     } catch (error: any) {
-        console.error('[ONBOARDING OTP GÖNDER]', error)
+        // console.error('[ONBOARDING OTP GÖNDER]', error)
         return NextResponse.json({ error: 'Sunucu hatası' }, { status: 500 })
     }
 }

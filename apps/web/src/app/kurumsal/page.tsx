@@ -111,7 +111,7 @@ export default function KurumsalPage() {
                             İşletmeler İçin<br />
                             <span className="text-rust">Özel Çözümler</span>
                         </h1>
-                        <p className="text-muted-foreground-light text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
+                        <p className="text-muted-foreground text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
                             ERP entegrasyonu, özel AI model, çok şube yönetimi veya white-label ihtiyacınız mı var?
                             Size özel çözüm tasarlayalım.
                         </p>
@@ -123,7 +123,7 @@ export default function KurumsalPage() {
             </section>
 
             {/* Hizmetler */}
-            <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white/3 border-y border-white/5">
+            <section className="py-16 px-4 sm:px-6 lg:px-8 bg-foreground/5 border-y border-foreground/5">
                 <div className="max-w-7xl mx-auto">
                     <div className="text-center mb-12">
                         <h2 className="text-2xl md:text-3xl font-extrabold text-foreground font-syne">Kurumsal Hizmetlerimiz</h2>
@@ -145,7 +145,7 @@ export default function KurumsalPage() {
                                     <Icon className="w-6 h-6" style={{ color: renk }} />
                                 </div>
                                 <h3 className="text-foreground font-bold text-xl mb-3">{baslik}</h3>
-                                <p className="text-muted-foreground-light text-sm leading-relaxed mb-5">{aciklama}</p>
+                                <p className="text-muted-foreground text-sm leading-relaxed mb-5">{aciklama}</p>
                                 <ul className="space-y-2">
                                     {ozellikler.map((o, oi) => (
                                         <li key={oi} className="flex items-start gap-2 text-xs text-muted-foreground">
@@ -179,7 +179,7 @@ export default function KurumsalPage() {
                                 <span className="text-3xl flex-shrink-0">{ref.emoji}</span>
                                 <div>
                                     <h3 className="text-foreground font-bold text-sm mb-1">{ref.ad}</h3>
-                                    <p className="text-muted-foreground-light text-xs leading-relaxed">{ref.aciklama}</p>
+                                    <p className="text-muted-foreground text-xs leading-relaxed">{ref.aciklama}</p>
                                 </div>
                             </motion.div>
                         ))}
@@ -188,19 +188,19 @@ export default function KurumsalPage() {
             </section>
 
             {/* Teklif Formu */}
-            <section id="teklif-formu" className="py-16 px-4 sm:px-6 lg:px-8 bg-white/3 border-y border-white/5">
+            <section id="teklif-formu" className="py-16 px-4 sm:px-6 lg:px-8 bg-foreground/5 border-y border-foreground/5">
                 <div className="max-w-2xl mx-auto">
                     <div className="text-center mb-10">
                         <p className="text-rust font-mono text-xs uppercase tracking-[0.3em] mb-3">İletişim</p>
                         <h2 className="text-2xl font-extrabold text-foreground font-syne">Özel Teklif Alın</h2>
-                        <p className="text-muted-foreground-light text-sm mt-2">3 iş günü içinde size dönüyoruz.</p>
+                        <p className="text-muted-foreground text-sm mt-2">3 iş günü içinde size dönüyoruz.</p>
                     </div>
 
                     {gonderildi ? (
                         <div className="text-center bg-green-400/10 border border-green-400/20 rounded-2xl p-10">
                             <CheckCircle2 className="w-12 h-12 text-green-400 mx-auto mb-4" />
                             <h3 className="text-foreground font-bold text-xl mb-2">Talebiniz Alındı!</h3>
-                            <p className="text-muted-foreground-light text-sm">Ekibimiz 3 iş günü içinde sizinle iletişime geçecek.</p>
+                            <p className="text-muted-foreground text-sm">Ekibimiz 3 iş günü içinde sizinle iletişime geçecek.</p>
                         </div>
                     ) : (
                         <form onSubmit={handleSubmit} className="space-y-4">
@@ -213,7 +213,7 @@ export default function KurumsalPage() {
                                         value={form.sirket}
                                         onChange={e => setForm(f => ({ ...f, sirket: e.target.value }))}
                                         placeholder="ABC Şirketi"
-                                        className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-foreground placeholder-stone focus:outline-none focus:border-rust text-sm"
+                                        className="w-full px-4 py-3 rounded-xl bg-white border border-foreground/10 text-foreground placeholder-stone focus:outline-none focus:border-rust text-sm"
                                     />
                                 </div>
                                 <div>
@@ -224,7 +224,7 @@ export default function KurumsalPage() {
                                         value={form.sektor}
                                         onChange={e => setForm(f => ({ ...f, sektor: e.target.value }))}
                                         placeholder="Restoran zinciri, kuaför..."
-                                        className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-foreground placeholder-stone focus:outline-none focus:border-rust text-sm"
+                                        className="w-full px-4 py-3 rounded-xl bg-white border border-foreground/10 text-foreground placeholder-stone focus:outline-none focus:border-rust text-sm"
                                     />
                                 </div>
                             </div>
@@ -236,7 +236,7 @@ export default function KurumsalPage() {
                                         value={form.subeSayisi}
                                         onChange={e => setForm(f => ({ ...f, subeSayisi: e.target.value }))}
                                         placeholder="5, 10-20, 50+"
-                                        className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-foreground placeholder-stone focus:outline-none focus:border-rust text-sm"
+                                        className="w-full px-4 py-3 rounded-xl bg-white border border-foreground/10 text-foreground placeholder-stone focus:outline-none focus:border-rust text-sm"
                                     />
                                 </div>
                                 <div>
@@ -247,7 +247,7 @@ export default function KurumsalPage() {
                                         value={form.telefon}
                                         onChange={e => setForm(f => ({ ...f, telefon: e.target.value }))}
                                         placeholder="0532 xxx xx xx"
-                                        className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-foreground placeholder-stone focus:outline-none focus:border-rust text-sm"
+                                        className="w-full px-4 py-3 rounded-xl bg-white border border-foreground/10 text-foreground placeholder-stone focus:outline-none focus:border-rust text-sm"
                                     />
                                 </div>
                             </div>
@@ -258,7 +258,7 @@ export default function KurumsalPage() {
                                     value={form.mesaj}
                                     onChange={e => setForm(f => ({ ...f, mesaj: e.target.value }))}
                                     placeholder="ERP entegrasyonu, çok şube yönetimi, white-label..."
-                                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-foreground placeholder-stone focus:outline-none focus:border-rust text-sm resize-none"
+                                    className="w-full px-4 py-3 rounded-xl bg-white border border-foreground/10 text-foreground placeholder-stone focus:outline-none focus:border-rust text-sm resize-none"
                                 />
                             </div>
                             <Button

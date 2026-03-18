@@ -40,10 +40,10 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
         // Variant styles
         const variants = {
-            primary: "bg-rust text-foreground hover:bg-rust-light shadow-md hover:shadow-lg focus-visible:ring-rust",
-            secondary: "bg-background text-foreground hover:bg-background/80 shadow-md hover:shadow-lg focus-visible:ring-ink",
-            outline: "bg-transparent border-2 border-ink text-foreground hover:bg-background focus-visible:ring-ink",
-            ghost: "bg-transparent text-foreground hover:bg-warm focus-visible:ring-warm focus-visible:bg-warm",
+            primary: "bg-primary text-primary-foreground hover:bg-indigo-light shadow-md hover:shadow-lg focus-visible:ring-primary",
+            secondary: "bg-secondary text-foreground hover:bg-secondary/80 shadow-md hover:shadow-lg focus-visible:ring-foreground",
+            outline: "bg-transparent border-2 border-foreground text-foreground hover:bg-secondary focus-visible:ring-foreground",
+            ghost: "bg-transparent text-foreground hover:bg-muted focus-visible:ring-muted focus-visible:bg-muted",
         };
 
         // Size styles

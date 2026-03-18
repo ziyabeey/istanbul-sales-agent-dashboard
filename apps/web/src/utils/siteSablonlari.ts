@@ -1,4 +1,4 @@
-import { SABLONLAR } from '../data/sablonlar'
+import { LEGACY_SABLONLAR as SABLONLAR } from '../data/sablonlar'
 import { sektorProfiliBul } from '../data/sektorKatalogu'
 
 /** 
