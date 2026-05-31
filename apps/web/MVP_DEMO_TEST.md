@@ -20,6 +20,30 @@ Yerel geliştirme sunucusunu başlatın:
 pnpm dev
 ```
 
+## Önerilen Lokal Smoke Komutu
+
+Monorepo içinde `EMFILE`/watch hatası görülürse polling değişkenleriyle `dev:smoke` kullanılmalıdır:
+
+```bash
+WATCHPACK_POLLING=true \
+CHOKIDAR_USEPOLLING=true \
+NEXT_PUBLIC_KEPENK_MVP_TEST_RELEASE=true \
+KEPENK_DEMO_MODE=true \
+pnpm run dev:smoke
+```
+
+### Hızlı Sağlık Kontrolü
+
+```bash
+curl -I http://127.0.0.1:3000/test-demo
+curl -i http://127.0.0.1:3000/api/auth/me
+curl -I http://127.0.0.1:3000/dashboard
+```
+
+`401` `/api/auth/me` için giriş öncesi normaldir; `404` olmamalıdır.
+
+Cookie'li tam rota turu `200` dönmelidir; görsel UI kontrolü ayrıca tarayıcıda manuel yapılmalıdır.
+
 Ardından tarayıcıda şu sayfaları açın:
 
 - `/test-demo`
