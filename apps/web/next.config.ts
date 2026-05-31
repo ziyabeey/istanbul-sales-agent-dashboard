@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import type { NextConfig } from 'next';
 import createPWA from '@ducanh2912/next-pwa';
 
 const withPWA = createPWA({
@@ -17,7 +18,7 @@ const withPWA = createPWA({
 
 const workspaceRoot = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 
-const nextConfig = {
+const nextConfig: NextConfig = {
     output: 'standalone' as const,
     outputFileTracingRoot: workspaceRoot,
     serverExternalPackages: ['iyzipay', 'firebase-admin', '@google-cloud/tasks', 'twilio', 'puppeteer-core'],
@@ -42,6 +43,23 @@ const nextConfig = {
     typescript: {
         // TODO: Pre-existing TS errors in demo/template files — fix incrementally
         ignoreBuildErrors: true,
+    },
+    webpack: (config, { dev }) => {
+        if (dev) {
+            config.watchOptions = {
+                ...(config.watchOptions ?? {}),
+                ignored: [
+                    '**/node_modules/**',
+                    '**/.next/**',
+                    '**/.turbo/**',
+                    '**/dist/**',
+                    '**/out/**',
+                    '**/coverage/**',
+                ],
+            };
+        }
+
+        return config;
     },
 };
 
