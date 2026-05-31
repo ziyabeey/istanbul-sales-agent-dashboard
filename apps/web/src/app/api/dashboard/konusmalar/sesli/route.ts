@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { adminDb } from '@/lib/firebaseAdmin'
+import { isDemoEsnafId, isDemoModeEnabled } from '@/lib/demoMode'
 
 export async function GET(req: Request) {
   try {
@@ -7,6 +8,10 @@ export async function GET(req: Request) {
     const esnafId = searchParams.get('esnafId')
     if (!esnafId) {
       return NextResponse.json({ error: 'esnafId gerekli' }, { status: 400 })
+    }
+
+    if (isDemoModeEnabled() && isDemoEsnafId(esnafId)) {
+      return NextResponse.json([])
     }
 
     const snapshot = await adminDb
@@ -56,8 +61,8 @@ export async function GET(req: Request) {
     )
 
     return NextResponse.json(aramalar)
-  } catch (error: any) {
-    // console.error('[Sesli Aramalar]', error)
+  } catch {
+    // console.error('[Sesli Aramalar]')
     return NextResponse.json({ error: 'Sunucu hatası' }, { status: 500 })
   }
 }

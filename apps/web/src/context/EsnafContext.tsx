@@ -5,6 +5,8 @@ interface EsnafContextType {
     esnafId: string | null
     esnaf: any | null
     loading: boolean
+    error: string | null
+    isDemo: boolean
     setEsnafId: (id: string) => void
     clearEsnaf: () => void
 }
@@ -13,6 +15,8 @@ const EsnafContext = createContext<EsnafContextType>({
     esnafId: null,
     esnaf: null,
     loading: true,
+    error: null,
+    isDemo: false,
     setEsnafId: () => { },
     clearEsnaf: () => { },
 })
@@ -21,6 +25,8 @@ export function EsnafProvider({ children }: { children: ReactNode }) {
     const [esnafId, setEsnafIdState] = useState<string | null>(null)
     const [esnaf, setEsnaf] = useState<any | null>(null)
     const [loading, setLoading] = useState(true)
+    const [error, setError] = useState<string | null>(null)
+    const [isDemo, setIsDemo] = useState(false)
 
     useEffect(() => {
         // HttpOnly cookie üzerinden oturum doğrulama
@@ -32,13 +38,19 @@ export function EsnafProvider({ children }: { children: ReactNode }) {
             const res = await fetch('/api/auth/me', { credentials: 'include' })
             if (res.ok) {
                 const data = await res.json()
+                setError(null)
+                setIsDemo(Boolean(data.isDemo))
                 setEsnafIdState(data.esnafId)
                 // Tam esnaf verisini çek
                 await fetchEsnaf(data.esnafId)
             } else {
+                setEsnafIdState(null)
+                setEsnaf(null)
+                setIsDemo(false)
                 setLoading(false)
             }
         } catch {
+            setError('Oturum bilgisi alınamadı')
             setLoading(false)
         }
     }
@@ -49,9 +61,14 @@ export function EsnafProvider({ children }: { children: ReactNode }) {
             if (res.ok) {
                 const data = await res.json()
                 setEsnaf(data)
+                setIsDemo(Boolean(data.isDemo))
+                setError(null)
+            } else {
+                const data = await res.json().catch(() => null)
+                setError(data?.error || 'İşletme bilgisi alınamadı')
             }
         } catch {
-            // Sessizce devam et
+            setError('İşletme bilgisi alınamadı')
         }
         setLoading(false)
     }
@@ -59,6 +76,8 @@ export function EsnafProvider({ children }: { children: ReactNode }) {
     function setEsnafId(id: string) {
         // Cookie zaten API response'da set ediliyor
         // Burada sadece state güncelleme yapıyoruz
+        setLoading(true)
+        setError(null)
         setEsnafIdState(id)
         fetchEsnaf(id)
     }
@@ -70,10 +89,12 @@ export function EsnafProvider({ children }: { children: ReactNode }) {
         } catch { /* ignore */ }
         setEsnafIdState(null)
         setEsnaf(null)
+        setIsDemo(false)
+        setError(null)
     }
 
     return (
-        <EsnafContext.Provider value={{ esnafId, esnaf, loading, setEsnafId, clearEsnaf }}>
+        <EsnafContext.Provider value={{ esnafId, esnaf, loading, error, isDemo, setEsnafId, clearEsnaf }}>
             {children}
         </EsnafContext.Provider>
     )

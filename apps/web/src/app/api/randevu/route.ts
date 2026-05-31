@@ -3,6 +3,8 @@ import { adminDb, Timestamp } from '@/lib/firebaseAdmin'
 import { telegramGonder } from '@/lib/telegram'
 import { zodGuard, randevuOlusturSema } from '@/lib/zodSemalar'
 import { rateLimitCheck } from '@/lib/rateLimiter'
+import { isDemoEsnafId, isDemoModeEnabled } from '@/lib/demoMode'
+import { demoBusiness } from '@/data/demoBusiness'
 
 // ── HTML Entity Escaping (XSS Koruması) ────────────────────────────────────
 function escapeHtml(str: string): string {
@@ -46,9 +48,8 @@ async function esnafaWhatsAppBildir(params: BildirimParams): Promise<void> {
             'randevu_bildirim'
         )
         await params.randevuRef.update({ 'bildirimGonderildi.esnafWhatsapp': true })
-    } catch (e: unknown) {
-        const message = e instanceof Error ? e.message : 'Bilinmeyen hata'
-        // console.error('[RANDEVU] WhatsApp bildirimi gönderilemedi:', message)
+    } catch {
+        // console.error('[RANDEVU] WhatsApp bildirimi gönderilemedi')
     }
 }
 
@@ -76,9 +77,8 @@ async function musteriyeEmailBildir(params: BildirimParams): Promise<void> {
             }),
         })
         await params.randevuRef.update({ 'bildirimGonderildi.musteriEmail': true })
-    } catch (e: unknown) {
-        const message = e instanceof Error ? e.message : 'Bilinmeyen hata'
-        // console.error('[RANDEVU] Email gönderilemedi:', message)
+    } catch {
+        // console.error('[RANDEVU] Email gönderilemedi')
     }
 }
 
@@ -89,8 +89,8 @@ function operatorTelegramBildir(params: BildirimParams): void {
         `👤 ${escapeHtml(params.musteriAd)} | ${params.musteriTel}\n` +
         `✂️ ${escapeHtml(params.hizmet)} | ${params.trTarih} ${params.saat}\n` +
         `ID: <code>${params.randevuId}</code>`
-    ).catch((e: unknown) => {
-        // console.error('[RANDEVU] Telegram gönderilemedi:', e)
+    ).catch(() => {
+        // console.error('[RANDEVU] Telegram gönderilemedi')
     })
 }
 
@@ -181,9 +181,8 @@ export async function POST(request: Request) {
             randevuId,
             mesaj: 'Randevu talebiniz alındı. En kısa sürede onay bildirilecektir.',
         })
-    } catch (error: unknown) {
-        const message = error instanceof Error ? error.message : 'Bilinmeyen hata'
-        // console.error('[RANDEVU POST]', message)
+    } catch {
+        // console.error('[RANDEVU POST]')
         return NextResponse.json({ error: 'Randevu oluşturulamadı' }, { status: 500 })
     }
 }
@@ -195,6 +194,10 @@ export async function GET(request: Request) {
 
     if (!esnafId) {
         return NextResponse.json({ error: 'esnafId gerekli' }, { status: 400 })
+    }
+
+    if (isDemoModeEnabled() && isDemoEsnafId(esnafId)) {
+        return NextResponse.json({ randevular: demoBusiness.appointments })
     }
 
     const snap = await adminDb

@@ -9,30 +9,13 @@
 
 import { useState, useEffect, useMemo, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { initializeApp, getApps } from 'firebase/app'
-import {
-    getFirestore,
-    collection,
-    query,
-    onSnapshot,
-    where,
-    type DocumentData,
-} from 'firebase/firestore'
 import {
     RANDEVU_RENKLERI,
+    RANDEVU_DURUMLARI,
     saateDakika,
     type RandevuDurum,
 } from '@/lib/randevu/RandevuTypes'
-
-// ─── Firebase ──────────────────────────────────
-
-const firebaseConfig = {
-    apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-    authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-    projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-}
-if (!getApps().length) initializeApp(firebaseConfig)
-const db = getFirestore()
+import { useEsnaf } from '@/context/EsnafContext'
 
 // ─── Tipler ────────────────────────────────────
 
@@ -59,45 +42,41 @@ interface RandevuUI {
 // ─── Component ─────────────────────────────────
 
 export default function RandevuDashboardPage() {
-    const [esnafId, setEsnafId] = useState('')
+    const { esnafId, loading, isDemo } = useEsnaf()
     const [randevular, setRandevular] = useState<RandevuUI[]>([])
     const [seciliTarih, setSeciliTarih] = useState(() => new Date().toISOString().split('T')[0])
     const [seciliRandevu, setSeciliRandevu] = useState<RandevuUI | null>(null)
     const [drawerAcik, setDrawerAcik] = useState(false)
+    const [yukleniyor, setYukleniyor] = useState(false)
 
-    useEffect(() => { setEsnafId(localStorage.getItem('esnafId') || '') }, [])
-
-    // Real-time randevular
     useEffect(() => {
-        if (!esnafId || !seciliTarih) return
-        const q = query(
-            collection(db, 'esnaflar', esnafId, 'randevular'),
-            where('tarih', '==', seciliTarih)
-        )
-        return onSnapshot(q, (snap) => {
-            setRandevular(snap.docs.map(d => {
-                const data = d.data() as DocumentData
-                return {
-                    id: d.id,
-                    musteri_ad: data.musteri_ad || '',
-                    musteri_telefon: data.musteri_telefon || '',
-                    hizmet_adi: data.hizmet_adi || '',
-                    hizmet_suresi_dk: data.hizmet_suresi_dk || 30,
-                    personel_adi: data.personel_adi,
-                    tarih: data.tarih || '',
-                    baslangic_saat: data.baslangic_saat || '09:00',
-                    bitis_saat: data.bitis_saat || '09:30',
-                    durum: data.durum || 'kapora_bekleniyor',
-                    kapora_tutar: data.kapora?.tutar_TL || 0,
-                    kapora_durum: data.kapora?.durum || 'bekleniyor',
-                    toplam_fiyat: data.toplam_fiyat_TL || 0,
-                    kalan_bakiye: data.kalan_bakiye_TL || 0,
-                    kilit_bitis: data.kilit_bitis?.seconds ? data.kilit_bitis.seconds * 1000 : undefined,
-                    musteri_notu: data.musteri_notu,
-                    esnaf_notu: data.esnaf_notu,
-                }
-            }).sort((a, b) => saateDakika(a.baslangic_saat) - saateDakika(b.baslangic_saat)))
-        })
+        if (!esnafId) return
+
+        let iptal = false
+        Promise.resolve()
+            .then(() => {
+                if (!iptal) setYukleniyor(true)
+            })
+            .then(() => fetch(`/api/randevu?esnafId=${encodeURIComponent(esnafId)}`, { credentials: 'include' }))
+            .then((res) => res.ok ? res.json() : { randevular: [] })
+            .then((data) => {
+                if (iptal) return
+                const liste = Array.isArray(data.randevular) ? data.randevular : []
+                setRandevular(
+                    liste
+                        .map(randevuKaydiToUI)
+                        .filter((randevu) => randevu.tarih === seciliTarih)
+                        .sort((a, b) => saateDakika(a.baslangic_saat) - saateDakika(b.baslangic_saat))
+                )
+            })
+            .catch(() => {
+                if (!iptal) setRandevular([])
+            })
+            .finally(() => {
+                if (!iptal) setYukleniyor(false)
+            })
+
+        return () => { iptal = true }
     }, [esnafId, seciliTarih])
 
     // Haftalık günler
@@ -142,6 +121,12 @@ export default function RandevuDashboardPage() {
         })
     }, [])
 
+    if (loading) {
+        return <div className="min-h-screen bg-neutral-950 flex items-center justify-center">
+            <p className="text-neutral-400">Randevular yükleniyor...</p>
+        </div>
+    }
+
     if (!esnafId) {
         return <div className="min-h-screen bg-neutral-950 flex items-center justify-center">
             <p className="text-neutral-400">Esnaf ID bulunamadı.</p>
@@ -163,6 +148,12 @@ export default function RandevuDashboardPage() {
                     <MiniKart emoji="🚫" deger={ozet.noShow} label="No-Show" renk="text-rose-400" />
                 </div>
             </div>
+
+            {isDemo && (
+                <div className="mb-4 rounded-xl border border-indigo-500/30 bg-indigo-500/10 px-4 py-3 text-sm font-medium text-indigo-200">
+                    Demo modunda randevu işlemleri simülasyon amaçlıdır.
+                </div>
+            )}
 
             {/* ═══ HAFTA NAVİGASYONU ═══ */}
             <div className="flex items-center gap-1 mb-4 bg-neutral-900 rounded-xl p-1.5 border border-neutral-800">
@@ -208,6 +199,9 @@ export default function RandevuDashboardPage() {
 
             {/* ═══ TAKVİM GRID ═══ */}
             <div className="bg-neutral-900 rounded-2xl border border-neutral-800 overflow-hidden">
+                {yukleniyor && (
+                    <div className="p-6 text-center text-neutral-400 text-sm">Randevular yükleniyor...</div>
+                )}
                 {saatDilimleri.map(saat => {
                     const saatRandevulari = randevular.filter(r => {
                         const rBas = saateDakika(r.baslangic_saat)
@@ -291,6 +285,7 @@ export default function RandevuDashboardPage() {
                             <DrawerIcerik
                                 randevu={seciliRandevu}
                                 esnafId={esnafId}
+                                isDemo={isDemo}
                                 onKapat={() => setDrawerAcik(false)}
                             />
                         </motion.div>
@@ -303,8 +298,8 @@ export default function RandevuDashboardPage() {
 
 // ═══ DRAWER İÇERİĞİ ═════════════════════════════════════════════════════
 
-function DrawerIcerik({ randevu, esnafId, onKapat }: {
-    randevu: RandevuUI; esnafId: string; onKapat: () => void
+function DrawerIcerik({ randevu, esnafId, isDemo, onKapat }: {
+    randevu: RandevuUI; esnafId: string; isDemo: boolean; onKapat: () => void
 }) {
     const renk = RANDEVU_RENKLERI[randevu.durum]
     const [islem, setIslem] = useState<'idle' | 'loading' | 'done'>('idle')
@@ -398,8 +393,17 @@ function DrawerIcerik({ randevu, esnafId, onKapat }: {
                 </div>
             )}
 
+            {isDemo && (
+                <div className="mt-6 rounded-xl border border-indigo-500/30 bg-indigo-500/10 p-4">
+                    <p className="text-indigo-200 text-sm font-bold">Demo modu</p>
+                    <p className="text-indigo-100/70 text-xs mt-1">
+                        Tahsilat ve no-show aksiyonları gerçek sistemlere gönderilmez.
+                    </p>
+                </div>
+            )}
+
             {/* Aksiyonlar */}
-            {randevu.durum === 'onaylandi' && (
+            {!isDemo && randevu.durum === 'onaylandi' && (
                 <div className="space-y-2 mt-6">
                     <button
                         onClick={bakiyeTahsilEt}
@@ -439,6 +443,72 @@ function DrawerIcerik({ randevu, esnafId, onKapat }: {
             )}
         </div>
     )
+}
+
+function randevuKaydiToUI(kayit: Record<string, unknown>): RandevuUI {
+    const hizmetSure = sayi(kayit.hizmet_suresi_dk) || 30
+    const baslangic = metin(kayit.baslangic_saat) || metin(kayit.saat) || '09:00'
+    const bitis = metin(kayit.bitis_saat) || bitisSaati(baslangic, hizmetSure)
+    const kapora = nesne(kayit.kapora)
+
+    return {
+        id: metin(kayit.id) || metin(kayit.randevuId) || `randevu-${baslangic}`,
+        musteri_ad: metin(kayit.musteri_ad) || metin(kayit.musteriAd) || '',
+        musteri_telefon: metin(kayit.musteri_telefon) || metin(kayit.musteriTel) || '',
+        hizmet_adi: metin(kayit.hizmet_adi) || metin(kayit.hizmet) || '',
+        hizmet_suresi_dk: hizmetSure,
+        personel_adi: metin(kayit.personel_adi),
+        tarih: metin(kayit.tarih) || isoTarih(kayit.randevuZamani),
+        baslangic_saat: baslangic,
+        bitis_saat: bitis,
+        durum: randevuDurumu(kayit.durum),
+        kapora_tutar: sayi(kayit.kapora_tutar) || sayi(kapora.tutar_TL) || 0,
+        kapora_durum: metin(kayit.kapora_durum) || metin(kapora.durum) || 'bekleniyor',
+        toplam_fiyat: sayi(kayit.toplam_fiyat) || sayi(kayit.toplam_fiyat_TL) || 0,
+        kalan_bakiye: sayi(kayit.kalan_bakiye) || sayi(kayit.kalan_bakiye_TL) || 0,
+        kilit_bitis: millis(kayit.kilit_bitis),
+        musteri_notu: metin(kayit.musteri_notu) || metin(kayit.notlar),
+        esnaf_notu: metin(kayit.esnaf_notu),
+    }
+}
+
+function metin(deger: unknown): string {
+    return typeof deger === 'string' ? deger : ''
+}
+
+function sayi(deger: unknown): number {
+    return typeof deger === 'number' ? deger : 0
+}
+
+function nesne(deger: unknown): Record<string, unknown> {
+    return deger && typeof deger === 'object' ? deger as Record<string, unknown> : {}
+}
+
+function randevuDurumu(deger: unknown): RandevuDurum {
+    return typeof deger === 'string' && RANDEVU_DURUMLARI.includes(deger as RandevuDurum)
+        ? deger as RandevuDurum
+        : 'kapora_bekleniyor'
+}
+
+function isoTarih(deger: unknown): string {
+    if (typeof deger === 'string') return deger.slice(0, 10)
+    return ''
+}
+
+function millis(deger: unknown): number | undefined {
+    if (typeof deger === 'number') return deger
+    if (deger && typeof deger === 'object' && 'seconds' in deger && typeof deger.seconds === 'number') {
+        return deger.seconds * 1000
+    }
+    return undefined
+}
+
+function bitisSaati(baslangic: string, sureDk: number): string {
+    const [saat, dakika] = baslangic.split(':').map(Number)
+    const toplam = (saat * 60) + dakika + sureDk
+    const bitisSaat = Math.floor(toplam / 60).toString().padStart(2, '0')
+    const bitisDakika = (toplam % 60).toString().padStart(2, '0')
+    return `${bitisSaat}:${bitisDakika}`
 }
 
 // ─── Alt Komponent ─────────────

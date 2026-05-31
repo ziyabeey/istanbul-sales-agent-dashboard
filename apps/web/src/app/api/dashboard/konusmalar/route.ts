@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server'
 import { adminDb } from '@/lib/firebaseAdmin'
+import { isDemoEsnafId, isDemoModeEnabled } from '@/lib/demoMode'
+import { demoBusiness } from '@/data/demoBusiness'
 
 export async function GET(req: Request) {
     const { searchParams } = new URL(req.url)
@@ -7,6 +9,18 @@ export async function GET(req: Request) {
 
     if (!esnafId) {
         return NextResponse.json({ error: 'esnafId required' }, { status: 400 })
+    }
+
+    if (isDemoModeEnabled() && isDemoEsnafId(esnafId)) {
+        return NextResponse.json(demoBusiness.conversations.map((konusma, index) => ({
+            id: `demo-konusma-${index + 1}`,
+            musteriNumara: konusma.musteriNumara,
+            musteriAd: konusma.musteriAd,
+            sonMesaj: konusma.sonMesaj,
+            sonZaman: konusma.sonZaman,
+            mesajSayisi: konusma.mesajSayisi,
+            randevuVar: konusma.randevuVar,
+        })))
     }
 
     try {
@@ -21,11 +35,11 @@ export async function GET(req: Request) {
         if (snapshot.empty) return NextResponse.json([])
 
         // musteriNumara bazinda grupla
-        const gruplar = new Map<string, { mesajlar: any[]; sonZaman: any }>()
+        const gruplar = new Map<string, { mesajlar: Record<string, unknown>[]; sonZaman: unknown }>()
 
         for (const doc of snapshot.docs) {
-            const d = doc.data()
-            const numara = d.musteriNumara || 'bilinmeyen'
+            const d = doc.data() as Record<string, unknown>
+            const numara = typeof d.musteriNumara === 'string' ? d.musteriNumara : 'bilinmeyen'
             if (!gruplar.has(numara)) {
                 gruplar.set(numara, { mesajlar: [], sonZaman: d.zaman })
             }
@@ -47,20 +61,19 @@ export async function GET(req: Request) {
                 .get()
 
             for (const rd of randevuSnap.docs) {
-                randevuSet.add(rd.data().musteriNumara)
+                const musteriNumara = rd.data().musteriNumara
+                if (typeof musteriNumara === 'string') randevuSet.add(musteriNumara)
             }
         }
 
         // Sonuc dizisi olustur
         const sonuc = Array.from(gruplar.entries()).map(([numara, grup]) => {
             const sonMesajDoc = grup.mesajlar[0]
-            const zamanObj = sonMesajDoc.zaman?.toDate?.()
-                ? sonMesajDoc.zaman.toDate()
-                : new Date(sonMesajDoc.zaman)
+            const zamanObj = tarihOlustur(sonMesajDoc.zaman)
 
             return {
                 musteriNumara: numara,
-                sonMesaj: sonMesajDoc.mesaj || '',
+                sonMesaj: typeof sonMesajDoc.mesaj === 'string' ? sonMesajDoc.mesaj : '',
                 sonZaman: zamanFormat(zamanObj),
                 mesajSayisi: grup.mesajlar.length,
                 randevuVar: randevuSet.has(numara),
@@ -68,10 +81,17 @@ export async function GET(req: Request) {
         })
 
         return NextResponse.json(sonuc)
-    } catch (err) {
-        // console.error('[KONUSMALAR API]', err)
+    } catch {
+        // console.error('[KONUSMALAR API]')
         return NextResponse.json({ error: 'DB Fetch Error' }, { status: 500 })
     }
+}
+
+function tarihOlustur(deger: unknown): Date {
+    if (deger && typeof deger === 'object' && 'toDate' in deger && typeof deger.toDate === 'function') {
+        return deger.toDate()
+    }
+    return new Date(typeof deger === 'string' || typeof deger === 'number' ? deger : Date.now())
 }
 
 function zamanFormat(tarih: Date): string {

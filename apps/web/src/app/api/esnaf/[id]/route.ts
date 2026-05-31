@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server'
 import { adminDb } from '@/lib/firebaseAdmin'
 import { oturumDogrulaServer } from '@/lib/sessionManager'
 import { zodGuard, esnafGuncelleSema, type EsnafGuncelleInput } from '@/lib/zodSemalar'
+import { isDemoEsnafId, isDemoModeEnabled } from '@/lib/demoMode'
+import { demoBusiness } from '@/data/demoBusiness'
 
 /**
  * Oturum veya admin token doğrulama.
@@ -38,6 +40,10 @@ export async function GET(
     const yetki = await yetkiKontrol(request, id)
     if (!yetki.ok) return yetki.response
 
+    if (isDemoModeEnabled() && isDemoEsnafId(id)) {
+        return NextResponse.json(demoBusiness)
+    }
+
     try {
         const doc = await adminDb.collection('esnaflar').doc(id).get()
         if (!doc.exists) {
@@ -68,6 +74,10 @@ export async function PATCH(
     // ── Auth: session cookie VEYA admin token ──
     const yetki = await yetkiKontrol(request, id)
     if (!yetki.ok) return yetki.response
+
+    if (isDemoModeEnabled() && isDemoEsnafId(id)) {
+        return NextResponse.json({ ok: true, isDemo: true })
+    }
 
     try {
         const body = await request.json()

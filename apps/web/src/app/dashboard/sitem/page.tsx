@@ -3,16 +3,22 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import PaletDegistir from '@/components/Dashboard/PaletDegistir'
+import DemoSitePreview from '@/components/Dashboard/DemoSitePreview'
 import { useEsnaf } from '@/context/EsnafContext'
+import { demoBusiness } from '@/data/demoBusiness'
 
 export default function SitemPage() {
-    const { esnafId } = useEsnaf()
+    const { esnaf, esnafId, isDemo, loading, error } = useEsnaf()
     const [siteUrl, setSiteUrl] = useState<string | null>(null)
     const [sektor, setSektor] = useState('diger')
     const [mevcutPaletId, setMevcutPaletId] = useState('siyah-altin')
     const [yukleniyor, setYukleniyor] = useState(false)
     const [mesaj, setMesaj] = useState('')
     const router = useRouter()
+    const demoSiteData = isDemo ? (esnaf?.siteData || demoBusiness.siteData) : null
+    const previewLabel = isDemo
+        ? `${esnaf?.slug || demoBusiness.slug}.demo.local`
+        : siteUrl
 
     const fetchEsnafData = async (id: string) => {
         try {
@@ -29,13 +35,20 @@ export default function SitemPage() {
     }
 
     useEffect(() => {
-        if (esnafId) {
-            fetchEsnafData(esnafId)
+        if (loading) return
+
+        if (isDemo) {
+            setSiteUrl(null)
+            setSektor(esnaf?.sektor || demoBusiness.sektor)
+            setMevcutPaletId(esnaf?.paletId || demoBusiness.paletId)
+            return
         }
-    }, [esnafId])
+
+        if (esnafId) fetchEsnafData(esnafId)
+    }, [esnaf, esnafId, isDemo, loading])
 
     async function handleYenidenUret() {
-        if (!esnafId) return
+        if (!esnafId || isDemo) return
         setYukleniyor(true)
         setMesaj('')
         try {
@@ -53,7 +66,26 @@ export default function SitemPage() {
         }
     }
 
-    if (!siteUrl) {
+    if (loading) {
+        return (
+            <div className="p-6 max-w-md mx-auto text-center mt-20">
+                <p className="text-muted-foreground text-sm font-bold">Site bilgileri yukleniyor...</p>
+            </div>
+        )
+    }
+
+    if (error && !isDemo) {
+        return (
+            <div className="p-6 max-w-md mx-auto text-center mt-20">
+                <h2 className="text-foreground font-syne font-bold text-2xl mb-2">
+                    Site bilgisi alinamadi
+                </h2>
+                <p className="text-muted-foreground text-sm leading-relaxed">{error}</p>
+            </div>
+        )
+    }
+
+    if (!isDemo && !siteUrl) {
         return (
             <div className="p-6 max-w-md mx-auto text-center mt-20">
                 <p className="text-5xl mb-4">⏳</p>
@@ -61,7 +93,7 @@ export default function SitemPage() {
                     Siteniz Hazırlanıyor
                 </h2>
                 <p className="text-muted-foreground text-sm leading-relaxed">
-                    Yapay zeka dükkanınız için özel içerikleri yazıyor ve bulut mimarisinde kodluyor. Bu işlem 1-2 dakika sürebilir. Hazır olduğunda WhatsApp'ınıza anında bildirim gelecek.
+                    Yapay zeka dükkanınız için özel içerikleri yazıyor ve bulut mimarisinde kodluyor. Bu işlem 1-2 dakika sürebilir. Hazır olduğunda WhatsApp&apos;ınıza anında bildirim gelecek.
                 </p>
             </div>
         )
@@ -77,56 +109,78 @@ export default function SitemPage() {
                 <div className="md:col-span-4 space-y-6">
                     <div className="bg-white border border-border-light/30 rounded-3xl p-6 shadow-sm">
                         <p className="text-muted-foreground text-xs font-bold uppercase tracking-wider mb-2">
-                            Canlı Bağlantı
+                            {isDemo ? 'Yerel Demo' : 'Canlı Bağlantı'}
                         </p>
-                        <a
-                            href={siteUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-foreground font-syne font-bold text-lg break-all hover:text-rust transition-colors block mb-4"
-                        >
-                            {siteUrl.replace('https://', '')}
-                        </a>
-                        <div className="flex flex-col gap-3">
-                            <a
-                                href={siteUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="w-full bg-rust hover:bg-rust-light transition-colors text-foreground text-sm font-bold py-3 rounded-xl text-center"
-                            >
-                                Siteyi Aç ↗
-                            </a>
-                            <button
-                                onClick={() => navigator.clipboard.writeText(siteUrl)}
-                                className="w-full px-4 py-3 bg-warm/50 hover:bg-warm border border-border-light/20 transition-colors text-muted-foreground font-bold text-sm rounded-xl"
-                            >
-                                Bağlantıyı Kopyala
-                            </button>
-                        </div>
+                        {isDemo ? (
+                            <>
+                                <p className="text-foreground font-syne font-bold text-lg break-all block mb-4">
+                                    {previewLabel}
+                                </p>
+                                <p className="text-muted-foreground text-sm leading-relaxed">
+                                    Demo modunda site onizlemesi yerel verilerle gosterilir; yayinlama ve uretim islemleri kapalidir.
+                                </p>
+                            </>
+                        ) : (
+                            <>
+                                <a
+                                    href={siteUrl || '#'}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-foreground font-syne font-bold text-lg break-all hover:text-rust transition-colors block mb-4"
+                                >
+                                    {siteUrl?.replace('https://', '')}
+                                </a>
+                                <div className="flex flex-col gap-3">
+                                    <a
+                                        href={siteUrl || '#'}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="w-full bg-rust hover:bg-rust-light transition-colors text-foreground text-sm font-bold py-3 rounded-xl text-center"
+                                    >
+                                        Siteyi Aç ↗
+                                    </a>
+                                    <button
+                                        onClick={() => siteUrl && navigator.clipboard.writeText(siteUrl)}
+                                        className="w-full px-4 py-3 bg-warm/50 hover:bg-warm border border-border-light/20 transition-colors text-muted-foreground font-bold text-sm rounded-xl"
+                                    >
+                                        Bağlantıyı Kopyala
+                                    </button>
+                                </div>
+                            </>
+                        )}
                     </div>
 
                     {/* Güncelle */}
-                    <div className="bg-white border border-border-light/30 rounded-3xl p-6 shadow-sm">
-                        <h3 className="text-foreground font-extrabold font-syne text-lg mb-2">
-                            Yapay Zeka ile Güncelle
-                        </h3>
-                        <p className="text-muted-foreground text-sm mb-4 leading-relaxed">
-                            Telefon, adres veya hizmetleriniz değiştiyse, robotların siteyi yeniden kodlaması için komut verin.
-                        </p>
-                        {mesaj && (
-                            <p className="text-green-700 bg-green-50 border border-green-200 p-3 rounded-xl text-xs font-bold mb-4">✓ {mesaj}</p>
-                        )}
-                        <button
-                            onClick={handleYenidenUret}
-                            disabled={yukleniyor}
-                            className="w-full border-2 border-border text-muted-foreground hover:bg-stone hover:text-white transition-colors text-sm font-bold py-3 rounded-xl disabled:opacity-50"
-                        >
-                            {yukleniyor ? '☁️ Buluta Gönderiliyor...' : '🤖 Zekayı Tetikle (Güncelle)'}
-                        </button>
-                    </div>
+                    {!isDemo && (
+                        <div className="bg-white border border-border-light/30 rounded-3xl p-6 shadow-sm">
+                            <h3 className="text-foreground font-extrabold font-syne text-lg mb-2">
+                                Yapay Zeka ile Güncelle
+                            </h3>
+                            <p className="text-muted-foreground text-sm mb-4 leading-relaxed">
+                                Telefon, adres veya hizmetleriniz değiştiyse, robotların siteyi yeniden kodlaması için komut verin.
+                            </p>
+                            {mesaj && (
+                                <p className="text-green-700 bg-green-50 border border-green-200 p-3 rounded-xl text-xs font-bold mb-4">✓ {mesaj}</p>
+                            )}
+                            <button
+                                onClick={handleYenidenUret}
+                                disabled={yukleniyor}
+                                className="w-full border-2 border-border text-muted-foreground hover:bg-stone hover:text-white transition-colors text-sm font-bold py-3 rounded-xl disabled:opacity-50"
+                            >
+                                {yukleniyor ? '☁️ Buluta Gönderiliyor...' : '🤖 Zekayı Tetikle (Güncelle)'}
+                            </button>
+                        </div>
+                    )}
 
                     {/* Palet Değiştirici */}
-                    {esnafId && (
+                    {isDemo ? (
+                        <div className="bg-white border border-border-light/30 rounded-3xl p-6 shadow-sm">
+                            <h3 className="text-foreground font-syne font-extrabold text-lg mb-3">Renk Paleti</h3>
+                            <p className="text-muted-foreground text-sm leading-relaxed">
+                                Demo modunda renk paleti sabittir; kaydetme ve yeniden uretim kapali tutulur.
+                            </p>
+                        </div>
+                    ) : esnafId && (
                         <PaletDegistir
                             esnafId={esnafId}
                             mevcutPaletId={mevcutPaletId}
@@ -150,10 +204,11 @@ export default function SitemPage() {
                             Sitenizde görünen özellikleri (Randevu formu, İletişim, Müşteri Yorumları, Fiyat Hesaplayıcı vb.) dilediğiniz gibi açıp kapatın.
                         </p>
                         <button
-                            onClick={() => router.push('/dashboard/sitem/moduller')}
-                            className="w-full bg-background hover:bg-background-light text-white transition-colors text-sm font-bold py-3 rounded-xl"
+                            onClick={() => !isDemo && router.push('/dashboard/sitem/moduller')}
+                            disabled={isDemo}
+                            className="w-full bg-background hover:bg-background-light text-white transition-colors text-sm font-bold py-3 rounded-xl disabled:cursor-not-allowed disabled:opacity-50"
                         >
-                            Özellikleri Yönet (Aç/Kapat)
+                            {isDemo ? 'Demo Modunda Kapalı' : 'Özellikleri Yönet (Aç/Kapat)'}
                         </button>
                     </div>
 
@@ -170,10 +225,11 @@ export default function SitemPage() {
                             Kepenk sürükle-bırak editör ile sitenizi görsel olarak tasarlayın. Bölüm ekleyin, sıralayın, renk/font değiştirin ve AI ile içerik üretin.
                         </p>
                         <button
-                            onClick={() => router.push('/dashboard/sitem/editor')}
-                            className="w-full bg-rust hover:bg-rust/90 text-foreground transition-colors text-sm font-bold py-3 rounded-xl"
+                            onClick={() => !isDemo && router.push('/dashboard/sitem/editor')}
+                            disabled={isDemo}
+                            className="w-full bg-rust hover:bg-rust/90 text-foreground transition-colors text-sm font-bold py-3 rounded-xl disabled:cursor-not-allowed disabled:opacity-50"
                         >
-                            ✨ Editörü Aç
+                            {isDemo ? 'Demo Modunda Kapalı' : '✨ Editörü Aç'}
                         </button>
                     </div>
 
@@ -189,10 +245,11 @@ export default function SitemPage() {
                             Premium domain hediyenizi seçin, DNS durumunu ve SSL sertifikasını izleyin.
                         </p>
                         <button
-                            onClick={() => router.push('/dashboard/sitem/domain')}
-                            className="w-full border-2 border-gold text-gold hover:bg-gold hover:text-foreground transition-colors text-sm font-bold py-3 rounded-xl"
+                            onClick={() => !isDemo && router.push('/dashboard/sitem/domain')}
+                            disabled={isDemo}
+                            className="w-full border-2 border-gold text-gold hover:bg-gold hover:text-foreground transition-colors text-sm font-bold py-3 rounded-xl disabled:cursor-not-allowed disabled:opacity-50"
                         >
-                            🎁 Domain Yönet
+                            {isDemo ? 'Demo Modunda Kapalı' : '🎁 Domain Yönet'}
                         </button>
                     </div>
 
@@ -216,7 +273,7 @@ export default function SitemPage() {
                     </div>
                 </div>
 
-                {/* Site önizleme iframe */}
+                {/* Site önizleme */}
                 <div className="md:col-span-8 bg-stone-light/5 border border-border-light/20 rounded-3xl overflow-hidden shadow-inner flex flex-col h-[600px] md:h-auto min-h-[500px]">
                     <div className="flex items-center gap-2 px-4 py-3 bg-warm border-b border-border-light/20 flex-shrink-0">
                         <div className="flex gap-1.5 w-16">
@@ -225,22 +282,31 @@ export default function SitemPage() {
                             <div className="w-3 h-3 rounded-full bg-green-400" />
                         </div>
                         <div className="flex-1 bg-white text-center text-muted-foreground font-mono text-xs py-1.5 rounded-lg border border-border-light/20 shadow-sm truncate px-4">
-                            {siteUrl}
+                            {previewLabel}
                         </div>
                         <div className="w-16"></div>
                     </div>
+                    {isDemo && (
+                        <div className="border-b border-amber-200 bg-amber-50 px-4 py-3 text-xs font-bold leading-relaxed text-amber-900">
+                            Demo modunda site önizlemesi yerel verilerle gösterilir; yayınlama ve üretim işlemleri kapalıdır.
+                        </div>
+                    )}
                     <div className="flex-grow w-full relative">
-                        {yukleniyor && (
+                        {!isDemo && yukleniyor && (
                             <div className="absolute inset-0 bg-white/70 backdrop-blur-sm z-10 flex items-center justify-center flex-col gap-4">
                                 <div className="w-12 h-12 border-4 border-rust/30 border-t-rust rounded-full animate-spin"></div>
                                 <span className="font-syne font-bold text-rust">Yeniden İnşa Ediliyor...</span>
                             </div>
                         )}
-                        <iframe
-                            src={siteUrl}
-                            className="w-full h-full border-0 absolute inset-0"
-                            title="Sitenizin Canlı Görünümü"
-                        />
+                        {isDemo && demoSiteData ? (
+                            <DemoSitePreview siteData={demoSiteData} />
+                        ) : (
+                            <iframe
+                                src={siteUrl || undefined}
+                                className="w-full h-full border-0 absolute inset-0"
+                                title="Sitenizin Canlı Görünümü"
+                            />
+                        )}
                     </div>
                 </div>
 
