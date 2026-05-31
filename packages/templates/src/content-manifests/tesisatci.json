@@ -1,0 +1,889 @@
+{
+  "sectorId": "tesisatci",
+  "seoSchemaType": "Plumber",
+  "variants": [
+    {
+      "id": "tesisatci-su",
+      "variantName": "su",
+      "plan": "free",
+      "description": "Su tesisatcisi, ev tipi isler",
+      "designPhilosophy": "Sade, guvenilir, samimi",
+      "isDark": false,
+      "colors": {
+        "bg": "#FFFFFF",
+        "surface": "#EFF6FF",
+        "text": "#1E3A5F",
+        "accent": "#2563EB"
+      },
+      "fonts": { "heading": "Inter", "body": "Inter" },
+      "business": {
+        "name": "Celik Usta Tesisat",
+        "ownerName": "Ibrahim Celik",
+        "sector": "Tesisatci",
+        "slogan": "Akan musluk dert olmaz, biz variz",
+        "phone": "0532 456 78 90",
+        "phoneClean": "905324567890",
+        "whatsapp": "905324567890",
+        "email": "info@celikustatesisat.com",
+        "address": "Fenerbahce Mah. Bagdat Cad. No:210, Kadikoy/Istanbul",
+        "city": "Istanbul",
+        "district": "Kadikoy",
+        "mapEmbed": "",
+        "foundedYear": 1998,
+        "experience": "28 yil",
+        "employeeCount": 3,
+        "customerCount": "18.000+",
+        "rating": 4.7,
+        "reviewCount": 920,
+        "workingHours": [
+          { "day": "Pazartesi", "dayTr": "Pazartesi", "open": "08:00", "close": "19:00", "isOpen": true },
+          { "day": "Sali", "dayTr": "Sali", "open": "08:00", "close": "19:00", "isOpen": true },
+          { "day": "Carsamba", "dayTr": "Carsamba", "open": "08:00", "close": "19:00", "isOpen": true },
+          { "day": "Persembe", "dayTr": "Persembe", "open": "08:00", "close": "19:00", "isOpen": true },
+          { "day": "Cuma", "dayTr": "Cuma", "open": "08:00", "close": "19:00", "isOpen": true },
+          { "day": "Cumartesi", "dayTr": "Cumartesi", "open": "09:00", "close": "16:00", "isOpen": true },
+          { "day": "Pazar", "dayTr": "Pazar", "open": "", "close": "", "isOpen": false }
+        ],
+        "services": [
+          {
+            "id": "s1",
+            "name": "Su Kacagi Tespiti & Onarimi",
+            "price": "300-800 TL",
+            "duration": "1-3 saat",
+            "description": "Kirmasiz su kacagi tespiti ve onarimi. Termal kamera ve akustik cihazlarla tam konum belirleme. Duvari germeden cozum.",
+            "icon": "Droplet"
+          },
+          {
+            "id": "s2",
+            "name": "Tikaniklik Acma",
+            "price": "200-600 TL",
+            "duration": "30-90 dk",
+            "description": "Lavabo, tuvalet, banyo gideri ve mutfak borusu tikaniklik acma. Spiral ve basincli su ile profesyonel temizlik.",
+            "icon": "Wrench"
+          },
+          {
+            "id": "s3",
+            "name": "Musluk & Batarya Montaji",
+            "price": "200-400 TL",
+            "duration": "30 dk",
+            "description": "Mutfak, banyo ve lavabo muslugu degisimi ve montaji. Artema, Eca, Grohe gibi markalarla calisiyoruz.",
+            "icon": "PlugZap"
+          },
+          {
+            "id": "s4",
+            "name": "Klozet & Rezervuar Tamiri",
+            "price": "200-500 TL",
+            "duration": "30-60 dk",
+            "description": "Klozet montaji, rezervuar ic mekanizma degisimi, su kacagi onarimi ve gomme rezervuar tamiri.",
+            "icon": "ShieldCheck"
+          }
+        ],
+        "team": [],
+        "testimonials": [],
+        "gallery": []
+      },
+      "content": {
+        "hero": {
+          "title": "Akan Musluk Dert Olmaz, Biz Variz",
+          "subtitle": "28 yildir Kadikoy'de guvenilir su tesisat hizmeti. Su kacagi, tikaniklik, musluk montaji ve boru degisiminde uzman ekip.",
+          "badge": "Acil Servis",
+          "ctaText": "Hemen Ara",
+          "ctaLink": "tel:+905324567890"
+        },
+        "about": {
+          "title": "Celik Usta Tesisat",
+          "description": "1998'den beri Kadikoy ve cevre ilcelerde su tesisat hizmeti veren Celik Usta, 28 yillik deneyimiyle evinizin su sorunlarini hizla cozer. Kirmasiz kacak tespiti, tikaniklik acma, musluk degisimi ve tesisat yenileme konularinda uzmaniz."
+        },
+        "services": {
+          "title": "Tesisat Hizmetlerimiz",
+          "subtitle": "Su tesisatinda her turlu sorunun cozumu"
+        },
+        "contact": {
+          "title": "Bize Ulasin",
+          "subtitle": "Su tesisatı sorunlariniz icin hemen arayin"
+        },
+        "faq": [
+          {
+            "q": "Acil durumda gelir misiniz?",
+            "a": "Evet, mesai saatleri icinde acil su kacagi ve patlak boru gibi durumlarda 1 saat icinde geliyoruz."
+          },
+          {
+            "q": "Kirmasiz kacak tespiti nedir?",
+            "a": "Termal kamera ve akustik dinleme cihazi ile boru icindeki kacagin yerini duvar kirmadan tespit etme yontemidir. Sadece kacak noktasi acilir."
+          },
+          {
+            "q": "Malzemeyi siz mi getiriyorsunuz?",
+            "a": "Evet, musluk, sifon, conta ve boru gibi malzemeleri yanımızda getiriyoruz. Isterseniz kendi malzemenizle de calisabiliriz."
+          },
+          {
+            "q": "Garanti veriyor musunuz?",
+            "a": "Evet, tum iscilik ve malzemeye 1 yil garanti veriyoruz."
+          }
+        ]
+      }
+    },
+    {
+      "id": "tesisatci-kombi",
+      "variantName": "kombi",
+      "plan": "starter",
+      "description": "Kombi ve isitma sistemleri servisi",
+      "designPhilosophy": "Profesyonel, sicak, guvenilir",
+      "isDark": false,
+      "colors": {
+        "bg": "#FFFFFF",
+        "surface": "#FEF2F2",
+        "text": "#1C1917",
+        "accent": "#DC2626"
+      },
+      "fonts": { "heading": "Poppins", "body": "Inter" },
+      "business": {
+        "name": "Isi Merkezi Kombi Servis",
+        "ownerName": "Osman Yildiz",
+        "sector": "Tesisatci",
+        "slogan": "Sicak yuvaniz icin guvenilir kombi servisi",
+        "phone": "0212 456 78 12",
+        "phoneClean": "902124567812",
+        "whatsapp": "905431234567",
+        "email": "info@isimerkezi.com",
+        "address": "Cihangir Mah. Siraselviler Cad. No:88, Beyoglu/Istanbul",
+        "city": "Istanbul",
+        "district": "Beyoglu",
+        "mapEmbed": "",
+        "foundedYear": 2007,
+        "experience": "19 yil",
+        "employeeCount": 6,
+        "customerCount": "25.000+",
+        "rating": 4.8,
+        "reviewCount": 1850,
+        "workingHours": [
+          { "day": "Pazartesi", "dayTr": "Pazartesi", "open": "08:00", "close": "19:00", "isOpen": true },
+          { "day": "Sali", "dayTr": "Sali", "open": "08:00", "close": "19:00", "isOpen": true },
+          { "day": "Carsamba", "dayTr": "Carsamba", "open": "08:00", "close": "19:00", "isOpen": true },
+          { "day": "Persembe", "dayTr": "Persembe", "open": "08:00", "close": "19:00", "isOpen": true },
+          { "day": "Cuma", "dayTr": "Cuma", "open": "08:00", "close": "19:00", "isOpen": true },
+          { "day": "Cumartesi", "dayTr": "Cumartesi", "open": "09:00", "close": "17:00", "isOpen": true },
+          { "day": "Pazar", "dayTr": "Pazar", "open": "10:00", "close": "15:00", "isOpen": true }
+        ],
+        "services": [
+          {
+            "id": "s1",
+            "name": "Kombi Bakimi",
+            "price": "600-1.000 TL",
+            "duration": "1 saat",
+            "description": "Yillik zorunlu kombi bakimi. Eşanjör temizligi, gaz ayari, baca gazi analizi, emniyet valf kontrolu ve performans testi. Tum marka komبilere.",
+            "icon": "Flame"
+          },
+          {
+            "id": "s2",
+            "name": "Kombi Ariza Onarimi",
+            "price": "300-1.500 TL",
+            "duration": "1-3 saat",
+            "description": "Her marka ve model kombi ariza tespiti ve onarimi. Kart tamiri, fan motoru, 3 yollu vana, esanjor ve pompa degisimi.",
+            "icon": "Wrench"
+          },
+          {
+            "id": "s3",
+            "name": "Kombi Montaji",
+            "price": "1.500-3.000 TL",
+            "duration": "Yarim gun",
+            "description": "Yeni kombi montaji veya eski kombi degisimi. Baca ve gaz baglantisi, tesisat uyumluluk kontrolu dahil. Tum markalar.",
+            "icon": "Settings"
+          },
+          {
+            "id": "s4",
+            "name": "Petek Temizligi",
+            "price": "150-250 TL/adet",
+            "duration": "30 dk/adet",
+            "description": "Basincli su ve kimyasal yıkama ile petek temizligi. Isitma performansinizi %30'a kadar artirin.",
+            "icon": "Thermometer"
+          },
+          {
+            "id": "s5",
+            "name": "Yerden Isitma Bakimi",
+            "price": "800-2.000 TL",
+            "duration": "2-4 saat",
+            "description": "Yerden isitma sistemi basinclandirma, temizleme ve ariza tespiti. Manifold, termostat ve pompa kontrolleri.",
+            "icon": "Layers"
+          },
+          {
+            "id": "s6",
+            "name": "Dogalgaz Tesisat",
+            "price": "1.000-4.000 TL",
+            "duration": "1-2 gun",
+            "description": "Yeni dogalgaz hatti cekme, tesisat yenileme ve gaz kacagi onarimi. IGDAS projelendirme ve onay sureci dahil.",
+            "icon": "Zap"
+          }
+        ],
+        "team": [
+          {
+            "name": "Osman Yildiz",
+            "title": "Kurucu & Bas Teknisyen",
+            "description": "19 yillik kombi servis deneyimi. Bosch, Vaillant, Baymak ve Demirdokum yetkili servis sertifikali.",
+            "image": ""
+          },
+          {
+            "name": "Erhan Sahin",
+            "title": "Kombi Teknisyeni",
+            "description": "12 yillik deneyim. Yogusмali kombi ve yerden isitma sistemleri uzmani. Tum markalar.",
+            "image": ""
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Aysegul D.",
+            "location": "Cihangir",
+            "date": "2025-11",
+            "rating": 5,
+            "comment": "Kombim gece bozuldu, sabah ilk is geldiler. Eşanjör degisimi yapildi, ayni gun sicak su geldi. Cok hizli ve guvenilir."
+          },
+          {
+            "name": "Burak T.",
+            "location": "Beyoglu",
+            "date": "2025-09",
+            "rating": 5,
+            "comment": "Yillik bakim yaptirdim, kombi sanki yenilendi. Baca gazi analizi bile yapiyorlar, guvenligi elden birakmiyorlar."
+          },
+          {
+            "name": "Nurcan A.",
+            "location": "Taksim",
+            "date": "2025-07",
+            "rating": 4,
+            "comment": "Petek temizligi yaptirdim, 6 petegi yarim gunde bitirdiler. Isitma farkini hemen hissettim, odalar cok daha hizli isiniyor."
+          }
+        ],
+        "gallery": []
+      },
+      "content": {
+        "hero": {
+          "title": "Sicak Yuvaniz Icin Guvenilir Kombi Servisi",
+          "subtitle": "19 yildir Istanbul'da kombi bakim, ariza ve montaj hizmeti. Bosch, Vaillant, Baymak yetkili servis kalitesinde is garantisi.",
+          "badge": "Tum Markalar",
+          "ctaText": "Randevu Al",
+          "ctaLink": "tel:+902124567812"
+        },
+        "about": {
+          "title": "Isi Merkezi Kombi Servis",
+          "description": "2007 yilinda kurulan Isi Merkezi, Istanbul'da kombi bakim, ariza ve montaj alaninda 19 yillik deneyime sahiptir. Bosch, Vaillant, Baymak, Demirdokum ve daha bircok markanin yetkili servis sertifikasina sahibiz. 25.000'den fazla musteri memnuniyetiyle Beyoglu ve cevre ilcelerde guvenilir kombi servisi olarak tanimyoruz. Petek temizligi, yerden isitma bakimi ve dogalgaz tesisat hizmetlerimizle evinizin isitma sistemini eksiksiz yonetiyoruz."
+        },
+        "services": {
+          "title": "Kombi & Isitma Hizmetleri",
+          "subtitle": "Evinizin sicakligi icin kapsamli cozumler"
+        },
+        "stats": {
+          "title": "Rakamlarla Isi Merkezi",
+          "subtitle": "19 yillik isitma deneyimi"
+        },
+        "contact": {
+          "title": "Randevu & Iletisim",
+          "subtitle": "Kombi bakim randevusu icin bizi arayin"
+        },
+        "faq": [
+          {
+            "q": "Kombi bakimi ne siklikta yapilmali?",
+            "a": "Yilda bir kez, tercihen kis oncesi (Eylul-Ekim) yapilmalidir. Duzenli bakim hem guvenligi saglar hem kombi omrunu uzatir."
+          },
+          {
+            "q": "Hangi marka kombilere bakim yapiyorsunuz?",
+            "a": "Bosch, Vaillant, Baymak, Demirdokum, Ferroli, Protherm, Ariston ve daha bircok markaya hizmet veriyoruz."
+          },
+          {
+            "q": "Pazar gunu hizmet veriyor musunuz?",
+            "a": "Evet, Pazar gunleri 10:00-15:00 arasi hizmet veriyoruz. Kis aylarinda acil durumlarda mesai disi da geliyoruz."
+          },
+          {
+            "q": "Petek temizligi gerekli mi?",
+            "a": "Evet, 2-3 yilda bir petek temizligi isitma performansini %30'a kadar artirir ve kombi omrunu uzatir."
+          },
+          {
+            "q": "Garanti veriyor musunuz?",
+            "a": "Tum iscilige 1 yil, yedek parcalara uretici garantisi gecerlidir."
+          },
+          {
+            "q": "IGDAS projelendirme yapiyor musunuz?",
+            "a": "Evet, dogalgaz tesisat projesi cizimi, IGDAS basvurusu ve onay sureci dahil turn-key hizmet veriyoruz."
+          }
+        ]
+      }
+    },
+    {
+      "id": "tesisatci-dogalgaz",
+      "variantName": "dogalgaz",
+      "plan": "growth",
+      "description": "Dogalgaz tesisat ve donusum firması",
+      "designPhilosophy": "Guvenilir, profesyonel, teknik",
+      "isDark": false,
+      "colors": {
+        "bg": "#FAFAFA",
+        "surface": "#FFF7ED",
+        "text": "#292524",
+        "accent": "#EA580C"
+      },
+      "fonts": { "heading": "Montserrat", "body": "Inter" },
+      "business": {
+        "name": "GazTek Dogalgaz Sistemleri",
+        "ownerName": "Ali Kocak",
+        "sector": "Tesisatci",
+        "slogan": "Dogalgazda guvenli cozumler",
+        "phone": "0212 789 01 23",
+        "phoneClean": "902127890123",
+        "whatsapp": "905461234567",
+        "email": "info@gaztek.com.tr",
+        "address": "Gayrettepe Mah. Buyukdere Cad. No:102, Sisli/Istanbul",
+        "city": "Istanbul",
+        "district": "Sisli",
+        "mapEmbed": "",
+        "foundedYear": 2005,
+        "experience": "21 yil",
+        "employeeCount": 15,
+        "customerCount": "8.500+",
+        "rating": 4.8,
+        "reviewCount": 2400,
+        "workingHours": [
+          { "day": "Pazartesi", "dayTr": "Pazartesi", "open": "08:00", "close": "18:30", "isOpen": true },
+          { "day": "Sali", "dayTr": "Sali", "open": "08:00", "close": "18:30", "isOpen": true },
+          { "day": "Carsamba", "dayTr": "Carsamba", "open": "08:00", "close": "18:30", "isOpen": true },
+          { "day": "Persembe", "dayTr": "Persembe", "open": "08:00", "close": "18:30", "isOpen": true },
+          { "day": "Cuma", "dayTr": "Cuma", "open": "08:00", "close": "18:30", "isOpen": true },
+          { "day": "Cumartesi", "dayTr": "Cumartesi", "open": "09:00", "close": "15:00", "isOpen": true },
+          { "day": "Pazar", "dayTr": "Pazar", "open": "", "close": "", "isOpen": false }
+        ],
+        "services": [
+          {
+            "id": "s1",
+            "name": "Dogalgaz Donusumu",
+            "price": "3.000-8.000 TL",
+            "duration": "1-2 gun",
+            "description": "Konut, isyeri ve apartman dogalgaz donusum projesi. IGDAS projelendirme, tesisat kurulum, sayac montaji ve acilma sureci dahil turn-key hizmet.",
+            "icon": "Flame"
+          },
+          {
+            "id": "s2",
+            "name": "Gaz Kacagi Tespiti & Onarimi",
+            "price": "200-1.000 TL",
+            "duration": "1-3 saat",
+            "description": "Elektronik gaz dedektoru ile gaz kacagi tespiti ve onarimi. Acil mudahale hizmeti. Hayati once once guvenlik.",
+            "icon": "ShieldAlert"
+          },
+          {
+            "id": "s3",
+            "name": "Dogalgaz Tesisat Yenileme",
+            "price": "2.000-6.000 TL",
+            "duration": "1-2 gun",
+            "description": "Eski veya hasarli dogalgaz borulamsi yenileme. Bakir ve polietilen boru ile TSE standartlarinda yeni tesisat.",
+            "icon": "RefreshCcw"
+          },
+          {
+            "id": "s4",
+            "name": "Kombi & Soba Baglantisi",
+            "price": "500-1.500 TL",
+            "duration": "2-4 saat",
+            "description": "Kombi, soba ve yer ocagi dogalgaz baglantisi. Gaz ayari, baca montaji ve emniyet kontrolu dahil.",
+            "icon": "Link"
+          },
+          {
+            "id": "s5",
+            "name": "Apartman Merkezi Sistem",
+            "price": "Teklif bazli",
+            "duration": "Projeye gore",
+            "description": "Apartman ve site merkezi isitma sistemi dogalgaz donusumu. Kazan, brulor, pompa ve otomasyon kurulumu.",
+            "icon": "Building"
+          },
+          {
+            "id": "s6",
+            "name": "IGDAS Proje & Onay",
+            "price": "1.500-3.000 TL",
+            "duration": "5-15 gun",
+            "description": "Dogalgaz proje cizimi, IGDAS basvurusu, kontrol ve onay sureci yonetimi. Tum evrak isleri dahil.",
+            "icon": "FileText"
+          },
+          {
+            "id": "s7",
+            "name": "Periyodik Kontrol",
+            "price": "200-500 TL",
+            "duration": "30-60 dk",
+            "description": "Yillik zorunlu dogalgaz tesisat kontrolu. Kacak testi, baglanti kontrolu ve guvenlik raporu.",
+            "icon": "ClipboardCheck"
+          },
+          {
+            "id": "s8",
+            "name": "Ticari Mutfak Gaz Tesisati",
+            "price": "3.000-15.000 TL",
+            "duration": "1-3 gun",
+            "description": "Restoran, otel ve catering mutfaklari icin ticari dogalgaz tesisati. Endustriyel ocak, firin ve grill baglantilari.",
+            "icon": "UtensilsCrossed"
+          },
+          {
+            "id": "s9",
+            "name": "Baca Sistemi Montaji",
+            "price": "800-3.000 TL",
+            "duration": "Yarim gun",
+            "description": "Hermetik ve konvansiyonel baca sistemi montaji. Paslanmaz celik baca, saparma ve baca saci uygulama.",
+            "icon": "ArrowUp"
+          },
+          {
+            "id": "s10",
+            "name": "Gaz Algilama Sistemi",
+            "price": "500-2.000 TL",
+            "duration": "2-3 saat",
+            "description": "Dogalgaz ve LPG algilama detektoru montaji. Selenoid vana ile otomatik gaz kesme sistemi. Hayat kurtaran yatirim.",
+            "icon": "Bell"
+          }
+        ],
+        "team": [
+          {
+            "name": "Ali Kocak",
+            "title": "Kurucu & Proje Muduru",
+            "description": "Makine Muhendisi, IGDAS yetkili tesisatci. 21 yildir dogalgaz sektorunde. 8.500+ konut ve isyeri donusumu.",
+            "image": ""
+          },
+          {
+            "name": "Serhat Demir",
+            "title": "Saha Operasyon Sefi",
+            "description": "18 yillik dogalgaz deneyimi. Apartman ve site projeleri uzmani. TSE ve IGDAS standartlarinda uzman teknisyen.",
+            "image": ""
+          },
+          {
+            "name": "Mustafa Eren",
+            "title": "Proje Muhendisi",
+            "description": "Makine Muhendisligi mezunu. AutoCAD ile dogalgaz proje cizimi. IGDAS surec yonetimi ve onay takibi.",
+            "image": ""
+          },
+          {
+            "name": "Kemal Ates",
+            "title": "Ticari Tesisat Uzmani",
+            "description": "15 yillik ticari mutfak ve endustriyel gaz tesisati deneyimi. Restoran, otel ve fabrika projelerinde uzman.",
+            "image": ""
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Ahmet S.",
+            "location": "Gayrettepe",
+            "date": "2025-12",
+            "rating": 5,
+            "comment": "Apartmanimizin dogalgaz donusumunu eksiksiz tamamladilar. IGDAS proje ve onay islemlerini de onlar yuruttü. 15 daire sorunsuz gecti."
+          },
+          {
+            "name": "Zehra K.",
+            "location": "Sisli",
+            "date": "2025-10",
+            "rating": 5,
+            "comment": "Gaz kacagi suphesin hemen geldiler, elektronik dedektorle tespit ettiler. 2 saatte onarildi. Hizli ve guvenilir."
+          },
+          {
+            "name": "Mehmet O.",
+            "location": "Mecidiyekoy",
+            "date": "2025-08",
+            "rating": 5,
+            "comment": "Restoran mutfagimizin komple gaz tesisatini yaptilar. 4 ocak, 2 firin, 1 grill... Hepsini TSE standartlarinda kurdular."
+          },
+          {
+            "name": "Selin T.",
+            "location": "Beyoglu",
+            "date": "2025-06",
+            "rating": 4,
+            "comment": "Yeni evde dogalgaz actirma surecini baslatip IGDAS'a kadar her seyi hallettiler. Turn-key hizmet gercekten rahatlatiyor."
+          },
+          {
+            "name": "Baris Y.",
+            "location": "Levent",
+            "date": "2025-04",
+            "rating": 5,
+            "comment": "20 daireli apartmanimizin merkezi sistemini dogalgaza donusturduk. Kazan, brulor ve otomasyon dahil. Faturamiz %40 dustu."
+          },
+          {
+            "name": "Nalan D.",
+            "location": "Kagithane",
+            "date": "2025-02",
+            "rating": 5,
+            "comment": "Gaz algilama sistemi taktirdik. Selenoid vana ile otomatik kesme... Ozellikle gece huzur veriyor."
+          }
+        ],
+        "gallery": []
+      },
+      "content": {
+        "hero": {
+          "title": "Dogalgazda Guvenli Cozumler",
+          "subtitle": "21 yildir Istanbul'da dogalgaz donusum, tesisat ve onarim hizmeti. IGDAS yetkili, TSE standartlarinda 8.500+ basarili proje.",
+          "badge": "IGDAS Yetkili",
+          "ctaText": "Ucretsiz Kesif",
+          "ctaLink": "tel:+902127890123"
+        },
+        "about": {
+          "title": "GazTek Dogalgaz Sistemleri",
+          "description": "2005 yilinda Makine Muhendisi Ali Kocak tarafindan kurulan GazTek, Istanbul'da dogalgaz donusum ve tesisat alaninda 21 yillik deneyime sahiptir. IGDAS yetkili tesisatci olarak konut, apartman, site ve ticari isyerlerinde 8.500'den fazla basarili projeyi tamamladik. Proje ciziminden IGDAS onayina, tesisat kurulumdan sayac acilisina kadar turn-key hizmet sunuyoruz. 15 kisilik teknik kadromuz TSE standartlarinda, guvenlikten odun vermeden calisir. Ticari mutfak gaz tesisati, apartman merkezi sistem donusumu ve gaz algilama sistemi gibi uzmanlik alanlarimizla Istanbul'un guvenilir dogalgaz firmasiyiz."
+        },
+        "services": {
+          "title": "Dogalgaz Hizmetlerimiz",
+          "subtitle": "Dogalgazda A'dan Z'ye cozumler"
+        },
+        "stats": {
+          "title": "Rakamlarla GazTek",
+          "subtitle": "21 yillik dogalgaz deneyimi"
+        },
+        "contact": {
+          "title": "Kesif & Iletisim",
+          "subtitle": "Ucretsiz yerinde kesif icin bizi arayin"
+        },
+        "faq": [
+          {
+            "q": "Dogalgaz donusumu ne kadar surer?",
+            "a": "Tek daire donusumu 1-2 gun, apartman donusumu ise projeye gore 1-4 hafta surer. IGDAS onay sureci 5-15 is gunu eklenmelidir."
+          },
+          {
+            "q": "IGDAS yetkili misiniz?",
+            "a": "Evet, IGDAS tarafindan yetkilendirilmis tesisat firmasiyiz. Proje cizimi, kontrol ve onay surecleri icin tam yetkimiz vardir."
+          },
+          {
+            "q": "Gaz kacagi tehlikeli mi?",
+            "a": "Evet, gaz kacagi patlama ve zehirlenme riski tasir. Supheniz varsa hemen 187'yi veya bizi arayin, vanayi kapatin ve pencere acin."
+          },
+          {
+            "q": "Periyodik kontrol zorunlu mu?",
+            "a": "Evet, dogalgaz tesisati yillik periyodik kontrole tabidir. IGDAS tarafindan belirlenen takvimlerde kontrolumuz yapılmalıdır."
+          },
+          {
+            "q": "Ticari mutfak icin ayrı proje gerekli mi?",
+            "a": "Evet, ticari mutfaklar icin ozel proje cizilir ve IGDAS'tan ayri onay alinir. Havalandirma, detekttor ve otomatik kesme sistemi zorunludur."
+          },
+          {
+            "q": "Garanti kosullariniz neler?",
+            "a": "Tum iscilige 2 yil, malzemelere uretici garantisi gecerlidir. Periyodik kontrol sozlesmesi ile garanti suresini uzatabilirsiniz."
+          },
+          {
+            "q": "LPG'den dogalgaza gecis yapabilir miyiz?",
+            "a": "Evet, LPG tüplü sistemden dogalgaza gecis en sik yaptigimiz islerden biri. Cihaz uyumlulugu kontrolu, boru cekimi ve proje dahil."
+          },
+          {
+            "q": "Hangi ilcelerde hizmet veriyorsunuz?",
+            "a": "Sisli, Beyoglu, Besiktas, Kagithane, Sariyer, Eyup ve Bayrampasa baslicdа olmak uzere Istanbul Avrupa Yakasi'nda hizmet veriyoruz."
+          }
+        ]
+      }
+    },
+    {
+      "id": "tesisatci-kalorifer",
+      "variantName": "kalorifer",
+      "plan": "pro",
+      "description": "Merkezi isitma ve mekanik tesisat firması",
+      "designPhilosophy": "Kurumsal, teknik, guvenilir",
+      "isDark": false,
+      "colors": {
+        "bg": "#FAFBFC",
+        "surface": "#EEF2FF",
+        "text": "#1E293B",
+        "accent": "#4F46E5"
+      },
+      "fonts": { "heading": "Raleway", "body": "Inter" },
+      "business": {
+        "name": "TermoPro Mekanik Tesisat",
+        "ownerName": "Ing. Hasan Kaya",
+        "sector": "Tesisatci",
+        "slogan": "Mekanik tesisatta muhendislik farki",
+        "phone": "0216 890 12 34",
+        "phoneClean": "902168901234",
+        "whatsapp": "905371234567",
+        "email": "info@termopro.com.tr",
+        "address": "Kozyatagi Mah. Degirmen Sok. No:15, Atasehir/Istanbul",
+        "city": "Istanbul",
+        "district": "Atasehir",
+        "mapEmbed": "",
+        "foundedYear": 2008,
+        "experience": "18 yil",
+        "employeeCount": 22,
+        "customerCount": "5.200+",
+        "rating": 4.9,
+        "reviewCount": 1800,
+        "workingHours": [
+          { "day": "Pazartesi", "dayTr": "Pazartesi", "open": "08:00", "close": "18:30", "isOpen": true },
+          { "day": "Sali", "dayTr": "Sali", "open": "08:00", "close": "18:30", "isOpen": true },
+          { "day": "Carsamba", "dayTr": "Carsamba", "open": "08:00", "close": "18:30", "isOpen": true },
+          { "day": "Persembe", "dayTr": "Persembe", "open": "08:00", "close": "18:30", "isOpen": true },
+          { "day": "Cuma", "dayTr": "Cuma", "open": "08:00", "close": "18:30", "isOpen": true },
+          { "day": "Cumartesi", "dayTr": "Cumartesi", "open": "09:00", "close": "14:00", "isOpen": true },
+          { "day": "Pazar", "dayTr": "Pazar", "open": "", "close": "", "isOpen": false }
+        ],
+        "services": [
+          {
+            "id": "s1", "name": "Merkezi Isitma Sistemi Kurulumu", "price": "Teklif bazli", "duration": "Projeye gore",
+            "description": "Apartman, site ve ticari binalarda merkezi isitma sistemi projesi ve kurulumu. Kazan, brulor, pompa, genlesme tanki ve dagitim hatti.", "icon": "Flame"
+          },
+          {
+            "id": "s2", "name": "Bireysel Isitma Donusumu", "price": "5.000-15.000 TL", "duration": "3-5 gun",
+            "description": "Merkezi sistemden bireysel sisteme gecis projesi. Kombi montaji, boru hatti donusumu ve paye olcum sistemi kurulumu.", "icon": "Home"
+          },
+          {
+            "id": "s3", "name": "Yerden Isitma Sistemi", "price": "150-250 TL/m2", "duration": "Projeye gore",
+            "description": "Sifirdan yerden isitma tesisati veya mevcut sisteme donusum. PEX boru, manifold, termostat ve otomasyon dahil.", "icon": "Layers"
+          },
+          {
+            "id": "s4", "name": "Isi Pompasi Kurulumu", "price": "25.000-80.000 TL", "duration": "2-5 gun",
+            "description": "Hava kaynakli ve toprak kaynakli isi pompasi sistemi. Isitma, sogutma ve sicak su uretimi tek sistemde. %60-80 enerji tasarrufu.", "icon": "Thermometer"
+          },
+          {
+            "id": "s5", "name": "Klima & VRF Sistemi", "price": "Teklif bazli", "duration": "Projeye gore",
+            "description": "Split klima, multi split ve VRF/VRV merkezi klima sistemi projesi ve montaji. Daikin, Mitsubishi, Toshiba.", "icon": "Wind"
+          },
+          {
+            "id": "s6", "name": "Sihhi Tesisat Projesi", "price": "Teklif bazli", "duration": "Projeye gore",
+            "description": "Bina ve tesis sihhi tesisat projesi. Temiz su, pis su, yagmur suyu ve yangin hatti. Proje + uygulama turn-key.", "icon": "Droplets"
+          },
+          {
+            "id": "s7", "name": "Havuz Mekanik Tesisat", "price": "15.000-60.000 TL", "duration": "3-7 gun",
+            "description": "Yuzme havuzu filtre, pompa, isitma ve dezenfeksiyon sistemi. Tuz klorlama, UV ve ozon sistemleri.", "icon": "Waves"
+          },
+          {
+            "id": "s8", "name": "Dogalgaz Tesisat & Proje", "price": "2.000-10.000 TL", "duration": "Projeye gore",
+            "description": "IGDAS standartlarinda dogalgaz projesi ve uygulamasi. Konut, ticari ve endustriyel tesisler.", "icon": "Zap"
+          },
+          {
+            "id": "s9", "name": "Kazan Dairesi Renovasyonu", "price": "20.000-100.000 TL", "duration": "5-15 gun",
+            "description": "Eski kazan dairesi modernizasyonu. Yogusмali kazan, brulor, pompa, otomasyon ve baca sistemi yenileme.", "icon": "Settings"
+          },
+          {
+            "id": "s10", "name": "Enerji Verimliligi Etüdu", "price": "3.000-10.000 TL", "duration": "1-3 gun",
+            "description": "Bina mekanik tesisati enerji verimliligi analizi. Mevcut sistem performans olcumu, iyilestirme onerileri ve yatirim fizibilitesi.", "icon": "BarChart"
+          },
+          {
+            "id": "s11", "name": "Havalandirma & Aspirasyon", "price": "Teklif bazli", "duration": "Projeye gore",
+            "description": "Mekanik havalandirma, mutfak aspirasyon, WC egzoz ve taze hava sistemi. Kanal, fan ve difuzor montaji.", "icon": "Fan"
+          },
+          {
+            "id": "s12", "name": "Yangon Söndurme Tesisati", "price": "Teklif bazli", "duration": "Projeye gore",
+            "description": "Sprinker, hidrant ve yangin dolabi tesisati. Pompa grubu, depo ve alarm sistemi. Itfaiye proje onay sureci dahil.", "icon": "Flame"
+          },
+          {
+            "id": "s13", "name": "Bakim Sozlesmesi", "price": "Teklif bazli", "duration": "Yillik",
+            "description": "Mekanik tesisat yillik bakim sozlesmesi. Periyodik kontrol, ariza mudahale, yedek parca ve performans raporlama.", "icon": "ClipboardCheck"
+          },
+          {
+            "id": "s14", "name": "Acil Ariza Mudahale", "price": "500-2.000 TL", "duration": "Anlik",
+            "description": "7/24 acil ariza hatti. Su baskini, boru patlamasi, kazan arizasi gibi acil durumlarda 1 saat icinde mudahale.", "icon": "Siren"
+          }
+        ],
+        "team": [
+          {
+            "name": "Ing. Hasan Kaya", "title": "Kurucu & Genel Mudur",
+            "description": "ITU Makine Muhendisligi mezunu. 18 yillik mekanik tesisat deneyimi. TMMOB Makine Muhendisleri Odasi uyesi.", "image": ""
+          },
+          {
+            "name": "Ing. Dilek Aksoy", "title": "Proje Muduru",
+            "description": "Yildiz Teknik Makine mezunu. AutoCAD ve Revit MEP ile mekanik proje tasarimi. 12 yillik proje deneyimi.", "image": ""
+          },
+          {
+            "name": "Usta Ali Vural", "title": "Saha Operasyon Muduru",
+            "description": "25 yillik saha deneyimi. Kazan dairesi, merkezi isitma ve sihhi tesisat montaj sefi.", "image": ""
+          },
+          {
+            "name": "Ing. Omer Cetin", "title": "Enerji & Klima Uzmani",
+            "description": "ODTU Makine mezunu. Isi pompasi, VRF sistemi ve enerji verimliligi konularinda uzman.", "image": ""
+          },
+          {
+            "name": "Ing. Sema Korkmaz", "title": "Yangin & Havalandirma",
+            "description": "Gazi Universitesi mezunu. Yangin tesisati ve mekanik havalandirma projeleri uzmani.", "image": ""
+          },
+          {
+            "name": "Volkan Dogan", "title": "Havuz Sistemleri Uzmani",
+            "description": "12 yillik havuz mekanik tesisat deneyimi. Filtre, pompa, dezenfeksiyon ve isitma sistemleri.", "image": ""
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Yesil Vadi Sitesi", "location": "Atasehir", "date": "2025-12", "rating": 5,
+            "comment": "120 daireli sitemizin merkezi isitma sistemi renovasyonunu TermoPro yonetti. Yogusмali kazana gecisle faturamiz %35 dustu."
+          },
+          {
+            "name": "Panorama Rezidans", "location": "Kadikoy", "date": "2025-11", "rating": 5,
+            "comment": "Bireysel isitma donusumunu 45 dairede sorunsuz tamamladilar. Her daire icin ayri proje, IGDAS sureci dahil."
+          },
+          {
+            "name": "Marmara Otel", "location": "Uskudar", "date": "2025-10", "rating": 5,
+            "comment": "Otel havuzunun mekanik tesisatini yenilediler. Tuz klorlama ve isi pompasi ile hem temiz hem ekonomik oldu."
+          },
+          {
+            "name": "Atlas Ofis Parki", "location": "Umraniye", "date": "2025-09", "rating": 5,
+            "comment": "VRF klima sistemi muhendislik projesinde cok detayli calistilar. 5.000m2 ofis alani, zonlama mukemmel calisiyor."
+          },
+          {
+            "name": "Seker Fabrikasi", "location": "Kartal", "date": "2025-08", "rating": 4,
+            "comment": "Fabrika buhar ve sicak su tesisatini komple yenilediler. Enerji etüdü sonucu %40 tasarruf hedeflenmişti, %38 gerceklestiп."
+          },
+          {
+            "name": "Bahce Evleri Sitesi", "location": "Maltepe", "date": "2025-06", "rating": 5,
+            "comment": "Sifirdan 60 villanin yerden isitma tesisatini yaptilar. Manifold ve termostat otomasyonu ile her oda ayri kontrol."
+          },
+          {
+            "name": "Can A.", "location": "Kadikoy", "date": "2025-04", "rating": 5,
+            "comment": "Evime isi pompasi taktirdim. Isitma, sogutma ve sicak su tek cihazdan. Elektrik faturasi dogalgaz faturasinin yarisi."
+          },
+          {
+            "name": "Kordon Plaza", "location": "Atasehir", "date": "2025-02", "rating": 5,
+            "comment": "Ofis binamizin yangin tesisatini TermoPro yapti. Sprinker, hidrant ve pompa grubu. Itfaiye onayi ilk seferde gecti."
+          }
+        ],
+        "gallery": []
+      },
+      "content": {
+        "hero": {
+          "title": "Mekanik Tesisatta Muhendislik Farki",
+          "subtitle": "Istanbul'un guvenilir mekanik tesisat firması. Merkezi isitma, yerden isitma, isi pompasi, klima ve sihhi tesisat projelerinde 18 yillik muhendislik deneyimi.",
+          "badge": "TMMOB Uyesi",
+          "ctaText": "Proje Gorusmesi",
+          "ctaLink": "tel:+902168901234"
+        },
+        "about": {
+          "title": "TermoPro Mekanik Tesisat",
+          "description": "2008 yilinda Makine Muhendisi Hasan Kaya tarafindan kurulan TermoPro, Istanbul'da mekanik tesisat alaninda muhendislik odakli hizmet sunan bir firmаdir. Merkezi isitma, yerden isitma, isi pompasi, VRF klima, sihhi tesisat, yangin ve havalandirma gibi genis bir hizmet yelpazesi sunuyoruz. 22 kisilik muhendis ve teknisyen kadromuzla proje tasarimindan sahа uygulamasina kadar turn-key cozumler uretiyoruz. 5.200'den fazla konut, site, otel, ofis ve fabrika projesini basariyla tamamladik. Enerji verimliligi onceligi olarak yogusmali sistemler, isi pompalari ve akilli otomasyon ile musterilerimize %30-60 enerji tasarrufu sagliyoruz. TMMOB Makine Muhendisleri Odasi uyesi olarak muhendislik etigi ve kalite standartlarindan hic odun vermiyoruz."
+        },
+        "services": {
+          "title": "Mekanik Tesisat Hizmetlerimiz",
+          "subtitle": "Isitmadan sogutmaya, sıhhi tesisattan yangina"
+        },
+        "stats": {
+          "title": "Rakamlarla TermoPro",
+          "subtitle": "18 yillik muhendislik deneyimi"
+        },
+        "contact": {
+          "title": "Proje & Iletisim",
+          "subtitle": "Mekanik tesisat projeniz icin gorusme talebi"
+        },
+        "faq": [
+          { "q": "Merkezi isitmadan bireysel isitmaya gecis yasal mi?", "a": "Evet, kat malikleri karariyla yasal olarak gecis yapilabilir. Proje, tesisat ve IGDAS islemlerinin tamami GazTek uhdesindedir." },
+          { "q": "Yerden isitma mevcut binaya uygulanabilir mi?", "a": "Evet, 5 cm yukseklik artisiyla mevcut binalara da uygulanabilir. Ancak doseme durumu ve kat yuksekligi degerlendirilmelidir." },
+          { "q": "Isi pompasi ne kadar tasarruf saglar?", "a": "Dogalgaza gore %50-70, elektrikli isitmaya gore %60-80 tasarruf saglar. Isitma, sogutma ve sicak su tek cihazdan uretilir." },
+          { "q": "VRF sistemi nedir?", "a": "Variable Refrigerant Flow — merkezi klima sistemidir. Her oda bagimsiz kontrol, ayni anda isitma-sogutma imkani. Buyuk bina ve ofisler icin idealdir." },
+          { "q": "Proje cizimi yapiyor musunuz?", "a": "Evet, AutoCAD ve Revit MEP ile mekanik tesisat projeleri ciziyoruz. Isitma, sogutma, sihhi tesisat, yangin ve havalandirma." },
+          { "q": "Yangin tesisati zorunlu mu?", "a": "Bina yuksekligine ve kullanim amacina gore yasal zorunluluk vardir. Sprinker, yangin dolabi ve pompa grubu projesi ve uygulama yapiyoruz." },
+          { "q": "Acil ariza hizmetiniz var mi?", "a": "Evet, 7/24 acil ariza hattimiz aktiftir. Su baskini, boru patlamasi ve kazan arizasi gibi acil durumlarda 1 saat icinde sahada oluyoruz." },
+          { "q": "Havuz mekanik tesisatι da yapiyor musunuz?", "a": "Evet, yuzme havuzu filtre, pompa, isitma, dezenfeksiyon ve otomasyon sistemleri kurulumu ve bakimi yapiyoruz." },
+          { "q": "Enerji etüdu nedir?", "a": "Binanizin mekanik tesisatinin enerji tuketimini olcup, verimlilik iyilestirme firsatlarini belirleyen teknik analizdir. Yatirim fizibilitesi dahildir." },
+          { "q": "Bakim sozlesmesi neleri kapsar?", "a": "Periyodik kontrol (yillik/mevsimlik), ariza mudahale, yedek parca yonetimi, performans raporlama ve oncelikli servis hakki." }
+        ]
+      }
+    },
+    {
+      "id": "tesisatci-lux",
+      "variantName": "lux",
+      "plan": "enterprise",
+      "description": "Premium mekanik muhendislik grubu",
+      "designPhilosophy": "Luks, kurumsal, teknolojik",
+      "isDark": true,
+      "colors": {
+        "bg": "#0C1220",
+        "surface": "#162032",
+        "text": "#E2E8F0",
+        "accent": "#38BDF8"
+      },
+      "fonts": { "heading": "Montserrat", "body": "Inter" },
+      "business": {
+        "name": "AquaFlow Muhendislik Grubu",
+        "ownerName": "Ing. Prof. Dr. Tarik Ozkan",
+        "sector": "Tesisatci",
+        "slogan": "Su ve enerjinin muhendislik sanati",
+        "phone": "0212 950 00 00",
+        "phoneClean": "902129500000",
+        "whatsapp": "905001234567",
+        "email": "info@aquaflow.com.tr",
+        "address": "Levent Mah. Kanyon AVM Yani No:4, Besiktas/Istanbul",
+        "city": "Istanbul",
+        "district": "Besiktas",
+        "mapEmbed": "",
+        "foundedYear": 2000,
+        "experience": "26 yil",
+        "employeeCount": 120,
+        "customerCount": "15.000+",
+        "rating": 4.9,
+        "reviewCount": 5600,
+        "workingHours": [
+          { "day": "Pazartesi", "dayTr": "Pazartesi", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Sali", "dayTr": "Sali", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Carsamba", "dayTr": "Carsamba", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Persembe", "dayTr": "Persembe", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Cuma", "dayTr": "Cuma", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Cumartesi", "dayTr": "Cumartesi", "open": "09:00", "close": "17:00", "isOpen": true },
+          { "day": "Pazar", "dayTr": "Pazar", "open": "10:00", "close": "16:00", "isOpen": true }
+        ],
+        "services": [
+          { "id": "s1", "name": "Turn-Key Mekanik Proje", "price": "Teklif bazli", "duration": "Projeye gore", "description": "AVM, hastane, otel, rezidans ve fabrika icin komple mekanik tesisat projesi ve uygulamasi. HVAC, sihhi tesisat, yangin ve otomasyon.", "icon": "Building" },
+          { "id": "s2", "name": "HVAC Sistem Tasarimi", "price": "Teklif bazli", "duration": "Projeye gore", "description": "Merkezi isitma, sogutma ve havalandirma sistemi tasarimi. Chiller, cooling tower, AHU, FCU ve VAV sistemleri. HAP ve Carrier simulasyonlari.", "icon": "Wind" },
+          { "id": "s3", "name": "Jeotermal Isi Pompasi", "price": "Teklif bazli", "duration": "Projeye gore", "description": "Toprak ve su kaynakli jeotermal isi pompasi sistemi. Sondaj, yer alti devresi, isi pompasi ve bina entegrasyonu.", "icon": "Globe" },
+          { "id": "s4", "name": "Temiz Oda & Laboratuvar", "price": "Teklif bazli", "duration": "Projeye gore", "description": "ISO Class 5-8 temiz oda HVAC sistemi. HEPA filtre, laminar flow, basinc kademeleme ve nem kontrolu. Ilac, elektronik ve gida sektorleri.", "icon": "Microscope" },
+          { "id": "s5", "name": "Hastane Mekanik Tesisat", "price": "Teklif bazli", "duration": "Projeye gore", "description": "Ameliyathane HVAC, medikal gaz, vakum, sterilizasyon ve lazer sogutma. JCI standartlarinda proje ve uygulama.", "icon": "HeartPulse" },
+          { "id": "s6", "name": "Veri Merkezi Sogutma", "price": "Teklif bazli", "duration": "Projeye gore", "description": "Precision cooling, free cooling, hot/cold aisle containment. PUE < 1.4 hedefli enerji verimli sogutma tasarimi.", "icon": "Server" },
+          { "id": "s7", "name": "Olimpik Havuz & SPA", "price": "Teklif bazli", "duration": "Projeye gore", "description": "Olimpik havuz, yanmalа havuzu, jakuzi ve hamam mekanik tesisat. Su aritma, isitma, dezenfeksiyon ve otomasyon.", "icon": "Waves" },
+          { "id": "s8", "name": "Su Aritma & Geri Kazanim", "price": "Teklif bazli", "duration": "Projeye gore", "description": "Icme suyu aritma, atik su aritma ve gri su geri kazanim sistemi. Ters ozmoz, ultrafiltrasyon ve biyolojik aritma.", "icon": "Droplets" },
+          { "id": "s9", "name": "Yangin Söndurme (FM200/Novec)", "price": "Teklif bazli", "duration": "Projeye gore", "description": "Sprinker, FM200, Novec 1230 ve köpüklü söndurme sistemleri. Proje, montaj, komisyonlama ve itfaiye onay.", "icon": "Flame" },
+          { "id": "s10", "name": "BMS & Mekanik Otomasyon", "price": "Teklif bazli", "duration": "Projeye gore", "description": "Bina yonetim sistemi ile HVAC, sihhi tesisat ve yangin sistemleri entegre kontrol. Siemens Desigo, Schneider EcoStruxure.", "icon": "Cpu" },
+          { "id": "s11", "name": "Enerji Performans Sozlesmesi", "price": "Teklif bazli", "duration": "5-10 yil", "description": "ESCO modeli ile enerji verimliligi yatirimi. Tasarruftan odeme, risk paylasimi ve garantili performans. IPMVP olcum ve dogrulama.", "icon": "TrendingDown" },
+          { "id": "s12", "name": "Deprem Dayanikli Tesisat", "price": "Teklif bazli", "duration": "Projeye gore", "description": "Sismik breys, esnek baglanti ve deprem vanasi ile deprem dayanikli mekanik tesisat. Hastane ve kritik tesisler icin zorunlu.", "icon": "ShieldCheck" },
+          { "id": "s13", "name": "Yesil Bina Danismanligi", "price": "Teklif bazli", "duration": "Projeye gore", "description": "LEED, BREEAM ve C40 hedefli yesil bina mekanik tasarim. Su tasarrufu, enerji verimliligi ve karbon azaltma stratejileri.", "icon": "Leaf" },
+          { "id": "s14", "name": "Endüstriyel Proses Sogutma", "price": "Teklif bazli", "duration": "Projeye gore", "description": "Plastik, metal, gida ve kimya sektoru icin proses sogutma sistemleri. Chiller, cooling tower ve free cooling hibrit.", "icon": "Snowflake" },
+          { "id": "s15", "name": "Bakim & Isletme (FM)", "price": "Teklif bazli", "duration": "Yillik", "description": "Tesis yonetimi kapsaminda mekanik tesisat bakim ve isletme. 7/24 ariza mudahale, periyodik bakim, enerji yonetimi. SLA tabanli.", "icon": "Wrench" },
+          { "id": "s16", "name": "Rehabilitasyon & Renovasyon", "price": "Teklif bazli", "duration": "Projeye gore", "description": "Mevcut mekanik tesisat modernizasyonu. Kazan degisimi, chiller yenileme, boru hatti rehabilitasyonu ve otomasyon yükseltme.", "icon": "RefreshCcw" },
+          { "id": "s17", "name": "Laboratuvar Gaz Sistemi", "price": "Teklif bazli", "duration": "Projeye gore", "description": "Hastane ve arastirma laboratuvarlari icin ozel gaz dagitim sistemi. Azot, oksijen, helyum ve argon hatları.", "icon": "FlaskConical" },
+          { "id": "s18", "name": "Mutfak Havalandirma & Gres Tutucu", "price": "Teklif bazli", "duration": "Projeye gore", "description": "Profesyonel mutfak aspirasyon, gres tutucu ve taze hava sistemi. ESP filtre, UV dezenfeksiyon ve koku kontrol.", "icon": "Fan" },
+          { "id": "s19", "name": "Otopark Havalandirma & CO Algilama", "price": "Teklif bazli", "duration": "Projeye gore", "description": "Otopark jet fan havalandirma ve karbonmonoksit algilama sistemi. Enerji verimli degisken debili kontrol.", "icon": "Car" },
+          { "id": "s20", "name": "Teknik Egitim & Sertifikasyon", "price": "3.000-15.000 TL/kisi", "duration": "1-5 gun", "description": "HVAC, BMS, yangin ve sihhi tesisat teknik egitimleri. Mesleki yeterlilik, isci sagligi ve is guvenligi programlari.", "icon": "GraduationCap" }
+        ],
+        "team": [
+          { "name": "Ing. Prof. Dr. Tarik Ozkan", "title": "Kurucu & Yonetim Kurulu Baskani", "description": "ITU Makine Muhendisligi doktorasi, HVAC profesoru. 26 yillik sektör deneyimi. TTMD (Turk Tesisat Muhendisleri Dernegi) baskani.", "image": "" },
+          { "name": "Ing. Ayse Erdogan", "title": "Genel Mudur", "description": "Bogazici Universitesi Makine Muhendisligi ve MBA. 20 yillik mekanik tesisat ve tesis yonetimi deneyimi.", "image": "" },
+          { "name": "Ing. Murat Aslan", "title": "HVAC Tasarim Direktoru", "description": "ODTU Makine mezunu, ASHRAE Fellow uyesi. Buyuk olcekli HVAC projeleri ve enerji simulasyonlari.", "image": "" },
+          { "name": "Ing. Pinar Yilmaz", "title": "Sihhi Tesisat & Yangin Muduru", "description": "Gazi Universitesi mezunu. 15 yillik hastane ve AVM sihhi tesisat ve yangin projesi deneyimi.", "image": "" },
+          { "name": "Ing. Cem Ozturk", "title": "Otomasyon & BMS Direktoru", "description": "ITU Kontrol Muhendisligi mezunu. Siemens Desigo CC ve EcoStruxure sertifikali. 18 yillik otomasyon deneyimi.", "image": "" },
+          { "name": "Ing. Derya Sahin", "title": "Enerji & Surdurulebilirlik", "description": "Sabanci Universitesi Enerji Teknolojileri yuksek lisansi. LEED AP BD+C sertifikali. ESCO projeleri uzmani.", "image": "" },
+          { "name": "Ing. Tolga Koc", "title": "Saha Operasyon Direktoru", "description": "25 yillik saha deneyimi. 200+ buyuk olcekli proje yonetimi. Saha guvenligi ve kalite kontrol uzmani.", "image": "" },
+          { "name": "Ing. Nilgün Aksoy", "title": "Temiz Oda & Ozel Projeler", "description": "Kimya Muhendisligi mezunu, ISO temiz oda standartlari uzmani. Ilac ve elektronik sektoru projeleri.", "image": "" }
+        ],
+        "testimonials": [
+          { "name": "Zorlu Center", "location": "Besiktas", "date": "2026-01", "rating": 5, "comment": "350.000 m2'lik kompleksin HVAC renovasyonunu AquaFlow gerceklestirdi. Chiller verimliligi %30 artti, yillik 8 milyon TL tasarruf." },
+          { "name": "Memorial Hastanesi", "location": "Sisli", "date": "2025-12", "rating": 5, "comment": "Ameliyathane HVAC ve medikal gaz sistemlerini JCI standartlarinda kurdular. Denetimden tam not aldik." },
+          { "name": "Turk Telekom Veri Merkezi", "location": "Esenyurt", "date": "2025-11", "rating": 5, "comment": "Tier III veri merkezi sogutma sistemi. PUE 1.35'e kadar dusurduk. Free cooling entegrasyonu harika calisiyor." },
+          { "name": "Hilton Istanbul", "location": "Harbiye", "date": "2025-10", "rating": 5, "comment": "5 yildizli otelimizin mekanik tesisat modernizasyonu. Misafir odalarinda enerji tuketimi %40 azaldi. Is bitirme kalitesi muhtesom." },
+          { "name": "Nobel Ilac Fabrikasi", "location": "Duzce", "date": "2025-09", "rating": 5, "comment": "ISO Class 7 temiz oda HVAC sistemini AquaFlow tasarladi ve kurdu. FDA denetiminden sorunsuz gectik." },
+          { "name": "Emaar Square AVM", "location": "Uskudar", "date": "2025-08", "rating": 5, "comment": "120.000 m2 AVM'nin yangin sprinkler ve mekanik havalandirmasini yaptdiler. Itfaiye onayi ilk seferde." },
+          { "name": "Yesil Campus Ofis", "location": "Maslak", "date": "2025-07", "rating": 5, "comment": "LEED Gold sertifikamizi AquaFlow'un yesil bina mekanik tasarimi sayesinde aldik. Su geri kazanimla %45 su tasarrufu." },
+          { "name": "Marmara Forum AVM", "location": "Bakirkoy", "date": "2025-06", "rating": 4, "comment": "ESCO modeli ile enerji verimliligi yatirimi yaptik. Garantili tasarruf ile kendini odeyen sistem. 3 yildir sorunsuz calisiyor." },
+          { "name": "Four Seasons Bosphorus", "location": "Besiktas", "date": "2025-05", "rating": 5, "comment": "SPA ve havuz mekanik tesisati renovasyonu. Jeotermal isi pompasi ile isitma maliyeti %60 dustu. Misafir memnuniyeti artti." },
+          { "name": "Istanbul Teknopark", "location": "Pendik", "date": "2025-04", "rating": 5, "comment": "Kampus mekanik tesisat bakim ve isletme sozlesmesini 5 yildir AquaFlow yurutuyor. Ariza orani %80 azaldi." },
+          { "name": "Cerrahpasa Hastanesi", "location": "Fatih", "date": "2025-03", "rating": 5, "comment": "Depreme dayanikli mekanik tesisat retrofiti. Sismik breys ve esnek baglanti. Kritik altyapiyi guclendir dik." },
+          { "name": "DHL Turkiye", "location": "Hadimkoy", "date": "2025-02", "rating": 5, "comment": "Lojistik merkezi otopark havalandirma ve CO algilama sistemi. Enerji verimli jet fan kontrol ile %50 enerji tasarrufu." }
+        ],
+        "gallery": []
+      },
+      "content": {
+        "hero": {
+          "title": "Su ve Enerjinin Muhendislik Sanati",
+          "subtitle": "Turkiye'nin lider mekanik muhendislik grubu. AVM, hastane, otel, veri merkezi ve fabrika projelerinde 26 yillik deneyim. 120 muhendis ve teknisyen.",
+          "badge": "15.000+ Proje",
+          "ctaText": "Proje Gorusmesi",
+          "ctaLink": "tel:+902129500000"
+        },
+        "about": {
+          "title": "AquaFlow Muhendislik Grubu",
+          "description": "2000 yilinda Ing. Prof. Dr. Tarik Ozkan tarafindan kurulan AquaFlow, Turkiye'nin onde gelen mekanik muhendislik firmalarindan biridir. Levent merkezli ofisimizden Turkiye genelinde buyuk olcekli projelere imza atiyoruz. HVAC, sihhi tesisat, yangin söndurme, otomasyon, su aritma ve enerji verimliligi ana hizmet alanlarimizdir. 120 kisilik muhendis ve teknisyen kadromuz ASHRAE, TTMD ve TMMOB uyesi olarak en yuksek muhendislik standartlarinda calisir. Hastane ameliyathane HVAC'den veri merkezi sogutmaya, temiz oda projesinden jeotermal isi pompasina kadar genis bir uzmanlik yelpazesi sunuyoruz. LEED, BREEAM ve ESCO projeleriyle surdurulebilirlik hedeflerine katki sagliyoruz. 15.000'den fazla projeyle Turkiye'nin mekanik altyapisina deger katmaktan gurur duyuyoruz."
+        },
+        "services": { "title": "Muhendislik Hizmetlerimiz", "subtitle": "HVAC'den su aritmaya, yangandan otomasyona" },
+        "stats": { "title": "Rakamlarla AquaFlow", "subtitle": "26 yillik muhendislik mirasi" },
+        "contact": { "title": "Proje & Iletisim", "subtitle": "Buyuk olcekli projeniz icin gorusme talebi" },
+        "faq": [
+          { "q": "Hangi sehirlerde proje yapiyorsunuz?", "a": "Merkez Istanbul'da. Turkiye genelinde ve bazi yurt disi projelerde aktif olarak calisiyoruz." },
+          { "q": "Turn-key proje ne iceriyor?", "a": "Konsept tasarimdan uygulamaya, komisyonlamadan garanti sonrasi bakima kadar tum sureci kapsiyiр." },
+          { "q": "Hastane projeleri icin deneyiminiz var mi?", "a": "Evet, JCI akreditasyonlu 20'den fazla hastanede mekanik tesisat projesi tamamladik. Ameliyathane HVAC, medikal gaz ve ozel sistemler." },
+          { "q": "ESCO modeli nedir?", "a": "Enerji Servis Sirketi modelinde yatirimi biz yapar, tasarruftan odemenizi aliriz. Performans garantili, risksiz enerji verimliligi yatirimi." },
+          { "q": "Temiz oda projelerinde hangi sektorlere hizmet veriyorsunuz?", "a": "Ilac, elektronik, gida, otomotiv ve havaci sektorlerinde ISO Class 5-8 temiz oda HVAC projeleri gerceklestiriyoruz." },
+          { "q": "Veri merkezi sogutmada PUE hedefieniz nedir?", "a": "Projelerimizde PUE < 1.4 hedefliyoruz. Free cooling entegrasyonu ile Istanbul ikliminде PUE 1.3'ün altina inebiliyoruz." },
+          { "q": "BMS entegrasyonu hangi platformlarda?", "a": "Siemens Desigo CC, Schneider EcoStruxure, Honeywell Niagara ve Johnson Controls Metasys ile calissiyoruz." },
+          { "q": "Deprem dayanikli tesisat zorunlu mu?", "a": "Hastane ve kritik tesislerde zorunludur. 2018 yonetmeligi ile belirli bina siniflarinda sismik breys ve esnek baglanti zorunlu hale gelmistir." },
+          { "q": "Yesil bina sertifikasyon danismanligi veriyor musunuz?", "a": "Evet, LEED AP BD+C sertifikali muhendisimiz ile LEED, BREEAM ve EDGE sureclerinde mekanik tasarim danismanligi veriyoruz." },
+          { "q": "Jeotermal isi pompasi Istanbul'da uygun mu?", "a": "Evet, Istanbul'da yer alti sicakligi yeterlidir. Sondaj derinligi ve maliyet fizibilitesini ucretsiz degerlendirebiliriz." },
+          { "q": "Su geri kazanim sistemi ne kadar tasarruf saglar?", "a": "Gri su geri kazanimi ile bina su tuketiminde %30-50 tasarruf mumkundur. Yatirimin geri donus suresi genellikle 2-4 yildir." },
+          { "q": "Bakim sozlesmeniz ne kapsiyor?", "a": "7/24 ariza mudahale, periyodik bakim, yedek parca, enerji yonetimi ve performans raporlama. SLA tabanli hizmet seviyesi garantisi." },
+          { "q": "ISO sertifikalariniz var mi?", "a": "ISO 9001 Kalite, ISO 14001 Cevre ve ISO 45001 Is Sagligi Guvenligi sertifikalarimiz mevcuttur." },
+          { "q": "Teknik egitim programlariniz kimlere yonelik?", "a": "Tesis yonetim personeli, teknik servis ekipleri ve muhendisler icin HVAC, BMS, yangin ve sihhi tesisat egitimleri veriyoruz." },
+          { "q": "Proje referanslarinizi gorebilir miyiz?", "a": "NDA kapsaminda olmayan referanslarimizi proje gorusmesinde detayli paylasiyoruz. Sektore gore filtrelenmiş portfolio hazrlanir." }
+        ]
+      }
+    }
+  ]
+}

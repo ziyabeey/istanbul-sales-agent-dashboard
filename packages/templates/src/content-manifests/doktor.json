@@ -1,0 +1,696 @@
+{
+  "sectorId": "doktor",
+  "seoSchemaType": "MedicalBusiness",
+  "variants": [
+    {
+      "id": "doktor-klinik",
+      "variantName": "klinik",
+      "plan": "free",
+      "description": "Aile hekimi, sade ve guven veren",
+      "designPhilosophy": "Temiz, beyaz, profesyonel — hastayi rahatlatan",
+      "isDark": false,
+      "colors": {
+        "bg": "#FFFFFF",
+        "surface": "#F0F5FA",
+        "text": "#1A2332",
+        "accent": "#2563EB"
+      },
+      "fonts": { "heading": "Inter", "body": "Inter" },
+      "business": {
+        "name": "Dr. Selim Karaca Aile Hekimligi",
+        "ownerName": "Dr. Selim Karaca",
+        "sector": "Doktor",
+        "slogan": "Ailenizin sagligi, bizim oncelligimiz",
+        "phone": "0216 412 38 90",
+        "phoneClean": "902164123890",
+        "whatsapp": "905364123890",
+        "email": "info@drselimkaraca.com",
+        "address": "Acıbadem Mah. Tekin Sok. No:14/A, Kadikoy/Istanbul",
+        "city": "Istanbul",
+        "district": "Kadikoy",
+        "neighborhood": "Acibadem",
+        "coordinates": { "lat": 41.0025, "lng": 29.0380 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/drselimkaraca"
+        },
+        "photos": [],
+        "foundedYear": 2010,
+        "experience": "18 yil",
+        "customerCount": "25.000+",
+        "rating": 4.9,
+        "reviewCount": 890,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "09:00", "close": "18:00", "isOpen": true },
+          { "day": "Sali", "open": "09:00", "close": "18:00", "isOpen": true },
+          { "day": "Carsamba", "open": "09:00", "close": "18:00", "isOpen": true },
+          { "day": "Persembe", "open": "09:00", "close": "18:00", "isOpen": true },
+          { "day": "Cuma", "open": "09:00", "close": "17:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "09:00", "close": "13:00", "isOpen": true },
+          { "day": "Pazar", "open": null, "close": null, "isOpen": false }
+        ],
+        "services": [
+          { "id": "s1", "name": "Genel Muayene", "price": "500 TL", "duration": "30 dk", "description": "Kapsamli fizik muayene, tansiyon, nabiz, solunum kontrolu." },
+          { "id": "s2", "name": "Check-Up Paketi", "price": "2.500 TL", "duration": "60 dk", "description": "Kan tahlili, idrar, EKG, akciger grafisi dahil genel saglik taramasi." },
+          { "id": "s3", "name": "Cocuk Muayenesi", "price": "500 TL", "duration": "30 dk", "description": "0-18 yas cocuk ve genc sagligi takibi, boy-kilo, gelisim degerlendirmesi." },
+          { "id": "s4", "name": "Recete Yenileme", "price": "300 TL", "duration": "15 dk", "description": "Kronik hasta recete yenileme, ilac doz ayarlamasi." }
+        ],
+        "team": []
+      },
+      "content": {
+        "hero": {
+          "badge": "Kadikoy Aile Hekimi",
+          "title": "Dr. Selim Karaca",
+          "subtitle": "18 yildir Kadikoy Acibadem'de, bebekten yetiskine tum ailenizin sagligini takip ediyoruz. SGK anlasmasiz, ozel muayenehane.",
+          "cta1": { "text": "Randevu Al", "href": "#iletisim" }
+        },
+        "services": {
+          "badge": "Hizmetler",
+          "title": "Saglik Hizmetlerimiz",
+          "subtitle": "Genel dahiliye, koruyucu hekimlik ve kronik hasta takibinde uzmaniz."
+        },
+        "contact": {
+          "badge": "Randevu",
+          "title": "Randevu Alin",
+          "subtitle": "Acibadem Tekin Sokak'ta, Acibadem Hastanesi'ne 5 dakika yurume mesafesinde. Randevu ile kabul ediyoruz."
+        },
+        "faq": {
+          "badge": "SSS",
+          "title": "Merak Edilenler",
+          "questions": [
+            { "q": "SGK gecerli mi?", "a": "Hayir, ozel muayenehaneyiz. Ancak ozel saglik sigortasi olan hastalarin faturalari sigorta sirketine gonderilebilir." },
+            { "q": "Randevu almadan gelebilir miyim?", "a": "Randevusuz hasta kabul etmiyoruz. WhatsApp veya telefon ile ayni gun randevu alabilirsiniz, musaitlige gore." },
+            { "q": "Cocuk asilari yapiliyor mu?", "a": "Evet, rutin cocukluk cagi asilari ve grip asisi uygulanmaktadir. Asi takvimi icin muayene sirasinda bilgi verilir." },
+            { "q": "Online goruntulu muayene var mi?", "a": "Evet, kronik hasta takibi ve recete yenileme icin WhatsApp goruntulu gorusme ile online muayene yapilmaktadir. Ucret ayni." }
+          ]
+        }
+      }
+    },
+    {
+      "id": "doktor-medikal",
+      "variantName": "medikal",
+      "plan": "starter",
+      "description": "Dahiliye uzmani, guvenilir klinik",
+      "designPhilosophy": "Profesyonel, guven veren, medikal estetik",
+      "isDark": false,
+      "colors": {
+        "bg": "#F8FAFC",
+        "surface": "#EFF6FF",
+        "text": "#0F172A",
+        "accent": "#0369A1"
+      },
+      "fonts": { "heading": "Plus Jakarta Sans", "body": "Inter" },
+      "business": {
+        "name": "MediPark Dahiliye Klinigi",
+        "ownerName": "Doc. Dr. Ayse Celik",
+        "sector": "Doktor",
+        "slogan": "Bilimsel tibbi, insani sicaklikla bulusturuyoruz",
+        "phone": "0212 567 89 01",
+        "phoneClean": "902125678901",
+        "whatsapp": "905425678901",
+        "email": "randevu@mediparkdahiliye.com",
+        "address": "Caglayan Mah. Halaskargazi Cad. No:220/3, Sisli/Istanbul",
+        "city": "Istanbul",
+        "district": "Sisli",
+        "neighborhood": "Caglayan",
+        "coordinates": { "lat": 41.0612, "lng": 28.9880 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/mediparkdahiliye",
+          "youtube": "https://youtube.com/@drayseclik"
+        },
+        "photos": [],
+        "foundedYear": 2015,
+        "experience": "22 yil",
+        "customerCount": "40.000+",
+        "rating": 4.8,
+        "reviewCount": 1560,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "08:30", "close": "18:30", "isOpen": true },
+          { "day": "Sali", "open": "08:30", "close": "18:30", "isOpen": true },
+          { "day": "Carsamba", "open": "08:30", "close": "18:30", "isOpen": true },
+          { "day": "Persembe", "open": "08:30", "close": "18:30", "isOpen": true },
+          { "day": "Cuma", "open": "08:30", "close": "17:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "09:00", "close": "14:00", "isOpen": true },
+          { "day": "Pazar", "open": null, "close": null, "isOpen": false }
+        ],
+        "services": [
+          { "id": "s1", "name": "Dahiliye Muayenesi", "price": "800 TL", "duration": "30 dk", "description": "Kapsamli dahiliye muayenesi, hikaye alma, fizik muayene ve tedavi plani." },
+          { "id": "s2", "name": "Executive Check-Up", "price": "4.500 TL", "duration": "120 dk", "description": "60+ parametre kan tahlili, EKG, ultrason, akciger grafisi, goz dibi muayenesi dahil." },
+          { "id": "s3", "name": "Tiroid Takibi", "price": "1.200 TL", "duration": "30 dk", "description": "Tiroid fonksiyon testleri, ultrason ve muayene. Ilaç doz ayarlamasi." },
+          { "id": "s4", "name": "Diyabet Yonetimi", "price": "1.000 TL", "duration": "45 dk", "description": "HbA1c, aclik sekeri, insülin direnci testleri ve diyet danismanligi." },
+          { "id": "s5", "name": "Hipertansiyon Takibi", "price": "600 TL", "duration": "20 dk", "description": "24 saatlik tansiyon holter, ilac ayarlamasi ve yasam tarzı enerileri." },
+          { "id": "s6", "name": "Gastroenteroloji Konsultasyonu", "price": "1.000 TL", "duration": "30 dk", "description": "Mide-barsak sistemi sikayetleri, ulsdr, reflü tedavisi, diyet program." }
+        ],
+        "team": [
+          { "id": "t1", "name": "Doc. Dr. Ayse Celik", "role": "Ic Hastaliklari Uzmani", "experience": "22 yil" },
+          { "id": "t2", "name": "Dr. Burak Ozdemir", "role": "Dahiliye Uzmani", "experience": "10 yil" }
+        ]
+      },
+      "content": {
+        "hero": {
+          "badge": "Sisli Dahiliye Klinigi",
+          "title": "MediPark Dahiliye",
+          "subtitle": "Doc. Dr. Ayse Celik liderliginde, 22 yillik tecrube ile ic hastaliklari, diyabet, tiroid ve koruyucu hekimlik.",
+          "cta1": { "text": "Online Randevu", "href": "#iletisim" },
+          "cta2": { "text": "WhatsApp", "href": "https://wa.me/905425678901" }
+        },
+        "about": {
+          "badge": "Klinigimiz",
+          "title": "Bilimsel Tip, Insani Yaklasim",
+          "description": "MediPark Dahiliye, Doc. Dr. Ayse Celik tarafindan 2015 yilinda Sisli Halaskargazi Caddesi'nde kuruldu. Cerrahpasa Tip Fakultesi mezunu olan Dr. Celik, ic hastaliklari alaninda 22 yillik tecrubesiyle ozellikle diyabet, tiroid ve hipertansiyon yonetiminde uzmanlasmistir. Klinigimiz, devlet hastanesi kalabaliginddan uzak, randevulu ve kisisel ilgi gosteren bir saglik hizmeti sunmayi amaclar. Tum laboratuvar testleri anlasmali laboratuvarlarda ayni gun sonuclanir."
+        },
+        "services": {
+          "badge": "Hizmetlerimiz",
+          "title": "Uzmanlik Alanlarimiz",
+          "subtitle": "Dahiliye, endokrinoloji, gastroenteroloji ve koruyucu hekimlik."
+        },
+        "stats": {
+          "stats": [
+            { "value": "22", "label": "Yillik Tecrube" },
+            { "value": "40.000+", "label": "Hasta" },
+            { "value": "4.8", "label": "Hasta Memnuniyeti", "suffix": "/5" },
+            { "value": "60+", "label": "Check-Up Parametresi" }
+          ]
+        },
+        "contact": {
+          "badge": "Randevu",
+          "title": "Online Randevu Alin",
+          "subtitle": "Halaskargazi Caddesi uzerinde, Osmanbey Metrosu'na 3 dakika. Randevulu kabul."
+        },
+        "faq": {
+          "badge": "SSS",
+          "title": "Sikca Sorulan Sorular",
+          "questions": [
+            { "q": "Hangi sigorta sirketleriyle anlasmaniz var?", "a": "Axa, Allianz, Mapfre, Acibadem Sigorta, Groupama ve Zurich ile anlasmaliyiz. SGK kabul etmiyoruz. Sigorta onay islemi randevu sirasında yapilir." },
+            { "q": "Check-up icin ne kadar sure ayirmam gerekir?", "a": "Executive Check-Up yaklasik 2 saat surer. Sabah ac karnina gelmeniz gerekir. Sonuclar ayni gun ogleden sonra aciklanir, doktor gorusmesi dahildir." },
+            { "q": "Acil durumlarda ne yapmaliyim?", "a": "Klinik acil servis degildir. Acil durumlarda 112'yi arayin veya en yakin hastanenin acil servisine basvurun. Mesai saatleri icerisinde telefon danismanligi verebiliriz." },
+            { "q": "Online muayene hizmeti var mi?", "a": "Evet, mevcut hastalarimiz icin takip muayeneleri Zoom uzerinden yapilabilir. Ilk muayene mutlaka yuz yuze olmalidir. Online muayene ucreti 600 TL." },
+            { "q": "Laboratuvar testleri nerede yapiliyor?", "a": "Anlasmali laboratuvarimiz binanin alt katinda. Kan aldiktan sonra 4-6 saat icinde sonuclar dijital olarak iletilir. Ozel testler icin 24-48 saat." },
+            { "q": "Hamilelere hizmet veriyor musunuz?", "a": "Genel dahiliye kapsaminda hamilelik doneminde tiroid takibi ve diyabet taramasi yapiyoruz. Gebelik takibi icin kadin dogum uzmanina yonlendirme yapariz." }
+          ]
+        }
+      }
+    },
+    {
+      "id": "doktor-trust",
+      "variantName": "trust",
+      "plan": "growth",
+      "description": "Kardiyoloji merkezi, uzman kadro",
+      "designPhilosophy": "Guven, otorite, saglik — kalp sagligina odakli",
+      "isDark": false,
+      "colors": {
+        "bg": "#FAFBFC",
+        "surface": "#F0F4F8",
+        "text": "#1E293B",
+        "accent": "#DC2626",
+        "accentHover": "#B91C1C"
+      },
+      "fonts": { "heading": "Merriweather", "body": "Source Sans 3" },
+      "business": {
+        "name": "KardiyoPlus Kalp Sagligi Merkezi",
+        "ownerName": "Prof. Dr. Hasan Yildirim",
+        "sector": "Doktor",
+        "slogan": "Kalbiniz icin bilimsel guven",
+        "phone": "0212 345 67 89",
+        "phoneClean": "902123456789",
+        "whatsapp": "905553456789",
+        "email": "randevu@kardiyoplus.com",
+        "website": "https://kardiyoplus.com",
+        "address": "Fulya Mah. Hakki Yeten Cad. No:19/5, Besiktas/Istanbul",
+        "city": "Istanbul",
+        "district": "Besiktas",
+        "neighborhood": "Fulya",
+        "coordinates": { "lat": 41.0530, "lng": 29.0120 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/kardiyoplus",
+          "youtube": "https://youtube.com/@profhasan",
+          "linkedin": "https://linkedin.com/company/kardiyoplus"
+        },
+        "photos": [],
+        "foundedYear": 2012,
+        "experience": "30 yil",
+        "customerCount": "60.000+",
+        "rating": 4.9,
+        "reviewCount": 2100,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "08:00", "close": "18:00", "isOpen": true },
+          { "day": "Sali", "open": "08:00", "close": "18:00", "isOpen": true },
+          { "day": "Carsamba", "open": "08:00", "close": "18:00", "isOpen": true },
+          { "day": "Persembe", "open": "08:00", "close": "18:00", "isOpen": true },
+          { "day": "Cuma", "open": "08:00", "close": "17:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "09:00", "close": "14:00", "isOpen": true },
+          { "day": "Pazar", "open": null, "close": null, "isOpen": false }
+        ],
+        "services": [
+          { "id": "s1", "name": "Kardiyoloji Muayenesi", "price": "1.200 TL", "duration": "30 dk", "description": "Kapsamli kalp muayenesi, EKG, oskultasyon ve risk degerlendirmesi." },
+          { "id": "s2", "name": "Efor Testi", "price": "2.000 TL", "duration": "45 dk", "description": "Kosgu bandinda egzersiz EKG. Koroner arter hastaligi taramasi." },
+          { "id": "s3", "name": "Ekokardiografi", "price": "1.500 TL", "duration": "30 dk", "description": "Kalp ultrasonografi. Kapak hastaliklari ve kalp yetmezligi degerlendirmesi." },
+          { "id": "s4", "name": "Holter EKG (24 saat)", "price": "1.200 TL", "duration": "24 saat", "description": "24 saatlik ritim takibi. Carpinti, bayilma sikaytlerinin arastirilmasi." },
+          { "id": "s5", "name": "Tansiyon Holter (24 saat)", "price": "800 TL", "duration": "24 saat", "description": "24 saatlik ambulatuvar tansiyon olcumu. Gizli hipertansiyon tespiti." },
+          { "id": "s6", "name": "Kalp Check-Up (Premium)", "price": "5.000 TL", "duration": "120 dk", "description": "EKG, eko, efor, kan tahlili, tansiyon holter dahil kapsamli kalp taramasi." },
+          { "id": "s7", "name": "Koroner BT Anjiyografi", "price": "3.500 TL", "duration": "30 dk", "description": "Non-invaziv koroner damar goruntulemesi. Anlasmali hastanede yapilir." },
+          { "id": "s8", "name": "Kalp Pili Takibi", "price": "800 TL", "duration": "20 dk", "description": "Mevcut pacemaker kontrolu ve programlama. Tum markalar desteklenir." },
+          { "id": "s9", "name": "Sporcular Icin Kardiyolojik Tarama", "price": "3.000 TL", "duration": "60 dk", "description": "Profesyonel ve amator sporcular icin kapsamli kalp risk taramasi." },
+          { "id": "s10", "name": "Gebelikte Kalp Takibi", "price": "1.500 TL", "duration": "30 dk", "description": "Hamilelikte kardiyolojik degerlendirme, eko ve risk siniflandirmasi." }
+        ],
+        "team": [
+          { "id": "t1", "name": "Prof. Dr. Hasan Yildirim", "role": "Kardiyoloji Uzmani, Kurucu", "experience": "30 yil" },
+          { "id": "t2", "name": "Doc. Dr. Elif Sahin", "role": "Kardiyoloji Uzmani", "experience": "18 yil" },
+          { "id": "t3", "name": "Dr. Mert Aksoy", "role": "Kardiyoloji Uzmani", "experience": "12 yil" },
+          { "id": "t4", "name": "Hemire Fatma Yildiz", "role": "Bas Hemsire", "experience": "15 yil" }
+        ]
+      },
+      "content": {
+        "hero": {
+          "badge": "Istanbul Kardiyoloji Merkezi",
+          "title": "KardiyoPlus",
+          "subtitle": "Prof. Dr. Hasan Yildirim ve uzman kadrosuyla, Besiktas Fulya'da kalp sagligi alaninda 30 yillik deneyim. Tani, tedavi ve takip bir arada.",
+          "cta1": { "text": "Randevu Al", "href": "#iletisim" },
+          "cta2": { "text": "Kalp Check-Up", "href": "#hizmetler" }
+        },
+        "about": {
+          "badge": "Merkezimiz",
+          "title": "Kalp Sagliginiz Icin 30 Yillik Tecrube",
+          "description": "KardiyoPlus, 2012 yilinda Prof. Dr. Hasan Yildirim tarafindan Besiktas Fulya'da kuruldu. Istanbul Tip Fakultesi mezunu olan Prof. Yildirim, ABD Cleveland Clinic'te 3 yil invaziv kardiyoloji egitimi almistir. 6.000'den fazla anjiyografi ve 2.000'den fazla stent isleminde deneyimlidir. Merkezimiz, non-invaziv tanisal kardiyoloji alaninda Istanbul'un on gelen merkezlerinden biridir. Ekokardiografi, efor testi, holter ve koroner BT anjiyografi gibi ileri tani yontemlerini tek cati altinda sunuyoruz. Amacimiz, kalp hastaliklarini erken donemde tespit ederek onleyici tedavi uygulamaktir."
+        },
+        "services": {
+          "badge": "Hizmetlerimiz",
+          "title": "Kardiyoloji Hizmetleri",
+          "subtitle": "Tanisal testlerden tedavi planlamasina, kalp sagliginiz icin kapsamli hizmet."
+        },
+        "stats": {
+          "stats": [
+            { "value": "30", "label": "Yillik Uzmanlik" },
+            { "value": "60.000+", "label": "Hasta" },
+            { "value": "6.000+", "label": "Anjiyografi" },
+            { "value": "4.9", "label": "Hasta Memnuniyeti", "suffix": "/5" }
+          ]
+        },
+        "gallery": {
+          "badge": "Merkezimiz",
+          "title": "Tesislerimiz"
+        },
+        "testimonials": {
+          "badge": "Hasta Yorumlari",
+          "title": "Hastalarimiz Ne Diyor?",
+          "reviews": [
+            { "name": "Ahmet Y.", "location": "Besiktas", "rating": 5, "date": "2025-12", "text": "Prof. Yildirim carpinti sikayetimi cok detayli inceledi. Holter ve eko sonuclarina gore tedavi plani cok net acikladi. 2 ayda tamamen duzeldim." },
+            { "name": "Nurcan K.", "location": "Etiler", "rating": 5, "date": "2025-11", "text": "Kalp check-up yaptirdim, her sey cok profesyoneldi. Sonuclar ayni gun aciklandi, detayli rapor verildi. Annem icin de randevu aldim." },
+            { "name": "Oguz T.", "location": "Levent", "rating": 5, "date": "2025-10", "text": "Sporcu taramasi icin geldim, maraton oncesi kapsamli kalp kontrolu yaptirdi. Her sey detayliydi, guvenle yarisa katildim." },
+            { "name": "Sevgi M.", "location": "Mecidiyekoy", "rating": 5, "date": "2025-09", "text": "Doc. Dr. Elif Hanim cok sabirl ve ilgili. Hamileligimdeki kalp carpintisi icin takip ediyor. Hem beni hem bebegimi dusunerek tedavi planladi." },
+            { "name": "Kemal B.", "location": "Kadikoy", "rating": 4, "date": "2025-08", "text": "Stent sonrasi kontrollerimi burada yaptiriyorum. Ekip cok bilgili, takip programi detayli. Biraz pahali ama saglik konusunda tasarruf olmuyor." },
+            { "name": "Aylin R.", "location": "Bakirkoy", "rating": 5, "date": "2025-07", "text": "Annem icin uzaktan danismanlik aldik, cok yardimci oldular. Prof. Yildirim'in sabri ve aciklamasi bizi cok rahatlatti." }
+          ]
+        },
+        "contact": {
+          "badge": "Randevu",
+          "title": "Randevu Alin",
+          "subtitle": "Besiktas Fulya'da, Hakki Yeten Caddesi uzerinde. Metro ve otobus ile kolay ulasim. Randevulu kabul."
+        },
+        "faq": {
+          "badge": "SSS",
+          "title": "Sikca Sorulan Sorular",
+          "questions": [
+            { "q": "Ilk muayeneye ne getirmeliyim?", "a": "Varsa onceki EKG, eko, kan tahlili sonuclarinizi getirin. Kullandiginiz ilaclarin listesini hazirlayin. Kimlik ve sigorta kartinizi unutmayin." },
+            { "q": "Efor testi icin hazirlik gerekli mi?", "a": "Test oncesi 3 saat yemek yemeyin, cay/kahve icmeyin. Rahat spor kiyafeti ve spor ayakkabi getirin. Kalp ilaclari konusunda doktorunuz bilgi verecektir." },
+            { "q": "Sigorta gecerli mi?", "a": "Axa, Allianz, Mapfre, Acibadem Sigorta ile anlasmaliyiz. SGK anlasmaiz bulunmamaktadir. Ozel sigorta hastalari icin provizyon islemi yapilir." },
+            { "q": "Check-up ne siklikla yaptirmaliyim?", "a": "40 yas ustu: yilda 1 kez, 50 yas ustu veya risk faktorlu hastalar: 6 ayda 1, kronik kalp hastalari: doktor onerisi ile 3-6 ay arasi." },
+            { "q": "Koroner BT anjiyografi nerede yapiliyor?", "a": "Anlasmali Memorial Sisli Hastanesi'nde yapilmaktadir. Randevu ve sonuc degerlendirmesi merkezimizde, cekme isimi hastanede gerceklesir." },
+            { "q": "Online danismanlik var mi?", "a": "Mevcut hastalarimiz icin telefon ve goruntulu danismanlik hizmeti verilmektedir. Ilk muayene mutlaka yuz yuze olmalidir." },
+            { "q": "Cocuklara kardiyoloji hizmeti veriliyor mu?", "a": "Merkezimiz yetiskin kardiyoloji uzerine uzmanlasmistir. Cocuk kardiyolojisi icin Acibadem veya Florence Nightingale Hastanesi'ne yonlendirme yapiyoruz." },
+            { "q": "Acil durumda ne yapmaliyim?", "a": "Gogus agrisi, nefes darligi veya bayilma durumunda 112'yi arayin. Merkezimiz acil servis degildir ancak mesai icinde telefon yonlendirmesi yapabiliriz." }
+          ]
+        }
+      }
+    },
+    {
+      "id": "doktor-uzman",
+      "variantName": "uzman",
+      "plan": "pro",
+      "description": "Cok branslI ozel poliklinik",
+      "designPhilosophy": "Modern, guvenilir, hastane hissi olmadan klinik",
+      "isDark": false,
+      "colors": {
+        "bg": "#FAFCFE",
+        "surface": "#EEF4FA",
+        "text": "#0C1929",
+        "accent": "#0E7490",
+        "accentHover": "#0891B2"
+      },
+      "fonts": { "heading": "Outfit", "body": "Inter" },
+      "business": {
+        "name": "UzmanPlus Poliklinigi",
+        "ownerName": "Dr. Baris Yilmaz",
+        "sector": "Doktor",
+        "slogan": "10 brans, tek cati, tamami randevulu",
+        "phone": "0212 678 90 12",
+        "phoneClean": "902126789012",
+        "whatsapp": "905556789012",
+        "email": "randevu@uzmanplus.com",
+        "website": "https://uzmanplus.com",
+        "address": "Kozyatagi Mah. Saniye Ermutlu Sok. No:6, Kadikoy/Istanbul",
+        "city": "Istanbul",
+        "district": "Kadikoy",
+        "neighborhood": "Kozyatagi",
+        "coordinates": { "lat": 40.9730, "lng": 29.0650 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/uzmanplus",
+          "youtube": "https://youtube.com/@uzmanplus",
+          "linkedin": "https://linkedin.com/company/uzmanplus"
+        },
+        "photos": [],
+        "foundedYear": 2017,
+        "experience": "7 yil",
+        "customerCount": "120.000+",
+        "rating": 4.7,
+        "reviewCount": 3200,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Sali", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Carsamba", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Persembe", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Cuma", "open": "08:00", "close": "19:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "09:00", "close": "16:00", "isOpen": true },
+          { "day": "Pazar", "open": null, "close": null, "isOpen": false }
+        ],
+        "services": [
+          { "id": "s1", "name": "Dahiliye Muayenesi", "price": "800 TL", "duration": "30 dk", "description": "Genel dahiliye, kronik hastalik takibi ve recete." },
+          { "id": "s2", "name": "Dermatoloji", "price": "900 TL", "duration": "20 dk", "description": "Cilt hastaliklari, akne, egzama, ben takibi, dermoskopi." },
+          { "id": "s3", "name": "Ortopedi", "price": "900 TL", "duration": "20 dk", "description": "Eklem, kas-iskelet sistemi sikayetleri, spor yaralanmalari." },
+          { "id": "s4", "name": "Goz Muayenesi", "price": "700 TL", "duration": "20 dk", "description": "Gorme testi, goz tansiyonu, dip muayenesi, lens recetesi." },
+          { "id": "s5", "name": "KBB", "price": "800 TL", "duration": "20 dk", "description": "Kulak-burun-bogaz muayenesi, odiyometri, alerji testleri." },
+          { "id": "s6", "name": "Uroloji", "price": "900 TL", "duration": "25 dk", "description": "Prostat, idrar yolu enfeksiyonlari, bobrek tasi danismanligi." },
+          { "id": "s7", "name": "Noroloji", "price": "1.000 TL", "duration": "30 dk", "description": "Bas agrisi, migren, uyku bozukluklari, sinir sikismasi." },
+          { "id": "s8", "name": "Kardiyoloji", "price": "1.200 TL", "duration": "30 dk", "description": "EKG, eko, efor testi, kalp ritim bozukluklari." },
+          { "id": "s9", "name": "Endokrinoloji", "price": "1.000 TL", "duration": "30 dk", "description": "Tiroid, diyabet, hormonal bozukluklar, metabolizma." },
+          { "id": "s10", "name": "Psikiyatri", "price": "1.200 TL", "duration": "45 dk", "description": "Depresyon, anksiyete, panik atak, uyku bozukluklari." },
+          { "id": "s11", "name": "Executive Check-Up", "price": "6.000 TL", "duration": "180 dk", "description": "Tum branslarda tarama: 100+ parametre, ayni gun sonuc." },
+          { "id": "s12", "name": "Ultrason (Karin)", "price": "800 TL", "duration": "20 dk", "description": "Karin ultrasonografisi: karaciger, bobrek, safra kesesi tarama." },
+          { "id": "s13", "name": "Dijital Rontgen", "price": "400 TL", "duration": "10 dk", "description": "Akciger grafisi, kemik grafisi. Aninda dijital sonuc." },
+          { "id": "s14", "name": "Kan Tahlili Paketi", "price": "600 TL", "duration": "5 dk", "description": "40 parametre: tam kan, biyokimya, tiroid, vitamin. Ayni gun sonuc." }
+        ],
+        "team": [
+          { "id": "t1", "name": "Dr. Baris Yilmaz", "role": "Kurucu, Dahiliye Uzmani", "experience": "20 yil" },
+          { "id": "t2", "name": "Dr. Selin Koc", "role": "Dermatoloji Uzmani", "experience": "14 yil" },
+          { "id": "t3", "name": "Dr. Cem Akar", "role": "Ortopedi Uzmani", "experience": "16 yil" },
+          { "id": "t4", "name": "Dr. Zeynep Tuncer", "role": "Goz Hastaliklari Uzmani", "experience": "12 yil" },
+          { "id": "t5", "name": "Dr. Murat Demir", "role": "KBB Uzmani", "experience": "15 yil" },
+          { "id": "t6", "name": "Dr. Hande Ozkan", "role": "Noroloji Uzmani", "experience": "11 yil" }
+        ]
+      },
+      "content": {
+        "hero": {
+          "badge": "Kadikoy Ozel Poliklinik",
+          "title": "UzmanPlus Poliklinigi",
+          "subtitle": "Kozyatagi'nda, 10 brans 14 uzman doktor. Ayni gun randevu, ayni gun sonuc. Hastane kalabaligina son.",
+          "cta1": { "text": "Online Randevu", "href": "#iletisim" },
+          "cta2": { "text": "Brans Sec", "href": "#hizmetler" }
+        },
+        "about": {
+          "badge": "Hakkimizda",
+          "title": "Tek Cati Altinda Tam Saglik",
+          "description": "UzmanPlus, 2017 yilinda Dr. Baris Yilmaz'in liderliginde Kadikoy Kozyatagi'nda kuruldu. Amacimiz, ozel hastanelerin karmasik sisteminden ve uzun bekleme surelerinden bunalan hastalara, butik ama kapsamli bir saglik hizmeti sunmakti. 600 metrekare alana yayilan poliklinigimizde 10 farkli bransta uzman doktorlarimiz hizmet veriyor. Kendi laboratuvarimiz ve goruntuleme merkezimiz sayesinde sonuçlar ayni gun alinir. Ortalama muayene bekleme suremiz 5 dakikadir cunku tamamen randevulu calisiyoruz. 120.000'den fazla muayene deneyimimizle Anadolu Yakasi'nin en cok tercih edilen polikliniklerinden biriyiz."
+        },
+        "services": {
+          "badge": "Branslar",
+          "title": "Uzmanlik Alanlarimiz",
+          "subtitle": "10 bransta 14 uzman doktor, kendi laboratuvar ve goruntuleme merkezimizle."
+        },
+        "stats": {
+          "stats": [
+            { "value": "10", "label": "Brans" },
+            { "value": "14", "label": "Uzman Doktor" },
+            { "value": "120K+", "label": "Muayene" },
+            { "value": "4.7", "label": "Hasta Memnuniyeti", "suffix": "/5" }
+          ]
+        },
+        "gallery": {
+          "badge": "Mekanımız",
+          "title": "Poliklinik Goruntuleri"
+        },
+        "testimonials": {
+          "badge": "Hasta Deneyimleri",
+          "title": "Hastalarimizin Gorusleri",
+          "reviews": [
+            { "name": "Aysegul D.", "location": "Kozyatagi", "rating": 5, "date": "2025-12", "text": "Check-up yaptirdim, sabah 8'de girdim ogle 12'de tum sonuclarla ciktim. 10 farkli bransta tarama tek gunde bitti. Hastanelerde bu 3 gunu bulurdu." },
+            { "name": "Tarik S.", "location": "Bostanci", "rating": 5, "date": "2025-11", "text": "Diz agrisi icin ortopediye geldim, ayni gun MR sonucu alinidi, tedavi baslatildi. Hiz ve kalite bir arada." },
+            { "name": "Elif K.", "location": "Goztepe", "rating": 5, "date": "2025-10", "text": "Dermatoloji icin Dr. Selin'e gittim, ben takibi ve dermoskopi yapildi. Cok detayli ve ilgili bir doktor. Artik yillik kontrollerimi burada yaptiriyorum." },
+            { "name": "Cenk M.", "location": "Atasehir", "rating": 4, "date": "2025-09", "text": "Noroloji ve KBB muayenesini ayni gun yaptirdim. Iki uzman birbiriyle konsulte etti, ortak tedavi plani cikardi. Bu entegrasyon cok degerli." },
+            { "name": "Derya A.", "location": "Maltepe", "rating": 5, "date": "2025-08", "text": "Cocugumun goz muayenesini burada yaptirdik. Dr. Zeynep cok sabirl ve cocuklara karsi ilgiliydi. Lens recetesi ve kontrol hepsi ayni gun." },
+            { "name": "Volkan E.", "location": "Kadikoy", "rating": 5, "date": "2025-07", "text": "Executive check-up'i her yil burada yaptiriyorum. 3 saat icinde 100+ parametre test, 10 brans tarama. Kusursuz organizasyon." },
+            { "name": "Burcu T.", "location": "Uskudar", "rating": 4, "date": "2025-06", "text": "Psikiyatri bolumunde anksiyete tedavisi goruyorum. Randevularim hep zamaninda, bekleme yok. Gizlilik konusu da cok iyi yonetiliyor." },
+            { "name": "Sinan O.", "location": "Pendik", "rating": 5, "date": "2025-05", "text": "Uroloji icin geldim, Dr. Murat cok profesyonel. Ultrason ve tahliller ayni gun yapildi. Pendik'ten geliyorum ama degiver." }
+          ]
+        },
+        "team": {
+          "badge": "Doktorlarimiz",
+          "title": "Uzman Kadromuz"
+        },
+        "contact": {
+          "badge": "Randevu",
+          "title": "Online Randevu Alin",
+          "subtitle": "Kozyatagi Saniye Ermutlu Sokak'ta, Marmaray Bostanci'ya 5 dakika. Otopark mevcut."
+        },
+        "faq": {
+          "badge": "SSS",
+          "title": "Sikca Sorulan Sorular",
+          "questions": [
+            { "q": "Hangi branslar mevcut?", "a": "Dahiliye, dermatoloji, ortopedi, goz, KBB, uroloji, noroloji, kardiyoloji, endokrinoloji ve psikiyatri. Toplam 10 brans, 14 uzman doktor." },
+            { "q": "Sigorta gecerli mi?", "a": "20+ ozel sigorta sirketi ile anlasmaliyiz: Axa, Allianz, Mapfre, Acibadem, Zurich, Groupama vs. SGK anlasmaiz yoktur. Provizyon islemi 5 dakikada tamamlanir." },
+            { "q": "Laboratuvar sonuclari ne zaman cikar?", "a": "Rutin kan tahlili 4 saat, hormon testleri ayni gun, ozel testler 24-48 saat. Sonuclar SMS ve e-posta ile iletilir." },
+            { "q": "Check-up ne kadar suruyor?", "a": "Executive Check-Up yaklasik 3 saat. Sabah 08:00'de ac karnina baslar, ogle 12:00'de tum sonuclar ve doktor gorusmesi ile tamamlanir." },
+            { "q": "Otopark var mi?", "a": "Bina altinda 30 araclik kapali otopark mevcuttur. Hastalarimiza 3 saat ucretsiz park imkani sunuyoruz." },
+            { "q": "Cocuklara hizmet veriliyor mu?", "a": "Goz, KBB ve dermatoloji branslarinda 6 yas ustu cocuklara hizmet verilmektedir. Cocuk hastaliklari icin pediatri yonlendirmesi yapilir." },
+            { "q": "Ayni gun randevu alinabilir mi?", "a": "Evet, musaitlige gore ayni gun randevu verilmektedir. Online randevu sistemi veya WhatsApp uzerinden anlik durumu gorebilirsiniz." },
+            { "q": "Online muayene var mi?", "a": "Takip muayeneleri icin goruntulu danismanlik hizmeti mevcuttur (500 TL). Ilk muayene mutlaka yuz yuze yapilmalidir." },
+            { "q": "Engelli erisimi var mi?", "a": "Poliklinigimiz tamamen engelli erisimlidir. Asansor, rampa, engelli WC ve oncelikli muayene hakki mevcuttur." },
+            { "q": "Ameliyat yapiliyor mu?", "a": "Poliklinigimizde ameliyat yapılmamaktadir. Cerrahi gerekli durumlarda anlasmali hastanelere (Memorial, Acibadem) yonlendirme yapilir." }
+          ]
+        },
+        "cta": {
+          "badge": "Hemen Basvur",
+          "title": "Sagliginizi Ertelemeyin",
+          "subtitle": "Ayni gun randevu, ayni gun sonuc. Online veya WhatsApp ile hemen randevu alin."
+        },
+        "process_steps": {
+          "badge": "Nasil Calisiyoruz",
+          "title": "4 Adimda Saglik",
+          "steps": [
+            { "title": "Randevu", "description": "Online, telefon veya WhatsApp ile brans secip randevu alin." },
+            { "title": "Muayene", "description": "Uzman doktorunuz sizi dinler, muayene eder, gerekli testleri ister." },
+            { "title": "Sonuc", "description": "Laboratuvar ve goruntuleme sonuçları ayni gun iletilir." },
+            { "title": "Tedavi", "description": "Tedavi planiniz belirlenir, takip randevunuz olusturulur." }
+          ]
+        }
+      }
+    },
+    {
+      "id": "doktor-denta",
+      "variantName": "denta",
+      "plan": "enterprise",
+      "description": "Cok subeli saglik grubu, hastane kalitesi",
+      "designPhilosophy": "Kurumsal, premium, teknoloji odakli saglik",
+      "isDark": true,
+      "colors": {
+        "bg": "#060D18",
+        "surface": "#0F1A2E",
+        "text": "#E8ECF1",
+        "accent": "#38BDF8",
+        "accentHover": "#7DD3FC",
+        "accentLight": "#0C1A2E",
+        "surfaceElevated": "#162137",
+        "textSecondary": "#94A3B8"
+      },
+      "fonts": { "heading": "Syne", "body": "Inter" },
+      "business": {
+        "name": "Medikon Saglik Grubu",
+        "ownerName": "Prof. Dr. Tarik Ozen",
+        "sector": "Doktor",
+        "slogan": "Istanbul'un 4 noktasinda, tek standart: mukemmellik",
+        "phone": "0850 500 6346",
+        "phoneClean": "908505006346",
+        "whatsapp": "905559006346",
+        "email": "info@medikon.com.tr",
+        "website": "https://medikon.com.tr",
+        "address": "Levent Mah. Nispetiye Cad. No:24, Besiktas/Istanbul (Merkez)",
+        "city": "Istanbul",
+        "district": "Besiktas",
+        "neighborhood": "Levent",
+        "coordinates": { "lat": 41.0803, "lng": 29.0115 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/medikonsaglik",
+          "youtube": "https://youtube.com/@medikonsaglik",
+          "linkedin": "https://linkedin.com/company/medikon",
+          "twitter": "https://twitter.com/medikonsaglik"
+        },
+        "photos": [],
+        "foundedYear": 2010,
+        "experience": "14 yil",
+        "customerCount": "500.000+",
+        "rating": 4.8,
+        "reviewCount": 8900,
+        "branches": [
+          { "name": "Levent (Merkez)", "address": "Nispetiye Cad. No:24, Besiktas" },
+          { "name": "Atasehir", "address": "Barbaros Mah. Halk Cad. No:55, Atasehir" },
+          { "name": "Bakirkoy", "address": "Zuhuratbaba Mah. Incirli Cad. No:12, Bakirkoy" },
+          { "name": "Uskudar", "address": "Altunizade Mah. Kisikli Cad. No:38, Uskudar" }
+        ],
+        "workingHours": [
+          { "day": "Pazartesi", "open": "07:30", "close": "21:00", "isOpen": true },
+          { "day": "Sali", "open": "07:30", "close": "21:00", "isOpen": true },
+          { "day": "Carsamba", "open": "07:30", "close": "21:00", "isOpen": true },
+          { "day": "Persembe", "open": "07:30", "close": "21:00", "isOpen": true },
+          { "day": "Cuma", "open": "07:30", "close": "20:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "08:00", "close": "18:00", "isOpen": true },
+          { "day": "Pazar", "open": "09:00", "close": "15:00", "isOpen": true }
+        ],
+        "services": [
+          { "id": "s1", "name": "Dahiliye", "price": "1.000 TL", "duration": "30 dk", "description": "Ic hastaliklari, kronik hastalik yonetimi, genel saglik degerlendirmesi." },
+          { "id": "s2", "name": "Kardiyoloji", "price": "1.500 TL", "duration": "30 dk", "description": "EKG, eko, efor testi, holter. Tam kardiyolojik degerlendirme." },
+          { "id": "s3", "name": "Noroloji", "price": "1.200 TL", "duration": "30 dk", "description": "EMG, EEG, bas agrisi, epilepsi, MS tedavisi." },
+          { "id": "s4", "name": "Ortopedi", "price": "1.000 TL", "duration": "20 dk", "description": "Eklem hastaliklari, spor yaralanmalari, protez danismanligi." },
+          { "id": "s5", "name": "Genel Cerrahi", "price": "1.200 TL", "duration": "30 dk", "description": "Laparoskopik cerrahi, fitik, safra kesesi, tiroid cerrahisi." },
+          { "id": "s6", "name": "Kadin Dogum", "price": "1.000 TL", "duration": "30 dk", "description": "Gebelik takibi, jinekolojik muayene, HPV taramasi." },
+          { "id": "s7", "name": "Goz Hastaliklari", "price": "800 TL", "duration": "20 dk", "description": "Lazer gorme tedavisi, katarakt, glokom, retina hastaliklari." },
+          { "id": "s8", "name": "Dermatoloji", "price": "900 TL", "duration": "20 dk", "description": "Medikal dermatoloji, dermoskopi, lazer tedavileri." },
+          { "id": "s9", "name": "Psikiyatri", "price": "1.500 TL", "duration": "45 dk", "description": "Yetiskin psikiyatrisi, farmakoterapi, psikoterapi yonlendirme." },
+          { "id": "s10", "name": "Uroloji", "price": "1.000 TL", "duration": "25 dk", "description": "Prostat, bobrek tasi, urodinamik testler." },
+          { "id": "s11", "name": "Fizik Tedavi", "price": "300 TL", "duration": "45 dk", "description": "Rehabilitasyon, manuel terapi, skolyoz programi. Seans bazli." },
+          { "id": "s12", "name": "Radyoloji (MR)", "price": "2.500 TL", "duration": "30 dk", "description": "3 Tesla MR goruntuleme. Ayni gun sonuc ve yorumlama." },
+          { "id": "s13", "name": "Radyoloji (BT)", "price": "1.800 TL", "duration": "15 dk", "description": "Cok kesitli bilgisayarli tomografi. Kontrastli/kontrastsiz." },
+          { "id": "s14", "name": "Laboratuvar (Premium Paket)", "price": "800 TL", "duration": "10 dk", "description": "80+ parametre: hemogram, biyokimya, hormon, tumor markerlari." },
+          { "id": "s15", "name": "Executive Check-Up", "price": "8.000 TL", "duration": "240 dk", "description": "15 brans tarama, MR dahil. VIP odada, 1 gun icinde tamamlanir." },
+          { "id": "s16", "name": "Endokrinoloji", "price": "1.200 TL", "duration": "30 dk", "description": "Diyabet, tiroid, metabolik sendrom, hormonal bozukluklar." },
+          { "id": "s17", "name": "KBB", "price": "800 TL", "duration": "20 dk", "description": "Isitme testi, sinuzit, tonsil, ses kirikligi, alerji." },
+          { "id": "s18", "name": "Gastroenteroloji", "price": "1.200 TL", "duration": "30 dk", "description": "Endoskopi, kolonoskopi, karaciger hastaliklari." },
+          { "id": "s19", "name": "Gogus Hastaliklari", "price": "1.000 TL", "duration": "25 dk", "description": "SFT, astim, KOAH, uyku apnesi taramasi." },
+          { "id": "s20", "name": "Diyetisyen", "price": "600 TL", "duration": "45 dk", "description": "Kisisel beslenme programi, metabolik hiz olcumu, takip." }
+        ],
+        "team": [
+          { "id": "t1", "name": "Prof. Dr. Tarik Ozen", "role": "Kurucu, Genel Cerrahi", "experience": "32 yil" },
+          { "id": "t2", "name": "Doc. Dr. Zeynep Aktas", "role": "Kardiyoloji Sef", "experience": "20 yil" },
+          { "id": "t3", "name": "Dr. Cagri Polat", "role": "Noroloji", "experience": "15 yil" },
+          { "id": "t4", "name": "Dr. Emine Korkmaz", "role": "Kadin Dogum", "experience": "18 yil" },
+          { "id": "t5", "name": "Dr. Serdar Yilmaz", "role": "Ortopedi", "experience": "14 yil" },
+          { "id": "t6", "name": "Dr. Burcu Ozdemir", "role": "Dermatoloji", "experience": "12 yil" },
+          { "id": "t7", "name": "Dr. Tolga Acar", "role": "Goz Hastaliklari", "experience": "16 yil" },
+          { "id": "t8", "name": "Dyt. Merve Sahin", "role": "Klinik Diyetisyen", "experience": "8 yil" }
+        ]
+      },
+      "content": {
+        "hero": {
+          "badge": "Istanbul Saglik Grubu",
+          "title": "Medikon Saglik Grubu",
+          "subtitle": "4 subede 20 brans, 40+ uzman doktor, kendi laboratuvar ve goruntuleme merkezi. Hastane kalitesi, poliklinik konforu.",
+          "cta1": { "text": "Online Randevu", "href": "#iletisim" },
+          "cta2": { "text": "En Yakin Sube", "href": "#subeler" }
+        },
+        "about": {
+          "badge": "Hikayemiz",
+          "title": "14 Yilda Istanbul'un Guvenilen Saglik Markasi",
+          "description": "Medikon, 2010 yilinda Prof. Dr. Tarik Ozen tarafindan Levent'te tek bir poliklinik olarak kuruldu. Istanbul Tip Fakultesi'nden mezun olan Prof. Ozen, Johns Hopkins Universitesi'nde 2 yil arastirma gorevlisi olarak calismis, uluslararasi tip dergilerinde 45+ makale yayinlamistir. Medikon'un vizyonu basit: Ozel hastanelerin yuksek maliyeti ile devlet hastanelerinin uzun bekleme suresi arasinda, kaliteden odun vermeden ulasilabilir bir saglik hizmeti sunmak. 2015'te Atasehir, 2018'de Bakirkoy ve 2021'de Uskudar subeleri ile Istanbul'un dort bir yanina yayildik. Bugun 40+ uzman doktor, 120+ saglik personeli ile yilda 500.000'den fazla hastaya hizmet veriyoruz. JCI akreditasyon surecimiz devam etmektedir."
+        },
+        "services": {
+          "badge": "Branslarimiz",
+          "title": "20 Bransta Uzman Saglik Hizmeti",
+          "subtitle": "Dahiliyeden cerrahiye, goruntülemeden laboratuvara — tek cati altinda tam saglik."
+        },
+        "stats": {
+          "stats": [
+            { "value": "4", "label": "Sube" },
+            { "value": "40+", "label": "Uzman Doktor" },
+            { "value": "500K+", "label": "Yillik Hasta" },
+            { "value": "4.8", "label": "Hasta Memnuniyeti", "suffix": "/5" }
+          ]
+        },
+        "gallery": {
+          "badge": "Tesislerimiz",
+          "title": "Modern Saglik Altyapimiz"
+        },
+        "testimonials": {
+          "badge": "Hasta Deneyimleri",
+          "title": "Hastalarimizdan Geri Bildirim",
+          "reviews": [
+            { "name": "Ahmet K.", "location": "Levent", "rating": 5, "date": "2026-01", "text": "Executive check-up'i her yil burada yaptiriyorum. Sabah 8'de basliyorsunuz, ogle 2'de MR dahil tum sonuclarla cikiyorsunuz. VIP oda cok konforlu." },
+            { "name": "Fatma S.", "location": "Atasehir", "rating": 5, "date": "2025-12", "text": "Gebelik takibimi Dr. Emine Hanim'da yapiyorum. Her kontrolde detayli ultrason, her soruma sabirl cevap. 4. subede de ayni kalite." },
+            { "name": "Mehmet O.", "location": "Bakirkoy", "rating": 5, "date": "2025-11", "text": "Diz protezi operasyonumu Dr. Serdar Bey yapti, Acibadem ile ortak operasyon. Ameliyat oncesi ve sonrasi takip tamamen Medikon'da, cok memnunum." },
+            { "name": "Hale T.", "location": "Uskudar", "rating": 5, "date": "2025-10", "text": "Uskudar subesi yeni acilmis ama kadro cok iyi. Dermatoloji icin Dr. Burcu Hanim'a gittim, lazer tedavisi baslattik. Sonuçlar harika." },
+            { "name": "Volkan Y.", "location": "Kadikoy", "rating": 4, "date": "2025-09", "text": "MR sonucu ayni gun cikti, radyolog raporu cok detayliydi. Diger hastanelerde 3 gun beklerdim. Tek eksik Kadikoy subesi yok, keske acilsa." },
+            { "name": "Seda A.", "location": "Sisli", "rating": 5, "date": "2025-08", "text": "Fizik tedavi programi muhtesem. 10 seans sonrasinda bel agrim tamamen gecti. Terapistler cok ilgili ve profesyonel." },
+            { "name": "Burak E.", "location": "Maslak", "rating": 5, "date": "2025-07", "text": "Sirketimiz 200 calisan icin kurumsal check-up anlasmasi yapti. Organizasyon kusursuz, sonuclar dijital raporla iletildi." },
+            { "name": "Gulsen D.", "location": "Florya", "rating": 5, "date": "2025-06", "text": "Diyetisyen Merve Hanim ile 3 ayda 12 kilo verdim. Metabolik hiz olcumu ve kisisel program cok etkili oldu." },
+            { "name": "Cem N.", "location": "Beylikduzu", "rating": 4, "date": "2025-05", "text": "Gastroenteroloji bolumunde endoskopi yaptirdim. Dr. cok deneyimli, islem sirasinda hic agri hissetmedim. Sedasyon ile yapildi." },
+            { "name": "Zehra B.", "location": "Umraniye", "rating": 5, "date": "2025-04", "text": "Psikiyatri bolumu cok profesyonel. Randevu saatine dakik, ortam gizli ve rahat. 6 aydir tedavi goruyorum, hayat kalitem artti." },
+            { "name": "Osman L.", "location": "Sariyer", "rating": 5, "date": "2025-03", "text": "Gogus hastaliklari'nda uyku apnesi taramasi yaptirdim. Evde polisomnografi cihazi verdiler, cok pratik. Sonuc ve tedavi hemen basladi." },
+            { "name": "Pinar H.", "location": "Kartal", "rating": 5, "date": "2025-02", "text": "Cocugumun KBB muayenesini burada yaptirdik. Dr. Murat Bey cocuklara cok iyi yaklasan bir doktor. Isitme testi ve tedavi ayni gun." }
+          ]
+        },
+        "team": {
+          "badge": "Doktor Kadromuz",
+          "title": "40+ Uzman, Tek Standart"
+        },
+        "contact": {
+          "badge": "Iletisim & Randevu",
+          "title": "Size En Yakin Medikon",
+          "subtitle": "Levent, Atasehir, Bakirkoy ve Uskudar — Istanbul'un 4 noktasinda. Online randevu veya 0850 ile 7/24 destek."
+        },
+        "faq": {
+          "badge": "SSS",
+          "title": "Merak Edilenler",
+          "questions": [
+            { "q": "Hangi subelerde hangi branslar var?", "a": "Tum 4 subede dahiliye, kardiyoloji, ortopedi, dermatoloji, goz, KBB mevcuttur. Cerrahi branslar ve MR sadece Levent merkezde. Detayli brans listesi icin web sitemizi ziyaret edin." },
+            { "q": "Sigorta ve SGK gecerli mi?", "a": "30+ ozel sigorta sirketi ile anlasmaliyiz. SGK gecerli degildir. Kurumsal saglik anlasmalari icin ozel fiyatlandirma uygulanir." },
+            { "q": "Ameliyat yapiliyor mu?", "a": "Minor cerrahiler (ben alma, lipom, biyopsi) subelerimizde yapılır. Major cerrahiler icin anlasmalI Memorial ve Acibadem hastanelerinde, kendi doktorlarimiz tarafindan gerceklestirilir." },
+            { "q": "MR ve BT hangi subede var?", "a": "3 Tesla MR ve cok kesitli BT cihazlarimiz Levent merkez subede bulunur. Diger subelerden yonlendirme yapilir, randevu oncelikli verilir." },
+            { "q": "Online randevu sistemi nasil calisiyor?", "a": "Web sitemizden veya mobil uygulamamizdan 7/24 randevu alinabilir. Brans, doktor ve sube secimi yapabilirsiniz. SMS hatirlatma otomatik gonderilir." },
+            { "q": "Kurumsal saglik paketleri nelerdir?", "a": "10+ calisan icin kurumsal check-up anlasmasi: Executive (8.000 TL/kisi), Standard (4.000 TL/kisi), Basic (2.000 TL/kisi). Yillik anlasmalarda %20 indirim. Yerinde kan alma hizmeti mevcuttur." },
+            { "q": "Acil servis var mi?", "a": "Subelerimiz acil servis degildir. Ancak mesai saatleri icinde acil durumlarda hastaneye yonlendirme ve ilk mudahale yapilabilir. Ciddi acil durumlarda 112'yi arayin." },
+            { "q": "Cocuk bransları mevcut mu?", "a": "Cocuk sagligi ve hastaliklari (pediatri), cocuk goz ve cocuk KBB branslari Levent ve Atasehir subelerinde mevcuttur." },
+            { "q": "Yurt disından hasta kabul ediyor musunuz?", "a": "Evet, uluslararasi hasta koordinasyon birimimiz mevcuttur. Ingilizce, Arapca ve Rusca tercuman hizmeti sunulmaktadir. Transfer ve konaklama organizasyonu yapilir." },
+            { "q": "Engelli erisimi ve ozel ihtiyaclar?", "a": "Tum subelerimiz engelli erisimlidir. Isaret dili tercumani, gorme engelli yonlendirmesi ve oncelikli muayene hizmeti mevcuttur." },
+            { "q": "Tele-tip (online muayene) hizmeti var mi?", "a": "Evet, tum branslarda mevcut hastalar icin goruntulu muayene yapilmaktadir. Ilk muayene yuz yuze olmalidir. Tele-tip ucreti %20 indirimli uygulanir." },
+            { "q": "Laboratuvar sonuclari ne zaman cikar?", "a": "Rutin testler 2-4 saat, hormon paneli ayni gun, ozel testler (genetik, tumor markerlari) 24-72 saat. Sonuclar uygulama ve e-posta ile iletilir." },
+            { "q": "Mobil uygulama ne islemleri yapar?", "a": "Randevu alma/iptal, lab sonuclari, radyoloji goruntuleri, recete tekrarlama, doktor mesaji, fatura goruntuleme. iOS ve Android'de mevcut." },
+            { "q": "Saglik turizmi kapsaminda hizmet var mi?", "a": "Evet, ozellikle check-up, estetik cerrahi ve goz lazer tedavilerinde yurt disindan hastalar agirliyoruz. Otel+tedavi paketleri mevcuttur." },
+            { "q": "Staj / kariyer firsatlari var mi?", "a": "Tip fakultesi ogrencileri icin staj programi, asistan doktorlar icin rotasyon imkani mevcuttur. Kariyer firsatlari icin kariyer.medikon.com.tr adresini ziyaret edin." }
+          ]
+        },
+        "cta": {
+          "badge": "Sagliginiz Icin",
+          "title": "Ucretsiz On Degerlendirme",
+          "subtitle": "WhatsApp uzerinden sikayetlerinizi iletin, uzman doktorlarimiz sizi yonlendirsin. 15 dakikada geri donus."
+        },
+        "process_steps": {
+          "badge": "Hasta Yolculugu",
+          "title": "Medikon Deneyimi",
+          "steps": [
+            { "title": "Randevu Al", "description": "Web, uygulama veya 0850 ile randevunuzu alin." },
+            { "title": "Muayene", "description": "Uzman doktorunuz sizi dinler, muayene eder." },
+            { "title": "Tani", "description": "Gerekli testler ayni gun yapilir, sonuçlar hizla degerlendirilir." },
+            { "title": "Tedavi & Takip", "description": "Tedavi plani olusturulur, takip randevuları otomatik hatirlatilir." }
+          ]
+        },
+        "blog_preview": {
+          "badge": "Saglik Rehberi",
+          "title": "Blog & Saglik Haberleri",
+          "posts": [
+            { "title": "Kalp Krizi Belirtileri: Erkenden Tanimanin 7 Yolu", "excerpt": "Gogus agrisi her zaman kalp krizi demek degildir. Peki ne zaman endise etmelisiniz? Kardiyoloji uzmanimiz anlatiyor...", "date": "2026-01-20" },
+            { "title": "Check-Up Neden Yillik Yapilmali?", "excerpt": "Erken teshis hayat kurtarir. 40 yas ustu herkesin yilda 1 kez kapsamli saglik taramasi yaptirmasi onerilir...", "date": "2025-12-15" },
+            { "title": "Medikon Uskudar Subesi Acildi", "excerpt": "Altunizade'de 4. subemizi acmanin gururunu yasiyoruz. 800 metrekare, 8 brans, 12 uzman doktor...", "date": "2025-11-01" }
+          ]
+        },
+        "newsletter": {
+          "badge": "Saglik Bulteni",
+          "title": "Saglik Haberlerini Kacirmayin",
+          "subtitle": "Aylik saglik bulteni, kampanyalar ve yeni brans haberleri icin e-posta listemize katılın.",
+          "placeholder": "E-posta adresiniz",
+          "buttonText": "Abone Ol"
+        },
+        "brands_logos": {
+          "badge": "Guvenilir Ortaklar",
+          "title": "Is Ortaklarimiz & Akreditasyonlar",
+          "brands": ["Axa Sigorta", "Allianz", "Memorial Hastaneler", "Acibadem", "Mapfre", "Groupama", "TUV SUD", "ISO 9001"]
+        }
+      }
+    }
+  ]
+}

@@ -34,7 +34,7 @@ async function syncUrunlerToSiteJson(esnafId: string) {
     .orderBy('sira', 'asc')
     .get()
 
-  const urunler = snap.docs.map(d => ({
+  const urunler = snap.docs.map((d: any) => ({
     id: d.id,
     ad: d.data().ad,
     aciklama: d.data().aciklama || '',
@@ -63,7 +63,7 @@ export async function GET() {
       .orderBy('sira', 'asc')
       .get()
 
-    const urunler = snap.docs.map(d => ({ id: d.id, ...d.data() }))
+    const urunler = snap.docs.map((d: any) => ({ id: d.id, ...d.data() }))
 
     return NextResponse.json({ ok: true, urunler })
   } catch (error: any) {

@@ -4,7 +4,8 @@ const nextConfig = {
         "@kepenk/ui",
         "@kepenk/config",
         "@kepenk/shared",
-        "@kepenk/db"
+        "@kepenk/db",
+        "@kepenk/templates"
     ],
     images: {
         remotePatterns: [

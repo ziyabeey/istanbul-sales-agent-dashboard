@@ -1,0 +1,1317 @@
+{
+  "sectorId": "elektrikci",
+  "seoSchemaType": "Electrician",
+  "variants": [
+    {
+      "id": "elektrikci-ev",
+      "variantName": "ev",
+      "plan": "free",
+      "description": "Mahalle elektrikcisi, ev tipi isler",
+      "designPhilosophy": "Guvenilir, sade, samimi",
+      "isDark": false,
+      "colors": {
+        "bg": "#FFFFFF",
+        "surface": "#FFF8E7",
+        "text": "#1A1A2E",
+        "accent": "#F59E0B"
+      },
+      "fonts": { "heading": "Inter", "body": "Inter" },
+      "business": {
+        "name": "Volkan Usta Elektrik",
+        "ownerName": "Volkan Demir",
+        "sector": "Elektrikci",
+        "slogan": "Evinizin elektrik guvenligio bizden sorulur",
+        "phone": "0532 876 54 32",
+        "phoneClean": "905328765432",
+        "whatsapp": "905328765432",
+        "email": "info@volkanelektrik.com",
+        "address": "Goztepe Mah. Fahrettin Kerim Gokay Cad. No:82, Kadikoy/Istanbul",
+        "city": "Istanbul",
+        "district": "Kadikoy",
+        "mapEmbed": "",
+        "foundedYear": 2005,
+        "experience": "21 yil",
+        "employeeCount": 2,
+        "customerCount": "12.000+",
+        "rating": 4.7,
+        "reviewCount": 680,
+        "workingHours": [
+          { "day": "Pazartesi", "dayTr": "Pazartesi", "open": "08:00", "close": "19:00", "isOpen": true },
+          { "day": "Sali", "dayTr": "Sali", "open": "08:00", "close": "19:00", "isOpen": true },
+          { "day": "Carsamba", "dayTr": "Carsamba", "open": "08:00", "close": "19:00", "isOpen": true },
+          { "day": "Persembe", "dayTr": "Persembe", "open": "08:00", "close": "19:00", "isOpen": true },
+          { "day": "Cuma", "dayTr": "Cuma", "open": "08:00", "close": "19:00", "isOpen": true },
+          { "day": "Cumartesi", "dayTr": "Cumartesi", "open": "09:00", "close": "17:00", "isOpen": true },
+          { "day": "Pazar", "dayTr": "Pazar", "open": "", "close": "", "isOpen": false }
+        ],
+        "services": [
+          {
+            "id": "s1",
+            "name": "Elektrik Ariza Tespiti",
+            "price": "200-400 TL",
+            "duration": "30-60 dk",
+            "description": "Evinizdeki elektrik arizalarinin profesyonel tespit ve onarimI. Kisa devre, sigorta attirma, priz arizasi gibi sorunlara hizli cozum.",
+            "icon": "Zap"
+          },
+          {
+            "id": "s2",
+            "name": "Priz & Anahtar Montaji",
+            "price": "150-250 TL",
+            "duration": "30 dk",
+            "description": "Yeni priz, anahtar, dimmer ve USB'li priz montaji. Schneider, Legrand gibi kaliteli markalarla calisiyoruz.",
+            "icon": "PlugZap"
+          },
+          {
+            "id": "s3",
+            "name": "Avize & Aydinlatma Montaji",
+            "price": "200-500 TL",
+            "duration": "45 dk",
+            "description": "Her turlu avize, spot lamba, LED serit ve dis mekan aydinlatma montaji. Elektrik hatti cekimi dahil.",
+            "icon": "Lightbulb"
+          },
+          {
+            "id": "s4",
+            "name": "Sigorta Tablosu Yenileme",
+            "price": "800-2.000 TL",
+            "duration": "2-4 saat",
+            "description": "Eski sigorta tablonuzu modern kacak akim korumali tabloya yukseltme. Topraklama kontrolu dahil.",
+            "icon": "ShieldCheck"
+          }
+        ],
+        "team": [],
+        "testimonials": [],
+        "gallery": []
+      },
+      "content": {
+        "hero": {
+          "title": "Evinizin Elektrik Guvenligio Bizden Sorulur",
+          "subtitle": "21 yildir Kadikoy'de guvenilir elektrik hizmeti. Ariza tespiti, tesisat yenileme ve aydinlatma montajinda uzman ekip.",
+          "badge": "Acil Servis Mevcut",
+          "ctaText": "Hemen Ara",
+          "ctaLink": "tel:+905328765432"
+        },
+        "about": {
+          "title": "Volkan Usta Elektrik",
+          "description": "2005 yilinda kurulan Volkan Usta Elektrik, Kadikoy ve cevre ilcelerde 21 yildir ev tipi elektrik islerinde hizmet vermektedir. Sigorta tablosu yenileme, priz-anahtar montaji, avize takma ve ariza onarimi konularinda uzmaniz. Isimizi zamaninda ve temiz yapariz, garanti veririz."
+        },
+        "services": {
+          "title": "Elektrik Hizmetlerimiz",
+          "subtitle": "Ev tipi tum elektrik isleri icin bizi arayin"
+        },
+        "contact": {
+          "title": "Bize Ulasin",
+          "subtitle": "Acil elektrik arizalaninda hemen arayin"
+        },
+        "faq": [
+          {
+            "q": "Acil durumda gelir misiniz?",
+            "a": "Evet, mesai saatleri icinde acil arizalara 1 saat icinde mudahale ediyoruz. Mesai disi icin lutfen arayin."
+          },
+          {
+            "q": "Garanti veriyor musunuz?",
+            "a": "Evet, tum iscilik ve malzemeye 1 yil garanti veriyoruz."
+          },
+          {
+            "q": "Malzemeyi siz mi getiriyorsunuz?",
+            "a": "Evet, Schneider ve Legrand gibi kaliteli markalarin malzemelerini yanımızda getiriyoruz. Isterseniz kendi malzemenizle de calisabiliriz."
+          },
+          {
+            "q": "Fiyatlar net mi?",
+            "a": "Kucuk isler icin telefonla fiyat veririz. Buyuk projeler icin ucretsiz kesif yapip yazili teklif sunаriz."
+          }
+        ]
+      }
+    },
+    {
+      "id": "elektrikci-sanayi",
+      "variantName": "sanayi",
+      "plan": "starter",
+      "description": "Ticari ve sanayi tipi elektrik tesisat",
+      "designPhilosophy": "Profesyonel, guvenilir, endustriyel",
+      "isDark": false,
+      "colors": {
+        "bg": "#FFFFFF",
+        "surface": "#F0F4F8",
+        "text": "#1B2A4A",
+        "accent": "#2563EB"
+      },
+      "fonts": { "heading": "Poppins", "body": "Inter" },
+      "business": {
+        "name": "Akim Endustriyel Elektrik",
+        "ownerName": "Murat Akin",
+        "sector": "Elektrikci",
+        "slogan": "Sanayinin guvenilir elektrik ortagi",
+        "phone": "0212 678 90 12",
+        "phoneClean": "902126789012",
+        "whatsapp": "905421234567",
+        "email": "info@akimelektrik.com",
+        "address": "Ikitelli OSB Mah. 10. Cad. No:28, Basaksehir/Istanbul",
+        "city": "Istanbul",
+        "district": "Basaksehir",
+        "mapEmbed": "",
+        "foundedYear": 2010,
+        "experience": "16 yil",
+        "employeeCount": 8,
+        "customerCount": "3.500+",
+        "rating": 4.8,
+        "reviewCount": 420,
+        "workingHours": [
+          { "day": "Pazartesi", "dayTr": "Pazartesi", "open": "07:30", "close": "18:30", "isOpen": true },
+          { "day": "Sali", "dayTr": "Sali", "open": "07:30", "close": "18:30", "isOpen": true },
+          { "day": "Carsamba", "dayTr": "Carsamba", "open": "07:30", "close": "18:30", "isOpen": true },
+          { "day": "Persembe", "dayTr": "Persembe", "open": "07:30", "close": "18:30", "isOpen": true },
+          { "day": "Cuma", "dayTr": "Cuma", "open": "07:30", "close": "18:30", "isOpen": true },
+          { "day": "Cumartesi", "dayTr": "Cumartesi", "open": "08:00", "close": "14:00", "isOpen": true },
+          { "day": "Pazar", "dayTr": "Pazar", "open": "", "close": "", "isOpen": false }
+        ],
+        "services": [
+          {
+            "id": "s1",
+            "name": "Endustriyel Tesisat Kurulumu",
+            "price": "Teklif bazli",
+            "duration": "Projeye gore",
+            "description": "Fabrika, atölye ve depo gibi endustriyel alanlarda komple elektrik tesisat kurulumu. Guc dagitim panolari, kablo kanal sistemleri ve topraklama.",
+            "icon": "Factory"
+          },
+          {
+            "id": "s2",
+            "name": "Pano Montaj & Revizyon",
+            "price": "2.000-15.000 TL",
+            "duration": "1-3 gun",
+            "description": "AG ve OG panolarin montaji, revizyonu ve bakimi. Siemens, ABB, Schneider panolarla calisiyoruz. Otomasyon entegrasyonu dahil.",
+            "icon": "Server"
+          },
+          {
+            "id": "s3",
+            "name": "Kompanzasyon Sistemi",
+            "price": "5.000-25.000 TL",
+            "duration": "1-2 gun",
+            "description": "Reaktif guc kompanzasyon sistemi kurulumu. Cos phi degerinizi iyilestirerek elektrik faturanizi %15-30 arasinda dusurun.",
+            "icon": "TrendingDown"
+          },
+          {
+            "id": "s4",
+            "name": "Topraklama & Yildirimlik",
+            "price": "3.000-10.000 TL",
+            "duration": "1-2 gun",
+            "description": "Endustriyel topraklama sistemi kurulumu ve olcumu. Yildirimdan korunma sistemleri. TSE standartlarina uygun.",
+            "icon": "Shield"
+          },
+          {
+            "id": "s5",
+            "name": "Periyodik Kontrol & Bakim",
+            "price": "1.500-5.000 TL",
+            "duration": "Yarim gun",
+            "description": "Yillik zorunlu elektrik tesisat kontrolu. Termal kamera ile islik nokta tespiti, yalitim direnci olcumu, topraklama testi.",
+            "icon": "ClipboardCheck"
+          },
+          {
+            "id": "s6",
+            "name": "Jenerator Baglantisi",
+            "price": "3.000-8.000 TL",
+            "duration": "1 gun",
+            "description": "Jenerator ve UPS sistemlerinin mevcut tesisata entegrasyonu. Otomatik transfer paneli (ATS) montaji.",
+            "icon": "Battery"
+          }
+        ],
+        "team": [
+          {
+            "name": "Murat Akin",
+            "title": "Kurucu & Proje Muduru",
+            "description": "Yildiz Teknik Universitesi Elektrik Muhendisligi mezunu. 16 yildir endustriyel elektrik projelerinde uzman.",
+            "image": ""
+          },
+          {
+            "name": "Serkan Yilmaz",
+            "title": "Saha Sefi",
+            "description": "20 yillik saha deneyimi. AG-OG tesisat, pano montaj ve kompanzasyon sistemlerinde uzman teknisyen.",
+            "image": ""
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Ozkan Tekstil A.S.",
+            "location": "Ikitelli OSB",
+            "date": "2025-11",
+            "rating": 5,
+            "comment": "Fabrikamizin komple elektrik tesisatini yenilediler. Kompanzasyon sistemiyle elektrik faturamiz %22 dustu. Cok profesyonel ekip."
+          },
+          {
+            "name": "Mert Metal Ltd.",
+            "location": "Basaksehir",
+            "date": "2025-09",
+            "rating": 5,
+            "comment": "Pano revizyonunu hic uretim durdurmadan tamamladilar. Is guvenligi konusunda cok titiz calisiyorlar."
+          },
+          {
+            "name": "Yesil Gida San.",
+            "location": "Ikitelli",
+            "date": "2025-07",
+            "rating": 4,
+            "comment": "Periyodik kontrol ve bakimi her yil onlara yaptiriyoruz. Raporlari detayli, takipleri duzgun."
+          }
+        ],
+        "gallery": []
+      },
+      "content": {
+        "hero": {
+          "title": "Sanayinin Guvenilir Elektrik Ortagi",
+          "subtitle": "16 yildir Ikitelli OSB ve cevre sanayi bolgelerinde endustriyel elektrik tesisat, pano ve kompanzasyon hizmeti.",
+          "badge": "Endustriyel Elektrik",
+          "ctaText": "Teklif Alin",
+          "ctaLink": "tel:+902126789012"
+        },
+        "about": {
+          "title": "Akim Endustriyel Elektrik",
+          "description": "2010 yilinda Elektrik Muhendisi Murat Akin tarafindan kurulan Akim Elektrik, Istanbul'un sanayi bolgelerinde endustriyel elektrik tesisat hizmetleri sunmaktadir. Fabrika, atölye ve depo gibi buyuk olcekli tesislerde komple tesisat, pano montaj, kompanzasyon sistemi ve periyodik bakim islerinde 3.500'den fazla projeyi basariyla tamamladik. Siemens, ABB ve Schneider gibi dunya markаlariyla calisarak en yuksek kalite standartlarini saglariz. 8 kisilik teknik kadromuz is guvenligi sertifikali ve TSE standartlarina uygun calisir."
+        },
+        "services": {
+          "title": "Endustriyel Elektrik Hizmetleri",
+          "subtitle": "Sanayi tesisleriniz icin kapsamli elektrik cozumleri"
+        },
+        "stats": {
+          "title": "Rakamlarla Akim Elektrik",
+          "subtitle": "16 yillik endustriyel deneyim"
+        },
+        "contact": {
+          "title": "Teklif & Iletisim",
+          "subtitle": "Endustriyel elektrik projeniz icin ucretsiz kesif"
+        },
+        "faq": [
+          {
+            "q": "Hangi sanayi bolgelerinde calisiyorsunuz?",
+            "a": "Ikitelli OSB, Beylikduzu OSB, Hadimkoy Sanayi, Tuzla Kimya OSB ve Dudullu OSB baslicd calisma bolgelerimizdir."
+          },
+          {
+            "q": "Periyodik kontrol zorunlu mu?",
+            "a": "Evet, is yerleri icin yillik elektrik tesisat periyodik kontrolu yasal zorunluluktur. Yetkili A sinifi muayene kurulsu ile baglantimiz vardir."
+          },
+          {
+            "q": "Kompanzasyon sistemi ne kadar tasarruf saglar?",
+            "a": "Tesisinizin reaktif enerji tuketimine gore %15-30 arasinda elektrik faturasi tasarrufu saglanabilir. Ucretsiz olcum ve analiz yapiyoruz."
+          },
+          {
+            "q": "Uretim durdurmadan calisabiliyor musunuz?",
+            "a": "Evet, buyuk revizyonlarda hafta sonu veya vardiya aralarinda calisarak uretim kaybinya minimize ediyoruz."
+          },
+          {
+            "q": "Teklif sureci nasil isliyor?",
+            "a": "Ucretsiz saha kesfi yapariz, mevcut durumu raporlariz ve detayli yazili teklif sunariz. Genellikle 3-5 is gunu icinde teklif hazirlanir."
+          },
+          {
+            "q": "Garanti sartlariniz neler?",
+            "a": "Tum iscilige 2 yil, malzemeye uretici garantisi (genellikle 3-5 yil) gecerlidir. Garanti sonrasi bakim sozlesmesi de sunuyoruz."
+          }
+        ]
+      }
+    },
+    {
+      "id": "elektrikci-akilli",
+      "variantName": "akilli",
+      "plan": "growth",
+      "description": "Akilli ev ve otomasyon odakli elektrikci",
+      "designPhilosophy": "Modern, teknolojik, minimalist",
+      "isDark": false,
+      "colors": {
+        "bg": "#FAFAFA",
+        "surface": "#E8F4FD",
+        "text": "#0F172A",
+        "accent": "#0EA5E9"
+      },
+      "fonts": { "heading": "Montserrat", "body": "Inter" },
+      "business": {
+        "name": "SmartVolt Akilli Ev Sistemleri",
+        "ownerName": "Emre Turan",
+        "sector": "Elektrikci",
+        "slogan": "Evinizi akilli hale getiriyoruz",
+        "phone": "0212 345 67 89",
+        "phoneClean": "902123456789",
+        "whatsapp": "905551234567",
+        "email": "info@smartvolt.com.tr",
+        "address": "Akatlar Mah. Ebulula Mardin Cad. No:22/3, Besiktas/Istanbul",
+        "city": "Istanbul",
+        "district": "Besiktas",
+        "mapEmbed": "",
+        "foundedYear": 2017,
+        "experience": "9 yil",
+        "employeeCount": 12,
+        "customerCount": "4.200+",
+        "rating": 4.9,
+        "reviewCount": 960,
+        "workingHours": [
+          { "day": "Pazartesi", "dayTr": "Pazartesi", "open": "09:00", "close": "19:00", "isOpen": true },
+          { "day": "Sali", "dayTr": "Sali", "open": "09:00", "close": "19:00", "isOpen": true },
+          { "day": "Carsamba", "dayTr": "Carsamba", "open": "09:00", "close": "19:00", "isOpen": true },
+          { "day": "Persembe", "dayTr": "Persembe", "open": "09:00", "close": "19:00", "isOpen": true },
+          { "day": "Cuma", "dayTr": "Cuma", "open": "09:00", "close": "19:00", "isOpen": true },
+          { "day": "Cumartesi", "dayTr": "Cumartesi", "open": "10:00", "close": "16:00", "isOpen": true },
+          { "day": "Pazar", "dayTr": "Pazar", "open": "", "close": "", "isOpen": false }
+        ],
+        "services": [
+          {
+            "id": "s1",
+            "name": "Akilli Aydinlatma Sistemi",
+            "price": "3.000-15.000 TL",
+            "duration": "1-2 gun",
+            "description": "Philips Hue, LIFX veya Tuya tabanli akilli aydinlatma kurulumu. Sesli kontrol, zamanlayici, renk degistirme ve senaryo olusturma dahil.",
+            "icon": "Lightbulb"
+          },
+          {
+            "id": "s2",
+            "name": "Akilli Priz & Anahtar Donusumu",
+            "price": "500-3.000 TL",
+            "duration": "Yarim gun",
+            "description": "Mevcut priz ve anahtarlari WiFi/Zigbee uyumlu akilli modellere degistirme. Telefondan ve sesle kontrol imkani.",
+            "icon": "PlugZap"
+          },
+          {
+            "id": "s3",
+            "name": "Merkezi Otomasyon Sistemi",
+            "price": "8.000-35.000 TL",
+            "duration": "2-5 gun",
+            "description": "Home Assistant, Apple HomeKit veya Google Home tabanli merkezi akilli ev sistemi kurulumu. Tum cihazlarinizi tek platformda yonetin.",
+            "icon": "Cpu"
+          },
+          {
+            "id": "s4",
+            "name": "Akilli Guvenlik & Kamera",
+            "price": "4.000-20.000 TL",
+            "duration": "1-2 gun",
+            "description": "IP kamera, akilli kapi kilidi, hareket sensoru ve alarm sistemi kurulumu. Telefondan canli izleme ve bildirim.",
+            "icon": "Camera"
+          },
+          {
+            "id": "s5",
+            "name": "Enerji Izleme & Tasarruf",
+            "price": "2.000-8.000 TL",
+            "duration": "1 gun",
+            "description": "Akilli enerji sayaci ve izleme sistemi. Hangi cihazin ne kadar elektrik tukettigini gorun, otomatik tasarruf senaryolari olusturun.",
+            "icon": "BarChart"
+          },
+          {
+            "id": "s6",
+            "name": "Akilli Perde & Jaluzi",
+            "price": "1.500-6.000 TL",
+            "duration": "Yarim gun",
+            "description": "Motorlu perde ve jaluzi sistemi montaji. Gunes konumuna gore otomatik acilma/kapanma, telefondan kontrol.",
+            "icon": "Blinds"
+          },
+          {
+            "id": "s7",
+            "name": "Ses Kontrol Entegrasyonu",
+            "price": "1.000-5.000 TL",
+            "duration": "Yarim gun",
+            "description": "Alexa, Google Assistant veya Siri ile tum akilli ev cihazlarini sesle kontrol etme. Turkce komut destegio.",
+            "icon": "Mic"
+          },
+          {
+            "id": "s8",
+            "name": "Elektrik Tesisat Yenileme",
+            "price": "5.000-25.000 TL",
+            "duration": "3-7 gun",
+            "description": "Eski tesisatin akilli ev altyapisina uygun hale getirilmesi. Nötr hat cekimi, CAT6 kablolama, fiber optik hazirlik.",
+            "icon": "Wrench"
+          },
+          {
+            "id": "s9",
+            "name": "EV Sarj Istasyonu",
+            "price": "8.000-18.000 TL",
+            "duration": "1 gun",
+            "description": "Elektrikli arac ev sarj unitesi montaji. Wallbox, ABB, Schneider sarj istasyonlari. Sigorta tablosu guncelleme dahil.",
+            "icon": "BatteryCharging"
+          },
+          {
+            "id": "s10",
+            "name": "Akilli Isitma & Sogutma",
+            "price": "2.000-10.000 TL",
+            "duration": "1 gun",
+            "description": "Akilli termostat kurulumu (Nest, tado, Ecobee). Odа bаzli sicaklik kontrolu, zamanlayici ve enerji tasarrufu.",
+            "icon": "Thermometer"
+          }
+        ],
+        "team": [
+          {
+            "name": "Emre Turan",
+            "title": "Kurucu & Sistem Mimari",
+            "description": "Bogazici Universitesi Elektrik-Elektronik Muhendisligi mezunu. IoT ve akilli ev teknolojilerinde 9 yillik deneyim.",
+            "image": ""
+          },
+          {
+            "name": "Berk Oztürk",
+            "title": "Otomasyon Muhendisi",
+            "description": "ITU Kontrol Muhendisligi mezunu. KNX, Zigbee ve Z-Wave protokollerinde sertifikali. Home Assistant uzmani.",
+            "image": ""
+          },
+          {
+            "name": "Arda Celik",
+            "title": "Elektrik Teknisyeni",
+            "description": "12 yillik elektrik tesisat deneyimi. Akilli ev altyapi donusumleri ve EV sarj istasyonu montajinda uzman.",
+            "image": ""
+          },
+          {
+            "name": "Elif Korkmaz",
+            "title": "Musteri Deneyim Yoneticisi",
+            "description": "Sistem tasarimi ve musteri ihtiyac analizi. Proje planlama ve kullanici egitimleri koordinasyonu.",
+            "image": ""
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Tolga B.",
+            "location": "Etiler",
+            "date": "2025-12",
+            "rating": 5,
+            "comment": "Evi komple akilli hale getirdiler. Sesle her seyi kontrol edebiliyorum. Aydinlatma, perdeler, isitma... Cok konforlu bir yasam oldu."
+          },
+          {
+            "name": "Selin M.",
+            "location": "Bebek",
+            "date": "2025-11",
+            "rating": 5,
+            "comment": "EV sarj istasyonunu bir gunde kurdular. Sigorta tablosunu da guncellediler. Artik arabami evde rahatca sari edebiliyorum."
+          },
+          {
+            "name": "Kerem A.",
+            "location": "Levent",
+            "date": "2025-10",
+            "rating": 5,
+            "comment": "Home Assistant sistemiyle tum evi tek uygulamadan yonetiyorum. Enerji izleme sayesinde tuketimim %25 dustu."
+          },
+          {
+            "name": "Defne Y.",
+            "location": "Akatlar",
+            "date": "2025-09",
+            "rating": 4,
+            "comment": "Akilli guvenlik sistemi mukemmel. Telefonumdan canli kameralari izleyebiliyorum, kapi acilinca bildirim geliyor."
+          },
+          {
+            "name": "Burak O.",
+            "location": "Ulus",
+            "date": "2025-08",
+            "rating": 5,
+            "comment": "Eski evi akilli eve donusturdular. Tesisati yenilediler, akilli anahtarlar ve termostat taktılar. Her seyi mobilden kontrol ediyorum."
+          },
+          {
+            "name": "Ayca K.",
+            "location": "Nisantasi",
+            "date": "2025-07",
+            "rating": 5,
+            "comment": "Akilli perde sistemi hayatimi kolaylastirdi. Sabah otomatik aciliyor, aksam kapaniyor. Tatildeyken de telefondan kontrol edebiliyorum."
+          }
+        ],
+        "gallery": []
+      },
+      "content": {
+        "hero": {
+          "title": "Evinizi Akilli Hale Getiriyoruz",
+          "subtitle": "Istanbul'un oncu akilli ev ve otomasyon firması. Sesle kontrol, enerji tasarrufu, guvenlik sistemleri ve EV sarj istasyonu kurulumu.",
+          "badge": "Akilli Ev Uzmani",
+          "ctaText": "Ucretsiz Danismanlik",
+          "ctaLink": "tel:+902123456789"
+        },
+        "about": {
+          "title": "SmartVolt Akilli Ev Sistemleri",
+          "description": "2017 yilinda Elektrik-Elektronik Muhendisi Emre Turan tarafindan kurulan SmartVolt, Istanbul'da akilli ev ve otomasyon alaninda oncu firmаdir. Mevcut evleri akilli eve donusturmekten, sifirdan akilli tesisat kurulumuna kadar genis bir hizmet yelpazesi sunuyoruz. Philips Hue, Apple HomeKit, Google Home ve Home Assistant gibi platformlarla calisarak sizin icin en uygun sistemi tasarliyoruz. 4.200'den fazla ev ve ofisi akilli hale getirdik. Enerji izleme sistemlerimizle musterilerimiz ortalama %20-30 elektrik tasarrufu sagliyor. EV sarj istasyonu montajiyla elektrikli arac sahiplerine de hizmet veriyoruz."
+        },
+        "services": {
+          "title": "Akilli Ev Hizmetlerimiz",
+          "subtitle": "Eviniz icin teknolojik cozumler"
+        },
+        "stats": {
+          "title": "Rakamlarla SmartVolt",
+          "subtitle": "Akilli yasam deneyimi"
+        },
+        "contact": {
+          "title": "Danismanlik & Iletisim",
+          "subtitle": "Eviniz icin ucretsiz akilli ev danismanligi alin"
+        },
+        "faq": [
+          {
+            "q": "Eski evimi akilli eve donusturebilir misiniz?",
+            "a": "Evet, cogu ev WiFi tabanli cihazlarla kolayca akilli hale getirilebilir. Bazi durumlarda notr hat cekimi gerekebilir, bunu da yapiyoruz."
+          },
+          {
+            "q": "Akilli ev sistemi ne kadar tutar?",
+            "a": "Basit bir akilli aydinlatma sistemi 3.000 TL'den baslar. Kapsamli merkezi otomasyon 8.000-35.000 TL arasindadir. Ucretsiz danismanlikta butce ve ihtiyaca gore teklif sunuyoruz."
+          },
+          {
+            "q": "Hangi platformlari destekliyorsunuz?",
+            "a": "Apple HomeKit, Google Home, Amazon Alexa, Home Assistant ve KNX ile calisiyoruz. Sizin icin en uygun platformu birlikte seceriz."
+          },
+          {
+            "q": "Internet giderse akilli ev calisir mi?",
+            "a": "Yerel ag üzerinden calisan sistemlerde evet. Home Assistant gibi lokal hub tabanli cozumler internet olmadan da calisir."
+          },
+          {
+            "q": "EV sarj istasyonu icin evimin elektrik kapasitesi yeterli mi?",
+            "a": "Kesif sirasinda mevcut kapasitenizi olceriz. Cogu ev 7kW sarj unitesi icin yeterlidir. Gerekirse kapasite artirimi da yapiyoruz."
+          },
+          {
+            "q": "Kurulum sonrasi destek var mi?",
+            "a": "Evet, tum sistemlere 2 yil garanti ve 7/24 teknik destek hatti sunuyoruz. Uzaktan baglanti ile cogu sorunu aninda cozuyoruz."
+          },
+          {
+            "q": "Akilli ev guvenli mi? Hacklenebilir mi?",
+            "a": "Guvenlik oncelikli calisiyoruz. Yerel ag tabanli sistemler, sifrelenmis iletisim protokolleri ve guncel firmware ile riski minimalize ediyoruz."
+          },
+          {
+            "q": "Enerji tasarrufu gercekten oluyor mu?",
+            "a": "Evet, akilli termostat ve enerji izleme ile musterilerimiz ortalama %20-30 enerji tasarrufu sagliyor. Yatirim geri donus suresi genellikle 1-2 yildir."
+          }
+        ]
+      }
+    },
+    {
+      "id": "elektrikci-gunes",
+      "variantName": "gunes",
+      "plan": "pro",
+      "description": "Gunes enerjisi ve yenilenebilir enerji uzmani",
+      "designPhilosophy": "Yesil, sürdürülebilir, ileri teknoloji",
+      "isDark": false,
+      "colors": {
+        "bg": "#FEFFFE",
+        "surface": "#ECFDF5",
+        "text": "#064E3B",
+        "accent": "#10B981"
+      },
+      "fonts": { "heading": "Raleway", "body": "Inter" },
+      "business": {
+        "name": "SolarTek Enerji Sistemleri",
+        "ownerName": "Ing. Hakan Yavuz",
+        "sector": "Elektrikci",
+        "slogan": "Gunesten gelen enerji, gelecege yatirim",
+        "phone": "0216 567 89 00",
+        "phoneClean": "902165678900",
+        "whatsapp": "905361234567",
+        "email": "info@solartek.com.tr",
+        "address": "Kozyatagi Mah. Sanaye Cad. No:46/A, Atasehir/Istanbul",
+        "city": "Istanbul",
+        "district": "Atasehir",
+        "mapEmbed": "",
+        "foundedYear": 2014,
+        "experience": "12 yil",
+        "employeeCount": 18,
+        "customerCount": "2.800+",
+        "rating": 4.8,
+        "reviewCount": 1450,
+        "workingHours": [
+          { "day": "Pazartesi", "dayTr": "Pazartesi", "open": "08:30", "close": "18:30", "isOpen": true },
+          { "day": "Sali", "dayTr": "Sali", "open": "08:30", "close": "18:30", "isOpen": true },
+          { "day": "Carsamba", "dayTr": "Carsamba", "open": "08:30", "close": "18:30", "isOpen": true },
+          { "day": "Persembe", "dayTr": "Persembe", "open": "08:30", "close": "18:30", "isOpen": true },
+          { "day": "Cuma", "dayTr": "Cuma", "open": "08:30", "close": "18:30", "isOpen": true },
+          { "day": "Cumartesi", "dayTr": "Cumartesi", "open": "09:00", "close": "14:00", "isOpen": true },
+          { "day": "Pazar", "dayTr": "Pazar", "open": "", "close": "", "isOpen": false }
+        ],
+        "services": [
+          {
+            "id": "s1",
+            "name": "Cati Ustu GES Kurulumu",
+            "price": "45.000-150.000 TL",
+            "duration": "3-7 gun",
+            "description": "Konut ve isyeri catilarina gunes enerji sistemi kurulumu. Tier-1 paneller (Jinko, Trina, Canadian Solar), Huawei/SMA invertör ve aluminyum tasima sistemi.",
+            "icon": "Sun"
+          },
+          {
+            "id": "s2",
+            "name": "Sebeke Baglantili Sistem (On-Grid)",
+            "price": "50.000-200.000 TL",
+            "duration": "5-10 gun",
+            "description": "EDAS baglantili gunes enerji sistemi. Fazla uretiminizi sebekeyе satarak gelir elde edin. Tum resmi islemler dahil.",
+            "icon": "Plug"
+          },
+          {
+            "id": "s3",
+            "name": "Enerji Depolama (Batarya)",
+            "price": "30.000-100.000 TL",
+            "duration": "1-2 gun",
+            "description": "Lityum batarya depolama sistemi kurulumu. Gece ve kesinti durumlarinda gunes enerjisini kullanmaya devam edin. Tesla Powerwall, BYD, Huawei Luna.",
+            "icon": "Battery"
+          },
+          {
+            "id": "s4",
+            "name": "Elektrik Proje & Ruhsat",
+            "price": "5.000-15.000 TL",
+            "duration": "15-30 gun",
+            "description": "GES icin gerekli elektrik projesi cizimi, belediye ruhsati ve EDAS basvuru islemleri. Turn-key cozum.",
+            "icon": "FileText"
+          },
+          {
+            "id": "s5",
+            "name": "EV Sarj + Solar Entegrasyon",
+            "price": "15.000-40.000 TL",
+            "duration": "2-3 gun",
+            "description": "Gunes paneliyle urettiginiz enerjiyle elektrikli aracinizi sarj edin. Akilli yuk yonetimi ile en optimum sarj planlamasi.",
+            "icon": "BatteryCharging"
+          },
+          {
+            "id": "s6",
+            "name": "Isitma Pompasi (Heat Pump)",
+            "price": "25.000-60.000 TL",
+            "duration": "2-3 gun",
+            "description": "Hava kaynakli isi pompasi ile isitma ve sogutma. Gunes paneli ile birlestirildiginde %80'e varan enerji tasarrufu.",
+            "icon": "Thermometer"
+          },
+          {
+            "id": "s7",
+            "name": "Panel Temizlik & Bakim",
+            "price": "500-2.000 TL",
+            "duration": "Yarim gun",
+            "description": "Gunes paneli temizligi ve performans kontrolu. Termal kamera ile arizali hucre tespiti, invertor kontrolu, kablo baglanti inspeksiyonu.",
+            "icon": "Droplet"
+          },
+          {
+            "id": "s8",
+            "name": "Verimlilik Analizi & Raporlama",
+            "price": "1.000 TL",
+            "duration": "1 gun",
+            "description": "Mevcut GES sisteminizin performans analizi. Uretim/tuketim karsilastirmasi, verimlilik kaybi tespiti ve iyilestirme onerileri.",
+            "icon": "BarChart"
+          },
+          {
+            "id": "s9",
+            "name": "Endustriyel GES Kurulumu",
+            "price": "Teklif bazli",
+            "duration": "Projeye gore",
+            "description": "Fabrika, depo ve ticari bina catilarina buyuk olcekli GES kurulumu. 100kW-1MW arasi projeler. YEKA lisansiz uretim.",
+            "icon": "Factory"
+          },
+          {
+            "id": "s10",
+            "name": "Gunes Enerjili Sulama",
+            "price": "15.000-40.000 TL",
+            "duration": "2-3 gun",
+            "description": "Tarimsal alanlar icin gunes enerjili sulama sistemi. Sebeke baglantisi olmayan bölgelerde bile sulama imkani.",
+            "icon": "Droplets"
+          },
+          {
+            "id": "s11",
+            "name": "Akilli Enerji Yonetimi",
+            "price": "3.000-10.000 TL",
+            "duration": "1 gun",
+            "description": "IoT tabanli enerji izleme ve yonetim sistemi. Uretim, tuketim ve batarya durumunu mobil uygulamadan takip edin.",
+            "icon": "Smartphone"
+          },
+          {
+            "id": "s12",
+            "name": "Topraklama & Yildirimdan Korunma",
+            "price": "3.000-8.000 TL",
+            "duration": "1 gun",
+            "description": "GES sistemi icin topraklama ve yildirimdan korunma sistemi. Panel ve invertor guvenligini saglama.",
+            "icon": "Shield"
+          },
+          {
+            "id": "s13",
+            "name": "Carport GES (Otopark Ustü)",
+            "price": "80.000-250.000 TL",
+            "duration": "7-14 gun",
+            "description": "Otopark uzerine gunes enerji sistemi. Hem golgelik hem enerji uretimi. AVM, hastane ve fabrika otoparkari icin ideal.",
+            "icon": "Car"
+          },
+          {
+            "id": "s14",
+            "name": "Danismanlik & Fizibilite",
+            "price": "Ucretsiz",
+            "duration": "1 saat",
+            "description": "Gunes enerjisi yatirimi icin ucretsiz fizibilite raporu. Cati analizi, golge etüdu, uretim simulasyonu ve geri odeme suresi hesaplama.",
+            "icon": "Calculator"
+          }
+        ],
+        "team": [
+          {
+            "name": "Ing. Hakan Yavuz",
+            "title": "Kurucu & Genel Mudur",
+            "description": "ITU Elektrik Muhendisligi mezunu. 12 yildir gunes enerji sektoründe. SPG (Solar Profesyonel Grubu) uyesi. 500+ GES projesi tamamlamis.",
+            "image": ""
+          },
+          {
+            "name": "Ing. Seda Arslan",
+            "title": "Proje Muhendisi",
+            "description": "ODTU Elektrik-Elektronik mezunu. EDAS basvuru ve elektrik proje tasarimi uzmanı. PVsyst simulasyon sertifikali.",
+            "image": ""
+          },
+          {
+            "name": "Cengiz Kaya",
+            "title": "Saha Operasyon Muduru",
+            "description": "15 yillik saha deneyimi. Panel montaj, invertor kurulum ve kablolama islerinde uzman teknisyen. 1.000+ cati montaji.",
+            "image": ""
+          },
+          {
+            "name": "Ing. Burak Sahin",
+            "title": "Enerji Depolama Uzmani",
+            "description": "Sabanci Universitesi Enerji Teknolojileri yuksek lisansi. Batarya sistemi tasarimi ve EV entegrasyonunda uzman.",
+            "image": ""
+          },
+          {
+            "name": "Zeynep Dogan",
+            "title": "Satis & Musteri Iliskileri",
+            "description": "8 yillik enerji sektoru deneyimi. Fizibilite raporu hazirlama, EDAS surec yonetimi ve musteri danismanligi.",
+            "image": ""
+          },
+          {
+            "name": "Selcuk Polat",
+            "title": "Bakim & Servis Koordinatoru",
+            "description": "Panel temizlik, invertor bakimi ve performans izleme. Drone ile termal goruntuleme ve ariza tespit uzmanı.",
+            "image": ""
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Ahmet K.",
+            "location": "Atasehir",
+            "date": "2025-12",
+            "rating": 5,
+            "comment": "10 kW cati sistemi kurdular, elektrik faturam sifira indi. Fazla uretiyo sebekenin satiyo. 4 yilda kendini odeyecek hesaba gore."
+          },
+          {
+            "name": "Seker Dis Klinigi",
+            "location": "Kadikoy",
+            "date": "2025-11",
+            "rating": 5,
+            "comment": "Klinigin catisina 25 kW sistem kurdular. Aylik 8.000 TL elektrik faturasi 800 TL'ye dustu. Tum resmi islemleri de onlar halletti."
+          },
+          {
+            "name": "Deniz B.",
+            "location": "Maltepe",
+            "date": "2025-10",
+            "rating": 5,
+            "comment": "Tesla Powerwall ve gunes paneli birlikte kurduk. Elektrik kesintilerinden etkilenmiyorum artik. Gece bile gunes enerjisi kullaniyorum."
+          },
+          {
+            "name": "Mert Lojistik",
+            "location": "Tuzla",
+            "date": "2025-09",
+            "rating": 5,
+            "comment": "Depo catisina 100 kW sistem kuruldu. Yillik 400.000 TL tasarruf hesaplandi. Cok profesyonel proje yonetimi."
+          },
+          {
+            "name": "Elif S.",
+            "location": "Uskudar",
+            "date": "2025-08",
+            "rating": 4,
+            "comment": "EV sarj istasyonunu gunes paneliyle entegre ettiler. Arabami bedavaya sarj ediyorum. Akilli yuk yonetimi saydsinrle sebekenin zorlanmadi."
+          },
+          {
+            "name": "Yesil Tarim A.S.",
+            "location": "Silivri",
+            "date": "2025-07",
+            "rating": 5,
+            "comment": "Tarlalarimiz icin gunes enerjili sulama sistemi kurdular. Sebeke olmayan yerlerde bile sulama yapabiliyoruz. Cok pratik."
+          },
+          {
+            "name": "Cem O.",
+            "location": "Kartal",
+            "date": "2025-06",
+            "rating": 5,
+            "comment": "Panel temizligini ve yillik bakimi SolarTek'e yaptiriyorum. Termal kamera ile ariza tespiti cok faydali, verimlilik %15 artti."
+          },
+          {
+            "name": "Berna T.",
+            "location": "Besiktas",
+            "date": "2025-05",
+            "rating": 5,
+            "comment": "Ucretsiz fizibilite raporu cok detayliydi. Golge analizi, uretim simulasyonu, geri odeme suresi... Her seyi seffaf aciklаdilar."
+          }
+        ],
+        "gallery": []
+      },
+      "content": {
+        "hero": {
+          "title": "Gunesten Gelen Enerji, Gelecege Yatirim",
+          "subtitle": "Istanbul'un lider gunes enerji firması. Cati ustu GES, enerji depolama, EV sarj entegrasyonu ve endustriyel projeler. 2.800+ basarili kurulum.",
+          "badge": "Ucretsiz Fizibilite",
+          "ctaText": "Fizibilite Raporu Alin",
+          "ctaLink": "tel:+902165678900"
+        },
+        "about": {
+          "title": "SolarTek Enerji Sistemleri",
+          "description": "2014 yilinda kurulan SolarTek, Istanbul ve Marmara Bolgesi'nde gunes enerji sistemleri alaninda oncu firmаdir. Konut, ticari ve endustriyel olcekte cati ustu GES kurulumu, enerji depolama, EV sarj entegrasyonu ve akilli enerji yonetim sistemleri sunuyoruz. 2.800'den fazla basarili kurulumla Tier-1 panel ve invertor markalarini kullaniyo. EDAS basvuru, proje cizimi ve belediye ruhsati dahil turn-key hizmet veriyoruz. Musterilerimiz yillik ortalama %70-90 enerji tasarrufu sagliyor. Batarya depolama ile sifir karbon ayak izi hedefleyen musterilerimize tam bagimsiz enerji cozumleri sunuyoruz. 18 kisilik muhendis ve teknisyen kadromuzla proje tasarimindan bakima kadar her asamada yaninizdayiz."
+        },
+        "services": {
+          "title": "Enerji Cozumlerimiz",
+          "subtitle": "Gunes enerjisi ve yenilenebilir enerji hizmetleri"
+        },
+        "stats": {
+          "title": "Rakamlarla SolarTek",
+          "subtitle": "12 yillik yenilenebilir enerji deneyimi"
+        },
+        "contact": {
+          "title": "Fizibilite & Iletisim",
+          "subtitle": "Ucretsiz fizibilite raporu icin bizi arayin"
+        },
+        "faq": [
+          {
+            "q": "Gunes paneli ne kadar tasarruf saglar?",
+            "a": "Istanbul'da ortalama bir konut catisi (5-10 kW) yillik %70-90 elektrik tasarrufu saglar. Net rakam icin ucretsiz fizibilite raporumuzla belirleriz."
+          },
+          {
+            "q": "Geri odeme suresi ne kadar?",
+            "a": "Konut icin ortalama 3-5 yil, ticari tesisler icin 2-4 yildir. Panel omru 25+ yil oldugundan geri kalan yillar saf kar."
+          },
+          {
+            "q": "Catim uygun mu?",
+            "a": "Ucretsiz kesifimizde catinizin yonu, egimi, golge durumu ve tasima kapasitesini degerlendiriz. Beton, kiremit ve metal catilarin hepsine kurulum yapiyoruz."
+          },
+          {
+            "q": "Fazla uretigimi sebekеye satabilir miyim?",
+            "a": "Evet, on-grid sistemle fazla uretiminizi EDAS'a satarak gelir elde edebilirsiniz. Tum basvuru islemlerini biz yonetiyoruz."
+          },
+          {
+            "q": "Kis aylarinda da uretim olur mu?",
+            "a": "Evet, bulutlu havalarda bile uretim olur. Istanbul'da kis aylari yaz aylarinin yaklasik %30-40'i kadar uretim saglar. Yillik bazda fizibilite raporunda detayli hesap yapilir."
+          },
+          {
+            "q": "Batarya sistemi sart mi?",
+            "a": "Hayir, on-grid sistemde batarya olmadan da calisir. Batarya elektrik kesintilerine karsi ve gece kullanimi icin oneriyoruz. Butceye gore karar verilebilir."
+          },
+          {
+            "q": "Garanti suresi ne kadar?",
+            "a": "Panel performans garantisi 25 yil, invertor garantisi 5-10 yil, iscilik garantisi 5 yildir. Bakim sozlesmesi ile garanti suresini uzatma imkani var."
+          },
+          {
+            "q": "EDAS basvurusu ne kadar surer?",
+            "a": "EDAS basvuru sureci genellikle 2-4 hafta sürer. Tum evrak ve proje islemlerini sizin adiniza yonetiyoruz."
+          },
+          {
+            "q": "Endustriyel projeler de mi yapiyorsunuz?",
+            "a": "Evet, 100kW'dan 1MW'a kadar lisanssiz uretim projeler yapiyoruz. Fabrika, depo ve AVM catilarina buyuk olcekli kurulumlar gerceklestiriyoruz."
+          },
+          {
+            "q": "Panel temizligi ne siklikta yapilmali?",
+            "a": "Istanbul icin yilda 2 kez (bahar ve sonbahar) temizlik onеriyoruz. Temizlik sonrasi verimlilik %10-15 artabilir."
+          }
+        ]
+      }
+    },
+    {
+      "id": "elektrikci-lux",
+      "variantName": "lux",
+      "plan": "enterprise",
+      "description": "Premium elektrik muhendislik grubu",
+      "designPhilosophy": "Luks, teknolojik, kurumsal",
+      "isDark": true,
+      "colors": {
+        "bg": "#0A0E17",
+        "surface": "#141B2D",
+        "text": "#E2E8F0",
+        "accent": "#FBBF24"
+      },
+      "fonts": { "heading": "Montserrat", "body": "Inter" },
+      "business": {
+        "name": "PowerGrid Muhendislik Grubu",
+        "ownerName": "Ing. Dr. Selim Ozdemir",
+        "sector": "Elektrikci",
+        "slogan": "Enerjinin muhendislik gucuyle bulustuqu yer",
+        "phone": "0212 900 00 00",
+        "phoneClean": "902129000000",
+        "whatsapp": "905001234567",
+        "email": "info@powergrid.com.tr",
+        "address": "Maslak Mah. AOS 55. Sok. No:2, Sariyer/Istanbul",
+        "city": "Istanbul",
+        "district": "Sariyer",
+        "mapEmbed": "",
+        "foundedYear": 2002,
+        "experience": "24 yil",
+        "employeeCount": 85,
+        "customerCount": "12.000+",
+        "rating": 4.9,
+        "reviewCount": 4200,
+        "workingHours": [
+          { "day": "Pazartesi", "dayTr": "Pazartesi", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Sali", "dayTr": "Sali", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Carsamba", "dayTr": "Carsamba", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Persembe", "dayTr": "Persembe", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Cuma", "dayTr": "Cuma", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Cumartesi", "dayTr": "Cumartesi", "open": "09:00", "close": "17:00", "isOpen": true },
+          { "day": "Pazar", "dayTr": "Pazar", "open": "10:00", "close": "16:00", "isOpen": true }
+        ],
+        "services": [
+          {
+            "id": "s1",
+            "name": "Turn-Key Elektrik Projesi",
+            "price": "Teklif bazli",
+            "duration": "Projeye gore",
+            "description": "AVM, hastane, otel, rezidans ve fabrika icin A'dan Z'ye elektrik proje tasarimi ve uygulama. AG/OG tesisat, aydinlatma, yangin algilama ve otomasyon.",
+            "icon": "Building"
+          },
+          {
+            "id": "s2",
+            "name": "Yuksek Gerilim (OG) Tesisat",
+            "price": "Teklif bazli",
+            "duration": "Projeye gore",
+            "description": "34.5kV'a kadar orta gerilim tesisat kurulumu. Trafo merkezi, AG-OG hucre, kompanzasyon ve SCADA entegrasyonu.",
+            "icon": "Zap"
+          },
+          {
+            "id": "s3",
+            "name": "Veri Merkezi Altyapisi",
+            "price": "Teklif bazli",
+            "duration": "Projeye gore",
+            "description": "Tier III/IV veri merkezi elektrik altyapisi. Redundant UPS, jenerator, PDU ve BMS entegrasyonu. %99.99 uptime garantisi.",
+            "icon": "Server"
+          },
+          {
+            "id": "s4",
+            "name": "Bina Otomasyon Sistemi (BMS)",
+            "price": "Teklif bazli",
+            "duration": "Projeye gore",
+            "description": "Siemens Desigo, Schneider EcoStruxure veya Honeywell Niagara ile bina otomasyon sistemi. HVAC, aydinlatma, enerji ve guvenlik yonetimi.",
+            "icon": "Cpu"
+          },
+          {
+            "id": "s5",
+            "name": "Gunes Enerjisi & Yenilenebilir",
+            "price": "Teklif bazli",
+            "duration": "Projeye gore",
+            "description": "Buyuk olcekli GES projeleri (1MW+), ruzgar enerjisi ve hibrit sistemler. Lisanssiz ve lisansli uretim basvurulari.",
+            "icon": "Sun"
+          },
+          {
+            "id": "s6",
+            "name": "EV Sarj Altyapisi (Filo)",
+            "price": "Teklif bazli",
+            "duration": "Projeye gore",
+            "description": "AVM, otel, otopark ve filo isletmelerine coklu EV sarj istasyonu kurulumu. Yuk yonetimi, odeme sistemi ve uzaktan izleme.",
+            "icon": "BatteryCharging"
+          },
+          {
+            "id": "s7",
+            "name": "Endustriyel Otomasyon",
+            "price": "Teklif bazli",
+            "duration": "Projeye gore",
+            "description": "PLC programlama, SCADA sistemi, motor surucu, frekans konvertor ve endustriyel IoT cozumleri. Siemens, ABB, Rockwell partneri.",
+            "icon": "Settings"
+          },
+          {
+            "id": "s8",
+            "name": "Yangin Algilama & Söndurme",
+            "price": "Teklif bazli",
+            "duration": "Projeye gore",
+            "description": "Adresli yangin algilama, sprinker sistemi, FM200/Novec gazli söndurme. Proje, montaj ve komisyonlama. Itfaiye onay sureci dahil.",
+            "icon": "Flame"
+          },
+          {
+            "id": "s9",
+            "name": "Akilli Aydinlatma Tasarimi",
+            "price": "Teklif bazli",
+            "duration": "Projeye gore",
+            "description": "DALI/KNX tabanli akilli aydinlatma sistemi. Lux seviyesi otomasyonu, gunisigi hasati, senaryo yonetimi. DIALux simulasyonu ile optimal tasarim.",
+            "icon": "Lightbulb"
+          },
+          {
+            "id": "s10",
+            "name": "Enerji Audit & Optimizasyon",
+            "price": "5.000-25.000 TL",
+            "duration": "1-2 hafta",
+            "description": "Bina veya tesis enerji tuketim analizi. Enerji kimlik belgesi, tasarruf firsatlari, karbon ayak izi hesaplama ve iyilestirme yol haritasi.",
+            "icon": "BarChart"
+          },
+          {
+            "id": "s11",
+            "name": "UPS & Guc Kalitesi",
+            "price": "10.000-500.000 TL",
+            "duration": "1-5 gun",
+            "description": "Kesintisiz guc kaynagi (UPS) sistemi kurulumu. Harmonik filtre, voltaj regulatoru ve guc kalitesi iyilestirme cozumleri.",
+            "icon": "Battery"
+          },
+          {
+            "id": "s12",
+            "name": "Kablolama & Fiber Optik",
+            "price": "Teklif bazli",
+            "duration": "Projeye gore",
+            "description": "Yapisal kablolama, CAT6A/CAT7, fiber optik backbone ve patch panel altyapisi. Veri merkezi ve kampus network cozumleri.",
+            "icon": "Network"
+          },
+          {
+            "id": "s13",
+            "name": "Guvenlik & CCTV Sistemleri",
+            "price": "Teklif bazli",
+            "duration": "Projeye gore",
+            "description": "IP kamera, NVR, video analitik, plaka tanima ve yuz tanima sistemleri. Hikvision, Dahua, Axis partneri. 7/24 izleme merkezi.",
+            "icon": "Camera"
+          },
+          {
+            "id": "s14",
+            "name": "Erisim Kontrol & Otopark",
+            "price": "Teklif bazli",
+            "duration": "Projeye gore",
+            "description": "Kart/parmak izi/yuz tanima erisim kontrol. Otopark bariyer, plaka tanima ve yonlendirme sistemi. Bulut tabanli yonetim.",
+            "icon": "KeyRound"
+          },
+          {
+            "id": "s15",
+            "name": "Bakim & Isletme Sozlesmesi",
+            "price": "Teklif bazli",
+            "duration": "Yillik",
+            "description": "7/24 ariza mudahale, periyodik bakim, yedek parca yonetimi ve performans raporlama. SLA tabanli hizmet seviyesi garantisi.",
+            "icon": "Wrench"
+          },
+          {
+            "id": "s16",
+            "name": "Proje Danismanligi & Kesfet",
+            "price": "Ucretsiz (ilk gorusme)",
+            "duration": "1 saat",
+            "description": "Yeni yatirim ve renovasyon projeleri icin teknik danismanlik. Fizibilite, konsept tasarim ve maliyet tahmini. Ucretsiz ilk gorusme.",
+            "icon": "MessagesSquare"
+          },
+          {
+            "id": "s17",
+            "name": "Elektrik Tasima Hatti",
+            "price": "Teklif bazli",
+            "duration": "Projeye gore",
+            "description": "Enerji nakil hatti, yer alti kablo ve havai hat projeleri. TEDAS ve EDAS standartlarinda tasarim ve uygulama.",
+            "icon": "Cable"
+          },
+          {
+            "id": "s18",
+            "name": "Mikro Grid & Ada Modu",
+            "price": "Teklif bazli",
+            "duration": "Projeye gore",
+            "description": "Kampus ve endustriyel bolgeler icin mikro grid tasarimi. Gunes, ruzgar, batarya ve jenerator entegrasyonu. Sebekeden bagimsiz calisma kapasitesi.",
+            "icon": "Globe"
+          },
+          {
+            "id": "s19",
+            "name": "LEED/BREEAM Enerji Danismanligi",
+            "price": "Teklif bazli",
+            "duration": "Projeye gore",
+            "description": "Yesil bina sertifikasyon sureci icin enerji danismanligi. LEED, BREEAM ve EDGE puanlama optimizasyonu. Enerji modellemesi ve simulasyonlar.",
+            "icon": "Leaf"
+          },
+          {
+            "id": "s20",
+            "name": "Elektrik Egitim & Sertifikasyon",
+            "price": "2.000-10.000 TL/kisi",
+            "duration": "1-5 gun",
+            "description": "Kurum ici elektrik guvenligi, otomasyon, SCADA ve BMS egitim programlari. Mesleki yeterlilik sinav hazirlik kurslari.",
+            "icon": "GraduationCap"
+          }
+        ],
+        "team": [
+          {
+            "name": "Ing. Dr. Selim Ozdemir",
+            "title": "Kurucu & Yonetim Kurulu Baskani",
+            "description": "ITU Elektrik Muhendisligi doktorasi. 24 yillik sektör deneyimi. TMMOB Elektrik Muhendisleri Odasi eski yonetim kurulu uyesi.",
+            "image": ""
+          },
+          {
+            "name": "Ing. Zeynep Aksoy",
+            "title": "Genel Mudur",
+            "description": "ODTU Elektrik-Elektronik Muhendisligi mezunu, Koc Universitesi MBA. 18 yillik muhendislik ve yonetim deneyimi.",
+            "image": ""
+          },
+          {
+            "name": "Ing. Baris Celik",
+            "title": "OG/AG Proje Muduru",
+            "description": "Yildiz Teknik mezunu. 20 yildir orta ve alcak gerilim tesisat projelerinde uzman. 500+ buyuk olcekli proje.",
+            "image": ""
+          },
+          {
+            "name": "Ing. Derya Koc",
+            "title": "Otomasyon & BMS Muduru",
+            "description": "Bogazici Universitesi Kontrol Muhendisligi mezunu. Siemens ve Schneider sertifikali. Akilli bina sistemleri uzmani.",
+            "image": ""
+          },
+          {
+            "name": "Ing. Cem Erdogan",
+            "title": "Yenilenebilir Enerji Direktoru",
+            "description": "ITU Enerji Sistemleri yuksek lisansi. 15 yildir GES ve ruzgar enerjisi projelerinde. Toplam 50MW+ kurulum deneyimi.",
+            "image": ""
+          },
+          {
+            "name": "Ing. Nilgun Sahin",
+            "title": "Yangin & Guvenlik Muduru",
+            "description": "Gazi Universitesi mezunu. Yangin guvenligi uzmanligi sertifikasi. Hastane, AVM ve otel projeleri deneyimi.",
+            "image": ""
+          },
+          {
+            "name": "Ing. Kagan Yilmaz",
+            "title": "Veri Merkezi Altyapi Muduru",
+            "description": "ODTU Elektrik mezunu. Uptime Institute ATD sertifikali. Tier III/IV veri merkezi tasarim ve uygulama uzmani.",
+            "image": ""
+          },
+          {
+            "name": "Ing. Pinar Demirel",
+            "title": "Enerji Verimliligi & Surdurulebilirlik",
+            "description": "Sabanci Universitesi Enerji Teknolojileri mezunu. LEED AP sertifikali. Yesil bina enerji danismani.",
+            "image": ""
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Maslak Tower AVM",
+            "location": "Maslak",
+            "date": "2026-01",
+            "rating": 5,
+            "comment": "180.000 m2 AVM'nin komple elektrik altyapisini PowerGrid tasarladi ve kurdu. BMS, aydinlatma otomasyonu, EV sarj ve guvenlik sistemleri dahil. Kusursuz teslimat."
+          },
+          {
+            "name": "Istanbul Data Center",
+            "location": "Esenyurt",
+            "date": "2025-12",
+            "rating": 5,
+            "comment": "Tier III veri merkezi altyapimizi PowerGrid insa etti. Redundant UPS, jenerator ve sogutma sistemi ile %99.99 uptime hedefimize ulastik."
+          },
+          {
+            "name": "Bosphorus Hotel Group",
+            "location": "Besiktas",
+            "date": "2025-11",
+            "rating": 5,
+            "comment": "5 yildizli otelimizin elektrik renovasyonunu 45 gunde tamamladilar. Otel acikken, misafir konforu bozmadan. Inanilmaz proje yonetimi."
+          },
+          {
+            "name": "Atlas Saglik Grubu",
+            "location": "Atasehir",
+            "date": "2025-10",
+            "rating": 5,
+            "comment": "Hastane elektrik altyapisi en kritik projelerden. PowerGrid ile hem AG-OG tesisat hem yangin algilama hem de medikal gaz alarm sistemi cozuldu."
+          },
+          {
+            "name": "EcoTech Sanayi",
+            "location": "Tuzla",
+            "date": "2025-09",
+            "rating": 5,
+            "comment": "2 MW cati GES projemizi tasarladilar ve kurdular. EDAS baglantisi ve YEKA lisans islemlerini de yonettiler. Yillik 5 milyon TL tasarruf."
+          },
+          {
+            "name": "Sariyer Belediyesi",
+            "location": "Sariyer",
+            "date": "2025-08",
+            "rating": 5,
+            "comment": "Belediye binalarimizin enerji auditini yaptilar, LEED sertifikasyon sürecinde danismanlik veriyorlar. Profesyonel ve bilimsel yaklasim."
+          },
+          {
+            "name": "Park Rezidans",
+            "location": "Levent",
+            "date": "2025-07",
+            "rating": 4,
+            "comment": "200 daireli rezidansimizin akilli ev ve BMS sistemini kurdular. Sakinnler telefondan daireyi yonetiyor. Ortak alanlarin enerjisi %35 dustu."
+          },
+          {
+            "name": "GreenPort Lojistik",
+            "location": "Hadimkoy",
+            "date": "2025-06",
+            "rating": 5,
+            "comment": "Depo ve ofis kampusumuzun mikro grid sistemini PowerGrid tasarladi. Gunes, batarya ve jenerator entegrasyonu ile enerji bagimsizligina yaklastik."
+          },
+          {
+            "name": "Metropol Otopark Isi.",
+            "location": "Kadikoy",
+            "date": "2025-05",
+            "rating": 5,
+            "comment": "50 noktali EV sarj altyapisi kurdular. Yuk yonetimi sayesinde mevcut trafoyu degistirmeden sistemi entegre ettiler. Odeme sistemi de harika calisiyor."
+          },
+          {
+            "name": "Akademi Koleji",
+            "location": "Uskudar",
+            "date": "2025-04",
+            "rating": 5,
+            "comment": "Okul kampusumuzun yapisal kablolama ve guvenlik sistemini yenilediler. 200+ IP kamera, erisim kontrol ve plaka tanima. Guvenlik seviyemiz cok yukseldi."
+          },
+          {
+            "name": "Marmara Tekstil",
+            "location": "Corlu",
+            "date": "2025-03",
+            "rating": 5,
+            "comment": "Fabrikamizin endustriyel otomasyon projesi. PLC, SCADA ve enerji izleme sistemi. Uretim verimliligi %25 artti, ariza suresi %60 azaldi."
+          },
+          {
+            "name": "Dr. Cetin Hastanesi",
+            "location": "Bakirkoy",
+            "date": "2025-02",
+            "rating": 5,
+            "comment": "Hastane elektrik gucundellemesi sirasinda jenerator ve UPS sistemlerini yenilediler. Tek bir saniye bile kesinti yasatmadan. Muthis muhendislik."
+          }
+        ],
+        "gallery": []
+      },
+      "content": {
+        "hero": {
+          "title": "Enerjinin Muhendislik Gucuyle Bulustuqu Yer",
+          "subtitle": "Turkiye'nin lider elektrik muhendislik grubu. AVM, hastane, veri merkezi, fabrika ve yesil bina projelerinde 24 yillik deneyim. 85 muhendis ve teknisyen.",
+          "badge": "12.000+ Proje",
+          "ctaText": "Proje Gorusmesi",
+          "ctaLink": "tel:+902129000000"
+        },
+        "about": {
+          "title": "PowerGrid Muhendislik Grubu",
+          "description": "2002 yilinda Ing. Dr. Selim Ozdemir tarafindan kurulan PowerGrid, Turkiye'nin onde gelen elektrik muhendislik firmalarindan biridir. Maslak merkezli ofisimizden Istanbul, Marmara Bolgesi ve Turkiye genelinde buyuk olcekli projelere imza atiyoruz. AVM, hastane, otel, veri merkezi, fabrika ve rezidans gibi buyuk yapilarda turn-key elektrik cozumleri sunuyoruz. OG/AG tesisat, bina otomasyon sistemi (BMS), yangin algilama, akilli aydinlatma, guvenlik, yenilenebilir enerji ve endustriyel otomasyon ana hizmet alanlarimizdir. 85 kisilik muhendis ve teknisyen kadromuz Siemens, ABB, Schneider, Honeywell ve Rockwell partneri olarak en son teknolojileri kullanir. LEED ve BREEAM yesil bina danismanligi ile surdurulebilir projelere katki sagliyoruz. 12.000'den fazla projemizle Turkiye'nin altyapisina deger katmaktan gurur duyuyoruz."
+        },
+        "services": {
+          "title": "Muhendislik Hizmetlerimiz",
+          "subtitle": "Enerjiden otomasyona kapsamli elektrik cozumleri"
+        },
+        "stats": {
+          "title": "Rakamlarla PowerGrid",
+          "subtitle": "24 yillik muhendislik mirasI"
+        },
+        "contact": {
+          "title": "Proje & Iletisim",
+          "subtitle": "Projeniz icin ucretsiz ilk gorusme"
+        },
+        "faq": [
+          {
+            "q": "Hangi sehirlerde hizmet veriyorsunuz?",
+            "a": "Merkez ofisimiz Istanbul Maslak'ta. Istanbul, Kocaeli, Bursa, Ankara ve Izmir baslicdа olmak uzere Turkiye genelinde proje yapiyoruz."
+          },
+          {
+            "q": "Turn-key proje ne demek?",
+            "a": "Proje tasarimindan malzeme teminIne, montajdan testlere kadar tüm sureci biz yonetiyoruz. Siz sadece anahtari cevirirsiniz."
+          },
+          {
+            "q": "Veri merkezi tasarimi yapiyor musunuz?",
+            "a": "Evet, Tier III ve Tier IV standartlarinda veri merkezi elektrik altyapisi tasarimi ve uygulama yapiyoruz. Uptime Institute ATD sertifikali muhendisimiz mevcut."
+          },
+          {
+            "q": "Yesil bina sertifikasyon danismanligi veriyor musunuz?",
+            "a": "Evet, LEED AP sertifikali muhendisimiz ile LEED, BREEAM ve EDGE sertifikasyon sureclerinde enerji danismanligi sunuyoruz."
+          },
+          {
+            "q": "OG tesisat icin lisansiniz var mi?",
+            "a": "Evet, EPDK'dan yetkili firmayiz. 34.5kV'a kadar orta gerilim tesisat kurulumu ve isletmesi icin tum gerekli lisanslara sahibiz."
+          },
+          {
+            "q": "Hastane projelerinde deneyiminiz var mi?",
+            "a": "Evet, JCI akreditasyonlu dahil 15'den fazla hastanede elektrik altyapI projesi gerceklestirdik. Medikal gaz, kesintisiz guc ve yangin guvenligi konularinda uzmaniz."
+          },
+          {
+            "q": "Endustriyel otomasyon hangi sektorlere?",
+            "a": "Tekstil, gida, otomotiv, kimya ve ilaс sanayi baslicdа olmak uzere her sektor icin endustriyel otomasyon cozumleri sunuyoruz."
+          },
+          {
+            "q": "Bakim sozlesmesi sunuyor musunuz?",
+            "a": "Evet, 7/24 ariza mudahale, periyodik bakim, yedek parca yonetimi ve performans raporlama iceren SLA tabanli bakim sozlesmeleri sunuyoruz."
+          },
+          {
+            "q": "Buyuk projelerde finansman imkani var mi?",
+            "a": "Is bankasi, Garanti BBVA ve Yapi Kredi ile enerji yatirimi kredisi konusunda is birligimiz vardir. Fizibilite raporuyla birlikte kredi basvurunuzu destekleriz."
+          },
+          {
+            "q": "Proje referanslarinizi gorebilir miyiz?",
+            "a": "Elbette, NDA kapsaminda olmayan referanslarimizi proje gorusmesinde paylasiyoruz. Web sitemizde de secilmis vaka calismalarimizi bulabilirsiniz."
+          },
+          {
+            "q": "Egitim programlari kimlere yonelik?",
+            "a": "Kurum ici teknik personele yonelik elektrik guvenligi, otomasyon, SCADA ve BMS egitimleri veriyoruz. Mesleki yeterlilik sinav hazirligi da yapiyoruz."
+          },
+          {
+            "q": "EV sarj altyapisi icin mevcut trafom yeterli mi?",
+            "a": "Ucretsiz saha etudumuzde mevcut trafo kapasitesini olcuyoruz. Akilli yuk yonetimi ile cogu durumda trafo degisikligi gerekmez. Gerekirse trafo guclendirlmesi de yapiyoruz."
+          },
+          {
+            "q": "Mikro grid sistemi nedir?",
+            "a": "Gunes, ruzgar, batarya ve jeneratoru entegre eden, sebekeden bagimsiz calisabilin kucuk olcekli enerji agi. Kampus ve sanayi bolgeleri icin idealdir."
+          },
+          {
+            "q": "Projelerde hangi standartlara uyuyorsunuz?",
+            "a": "IEC, TSE, TEDAS, EPDK ve ilgili meslek odasi standartlarina tamamen uygun calisiyoruz. ISO 9001, ISO 14001 ve ISO 45001 belgelerimiz mevcuttur."
+          },
+          {
+            "q": "Fiber optik altyapi da yapiyor musunuz?",
+            "a": "Evet, single-mode ve multi-mode fiber optik backbone, fusion splice ve OTDR test hizmetleri sunuyoruz. Kampus ve veri merkezi network cozumleri."
+          }
+        ]
+      }
+    }
+  ]
+}

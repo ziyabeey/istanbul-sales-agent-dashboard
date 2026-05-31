@@ -1,11 +1,22 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 
 /* ═══════════════════════════════════════════════
    kepenk.ai — Site Oluşturma Platformu
-   AI Destekli Form + Şablon Galerisi
+   AI Destekli Form + Şablon Galerisi + Generation UX
    ═══════════════════════════════════════════════ */
+
+const GENERATION_STEPS = [
+    "Sektörel veriler (lokasyon/hedef kitle) analiz ediliyor...",
+    "Endüstri standardı renk paletleri uyarlandı...",
+    "Framer Motion yüksek performans fizik motoru entegre ediliyor...",
+    "İşletme modelinize uygun başlıklar GPT-4o ile yazılıyor...",
+    "GlobalSections UX Modülleri arayüze bağlanıyor...",
+    "Responsive Headless (Edge) altyapısı derleniyor...",
+    "Siteniz yayına asılıyor..."
+]
 
 // Template Data
 const TEMPLATES = [
@@ -54,7 +65,8 @@ const FILTERS_QUICK = ['Öne Çıkanlar', 'Tek Sayfa', 'Portfolyo', 'Pazarlama',
 
 /* ═══════ MAIN COMPONENT ═══════ */
 export default function SiteOlusturPage() {
-    const [view, setView] = useState<'choose' | 'ai' | 'templates'>('choose')
+    const router = useRouter()
+    const [view, setView] = useState<'choose' | 'ai' | 'templates' | 'generating'>('choose')
     const [step, setStep] = useState(0)
     const [showBrowse, setShowBrowse] = useState(false)
     const [search, setSearch] = useState('')
@@ -62,6 +74,9 @@ export default function SiteOlusturPage() {
     const [currentPage, setCurrentPage] = useState(1)
     const [quickViewId, setQuickViewId] = useState<string | null>(null)
     const inspCarouselRef = useRef<HTMLDivElement>(null)
+
+    // Generation state
+    const [genStep, setGenStep] = useState(0)
 
     // AI Form state
     const [form, setForm] = useState({
@@ -71,6 +86,62 @@ export default function SiteOlusturPage() {
     const updateForm = (key: string, value: any) => setForm(f => ({ ...f, [key]: value }))
     const toggleService = (id: string) => setForm(f => ({ ...f, services: f.services.includes(id) ? f.services.filter(s => s !== id) : [...f.services, id] }))
     const toggleTone = (t: string) => setForm(f => ({ ...f, tones: f.tones.includes(t) ? f.tones.filter(x => x !== t) : f.tones.length < 2 ? [...f.tones, t] : f.tones }))
+
+    // Actual Generation Flow via API
+    useEffect(() => {
+        let isCancelled = false;
+
+        const generateAIContent = async () => {
+            try {
+                setGenStep(0);
+                
+                const res = await fetch('/api/generate-site', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(form)
+                });
+                
+                const data = await res.json();
+                
+                if (!isCancelled) {
+                    if (data.success) {
+                        // AI'dan gelen veriyi kaydediyoruz
+                        localStorage.setItem('kepenk_ai_generated_site', JSON.stringify(data.result));
+                    }
+                    
+                    // API yanıt verdikten sonra son adıma geç ve yönlendir
+                    setGenStep(GENERATION_STEPS.length - 1);
+                    setTimeout(() => router.push('/dashboard/sitem'), 1800);
+                }
+            } catch (error) {
+                console.error("AI Generation failed:", error);
+                if (!isCancelled) {
+                    setGenStep(GENERATION_STEPS.length - 1);
+                    setTimeout(() => router.push('/dashboard/sitem'), 1800);
+                }
+            }
+        };
+
+        if (view === 'generating') {
+            generateAIContent();
+            
+            // Kullanıcıya yükleme hissi vermek için arkaplanda adımları ilerleten görsel sayaç
+            // API bitene kadar son 2 adıma geçmez.
+            const timer = setInterval(() => {
+                setGenStep(prev => {
+                    if (prev < GENERATION_STEPS.length - 2) {
+                        return prev + 1;
+                    }
+                    return prev;
+                });
+            }, 1500);
+
+            return () => {
+                isCancelled = true;
+                clearInterval(timer);
+            }
+        }
+    }, [view, router, form])
 
     // Filter templates
     const filtered = TEMPLATES.filter(t => {
@@ -87,6 +158,65 @@ export default function SiteOlusturPage() {
     const perPage = 6
     const totalPages = Math.ceil(filtered.length / perPage)
     const paged = filtered.slice((currentPage - 1) * perPage, currentPage * perPage)
+
+    /* ═══════ GENERATING VIEW (THE CRM AUTOMATION SCREEN) ═══════ */
+    if (view === 'generating') {
+        const progressPercent = Math.min(100, Math.round(((genStep + 1) / GENERATION_STEPS.length) * 100))
+        return (
+            <div style={{ ...S.page, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#09090b', color: '#fff', position: 'relative', overflow: 'hidden' }}>
+                <div style={{ position: 'absolute', top: '-20%', left: '-20%', width: '140%', height: '140%', background: 'radial-gradient(circle at center, rgba(220, 70, 32, 0.05) 0%, transparent 60%)', pointerEvents: 'none' }} />
+                
+                <div style={{ maxWidth: 640, width: '100%', padding: 40, textAlign: 'center', zIndex: 10 }}>
+                    
+                    {/* Glowing Core / Pulse Radar */}
+                    <div style={{ position: 'relative', width: 140, height: 140, margin: '0 auto 60px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <div style={{ position: 'absolute', inset: -20, borderRadius: '50%', background: 'conic-gradient(from 0deg, transparent, #DC4620, #8b5cf6)', animation: 'spin 2s linear infinite', filter: 'blur(20px)', opacity: 0.6 }} />
+                        <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', border: '2px solid rgba(255,255,255,0.1)', animation: 'pulse 2s ease-in-out infinite' }} />
+                        <div style={{ position: 'absolute', inset: 10, borderRadius: '50%', background: '#09090b', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid rgba(220, 70, 32, 0.4)' }}>
+                           <span style={{ fontSize: 32, animation: 'heartbeat 1.5s ease-in-out infinite' }}>🤖</span>
+                        </div>
+                    </div>
+
+                    <h1 style={{ fontSize: 36, fontWeight: 900, marginBottom: 12, fontFamily: "'Inter', system-ui", letterSpacing: '-0.03em' }}>
+                        Site Otonom İnşa Ediliyor
+                    </h1>
+                    <p style={{ color: '#868686', marginBottom: 32, fontSize: 16 }}>
+                        Milyonlarca satır kod sizin yerinize yazılırken lütfen bekleyin.
+                    </p>
+                    
+                    <div style={{ height: 6, background: '#1A1A1A', borderRadius: 10, overflow: 'hidden', marginBottom: 32, boxShadow: 'inset 0 1px 3px rgba(0,0,0,0.5)' }}>
+                        <div style={{ height: '100%', width: `${progressPercent}%`, background: 'linear-gradient(90deg, #8b5cf6, #DC4620, #FF6B45)', transition: 'width 0.8s cubic-bezier(0.4, 0, 0.2, 1)', boxShadow: '0 0 10px rgba(220, 70, 32, 0.5)' }} />
+                    </div>
+                    
+                    {/* Fake Terminal UI */}
+                    <div style={{ background: '#000', border: '1px solid #222', borderRadius: 16, padding: 24, textAlign: 'left', fontFamily: "'JetBrains Mono', monospace", fontSize: 13, color: '#34d399', height: 260, overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', boxShadow: '0 10px 40px rgba(0,0,0,0.5), inset 0 0 20px rgba(0,0,0,0.8)' }}>
+                        {GENERATION_STEPS.slice(0, genStep + 1).map((stepText, idx) => (
+                            <div key={idx} style={{ opacity: idx === genStep ? 1 : 0.5, marginBottom: 12, animation: 'slideUp 0.4s ease-out' }}>
+                                <span style={{ color: '#6b7280', marginRight: 8, fontSize: 11 }}>[{new Date().toISOString().split('T')[1].substring(0, 8)}]</span>
+                                {idx === genStep ? '>> ' : '> '}{stepText}
+                                {idx === genStep && <span style={{ animation: 'blink 1s step-end infinite' }}>_</span>}
+                            </div>
+                        ))}
+                    </div>
+
+                    {genStep === GENERATION_STEPS.length - 1 && (
+                       <div style={{ marginTop: 24, padding: '16px', background: 'rgba(52, 211, 153, 0.1)', border: '1px solid rgba(52, 211, 153, 0.3)', borderRadius: 12, color: '#34d399', fontSize: 15, fontWeight: 'bold', animation: 'fadeIn 0.5s ease-out' }}>
+                           ✅ Mükemmel. Sistem entegrasyonu tamamlandı, panele geçiş yapılıyor...
+                       </div>
+                    )}
+                </div>
+
+                <style>{`
+                    @keyframes spin { 100% { transform: rotate(360deg); } }
+                    @keyframes pulse { 0% { transform: scale(0.95); opacity: 0.5; } 50% { transform: scale(1.05); opacity: 0.8; } 100% { transform: scale(0.95); opacity: 0.5; } }
+                    @keyframes heartbeat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+                    @keyframes slideUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+                    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+                    @keyframes blink { 50% { opacity: 0; } }
+                `}</style>
+            </div>
+        )
+    }
 
     /* ═══════ CHOOSE VIEW ═══════ */
     if (view === 'choose') return (
@@ -227,7 +357,7 @@ export default function SiteOlusturPage() {
                                 Devam Et →
                             </button>
                         ) : (
-                            <button style={{ ...S.btnPrimary, background: 'linear-gradient(135deg, #DC4620, #FF6B45)' }}>
+                            <button onClick={() => setView('generating')} style={{ ...S.btnPrimary, background: 'linear-gradient(135deg, #DC4620, #FF6B45)' }}>
                                 ✨ Siteyi Oluştur
                             </button>
                         )}

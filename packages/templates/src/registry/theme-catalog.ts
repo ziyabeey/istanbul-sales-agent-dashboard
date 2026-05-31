@@ -16,6 +16,8 @@ import { KAFE_THEMES, FIRIN_THEMES, ECZANE_THEMES, VETERINER_THEMES, FOTOGRAFCI_
 import { PSIKOLOG_THEMES, FASTFOOD_THEMES, BAR_THEMES, TELEFON_THEMES, KLIMA_THEMES, MIMARLIK_THEMES, SIGORTA_THEMES, SURUCU_THEMES, DIL_THEMES, YOGA_THEMES } from '../themes/p2p3-themes'
 // ── P3 (10 sectors × 5 = 50 themes) ──
 import { OPTIK_THEMES, PETSHOP_THEMES, CICEKCI_THEMES, TERZI_THEMES, HALISAHA_THEMES, YUZME_THEMES, CATERING_THEMES, KASAP_THEMES, CILINGIR_THEMES, MUZIK_THEMES } from '../themes/p2p3-themes'
+// ── Extended (26 sectors, 175 themes) ──
+import { ASANSOR_EXT_THEMES, BOYACI_EXT_THEMES, CAMBALKON_EXT_THEMES, DIS_EXT_THEMES, EMLAK_EXT_THEMES, FITNESS_EXT_THEMES, FOTO_EXT_THEMES, HALIYIKAMA_EXT_THEMES, HUKUK_EXT_THEMES, INSAAT_EXT_THEMES, KAHVECI_EXT_THEMES, KARGO_EXT_THEMES, KLINIK_EXT_THEMES, KRES_EXT_THEMES, LASTIKCI_EXT_THEMES, MATBAA_EXT_THEMES, MOBILYACI_EXT_THEMES, MUHASEBE_EXT_THEMES, NAKLIYAT_EXT_THEMES, ORGANIK_EXT_THEMES, ORGANIZASYON_EXT_THEMES, OTOYIKAMA_EXT_THEMES, PASTANE_EXT_THEMES, PEYZAJ_EXT_THEMES, TEMIZLIK_EXT_THEMES, VET_EXT_THEMES } from '../themes/extended-sector-themes'
 
 // ─────────────────────────────────────────────
 // Types
@@ -26,7 +28,7 @@ export interface ThemeCatalogEntry {
   name: string
   sectorId: string
   sectorLabel: string
-  plan: 'free' | 'starter' | 'growth' | 'pro' | 'enterprise'
+  plan: 'free' | 'starter' | 'growth' | 'pro' | 'enterprise' | 'elite'
   description: string
   designPhilosophy: string
   isDark: boolean
@@ -87,6 +89,33 @@ const SECTOR_LABELS: Record<string, string> = {
   kasap: 'Kasap & Şarküteri',
   cilingir: 'Çilingir',
   muzik: 'Müzik & Enstrüman',
+  // Extended sectors
+  asansor: 'Asansör',
+  boyaci: 'Boyacı',
+  cambalkon: 'Cam Balkon',
+  dis: 'Diş Kliniği',
+  emlak: 'Emlak',
+  fitness: 'Fitness',
+  foto: 'Fotoğrafçı & Stüdyo',
+  haliyikama: 'Halı Yıkama',
+  hukuk: 'Hukuk Bürosu',
+  insaat: 'İnşaat',
+  kahveci: 'Kahveci',
+  kargo: 'Kargo & Kurye',
+  klinik: 'Özel Klinik',
+  kres: 'Kreş',
+  lastikci: 'Lastikçi',
+  matbaa: 'Matbaa',
+  mobilyaci: 'Mobilyacı',
+  muhasebe: 'Muhasebe & Denetim',
+  nakliyat: 'Nakliyat',
+  organik: 'Organik Gıda',
+  organizasyon: 'Organizasyon',
+  otoyikama: 'Oto Yıkama',
+  pastane: 'Pastane',
+  peyzaj: 'Peyzaj',
+  temizlik: 'Temizlik',
+  vet: 'Veteriner Kliniği',
 }
 
 // ─────────────────────────────────────────────
@@ -134,6 +163,33 @@ const SECTOR_SCHEMA: Record<string, string> = {
   kasap: 'LocalBusiness',
   cilingir: 'Locksmith',
   muzik: 'LocalBusiness',
+  // Extended sectors
+  asansor: 'LocalBusiness',
+  boyaci: 'LocalBusiness',
+  cambalkon: 'LocalBusiness',
+  dis: 'Dentist',
+  emlak: 'RealEstateAgent',
+  fitness: 'SportsActivityLocation',
+  foto: 'LocalBusiness',
+  haliyikama: 'LocalBusiness',
+  hukuk: 'LegalService',
+  insaat: 'GeneralContractor',
+  kahveci: 'CafeOrCoffeeShop',
+  kargo: 'LocalBusiness',
+  klinik: 'MedicalClinic',
+  kres: 'ChildCare',
+  lastikci: 'LocalBusiness',
+  matbaa: 'LocalBusiness',
+  mobilyaci: 'FurnitureStore',
+  muhasebe: 'AccountingService',
+  nakliyat: 'MovingCompany',
+  organik: 'GroceryStore',
+  organizasyon: 'EventVenue',
+  otoyikama: 'LocalBusiness',
+  pastane: 'Bakery',
+  peyzaj: 'LocalBusiness',
+  temizlik: 'LocalBusiness',
+  vet: 'VeterinaryCare',
 }
 
 // ─────────────────────────────────────────────
@@ -165,20 +221,14 @@ function defToEntry(def: P0ThemeDef): ThemeCatalogEntry {
 /** All theme definition arrays in registration order */
 const ALL_THEME_DEFS: P0ThemeDef[] = [
   // P0
-  ...BERBER_THEMES, ...RESTORAN_THEMES, ...DOKTOR_THEMES, ...GUZELLIK_THEMES,
-  ...AVUKAT_THEMES, ...DISCI_THEMES, ...OTO_THEMES, ...SPOR_THEMES,
+  ...BERBER_THEMES, ...RESTORAN_THEMES, ...DOKTOR_THEMES, ...GUZELLIK_THEMES, ...AVUKAT_THEMES, ...DISCI_THEMES, ...OTO_THEMES, ...SPOR_THEMES,
   // P1
-  ...KAFE_THEMES, ...FIRIN_THEMES, ...ECZANE_THEMES, ...VETERINER_THEMES,
-  ...FOTOGRAFCI_THEMES, ...DUGUN_THEMES, ...ELEKTRIKCI_THEMES, ...TESISATCI_THEMES,
-  ...MUHASEBECI_THEMES, ...EMLAKCI_THEMES, ...OZELDERS_THEMES, ...KUYUMCU_THEMES,
-  // P2
-  ...PSIKOLOG_THEMES, ...FASTFOOD_THEMES, ...BAR_THEMES, ...TELEFON_THEMES,
-  ...KLIMA_THEMES, ...MIMARLIK_THEMES, ...SIGORTA_THEMES, ...SURUCU_THEMES,
-  ...DIL_THEMES, ...YOGA_THEMES,
-  // P3
-  ...OPTIK_THEMES, ...PETSHOP_THEMES, ...CICEKCI_THEMES, ...TERZI_THEMES,
-  ...HALISAHA_THEMES, ...YUZME_THEMES, ...CATERING_THEMES, ...KASAP_THEMES,
-  ...CILINGIR_THEMES, ...MUZIK_THEMES,
+  ...KAFE_THEMES, ...FIRIN_THEMES, ...ECZANE_THEMES, ...VETERINER_THEMES, ...FOTOGRAFCI_THEMES, ...DUGUN_THEMES, ...ELEKTRIKCI_THEMES, ...TESISATCI_THEMES, ...MUHASEBECI_THEMES, ...EMLAKCI_THEMES, ...OZELDERS_THEMES, ...KUYUMCU_THEMES,
+  // P2 & P3
+  ...PSIKOLOG_THEMES, ...FASTFOOD_THEMES, ...BAR_THEMES, ...TELEFON_THEMES, ...KLIMA_THEMES, ...MIMARLIK_THEMES, ...SIGORTA_THEMES, ...SURUCU_THEMES, ...DIL_THEMES, ...YOGA_THEMES,
+  ...OPTIK_THEMES, ...PETSHOP_THEMES, ...CICEKCI_THEMES, ...TERZI_THEMES, ...HALISAHA_THEMES, ...YUZME_THEMES, ...CATERING_THEMES, ...KASAP_THEMES, ...CILINGIR_THEMES, ...MUZIK_THEMES,
+  // Extended
+  ...ASANSOR_EXT_THEMES, ...BOYACI_EXT_THEMES, ...CAMBALKON_EXT_THEMES, ...DIS_EXT_THEMES, ...EMLAK_EXT_THEMES, ...FITNESS_EXT_THEMES, ...FOTO_EXT_THEMES, ...HALIYIKAMA_EXT_THEMES, ...HUKUK_EXT_THEMES, ...INSAAT_EXT_THEMES, ...KAHVECI_EXT_THEMES, ...KARGO_EXT_THEMES, ...KLINIK_EXT_THEMES, ...KRES_EXT_THEMES, ...LASTIKCI_EXT_THEMES, ...MATBAA_EXT_THEMES, ...MOBILYACI_EXT_THEMES, ...MUHASEBE_EXT_THEMES, ...NAKLIYAT_EXT_THEMES, ...ORGANIK_EXT_THEMES, ...ORGANIZASYON_EXT_THEMES, ...OTOYIKAMA_EXT_THEMES, ...PASTANE_EXT_THEMES, ...PEYZAJ_EXT_THEMES, ...TEMIZLIK_EXT_THEMES, ...VET_EXT_THEMES,
 ]
 
 // ─────────────────────────────────────────────

@@ -138,7 +138,7 @@ export default function PricingCards() {
     const router = useRouter();
 
     const handlePurchase = (planId: string) => {
-        router.push(`/onboarding?paket=${planId}&periyot=${periyot}`);
+        router.push(`/kayit?paket=${planId}&periyot=${periyot}`);
     };
 
     return (

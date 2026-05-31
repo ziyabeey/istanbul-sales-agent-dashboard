@@ -1,7 +1,34 @@
-'use client'
-import { HeaderMinimalSticky as _h, FooterWarmColumns as _f, WhatsAppFloating as _wa, CookieBannerBottomBar as _c, CarpetServiceGrid as _csg, CarpetPricingTable as _cpt, CarpetProcessSteps as _cps, CarpetStatsRow as _csr, CarpetPickupForm as _cpf, ThemeRenderer, HALIYIKAMA_LUX_CONFIG, HALIYIKAMA_LUX_BUSINESS } from '@kepenk/templates'
-void _h; void _f; void _wa; void _c; void _csg; void _cpt; void _cps; void _csr; void _cpf
-export default function Client() {
-  const t = HALIYIKAMA_LUX_CONFIG, p = t.pages[0]!, b = HALIYIKAMA_LUX_BUSINESS
-  return (<div lang="tr"><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ '@context': 'https://schema.org', '@type': 'Laundry', name: b.name, telephone: b.phone, address: { '@type': 'PostalAddress', addressLocality: b.district, addressRegion: b.city, addressCountry: 'TR' } }) }} /><ThemeRenderer theme={t} page={p} business={b} /></div>)
+import { MinimalLayout } from '@/components/layout/MinimalLayout';
+import { SectionRenderer } from '@/components/PreviewViewer';
+import { HALIYIKAMA_LUX_CONFIG, HALIYIKAMA_LUX_BUSINESS } from '@xinxia/templates';
+
+import { 
+  HaliyikamaLuxHero, 
+  HaliyikamaLuxAbout, 
+  HaliyikamaLuxServices, 
+  HaliyikamaLuxGallery, 
+  HaliyikamaLuxContact 
+} from '@xinxia/templates';
+
+const componentMap: Record<string, React.FC<any>> = {
+  'haliyikama_lux_hero': HaliyikamaLuxHero,
+  'haliyikama_lux_about': HaliyikamaLuxAbout,
+  'haliyikama_lux_services': HaliyikamaLuxServices,
+  'haliyikama_lux_gallery': HaliyikamaLuxGallery,
+  'haliyikama_lux_contact': HaliyikamaLuxContact
+};
+
+export default function HaliyikamaLuxDemoClient() {
+  const anasayfa = HALIYIKAMA_LUX_CONFIG.pages.find((p: any) => p.id === 'anasayfa');
+  if (!anasayfa) return <div>Sayfa bulunamadı</div>;
+
+  return (
+    <MinimalLayout themeConfig={HALIYIKAMA_LUX_CONFIG} businessData={HALIYIKAMA_LUX_BUSINESS}>
+      <SectionRenderer 
+        sections={anasayfa.sections} 
+        componentMap={componentMap} 
+        businessData={HALIYIKAMA_LUX_BUSINESS} 
+      />
+    </MinimalLayout>
+  );
 }

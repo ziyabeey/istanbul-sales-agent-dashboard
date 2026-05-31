@@ -1,4 +1,5 @@
 import React from "react";
+import PublicPageShell from "@/components/layout/PublicPageShell";
 import FeaturesSection from "@/components/sections/FeaturesSection";
 import { Metadata } from "next";
 
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function OzelliklerPage() {
     return (
-        <>
+        <PublicPageShell>
             {/* Header */}
             <section className="pt-32 pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
                 <div className="inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold text-primary bg-steel mb-6">
@@ -53,6 +54,6 @@ export default function OzelliklerPage() {
                     </div>
                 </div>
             </section>
-        </>
+        </PublicPageShell>
     );
 }

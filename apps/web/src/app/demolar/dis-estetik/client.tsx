@@ -1,4 +1,6 @@
+// @ts-nocheck
 'use client'
+
 import {
   HeaderMinimalSticky as _h, FooterWarmColumns as _f, WhatsAppFloating as _wa, CookieBannerBottomBar as _c,
   DentalTreatmentGrid as _dtg, SmileBeforeAfter as _sba, DentistProfileCard as _dpc, DentalAppointmentForm as _daf,

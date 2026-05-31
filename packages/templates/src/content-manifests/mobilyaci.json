@@ -1,0 +1,1458 @@
+{
+  "sectorId": "mobilyaci",
+  "seoSchemaType": "FurnitureStore",
+  "variants": [
+    {
+      "id": "mobilya-ev",
+      "variantName": "ev",
+      "plan": "free",
+      "description": "Ev mobilyası mağazası — sıcak, samimi tasarım",
+      "designPhilosophy": "Sıcak tonlar, ev hissi, davetkar",
+      "isDark": false,
+      "colors": {
+        "bg": "#FFFDF7",
+        "surface": "#F5F0E8",
+        "text": "#2A2520",
+        "accent": "#8B6914"
+      },
+      "fonts": {
+        "heading": "Inter",
+        "body": "Inter"
+      },
+      "business": {
+        "name": "Ahşap Usta Mobilya",
+        "sector": "mobilyaci",
+        "ownerName": "Yusuf Demir",
+        "slogan": "Evinize sıcaklık katan el yapımı mobilyalar",
+        "phone": "0212 654 3210",
+        "phoneClean": "02126543210",
+        "email": "info@ahsapusta.com",
+        "address": "Modoko Mah. Mobilyacılar Sit. No:22, Ümraniye/İstanbul",
+        "city": "İstanbul",
+        "district": "Ümraniye",
+        "coordinates": {
+          "lat": 41.0275,
+          "lng": 29.0975
+        },
+        "socialMedia": {
+          "instagram": "ahsapustamobilya"
+        },
+        "photos": [],
+        "foundedYear": 2015,
+        "experience": "11 yıl",
+        "customerCount": "3.500+",
+        "rating": 4.7,
+        "reviewCount": 290,
+        "workingHours": [
+          {
+            "day": "Pazartesi",
+            "open": "09:00",
+            "close": "18:00",
+            "isOpen": true
+          },
+          {
+            "day": "Salı",
+            "open": "09:00",
+            "close": "18:00",
+            "isOpen": true
+          },
+          {
+            "day": "Çarşamba",
+            "open": "09:00",
+            "close": "18:00",
+            "isOpen": true
+          },
+          {
+            "day": "Perşembe",
+            "open": "09:00",
+            "close": "18:00",
+            "isOpen": true
+          },
+          {
+            "day": "Cuma",
+            "open": "09:00",
+            "close": "18:00",
+            "isOpen": true
+          },
+          {
+            "day": "Cumartesi",
+            "open": "10:00",
+            "close": "16:00",
+            "isOpen": true
+          },
+          {
+            "day": "Pazar",
+            "open": "",
+            "close": "",
+            "isOpen": false
+          }
+        ],
+        "services": [
+          {
+            "id": "s1",
+            "name": "Oturma Grubu",
+            "price": "25.000 TL'den başlayan",
+            "duration": "15-20 iş günü",
+            "description": "Masif ahşap iskelet, yüksek yoğunluklu sünger, kumaş veya deri kaplama oturma grupları."
+          },
+          {
+            "id": "s2",
+            "name": "Yemek Masası Takımı",
+            "price": "18.000 TL'den başlayan",
+            "duration": "10-15 iş günü",
+            "description": "4-8 kişilik masif ahşap yemek masası ve sandalye setleri."
+          },
+          {
+            "id": "s3",
+            "name": "Yatak Odası Takımı",
+            "price": "30.000 TL'den başlayan",
+            "duration": "15-20 iş günü",
+            "description": "Karyola, komodin, şifonyer ve aynadan oluşan tam set yatak odası."
+          },
+          {
+            "id": "s4",
+            "name": "TV Ünitesi",
+            "price": "8.000 TL'den başlayan",
+            "duration": "7-10 iş günü",
+            "description": "Modern veya rustik tasarım TV ünitesi, kablo düzenleme sistemi dahil."
+          }
+        ],
+        "team": [],
+        "testimonials": []
+      },
+      "content": {
+        "hero": {
+          "title": "El Yapımı Ahşap Mobilya",
+          "subtitle": "Masif ahşaptan, elinize sıcaklık katan mobilyalar. Modoko'da 11 yıldır.",
+          "badge": "El İşçiliği"
+        },
+        "about": {
+          "title": "Ahşap Usta Mobilya Hakkında",
+          "description": "2015 yılından bu yana Modoko'da hizmet veren Ahşap Usta Mobilya, masif ahşap işçiliğinde uzmanlaşmıştır. Ceviz, meşe ve çam ağacından ürettiğimiz mobilyalar, evinize doğal sıcaklık katar."
+        },
+        "services": {
+          "title": "Mobilya Koleksiyonumuz",
+          "subtitle": "Oturma grubundan yatak odasına, her oda için el yapımı çözümler"
+        },
+        "contact": {
+          "title": "Showroom Ziyareti",
+          "subtitle": "Modoko showroom'umuza gelin, mobilyalarımızı yakından görün"
+        },
+        "faq": [
+          {
+            "question": "Özel ölçü üretim yapıyor musunuz?",
+            "answer": "Evet, tüm mobilyalarımız müşteri isteğine göre özel ölçüde üretilebilir."
+          },
+          {
+            "question": "Teslimat ve montaj dahil mi?",
+            "answer": "İstanbul içi teslimat ve montaj ücretsizdir. Anadolu yakası aynı gün, Avrupa yakası ertesi gün teslimat."
+          },
+          {
+            "question": "Garanti süresi ne kadar?",
+            "answer": "Tüm mobilyalarımızda 5 yıl yapısal garanti ve 2 yıl kumaş/deri garanti sunuyoruz."
+          },
+          {
+            "question": "Hangi ağaç türlerini kullanıyorsunuz?",
+            "answer": "Ceviz, meşe, kayın ve çam başlıca ağaç türlerimizdir. FSC sertifikalı keresteler kullanıyoruz."
+          }
+        ]
+      }
+    },
+    {
+      "id": "mobilya-mutfak",
+      "variantName": "mutfak",
+      "plan": "starter",
+      "description": "Mutfak mobilyası uzmanı — temiz, fonksiyonel tasarım",
+      "designPhilosophy": "Fonksiyonel, temiz hatlar, mutfak odaklı",
+      "isDark": false,
+      "colors": {
+        "bg": "#FAFAFA",
+        "surface": "#F0F0F0",
+        "text": "#1E1E1E",
+        "accent": "#E65100",
+        "accentHover": "#BF360C"
+      },
+      "fonts": {
+        "heading": "Inter",
+        "body": "Inter"
+      },
+      "business": {
+        "name": "Mutfak Sanatı Mobilya",
+        "sector": "mobilyaci",
+        "ownerName": "Serkan Aktaş",
+        "slogan": "Hayalinizdeki mutfağı tasarlıyoruz",
+        "phone": "0216 345 7800",
+        "phoneClean": "02163457800",
+        "email": "info@mutfaksanati.com",
+        "address": "Kozyatağı Mah. Sandalyeciler Cad. No:45, Kadıköy/İstanbul",
+        "city": "İstanbul",
+        "district": "Kadıköy",
+        "coordinates": {
+          "lat": 40.9753,
+          "lng": 29.0672
+        },
+        "socialMedia": {
+          "instagram": "mutfaksanatimobilya",
+          "facebook": "mutfaksanati"
+        },
+        "photos": [],
+        "foundedYear": 2012,
+        "experience": "14 yıl",
+        "customerCount": "5.500+",
+        "rating": 4.8,
+        "reviewCount": 450,
+        "workingHours": [
+          {
+            "day": "Pazartesi",
+            "open": "09:00",
+            "close": "18:00",
+            "isOpen": true
+          },
+          {
+            "day": "Salı",
+            "open": "09:00",
+            "close": "18:00",
+            "isOpen": true
+          },
+          {
+            "day": "Çarşamba",
+            "open": "09:00",
+            "close": "18:00",
+            "isOpen": true
+          },
+          {
+            "day": "Perşembe",
+            "open": "09:00",
+            "close": "18:00",
+            "isOpen": true
+          },
+          {
+            "day": "Cuma",
+            "open": "09:00",
+            "close": "18:00",
+            "isOpen": true
+          },
+          {
+            "day": "Cumartesi",
+            "open": "10:00",
+            "close": "16:00",
+            "isOpen": true
+          },
+          {
+            "day": "Pazar",
+            "open": "",
+            "close": "",
+            "isOpen": false
+          }
+        ],
+        "services": [
+          {
+            "id": "s1",
+            "name": "Mutfak Dolabı (Akrilik)",
+            "price": "35.000 TL'den başlayan",
+            "duration": "15-20 iş günü",
+            "description": "Yüksek parlak akrilik kapak, soft-close menteşe, paslanmaz çelik kulp."
+          },
+          {
+            "id": "s2",
+            "name": "Mutfak Dolabı (Lake)",
+            "price": "45.000 TL'den başlayan",
+            "duration": "20-25 iş günü",
+            "description": "Özel renk lake boyalı, tam otomatik menteşe ve çekmece ray sistemi."
+          },
+          {
+            "id": "s3",
+            "name": "Mutfak Tezgahı (Granit)",
+            "price": "3.500 TL/m²",
+            "duration": "5-7 iş günü",
+            "description": "Doğal granit, mermer veya kuvars mutfak tezgahı, evye kesimi dahil."
+          },
+          {
+            "id": "s4",
+            "name": "Mutfak Tezgahı (Corian)",
+            "price": "5.000 TL/m²",
+            "duration": "7-10 iş günü",
+            "description": "Derzsiz Corian/akrilik solid surface tezgah, özel formlu evye dahil."
+          },
+          {
+            "id": "s5",
+            "name": "Banyo Dolabı",
+            "price": "12.000 TL'den başlayan",
+            "duration": "10 iş günü",
+            "description": "Su dayanımlı MDF, yumuşak kapatma, aynalı dolap seçenekli banyo mobilyası."
+          },
+          {
+            "id": "s6",
+            "name": "Vestiyer / Giyinme Odası",
+            "price": "20.000 TL'den başlayan",
+            "duration": "10-15 iş günü",
+            "description": "Ray sistemli vestiyer veya walk-in closet çözümleri."
+          }
+        ],
+        "team": [
+          {
+            "name": "Serkan Aktaş",
+            "title": "Kurucu & Tasarımcı",
+            "description": "İç mimarlık mezunu, 18 yıl mutfak tasarımı deneyimi."
+          },
+          {
+            "name": "Ayla Koç",
+            "title": "3D Tasarımcı",
+            "description": "AutoCAD ve SketchUp ile fotorealistik mutfak görselleştirme."
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Melis T.",
+            "district": "Ataşehir",
+            "date": "2025-12",
+            "rating": 5,
+            "comment": "Mutfağımız hayalimizdeki gibi oldu. 3D tasarımda gördüğümüz birebir çıktı."
+          },
+          {
+            "name": "Ahmet D.",
+            "district": "Maltepe",
+            "date": "2025-11",
+            "rating": 5,
+            "comment": "Lake mutfak dolabımız 2 yıldır ilk günkü gibi. Kalite çok yüksek."
+          },
+          {
+            "name": "Esra K.",
+            "district": "Bostancı",
+            "date": "2025-10",
+            "rating": 4,
+            "comment": "Granit tezgah çok sağlam. Montaj ekibi profesyoneldi."
+          }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Hayalinizdeki Mutfak Burada",
+          "subtitle": "Akrilik, lake, membran — 3D tasarımla mutfağınızı önceden görün. Kadıköy'de 14 yıldır.",
+          "badge": "3D Tasarım Ücretsiz"
+        },
+        "about": {
+          "title": "Mutfak Sanatı Mobilya Hakkında",
+          "description": "2012 yılında Kadıköy Kozyatağı'nda kurulan Mutfak Sanatı Mobilya, mutfak ve banyo dolabı üretiminde uzmanlaşmıştır. 3D tasarım ile müşterilerimize mutfaklarını üretim öncesi görme imkanı sunuyoruz. Blum, Hettich ve Grass aksesuarları kullanarak Avrupa kalitesinde üretim yapıyoruz."
+        },
+        "services": {
+          "title": "Mutfak & Banyo Çözümleri",
+          "subtitle": "Dolap, tezgah, vestiyer — tam donanımlı mutfak üretimi"
+        },
+        "contact": {
+          "title": "Ücretsiz Keşif",
+          "subtitle": "Evinize gelip ücretsiz ölçü alıyor, 3D tasarım hazırlıyoruz"
+        },
+        "faq": [
+          {
+            "question": "Ücretsiz keşif yapıyor musunuz?",
+            "answer": "Evet, İstanbul içinde ücretsiz keşif ve ölçü hizmetimiz vardır. Online randevu alabilirsiniz."
+          },
+          {
+            "question": "3D tasarım ne kadar sürer?",
+            "answer": "Keşif sonrası 2-3 iş günü içinde fotorealistik 3D tasarımınız hazır olur."
+          },
+          {
+            "question": "Hangi aksesuar markaları kullanılıyor?",
+            "answer": "Blum, Hettich, Grass ve Hafele markaları tercih ediyoruz. Tüm aksesuarlar garantilidir."
+          },
+          {
+            "question": "Montaj süresi ne kadar?",
+            "answer": "Standart bir mutfak montajı 1-2 gün sürer. Montaj ekibimiz temiz çalışır."
+          },
+          {
+            "question": "Eski mutfağı söküyor musunuz?",
+            "answer": "Evet, eski mutfak sökümü ve moloz kaldırma dahil hizmet sunuyoruz."
+          },
+          {
+            "question": "Taksit imkanı var mı?",
+            "answer": "Kredi kartına 12 taksit, banka havalesi ile %5 indirim sunuyoruz."
+          }
+        ]
+      }
+    },
+    {
+      "id": "mobilya-ofis",
+      "variantName": "ofis",
+      "plan": "growth",
+      "description": "Ofis mobilyası — kurumsal, profesyonel tasarım",
+      "designPhilosophy": "Kurumsal, ergonomik, verimlilik odaklı",
+      "isDark": false,
+      "colors": {
+        "bg": "#F8F9FA",
+        "surface": "#EDEEF0",
+        "text": "#1C1E21",
+        "accent": "#1976D2",
+        "accentHover": "#1565C0",
+        "accentLight": "#E3F2FD",
+        "surfaceElevated": "#FFFFFF",
+        "textSecondary": "#5F6368"
+      },
+      "fonts": {
+        "heading": "Poppins",
+        "body": "Inter"
+      },
+      "business": {
+        "name": "ErgoDesk Ofis Mobilyaları",
+        "sector": "mobilyaci",
+        "ownerName": "Tolga Erdoğan",
+        "slogan": "Ergonomik ofis çözümleriyle verimliliği artırın",
+        "phone": "0212 234 5678",
+        "phoneClean": "02122345678",
+        "email": "info@ergodesk.com.tr",
+        "address": "Merter Mah. İş Kuleleri Cad. No:10, Güngören/İstanbul",
+        "city": "İstanbul",
+        "district": "Güngören",
+        "coordinates": {
+          "lat": 41.015,
+          "lng": 28.89
+        },
+        "socialMedia": {
+          "instagram": "ergodeskmobilya",
+          "facebook": "ergodesk",
+          "linkedin": "ergodesk-ofis"
+        },
+        "photos": [],
+        "foundedYear": 2010,
+        "experience": "16 yıl",
+        "customerCount": "8.000+",
+        "rating": 4.8,
+        "reviewCount": 640,
+        "workingHours": [
+          {
+            "day": "Pazartesi",
+            "open": "09:00",
+            "close": "18:00",
+            "isOpen": true
+          },
+          {
+            "day": "Salı",
+            "open": "09:00",
+            "close": "18:00",
+            "isOpen": true
+          },
+          {
+            "day": "Çarşamba",
+            "open": "09:00",
+            "close": "18:00",
+            "isOpen": true
+          },
+          {
+            "day": "Perşembe",
+            "open": "09:00",
+            "close": "18:00",
+            "isOpen": true
+          },
+          {
+            "day": "Cuma",
+            "open": "09:00",
+            "close": "18:00",
+            "isOpen": true
+          },
+          {
+            "day": "Cumartesi",
+            "open": "10:00",
+            "close": "16:00",
+            "isOpen": true
+          },
+          {
+            "day": "Pazar",
+            "open": "",
+            "close": "",
+            "isOpen": false
+          }
+        ],
+        "services": [
+          {
+            "id": "s1",
+            "name": "Yönetici Masası",
+            "price": "12.000 TL'den başlayan",
+            "duration": "7 iş günü",
+            "description": "L veya U tipi yönetici masası, kablo yönetim sistemi dahil."
+          },
+          {
+            "id": "s2",
+            "name": "Operasyon Masası",
+            "price": "4.500 TL'den başlayan",
+            "duration": "5 iş günü",
+            "description": "Modüler operasyonel çalışma masaları, seperatör seçenekli."
+          },
+          {
+            "id": "s3",
+            "name": "Ergonomik Ofis Koltuğu",
+            "price": "6.000 TL'den başlayan",
+            "duration": "Stoktan",
+            "description": "Ayarlanabilir bel desteği, başlık ve kol dayama, mesh veya deri."
+          },
+          {
+            "id": "s4",
+            "name": "Toplantı Masası",
+            "price": "15.000 TL'den başlayan",
+            "duration": "10 iş günü",
+            "description": "6-20 kişilik toplantı masası, elektrik prizi ve data bağlantısı entegreli."
+          },
+          {
+            "id": "s5",
+            "name": "Dosya Dolabı / Arşiv",
+            "price": "3.500 TL'den başlayan",
+            "duration": "5 iş günü",
+            "description": "Kilitli çekmeceli dosya dolabı, açık raf veya kapaklı seçenekler."
+          },
+          {
+            "id": "s6",
+            "name": "Bölme Sistemleri",
+            "price": "800 TL/m²",
+            "duration": "3-5 iş günü",
+            "description": "Cam, ahşap veya alüminyum bölme duvar sistemleri."
+          },
+          {
+            "id": "s7",
+            "name": "Resepsiyon Bankosu",
+            "price": "18.000 TL'den başlayan",
+            "duration": "10-15 iş günü",
+            "description": "Özel tasarım resepsiyon bankosu, LED aydınlatma seçenekli."
+          },
+          {
+            "id": "s8",
+            "name": "Yükselen Masa (Sit-Stand)",
+            "price": "8.000 TL'den başlayan",
+            "duration": "Stoktan",
+            "description": "Elektrikli yükseklik ayarlı masa, hafıza fonksiyonlu."
+          },
+          {
+            "id": "s9",
+            "name": "Ofis Taşıma & Kurulum",
+            "price": "Proje bazlı",
+            "duration": "1-3 gün",
+            "description": "Komple ofis mobilya taşıma, kurulum ve yerleşim planlaması."
+          },
+          {
+            "id": "s10",
+            "name": "3D Ofis Tasarımı",
+            "price": "Ücretsiz",
+            "duration": "3 iş günü",
+            "description": "Ofis alanınız için ücretsiz 3D yerleşim planı ve görselleştirme."
+          }
+        ],
+        "team": [
+          {
+            "name": "Tolga Erdoğan",
+            "title": "Kurucu & Genel Müdür",
+            "description": "İTÜ Endüstri Ürünleri Tasarımı, 20 yıl ofis mobilyası sektörü."
+          },
+          {
+            "name": "Ayşe Kılıç",
+            "title": "İç Mimar",
+            "description": "Ofis ergonomisi ve alan optimizasyonu uzmanı."
+          },
+          {
+            "name": "Can Yılmaz",
+            "title": "Satış Müdürü",
+            "description": "Kurumsal satış ve proje yönetimi."
+          },
+          {
+            "name": "Zehra Arslan",
+            "title": "Lojistik Koordinatör",
+            "description": "Ofis mobilya teslimat ve montaj koordinasyonu."
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "İK Müdürü Selin A.",
+            "district": "Maslak",
+            "date": "2026-01",
+            "rating": 5,
+            "comment": "150 kişilik ofisimizi komple döşediler. Sit-stand masalar çalışan memnuniyetini çok artırdı."
+          },
+          {
+            "name": "Startup kurucusu Mert B.",
+            "district": "Levent",
+            "date": "2025-12",
+            "rating": 5,
+            "comment": "Co-working alanımız için modüler çözümler sundular. Esnek, modern ve ekonomik."
+          },
+          {
+            "name": "Avukat Hande K.",
+            "district": "Şişli",
+            "date": "2025-11",
+            "rating": 4,
+            "comment": "Yönetici masamız çok şık. Kablo yönetim sistemi ofisi düzenli tutuyor."
+          },
+          {
+            "name": "Muhasebe firması sahibi Oğuz T.",
+            "district": "Mecidiyeköy",
+            "date": "2025-10",
+            "rating": 5,
+            "comment": "Dosya dolabı ve arşiv çözümleri çok pratik. 3D tasarım sayesinde ofisi önceden gördük."
+          },
+          {
+            "name": "Mimar Elif D.",
+            "district": "Beşiktaş",
+            "date": "2026-02",
+            "rating": 5,
+            "comment": "Cam bölme sistemi ofise ferahlık kattı. Montaj ekibi temiz ve hızlı çalıştı."
+          },
+          {
+            "name": "Banka şubesi müdürü Ali S.",
+            "district": "Kadıköy",
+            "date": "2025-09",
+            "rating": 5,
+            "comment": "Resepsiyon bankosu çok etkileyici oldu. Müşterilerimizden çok olumlu geri dönüş alıyoruz."
+          }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Ergonomik Ofis Çözümleri",
+          "subtitle": "Yönetici masasından sit-stand çalışma istasyonuna — verimliliği artıran ofis mobilyaları.",
+          "badge": "Ücretsiz 3D Tasarım"
+        },
+        "about": {
+          "title": "ErgoDesk Ofis Mobilyaları",
+          "description": "2010 yılından bu yana İstanbul'da ofis mobilyası sektörüne hizmet veren ErgoDesk, ergonomi ve modern tasarımı birleştiren çözümler sunar. 16 yıllık deneyimimizle startup'lardan holdinglere, 8.000'den fazla ofisi döşedik. Blum, Hettich aksesuarları ve ISO 14001 sertifikalı üretim tesisimizle Avrupa kalitesinde ofis mobilyası üretiyoruz."
+        },
+        "services": {
+          "title": "Ofis Mobilya Çözümlerimiz",
+          "subtitle": "Masadan koltuğa, bölmeden resepsiyona — tam donanımlı ofis projeleri"
+        },
+        "contact": {
+          "title": "Ofis Projenizi Planlayalım",
+          "subtitle": "Ücretsiz keşif ve 3D ofis tasarımı için bizi arayın"
+        },
+        "faq": [
+          {
+            "question": "Kurumsal projelerde indirim var mı?",
+            "answer": "50+ kişilik projelerde %10-20 arası kurumsal indirim uygulanır."
+          },
+          {
+            "question": "Kiralama seçeneğiniz var mı?",
+            "answer": "Evet, 12-36 ay arası ofis mobilyası kiralama programımız mevcuttur. Startup'lar için ideal."
+          },
+          {
+            "question": "Montaj süresi ne kadar?",
+            "answer": "50 kişilik standart bir ofis montajı 2-3 günde tamamlanır. Hafta sonu montaj da yapılır."
+          },
+          {
+            "question": "Garanti süresi nedir?",
+            "answer": "Mobilyalarda 5 yıl, mekanizmalarda 10 yıl, koltukta 3 yıl garanti sunuyoruz."
+          },
+          {
+            "question": "Eski mobilyaları geri alıyor musunuz?",
+            "answer": "Evet, eski ofis mobilyalarınızı değerlendirerek yeni siparişten düşüyoruz."
+          },
+          {
+            "question": "Ergonomik danışmanlık yapıyor musunuz?",
+            "answer": "Evet, ofis ergonomi uzmanımız çalışma alanınızı analiz eder ve kişiselleştirilmiş çözüm önerir."
+          },
+          {
+            "question": "Türkiye genelinde hizmet veriyor musunuz?",
+            "answer": "Evet, Türkiye genelinde kurumsal projelerde teslimat ve montaj yapıyoruz."
+          },
+          {
+            "question": "Sürdürülebilir malzeme kullanıyor musunuz?",
+            "answer": "E1 sınıfı MDF, FSC sertifikalı ahşap ve geri dönüştürülebilir malzemeler kullanıyoruz."
+          }
+        ]
+      }
+    },
+    {
+      "id": "mobilya-ozel",
+      "variantName": "ozel",
+      "plan": "pro",
+      "description": "Özel tasarım mobilya atölyesi — butik, sanatsal tasarım",
+      "designPhilosophy": "Zanaatkarlık, doğal malzeme, benzersiz parçalar",
+      "isDark": false,
+      "colors": {
+        "bg": "#FAF8F4",
+        "surface": "#EDE8DF",
+        "text": "#2A2520",
+        "accent": "#6D4C2D",
+        "accentHover": "#5A3D22",
+        "accentLight": "#F0E8DC",
+        "surfaceElevated": "#FFFFFF",
+        "textSecondary": "#7A6E60",
+        "surfaceMuted": "#E5E0D6",
+        "textMuted": "#998E80"
+      },
+      "fonts": {
+        "heading": "Playfair Display",
+        "body": "Inter"
+      },
+      "business": {
+        "name": "Marangoz Atölyesi",
+        "sector": "mobilyaci",
+        "ownerName": "Kaan Tuncer",
+        "slogan": "Her parça bir hikaye — size özel tasarım mobilyalar",
+        "phone": "0212 567 1234",
+        "phoneClean": "02125671234",
+        "email": "info@marangozatolyesi.com",
+        "address": "Balat Mah. Fener Cad. No:58, Fatih/İstanbul",
+        "city": "İstanbul",
+        "district": "Fatih",
+        "coordinates": {
+          "lat": 41.0306,
+          "lng": 28.9486
+        },
+        "socialMedia": {
+          "instagram": "marangozatolyesi",
+          "facebook": "marangozatolyesi",
+          "youtube": "marangozatolyesi",
+          "pinterest": "marangozatolyesi"
+        },
+        "photos": [],
+        "foundedYear": 2008,
+        "experience": "18 yıl",
+        "customerCount": "4.200+",
+        "rating": 4.9,
+        "reviewCount": 560,
+        "workingHours": [
+          {
+            "day": "Pazartesi",
+            "open": "09:00",
+            "close": "18:00",
+            "isOpen": true
+          },
+          {
+            "day": "Salı",
+            "open": "09:00",
+            "close": "18:00",
+            "isOpen": true
+          },
+          {
+            "day": "Çarşamba",
+            "open": "09:00",
+            "close": "18:00",
+            "isOpen": true
+          },
+          {
+            "day": "Perşembe",
+            "open": "09:00",
+            "close": "18:00",
+            "isOpen": true
+          },
+          {
+            "day": "Cuma",
+            "open": "09:00",
+            "close": "18:00",
+            "isOpen": true
+          },
+          {
+            "day": "Cumartesi",
+            "open": "10:00",
+            "close": "16:00",
+            "isOpen": true
+          },
+          {
+            "day": "Pazar",
+            "open": "",
+            "close": "",
+            "isOpen": false
+          }
+        ],
+        "services": [
+          {
+            "id": "s1",
+            "name": "Özel Tasarım Masa",
+            "price": "15.000 TL'den başlayan",
+            "duration": "15-25 iş günü",
+            "description": "Masif ahşap yemek, çalışma veya sehpa — müşteri isteğine göre benzersiz tasarım."
+          },
+          {
+            "id": "s2",
+            "name": "Epoksi Reçine Masa",
+            "price": "25.000 TL'den başlayan",
+            "duration": "20-30 iş günü",
+            "description": "Doğal ahşap ve renkli epoksi reçine birleşimi, her biri tek olan river table."
+          },
+          {
+            "id": "s3",
+            "name": "Ahşap Mutfak",
+            "price": "50.000 TL'den başlayan",
+            "duration": "25-35 iş günü",
+            "description": "Masif ahşap mutfak dolapları, el oyma detaylar, doğal yağ cila."
+          },
+          {
+            "id": "s4",
+            "name": "Kitaplık / Raf Sistemi",
+            "price": "8.000 TL'den başlayan",
+            "duration": "10-15 iş günü",
+            "description": "Duvara monte veya serbest duran, masif ahşap veya metal detaylı kitaplık."
+          },
+          {
+            "id": "s5",
+            "name": "Yatak Başlığı",
+            "price": "6.000 TL'den başlayan",
+            "duration": "7-10 iş günü",
+            "description": "Masif ahşap, kumaş kaplama veya deri yatak başlığı tasarımı."
+          },
+          {
+            "id": "s6",
+            "name": "Bahçe Mobilyası",
+            "price": "12.000 TL'den başlayan",
+            "duration": "10-15 iş günü",
+            "description": "İroko veya tik ağacından bahçe masası, bank ve salıncak."
+          },
+          {
+            "id": "s7",
+            "name": "Mobilya Restorasyonu",
+            "price": "5.000 TL'den başlayan",
+            "duration": "7-15 iş günü",
+            "description": "Antika veya eski mobilyaların orijinal dokusu korunarak restorasyonu."
+          },
+          {
+            "id": "s8",
+            "name": "Kapı & Merdiven",
+            "price": "10.000 TL'den başlayan",
+            "duration": "15-20 iş günü",
+            "description": "Masif ahşap iç kapı, sürgülü kapı ve merdiven korkuluğu üretimi."
+          },
+          {
+            "id": "s9",
+            "name": "Atölye Workshop",
+            "price": "2.500 TL/kişi",
+            "duration": "1 gün",
+            "description": "Ahşap işçiliği workshop'u — kendi sehpanızı kendiniz yapın."
+          },
+          {
+            "id": "s10",
+            "name": "Ahşap Heykel / Dekoratif",
+            "price": "3.000 TL'den başlayan",
+            "duration": "7-14 iş günü",
+            "description": "El oyma ahşap dekoratif parçalar, duvar panoları ve heykeller."
+          },
+          {
+            "id": "s11",
+            "name": "Mağaza İç Tasarım",
+            "price": "Proje bazlı",
+            "duration": "20-30 iş günü",
+            "description": "Butik mağaza, kafe ve restoran iç mekan ahşap mobilya projeleri."
+          },
+          {
+            "id": "s12",
+            "name": "Konsol Tasarımı",
+            "price": "7.000 TL'den başlayan",
+            "duration": "10 iş günü",
+            "description": "Giriş holü veya salon için özel tasarım konsol masası."
+          },
+          {
+            "id": "s13",
+            "name": "Ahşap Aydınlatma",
+            "price": "3.500 TL'den başlayan",
+            "duration": "7 iş günü",
+            "description": "Ahşap abajur, sarkıt ve duvar lambası tasarımı."
+          },
+          {
+            "id": "s14",
+            "name": "Çocuk Mobilyası",
+            "price": "8.000 TL'den başlayan",
+            "duration": "10-15 iş günü",
+            "description": "Doğal ahşaptan güvenli, eğlenceli çocuk odası mobilyaları."
+          }
+        ],
+        "team": [
+          {
+            "name": "Kaan Tuncer",
+            "title": "Kurucu Marangoz & Tasarımcı",
+            "description": "3. kuşak marangoz, İtalya'da mobilya tasarımı eğitimi almış."
+          },
+          {
+            "name": "Emre Aydoğdu",
+            "title": "Usta Marangoz",
+            "description": "25 yıllık ahşap işçiliği deneyimi, el oyma uzmanı."
+          },
+          {
+            "name": "Ece Güneş",
+            "title": "İç Mimar",
+            "description": "Özel tasarım projelerin görselleştirme ve müşteri danışmanlığı."
+          },
+          {
+            "name": "Sinan Çelik",
+            "title": "Restorasyon Uzmanı",
+            "description": "Antika mobilya restorasyonu ve tarihi yapı ahşap işleri."
+          },
+          {
+            "name": "Deniz Özdemir",
+            "title": "Epoksi & Reçine Uzmanı",
+            "description": "River table ve modern reçine sanatı uzmanı."
+          },
+          {
+            "name": "Hakan Kaya",
+            "title": "CNC Operatörü",
+            "description": "Dijital tasarımdan üretime, CNC tezgah operasyonu."
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "İç mimar Pınar S.",
+            "district": "Nişantaşı",
+            "date": "2026-01",
+            "rating": 5,
+            "comment": "Müşterilerim için çok sayıda proje yaptırdık. El işçiliği kalitesi eşsiz, her parça sanat eseri."
+          },
+          {
+            "name": "Restoran sahibi Cenk M.",
+            "district": "Karaköy",
+            "date": "2025-12",
+            "rating": 5,
+            "comment": "Restoranımızın tüm masaları ve barı buradan. Epoksi masa yıldız parçamız oldu."
+          },
+          {
+            "name": "Koleksiyoner Leyla T.",
+            "district": "Bebek",
+            "date": "2025-11",
+            "rating": 5,
+            "comment": "100 yıllık büfemi restore ettiler. Orijinal dokuyu koruyarak harika iş çıkardılar."
+          },
+          {
+            "name": "Mimar Ali K.",
+            "district": "Cihangir",
+            "date": "2025-10",
+            "rating": 5,
+            "comment": "Butik otel projemizde 40 parça özel mobilya ürettiler. Zamanında ve eksiksiz teslim."
+          },
+          {
+            "name": "Workshop katılımcısı Melis D.",
+            "district": "Kadıköy",
+            "date": "2025-09",
+            "rating": 5,
+            "comment": "Atölye workshop'u hayatımın en keyifli deneyimiydi. Kendi sehpamı yaptım!"
+          },
+          {
+            "name": "Blogger Seda A.",
+            "district": "Beyoğlu",
+            "date": "2026-02",
+            "rating": 5,
+            "comment": "Ceviz çalışma masamı Instagram'da paylaştım, yüzlerce soru geldi. Herkese tavsiye ederim."
+          },
+          {
+            "name": "Avukat Burak E.",
+            "district": "Şişli",
+            "date": "2025-08",
+            "rating": 4,
+            "comment": "Kitaplığım muhteşem ama teslimat 1 hafta gecikti. Kalite açısından tam puan."
+          },
+          {
+            "name": "Cafe sahibi Gül N.",
+            "district": "Moda",
+            "date": "2025-07",
+            "rating": 5,
+            "comment": "Cafe'mizin tüm ahşap mobilyalarını yaptılar. Müşteriler her zaman mobilyaları soruyor."
+          }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Her Parça Bir Hikaye",
+          "subtitle": "Balat'ta 18 yıldır, masif ahşaptan benzersiz mobilyalar üretiyoruz. Epoksi river table'dan antika restorasyona.",
+          "badge": "3. Kuşak Zanaatkarlık"
+        },
+        "about": {
+          "title": "Marangoz Atölyesi Hakkında",
+          "description": "Fatih Balat'ın tarihi dokusunda 2008 yılında kurulan Marangoz Atölyesi, geleneksel ahşap işçiliği ile modern tasarımı buluşturur. 3. kuşak marangoz Kaan Tuncer ve ekibi, ceviz, meşe, tik ve zeytin ağacından benzersiz mobilyalar üretir. Epoksi reçine masalarımız, el oyma detaylarımız ve restorasyon çalışmalarımızla İstanbul'un en saygın butik mobilya atölyelerinden biriyiz. 400 metrekarelik atölyemizde geleneksel el aletleri ve modern CNC teknolojisi yan yana çalışır."
+        },
+        "services": {
+          "title": "Atölye Hizmetlerimiz",
+          "subtitle": "Özel tasarım, epoksi, restorasyon, workshop — ahşap sanatının tüm yüzleri"
+        },
+        "contact": {
+          "title": "Atölyemizi Ziyaret Edin",
+          "subtitle": "Balat atölyemize gelin, projenizi birlikte tasarlayalım"
+        },
+        "faq": [
+          {
+            "question": "Özel tasarım süreci nasıl işliyor?",
+            "answer": "Görüşme → eskiz/3D → malzeme seçimi → onay → üretim → teslimat. Süreç 2-5 hafta arası değişir."
+          },
+          {
+            "question": "Hangi ahşap türleri kullanılıyor?",
+            "answer": "Ceviz, meşe, kayın, tik, iroko, zeytin ve gürgen başlıca malzemelerimiz. Tümü FSC sertifikalı."
+          },
+          {
+            "question": "Epoksi masa dayanıklı mı?",
+            "answer": "Evet, UV dayanımlı epoksi reçine kullanıyoruz. Çizilme ve ısı direnci yüksektir. 10 yıl garanti veriyoruz."
+          },
+          {
+            "question": "Eski mobilyamı restore edebilir misiniz?",
+            "answer": "Evet, antika ve eski mobilyaların restorasyonu uzmanlık alanımız. Orijinal dokuyu koruyarak yenileme yapıyoruz."
+          },
+          {
+            "question": "Workshop'a nasıl katılırım?",
+            "answer": "Instagram veya web sitemiz üzerinden aylık workshop takvimimizi görebilir ve online kayıt yaptırabilirsiniz."
+          },
+          {
+            "question": "Yurt dışına teslimat yapıyor musunuz?",
+            "answer": "Evet, özel paketleme ile Avrupa ve ABD'ye gönderim yapıyoruz. Sigortalı ve takipli kargo."
+          },
+          {
+            "question": "Fiyat nasıl belirleniyor?",
+            "answer": "Ahşap türü, boyut, detay karmaşıklığı ve bitirme tekniğine göre fiyat belirlenir. Teklif ücretsizdir."
+          },
+          {
+            "question": "Toplu sipariş alıyor musunuz?",
+            "answer": "Evet, otel, restoran ve mağaza projeleri için toplu sipariş indirimleri sunuyoruz."
+          },
+          {
+            "question": "Bakım önerileriniz neler?",
+            "answer": "Masif ahşap mobilyalarınızı yılda 1-2 kez doğal ahşap yağı ile besleyin. Direkt güneş ışığından kaçının."
+          },
+          {
+            "question": "Showroom'unuz var mı?",
+            "answer": "Atölyemiz aynı zamanda showroom işlevi görür. Balat'ta önceden randevu alarak ziyaret edebilirsiniz."
+          }
+        ]
+      }
+    },
+    {
+      "id": "mobilya-lux",
+      "variantName": "lux",
+      "plan": "enterprise",
+      "description": "Lüks mobilya evi — premium, karanlık şık tasarım",
+      "designPhilosophy": "Ultra premium, İtalyan tasarım estetiği",
+      "isDark": true,
+      "colors": {
+        "bg": "#0A0A0A",
+        "surface": "#1A1714",
+        "text": "#F5F0E8",
+        "accent": "#C9A84C",
+        "accentHover": "#D4B85C",
+        "accentActive": "#B8963C",
+        "accentLight": "#2A2418",
+        "surfaceElevated": "#252017",
+        "surfaceMuted": "#151210",
+        "textSecondary": "#BEB5A5",
+        "textMuted": "#8A8070",
+        "textOnAccent": "#0A0A0A",
+        "border": "#2A2520",
+        "borderSubtle": "#1F1B17"
+      },
+      "fonts": {
+        "heading": "Cormorant Garamond",
+        "body": "Inter"
+      },
+      "business": {
+        "name": "Casa Moderna İstanbul",
+        "sector": "mobilyaci",
+        "ownerName": "Arda Öztürk",
+        "slogan": "İtalyan tasarım estetiği, Türk zanaatkarlığı — lüks yaşam mobilyaları",
+        "phone": "0212 999 4400",
+        "phoneClean": "02129994400",
+        "email": "info@casamoderna.com.tr",
+        "address": "Nispetiye Cad. No:58, Beşiktaş/İstanbul",
+        "city": "İstanbul",
+        "district": "Beşiktaş",
+        "coordinates": {
+          "lat": 41.079,
+          "lng": 29.032
+        },
+        "socialMedia": {
+          "instagram": "casamodernist",
+          "facebook": "casamodernistanbul",
+          "youtube": "casamoderna",
+          "pinterest": "casamodernist",
+          "linkedin": "casa-moderna-istanbul"
+        },
+        "photos": [],
+        "foundedYear": 2002,
+        "experience": "24 yıl",
+        "customerCount": "15.000+",
+        "rating": 5.0,
+        "reviewCount": 1100,
+        "workingHours": [
+          {
+            "day": "Pazartesi",
+            "open": "08:00",
+            "close": "19:00",
+            "isOpen": true
+          },
+          {
+            "day": "Salı",
+            "open": "08:00",
+            "close": "19:00",
+            "isOpen": true
+          },
+          {
+            "day": "Çarşamba",
+            "open": "08:00",
+            "close": "19:00",
+            "isOpen": true
+          },
+          {
+            "day": "Perşembe",
+            "open": "08:00",
+            "close": "19:00",
+            "isOpen": true
+          },
+          {
+            "day": "Cuma",
+            "open": "08:00",
+            "close": "19:00",
+            "isOpen": true
+          },
+          {
+            "day": "Cumartesi",
+            "open": "09:00",
+            "close": "17:00",
+            "isOpen": true
+          },
+          {
+            "day": "Pazar",
+            "open": "10:00",
+            "close": "15:00",
+            "isOpen": true
+          }
+        ],
+        "services": [
+          {
+            "id": "s1",
+            "name": "Lüks Oturma Grubu",
+            "price": "150.000 TL'den başlayan",
+            "duration": "30-45 iş günü",
+            "description": "İtalyan deri, el dikişi, masif ceviz iskelet — haute couture oturma grupları."
+          },
+          {
+            "id": "s2",
+            "name": "İtalyan Yatak Odası",
+            "price": "200.000 TL'den başlayan",
+            "duration": "45-60 iş günü",
+            "description": "İtalyan tasarım yatak odası koleksiyonu, altın varak detay seçenekli."
+          },
+          {
+            "id": "s3",
+            "name": "Bespoke Yemek Odası",
+            "price": "120.000 TL'den başlayan",
+            "duration": "30-45 iş günü",
+            "description": "6-16 kişilik masif masa, el oyma sandalyeler, vitrin ve büfe."
+          },
+          {
+            "id": "s4",
+            "name": "Signature Mutfak",
+            "price": "250.000 TL'den başlayan",
+            "duration": "45-60 iş günü",
+            "description": "İtalyan Lake veya masif ahşap mutfak, Gaggenau/Miele entegrasyon."
+          },
+          {
+            "id": "s5",
+            "name": "Walk-in Closet",
+            "price": "80.000 TL'den başlayan",
+            "duration": "20-30 iş günü",
+            "description": "Özel tasarım giyinme odası, LED aydınlatma, cam çekmece, takı bölümü."
+          },
+          {
+            "id": "s6",
+            "name": "Home Cinema Mobilya",
+            "price": "100.000 TL'den başlayan",
+            "duration": "30 iş günü",
+            "description": "Motorlu recliner koltuklar, akustik panel ve bar ünitesi."
+          },
+          {
+            "id": "s7",
+            "name": "Villa Bahçe Mobilyası",
+            "price": "80.000 TL'den başlayan",
+            "duration": "20-30 iş günü",
+            "description": "Tik ağacı, Sunbrella kumaş ve paslanmaz çelik outdoor mobilya."
+          },
+          {
+            "id": "s8",
+            "name": "Yat Mobilyası",
+            "price": "Proje bazlı",
+            "duration": "45-60 iş günü",
+            "description": "Deniz tuzu dayanımlı, özel boyut yat iç mekan mobilyaları."
+          },
+          {
+            "id": "s9",
+            "name": "Lüks Banyo",
+            "price": "120.000 TL'den başlayan",
+            "duration": "30-45 iş günü",
+            "description": "Mermer, bronz ve ahşap detaylı lüks banyo mobilyası."
+          },
+          {
+            "id": "s10",
+            "name": "Art Deco Aksesuar",
+            "price": "5.000 TL'den başlayan",
+            "duration": "10-15 iş günü",
+            "description": "El yapımı dekoratif objeler, aynalar, vazo ve heykel."
+          },
+          {
+            "id": "s11",
+            "name": "Komple Ev Projesi",
+            "price": "Proje bazlı",
+            "duration": "3-6 ay",
+            "description": "A'dan Z'ye lüks ev mobilya ve dekorasyon projesi, iç mimarlık dahil."
+          },
+          {
+            "id": "s12",
+            "name": "Otel / Rezidans Projesi",
+            "price": "Proje bazlı",
+            "duration": "3-12 ay",
+            "description": "5 yıldızlı otel ve lüks rezidans iç mekan mobilya projeleri."
+          },
+          {
+            "id": "s13",
+            "name": "Antika Restorasyon (Premium)",
+            "price": "Proje bazlı",
+            "duration": "Proje bazlı",
+            "description": "Müzayede parçası değerindeki antika mobilyaların uzman restorasyonu."
+          },
+          {
+            "id": "s14",
+            "name": "Kişiselleştirme Atölyesi",
+            "price": "Proje bazlı",
+            "duration": "Proje bazlı",
+            "description": "Müşterinin tercih ettiği kumaş, deri, ahşap ve metal ile tam kişiselleştirme."
+          },
+          {
+            "id": "s15",
+            "name": "İtalya Fabrika Turu",
+            "price": "Davet",
+            "duration": "3-5 gün",
+            "description": "VIP müşteriler için İtalyan mobilya fabrikalarına özel ziyaret turu."
+          },
+          {
+            "id": "s16",
+            "name": "After-Sales Bakım Programı",
+            "price": "Yıllık 10.000 TL",
+            "duration": "Yıllık",
+            "description": "Yılda 2 kez ev ziyareti, deri bakımı, ahşap yağlama ve kumaş temizliği."
+          },
+          {
+            "id": "s17",
+            "name": "Sanal Showroom Turu",
+            "price": "Ücretsiz",
+            "duration": "30 dakika",
+            "description": "VR gözlükle veya online 360° sanal showroom deneyimi."
+          },
+          {
+            "id": "s18",
+            "name": "Interior Styling",
+            "price": "25.000 TL'den başlayan",
+            "duration": "5-10 iş günü",
+            "description": "Ev dekorasyon ve stil danışmanlığı, aksesuar seçimi ve yerleştirme."
+          },
+          {
+            "id": "s19",
+            "name": "Aydınlatma Tasarımı",
+            "price": "15.000 TL'den başlayan",
+            "duration": "10-15 iş günü",
+            "description": "Özel tasarım avize, abajur ve dekoratif aydınlatma çözümleri."
+          },
+          {
+            "id": "s20",
+            "name": "Concierge Hizmet",
+            "price": "Üyelik bazlı",
+            "duration": "7/24",
+            "description": "Mobilya taşıma, yerleşim değişikliği, acil onarım — 7/24 VIP hizmet."
+          }
+        ],
+        "team": [
+          {
+            "name": "Arda Öztürk",
+            "title": "Kurucu & CEO",
+            "description": "Milano Politeknik Üniversitesi mobilya tasarımı, 28 yıllık sektör deneyimi."
+          },
+          {
+            "name": "Giulia Moretti",
+            "title": "Tasarım Direktörü",
+            "description": "İtalyan endüstriyel tasarımcı, Poltrona Frau ve B&B Italia geçmişli."
+          },
+          {
+            "name": "Selim Yalçın",
+            "title": "Usta Marangoz Başı",
+            "description": "40 yıllık marangozluk, altın varak ve el oyma uzmanı."
+          },
+          {
+            "name": "Elif Koray",
+            "title": "İç Mimarlık Direktörü",
+            "description": "Parsons School of Design, lüks konut ve otel projeleri uzmanı."
+          },
+          {
+            "name": "Marco Bianchi",
+            "title": "İtalya Tedarik Müdürü",
+            "description": "Milano'da yerleşik, İtalyan atölyeler ve deri fabrikalarıyla bağlantı."
+          },
+          {
+            "name": "Ayşe Erdem",
+            "title": "Müşteri Deneyimi Müdürü",
+            "description": "Ritz-Carlton geçmişli, VIP müşteri ilişkileri uzmanı."
+          },
+          {
+            "name": "Burak Demirci",
+            "title": "Proje Müdürü",
+            "description": "Villa ve otel mobilya projelerinin koordinasyonu, 15 yıl deneyim."
+          },
+          {
+            "name": "İrem Şen",
+            "title": "Dijital Deneyim Uzmanı",
+            "description": "VR showroom ve 3D konfigüratör geliştirme."
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "İş insanı Hakan & Selin A.",
+            "district": "Etiler",
+            "date": "2026-02",
+            "rating": 5,
+            "comment": "Villam ızı baştan sona döşediler. İtalyan deri koltuklarımız ve ceviz yemek masamız evin yıldızı."
+          },
+          {
+            "name": "Holding CEO'su Mehmet T.",
+            "district": "Bebek",
+            "date": "2026-01",
+            "rating": 5,
+            "comment": "Yat mobilyalarımız Casa Moderna imzası. Deniz tuzuna dayanıklılığı mükemmel."
+          },
+          {
+            "name": "Moda tasarımcısı Dilek K.",
+            "district": "Nişantaşı",
+            "date": "2025-12",
+            "rating": 5,
+            "comment": "Walk-in closet'ım hayallerimin ötesinde. LED aydınlatma ve cam çekmeceler muhteşem."
+          },
+          {
+            "name": "Otelci Cengiz B.",
+            "district": "Taksim",
+            "date": "2025-11",
+            "rating": 5,
+            "comment": "Boutique otelimizin 25 odasını döşediler. Her oda farklı, her biri mükemmel."
+          },
+          {
+            "name": "Diplomat eşi Aylin E.",
+            "district": "Ulus",
+            "date": "2025-10",
+            "rating": 5,
+            "comment": "İtalya fabrika turuna katıldık, kumaş ve deriyi bizzat seçtik. Eşsiz bir deneyimdi."
+          },
+          {
+            "name": "Koleksiyoner Serhat G.",
+            "district": "Arnavutköy",
+            "date": "2025-09",
+            "rating": 5,
+            "comment": "Osmanlı dönemi büfemi restore ettiler. Müzayede değeri katlandı."
+          },
+          {
+            "name": "Emlak yatırımcısı Leyla M.",
+            "district": "Zekeriyaköy",
+            "date": "2025-08",
+            "rating": 5,
+            "comment": "3 villamızı komple döşediler. Satış fiyatlarımız mobilya kalitesiyle %20 arttı."
+          },
+          {
+            "name": "Cerrah Prof. Dr. Kemal S.",
+            "district": "Bebek",
+            "date": "2025-07",
+            "rating": 5,
+            "comment": "Home cinema sistemimiz sinema salonu kalitesinde. Recliner koltuklar inanılmaz konforlu."
+          },
+          {
+            "name": "Mücevher markası sahibi Nil D.",
+            "district": "Etiler",
+            "date": "2026-03",
+            "rating": 5,
+            "comment": "Mağazamızın tüm vitrin ve tezgahlarını yaptılar. Altın varak detaylar markamıza çok yakıştı."
+          },
+          {
+            "name": "Psikolog Dr. Pınar A.",
+            "district": "Caddebostan",
+            "date": "2025-06",
+            "rating": 5,
+            "comment": "After-sales bakım programı harika. Yılda 2 kez gelip her şeyi bakımdan geçiriyorlar."
+          },
+          {
+            "name": "Yatırımcı Ali R.",
+            "district": "Sarıyer",
+            "date": "2025-05",
+            "rating": 4,
+            "comment": "Kalite tartışmasız en iyi ama teslimat süreleri biraz uzun. Sonuç o kadar iyi ki beklemeye değer."
+          },
+          {
+            "name": "Influencer Melis T.",
+            "district": "Levent",
+            "date": "2026-01",
+            "rating": 5,
+            "comment": "Sanal showroom turu çok etkileyiciydi. VR gözlükle evimde nasıl duracağını önceden gördüm."
+          }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Lüks Yaşamın Mobilyası",
+          "subtitle": "Milano estetiği, İstanbul zanaatkarlığı — özel tasarım lüks ev ve yat mobilyaları. 24 yıldır seçkin aileler için.",
+          "badge": "Italian Design Partner"
+        },
+        "about": {
+          "title": "Casa Moderna İstanbul",
+          "description": "2002 yılında kurulan Casa Moderna İstanbul, Türkiye'nin en prestijli lüks mobilya evidir. Beşiktaş Etiler'deki 3 katlı, 2.000 metrekarelik showroom'umuz ve Tuzla'daki 5.000 metrekarelik üretim tesisimizde İtalyan tasarım estetiğini Türk zanaatkarlığıyla birleştiriyoruz. Milano'daki tasarım ofisimiz ve İtalyan kumaş/deri tedarikçilerimizle direkt çalışarak, dünya standartlarında lüks mobilya üretiyoruz. Müşteri portföyümüzde Türkiye'nin önde gelen iş insanları, diplomatlar, 5 yıldızlı oteller ve lüks rezidans projeleri yer almaktadır. VR showroom teknolojimiz ile mobilyalarınızı evinizde deneyimleme imkanı sunuyoruz."
+        },
+        "services": {
+          "title": "Lüks Mobilya Koleksiyonları",
+          "subtitle": "Salon, yatak odası, mutfak, yat — İtalyan deri ve masif ahşap ile premium yaşam"
+        },
+        "contact": {
+          "title": "VIP Randevu",
+          "subtitle": "Özel showroom deneyimi için randevu alın"
+        },
+        "faq": [
+          {
+            "question": "Tasarım süreci nasıl işliyor?",
+            "answer": "VIP danışman ataması → ev ziyareti → konsept sunumu → malzeme seçimi → 3D/VR → üretim → teslimat/kurulum."
+          },
+          {
+            "question": "İtalyan malzeme kullanıyor musunuz?",
+            "answer": "Deriler Tuscany, kumaşlar Como/Milano, mermerler Carrara'dan tedarik edilir. Ahşap ise Türk ceviz ve meşesi kullanılır."
+          },
+          {
+            "question": "Komple ev projesi ne kadar sürer?",
+            "answer": "Villadaki alan büyüklüğüne göre 3-6 ay arası. İç mimarlık, mobilya, aydınlatma ve aksesuar dahil anahtar teslim."
+          },
+          {
+            "question": "VR showroom nasıl çalışıyor?",
+            "answer": "Showroom'umuza gelerek VR gözlükle veya evden online 360° tur yapabilirsiniz. Mobilyaları kendi evinize sanal olarak yerleştirebilirsiniz."
+          },
+          {
+            "question": "After-sales bakım neyi kapsar?",
+            "answer": "Yılda 2 ev ziyareti: deri nemlendirme, ahşap yağlama, kumaş leke çıkarma, menteşe ayarı ve küçük onarımlar."
+          },
+          {
+            "question": "İtalya fabrika turu kimler için?",
+            "answer": "250.000 TL üzeri sipariş veren VIP müşterilerimize İtalyan deri fabrikası ve mobilya atölyesi ziyareti organize edilir."
+          },
+          {
+            "question": "Finans seçenekleriniz var mı?",
+            "answer": "Kredi kartına 24 taksit, banka kredisi desteği ve proje bazlı ödeme planı sunuyoruz."
+          },
+          {
+            "question": "Garanti süresi nedir?",
+            "answer": "Mobilya gövdesi 10 yıl, mekanizmalar 5 yıl, kumaş/deri 3 yıl garanti. After-sales program ile garanti 15 yıla uzar."
+          },
+          {
+            "question": "Yurt dışına gönderiyor musunuz?",
+            "answer": "Evet, Avrupa, Körfez ülkeleri ve ABD'ye sigortalı, özel paketleme ile sevkiyat yapıyoruz."
+          },
+          {
+            "question": "Showroom ziyareti için randevu gerekli mi?",
+            "answer": "Evet, VIP deneyimi için önceden randevu almanızı rica ediyoruz. Özel danışmanınız sizi karşılayacaktır."
+          },
+          {
+            "question": "Özel boyut üretim yapıyor musunuz?",
+            "answer": "Kesinlikle, tüm mobilyalarımız müşteri ölçülerine göre özel üretilir. Standart üretimimiz yoktur."
+          },
+          {
+            "question": "Dekorasyon danışmanlığı dahil mi?",
+            "answer": "250.000 TL üzeri projelerde iç mimarlık ve styling danışmanlığı dahildir. Altında ayrı ücretlendirilir."
+          },
+          {
+            "question": "Marka ortaklıklarınız neler?",
+            "answer": "Gaggenau, Miele, Dornbracht, Hansgrohe, Flos ve Artemide gibi premium markalarla entegrasyon yapıyoruz."
+          },
+          {
+            "question": "Kurumsal referanslarınız neler?",
+            "answer": "Four Seasons, Mandarin Oriental, Soho House ve birçok 5 yıldızlı otel mobilya projelerimiz mevcuttur."
+          },
+          {
+            "question": "Numune gönderebilir misiniz?",
+            "answer": "Evet, kumaş, deri ve ahşap numunelerini kargo ile ücretsiz gönderiyoruz. VR'da da görebilirsiniz."
+          }
+        ]
+      }
+    }
+  ]
+}

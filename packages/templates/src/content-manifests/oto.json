@@ -1,0 +1,1331 @@
+{
+  "sectorId": "oto",
+  "seoSchemaType": "AutoRepair",
+  "variants": [
+    {
+      "id": "oto-mekanik",
+      "variantName": "mekanik",
+      "plan": "free",
+      "description": "Mahalle oto tamircisi, guvenilir",
+      "designPhilosophy": "Sade, endustriyel, guvenilir",
+      "isDark": false,
+      "colors": {
+        "bg": "#FFFFFF",
+        "surface": "#F4F4F2",
+        "text": "#1A1A1A",
+        "accent": "#D4380D"
+      },
+      "fonts": { "heading": "Inter", "body": "Inter" },
+      "business": {
+        "name": "Ustam Oto Tamir",
+        "ownerName": "Cemal Demir",
+        "sector": "Oto",
+        "slogan": "Aracınız emin ellerde",
+        "phone": "0216 380 45 67",
+        "phoneClean": "902163804567",
+        "whatsapp": "905321234567",
+        "email": "info@ustamototamir.com",
+        "address": "Icerenkoy Mah. Oto Sanayi Sitesi No:18, Atasehir/Istanbul",
+        "city": "Istanbul",
+        "district": "Atasehir",
+        "neighborhood": "Icerenkoy",
+        "coordinates": { "lat": 40.9872, "lng": 29.0911 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/ustamototamir"
+        },
+        "photos": [],
+        "foundedYear": 2005,
+        "experience": "21 yil",
+        "customerCount": "18.000+",
+        "rating": 4.7,
+        "reviewCount": 680,
+        "services": [
+          {
+            "id": "s1",
+            "name": "Motor Bakim & Onarim",
+            "price": "1.500 - 8.000 TL",
+            "duration": "2-8 saat",
+            "description": "Yag degisimi, filtre, bujimdeğisimi, motor ariza teshisi. Tum marka ve model araclar icin genel motor bakimi."
+          },
+          {
+            "id": "s2",
+            "name": "Fren Sistemi",
+            "price": "800 - 3.500 TL",
+            "duration": "1-3 saat",
+            "description": "Fren balatasi, fren diski degisimi, fren hidrolik sistemibakimi. ABS ariza teshisi ve onarimi."
+          },
+          {
+            "id": "s3",
+            "name": "Sanziman & Debriyaj",
+            "price": "3.000 - 12.000 TL",
+            "duration": "4-8 saat",
+            "description": "Manuel ve otomatik sanziman bakimi. Debriyaj seti degisimi, sanziman yag degisimi ve ariza teshisi."
+          },
+          {
+            "id": "s4",
+            "name": "Periyodik Bakim",
+            "price": "1.200 - 3.000 TL",
+            "duration": "2-3 saat",
+            "description": "Motor yagi, hava filtresi, yakit filtresi, kabin filtresi degisimi. Genel kontrol ve rapor."
+          }
+        ],
+        "workingHours": [
+          { "day": "Pazartesi", "open": "08:00", "close": "19:00", "isOpen": true },
+          { "day": "Sali", "open": "08:00", "close": "19:00", "isOpen": true },
+          { "day": "Carsamba", "open": "08:00", "close": "19:00", "isOpen": true },
+          { "day": "Persembe", "open": "08:00", "close": "19:00", "isOpen": true },
+          { "day": "Cuma", "open": "08:00", "close": "19:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "08:00", "close": "16:00", "isOpen": true },
+          { "day": "Pazar", "open": null, "close": null, "isOpen": false }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Oto Tamirde Guvenin Adresi",
+          "subtitle": "21 yildir Atasehir'de motordan fren sistemine, sanzimandan periyodik bakima — aracnizi emin ellere teslim edin.",
+          "badge": "Atasehir"
+        },
+        "about": {
+          "title": "Ustam Oto Tamir Hakkinda",
+          "description": "2005 yilinda Icerenkoy Sanayi Sitesi'nde actigimiz atölyemizde, 21 yildir tum marka ve model araclara mekanik bakim ve onarim hizmeti veriyoruz. Cemal Demir olarak, meslek hayatima ciraklikla basladim ve bugun 18.000'den fazla araca hizmet vermis bir usta olarak atölyemi yonetiyorum.\n\nCalismalarimizda orijinal ve orijinal esdeAer yedek parca kullaniyoruz. Her islem oncesi musteri bilgilendirilir, fiyat onay alindiktan sonra ise baslanir. Islem sonrasi detayli rapor ve garanti belgesi sunuyoruz."
+        },
+        "services": {
+          "title": "Hizmetlerimiz",
+          "subtitle": "Her marka ve model araca profesyonel mekanik hizmet"
+        },
+        "contact": {
+          "title": "Randevu Alin",
+          "subtitle": "Telefonla veya WhatsApp'tan randevu olusturun"
+        },
+        "faq": [
+          {
+            "q": "Periyodik bakim ne siklikla yapilmali?",
+            "a": "Genel olarak her 10.000-15.000 km'de veya yilda bir kez periyodik bakim yaptirilmasi onerilir. Arac kullanim kitapciginizdaki onerilere gore hareket etmeniz en dogrusudur."
+          },
+          {
+            "q": "Yedek parca getirmem gerekiyor mu?",
+            "a": "Hayir, tum yedek parcalari biz temin ediyoruz. Orijinal ve orijinal esdeAer secenekler sunuyoruz. Isterseniz kendiniz de parca getirebilirsiniz."
+          },
+          {
+            "q": "Garanti veriyor musunuz?",
+            "a": "Evet, iscilik icin 6 ay, yedek parca icin uretici garantisi gecerlidir. Her islem sonrasi garanti belgesi duzenliyoruz."
+          },
+          {
+            "q": "Aracimi birakip gidebilir miyim?",
+            "a": "Evet, aracınızı birakip isi tamamlaninca almanız mumkun. Islem suresi hakkinda onceden bilgi veriyoruz."
+          }
+        ],
+        "testimonials": []
+      }
+    },
+    {
+      "id": "oto-bakim",
+      "variantName": "bakim",
+      "plan": "starter",
+      "description": "Modern oto bakim merkezi, duzenli musteri",
+      "designPhilosophy": "Temiz, profesyonel, guvenilir",
+      "isDark": false,
+      "colors": {
+        "bg": "#FAFAFA",
+        "surface": "#F0F0EC",
+        "text": "#1C2024",
+        "accent": "#2563EB"
+      },
+      "fonts": { "heading": "Montserrat", "body": "Open Sans" },
+      "business": {
+        "name": "ProCar Oto Bakim Merkezi",
+        "ownerName": "Volkan Aksoy",
+        "sector": "Oto",
+        "slogan": "Profesyonel bakim, uzun omur",
+        "phone": "0212 630 22 11",
+        "phoneClean": "902126302211",
+        "whatsapp": "905431234567",
+        "email": "randevu@procarbakim.com",
+        "address": "Kucukcekmece Mah. E-5 Uzeri No:450, Kucukcekmece/Istanbul",
+        "city": "Istanbul",
+        "district": "Kucukcekmece",
+        "neighborhood": "Kucukcekmece",
+        "coordinates": { "lat": 41.0024, "lng": 28.7832 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/procarbakim",
+          "youtube": "https://youtube.com/@procarbakim"
+        },
+        "photos": [],
+        "foundedYear": 2012,
+        "experience": "14 yil",
+        "customerCount": "28.000+",
+        "rating": 4.8,
+        "reviewCount": 1250,
+        "services": [
+          {
+            "id": "s1",
+            "name": "Komple Periyodik Bakim",
+            "price": "2.500 - 5.000 TL",
+            "duration": "2-3 saat",
+            "description": "Motor yagi, tum filtreler, buji, antifriz kontrolu, fren kontrolu, lastik kontrolu ve 42 noktali genel kontrol."
+          },
+          {
+            "id": "s2",
+            "name": "Klima Bakimi",
+            "price": "1.200 - 2.500 TL",
+            "duration": "1-2 saat",
+            "description": "Klima gazi dolumu, filtre degisimi, evaporator temizligi, koku giderme ve sistem performans testi."
+          },
+          {
+            "id": "s3",
+            "name": "Aks & Rot Bakim",
+            "price": "1.500 - 4.000 TL",
+            "duration": "2-4 saat",
+            "description": "Aks kafasi, rot basi, rotil, salincak burcu degisimi. Rot ayari ve balans islemi."
+          },
+          {
+            "id": "s4",
+            "name": "Elektrik & Aku",
+            "price": "500 - 3.000 TL",
+            "duration": "1-3 saat",
+            "description": "Aku testi ve degisimi, alternatör kontrolu, marş motoru, kablo sistemi ve ampul degisimi."
+          },
+          {
+            "id": "s5",
+            "name": "Egzoz Sistemi",
+            "price": "800 - 5.000 TL",
+            "duration": "1-4 saat",
+            "description": "Egzoz borusu, susturucu, katalitik konvertor tamiri ve degisimi. Emisyon testi."
+          },
+          {
+            "id": "s6",
+            "name": "Suspensiyon Sistemi",
+            "price": "1.500 - 6.000 TL",
+            "duration": "2-4 saat",
+            "description": "Amortisor, helezon yay, viraj demiri, takviye kolu degisimi. Ön ve arka suspensiyon komple bakim."
+          }
+        ],
+        "team": [
+          {
+            "name": "Volkan Aksoy",
+            "title": "Kurucu | Usta Mekanikçi",
+            "bio": "25 yillik otomotiv deneyimi. Bosch Servis sertifikali. Alman grubuj araclarda uzmanlik.",
+            "photo": ""
+          },
+          {
+            "name": "Murat Kaya",
+            "title": "Kalfa | Motor Uzmani",
+            "bio": "12 yillik motor ve sanziman deneyimi. Ford ve Renault grubuj araclarda uzmanlik.",
+            "photo": ""
+          }
+        ],
+        "workingHours": [
+          { "day": "Pazartesi", "open": "08:00", "close": "19:00", "isOpen": true },
+          { "day": "Sali", "open": "08:00", "close": "19:00", "isOpen": true },
+          { "day": "Carsamba", "open": "08:00", "close": "19:00", "isOpen": true },
+          { "day": "Persembe", "open": "08:00", "close": "19:00", "isOpen": true },
+          { "day": "Cuma", "open": "08:00", "close": "19:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "08:00", "close": "17:00", "isOpen": true },
+          { "day": "Pazar", "open": null, "close": null, "isOpen": false }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Profesyonel Oto Bakim",
+          "subtitle": "14 yildir 28.000+ araca hizmet. Periyodik bakimdan klima servisine, suspensiyon onarimindan elektrik sistemine — profesyonel cozum.",
+          "badge": "Bosch Servis Sertifkali"
+        },
+        "about": {
+          "title": "ProCar Hakkinda",
+          "description": "2012 yilinda Kucukcekmece'de kurulan ProCar Oto Bakim Merkezi, Bosch Servis sertifkali modern atolyesiyle hizmet vermektedir. 400 m2 kapali alanda 4 lift ve son teknoloji ariza teshis cihazlariyla donatilmis merkezimiz, tum marka ve model araclara profesyonel bakim sunmaktadir.\n\nKurucumuz Volkan Aksoy'un 25 yillik sektör deneyimiyle, ozellikle Alman grubu araclarda (VW, Audi, BMW, Mercedes) uzmanlasmis olan ekibimiz, her araca ayricalikli hizmet verir.\n\nTum islemlerimizde orijinal veya orijinal esdeAer yedek parca kullaniyoruz. Her bakim sonrasi dijital rapor ve garanti belgesi duzenliyoruz."
+        },
+        "services": {
+          "title": "Bakim Hizmetlerimiz",
+          "subtitle": "42 noktali kontrol ile kapsamli oto bakim"
+        },
+        "stats": {
+          "title": "Rakamlarla ProCar",
+          "items": [
+            { "value": "28.000+", "label": "Bakim Yapilan Arac" },
+            { "value": "14", "label": "Yil Deneyim" },
+            { "value": "4.8", "label": "Google Puan" },
+            { "value": "42", "label": "Kontrol Noktasi" }
+          ]
+        },
+        "contact": {
+          "title": "Randevu Alin",
+          "subtitle": "Online veya telefonla randevu olusturun — beklemeden hizmet alin"
+        },
+        "faq": [
+          {
+            "q": "Periyodik bakim icin randevu gerekli mi?",
+            "a": "Randevu tercih edilir, böylece beklemeden hizmet alirsiniz. Ancak acil durumlar icin randevusuz da kabul ediyoruz."
+          },
+          {
+            "q": "Orijinal yedek parca kullaniyor musunuz?",
+            "a": "Evet, orijinal (OEM) ve orijinal esdeAer (OES) yedek parca secenekleri sunuyoruz. Butcenize uygun secim yapabilirsiniz. Her iki secenek icin de garanti veriyoruz."
+          },
+          {
+            "q": "Arac teslim suresi ne kadar?",
+            "a": "Periyodik bakim 2-3 saat icerisinde tamamlanir. Daha kapsamli islemler icin aracınızı bırakmanız gerekebilir, tahmini sure onceden bildirilir."
+          },
+          {
+            "q": "Hangi markalara hizmet veriyorsunuz?",
+            "a": "Tum marka ve model araclara hizmet veriyoruz. Ozellikle Alman grubu araclarda (VW, Audi, BMW, Mercedes) uzmaniz."
+          },
+          {
+            "q": "Ikinci el arac alimindan once kontrol yapıyor musunuz?",
+            "a": "Evet, 78 noktali ikinci el arac kontrol hizmetimiz mevcuttur. Motor, sanziman, elektrik, kaporta ve boya kontrolu dahil detayli rapor sunuyoruz."
+          },
+          {
+            "q": "Taksit imkani var mi?",
+            "a": "Evet, 2.000 TL uzerindeki islemlerde 3-6 taksit imkani sunuyoruz. Kredi karti ve banka transferi kabul ediyoruz."
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Selim B.",
+            "location": "Kucukcekmece",
+            "date": "2025-11",
+            "rating": 5,
+            "text": "VW Passat'im icin 3 yildir ProCar'a geliyorum. Her seferinde detayli rapor veriyorlar, gereksiz is yapmiyorlar. Guvenilir bir ekip."
+          },
+          {
+            "name": "Deniz K.",
+            "location": "Bakirkoy",
+            "date": "2025-09",
+            "rating": 5,
+            "text": "BMW sanziman arizamı diger servisler 'degismek lazim' dedi, ProCar tamir etti. Hem daha ucuz hem daha hizli oldu."
+          },
+          {
+            "name": "Pinar Y.",
+            "location": "Avcilar",
+            "date": "2025-06",
+            "rating": 4,
+            "text": "Klima bakimi icin geldim, temiz ve duzenli bir servis. Fiyatlar makul. Tek olumsuz: yogun gunlerde bekleme olabiliyor."
+          }
+        ]
+      }
+    },
+    {
+      "id": "oto-detay",
+      "variantName": "detay",
+      "plan": "growth",
+      "description": "Detayli oto bakim, teknoloji odakli",
+      "designPhilosophy": "Modern, teknolojik, parlak",
+      "isDark": false,
+      "colors": {
+        "bg": "#FFFFFF",
+        "surface": "#F5F7FA",
+        "text": "#0F172A",
+        "accent": "#059669"
+      },
+      "fonts": { "heading": "Poppins", "body": "Inter" },
+      "business": {
+        "name": "TeknoServis Otomotiv",
+        "ownerName": "Kaan Yildirim",
+        "sector": "Oto",
+        "slogan": "Teknolojiyle tanisan oto bakim",
+        "phone": "0216 450 88 99",
+        "phoneClean": "902164508899",
+        "whatsapp": "905461234567",
+        "email": "info@teknoservis.com.tr",
+        "address": "Kartal Mah. D-100 Uzeri Oto Center No:32, Kartal/Istanbul",
+        "city": "Istanbul",
+        "district": "Kartal",
+        "neighborhood": "Kartal",
+        "coordinates": { "lat": 40.8898, "lng": 29.1916 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/teknoservisoto",
+          "youtube": "https://youtube.com/@teknoservis",
+          "tiktok": "https://tiktok.com/@teknoservis"
+        },
+        "photos": [],
+        "foundedYear": 2015,
+        "experience": "11 yil",
+        "customerCount": "22.000+",
+        "rating": 4.9,
+        "reviewCount": 1850,
+        "services": [
+          {
+            "id": "s1",
+            "name": "Dijital Ariza Teshisi",
+            "price": "500 TL",
+            "duration": "30-60 dk",
+            "description": "Son teknoloji OBD-II ve marka ozel teshis cihazlariyla detayli elektronik ariza tespiti. Ariza raporu ve cozum onerisi."
+          },
+          {
+            "id": "s2",
+            "name": "Motor Komple Bakim",
+            "price": "2.500 - 8.000 TL",
+            "duration": "3-6 saat",
+            "description": "Motor yagi, tum filtreler, buji, kayis seti, antifriz, fren hidrolik degisimi. 68 noktali kontrol."
+          },
+          {
+            "id": "s3",
+            "name": "Otomatik Sanziman Bakimi",
+            "price": "3.500 - 7.000 TL",
+            "duration": "2-4 saat",
+            "description": "DSG, CVT, torque converter sanziman yag ve filtre degisimi. Sanziman adaptasyon ve kodlama."
+          },
+          {
+            "id": "s4",
+            "name": "Turbo & Enjeksiyon Sistemi",
+            "price": "2.000 - 15.000 TL",
+            "duration": "2-8 saat",
+            "description": "Turbo ariza teshisi ve onarimi, enjektör testi ve temizligi, yakit pompasi, common rail sistemi."
+          },
+          {
+            "id": "s5",
+            "name": "Hibrit & Elektrikli Arac Bakimi",
+            "price": "2.000 - 10.000 TL",
+            "duration": "2-6 saat",
+            "description": "Hibrit batarya testi, elektrik motoru kontrolu, rejeneratif fren sistemi bakimi. Tesla, Toyota, Hyundai."
+          },
+          {
+            "id": "s6",
+            "name": "ADAS Kalibrasyon",
+            "price": "1.500 - 4.000 TL",
+            "duration": "1-3 saat",
+            "description": "Seritten cikma uyarisi, otonom fren, kor nokta algilama sensorlerinin kalibrasyon ve programlamasi."
+          },
+          {
+            "id": "s7",
+            "name": "DPF / Katalizor Temizligi",
+            "price": "2.500 - 6.000 TL",
+            "duration": "2-4 saat",
+            "description": "Partikul filtresi (DPF) kimyasal temizligi, katalizor kontrolu, egzoz emisyon testi."
+          },
+          {
+            "id": "s8",
+            "name": "Far Parlatma & LED Donusum",
+            "price": "800 - 3.000 TL",
+            "duration": "1-2 saat",
+            "description": "Mat far parlatma, far mercek degisimi, LED/Xenon donusum kiti montaji. Far ayari."
+          },
+          {
+            "id": "s9",
+            "name": "Arac Ekspertiz Raporu",
+            "price": "1.500 TL",
+            "duration": "90 dk",
+            "description": "98 noktali ikinci el arac kontrol raporu. Motor, sanziman, elektrik, boya, kaporta, lastik ve ic aksam."
+          },
+          {
+            "id": "s10",
+            "name": "Yazilim & Kodlama",
+            "price": "1.000 - 5.000 TL",
+            "duration": "1-3 saat",
+            "description": "ECU yazilim guncelleme, gizli ozellik acma, anahtar kodlama, immobilizer programlama."
+          }
+        ],
+        "team": [
+          {
+            "name": "Kaan Yildirim",
+            "title": "Kurucu | Otomotiv Muhendisi",
+            "bio": "ITU Otomotiv Muhendisligi. 11 yildir teknoloji odakli oto bakim. Bosch ve Delphi sertifkali.",
+            "photo": ""
+          },
+          {
+            "name": "Emre Sahin",
+            "title": "Usta Mekaniker | Elektrik-Elektronik",
+            "bio": "15 yillik otomotiv elektronik deneyimi. Hibrit ve elektrikli arac uzmani.",
+            "photo": ""
+          },
+          {
+            "name": "Burak Cetin",
+            "title": "Usta Mekaniker | Motor",
+            "bio": "12 yillik motor ve turbo sistemi deneyimi. Dizel ve benzin motorlarda uzmanlik.",
+            "photo": ""
+          },
+          {
+            "name": "Gokhan Polat",
+            "title": "Tekniker | Yazilim & Teshis",
+            "bio": "Otomotiv yazilim uzmani. ECU programlama, ADAS kalibrasyon ve arac iletisim protokolleri.",
+            "photo": ""
+          }
+        ],
+        "workingHours": [
+          { "day": "Pazartesi", "open": "08:00", "close": "19:30", "isOpen": true },
+          { "day": "Sali", "open": "08:00", "close": "19:30", "isOpen": true },
+          { "day": "Carsamba", "open": "08:00", "close": "19:30", "isOpen": true },
+          { "day": "Persembe", "open": "08:00", "close": "19:30", "isOpen": true },
+          { "day": "Cuma", "open": "08:00", "close": "19:30", "isOpen": true },
+          { "day": "Cumartesi", "open": "09:00", "close": "17:00", "isOpen": true },
+          { "day": "Pazar", "open": null, "close": null, "isOpen": false }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Teknolojiyle Tanisan Oto Bakim",
+          "subtitle": "Dijital teshis, hibrit arac bakimi, ADAS kalibrasyon — otomotiv muhendisleri tarafindan yonetilen modern servis deneyimi.",
+          "badge": "ITU Muhendislik"
+        },
+        "about": {
+          "title": "TeknoServis Hakkinda",
+          "description": "2015 yilinda Kartal'da kurulan TeknoServis, klasik oto tamirci anlayisini teknoloji ile bulusturan yeni nesil bir otomotiv servis merkezidir. Kurucu Kaan Yildirim'in ITU Otomotiv Muhendisligi egitimiyle sekillenen vizyonumuz, her araca muhendislik bakis acisiyla yaklasmayi ongoruyor.\n\n600 m2 kapali alanda 6 lift, 3 dijital teshis istasyonu ve ozel hibrit arac calisma alani ile donatilmis merkezimizde, son teknoloji ekipmanlarla calysiyoruz. Bosch ESI[tronic], Delphi, Autel MaxiSys ve marka ozel teshis cihazlarimiz mevcuttur.\n\nOzellikle hibrit ve elektrikli arac bakimi, ADAS sensor kalibrasyonu ve ECU yazilim islemleri gibi ileri teknoloji hizmetlerde Anadolu yakasinin referans merkezi konumundayiz.\n\nHer islem oncesi dijital video ile aracınızın durumunu gormenizi sagliyoruz. Seffaf fiyatlandirma ve online takip sistemiyle süreci takip edebilirsiniz."
+        },
+        "services": {
+          "title": "Teknoloji Odakli Hizmetler",
+          "subtitle": "Dijital teshisten yazilim kodlamaya — modern otomotiv cozumleri"
+        },
+        "stats": {
+          "title": "TeknoServis Rakamlari",
+          "items": [
+            { "value": "22.000+", "label": "Arac" },
+            { "value": "11", "label": "Yil" },
+            { "value": "4.9", "label": "Google Puan" },
+            { "value": "68", "label": "Kontrol Noktasi" }
+          ]
+        },
+        "gallery": {
+          "title": "Servisimiz & Ekipmanlarimiz",
+          "subtitle": "600 m2, 6 lift, dijital teshis altyapisi"
+        },
+        "contact": {
+          "title": "Online Randevu",
+          "subtitle": "Aracınız icin online randevu alin — teshis sonucu dijital olarak paylasılir"
+        },
+        "faq": [
+          {
+            "q": "Hibrit arac bakimi farkli mi?",
+            "a": "Evet, hibrit araclar ek olarak yuksek voltaj batarya, elektrik motoru ve rejeneratif fren sistemi icermektedir. Bu sistemler ozel egitimli teknisyenler tarafindan guvenlii prosedurlerle bakilmalidir."
+          },
+          {
+            "q": "Dijital ariza teshisi nedir?",
+            "a": "OBD-II ve marka ozel teshis cihazlariyla aracınızin tum elektronik sistemlerindeki ariza kodlari okunur, canli veri analizi yapilir ve ariza kaynagi hassas bir sekilde tespit edilir."
+          },
+          {
+            "q": "ECU yazilim guncelleme guvenlii mi?",
+            "a": "Evet, uretici onayli yazilim guncellemeleri uyguliyoruz. Gizli ozellik acma islemleri ise aracın garanti durumuna gore degerlendirilir."
+          },
+          {
+            "q": "ADAS kalibrasyon neden gerekli?",
+            "a": "Cam degisimi, suspensiyon degisikligi veya kaza sonrasi ADAS sensorleri kalibrasyondan cikabilir. Yanlis kalibre sensörler yanlis uyari verebilir veya hic uyari vermeyebilir."
+          },
+          {
+            "q": "Tesla bakimi yapiyor musunuz?",
+            "a": "Evet, Tesla Model 3, Y, S ve X modelleri icin genel bakim, fren ve suspensiyon islmleri yapiyoruz. Batarya ve motor islmleri icin Tesla yetkili servisi yonlendirmesi yapiyoruz."
+          },
+          {
+            "q": "Islem oncesi video nedir?",
+            "a": "Aracınız lifte alindiginda teknisyenimiz tum kontrol noktalarini video olarak kaydeder ve WhatsApp uzerinden size gonderir. Boylece sorunlari kendiniz de gorebilirsiniz."
+          },
+          {
+            "q": "Ikinci el arac ekspertiz raporu ne iceriyor?",
+            "a": "98 noktali kontrolumuz: motor kompresyon testi, sanziman testi, boya olcumu, elektrik sistemi testi, lastik disinderinligi, fren testi, alt takıim kontrolu ve genel durum degerlendirmesi icermektedir."
+          },
+          {
+            "q": "Garanti kapsaminda bakim yapiyor musunuz?",
+            "a": "Evet, orijinal yedek parca ile yapilan bakimlarımız garanti kapsaminda gecerlidir. Ayrica bakim defterinize kayit giriyoruz."
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Onur T.",
+            "location": "Kartal",
+            "date": "2025-12",
+            "rating": 5,
+            "text": "Toyota Corolla Hibrit'imi sadece buraya getiriyorum. Hibrit batarya testi, fren bakimi — her seyde guveniyorum. Islm oncesi video cok seffaf."
+          },
+          {
+            "name": "Elif D.",
+            "location": "Maltepe",
+            "date": "2025-10",
+            "rating": 5,
+            "text": "VW Golf DSG sanziman sorunumu cok hizli tespit ettiler. Diger servisler fark edemememisti. Muhendis gozuyle bakıyorlar."
+          },
+          {
+            "name": "Cem A.",
+            "location": "Pendik",
+            "date": "2025-08",
+            "rating": 5,
+            "text": "BMW ADAS kalibrasyonu icin geldim. Profesyonel ekipman ve bilgili ekip. Fiyat da makul."
+          },
+          {
+            "name": "Sinem G.",
+            "location": "Tuzla",
+            "date": "2025-05",
+            "rating": 5,
+            "text": "Ikinci el arac alirken ekspertiz yaptirdim, 98 noktali rapor sayesinde aracın sorunlarini gordüm ve pazarlikta avantaj sagladim."
+          },
+          {
+            "name": "Ali K.",
+            "location": "Atasehir",
+            "date": "2025-03",
+            "rating": 4,
+            "text": "DPF temizligi ve ECU guncelleme yaptirdim. Sonuc gayet iyi, arac eski performansina kavustu. Tek sorun yogun donemde 3-4 gun randevu beklemek."
+          },
+          {
+            "name": "Mert S.",
+            "location": "Kadikoy",
+            "date": "2025-01",
+            "rating": 5,
+            "text": "Tesla Model 3'um icin fren ve suspensiyon bakimi yaptirdim. Tesla uzmani bulmak zor, TeknoServis bu konuda Anadolu yakasinin en iyisi."
+          }
+        ]
+      }
+    },
+    {
+      "id": "oto-eksper",
+      "variantName": "eksper",
+      "plan": "pro",
+      "description": "Cok subeli oto servis zinciri",
+      "designPhilosophy": "Kurumsal, guclu, guvenilir",
+      "isDark": false,
+      "colors": {
+        "bg": "#FAFAFA",
+        "surface": "#EAEEF2",
+        "text": "#111827",
+        "accent": "#B91C1C"
+      },
+      "fonts": { "heading": "Barlow", "body": "Barlow" },
+      "business": {
+        "name": "MasterFix Otomotiv Servisleri",
+        "ownerName": "Hakan Turk",
+        "sector": "Oto",
+        "slogan": "Her marka, her model, tek adres",
+        "phone": "0850 222 33 44",
+        "phoneClean": "908502223344",
+        "whatsapp": "905511234567",
+        "email": "info@masterfix.com.tr",
+        "address": "Maslak Mah. Oto Plaza No:8, Sariyer/Istanbul",
+        "city": "Istanbul",
+        "district": "Sariyer",
+        "neighborhood": "Maslak",
+        "coordinates": { "lat": 41.1089, "lng": 29.0201 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/masterfixoto",
+          "youtube": "https://youtube.com/@masterfix",
+          "linkedin": "https://linkedin.com/company/masterfix"
+        },
+        "photos": [],
+        "foundedYear": 2006,
+        "experience": "20 yil",
+        "customerCount": "85.000+",
+        "rating": 4.8,
+        "reviewCount": 4500,
+        "services": [
+          {
+            "id": "s1",
+            "name": "Periyodik Bakim Paketleri",
+            "price": "2.000 - 6.000 TL",
+            "duration": "2-4 saat",
+            "description": "Bronz, Gumus ve Altin bakim paketleri. 42-78 noktali kontrol, tum filtreler ve sivi degisimleri."
+          },
+          {
+            "id": "s2",
+            "name": "Motor Onarim",
+            "price": "5.000 - 25.000 TL",
+            "duration": "1-5 gun",
+            "description": "Motor revizyon, conta degisimi, zincir/kayis degisimi, turbo tamiri. Tum marka ve model."
+          },
+          {
+            "id": "s3",
+            "name": "Sanziman Onarimi",
+            "price": "4.000 - 20.000 TL",
+            "duration": "1-3 gun",
+            "description": "Manuel, otomatik, DSG, CVT sanziman tamiri. Mekatronik unite onarimi, valf gövdesi temizligi."
+          },
+          {
+            "id": "s4",
+            "name": "Fren & Guvenlik",
+            "price": "800 - 5.000 TL",
+            "duration": "1-3 saat",
+            "description": "Fren sistemii komple bakim. ABS, ESP, ASR ariza teshisi. Fren diski tornalama ve degisim."
+          },
+          {
+            "id": "s5",
+            "name": "Suspensiyon & Direksiyon",
+            "price": "1.500 - 8.000 TL",
+            "duration": "2-6 saat",
+            "description": "Amortisor, helezon, bilyali rotoil, direksiyon kutusu, hidrolik direksiyon pompasi degisimi."
+          },
+          {
+            "id": "s6",
+            "name": "Elektrik & Elektronik",
+            "price": "500 - 8.000 TL",
+            "duration": "1-4 saat",
+            "description": "Ariza teshis, sensor degisimi, ECU programlama, kablo tamiri, aydinlatma sistemi."
+          },
+          {
+            "id": "s7",
+            "name": "Klima & Isitma",
+            "price": "1.000 - 5.000 TL",
+            "duration": "1-4 saat",
+            "description": "Klima gazi, kompresor tamiri, radyator, termostat, kalorifer peteği degisimi."
+          },
+          {
+            "id": "s8",
+            "name": "Egzoz & Emisyon",
+            "price": "1.000 - 8.000 TL",
+            "duration": "1-4 saat",
+            "description": "Egzoz manifoldu, katalizor, DPF, EGR valve bakimi. Emisyon testi ve uyumluluk."
+          },
+          {
+            "id": "s9",
+            "name": "Lastik & Jant",
+            "price": "200 - 2.000 TL",
+            "duration": "30 dk - 2 saat",
+            "description": "Lastik degisim, balans, rot ayari, jant duzeltme. Kis ve yaz lastik saklama hizmeti."
+          },
+          {
+            "id": "s10",
+            "name": "Hibrit & Elektrikli Arac",
+            "price": "2.000 - 15.000 TL",
+            "duration": "Degisken",
+            "description": "Yuksek voltaj batarya testi, elektrik motoru bakimi, sarj sistemi kontrolu, yazilim guncelleme."
+          },
+          {
+            "id": "s11",
+            "name": "Arac Ekspertiz",
+            "price": "1.200 - 2.500 TL",
+            "duration": "60-120 dk",
+            "description": "108 noktali profesyonel ekspertiz raporu. Boya olcum, motor test, sanziman test, alt takim."
+          },
+          {
+            "id": "s12",
+            "name": "Filo Yonetim Servisi",
+            "price": "Sozlesme bazli",
+            "duration": "Surekli",
+            "description": "Kurumsal filo araclari icin periyodik bakim planlama, acil onarim, yedek arac ve raporlama."
+          },
+          {
+            "id": "s13",
+            "name": "Yol Yardim (7/24)",
+            "price": "500 TL'den baslayan",
+            "duration": "30-60 dk",
+            "description": "Istanbul ici 7/24 mobil yol yardim hizmeti. Aku takviye, lastik degisim, yakit, cekim."
+          },
+          {
+            "id": "s14",
+            "name": "Arac Koruma (PPF & Seramik)",
+            "price": "8.000 - 35.000 TL",
+            "duration": "1-3 gun",
+            "description": "Paint Protection Film (PPF), seramik kaplama, cam filmi, ic dis detayli temizlik."
+          }
+        ],
+        "team": [
+          {
+            "name": "Hakan Turk",
+            "title": "Kurucu & Genel Mudur",
+            "bio": "Sakarya Universitesi Otomotiv Muhendisligi. 20 yillik sektör deneyimi. TAYSAD ve OSTA uyeleri.",
+            "photo": ""
+          },
+          {
+            "name": "Ercan Aslan",
+            "title": "Teknik Mudur",
+            "bio": "18 yillik motor ve sanziman uzmanı. ASE Master Technician sertifkali.",
+            "photo": ""
+          },
+          {
+            "name": "Sema Yilmaz",
+            "title": "Musteri Iliskileri Muduru",
+            "bio": "10 yillik otomotiv sektörü deneyimi. Musteri memnuniyeti ve servis kalitesi yonetimi.",
+            "photo": ""
+          },
+          {
+            "name": "Ozan Dogan",
+            "title": "Kidemli Teknisyen | Elektrik-Elektronik",
+            "bio": "Bosch Diagnostics sertifkali. 12 yillik otomotiv elektronik deneyimi.",
+            "photo": ""
+          },
+          {
+            "name": "Kemal Oz",
+            "title": "Kidemli Teknisyen | Motor",
+            "bio": "15 yillik motor ve turbo uzmanı. Alman ve Japon grubu araclarda deneyim.",
+            "photo": ""
+          },
+          {
+            "name": "Ayhan Koc",
+            "title": "Teknisyen | Hibrit & Elektrikli",
+            "bio": "Toyota ve Hyundai hibrit sertifkali. Elektrikli arac yuksek voltaj egitimi.",
+            "photo": ""
+          }
+        ],
+        "workingHours": [
+          { "day": "Pazartesi", "open": "07:30", "close": "20:00", "isOpen": true },
+          { "day": "Sali", "open": "07:30", "close": "20:00", "isOpen": true },
+          { "day": "Carsamba", "open": "07:30", "close": "20:00", "isOpen": true },
+          { "day": "Persembe", "open": "07:30", "close": "20:00", "isOpen": true },
+          { "day": "Cuma", "open": "07:30", "close": "20:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "08:00", "close": "18:00", "isOpen": true },
+          { "day": "Pazar", "open": "10:00", "close": "16:00", "isOpen": true }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Istanbul'un Guvenilir Oto Servisi",
+          "subtitle": "3 sube, 20+ teknisyen, 85.000+ mutlu musteri. Periyodik bakimdan motor revizyonuna, filo yonetiminden 7/24 yol yardima.",
+          "badge": "20 Yillik Deneyim"
+        },
+        "about": {
+          "title": "MasterFix Hakkinda",
+          "description": "2006 yilinda Istanbul'da kurulan MasterFix, bugun 3 subesi ve 20'den fazla teknisyeniyle Turkiye'nin onde gelen bagimsiz oto servis zincirleri arasinda yer almaktadir. Kurucumuz Hakan Turk'un otomotiv muhendisligi vizyonuyla sekillenen sirketimiz, her marka ve model araca profesyonel hizmet sunmayi ilke edinmistir.\n\nMaslak, Kadikoy ve Bakirkoy subelerimizde toplam 2.000 m2 kapali alanda, 15 lift ve son teknoloji ekipmanlarla donatilmis calisma alanlarina sahibiz. Her subemizde marka ozel ve multi-marka teshis cihazlari bulunmaktadir.\n\n85.000'den fazla araca hizmet verdik, 350+ kurumsal musteri portfoyumuz mevcuttur. Filo yonetim hizmeti ile Istanbul'daki buyuk satlkletlerin arac bakim ihtiyaclarini karsılıyoruz.\n\nTum islemlerimiz dijital olarak kayit altina alinir. Online portal uzerinden arac gecmisi, islem detayi ve faturalaniriza erisebilirsiniz."
+        },
+        "services": {
+          "title": "Hizmetlerimiz",
+          "subtitle": "14 farkli hizmet kategorisinde kapsamli otomotiv cozumleri"
+        },
+        "stats": {
+          "title": "Rakamlarla MasterFix",
+          "items": [
+            { "value": "85.000+", "label": "Mutlu Musteri" },
+            { "value": "3", "label": "Sube" },
+            { "value": "20+", "label": "Teknisyen" },
+            { "value": "350+", "label": "Kurumsal Musteri" }
+          ]
+        },
+        "gallery": {
+          "title": "Subelerimiz",
+          "subtitle": "Maslak, Kadikoy, Bakirkoy — Istanbul'un 3 noktasinda"
+        },
+        "process": {
+          "title": "Servis Sureciniz",
+          "steps": [
+            { "title": "Online Randevu", "description": "Web, WhatsApp veya cagri merkezimizden size en yakin subeye randevu alin." },
+            { "title": "Teshis & Rapor", "description": "Dijital teshis ve gorsel kontrol ile aracınızin detayli durum raporu hazirlanir." },
+            { "title": "Onay & Islem", "description": "Fiyat ve sure bilgisi paylasılır, onayınız sonrasi isleme baslanir." },
+            { "title": "Teslim & Takip", "description": "Islem raporu ve garanti belgesi ile aracınız teslim edilir. Online gecmis kaydi olusturulur." }
+          ]
+        },
+        "contact": {
+          "title": "Size En Yakin Sube",
+          "subtitle": "Istanbul'un 3 noktasindan bize ulasin"
+        },
+        "faq": [
+          {
+            "q": "Hangi subeniz bana en yakin?",
+            "a": "Maslak (Avrupa yakasi kuzey), Bakirkoy (Avrupa yakasi guney) ve Kadikoy (Anadolu yakasi) subelerimiz vardir. Cagri merkezimiz sizi en yakin subeye yonlendirir."
+          },
+          {
+            "q": "Filo yonetim hizmeti nasil calisiyor?",
+            "a": "Kurumsal sozlesme ile filonuzdaki tum araclarin periyodik bakim takibi, acil onarim, yedek arac temini ve aylık raporlama hizmeti sunuyoruz. Minimum 5 arac."
+          },
+          {
+            "q": "7/24 yol yardim Istanbul disinda da gecerli mi?",
+            "a": "Yol yardim hizmetimiz suan Istanbul ici ile sinirlidir. Istanbul disindaki arizalar icin partner servislere yonlendirme yapiyoruz."
+          },
+          {
+            "q": "Online portal nedir?",
+            "a": "Musterilerimize ozel online sistem uzerinden arac bakim gecmisi, yapilan islemler, parcadeğisim kayitlari ve faturalara erisebilirsiniz."
+          },
+          {
+            "q": "Garanti kapsamindaki araclar icin bakim yapiyor musunuz?",
+            "a": "Evet, orijinal yedek parca ile yapilan bakimlarimiz uretici garantisini bozmaz. Bakim defterine kayit giriyoruz."
+          },
+          {
+            "q": "Yedek arac hizmeti var mi?",
+            "a": "Evet, filo musterilerimize ve uzun sureli tamirlerde bireysel musterilerimize yedek arac temini yapiyoruz. Stok durumuna gore tahsis edilir."
+          },
+          {
+            "q": "PPF ve seramik kaplama ne kadar dayanir?",
+            "a": "PPF (boya koruma filmi) 7-10 yil, seramik kaplama 2-5 yil dayanir. Her iki uygulama da aracınızın boyasını tas cipmasi, cizik ve UV'den korur."
+          },
+          {
+            "q": "Hangi odeme yontemlerini kabul ediyorsunuz?",
+            "a": "Nakit, kredi karti (12 taksit), havale/EFT kabul ediyoruz. Kurumsal musterilerimize aylik faturalama secenegi sunuyoruz."
+          },
+          {
+            "q": "Arac teslim suresi ne kadar?",
+            "a": "Periyodik bakim ayni gun, motor ve sanziman islemleri 1-5 gun. Tahmini sure randevu sirasinda bildirilir ve degisiklik halinde guncellenir."
+          },
+          {
+            "q": "Lastik saklama hizmeti nasil calisiyor?",
+            "a": "Kis veya yaz lastiklerinizi uygun kosullarda depomuzda sakliyoruz. Sezon degisiminde randevu alip lastik degisimini yaptirabilirsiniz. Sezonluk 600 TL."
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Serhat N.",
+            "location": "Maslak",
+            "date": "2025-12",
+            "rating": 5,
+            "text": "Sirketimizin 12 araclik filosunun bakimini MasterFix yapiyor. Randevu sistemi, raporlama ve yedek arac hizmeti profesyonel."
+          },
+          {
+            "name": "Ayse P.",
+            "location": "Kadikoy",
+            "date": "2025-10",
+            "rating": 5,
+            "text": "Mercedes C180 motor arizasi vardi, yetkli serviste cok pahali fiyat verdiler. MasterFix ayni kalitede, yarı fiyatina cozdu."
+          },
+          {
+            "name": "Tolga E.",
+            "location": "Bakirkoy",
+            "date": "2025-08",
+            "rating": 5,
+            "text": "7/24 yol yardım hizmeti gece 2'de yolda kaldığimda hayat kurtardi. 30 dakikada geldiler, aku takviye yapip yola cikardiler."
+          },
+          {
+            "name": "Demet V.",
+            "location": "Sariyer",
+            "date": "2025-06",
+            "rating": 4,
+            "text": "PPF kaplama yaptırdim, sonuc mukemmel. 3 gunluk islem surecinde yedek arac verdiler. Fiyat biraz yuksek ama kalite var."
+          },
+          {
+            "name": "Omer C.",
+            "location": "Besiktas",
+            "date": "2025-04",
+            "rating": 5,
+            "text": "BMW otomatik sanziman revizyonunu MasterFix'te yaptirdim. 2 yıl oldu sorunsuz. Yetkili servis disinda guvenebileceAiniz ender yerlerden."
+          },
+          {
+            "name": "Nihan K.",
+            "location": "Atasehir",
+            "date": "2025-02",
+            "rating": 5,
+            "text": "Ikinci el arac alirken ekspertiz yaptirdim. 108 noktali rapor cok detayliydi, aracta gizli hasar buldular ve beni yanlis alimdan kurtardilar."
+          },
+          {
+            "name": "Cenk M.",
+            "location": "Umraniye",
+            "date": "2024-12",
+            "rating": 5,
+            "text": "Hibrit aracimin batarya testini burada yaptirdim. Az rastlanan bir hizmet ve sonuc tatmin edici. Anadolu yakasinda referans."
+          },
+          {
+            "name": "Selma A.",
+            "location": "Sisli",
+            "date": "2024-10",
+            "rating": 5,
+            "text": "Online portal cok pratik. Aracimin tum bakim gecmisini, degisen parcalari ve faturalarini tek ekrandan gorebiliyorum."
+          }
+        ]
+      }
+    },
+    {
+      "id": "oto-elektrik",
+      "variantName": "elektrik",
+      "plan": "enterprise",
+      "description": "Premium oto servis grubu, koyu tema",
+      "designPhilosophy": "Koyu, premium, endustriyel-lux",
+      "isDark": true,
+      "colors": {
+        "bg": "#0A0A0F",
+        "surface": "#141420",
+        "text": "#E5E5E5",
+        "accent": "#EF4444"
+      },
+      "fonts": { "heading": "Barlow Condensed", "body": "Inter" },
+      "business": {
+        "name": "AutoElite Premium Servis Grubu",
+        "ownerName": "Ozgur Tunc",
+        "sector": "Oto",
+        "slogan": "Premium araclar, premium hizmet",
+        "phone": "0850 444 00 55",
+        "phoneClean": "908504440055",
+        "whatsapp": "905521234567",
+        "email": "vip@autoelite.com.tr",
+        "address": "Etiler Mah. Nispetiye Cad. No:88, Besiktas/Istanbul",
+        "city": "Istanbul",
+        "district": "Besiktas",
+        "neighborhood": "Etiler",
+        "coordinates": { "lat": 41.0809, "lng": 29.0304 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/autoelitetr",
+          "youtube": "https://youtube.com/@autoelite",
+          "linkedin": "https://linkedin.com/company/autoelite",
+          "facebook": "https://facebook.com/autoelite"
+        },
+        "photos": [],
+        "foundedYear": 2001,
+        "experience": "25 yil",
+        "customerCount": "120.000+",
+        "rating": 4.9,
+        "reviewCount": 8500,
+        "services": [
+          {
+            "id": "s1",
+            "name": "Premium Periyodik Bakim",
+            "price": "5.000 - 15.000 TL",
+            "duration": "3-5 saat",
+            "description": "Mercedes, BMW, Audi, Porsche, Range Rover — premium araclara ozel 92 noktali komple bakim paketi."
+          },
+          {
+            "id": "s2",
+            "name": "Motor Performans Merkezi",
+            "price": "8.000 - 50.000 TL",
+            "duration": "1-5 gun",
+            "description": "Motor revizyon, turbo yukseltme, ECU chip tuning, egzoz sistemi upgrade. Dyno test dahil."
+          },
+          {
+            "id": "s3",
+            "name": "Sanziman Uzmanlik Merkezi",
+            "price": "5.000 - 30.000 TL",
+            "duration": "1-5 gun",
+            "description": "ZF 8HP, Mercedes 9G-Tronic, DSG, PDK sanziman revizyonu. Mekatronik unite tamiri."
+          },
+          {
+            "id": "s4",
+            "name": "Fren & Suspensiyon Pro",
+            "price": "3.000 - 20.000 TL",
+            "duration": "2-8 saat",
+            "description": "Brembo, AP Racing fren yukseltme. Bilstein, KW, H&R suspensiyon upgrade. Pist hazirlik."
+          },
+          {
+            "id": "s5",
+            "name": "Elektrik & ADAS Merkezi",
+            "price": "1.000 - 15.000 TL",
+            "duration": "1-8 saat",
+            "description": "Ileri surucu destek sistemleri kalibrasyonu, 360 kamera, park sensoru, adaptif far kodlama."
+          },
+          {
+            "id": "s6",
+            "name": "EV & Hibrit Uzmanlik",
+            "price": "3.000 - 25.000 TL",
+            "duration": "Degisken",
+            "description": "Tesla, BMW i, Mercedes EQ, Porsche Taycan servisi. Yuksek voltaj batarya, sarj altyapisi."
+          },
+          {
+            "id": "s7",
+            "name": "Detailing & PPF Studio",
+            "price": "5.000 - 80.000 TL",
+            "duration": "1-5 gun",
+            "description": "XPEL, SunTek PPF, Gtechniq seramik kaplama, boya duzeltme, ic detailing. Studio ortaminda."
+          },
+          {
+            "id": "s8",
+            "name": "Jant & Lastik Boutique",
+            "price": "1.000 - 50.000 TL",
+            "duration": "1 saat - 1 gun",
+            "description": "OZ Racing, BBS, Vossen jant tedariAi. Michelin Pilot Sport, Pirelli P Zero. Otonom jant onarimi."
+          },
+          {
+            "id": "s9",
+            "name": "Klasik Arac Restorasyonu",
+            "price": "50.000 - 500.000 TL",
+            "duration": "1-12 ay",
+            "description": "Klasik Mercedes, BMW, Porsche, Jaguar restorasyonu. Komple mekanik, boya, doseme yenileme."
+          },
+          {
+            "id": "s10",
+            "name": "Modifikasyon Atolyesi",
+            "price": "10.000 - 200.000 TL",
+            "duration": "1 hafta - 2 ay",
+            "description": "Body kit, widebody, roll cage, ses sistemi, ic doseme, karbon fiber aksesuar. Custom proje."
+          },
+          {
+            "id": "s11",
+            "name": "Garanti Dis Yetkili Servis",
+            "price": "Islem bazli",
+            "duration": "Degisken",
+            "description": "Yetkili servis standartlarinda bakim ve onarim. Star Diagnosis, ISTA, ODIS, PIWIS cihazlari."
+          },
+          {
+            "id": "s12",
+            "name": "Arac Satin Alma Danismanligi",
+            "price": "3.000 - 10.000 TL",
+            "duration": "1-3 gun",
+            "description": "Premium ikinci el arac seciminde danismanlik. Araç tespit, ekspertiz, fiyat muzakeresi."
+          },
+          {
+            "id": "s13",
+            "name": "VIP Concierge Servisi",
+            "price": "Uyelik bazli",
+            "duration": "7/24",
+            "description": "Arac teslim alma, servis sonrasi birakma, yedek arac, Istanbul ici cekici, sigorta koordinasyonu."
+          },
+          {
+            "id": "s14",
+            "name": "Filo Premium Yonetim",
+            "price": "Sozlesme bazli",
+            "duration": "Surekli",
+            "description": "Premium ve luks arac filolari icin ozel bakim yonetimi. SLA garantili, raporlama, maliyet optimizasyonu."
+          },
+          {
+            "id": "s15",
+            "name": "Motorsport Hazirlik",
+            "price": "20.000 - 100.000 TL",
+            "duration": "3-14 gun",
+            "description": "Yaris ve track day hazirlik. Roll cage, harness, yangin sistemi, lastik isitici, data logging."
+          },
+          {
+            "id": "s16",
+            "name": "Zirhli Arac Bakimi",
+            "price": "Proje bazli",
+            "duration": "Degisken",
+            "description": "B4-B7 seviye zirhli araclarin mekanik bakimi. Opaque cam, run-flat lastik, ozel suspensiyon."
+          },
+          {
+            "id": "s17",
+            "name": "Ses & Multimedya",
+            "price": "5.000 - 50.000 TL",
+            "duration": "1-3 gun",
+            "description": "Bang & Olufsen, Burmester, Harman Kardon upgrade. Apple CarPlay, Android Auto donusum."
+          },
+          {
+            "id": "s18",
+            "name": "Cam & Tavan",
+            "price": "3.000 - 25.000 TL",
+            "duration": "1-2 gun",
+            "description": "Panoramik tavan tamiri, cam degisimi, sunroof montaji, cam filmi (3M, LLumar)."
+          },
+          {
+            "id": "s19",
+            "name": "Doseme & Ic Aksam",
+            "price": "5.000 - 80.000 TL",
+            "duration": "3-14 gun",
+            "description": "Deri doseme yenileme, Alcantara kaplama, ahsap trim restorasyon, karbon fiber ic aksam."
+          },
+          {
+            "id": "s20",
+            "name": "Arac Depolama",
+            "price": "2.500 TL/ay",
+            "duration": "Aylik",
+            "description": "Klimali, guvenlikli garajda uzun sureli arac depolama. Periyodik calistirma ve bakim dahil."
+          }
+        ],
+        "team": [
+          {
+            "name": "Ozgur Tunc",
+            "title": "Kurucu & CEO",
+            "bio": "Istanbul Teknik Universitesi Otomotiv Muhendisligi. 25 yillik premium otomotiv deneyimi. Porsche, Ferrari sertifkali.",
+            "photo": ""
+          },
+          {
+            "name": "Baran Erdogan",
+            "title": "Teknik Direktor",
+            "bio": "20 yillik motor ve performans deneyimi. BMW M ve AMG uzmanı. ASE Master Technician.",
+            "photo": ""
+          },
+          {
+            "name": "Alper Kocak",
+            "title": "Detailing Studio Muduru",
+            "bio": "XPEL ve Gtechniq sertifkali. 12 yillik premium detailing deneyimi. IDA uyesi.",
+            "photo": ""
+          },
+          {
+            "name": "Tugba Sezer",
+            "title": "VIP Musteri Iliskileri Muduru",
+            "bio": "15 yillik premium marka deneyimi. Luks segment musteri yonetimi ve concierge hizmetleri.",
+            "photo": ""
+          },
+          {
+            "name": "Cem Ozturk",
+            "title": "Elektrik & Elektronik Sefi",
+            "bio": "Star Diagnosis, ISTA, ODIS, PIWIS sertifkali. 14 yillik premium arac elektronik deneyimi.",
+            "photo": ""
+          },
+          {
+            "name": "Savas Aydin",
+            "title": "Motorsport & Modifikasyon Sefi",
+            "bio": "15 yillik motorsport deneyimi. FIA lisansli. Track day organizatoru ve yaris mekanigi.",
+            "photo": ""
+          },
+          {
+            "name": "Mehmet Can Polat",
+            "title": "Klasik Arac Restorasyon Sefi",
+            "bio": "25 yillik klasik arac restorasyonu deneyimi. Alman ve Ingiliz klasik araclarda uzmanlik.",
+            "photo": ""
+          },
+          {
+            "name": "Yasemin Aksu",
+            "title": "EV & Hibrit Uzmanı",
+            "bio": "Tesla, Porsche Taycan, BMW iX sertifkali. Yuksek voltaj guvenlik egitimi. 8 yillik EV deneyimi.",
+            "photo": ""
+          }
+        ],
+        "workingHours": [
+          { "day": "Pazartesi", "open": "07:00", "close": "22:00", "isOpen": true },
+          { "day": "Sali", "open": "07:00", "close": "22:00", "isOpen": true },
+          { "day": "Carsamba", "open": "07:00", "close": "22:00", "isOpen": true },
+          { "day": "Persembe", "open": "07:00", "close": "22:00", "isOpen": true },
+          { "day": "Cuma", "open": "07:00", "close": "22:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Pazar", "open": "10:00", "close": "18:00", "isOpen": true }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Premium Araclar Icin Premium Servis",
+          "subtitle": "25 yildir Mercedes, BMW, Porsche, Ferrari, Range Rover — premium araclara ozel bakim, performans ve detailing. Istanbul'un en donanilmi servis merkezi.",
+          "badge": "VIP Concierge 7/24"
+        },
+        "about": {
+          "title": "AutoElite Hakkinda",
+          "description": "2001 yilinda Etiler'de kurulan AutoElite, Turkiye'nin en prestijli bagimsiz premium otomotiv servis grubudur. Kurucumuz Ozgur Tunc'un ITU Otomotiv Muhendisligi vizyonu ve 25 yillik sektör deneyimiyle, premium ve luks segment araclara yetkili servis standartlarinda hizmet sunuyoruz.\n\n4 lokasyonda toplam 5.000 m2 kapali alanda, 25 lift, dyno odasi, PPF studiosi, restorasyonatolyesi ve klimali depolama garajiyla Istanbul'un en kapsamli premium servis altyapisina sahibiz.\n\n120.000'den fazla araca hizmet verdik. Mercedes, BMW, Audi, Porsche, Ferrari, Lamborghini, Bentley, Rolls-Royce ve Range Rover marka ozel teshis cihazlarina (Star Diagnosis, ISTA+, ODIS, PIWIS) sahibiz.\n\nVIP Concierge hizmetimizle premium musterilerimize arac teslim-alma, 7/24 yol yardim, yedek arac, sigorta koordinasyonu ve arac satin alma danismanligi sunuyoruz.\n\nElektrikli arac pazarinin hizli buyumesiyle, Tesla, Porsche Taycan, BMW iX/i4, Mercedes EQS ve Audi e-tron icin ozel yuksek voltaj servis altyapimizi kurduk. Turkiye'deki en kapsamli bagimsiz EV servis merkezi olmasi hedefiyle yatirimlarimizi surdurmekteyiz."
+        },
+        "services": {
+          "title": "Hizmet Portfoyumuz",
+          "subtitle": "20 farkli kategoride, premium araclarla ozel kapsamli otomotiv cozumleri"
+        },
+        "stats": {
+          "title": "AutoElite Rakamlari",
+          "items": [
+            { "value": "120.000+", "label": "Arac" },
+            { "value": "4", "label": "Lokasyon" },
+            { "value": "25+", "label": "Teknisyen" },
+            { "value": "25", "label": "Yil" }
+          ]
+        },
+        "gallery": {
+          "title": "Tesislerimiz",
+          "subtitle": "5.000 m2 — servis, studio, restorasyon, depolama"
+        },
+        "process": {
+          "title": "AutoElite Deneyimi",
+          "steps": [
+            { "title": "VIP Randevu", "description": "WhatsApp, telefon veya online portal uzerinden kisiye ozel randevu planlama." },
+            { "title": "Concierge Teslim", "description": "Aracınız lokasyonunuzdan alinir, yedek arac birakilir." },
+            { "title": "Uzman Mudahale", "description": "Marka uzmanı teknisyenler tarafından profesyonel islem." },
+            { "title": "VIP Teslimat", "description": "Aracınız yikanmis ve parlak olarak kapınıza teslim edilir." }
+          ]
+        },
+        "contact": {
+          "title": "VIP Iletisim",
+          "subtitle": "Premium hizmet icin bize ulasin — 7/24 concierge hattimiz aktif"
+        },
+        "cta": {
+          "title": "VIP Uyelik Programi",
+          "subtitle": "Yillik uyelikle oncelikli randevu, ozel indirimler, ucretsiz concierge ve yedek arac avantajlarindan yararlanin.",
+          "buttonText": "Uyelik Detaylari",
+          "buttonUrl": "#contact"
+        },
+        "faq": [
+          {
+            "q": "Hangi premium markalara hizmet veriyorsunuz?",
+            "a": "Mercedes-Benz, BMW, Audi, Porsche, Ferrari, Lamborghini, Maserati, Bentley, Rolls-Royce, Range Rover, Jaguar, Volvo ve Tesla dahil tum premium markalara hizmet veriyoruz."
+          },
+          {
+            "q": "Yetkili servis standartlarinda mi calisiyorsunuz?",
+            "a": "Evet, marka ozel teshis cihazlari (Star Diagnosis, ISTA+, ODIS, PIWIS), orijinal yedek parca ve uretici standartlarinda islem prosedürleruylre calisiyoruz."
+          },
+          {
+            "q": "VIP Concierge hizmeti nasil calisiyor?",
+            "a": "Uyelik veya tek seferlik hizmet olarak aracınızı istediginiz adresten alip, servis sonrasi yikanmis olarak geri teslim ediyoruz. Sureç boyunca yedek arac saglanir."
+          },
+          {
+            "q": "Chip tuning garanti kapsaminda mi?",
+            "a": "ECU chip tuning garanti kapsamini etkileyebilir. Stok yazilima donulebilir seceneklerle calisiyoruz. Detayli bilgi icin danismanlarimizla gorusmenizi oneririz."
+          },
+          {
+            "q": "Klasik arac restorasyonu ne kadar surer?",
+            "a": "Restorasyonun kapsamina bagli olarak 1-12 ay arasinda degisir. Proje oncesi detayli analiz, maliyet tahmini ve zaman cizelgesi paylasilir."
+          },
+          {
+            "q": "Ferrari ve Lamborghini bakimi yapiyor musunuz?",
+            "a": "Evet, Ferrari ve Lamborghini icin periyodik bakim, elektronik teshis ve performans islmleri yapiyoruz. Motor ve sanziman revizyonu icin uzman ekibimiz mevcuttur."
+          },
+          {
+            "q": "Elektrikli arac sarj altyapisi kuruyor musunuz?",
+            "a": "Evet, ev, ofis ve isletme icin AC ve DC sarj istasyonu kurulum danismanligi yapiyoruz. Tesla Wall Connector, ABB, Schneider markalarla calisiyoruz."
+          },
+          {
+            "q": "Pist hazirlik (track day) paketi ne iceriyor?",
+            "a": "Fren sistemi kontrolu, sivi degisimleri, lastik basinci, suspensiyon ayari, guvenlik ekipmani kontrolu. Roll cage, harness ve yangin soondurme sistemi montaji opsiyoneldir."
+          },
+          {
+            "q": "Arac depolama kosullari nelerdir?",
+            "a": "Klimali (18-22°C), nemkontrollu, 7/24 kamerali ve guvenlikli garajda depolama. Ayda bir arac calistirma, aku sarj ve lastik basinci kontrolu dahildir."
+          },
+          {
+            "q": "XPEL PPF garanti suresi ne kadar?",
+            "a": "XPEL Ultimate Plus PPF 10 yil uretici garantisi ile gelir. Sararma, kabarcik ve soyulma garanti kapsamındadir. Profesyonel uygulamamiz ek 2 yil iscilik garantisi icermektedir."
+          },
+          {
+            "q": "Zirhli arac bakimi icin ozel gereksinimler var mi?",
+            "a": "Evet, zirhli araclar ozel egitimli teknisyenler tarafindan bakilir. Opaque cam, run-flat lastik ve agir suspensiyon sistemleri icin ozel ekipman ve bilgi birikimine sahibiz."
+          },
+          {
+            "q": "Motorsport lisansi icin arac hazirlik yapiyor musunuz?",
+            "a": "Evet, TOSFED ve FIA lisans gereksinimleine uygun arac hazirlik yapiyoruz. Roll cage homologasyonu, guvenlik ekipmani ve teknik denetim hazirligiidahildir."
+          },
+          {
+            "q": "Odeme secenekleriniz nelerdir?",
+            "a": "Kredi karti (12 taksit), havale/EFT, doviz ile odeme kabul ediyoruz. VIP uyelere ozel odeme planlari mevcuttur."
+          },
+          {
+            "q": "Garanti sureleriniz nedir?",
+            "a": "Iscilik: 1 yil veya 20.000 km. Orijinal yedek parca: uretici garantisi. PPF: 10 yil. Seramik: 5 yil. Restorasyon: proje bazli garanti kosullari belirlenir."
+          },
+          {
+            "q": "Uluslararasi musteriler kabul ediyor musunuz?",
+            "a": "Evet, ozellikle Orta Dogu ve Avrupa'dan gelen premium arac sahiplerine hizmet veriyoruz. Ingilizce, Almanca ve Arapca iletisim imkanımız vardir."
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Koray V.",
+            "location": "Etiler",
+            "date": "2025-12",
+            "rating": 5,
+            "text": "Porsche 911 GT3'umun tum bakimini AutoElite yapiyor. Yetkili servis standartinda ama cok daha kisisel hizmet. Concierge sistemi mukemmel."
+          },
+          {
+            "name": "Defne S.",
+            "location": "Sariyer",
+            "date": "2025-11",
+            "rating": 5,
+            "text": "Mercedes S-Class'im icin VIP uye oldum. Aracimi kapimdan alip bakim sonrasi yikanmis olarak teslim ediyorlar. Premium hizmetin taniml."
+          },
+          {
+            "name": "Ahmad K.",
+            "location": "Dubai",
+            "date": "2025-10",
+            "rating": 5,
+            "text": "I store my Bentley Continental at AutoElite when I'm not in Istanbul. The climate-controlled garage and monthly maintenance service gives me peace of mind."
+          },
+          {
+            "name": "Ilker D.",
+            "location": "Levent",
+            "date": "2025-08",
+            "rating": 5,
+            "text": "Ferrari F8 Tributo'min 30.000 km bakimini yaptirdim. Star technician Baran Bey'in bilgisi ve ozenine hayran kaldim."
+          },
+          {
+            "name": "Nil T.",
+            "location": "Bebek",
+            "date": "2025-06",
+            "rating": 5,
+            "text": "Range Rover'ima XPEL PPF + Gtechniq seramik kaplama yaptirdim. Sonuc inanilmaz, aracim showroom gibi gorunuyor. Alper Bey'in isi mukemmel."
+          },
+          {
+            "name": "Hans K.",
+            "location": "Hamburg",
+            "date": "2025-04",
+            "rating": 5,
+            "text": "Mein 1972 Mercedes SL Pagode wurde hier wunderbar restauriert. Die Liebe zum Detail und die Qualitat der Arbeit sind auf dem Niveau der besten Werkstatten in Deutschland."
+          },
+          {
+            "name": "Burak A.",
+            "location": "Nisantasi",
+            "date": "2025-02",
+            "rating": 5,
+            "text": "BMW M3 Competition'ima stage 2 chip tuning ve Akrapovic egzoz yaptirdim. Dyno'da 530 HP cikardik. Performans farki inanilmaz."
+          },
+          {
+            "name": "Selin K.",
+            "location": "Tarabya",
+            "date": "2024-12",
+            "rating": 5,
+            "text": "Tesla Model X'imin batarya saglik kontrolu ve fren bakimini yaptirdim. Istanbul'da Tesla bilen bagimsiz servis bulmak zor, AutoElite bunu cozuyor."
+          },
+          {
+            "name": "Murat G.",
+            "location": "Zekeriyakoy",
+            "date": "2024-10",
+            "rating": 4,
+            "text": "Track day hazırligi icin geldim, islemleri profesyonelce yaptıllar. Fiyatlar premium ama aldiyıniz hizmet de premium. Yon: çok yogun olabiliyorlar."
+          },
+          {
+            "name": "Olivia R.",
+            "location": "London",
+            "date": "2024-08",
+            "rating": 5,
+            "text": "Had my Aston Martin serviced at AutoElite while holidaying in Istanbul. The quality rivals the best workshops in Mayfair. Will definitely return."
+          },
+          {
+            "name": "Fikret C.",
+            "location": "Beykoz",
+            "date": "2024-06",
+            "rating": 5,
+            "text": "Sirketimizin 25 araclik premium filosunun tamamini AutoElite yonetiyor. SLA raporlari, maliyet analizi ve yedek arac sistemi harikulade."
+          },
+          {
+            "name": "Zeynep N.",
+            "location": "Ulus",
+            "date": "2024-04",
+            "rating": 5,
+            "text": "Audi RS6'min ic dosemesini Alcantara ile yaptirdim. El isciiligi muhtesem, orijinalinden daha guzel oldu. Mehmet Can Bey eline saglik."
+          }
+        ]
+      }
+    }
+  ]
+}

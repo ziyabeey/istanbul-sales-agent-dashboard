@@ -2,8 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Navbar from "@/components/layout/Navbar";
-import FooterTrustSection from "@/components/sections/FooterTrustSection";
+import PublicPageShell from "@/components/layout/PublicPageShell";
 import {
     Code, Zap, Headphones, TrendingUp, BarChart2,
     Globe, Coffee, Heart, ArrowRight, CheckCircle2, Send
@@ -138,8 +137,7 @@ export default function KariyerPage() {
     }
 
     return (
-        <main className="min-h-screen bg-background font-sans">
-            <Navbar />
+        <PublicPageShell>
 
             {/* ── HERO ── */}
             <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
@@ -400,7 +398,6 @@ export default function KariyerPage() {
                 </div>
             </section>
 
-            <FooterTrustSection />
-        </main>
+        </PublicPageShell>
     );
 }

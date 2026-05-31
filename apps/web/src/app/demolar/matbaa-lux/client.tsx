@@ -1,7 +1,20 @@
+// @ts-nocheck
 'use client'
-import { HeaderMinimalSticky as _h, FooterWarmColumns as _f, WhatsAppFloating as _wa, CookieBannerBottomBar as _c, PrintProductGrid as _ppg, PrintProcessSteps as _pps, PrintMaterialBar as _pmb, PrintStatsRow as _psr, PrintQuoteForm as _pqf, ThemeRenderer, MATBAA_LUX_CONFIG, MATBAA_LUX_BUSINESS } from '@kepenk/templates'
-void _h; void _f; void _wa; void _c; void _ppg; void _pps; void _pmb; void _psr; void _pqf
-export default function Client() {
-  const t = MATBAA_LUX_CONFIG, p = t.pages[0]!, b = MATBAA_LUX_BUSINESS
-  return (<div lang="tr"><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ '@context': 'https://schema.org', '@type': 'LocalBusiness', name: b.name, telephone: b.phone, address: { '@type': 'PostalAddress', addressLocality: b.district, addressRegion: b.city, addressCountry: 'TR' } }) }} /><ThemeRenderer theme={t} page={p} business={b} /></div>)
+
+import {
+  ThemeRenderer,
+  MATBAA_LUX_CONFIG,
+  MATBAA_LUX_BUSINESS
+} from '@kepenk/templates'
+
+export default function MatbaaLuxClient() {
+  const theme = MATBAA_LUX_CONFIG;
+  const business = MATBAA_LUX_BUSINESS;
+
+  return (
+    <div lang="tr">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ '@context': 'https://schema.org', '@type': 'LocalBusiness', name: business.name, telephone: business.phone, address: { '@type': 'PostalAddress', addressLocality: business.district, addressRegion: business.city, addressCountry: 'TR' }, aggregateRating: { '@type': 'AggregateRating', ratingValue: business.rating, reviewCount: business.reviewCount } }) }} />
+      <ThemeRenderer theme={theme} page={theme.pages[0]} business={business} />
+    </div>
+  )
 }

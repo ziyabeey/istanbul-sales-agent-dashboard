@@ -45,7 +45,7 @@ export type SectionType =
 // ANIMATION PRESET
 // ═══════════════════════════════════════════
 
-export type AnimationPreset = 'none' | 'fadeUp' | 'fadeIn' | 'slideLeft' | 'slideRight' | 'scaleUp' | 'stagger'
+export type AnimationPreset = 'none' | 'fadeUp' | 'fadeIn' | 'slideLeft' | 'slideRight' | 'scaleUp' | 'stagger' | 'fade' | 'slide-up' | 'parallax3d' | 'kenBurns' | 'morphBlob' | (string & {})
 
 // ═══════════════════════════════════════════
 // SECTION SETTINGS
@@ -59,10 +59,11 @@ export interface SectionSettings {
   paddingY: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'
   containerWidth: 'xs' | 'sm' | 'md' | 'default' | 'lg' | 'xl' | 'full'
   visible: boolean
-  order: number
-  removable: boolean
-  animation: AnimationPreset
+  order?: number
+  removable?: boolean
+  animation?: AnimationPreset
   extraClasses?: string
+  [key: string]: unknown
 }
 
 // ═══════════════════════════════════════════
@@ -148,25 +149,26 @@ export interface ProductItem {
 
 export interface BusinessData {
   name: string
-  ownerName: string
-  sector: string
+  ownerName?: string
+  sector?: string
+  sectorId?: string
   slogan?: string
 
-  phone: string
-  phoneClean: string
+  phone?: string
+  phoneClean?: string
   whatsapp?: string
   email?: string
   website?: string
 
-  address: string
-  city: string
-  district: string
+  address?: string
+  city?: string
+  district?: string
   neighborhood?: string
   coordinates?: { lat: number; lng: number }
 
-  workingHours: DayHours[]
+  workingHours?: DayHours[]
 
-  socialMedia: {
+  socialMedia?: {
     instagram?: string
     facebook?: string
     twitter?: string
@@ -176,7 +178,7 @@ export interface BusinessData {
   }
 
   logoUrl?: string
-  photos: Photo[]
+  photos?: any[]
 
   services?: ServiceItem[]
   team?: TeamMember[]
@@ -196,50 +198,89 @@ export interface BusinessData {
 // THEME CONFIG
 // ═══════════════════════════════════════════
 
+export interface DesignTokens {
+  spacing?: {
+    xs?: string
+    sm?: string
+    md?: string
+    lg?: string
+    xl?: string
+    '2xl'?: string
+  }
+  radius?: {
+    sm?: string
+    md?: string
+    lg?: string
+    xl?: string
+    full?: string
+  }
+  shadows?: {
+    sm?: string
+    md?: string
+    lg?: string
+    xl?: string
+    inner?: string
+  }
+  typography?: {
+    h1?: string
+    h2?: string
+    h3?: string
+    p?: string
+    small?: string
+  }
+  [key: string]: unknown
+}
+
 export interface ThemeConfig {
   id: string
   name: string
   sectorId: string
-  plan: 'free' | 'starter' | 'growth' | 'pro' | 'enterprise'
-  description: string
-  designPhilosophy: string
+  plan: 'free' | 'starter' | 'growth' | 'pro' | 'enterprise' | 'elite'
+  description?: string
+  designPhilosophy?: string
   inspiration?: string[]
-  isDark: boolean
+  isDark?: boolean
   cssVariables: Record<string, string>
-  fonts: {
-    heading: { family: string; weights: number[]; subsets: string[] }
-    body: { family: string; weights: number[]; subsets: string[] }
+  designTokens?: DesignTokens
+  fonts?: {
+    heading: { family: string; weights: number[]; subsets?: string[] }
+    body: { family: string; weights: number[]; subsets?: string[] }
   }
-  pages: PageConfig[]
-  globalSections: GlobalSectionConfig[]
-  seoSchemaType: string
-  sectorSections: string[]
-  performanceBudget: {
+  pages?: PageConfig[]
+  globalSections?: GlobalSectionConfig[]
+  seoSchemaType?: string
+  sectorSections?: string[]
+  performanceBudget?: {
     maxJS: string
     maxLCP: string
-    animationLevel: 'css-only' | 'framer-basic' | 'framer-full' | 'gsap-allowed'
+    animationLevel: 'css-only' | 'framer-basic' | 'framer-full' | 'gsap-allowed' | 'gsap-parallax' | (string & {})
   }
+  [key: string]: unknown
 }
 
 export interface PageConfig {
   id: string
   slug: string
   title: string
-  titleTr: string
-  isHomePage: boolean
-  includeInNav: boolean
+  titleTr?: string
+  isHomePage?: boolean
+  includeInNav?: boolean
   sections: SectionConfig[]
 }
 
+import type { BlockNode } from './ast-types'
+
 export interface SectionConfig {
   id: string
-  type: SectionType
+  type: SectionType | (string & {})
   variant: string
   order: number
-  required: boolean
-  settings: SectionSettings
-  defaultContent: Record<string, unknown>
-  editableFields: EditableField[]
+  required?: boolean
+  settings: Partial<SectionSettings> & { visible?: boolean }
+  defaultContent?: Record<string, any>
+  editableFields?: EditableField[]
+  // V2 AST Engine Support
+  blockTree?: BlockNode
 }
 
 export interface EditableField {

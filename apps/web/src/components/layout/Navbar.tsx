@@ -129,8 +129,7 @@ const NAV_GROUPS: NavGroup[] = [
     sections: [
       {
         items: [
-          { label: "Tema Mağazası", href: "/temalar", icon: "sparkles", desc: "200+ profesyonel şablon" },
-          { label: "Tüm Demolar", href: "/demolar/vitrin", icon: "file", desc: "34 sektör demo galerisi" },
+          { label: "Tüm Demolar", href: "/demolar/vitrin", icon: "file", desc: "200+ profesyonel demo" },
         ],
       },
       {
@@ -199,6 +198,18 @@ export default function Navbar() {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  // Escape tuşuyla dropdown ve mobil menüyü kapat
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        if (openDropdown) setOpenDropdown(null);
+        if (isMobileMenuOpen) setIsMobileMenuOpen(false);
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [openDropdown, isMobileMenuOpen]);
 
   const toggleDropdown = useCallback((id: string) => {
     setOpenDropdown((prev) => (prev === id ? null : id));

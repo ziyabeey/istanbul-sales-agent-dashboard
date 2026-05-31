@@ -1,0 +1,20 @@
+/** Foto Ürün — vibrant product photography CSS variables */
+export const FOTO_URUN_CSS: Record<string, string> = {
+  '--color-bg': '#F8F9FA',
+  '--color-surface': '#FFFFFF',
+  '--color-surface-elevated': '#FFFFFF',
+  '--color-surface-muted': '#F1F3F5',
+  '--color-text': '#212529',
+  '--color-text-secondary': '#6C757D',
+  '--color-text-muted': '#ADB5BD',
+  '--color-text-on-accent': '#FFFFFF',
+  '--color-text-on-dark': '#F8F9FA',
+  '--color-accent': '#6366F1',
+  '--color-accent-hover': '#818CF8',
+  '--color-accent-active': '#4F46E5',
+  '--color-accent-light': '#EEF2FF',
+  '--color-border': '#DEE2E6',
+  '--color-border-subtle': '#F1F3F5',
+  '--font-heading': "'Space Grotesk', sans-serif",
+  '--font-body': "'Inter', system-ui, sans-serif",
+}

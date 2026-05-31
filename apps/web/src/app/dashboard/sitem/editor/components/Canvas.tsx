@@ -12,7 +12,6 @@ import { IconMonitor, IconTablet, IconSmartphone } from './Icons'
 export default function Canvas() {
     const deviceMode = useEditorStore(s => s.deviceMode)
     const zoom = useEditorStore(s => s.zoom)
-    const generatedHtml = useEditorStore(s => s.generatedHtml)
     const siteData = useEditorStore(s => s.siteData)
     const openContextMenu = useEditorStore(s => s.openContextMenu)
     const applyInlineEdit = useEditorStore(s => s.applyInlineEdit)
@@ -26,12 +25,22 @@ export default function Canvas() {
 
     const stageWidth = deviceMode === 'desktop' ? 980 : deviceMode === 'tablet' ? 768 : 375
 
-    /* Sync srcdoc when generatedHtml changes */
+    /* Sync postMessage when data changes */
     useEffect(() => {
-        if (iframeRef.current && generatedHtml) {
-            iframeRef.current.srcdoc = generatedHtml
+        if (!iframeRef.current || !siteData?.theme) return
+        
+        // AST V2 Engine
+        if (!iframeRef.current.src || !iframeRef.current.src.includes('/editor-preview')) {
+            iframeRef.current.removeAttribute('srcdoc')
+            iframeRef.current.src = '/editor-preview'
+        } else {
+            iframeRef.current.contentWindow?.postMessage({
+                type: 'ke-preview-update',
+                themeConfig: siteData.theme,
+                businessData: siteData.business
+            }, '*')
         }
-    }, [generatedHtml])
+    }, [siteData])
 
     /* Prevent browser context menu on canvas area */
     const handleCanvasContextMenu = useCallback((e: React.MouseEvent) => {
@@ -90,6 +99,27 @@ export default function Canvas() {
                 })
             }
 
+            // AST Engine: iframe ready to receive data
+            if (e.data.type === 'ke-preview-ready') {
+                const currentSiteData = useEditorStore.getState().siteData
+                if (currentSiteData?.theme) {
+                    iframe.contentWindow?.postMessage({
+                        type: 'ke-preview-update',
+                        themeConfig: currentSiteData.theme,
+                        businessData: currentSiteData.business
+                    }, '*')
+                }
+            }
+
+            // AST Engine: node selected
+            if (e.data.type === 'ke-select-node') {
+                const store = useEditorStore.getState()
+                // Seçilen AST düğümünü RightPanel'de açmak için store.selectSection veya yeni bir state kullanabiliriz
+                // Şimdilik selectSection ile id'yi kaydediyoruz. RightPanel bunu yakalayacak.
+                store.selectSection(e.data.nodeId)
+                // İsterseniz tipini de kaydedebilirsiniz (e.data.nodeType)
+            }
+
             // Module action from iframe overlay badge
             if (e.data.type === 'ke-modul-action') {
                 const { action, modulId } = e.data
@@ -100,7 +130,7 @@ export default function Canvas() {
                 if (action === 'delete' && modulId) {
                     const currentSiteData = useEditorStore.getState().siteData
                     if (currentSiteData && confirm(`"${modulId}" modülünü silmek istediğinize emin misiniz?`)) {
-                        updateSiteData({ moduller: currentSiteData.moduller.filter(m => m !== modulId) })
+                        updateSiteData({ moduller: currentSiteData.moduller ? currentSiteData.moduller.filter(m => m !== modulId) : [] })
                     }
                 }
             }
@@ -218,23 +248,19 @@ export default function Canvas() {
                             <span style={{ opacity: 0.5, margin: '0 4px' }}>·</span>{stageWidth}px
                         </div>
 
-                        {generatedHtml ? (
+                        {siteData?.theme ? (
                             <iframe
                                 ref={iframeRef}
                                 title="Site Önizleme"
                                 sandbox="allow-same-origin allow-scripts"
-                                srcDoc={generatedHtml}
                                 style={{ width: '100%', height: '100%', border: 'none' }}
                             />
                         ) : (
                             <div className="ke-empty">
                                 <div className="ke-empty-icon">🎨</div>
-                                <div className="ke-empty-title">Site Önizlemesi</div>
+                                <div className="ke-empty-title">Site Önizlemesi Yükleniyor...</div>
                                 <div className="ke-empty-desc">
-                                    {siteData
-                                        ? 'HTML oluşturuluyor...'
-                                        : 'Sektör bilgileriniz yükleniyor. Sol panelden düzenlemeye başlayabilirsiniz.'
-                                    }
+                                    Tema bilgileri hazırlanıyor.
                                 </div>
                                 <div className="ke-empty-hint">Editör demo sayfanızı gerçek zamanlı gösterecek</div>
                             </div>

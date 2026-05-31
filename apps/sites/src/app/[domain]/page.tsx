@@ -1,49 +1,131 @@
-import { notFound } from 'next/navigation';
-// In a real app, this would fetch from Fimport TemplateComponent from '@/components/TemplateComponent';
+import { notFound } from 'next/navigation'
+import SiteClient from './client'
+import { adminDb } from '../../lib/firebaseAdmin'
 
 interface PageProps {
-    params: Promise<{ domain: string }>;
+  params: Promise<{ domain: string }>
+  searchParams: Promise<{ theme?: string }>
 }
 
-export default async function SitePage({ params }: PageProps) {
-    // Next.js 15 requires awaiting params
-    const { domain } = await params;
+/**
+ * Sites app dynamic route — renders a published site.
+ * 
+ * Resolution order:
+ * 1. ?theme=berber-sade  → Demo mode (loads from template configs)
+ * 2. domain → Firestore lookup (TODO: implement when ready)
+ * 
+ * Middleware rewrites hostname → /[domain], so:
+ * - ahmetberber.kepenk.ai → /ahmetberber.kepenk.ai
+ * - localhost:3001?site=ahmetberber.kepenk.ai → /ahmetberber.kepenk.ai
+ */
+export default async function SitePage({ params, searchParams }: PageProps) {
+  const { domain } = await params
+  const { theme: themeId } = await searchParams
 
-    // 1. Slug ya da Custom Domain'i çözümles.domain;
-
-    // TODO: Fetch site data from Firestore based on domain
-    // const snapshot = await adminDb.collection('businesses').where('siteUrl', '==', domain).limit(1).get();
-    // if (snapshot.empty) return notFound();
-    // const data = snapshot.docs[0].data();
+  // ── Mode 1: Theme Demo ──
+  // Accessed via ?theme=berber-sade or ?theme=restoran-lezzet
+  if (themeId) {
+    // Dynamic import to avoid bundling the entire catalog at the page level
+    const { getTheme } = await import('@kepenk/templates/catalog')
+    const themeDef = getTheme(themeId)
+    
+    if (!themeDef) {
+      return notFound()
+    }
 
     return (
-        <div className="min-h-screen font-sans">
-            {/* Minimal Placeholder Hero */}
-            <header className="py-24 bg-gradient-to-br from-[#0a0a0f] to-[#1a1a2e] text-center px-4">
-                <h1 className="text-4xl md:text-6xl font-black text-white mb-6">
-                    Mükemmel Siteye Hoş Geldiniz
-                </h1>
-                <p className="text-xl text-slate-300 max-w-2xl mx-auto mb-8">
-                    Bu alan adı (<span className="text-[#7c3aed] font-mono">{domain}</span>) kepenk.ai altyapısıyla çalışmaktadır.
-                </p>
-                <button className="bg-white text-black px-8 py-3 rounded-full font-bold hover:bg-slate-200 transition-colors">
-                    Hizmetlerimizi İnceleyin
-                </button>
-            </header>
+      <SiteClient
+        mode="demo"
+        themeId={themeId}
+        sectorId={themeDef.sectorId}
+        seoSchemaType={themeDef.seoSchemaType}
+        domain={domain}
+      />
+    )
+  }
 
-            <main className="py-20 px-6 max-w-5xl mx-auto">
-                <div className="grid md:grid-cols-2 gap-12 text-black">
-                    <div className="bg-slate-100 p-8 rounded-3xl">
-                        <h2 className="text-2xl font-bold mb-4">Hakkımızda</h2>
-                        <p className="text-slate-600">
-                            (Bu alan dashboard editorü veya Ajan 9 tarafından otomatik olarak JSON formatında doldurulacaktır. İskelet Next.js routing sistemi başarıyla kurulmuştur.)
-                        </p>
-                    </div>
-                </div>
-            </main>
+  // ── Mode 2: Published Site (Firestore) ──
+  let siteData = null
+  try {
+    // We check customDomain, subdomainUrl, and slug in the esnaflar collection
+    const snapshot = await adminDb.collection('esnaflar')
+      .where('customDomain', '==', domain)
+      .limit(1)
+      .get()
+
+    let doc = snapshot.empty ? null : snapshot.docs[0]
+
+    // If not found by customDomain, check subdomain (e.g. ahmetberber.kepenk.ai)
+    if (!doc && domain.endsWith('.kepenk.ai')) {
+      const slug = domain.replace('.kepenk.ai', '')
+      const subSnapshot = await adminDb.collection('esnaflar')
+        .where('slug', '==', slug)
+        .limit(1)
+        .get()
+      if (!subSnapshot.empty) doc = subSnapshot.docs[0]
+    }
+
+    if (doc) {
+      const data = doc.data()
+      // Use the new architecture payload if it exists, otherwise fallback to legacy structure
+      if (data.siteData && data.siteData.theme && data.siteData.business) {
+        return (
+          <SiteClient 
+            mode="live" 
+            siteData={data.siteData} 
+            domain={domain} 
+          />
+        )
+      }
+    }
+  } catch (error) {
+    console.error('Error fetching live site:', error)
+  }
+
+  // For now, show a helpful landing page
+  return (
+    <div style={{
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      minHeight: '100vh', fontFamily: "'Inter', system-ui, sans-serif",
+      background: 'linear-gradient(135deg, #0a0a0f, #1a1a2e)',
+      color: '#fff', padding: '24px',
+    }}>
+      <div style={{ textAlign: 'center', maxWidth: '600px' }}>
+        <div style={{
+          display: 'inline-flex', padding: '6px 16px', borderRadius: '999px',
+          background: 'rgba(124, 58, 237, 0.15)', border: '1px solid rgba(124, 58, 237, 0.3)',
+          fontSize: '13px', fontWeight: 600, color: '#a78bfa', marginBottom: '32px',
+        }}>
+          kepenk.ai altyapısı
         </div>
-    );
+        
+        <h1 style={{
+          fontSize: 'clamp(2rem, 5vw, 3.5rem)',
+          fontWeight: 800, marginBottom: '16px', lineHeight: 1.1,
+          background: 'linear-gradient(to right, #fff, #94a3b8)',
+          WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
+        }}>
+          {domain}
+        </h1>
+        <p style={{ color: '#94a3b8', fontSize: '18px', lineHeight: 1.6, marginBottom: '40px' }}>
+          Bu alan adı kepenk.ai altyapısıyla çalışmaktadır.
+          Site henüz yayınlanmamış veya yapılandırılmamış.
+        </p>
+
+        <a href="https://kepenk.ai" style={{
+          display: 'inline-flex', gap: '8px', alignItems: 'center',
+          padding: '14px 28px', borderRadius: '12px',
+          background: 'linear-gradient(135deg, #7c3aed, #6366f1)',
+          color: '#fff', textDecoration: 'none', fontWeight: 700, fontSize: '15px',
+          boxShadow: '0 4px 24px rgba(124, 58, 237, 0.3)',
+          transition: 'transform 0.2s',
+        }}>
+          kepenk.ai&apos;ı Keşfet →
+        </a>
+      </div>
+    </div>
+  )
 }
 
-// SSG for fastest performance on subdomains if desired, otherwise ISR
-export const revalidate = 60; // ISR cache every 60 seconds
+// ISR — cache every 60 seconds for published sites, instant for demos
+export const revalidate = 60

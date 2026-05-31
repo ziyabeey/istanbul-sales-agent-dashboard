@@ -1,0 +1,535 @@
+{
+  "sectorId": "cicekci",
+  "seoSchemaType": "Florist",
+  "variants": [
+    {
+      "id": "cicekci-mahalle",
+      "variantName": "mahalle",
+      "plan": "free",
+      "description": "Mahalle cicekçisi, gunluk buket ve sepet",
+      "designPhilosophy": "Dogal, sicak, sade",
+      "isDark": false,
+      "colors": {
+        "bg": "#FFFFFF",
+        "surface": "#F9F5F0",
+        "text": "#1A1A1A",
+        "accent": "#4A7C59"
+      },
+      "fonts": { "heading": "Inter", "body": "Inter" },
+      "business": {
+        "name": "Yesil Bahce Cicekcilik",
+        "ownerName": "Gulsen Kaya",
+        "sector": "Cicekci",
+        "slogan": "Her gune bir cicek, her eve bir renk",
+        "phone": "0532 718 45 60",
+        "phoneClean": "905327184560",
+        "whatsapp": "905327184560",
+        "email": "info@yesilbahcecicek.com",
+        "address": "Moda Mah. Feridiye Cad. No:22, Kadikoy/Istanbul",
+        "city": "Istanbul",
+        "district": "Kadikoy",
+        "neighborhood": "Moda",
+        "coordinates": { "lat": 40.9815, "lng": 29.0265 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/yesilbahcecicek"
+        },
+        "photos": [],
+        "foundedYear": 2012,
+        "experience": "14 yil",
+        "customerCount": "18.000+",
+        "rating": 4.7,
+        "reviewCount": 650,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Sali", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Carsamba", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Persembe", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Cuma", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "08:00", "close": "21:00", "isOpen": true },
+          { "day": "Pazar", "open": "09:00", "close": "18:00", "isOpen": true }
+        ],
+        "services": [
+          { "id": "s1", "name": "Mevsim Buketi", "price": "250 - 500 TL", "duration": "15 dk", "description": "Mevsimin en taze cicekleriyle hazirlanan gunluk buket. Renk ve boyut tercihi yapilabilir." },
+          { "id": "s2", "name": "Cicek Sepeti", "price": "400 - 800 TL", "duration": "20 dk", "description": "Hasir veya ahsap sepette ozenle duzenlenmis cicek aranjmani." },
+          { "id": "s3", "name": "Saksi Cicegi", "price": "150 - 600 TL", "duration": "hazir", "description": "Orkide, sukulent, bonsai ve mevsimlik saksi cicekleri." },
+          { "id": "s4", "name": "Ayni Gun Teslimat", "price": "+50 TL", "duration": "2-4 saat", "description": "Kadikoy ve yakin ilcelere ayni gun icinde teslimat." }
+        ],
+        "team": [],
+        "testimonials": [],
+        "faq": [
+          { "q": "Ayni gun teslimat yapabiliyor musunuz?", "a": "Evet, saat 15:00'e kadar verilen siparisler ayni gun teslim edilir. Kadikoy, Uskudar ve Atasehir bolgesine teslimat yapiyoruz." },
+          { "q": "Cicekler ne kadar dayanir?", "a": "Taze kesim ciceklerimiz dogru bakimla 5-10 gun dayanir. Buketinizle birlikte bakim kartı veriyoruz." },
+          { "q": "Online siparis verebilir miyim?", "a": "Evet, WhatsApp uzerinden cicek secimi yapip siparis verebilirsiniz. Odeme havale veya kapıda nakit/kart ile yapilabilir." },
+          { "q": "Ozel gun indirimi var mi?", "a": "Sevgililer Gunu, Anneler Gunu ve oğretmenler gunu gibi ozel gunlerde erken siparis indirimi uyguluyoruz." }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Her Gune Bir Cicek, Her Eve Bir Renk",
+          "subtitle": "Kadikoy Moda'da 14 yildir taze cicek, buket ve aranjman. Ayni gun teslimat ile sevdiklerinize surpriz yapin.",
+          "badge": "Kadikoy'nin Cicekçisi"
+        },
+        "about": {
+          "title": "Yesil Bahce Hakkinda",
+          "description": "Yesil Bahce Cicekcilik, 2012 yilindan bu yana Kadikoy Moda'da taze cicek ve aranjman hizmeti sunmaktadir. Gulsen Kaya tarafindan kurulan dukkanimizda her gun taze kesim ciceklerle mevsim buketleri, cicek sepetleri ve saksi bitkileri hazırlıyoruz. Musterilerimize en taze ve kaliteli cicekleri sunmak icin gunluk olarak cicek halinden alim yapiyoruz. Kadikoy ve cevre ilcelere ayni gun teslimat hizmetimiz mevcuttur. Dogum gunu, yildonumu, kutlama veya basagsustune her vesile icin ozenli aranjmanlar hazirliyoruz."
+        },
+        "services": {
+          "title": "Cicek Hizmetlerimiz",
+          "subtitle": "Taze cicek, buket ve aranjman"
+        },
+        "contact": {
+          "title": "Siparis & Iletisim",
+          "subtitle": "WhatsApp ile hemen siparis verin"
+        }
+      }
+    },
+    {
+      "id": "cicekci-online",
+      "variantName": "online",
+      "plan": "starter",
+      "description": "Online cicek siparisi ve teslimat odakli",
+      "designPhilosophy": "Modern, renkli, pratik",
+      "isDark": false,
+      "colors": {
+        "bg": "#FFFBF5",
+        "surface": "#FFF3E6",
+        "text": "#2D2520",
+        "accent": "#E87461"
+      },
+      "fonts": { "heading": "DM Sans", "body": "Inter" },
+      "business": {
+        "name": "CicekGo Online Cicekcilik",
+        "ownerName": "Deniz Arslan",
+        "sector": "Cicekci",
+        "slogan": "Bir tikla kapinizda, taze cicek garantisi",
+        "phone": "0533 294 81 50",
+        "phoneClean": "905332948150",
+        "whatsapp": "905332948150",
+        "email": "siparis@cicekgo.com.tr",
+        "address": "Camlica Mah. Libadiye Cad. No:118, Uskudar/Istanbul",
+        "city": "Istanbul",
+        "district": "Uskudar",
+        "neighborhood": "Camlica",
+        "coordinates": { "lat": 41.0270, "lng": 29.0620 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/cicekgoistanbul",
+          "facebook": "https://facebook.com/cicekgo"
+        },
+        "photos": [],
+        "foundedYear": 2020,
+        "experience": "6 yil",
+        "customerCount": "25.000+",
+        "rating": 4.6,
+        "reviewCount": 1800,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "07:00", "close": "22:00", "isOpen": true },
+          { "day": "Sali", "open": "07:00", "close": "22:00", "isOpen": true },
+          { "day": "Carsamba", "open": "07:00", "close": "22:00", "isOpen": true },
+          { "day": "Persembe", "open": "07:00", "close": "22:00", "isOpen": true },
+          { "day": "Cuma", "open": "07:00", "close": "22:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "07:00", "close": "22:00", "isOpen": true },
+          { "day": "Pazar", "open": "08:00", "close": "20:00", "isOpen": true }
+        ],
+        "services": [
+          { "id": "s1", "name": "Ayni Gun Teslimat", "price": "+75 TL", "duration": "2-4 saat", "description": "Saat 17:00'ye kadar verilen siparisler ayni gun teslim. Istanbul geneli." },
+          { "id": "s2", "name": "Express Teslimat (2 Saat)", "price": "+150 TL", "duration": "2 saat", "description": "Acil teslimat, siparisiniz 2 saat icinde kapinizda. Sinirli bolge." },
+          { "id": "s3", "name": "Romantik Buket", "price": "350 - 1.200 TL", "duration": "20 dk", "description": "Gul, lilyum ve ortanca ile romantik aranjman. Sevgiliye hediye icin ideal." },
+          { "id": "s4", "name": "Dogum Gunu Paketi", "price": "500 - 1.500 TL", "duration": "25 dk", "description": "Cicek + balon + cikolata kutusu combo. Dogum gunune ozel hazirlik." },
+          { "id": "s5", "name": "Taziye Celengi", "price": "800 - 2.500 TL", "duration": "30 dk", "description": "Cenaze ve taziye icin celenk, ayakli sepet. Saat ve kurdelali." },
+          { "id": "s6", "name": "Abonelik Programi", "price": "600 TL/hafta", "duration": "haftalik", "description": "Her hafta kapiniza taze mevsim buketi. 4 haftalik minimum taahhut." }
+        ],
+        "team": [
+          { "name": "Deniz Arslan", "role": "Kurucu & Operasyon Muduru", "bio": "E-ticaret gecmisli girisimci. 2020'de CicekGo'yu kurdu, 6 yilda 25.000+ teslimat." },
+          { "name": "Ayca Korkmaz", "role": "Bas Cicek Tasarimcisi", "bio": "10 yillik cicek aranjman deneyimi. Hollanda'da sus bitkileri egitimi." }
+        ],
+        "testimonials": [
+          { "name": "Ece Yilmaz", "district": "Besiktas", "date": "2025-11", "rating": 5, "comment": "Express teslimat gercekten 2 saatte geldi. Sevgilime surpriz yaptim, cok begendi. Buket fotograftakinden bile guzel cikti." },
+          { "name": "Mert Ozkan", "district": "Kadikoy", "date": "2025-10", "rating": 4, "comment": "Haftalik abonelik aliyorum, ofise her Pazartesi taze cicek geliyor. Moral veriyor. Sadece bir kez gecikme yasadik." },
+          { "name": "Seda Tekin", "district": "Atasehir", "date": "2025-09", "rating": 5, "comment": "Anneme dogum gunu paketi gonderdim. Cicek + balon + cikolata combo'su cok hosuna gitti. Online siparis cok kolay." }
+        ],
+        "faq": [
+          { "q": "Istanbul'un her yerine teslimat yapiyor musunuz?", "a": "Evet, Istanbul Avrupa ve Anadolu yakasinin tamamina teslimat yapiyoruz. Express teslimat belirli bolgelerle sinirlidir." },
+          { "q": "Cicek begenilmezse degisim var mi?", "a": "Evet, teslimat aninda memnun kalmazsaniz ayni gun icinde degisim yapiyoruz. Memnuniyet garantisi veriyoruz." },
+          { "q": "Ozel tarih hatirlatmasi var mi?", "a": "Evet, dogum gunu ve yildonumu gibi ozel tarihlerinizi kayit edip, 3 gun onceden hatirlatma gonderiyoruz." },
+          { "q": "Fatura kesebiliyor musunuz?", "a": "Evet, bireysel ve kurumsal fatura kesiyoruz. Siparis sirasinda fatura bilgilerinizi iletebilirsiniz." },
+          { "q": "Odeme nasil yapilir?", "a": "Kredi karti, banka karti, havale/EFT ve kapida odeme seceneklerimiz mevcuttur." },
+          { "q": "Abonelik iptal edilebilir mi?", "a": "Evet, 4 haftalik minimum surenin ardindan istediginiz zaman iptal edebilirsiniz. Iptal bir sonraki haftadan gecerli olur." }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Bir Tikla Kapinizda, Taze Cicek Garantisi",
+          "subtitle": "Istanbul genelinde ayni gun ve express teslimat. Romantik bukettten dogum gunu paketine, taziye celenginden haftalik abonelige.",
+          "badge": "Online Cicekci"
+        },
+        "about": {
+          "title": "CicekGo Hakkinda",
+          "description": "CicekGo, 2020 yilinda Deniz Arslan tarafindan kurulmus dijital oncelikli cicekcilik markasıdir. Istanbul genelinde ayni gun teslimat ve 2 saatlik express teslimat hizmetimizle 25.000'den fazla basarili teslimat gerceklestirdik. Her buket, Hollanda egitimli cicek tasarimcimiz Ayca Hanim tarafindan taze kesim ciceklerle haziranir. Romanik buketlerden dogum gunu paketlerine, taziye celenklerinden haftalik abonelik programlarina genis urun yelpazemizle her ihtiyaca cozum sunuyoruz. Memnuniyet garantisi ve kolay iade politikamizla guvenlei alisveris sagiyoruz."
+        },
+        "services": {
+          "title": "Online Siparis & Teslimat",
+          "subtitle": "Istanbul genelinde hizli ve guvenilir cicek teslimat"
+        },
+        "contact": {
+          "title": "Siparis Verin",
+          "subtitle": "WhatsApp veya telefon ile hemen siparis olusturun"
+        }
+      }
+    },
+    {
+      "id": "cicekci-dugun",
+      "variantName": "dugun",
+      "plan": "growth",
+      "description": "Dugun ve organizasyon cicek dekorasyonu",
+      "designPhilosophy": "Romantik, sofistike, goruntusel",
+      "isDark": false,
+      "colors": {
+        "bg": "#FDFBF8",
+        "surface": "#F8F2EB",
+        "text": "#2A2520",
+        "accent": "#B5838D"
+      },
+      "fonts": { "heading": "Cormorant Garamond", "body": "Inter" },
+      "business": {
+        "name": "Bloom & Petal Dugun Cicekleri",
+        "ownerName": "Elif Duman",
+        "sector": "Cicekci",
+        "slogan": "Dugun gununuz, hayalinizdeki ciceklerle",
+        "phone": "0534 612 38 70",
+        "phoneClean": "905346123870",
+        "whatsapp": "905346123870",
+        "email": "info@bloomandpetal.com.tr",
+        "address": "Kuruçesme Mah. Muallim Naci Cad. No:65/A, Besiktas/Istanbul",
+        "city": "Istanbul",
+        "district": "Besiktas",
+        "neighborhood": "Kurucesme",
+        "coordinates": { "lat": 41.0625, "lng": 29.0315 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/bloomandpetal",
+          "facebook": "https://facebook.com/bloomandpetal",
+          "pinterest": "https://pinterest.com/bloomandpetal"
+        },
+        "photos": [],
+        "foundedYear": 2015,
+        "experience": "11 yil",
+        "customerCount": "2.800+",
+        "rating": 4.9,
+        "reviewCount": 920,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "09:00", "close": "19:00", "isOpen": true },
+          { "day": "Sali", "open": "09:00", "close": "19:00", "isOpen": true },
+          { "day": "Carsamba", "open": "09:00", "close": "19:00", "isOpen": true },
+          { "day": "Persembe", "open": "09:00", "close": "19:00", "isOpen": true },
+          { "day": "Cuma", "open": "09:00", "close": "19:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "08:00", "close": "22:00", "isOpen": true },
+          { "day": "Pazar", "open": "08:00", "close": "22:00", "isOpen": true }
+        ],
+        "services": [
+          { "id": "s1", "name": "Gelin Buketi", "price": "1.500 - 5.000 TL", "duration": "hazirlik", "description": "Gelin temasina uygun ozel tasarim el buketi. Gul, sakkayik, orkide, lilyum secenekleri." },
+          { "id": "s2", "name": "Gelin Araba Susu", "price": "800 - 2.500 TL", "duration": "45 dk", "description": "Araba ustu cicek susu, kurdele ve puf detayli. Aracın rengine uygun tasarim." },
+          { "id": "s3", "name": "Masa Aranjmani", "price": "400 - 1.500 TL/masa", "duration": "yerinde", "description": "Dugun masalari icin merkez cicek aranjmani. Mum, vazo ve aksesuar dahil." },
+          { "id": "s4", "name": "Salon Dekorasyonu", "price": "5.000 - 30.000 TL", "duration": "4-8 saat", "description": "Dugun salonu tam dekorasyon. Giiris kemeri, sahne cicegi, sutun sarma, tavan susleme." },
+          { "id": "s5", "name": "Nikah Masasi Susleme", "price": "1.000 - 3.000 TL", "duration": "1 saat", "description": "Nikah masasi cicek duzenleme, mum ve aksesuar." },
+          { "id": "s6", "name": "Kir Dugunu Dekorasyonu", "price": "8.000 - 50.000 TL", "duration": "6-10 saat", "description": "Acik hava dugun dekorasyonu. Kemer, oturma duzeni, yol kenarı, altar cicekleri." },
+          { "id": "s7", "name": "Nedime Buketi", "price": "500 - 1.200 TL/adet", "duration": "hazirlik", "description": "Gelin buketiyle uyumlu, daha kucuk boyutlu nedime buketleri." },
+          { "id": "s8", "name": "Yaka Cicegi", "price": "100 - 300 TL/adet", "duration": "hazirlik", "description": "Damat ve sagdic icin yaka cicegi. Gelin buketiyle uyumlu." },
+          { "id": "s9", "name": "Konsept Tasarim Danismanligi", "price": "Ucretsiz", "duration": "60 dk", "description": "Dugun temaniza uygun cicek ve renk paleti onerisi. Mekan gezisi dahil." },
+          { "id": "s10", "name": "Nisan/Soz Dekorasyonu", "price": "3.000 - 15.000 TL", "duration": "3-5 saat", "description": "Nisan ve soz toreni mekan dekorasyonu. Masa, sahne ve giris susleme." }
+        ],
+        "team": [
+          { "name": "Elif Duman", "role": "Kurucu & Bas Tasarimci", "bio": "Hollanda Aalsmeer cicek tasarim okulu mezunu. 11 yildir dugun cicekleri konusunda uzman." },
+          { "name": "Seren Aktas", "role": "Dekorasyon Koordinatoru", "bio": "400+ dugun dekorasyonu koordine etmis. Mekan lojistigi ve kurulum uzmani." },
+          { "name": "Cansu Tekin", "role": "Cicek Tasarimcisi", "bio": "Guzel sanatlar mezunu, botanik ilustrasyon gecmisli. Yaratici aranjman ve kir dugunu uzmani." },
+          { "name": "Ahmet Yilmaz", "role": "Kurulum Ekip Sefi", "bio": "8 yillik deneyim, agir dekorasyon kurulumu ve demontaj. 5 kisilik ekip yonetiyor." }
+        ],
+        "testimonials": [
+          { "name": "Merve & Kagan", "district": "Sariyer", "date": "2025-10", "rating": 5, "comment": "Kir dugununuz icin Bloom & Petal'i sectik, kesinlikle en iyi kararimiz. Cicek kemeri, masa aranjmanlari ve yol kenari cicekleri hayalimizdekinden bile guzel oldu." },
+          { "name": "Selin & Emre", "district": "Besiktas", "date": "2025-09", "rating": 5, "comment": "Salon dekorasyonu icin geldik, konsept danismanligi ucretsiz yapildi. Elif Hanim temamiza uygun renk paleti onerdi. Sonuc muhtesem, misafirlerin hepsi hayran kaldi." },
+          { "name": "Ayse & Burak", "district": "Beyoglu", "date": "2025-08", "rating": 5, "comment": "Gelin buketim sakkayik ve gul karisimi, tam istedigim gibi oldu. Yaka cicekleri de cok sik. Fiyat/kalite orani cok iyi." },
+          { "name": "Canan & Tolga", "district": "Kadikoy", "date": "2025-07", "rating": 4, "comment": "Nisan dekorasyonumuzu yaptilar. Cicekler harika ama kurulum planlanandan 1 saat gecikti. Sonuc olarak guzel oldu." },
+          { "name": "Nil & Serkan", "district": "Uskudar", "date": "2025-11", "rating": 5, "comment": "200 kisilik dugunda 25 masa aranjmani yapildi. Hepsi birbirinden guzel ve tutarli. Cansu Hanim'in yaratici aranjmanlari cok begennildi." },
+          { "name": "Ebru & Deniz", "district": "Atasehir", "date": "2025-06", "rating": 5, "comment": "Araba susu ve salon girisi icin geldik. Fotograflarda cok iyi cikti. Ozellikle giris kemeri Instagram'da cok begeni aldi." }
+        ],
+        "faq": [
+          { "q": "Dugun oncesi ne kadar zaman ayirmali?", "a": "Ideal olarak 3-4 ay once gorusmemizi oneririz. Yaz sezonu icin 6 ay once basvuru yapmanizi tavsiye ederiz." },
+          { "q": "Mekan gezisi yapiyor musunuz?", "a": "Evet, Istanbul icindeki mekanlara ucretsiz gezii duzenliyoruz. Mekan boyutlarina gore dekorasyon plani olusturuyoruz." },
+          { "q": "Yapay cicek kullanir misiniz?", "a": "Tercihen taze cicek kullaniyoruz. Ancak tavan susleme veya kalici detaylarda yuksek kalite yapay cicek de kullanabiliyoruz." },
+          { "q": "Dekorasyon sonrasi demontaj dahil mi?", "a": "Evet, kurulum ve demontaj fiyata dahildir. Dugun sonrasi ekibimiz tum malzemeleri toplar." },
+          { "q": "Yagmurlu havada kir dugunu ne olur?", "a": "B plani olarak salon veya cadir alternatiifi her zaman hazirlariz. Cicek aranjmanlari kolayca tasinabilir formatta hazirllanir." },
+          { "q": "Baska sehirlere gelir misiniz?", "a": "Istanbul ve Marmara Bolgesi'ne (Bursa, Edirne, Sakarya) geliyoruz. Uzak sehirler icin ulasim ve konaklama ucreti eklenir." },
+          { "q": "Odeme nasil yapilir?", "a": "%30 kaparo siparis onayinda, kalan %70 dugun gunu oncesinde odenir. Kredi karti ve havale kabul ediyoruz." },
+          { "q": "Nedime ve damat aksesuarlari ayri mi?", "a": "Evet, nedime buketi, yaka cicegi, bileklik cicek gibi aksesuarlar adet bazinda ayri fiyatlandirilir." }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Dugun Gununuz, Hayalinizdeki Ciceklerle",
+          "subtitle": "Besiktas'ta dugun ve organizasyon cicek dekorasyonu. Gelin buketinden salon dekorasyonuna, kir dugununden nisan suslemesine.",
+          "badge": "Dugun Cicekleri Uzmani"
+        },
+        "about": {
+          "title": "Bloom & Petal Hakkinda",
+          "description": "Bloom & Petal, 2015 yilinda Hollanda Aalsmeer cicek tasarim okulu mezunu Elif Duman tarafindan Besiktas Kurucesme'de kurulmustur. 11 yildir Istanbul'un en ozel dugunlerinde cicek dekorasyonu yapiyoruz. Gelin buketi, salon dekorasyonu, kir dugunu tasarimi, masa aranjmani ve nikah masasi susleme gibi genis bir hizmet yelpazesi sunuyoruz. 400'den fazla dugun ve organizasyon deneyimimizle her temaya uygun ozel tasarimlar olusturuyoruz. Ekibimiz, konsept danismanligindan kurulum ve demontaja kadar tum sureci profesyonelce yonetir. Hollanda'dan ithal cicekler ve yerel mevsim cicekleriyle calisiyor, her buketi ozenle hazirliyoruz."
+        },
+        "services": {
+          "title": "Dugun Cicek Hizmetlerimiz",
+          "subtitle": "Gelin buketinden mekan dekorasyonuna eksiksiz dugun cicegi"
+        },
+        "contact": {
+          "title": "Gorusme Randevusu",
+          "subtitle": "Dugun tarihiiniz icin hemen goruselim"
+        }
+      }
+    },
+    {
+      "id": "cicekci-lux",
+      "variantName": "lux",
+      "plan": "pro",
+      "description": "Premium cicek boutique, luks aranjman",
+      "designPhilosophy": "Luks, minimal, rafine",
+      "isDark": false,
+      "colors": {
+        "bg": "#FDFCFA",
+        "surface": "#F5F0E8",
+        "text": "#1E1C18",
+        "accent": "#8B6914"
+      },
+      "fonts": { "heading": "Playfair Display", "body": "Lato" },
+      "business": {
+        "name": "Maison Florale Istanbul",
+        "ownerName": "Ceren Oztürk",
+        "sector": "Cicekci",
+        "slogan": "Cicegi sanata donusturen eller",
+        "phone": "0535 482 17 90",
+        "phoneClean": "905354821790",
+        "whatsapp": "905354821790",
+        "email": "atelier@maisonflorale.com.tr",
+        "address": "Nisantasi Mah. Tesvikiye Cad. No:89/2, Sisli/Istanbul",
+        "city": "Istanbul",
+        "district": "Sisli",
+        "neighborhood": "Nisantasi",
+        "coordinates": { "lat": 41.0485, "lng": 28.9936 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/maisonfloraleist",
+          "facebook": "https://facebook.com/maisonflorale",
+          "pinterest": "https://pinterest.com/maisonflorale",
+          "tiktok": "https://tiktok.com/@maisonflorale"
+        },
+        "photos": [],
+        "foundedYear": 2013,
+        "experience": "13 yil",
+        "customerCount": "12.000+",
+        "rating": 4.9,
+        "reviewCount": 1650,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "09:00", "close": "20:00", "isOpen": true },
+          { "day": "Sali", "open": "09:00", "close": "20:00", "isOpen": true },
+          { "day": "Carsamba", "open": "09:00", "close": "20:00", "isOpen": true },
+          { "day": "Persembe", "open": "09:00", "close": "20:00", "isOpen": true },
+          { "day": "Cuma", "open": "09:00", "close": "20:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "10:00", "close": "19:00", "isOpen": true },
+          { "day": "Pazar", "open": "10:00", "close": "17:00", "isOpen": true }
+        ],
+        "services": [
+          { "id": "s1", "name": "Signature Buket", "price": "800 - 3.000 TL", "duration": "20 dk", "description": "Maison Florale imzali ozel tasarim buket. Premium cicekler, el yapimi ambalaj." },
+          { "id": "s2", "name": "Kutuda Cicek (Flower Box)", "price": "1.200 - 4.000 TL", "duration": "25 dk", "description": "Kadife kutuda premium gul veya karisik cicek. Uzun omurlu korunmus cicek secenegi." },
+          { "id": "s3", "name": "Orkide Koleksiyonu", "price": "1.500 - 6.000 TL", "duration": "hazir", "description": "Nadir orkide cesitleri, tasarim saksilar ve ozel sunum. Hediye ve dekorasyon icin." },
+          { "id": "s4", "name": "Kurumsal Abonelik", "price": "2.500 TL/hafta", "duration": "haftalik", "description": "Otel, restoran, ofis lobbisi icin haftalik cicek degisimi. Mevsimsel tasarim." },
+          { "id": "s5", "name": "Ev Icin Cicek Tasarimi", "price": "1.000 - 5.000 TL/ziyaret", "duration": "60 dk", "description": "Evinize gelerek mekan ve dekorasyona uygun cicek aranjmanlari olusturma." },
+          { "id": "s6", "name": "Preserved (Korunmus) Cicekler", "price": "2.000 - 8.000 TL", "duration": "hazir", "description": "2-3 yil dayanan korunmus gul ve bitki aranjmanlari. Cam fanus ve kutu secenekleri." },
+          { "id": "s7", "name": "VIP Hediye Paketi", "price": "2.500 - 10.000 TL", "duration": "hazirlik", "description": "Cicek + premium cikolata + mum + kisisel kart. Ozel ambalaj ve kuryee teslimat." },
+          { "id": "s8", "name": "Mekan Lansmanı Dekorasyonu", "price": "5.000 - 25.000 TL", "duration": "4-6 saat", "description": "Magaza acilis, restoran lansman, showroom cicek dekorasyonu." },
+          { "id": "s9", "name": "Cicek Aranjman Workshopu", "price": "800 TL/kisi", "duration": "2 saat", "description": "Profesyonel cicek aranjman teknikleri. Malzeme dahil, 6-10 kisilik grup." },
+          { "id": "s10", "name": "Sezonluk Dekoratif Bitki Bakimi", "price": "500 TL/ay", "duration": "aylik", "description": "Evinizdeki saksi bitkilerinin bakim, sulama ve gubre programi. Aylik ziyaret." },
+          { "id": "s11", "name": "Dogum Gunu Surpriz Servisi", "price": "1.500 - 5.000 TL", "duration": "degisken", "description": "Cicek + balon + pasta koordinasyonu, surpriz mekan kurulumu." },
+          { "id": "s12", "name": "Taziye & Basasagligi", "price": "600 - 3.000 TL", "duration": "20 dk", "description": "Cenaze celengi, taziye aranjmani. Saatli ve kurdelali, ozenli hazırlik." },
+          { "id": "s13", "name": "Botanik Danismanlik", "price": "Ucretsiz", "duration": "15 dk", "description": "Bitki secimi, bakim onerisi, ev/ofis icin uygun bitki danismanligi." },
+          { "id": "s14", "name": "Ayin Cicegi Aboneligi", "price": "1.200 TL/ay", "duration": "aylik", "description": "Her ay farkli tema ve ciceklerle ozel bir buket kapinizda." }
+        ],
+        "team": [
+          { "name": "Ceren Ozturk", "role": "Kurucu & Kreatif Direktor", "bio": "Hollanda Boerma Instituut cicek tasarım okulu mezunu. 13 yillik deneyim, uluslararasi cicek yarismalari odul sahibi." },
+          { "name": "Aysun Demir", "role": "Preserved Cicek Uzmani", "bio": "Korunmus cicek teknikleri konusunda Turkiye'nin ilk uzmanlarindan. 8 yillik deneyim." },
+          { "name": "Burcu Yilmaz", "role": "Kurumsal Hesap Yoneticisi", "bio": "5 yuzun fazla otel, restoran ve ofis hesabini yonetiyor. Lojistik ve musteri iliskileri uzmani." },
+          { "name": "Kerem Aksoy", "role": "Cicek Tasarimcisi", "bio": "Guzel sanatlar mezunu. Minimal ve modern aranjman tarzinda uzman. Workshop egitmeni." },
+          { "name": "Fatma Cakir", "role": "Bitki Bakimi Danismani", "bio": "Botanik bolumu mezunu. Ev ve ofis bitkileri bakimi, sezonluk gecis planlama." },
+          { "name": "Ali Dogan", "role": "Teslimat & Kurulum Sefi", "bio": "6 yildir Maison Florale teslimat ekibini yonetiyor. VIP teslimat ve mekan kurulumu." }
+        ],
+        "testimonials": [
+          { "name": "Berna Aksoy", "district": "Nisantasi", "date": "2025-12", "rating": 5, "comment": "Kutuda cicek hediyelik olarak cok sik. Kadife kutu ve premium gullerin sunumu muhtesem. Alanlarin hepsi hayran kaliyor." },
+          { "name": "Selma Yildirim", "district": "Etiler", "date": "2025-11", "rating": 5, "comment": "Evim icin cicek tasarim hizmeti aldim. Ceren Hanim evime geldi, dekorasyonuma uygun aranjmanlar olusturdu. Ev bambaşka gorunuyor." },
+          { "name": "Hakan Ozturk", "district": "Levent", "date": "2025-10", "rating": 5, "comment": "Ofisimize kurumsal abonelik aldik. Her hafta lobbimizde taze ve farkli cicekler oluyor. Müsterilerimiz her geldiginde fark ediyor." },
+          { "name": "Cigdem Sahin", "district": "Bebek", "date": "2025-09", "rating": 5, "comment": "Preserved cicek aranjmani aldim, 2 yildir duruyor yeniymiş gibi. Cam fanustaki guller cok zarif gorunuyor." },
+          { "name": "Emre Polat", "district": "Sisli", "date": "2025-08", "rating": 5, "comment": "VIP hediye paketi gonderdim. Cicek + cikolata + mum + el yazisi kart. Alici cok duyulandu, sunum gercekten premium." },
+          { "name": "Nil Kaya", "district": "Kadikoy", "date": "2025-07", "rating": 4, "comment": "Workshop'a katildim, cok keyifliydi. Kendi buketimi yaptim ve eve goturdüm. Tek elestiri: 2 saat biraz kisa geldi." },
+          { "name": "Duygu Arslan", "district": "Besiktas", "date": "2025-06", "rating": 5, "comment": "Restoran lansmanı icin dekorasyon yaptirdik. Giris ve masalar ciceklerle doluydu. Instagram'da cok begeni aldi, harika iscilik." },
+          { "name": "Serkan Tekin", "district": "Uskudar", "date": "2025-11", "rating": 5, "comment": "Ayin cicegi aboneligini esime aldim. Her ay surpriz oluyor, farkli tema ve ciceklerle geliyor. En guzel hediye fikri." }
+        ],
+        "faq": [
+          { "q": "Preserved (korunmus) cicek nedir?", "a": "Ozel bir kimyasal islemle 2-3 yil boyunca taze gorunumunu koruyan gercek ciceklerdir. Su, gunes isigi gerektirmez. Gul, hortensia ve okaliptus en populer turlerdir." },
+          { "q": "Kurumsal abonelik nasil calisiyor?", "a": "Mekana ozel boyut ve stil belirliyoruz. Her hafta belirli gunde ekibimiz gelir, eski aranjmani alir, yenisini bırakır. Mevsimsel degisim yapilir." },
+          { "q": "Ev icin cicek tasarimi nasil oluyor?", "a": "Ceren Hanim evinize gelir, mekani, dekorasyonu ve doğal isigi degerlendirir. Uygun cicek ve bitki aranjmanlari olusturur. Istenirse aylik bakim programi da ayarlanır." },
+          { "q": "Workshop'a kimler katilabilir?", "a": "18 yas ustu herkes katilabilir, deneyim gerekmez. Kurumsal grup workshoplari da duzenliyoruz. Malzeme dahildir, kendi buketinizi eve goturursuunuz." },
+          { "q": "Istanbul disi teslimat var mi?", "a": "Istanbul geneline teslimat yapiyoruz. Istanbul dışına preserved cicek ve kutuda cicek gondeerimi yapilabilir, kargo ile." },
+          { "q": "VIP hediye paketini kissellestirebilir miyim?", "a": "Evet, cicek cesidi, cikolata markasi, mum kokusu ve kart mesajini siz belirleyebilirsiniz. Tamamen kisisellestirilmis paketler hazırliyoruz." },
+          { "q": "Mekan dekorasyonu icin ne kadar onceden basvurmali?", "a": "En az 2 hafta once basvurmanizi oneririz. Buyuk organizasyonlar icin 1 ay ideal." },
+          { "q": "Taze cicek garrantisi var mi?", "a": "Evet, tum taze cicek urunlerimiz 5 gun tazelik garantilidir. Beklentinin altinda kalan urunlerde ucretsiz yenileme yapiyoruz." },
+          { "q": "Fatura ve taksit imkani var mi?", "a": "Evet, bireysel ve kurumsal fatura kesiyoruz. 1.000 TL ustu alisverislerde 3 taksit imkani sunuyoruz." },
+          { "q": "Bitki bakimi icin eve geliyor musunuz?", "a": "Evet, sezonluk bakım aboneligi ile ayda 1 kez evinize gelerek bitkillerinizin bakim, budama ve gubre islemlerini yapiyoruz." }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Cicegi Sanata Donustureen Eller",
+          "subtitle": "Nisantasi'nda premium cicek boutique. Signature buketlerden korunmus cicek koleksiyonuna, kurumsal abonelikten ev dekorasyonuna.",
+          "badge": "Premium Cicek Boutique"
+        },
+        "about": {
+          "title": "Maison Florale Hakkinda",
+          "description": "Maison Florale, 2013 yilinda Hollanda Boerma Instituut mezunu Ceren Ozturk tarafindan Sisli Nisantasi'nda kurulmustur. 13 yillik deneyimimizle Istanbul'un en prestijli cicek boutique'lerinden biriyiz. Signature buketlerimiz, kutuda cicek koleksiyonumuz, korunmus cicek aranjmanlarimiz ve nadir orkide seceneklerimizle farklilik sunuyoruz. Kurumsal abonelik programimizla otel, restoran ve ofis lobbilerinde haftalik cicek degisimi yapiyoruz. Ev icin kisisellestirilmis cicek tasarimi, mekan lansman dekorasyonu ve cicek aranjman workshoplari duzenliyoruz. Uluslararasi cicek yarismalarinda odul almis ekibimizle her aranjmani sanat eserine donusturuyoruz."
+        },
+        "services": {
+          "title": "Cicek & Bitki Hizmetlerimiz",
+          "subtitle": "Bukettten korunmus cicege, abonelikten workshopa"
+        },
+        "contact": {
+          "title": "Siparis & Randevu",
+          "subtitle": "Premium cicek deneyimi icin bize ulasin"
+        }
+      }
+    },
+    {
+      "id": "cicekci-taziye",
+      "variantName": "taziye",
+      "plan": "enterprise",
+      "description": "Kurumsal cicek ve etkinlik dekorasyon zinciri",
+      "designPhilosophy": "Kurumsal, luks, karanlik tema",
+      "isDark": true,
+      "colors": {
+        "bg": "#0E1118",
+        "surface": "#1A1F2E",
+        "text": "#E4E8F0",
+        "accent": "#C9A84C"
+      },
+      "fonts": { "heading": "Playfair Display", "body": "Inter" },
+      "business": {
+        "name": "Flora Grand Istanbul",
+        "ownerName": "Selim Karaoglu",
+        "sector": "Cicekci",
+        "slogan": "Istanbul'un en buyuk cicek ve dekorasyon grubu",
+        "phone": "0212 444 FLORA",
+        "phoneClean": "902124443567",
+        "whatsapp": "905301234678",
+        "email": "info@floragrand.com.tr",
+        "address": "Maslak Mah. Buyukdere Cad. No:255, Sariyer/Istanbul",
+        "city": "Istanbul",
+        "district": "Sariyer",
+        "neighborhood": "Maslak",
+        "coordinates": { "lat": 41.1085, "lng": 29.0225 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/floragrandist",
+          "facebook": "https://facebook.com/floragrand",
+          "youtube": "https://youtube.com/@floragrand",
+          "twitter": "https://twitter.com/floragrand",
+          "linkedin": "https://linkedin.com/company/flora-grand"
+        },
+        "photos": [],
+        "foundedYear": 2005,
+        "experience": "21 yil",
+        "customerCount": "120.000+",
+        "rating": 4.9,
+        "reviewCount": 6800,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "00:00", "close": "23:59", "isOpen": true },
+          { "day": "Sali", "open": "00:00", "close": "23:59", "isOpen": true },
+          { "day": "Carsamba", "open": "00:00", "close": "23:59", "isOpen": true },
+          { "day": "Persembe", "open": "00:00", "close": "23:59", "isOpen": true },
+          { "day": "Cuma", "open": "00:00", "close": "23:59", "isOpen": true },
+          { "day": "Cumartesi", "open": "00:00", "close": "23:59", "isOpen": true },
+          { "day": "Pazar", "open": "00:00", "close": "23:59", "isOpen": true }
+        ],
+        "services": [
+          { "id": "s1", "name": "7/24 Express Teslimat", "price": "+200 TL", "duration": "90 dk", "description": "Istanbul genelinde 90 dakikada teslimat. Gece dahil, her saat aktif." },
+          { "id": "s2", "name": "VIP Signature Koleksiyonu", "price": "3.000 - 15.000 TL", "duration": "30 dk", "description": "Hollanda ve Ekvador'dan ithal premium ciceklerle ozel tasarim. El yapimi kutu veya vazo." },
+          { "id": "s3", "name": "Kurumsal Abonelik (Enterprise)", "price": "5.000 - 50.000 TL/ay", "duration": "haftalik", "description": "5 yildizli oteller, holding ofisleri, showroomlar icin haftalik cicek programi. Ozel tasarim ve lojistik." },
+          { "id": "s4", "name": "Buyuk Olcekli Etkinlik Dekorasyonu", "price": "20.000 - 500.000 TL", "duration": "1-3 gun", "description": "Gala, lansman, konser, devlet toreni, marka etkinligi icin kapsamli cicek dekorasyonu." },
+          { "id": "s5", "name": "Luxury Dugun Paketi", "price": "30.000 - 300.000 TL", "duration": "2-3 gun", "description": "Tam kapsamli dugun dekorasyonu. 3D mekan tasarimi, ithal cicekler, kemer, sahne, masa." },
+          { "id": "s6", "name": "Preserved Lux Koleksiyonu", "price": "5.000 - 30.000 TL", "duration": "hazir", "description": "Uluslararasi kalite korunmus cicekler. Swarovski ve altin detayli sunumlar." },
+          { "id": "s7", "name": "Cenaze & Taziye Hizmetleri", "price": "1.500 - 10.000 TL", "duration": "2 saat", "description": "7/24 taziye celengi, ayakli sepet, taziye buketi. Hastane ve eve teslimat." },
+          { "id": "s8", "name": "Botanik Bahce Tasarimi", "price": "10.000 - 100.000 TL", "duration": "2-8 hafta", "description": "Villa, penthouse ve ofis icin ic mekan botanik bahce kurulumu. Otomatik sulama sistemi dahil." },
+          { "id": "s9", "name": "Cicek Sanat Enstalasyonu", "price": "15.000 - 200.000 TL", "duration": "1-2 hafta", "description": "Muze, galeri ve kamusal alan icin cicek sanat enstalasyonu. Gecici veya kalici." },
+          { "id": "s10", "name": "Marka Is Birligi & Sponsorluk", "price": "Teklif uzerine", "duration": "degisken", "description": "Luks marka lansmanı, parfum tanıtımı, moda haftası cicek partnerligi." },
+          { "id": "s11", "name": "Cicek Tasarim Akademisi", "price": "12.000 TL/kisi", "duration": "8 hafta", "description": "Profesyonel cicek tasarim egitimi. Hollandali egitmenlerle, sertifika programi." },
+          { "id": "s12", "name": "Uluslararasi Gonderim", "price": "degisken", "duration": "2-5 gun", "description": "60+ ulkeye cicek gonderiimi. Partner cicekci agi ile yerel tasarim ve tesliimat." },
+          { "id": "s13", "name": "Yat & Helikopter Dekorasyonu", "price": "5.000 - 50.000 TL", "duration": "2-4 saat", "description": "Luks yat, helikopter ve ozel jet icin cicek dekorasyonu. Evlilik teklifi ozel." },
+          { "id": "s14", "name": "Ev Abonelik (Premium)", "price": "3.000 TL/ay", "duration": "haftalik", "description": "Eviniize haftada 1 premium buket + ayda 1 saksi bitkisi. VIP musteri indirimi." },
+          { "id": "s15", "name": "Bitki Hastanesi", "price": "300 - 1.500 TL", "duration": "degisken", "description": "Hasta bitkilerinizi teslim alin, teshis, tedavi ve geri teslim. Garanti ile." },
+          { "id": "s16", "name": "Ofis Yesillendirme", "price": "2.000 - 20.000 TL + bakim", "duration": "1-2 hafta", "description": "Ofis ic mekan yesillendirme. Bitki secimi, yerlesim, otomatik sulama ve aylik bakim." },
+          { "id": "s17", "name": "Fotograf Cekimi Icin Cicek Set", "price": "3.000 - 15.000 TL", "duration": "3-5 saat", "description": "Moda, urun ve editoryal fotograf ceekimleri icin cicek set tasarimi." },
+          { "id": "s18", "name": "Mevsimsel Ev Dekorasyon Danismanligi", "price": "1.500 TL/sezon", "duration": "60 dk", "description": "Mevsime gore ev dekorasyon cicek planlama, renk paleti ve urun onerisi." },
+          { "id": "s19", "name": "Swarovski Cicek Koleksiyonu", "price": "8.000 - 50.000 TL", "duration": "hazir/ozel", "description": "Swarovski kristal detayli korunmus gul aranjmanlarir. Hediye ve koleksiyon icin." },
+          { "id": "s20", "name": "VIP Concierge Hizmeti", "price": "5.000 TL/ay", "duration": "sinitsiz", "description": "Kisisel cicek danismani, tum ozel gun planlama, oncelikli teslimat ve ozel fiyatlandirma." }
+        ],
+        "team": [
+          { "name": "Selim Karaoglu", "role": "Kurucu & CEO", "bio": "21 yillik cicekcilik sektoru deneyimi. Flora Grand'i tek dukkandan 5 subeli gruba buyutu. Sektör dernegi baskani." },
+          { "name": "Marieke van den Berg", "role": "Kreatif Direktor", "bio": "Hollanda Boerma Instituut egitmeni. 18 yillik uluslararasi cicek tasarimi deneyimi. Dunya sampiyonasi jurisi." },
+          { "name": "Caner Ozkan", "role": "Etkinlik & Dekorasyon Sefi", "bio": "500+ buyuk olcekli etkinlik dekorasyonu. Devlet torenleri ve marka lansmanlarinda deneyimli." },
+          { "name": "Aylin Korkmaz", "role": "Dugun Departmani Muduru", "bio": "12 yildir luxury segment dugun dekorasyonu. Istanbul'un en prestijli mekanlarinda 800+ dugun." },
+          { "name": "Burak Demirtas", "role": "Botanik & Peyzaj Uzmani", "bio": "Peyzaj mimarligi yuksek lisans. Ic mekan botanik bahce ve ofis yesillendirme uzmani." },
+          { "name": "Derya Sahin", "role": "Preserved & Art Direktoru", "bio": "Korunmus cicek ve sanat enstalasyonu uzmani. Galeri ve muze projeleri yurutuyor." },
+          { "name": "Emre Koc", "role": "Operasyon & Lojistik Muduru", "bio": "5 sube, 30+ teslimat araci, 80 kisilik ekibin lojistik yonetimi." },
+          { "name": "Sema Yilmaz", "role": "Akademi Koordinatoru", "bio": "Cicek tasarim egitimi koordinatoru. Yilda 200+ ogrenci yetistiriyor." }
+        ],
+        "testimonials": [
+          { "name": "Four Seasons Hotel Istanbul", "district": "Besiktas", "date": "2025-12", "rating": 5, "comment": "3 yildir Flora Grand ile calisiyoruz. Lobbimizdeki haftalik cicek degisimi misafirlerimizin en cok begendigi detay. Profesyonel, dakik ve yaratici." },
+          { "name": "Mercedes-Benz Turkiye", "district": "Maslak", "date": "2025-11", "rating": 5, "comment": "Yeni model lansman etkinligimizin cicek dekorasyonunu Flora Grand yapti. 2.000 kisilik alanda muhtesem bir atmosfer olusturuldu." },
+          { "name": "Ece & Baris Gultekin", "district": "Sariyer", "date": "2025-10", "rating": 5, "comment": "Bogazici'nde yali dugunumuz icin calistilar. 150.000 TL'lik dekorasyon, her kuse kusursuz dusunulmustu. Marieke Hanim'in tasarimi beklentimizi cok asti." },
+          { "name": "Istanbul Modern Muze", "district": "Beyoglu", "date": "2025-09", "rating": 5, "comment": "Gecici sergi icin cicek enstalasyonu yapildi. Sanata sanat katan bir calisma. Ziyaretciler buyulendi." },
+          { "name": "Koray Demirel", "district": "Etiler", "date": "2025-08", "rating": 5, "comment": "Villam icin botanik bahce kurulumu yaptirdim. Otomatik sulama, nadir bitkiler, her detay dusunulmus. Evim bir sereye dondu." },
+          { "name": "Sibel Ozturk", "district": "Nisantasi", "date": "2025-07", "rating": 5, "comment": "VIP concierge hizmeti aliyorum. Tum ozel gunlerim planli, cicek danısmanım her seyi hallediyor. Asla bir tarihi kacirmiyorum." },
+          { "name": "Turkiye Is Bankasi", "district": "Levent", "date": "2025-11", "rating": 5, "comment": "Genel mudurluk lobbisi ve 15 sube icin aylık cicek programi. Dakiklik ve kalite konusunda kusursuz performans." },
+          { "name": "Hande Tekin", "district": "Bebek", "date": "2025-06", "rating": 5, "comment": "Yat icerisinde evlilik teklifi dekorasyonu yaptirdik. Denizin ortasinda ciceklerle cevrilmis bir ortam. Hayatimin en guzel ani." },
+          { "name": "Swarovski Istanbul", "district": "Sisli", "date": "2025-10", "rating": 5, "comment": "Magaza vitrin dekorasyonu icin Flora Grand ile is birligi yaptik. Swarovski kristal ve cicek kombinasyonu cok etkileyici oldu." },
+          { "name": "Ali Riza Gulcicek", "district": "Atasehir", "date": "2025-09", "rating": 4, "comment": "Bitki hastanesine orkidemi goturdüm, kurtardilar. 3 haftada yeniden cicek atti. Tek sorun: teslim alma suresi biraz uzun surdu." },
+          { "name": "Cagla Duman", "district": "Kadikoy", "date": "2025-12", "rating": 5, "comment": "Cicek tasarim akademisine katıldım, 8 haftada inanılmaz seyler ogrendim. Marieke Hoca'dan ders almak bir ayricaılık. Sertifikam artik var." },
+          { "name": "Demir Insaat Grubu", "district": "Umraniye", "date": "2025-08", "rating": 5, "comment": "5 otel projemiz icin Flora Grand ile anlasmali calisiyoruz. Lobii, restoran ve oda cicekleri aylik program dahilinde. Profesyonel tedarik zinciri." }
+        ],
+        "faq": [
+          { "q": "7/24 teslimat gercekten her saat aktif mi?", "a": "Evet, gece 3'te bile siparis ve teslimat yapabilirsiniz. Nobet ekibimiz her zaman hazirdir. Gece saatlerinde express ucretlendirme uygulanir." },
+          { "q": "Buyuk olcekli etkinlik dekorasyonu nasil planlanir?", "a": "Etkinlik tarihinden en az 4-6 hafta once gorusmemizi oneririz. 3D mekan modeli olusturuyoruz, cicek ve dekor planlama toplantisi yapiyoruz, kuuulum gun ve saati belirliyoruz." },
+          { "q": "Uluslararasi gonderim hangi ulkelere yapiliyor?", "a": "60'dan fazla ulkeye partner cicekci agimiz uzerinden gonderim yapıyoruz. Avrupa, ABD, Ortadogu ve Asya'daki buyuk sehirlere ayni gun teslimat mumkundur." },
+          { "q": "Botanik bahce kurulumunun bakim maliyeti nedir?", "a": "Kurulum ucretine ilk 3 aylik bakim dahildir. Sonrasinda boyuta gore aylik 1.000-5.000 TL bakim ucreti uygulanir. Otomatik sulama sistemi bakımı dahildir." },
+          { "q": "Cicek tasarim akademisi sertifikasi gecerli mi?", "a": "Evet, Boerma Instituut ortakligıyla verilen sertifika uluslararasi gecerliliktedir. Mezunlarımız kendi atolyelerini acabilir veya sektorde calisabilir." },
+          { "q": "Marka is birligi nasil yapiliyor?", "a": "Luks marka, moda evi veya sanat kurumlarıyla cicek partnerligi yapiyoruz. Lansman, vitrin, kampanya ve sponsorluk formatlarında calisma modellerimiz var." },
+          { "q": "Yat dekorasyonu icin ne kadar onceden haber vermeli?", "a": "En az 1 hafta once oneriyoruz. Evlilik teklifi gibi ozel organizasyonlarda detayli planlama yapilir. Yat boyutuna gore cicek miktari belirlenir." },
+          { "q": "Bitki hastanesi nasil calisiyor?", "a": "Hasta bitkiniizi suberemize getirin veya toplama hizmeti alin. Uzmanlarimiz teshis koyar, tedavi eder ve 1-4 hafta icinde iyilesmis haliyle teslim eder. Garanti verilir." },
+          { "q": "Kurumsal fatururalama ve sozlesme yapıyor musunuz?", "a": "Evet, kurumsal musterilerimizle yillik sozlesme yapiyoruz. Aylik faturalama, KDV dahil fiyatlar ve toplu indirimler mevcuttur." },
+          { "q": "Fotograf cekimi icin cicek set kiralaması var mi?", "a": "Set kiralama degil, ozel tasarim yapiyoruz. Cekim konseptine gore cicek ve dekor plani olussturulur. Cekim sonrasi cicekler kaldirilir." },
+          { "q": "Swarovski koleksiyonu gercek cicek mi?", "a": "Evet, gercek gul kullanilyior ancak preserved (korunmus) tekniigiyle islem gormüs. Swarovski kristaller el ile yerlestirilir. 2-3 yil tazelik gorunumu korur." },
+          { "q": "VIP concierge ne icerir?", "a": "Kisisel cicek daniismani atanir, tum ozel gun takviminiz kayit altina alinir, öncelikli teslimat ve %15 VIP indirimi uygulanir. Ayrica mevsimsel dekorasyon onerisi verilir." },
+          { "q": "Ofis yesillendirmede hangi bitkiler kullaniliyor?", "a": "Dusuk isik toleransli bitkiler tercih ediliyor: pothos, sansevieria, zamioculcas, ficus lyrata, spathiphyllum. Ofis isik olcumu yapilir, uygun bitkiler secilir." },
+          { "q": "Taksit ve odeme plani var mi?", "a": "Bireysel siparislerde 6 taksit, kurumsal sozlesmelerde aylik faturalama, buyuk etkinliklerde %40-%30-%30 odeme plani uygulanır." },
+          { "q": "Subeleriniz nerede?", "a": "Maslak (merkez), Nisantasi, Kadikoy, Bebek ve Atasehir olmak uzere 5 subeemiz vardir. Tum subeler ayni kalite standartlarinda calisir." }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Istanbul'un En Buyuk Cicek ve Dekorasyon Grubu",
+          "subtitle": "5 sube, 80+ uzman, 120.000+ mutlu musteri. 7/24 teslimat, luxury dugun, kurumsal abonelik, sanat enstalasyonu ve cicek akademisi.",
+          "badge": "Premium Cicek Grubu"
+        },
+        "about": {
+          "title": "Flora Grand Istanbul Hakkinda",
+          "description": "Flora Grand Istanbul, 2005 yilinda Selim Karaoglu tarafindan kurulmus olup bugun Istanbul'un en buyuk premium cicek ve dekorasyon grubudur. 5 subemiz, 80'den fazla uzman ekibimiz ve 30+ teslimat aracimizla 7/24 hizmet veriyoruz. Hollandali Kreatif Direktörumuz Marieke van den Berg liderliginde uluslararasi standartlarda cicek tasarimi yapiyoruz. 5 yildizli oteller, holding ofisleri ve luks markalarla kurumsal abonelik programlari yuruutuyoruz. Luxury dugun dekorasyonundan cicek sanat enstalasyonuna, botanik bahce tasarimindan yat dekorasyonuna genis bir hizmet yelpazesi sunuyoruz. Cicek Tasarim Akademimizde yilda 200+ ogrenci yetistiriyoruz. 60+ ulkeye uluslararasi gonderim yapıyoruz. 21 yillik gecmisimizde 120.000'den fazla musteriye hizmet verdik."
+        },
+        "services": {
+          "title": "Hizmetlerimiz & Koleksiyonlarimiz",
+          "subtitle": "7/24 teslimattn sanat enstalasyonuna, akademiden uluslararası gonderime"
+        },
+        "contact": {
+          "title": "7/24 Siparis & VIP Hatti",
+          "subtitle": "Her an, her yerde yaninisdayiz"
+        }
+      }
+    }
+  ]
+}

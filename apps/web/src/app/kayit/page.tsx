@@ -1,7 +1,7 @@
 'use client'
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useState, Suspense } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 /* ═══════════════════════════════════════════════
    KPNK — Kayıt Ol (Sign-Up)
@@ -9,11 +9,22 @@ import { useRouter } from 'next/navigation'
    ═══════════════════════════════════════════════ */
 
 export default function KayitPage() {
+    return (
+        <Suspense fallback={<div style={{ minHeight: '100vh', background: '#f0f0f0' }} />}>
+            <KayitContent />
+        </Suspense>
+    )
+}
+
+function KayitContent() {
     const [email, setEmail] = useState('')
     const [yukleniyor, setYukleniyor] = useState(false)
     const [hata, setHata] = useState('')
     const [focused, setFocused] = useState(false)
     const router = useRouter()
+    const searchParams = useSearchParams()
+    const paket = searchParams.get('paket')
+    const periyot = searchParams.get('periyot')
 
     async function handleEmailSubmit() {
         if (!email || !email.includes('@')) {
@@ -34,8 +45,14 @@ export default function KayitPage() {
                 setHata(data.error || 'Kayıt sırasında bir hata oluştu')
                 return
             }
-            // Başarılı — fiyat seçimine yönlendir (ödeme sonrası onboarding)
-            router.push(`/fiyatlar?email=${encodeURIComponent(email)}`)
+            // Başarılı — paket seçildiyse onboarding'e, yoksa fiyat seçimine yönlendir
+            if (paket) {
+                const params = new URLSearchParams({ paket })
+                if (periyot) params.set('periyot', periyot)
+                router.push(`/onboarding?${params.toString()}`)
+            } else {
+                router.push(`/fiyatlar?email=${encodeURIComponent(email)}`)
+            }
         } catch {
             setHata('Bağlantı hatası. Lütfen tekrar deneyin.')
         } finally {
@@ -105,6 +122,11 @@ export default function KayitPage() {
             {/* Center Card */}
             <div style={S.card}>
                 <h1 style={S.heading}>Kayıt Olun</h1>
+                {paket && (
+                    <p style={{ textAlign: 'center', fontSize: 13, color: '#6366f1', fontWeight: 600, marginBottom: 4, background: 'rgba(99,102,241,0.08)', borderRadius: 8, padding: '6px 12px' }}>
+                        {paket.charAt(0).toUpperCase() + paket.slice(1)} paketi secildi
+                    </p>
+                )}
                 <p style={S.subtext}>
                     Zaten bir hesabınız var mı?{' '}
                     <a href="/giris" style={S.link}>Giriş yapın.</a>

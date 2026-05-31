@@ -1,3 +1,4 @@
+import { THEME_MAP } from './theme-map'
 /**
  * @kepenk/templates — Dynamic Config Loader
  *
@@ -9,6 +10,7 @@
 
 import type { ThemeConfig, BusinessData } from '../types/section-types'
 import { getTheme } from './theme-catalog'
+import { PILOT_AST } from '../themes/pilot-ast'
 
 export interface ThemeLoadResult {
   config: ThemeConfig
@@ -24,6 +26,7 @@ const PLAN_TOKENS: Record<string, Record<string, string>> = {
   growth:     { '--container-default': '1120px', '--section-py': '80px', '--radius-md': '12px', '--radius-lg': '16px' },
   pro:        { '--container-default': '1280px', '--section-py': '96px', '--radius-md': '4px',  '--radius-lg': '8px' },
   enterprise: { '--container-default': '1440px', '--section-py': '64px', '--radius-md': '0px',  '--radius-lg': '4px' },
+  elite:      { '--container-default': '1440px', '--section-py': '64px', '--radius-md': '0px',  '--radius-lg': '4px' }, // alias for enterprise
 }
 
 /**
@@ -35,6 +38,14 @@ function toExportPrefix(themeId: string): string {
 }
 
 /**
+ * Convert themeId to camelCase export name.
+ * 'hukuk-elite' → 'hukukElite'
+ */
+function toCamelCase(themeId: string): string {
+  return themeId.replace(/-([a-z])/g, (_, c) => c.toUpperCase())
+}
+
+/**
  * Dynamically load a theme's config and business data by themeId.
  * Returns null if the config file doesn't exist.
  */
@@ -42,16 +53,32 @@ export async function loadThemeConfig(themeId: string): Promise<ThemeLoadResult 
   try {
     // Dynamic import of the config file
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const mod: Record<string, any> = await import(`../themes/configs/${themeId}-config`)
+    const importer = THEME_MAP[themeId]
+    if (!importer) return null
+    const mod: Record<string, any> = await importer()
 
     const prefix = toExportPrefix(themeId)
-    let config = mod[`${prefix}_CONFIG`] as ThemeConfig | undefined
-    const business = mod[`${prefix}_BUSINESS`] as BusinessData | undefined
+    const camel = toCamelCase(themeId)
+
+    // Try UPPER_SNAKE first, then camelCase fallback
+    let config = (mod[`${prefix}_CONFIG`] ?? mod[`${camel}Config`]) as ThemeConfig | undefined
+    const business = (mod[`${prefix}_BUSINESS`] ?? mod[`${camel}Business`]) as BusinessData | undefined
 
     if (!config || !business) {
       console.warn(`[config-loader] Missing exports for theme "${themeId}": CONFIG=${!!config}, BUSINESS=${!!business}`)
       return null
     }
+
+    // --- PILOT AST INJECTION FOR V2 ENGINE TESTING ---
+    // We override the first section of berber-sade to use our new AST engine
+    if (themeId === 'berber-sade' && config.pages?.[0]?.sections?.[0]) {
+      // Clone the config to avoid mutating the original import
+      config = JSON.parse(JSON.stringify(config))
+      if (config && config.pages && config.pages[0] && config.pages[0].sections[0]) {
+        config.pages[0].sections[0].blockTree = PILOT_AST
+      }
+    }
+    // --------------------------------------------------
 
     // Merge plan-based layout tokens into cssVariables
     // Plan tokens sit between base vars and per-theme overrides,
@@ -60,16 +87,18 @@ export async function loadThemeConfig(themeId: string): Promise<ThemeLoadResult 
     if (entry) {
       const planDefaults = PLAN_TOKENS[entry.plan]
       if (planDefaults) {
-        const merged = { ...planDefaults }
+        const merged: Record<string, string> = { ...planDefaults }
         // Per-theme cssVariables override plan defaults
-        for (const [k, v] of Object.entries(config.cssVariables)) {
-          merged[k] = v
+        if (config?.cssOverrides) {
+          for (const [k, v] of Object.entries(config?.cssOverrides || {})) {
+            merged[k] = v as string
+          }
         }
-        config = { ...config, cssVariables: merged }
+        config = { ...config, cssVariables: merged } as any
       }
     }
 
-    return { config, business }
+    return { config: config as ThemeConfig, business }
   } catch {
     // Config file doesn't exist for this theme
     return null

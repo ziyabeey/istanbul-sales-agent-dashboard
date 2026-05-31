@@ -1,0 +1,696 @@
+{
+  "sectorId": "restoran",
+  "seoSchemaType": "Restaurant",
+  "variants": [
+    {
+      "id": "restoran-sofra",
+      "variantName": "sofra",
+      "plan": "free",
+      "description": "Ev yemekleri lokantasi, sade ve samimi",
+      "designPhilosophy": "Sicak, samimi, islevsel — yemek on planda",
+      "isDark": false,
+      "colors": {
+        "bg": "#FFFDF8",
+        "surface": "#F5F0E8",
+        "text": "#2D1F0E",
+        "accent": "#B8860B"
+      },
+      "fonts": { "heading": "Lora", "body": "Inter" },
+      "business": {
+        "name": "Hatice Annenin Sofrasi",
+        "ownerName": "Hatice Demir",
+        "sector": "Restoran",
+        "slogan": "Annemin mutfagindan sofranziza, 1987'den beri",
+        "phone": "0216 345 12 87",
+        "phoneClean": "902163451287",
+        "whatsapp": "905301451287",
+        "email": "info@haticeannesofrasi.com",
+        "address": "Rasimpasa Mah. Sogutlucesme Cad. No:18, Kadikoy/Istanbul",
+        "city": "Istanbul",
+        "district": "Kadikoy",
+        "neighborhood": "Rasimpasa",
+        "coordinates": { "lat": 40.9905, "lng": 29.0286 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/haticeannesofrasi"
+        },
+        "photos": [],
+        "foundedYear": 1987,
+        "experience": "37 yil",
+        "customerCount": "500.000+",
+        "rating": 4.7,
+        "reviewCount": 2340,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "11:00", "close": "22:00", "isOpen": true },
+          { "day": "Sali", "open": "11:00", "close": "22:00", "isOpen": true },
+          { "day": "Carsamba", "open": "11:00", "close": "22:00", "isOpen": true },
+          { "day": "Persembe", "open": "11:00", "close": "22:00", "isOpen": true },
+          { "day": "Cuma", "open": "11:00", "close": "23:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "10:00", "close": "23:00", "isOpen": true },
+          { "day": "Pazar", "open": "10:00", "close": "22:00", "isOpen": true }
+        ],
+        "services": [
+          { "id": "s1", "name": "Kuru Fasulye Pilav", "price": "120 TL", "description": "Tarimsal alandan sofraniza. Kuru fasulye, tereyagli pilav, tursu ve salata ile." },
+          { "id": "s2", "name": "Iskender Kebap", "price": "180 TL", "description": "Ince dilimlenimis et, ozel domates sosu, tereyagi ve yogurt ile servis." },
+          { "id": "s3", "name": "Mercimek Corbasi", "price": "60 TL", "description": "Her gun taze hazirlanan kirmizi mercimek corbasi, limon ve ekmek ile." },
+          { "id": "s4", "name": "Karisik Izgara", "price": "280 TL", "description": "Kofte, pirzola, tavuk kanat ve sis kebap bir arada. Yaninda pilav ve salata." }
+        ],
+        "team": []
+      },
+      "content": {
+        "hero": {
+          "badge": "Kadikoy'un Lokantasi",
+          "title": "Hatice Annenin Sofrasi",
+          "subtitle": "1987'den beri Kadikoy Rasimpasa'da, annemin tariflerinden ilham alan ev yemekleri. Her gun taze, her gun farkli menu.",
+          "cta1": { "text": "Bugunku Menu", "href": "#hizmetler" }
+        },
+        "services": {
+          "badge": "Menu",
+          "title": "Gunun Yemekleri",
+          "subtitle": "Her gun 15 cesit sicak yemek, 8 cesit salata, 5 cesit tatli. Tum malzemeler gune taze."
+        },
+        "contact": {
+          "badge": "Iletisim",
+          "title": "Gelin, Buyrun Sofraya",
+          "subtitle": "Kadikoy Rasimpasa'da, Sogutlucesme tramvay duragina 2 dakika yurume mesafesinde. Paket servis de yapiyoruz."
+        },
+        "faq": {
+          "badge": "SSS",
+          "title": "Merak Edilenler",
+          "questions": [
+            { "q": "Paket servis yapiyor musunuz?", "a": "Evet, Kadikoy ve Uskudar bolgelerine paket servis yapiyoruz. Minimum siparis tutari 150 TL. Yemeksepeti ve Getir uzerinden de siparis verebilirsiniz." },
+            { "q": "Vejetaryen secenekler var mi?", "a": "Her gun en az 4-5 cesit sebze yemegi bulunur. Karniyarik, imam bayildi, zeytinyagli fasulye gibi klasikler her zaman menude." },
+            { "q": "Rezervasyon gerekli mi?", "a": "Hafta ici genelde gerek yok ama Cuma-Cumartesi aksami icin WhatsApp'tan rezervasyon oneririz. 20+ kisi icin mutlaka onceden bilgi verin." },
+            { "q": "Ozel gun menuleri hazirlaniyor mu?", "a": "Evet, dogum gunu, is yemegi gibi ozel gunler icin 24 saat oncesinden siparis ile ozel menu hazirlayabiliriz. Kisi basi 200-400 TL arasi." }
+          ]
+        }
+      }
+    },
+    {
+      "id": "restoran-nar",
+      "variantName": "nar",
+      "plan": "starter",
+      "description": "Anadolu mutfagi restoran, modern sunum",
+      "designPhilosophy": "Toprak tonlari, sicak ahsap hissi, Anadolu estetiği",
+      "isDark": false,
+      "colors": {
+        "bg": "#FAF7F2",
+        "surface": "#F0EBE1",
+        "text": "#3D2B1F",
+        "accent": "#C0392B"
+      },
+      "fonts": { "heading": "Playfair Display", "body": "Source Sans 3" },
+      "business": {
+        "name": "Nar Anadolu Sofrasi",
+        "ownerName": "Mehmet Simsek",
+        "sector": "Restoran",
+        "slogan": "Anadolu'nun 7 bolgesinden 77 lezzet",
+        "phone": "0212 243 56 78",
+        "phoneClean": "902122435678",
+        "whatsapp": "905412435678",
+        "email": "info@naranadolusofrasi.com",
+        "address": "Asmalimescit Mah. Mesrutiyet Cad. No:67, Beyoglu/Istanbul",
+        "city": "Istanbul",
+        "district": "Beyoglu",
+        "neighborhood": "Asmalimescit",
+        "coordinates": { "lat": 41.0318, "lng": 28.9784 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/naranadolusofrasi",
+          "facebook": "https://facebook.com/naranadolusofrasi"
+        },
+        "photos": [],
+        "foundedYear": 2008,
+        "experience": "16 yil",
+        "customerCount": "200.000+",
+        "rating": 4.6,
+        "reviewCount": 1890,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "12:00", "close": "23:00", "isOpen": true },
+          { "day": "Sali", "open": "12:00", "close": "23:00", "isOpen": true },
+          { "day": "Carsamba", "open": "12:00", "close": "23:00", "isOpen": true },
+          { "day": "Persembe", "open": "12:00", "close": "23:00", "isOpen": true },
+          { "day": "Cuma", "open": "12:00", "close": "00:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "11:00", "close": "00:00", "isOpen": true },
+          { "day": "Pazar", "open": "11:00", "close": "23:00", "isOpen": true }
+        ],
+        "services": [
+          { "id": "s1", "name": "Antep Lahmacun", "price": "90 TL", "description": "Ince hamurlu, bol kiyma ve maydanozlu otantik Antep lahmacunu." },
+          { "id": "s2", "name": "Ali Nazik Kebap", "price": "220 TL", "description": "Kozlenmis patlican pure uzerine kusbasi et. Gaziantep'in efsanevi lezzeti." },
+          { "id": "s3", "name": "Mantı (Kayseri)", "price": "160 TL", "description": "El acmasi minik mantilar, sarimsakli yogurt ve pul biberli tereyagi ile." },
+          { "id": "s4", "name": "Pide (Karadeniz)", "price": "140 TL", "description": "Karadeniz usulu kapalı pide: kiymali, kasarli veya yumurtali secenekler." },
+          { "id": "s5", "name": "Hunkar Begendi", "price": "240 TL", "description": "Kusbasi kuzu eti, firin patlican besamel ile. Osmanli saray mutfagindan." },
+          { "id": "s6", "name": "Kunefe", "price": "120 TL", "description": "Hatay usulu kadayif peynirli kunefe. Antep fistigi ve kaymak ile servis." }
+        ],
+        "team": [
+          { "id": "t1", "name": "Mehmet Simsek", "role": "Kurucu & Bas Sef", "experience": "25 yil" },
+          { "id": "t2", "name": "Ayse Korkmaz", "role": "Pastaci", "experience": "12 yil" }
+        ]
+      },
+      "content": {
+        "hero": {
+          "badge": "Beyoglu'nun Lezzet Duragi",
+          "title": "Nar Anadolu Sofrasi",
+          "subtitle": "Asmalimescit'in kalbinde, Anadolu'nun 7 bolgesinden secme tarifler. Her tabak bir sehrin hikayesini anlatiyor.",
+          "cta1": { "text": "Menuyu Incele", "href": "#hizmetler" },
+          "cta2": { "text": "Rezervasyon", "href": "#iletisim" }
+        },
+        "about": {
+          "badge": "Hikayemiz",
+          "title": "Anadolu'dan Istanbul'a Lezzet Koprusu",
+          "description": "2008 yilinda sef Mehmet Simsek'in hayaliyle basladi Nar. Gaziantep'te dogup buyuyen Mehmet sef, Istanbul'a gelmeden once Guneydogu'dan Karadeniz'e Anadolu'yu karisi karisi dolasti. Her sehirden bir tarif, her tariften bir hikaye topladi. Bugun Asmalimescit'teki mutfagimizda 7 bolgenin lezzetlerini bir araya getiriyoruz. Tum baharatlarimiz dogrudan ureticiden, etlerimiz Bolu'dan, sebzelerimiz organik ciftliklerden. Nar sadece bir restoran degil, Anadolu mutfak kulturunun Istanbul'daki elcisi."
+        },
+        "services": {
+          "badge": "Menumuz",
+          "title": "Anadolu'nun Secme Lezzetleri",
+          "subtitle": "Her bolgenin en ikonik tatlarini, orijinal tariflerine sadik kalarak hazirliyoruz."
+        },
+        "stats": {
+          "stats": [
+            { "value": "16", "label": "Yillik Tecrube" },
+            { "value": "200.000+", "label": "Mutlu Misafir" },
+            { "value": "77", "label": "Cesit Menu" },
+            { "value": "4.6", "label": "Google Puan", "suffix": "/5" }
+          ]
+        },
+        "contact": {
+          "badge": "Rezervasyon",
+          "title": "Sofranizi Hazırlayalım",
+          "subtitle": "Asmalimescit Mesrutiyet Caddesi uzerinde, Istiklal'e 3 dakika. 80 kisilik ic mekan, 30 kisilik teras."
+        },
+        "faq": {
+          "badge": "SSS",
+          "title": "Sikca Sorulan Sorular",
+          "questions": [
+            { "q": "Alkol servisi var mi?", "a": "Evet, secme Turk saraplarI, raki ve bira cesitlerimiz mevcuttur. Turk mutfagiyla uyumlu sarap onerileri icin garsonlarimiza danisabilirsiniz." },
+            { "q": "Grup yemekleri icin ozel alan var mi?", "a": "Alt katta 30 kisilik ozel yemek odamiz bulunuyor. Is yemegi, dogum gunu, nisan gibi organizasyonlar icin fix menu secenekleri sunuyoruz. Kisi basi 400-800 TL arasi." },
+            { "q": "Glutensiz veya vegan secenekler var mi?", "a": "Menumuzde glutensiz isaretli yemekler bulunuyor. Vegan konuklar icin zeytinyagli cesitlerimiz, humus, babaganus ve mevsim salatalari mevcut. Onceden bildirirseniz ozel menu hazirlayabiliriz." },
+            { "q": "Vale park hizmeti var mi?", "a": "Cuma ve Cumartesi aksamlari ucretsiz vale park hizmetimiz bulunuyor. Hafta ici Mesrutiyet Caddesi uzerindeki belediye otoparkini kullanabilirsiniz." },
+            { "q": "Cocuklar icin ozel menu var mi?", "a": "Evet, 4-12 yas arasi cocuklar icin 'Kucuk Gurmeler' menusu mevcuttur: mini kofte, makarna, pizza seçenekleri 80-120 TL arasi." },
+            { "q": "Dogum gunu pastasi getirebilir miyiz?", "a": "Elbette, dis getirme serbesttir. Isterseniz pastacimiz Ayse hanim ozel tasarim pasta da hazirlayabilir, 48 saat oncesinden siparis yeterli." }
+          ]
+        }
+      }
+    },
+    {
+      "id": "restoran-lezzet",
+      "variantName": "lezzet",
+      "plan": "growth",
+      "description": "Modern Turk mutfagi, fine casual konsept",
+      "designPhilosophy": "Zarif ama rahat, gorsel sunum on planda",
+      "isDark": false,
+      "colors": {
+        "bg": "#FEFCF9",
+        "surface": "#F7F3ED",
+        "text": "#1C1917",
+        "accent": "#92400E",
+        "accentHover": "#A44D11"
+      },
+      "fonts": { "heading": "DM Serif Display", "body": "DM Sans" },
+      "business": {
+        "name": "Lezzet Istanbul",
+        "ownerName": "Can Ozturk",
+        "sector": "Restoran",
+        "slogan": "Turk mutfaginin modern yorumu",
+        "phone": "0212 511 78 90",
+        "phoneClean": "902125117890",
+        "whatsapp": "905335117890",
+        "email": "rezervasyon@lezzetistanbul.com",
+        "website": "https://lezzetistanbul.com",
+        "address": "Kuloglu Mah. Turnacibasi Sok. No:12, Beyoglu/Istanbul",
+        "city": "Istanbul",
+        "district": "Beyoglu",
+        "neighborhood": "Kuloglu",
+        "coordinates": { "lat": 41.0335, "lng": 28.9779 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/lezzetistanbul",
+          "facebook": "https://facebook.com/lezzetistanbul",
+          "tiktok": "https://tiktok.com/@lezzetistanbul"
+        },
+        "photos": [],
+        "foundedYear": 2015,
+        "experience": "11 yil",
+        "customerCount": "350.000+",
+        "rating": 4.8,
+        "reviewCount": 3450,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "12:00", "close": "23:30", "isOpen": true },
+          { "day": "Sali", "open": "12:00", "close": "23:30", "isOpen": true },
+          { "day": "Carsamba", "open": "12:00", "close": "23:30", "isOpen": true },
+          { "day": "Persembe", "open": "12:00", "close": "23:30", "isOpen": true },
+          { "day": "Cuma", "open": "12:00", "close": "01:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "10:30", "close": "01:00", "isOpen": true },
+          { "day": "Pazar", "open": "10:30", "close": "23:00", "isOpen": true }
+        ],
+        "services": [
+          { "id": "s1", "name": "Truffle Mantı", "price": "280 TL", "description": "El acmasi Kayseri mantisi, truffle kremasi ve parmigiano ile. Imza yemegimiz." },
+          { "id": "s2", "name": "Kuzu Incik Confit", "price": "380 TL", "description": "12 saat dusuk isida pisirilen kuzu incik, nar eksilı sos ve patlican pure." },
+          { "id": "s3", "name": "Ahtapot Izgara", "price": "320 TL", "description": "Ege usulu grill ahtapot, karamelize sogan ve sumak vinaigrette." },
+          { "id": "s4", "name": "Bogazici Levrek", "price": "360 TL", "description": "Taze levrek, enginar kalbi, cherry domates ve kapari sos ile." },
+          { "id": "s5", "name": "Avokado Tartare", "price": "180 TL", "description": "Somon tartare, avokado mousse, wasabi mayo ve soya incileri." },
+          { "id": "s6", "name": "Antep Fistikli Baklava Cheesecake", "price": "160 TL", "description": "Turk-Amerikan fusion tatlimiz. Fistik ezmesi tabani, ricotta krem." },
+          { "id": "s7", "name": "Kaburga Burger", "price": "240 TL", "description": "14 saat ttsulenmis dana kaburga, karamelize sogan, cheddar, brioche eknek." },
+          { "id": "s8", "name": "Enginar Dolma (Vegan)", "price": "200 TL", "description": "Zeytinyagli enginar dolma, taze otlar ve nar eksilı sos. 100% bitkisel." },
+          { "id": "s9", "name": "Tadim Menusu (5 Sira)", "price": "650 TL", "description": "Sefin sectigi 5 sira tadim menusu. Sarap eslestirmesi +350 TL." },
+          { "id": "s10", "name": "Brunch Tabagi", "price": "320 TL", "description": "Cumartesi-Pazar ozel. Menemen, sucuklu yumurta, peynir tabagi, taze ekmek, meyve." }
+        ],
+        "team": [
+          { "id": "t1", "name": "Can Ozturk", "role": "Kurucu & Executive Chef", "experience": "18 yil" },
+          { "id": "t2", "name": "Zeynep Arslan", "role": "Sous Chef", "experience": "10 yil" },
+          { "id": "t3", "name": "Baris Yilmaz", "role": "Pastry Chef", "experience": "8 yil" },
+          { "id": "t4", "name": "Deniz Kaya", "role": "Sommelier", "experience": "12 yil" }
+        ]
+      },
+      "content": {
+        "hero": {
+          "badge": "Fine Casual Dining",
+          "title": "Lezzet Istanbul",
+          "subtitle": "Turk mutfaginin klasik tatlarini modern tekniklerle yeniden yorumluyoruz. Beyoglu'nun kalbinde, Istanbul'un damak tadina yeni bir bakis.",
+          "cta1": { "text": "Rezervasyon Yap", "href": "#iletisim" },
+          "cta2": { "text": "Menuyu Incele", "href": "#hizmetler" }
+        },
+        "about": {
+          "badge": "Hikayemiz",
+          "title": "Gelenekten Gelecege",
+          "description": "Lezzet Istanbul, sef Can Ozturk'un 18 yillik mutfak yolculugunun doruk noktasi. Ankara'da klasik Fransiz teknikleri ogrenen, New York ve Kopenhag'da staj yapan Can sef, 2015'te Beyoglu'da kendi restoranini acti. Felsefemiz basit: Anadolu'nun muhtesem hammaddelerini, dunya mutfaginin teknikleriyle bulusturmak. Trufle Manti bizim imzamiz — Kayseri'nin el acmasi mantisini Italyan truffle ile bulus\nturduk. Her sezon menumuzu guncelliyoruz; ciftcilerimizden gelen mevsim urunleri menumuzu belirliyor. Tum ekmeklerimiz kendi firimimizda, tum makarnalarimiz mutfagimizda yapiliyor."
+        },
+        "services": {
+          "badge": "Menu",
+          "title": "Sefin Secimi",
+          "subtitle": "Mevsimlik malzemelerle hazirlanan, her biri bir hikaye anlatan tabaklar."
+        },
+        "stats": {
+          "stats": [
+            { "value": "11", "label": "Yillik Lezzet Yolculugu" },
+            { "value": "350K+", "label": "Mutlu Konuk" },
+            { "value": "4.8", "label": "Google Puan", "suffix": "/5" },
+            { "value": "45", "label": "Cesit Sarap" }
+          ]
+        },
+        "gallery": {
+          "badge": "Galeri",
+          "title": "Tabaktan Kareler"
+        },
+        "testimonials": {
+          "badge": "Misafir Yorumlari",
+          "title": "Konuklarimiz Ne Diyor?",
+          "reviews": [
+            { "name": "Elif T.", "location": "Nisantasi", "rating": 5, "date": "2025-12", "text": "Truffle Manti hayatimda yedigim en iyi manti. Sunum muhtesem, lezzet ust duzey. Ozel gunlerde ilk tercihimiz." },
+            { "name": "Murat K.", "location": "Besiktas", "rating": 5, "date": "2025-11", "text": "Tadim menusu inanilmazdi. Sommelier Deniz'in sarap onerileri her sirayla mukemmel uyum sagladi. Fine dining deneyiminin en iyisi." },
+            { "name": "Aylin D.", "location": "Levent", "rating": 5, "date": "2025-10", "text": "Brunch icin gittik, beklentimizin cok uzerindeydi. Atmosfer sicak ve samimi, servis kusursuz. Cocuklarimiz da cok memnun kaldi." },
+            { "name": "Serkan B.", "location": "Sariyer", "rating": 4, "date": "2025-09", "text": "Is yemegi icin ideal bir mekan. Alt kat ozel odasi cok hos. Yemekler lezzetli, fiyatlar segment icin makul." },
+            { "name": "Zehra Y.", "location": "Bakirkoy", "rating": 5, "date": "2025-08", "text": "Vegan secenekler icin cok sasirdim. Enginar dolma ve mantar risotto harika. Bitkisel beslenenlere gercekten deger veren bir restoran." },
+            { "name": "Cem A.", "location": "Kadikoy", "rating": 5, "date": "2025-07", "text": "Kuzu incik confit erimis gibi. 12 saat pisirme suresinin hakkini veriyor. Nar eksili sos muthis tamamlayici." }
+          ]
+        },
+        "contact": {
+          "badge": "Rezervasyon",
+          "title": "Masanizi Ayirtin",
+          "subtitle": "Beyoglu Turnacibasi Sokak'ta, Istiklal Caddesi'ne 2 dakika. 60 kisilik ic mekan, 20 kisilik avlu, 30 kisilik ozel oda."
+        },
+        "faq": {
+          "badge": "SSS",
+          "title": "Merak Edilenler",
+          "questions": [
+            { "q": "Tadim menusu nasil isliyor?", "a": "5 sirali tadim menusu 650 TL. Sef mevsimlik malzemelere gore menyu belirler. Sarap eslestirmesi ekstra 350 TL. En az 2 kisi siparis gerekli. 1 hafta oncesinden rezervasyon onerilir." },
+            { "q": "Ozel diyet gereksinimleri karsilanir mi?", "a": "Evet. Glutensiz, vegan, laktossuz, dusuk karbonhidratli ozel menulerimiz mevcuttur. Rezervasyon sirasinda belirtin, mutfagimiz size ozel tabaklar hazirlar." },
+            { "q": "Brunch saatleri ne zaman?", "a": "Cumartesi ve Pazar gunleri 10:30-14:00 arasi. Brunch menusu kisi basi 320 TL (icecek dahil degil). Limitsiz cay-kahve dahildir. Rezervasyon kesinlikle gereklidir." },
+            { "q": "Ozel etkinlikler icin mekan kiralanabilir mi?", "a": "Alt kat ozel oda 30 kisiye kadar ozel etkinlikler icin kiralanabilir. Kisi basi minimum 500 TL yemek + icecek tuketimi beklenmektedir. Canli muzik ve dekorasyon organizasyonu yapilabilir." },
+            { "q": "Otopark imkani var mi?", "a": "100 metre ileride 24 saat acik kapali otopark mevcuttur. Konuklarimiza %20 otopark indirimi uygulanir, vale park hizmeti Cuma-Cumartesi aksamlari aktiftir." },
+            { "q": "Cocuklarla gelebilir miyiz?", "a": "Elbette. Cocuk menusu, mama sandalyesi ve cocuk aktivite seti mevcuttur. Ancak Cuma-Cumartesi aksam 20:00 sonrasi daha sakin bir atmosfer sunabilmek icin yetiskin konsept uygulanmaktadir." },
+            { "q": "Online siparis veya paket servis var mi?", "a": "Su an paket servis hizmeti vermiyoruz. Yemeklerimizin sunumunu ve sicakligini korumak icin restoranda deneyimlenmesini tercih ediyoruz. Ancak ozel gunler icin catering hizmeti mevcuttur." },
+            { "q": "Dis mekan (teras/avlu) mevcut mu?", "a": "Evet, 20 kisilik ic avlumuz mevcuttur. Nisan-Ekim arasi acik havada yemek keyfi sunuyoruz. Avlu rezervasyonu ayri yapilmaktadir, havaya bagli iptal mumkundur." }
+          ]
+        }
+      }
+    },
+    {
+      "id": "restoran-tabledot",
+      "variantName": "tabledot",
+      "plan": "pro",
+      "description": "Premium is yemegi ve ozel etkinlik restoran",
+      "designPhilosophy": "Kurumsal zarafet, luks ama agir degil",
+      "isDark": false,
+      "colors": {
+        "bg": "#FAFAF8",
+        "surface": "#F0EFE9",
+        "text": "#1A1A2E",
+        "accent": "#16213E",
+        "accentHover": "#1A2744"
+      },
+      "fonts": { "heading": "Cormorant Garamond", "body": "Inter" },
+      "business": {
+        "name": "Tabledot by Emre",
+        "ownerName": "Emre Yildiz",
+        "sector": "Restoran",
+        "slogan": "Is dunyasinin bulusma noktasi",
+        "phone": "0212 283 45 67",
+        "phoneClean": "902122834567",
+        "whatsapp": "905442834567",
+        "email": "info@tabledotbyemre.com",
+        "website": "https://tabledotbyemre.com",
+        "address": "Esentepe Mah. Buyukdere Cad. No:185/B, Sisli/Istanbul",
+        "city": "Istanbul",
+        "district": "Sisli",
+        "neighborhood": "Esentepe",
+        "coordinates": { "lat": 41.0795, "lng": 29.0105 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/tabledotbyemre",
+          "linkedin": "https://linkedin.com/company/tabledotbyemre",
+          "facebook": "https://facebook.com/tabledotbyemre"
+        },
+        "photos": [],
+        "foundedYear": 2018,
+        "experience": "8 yil",
+        "customerCount": "150.000+",
+        "rating": 4.7,
+        "reviewCount": 980,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "11:30", "close": "23:00", "isOpen": true },
+          { "day": "Sali", "open": "11:30", "close": "23:00", "isOpen": true },
+          { "day": "Carsamba", "open": "11:30", "close": "23:00", "isOpen": true },
+          { "day": "Persembe", "open": "11:30", "close": "23:00", "isOpen": true },
+          { "day": "Cuma", "open": "11:30", "close": "00:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "12:00", "close": "00:00", "isOpen": true },
+          { "day": "Pazar", "open": "12:00", "close": "22:00", "isOpen": true }
+        ],
+        "services": [
+          { "id": "s1", "name": "Is Ogle Menusu (3 Sira)", "price": "450 TL", "description": "Corba veya salata + ana yemek + tatli. Is toplantilari icin ideal." },
+          { "id": "s2", "name": "Dry Aged Bonfile (300gr)", "price": "680 TL", "description": "28 gun olgunlastirilmis dana bonfile, truffle patates ve mevsim sebzeleri." },
+          { "id": "s3", "name": "Risotto al Tartufo", "price": "380 TL", "description": "Italyan arborio pirinci, siyah truffle ve parmigiano. Tableside servis." },
+          { "id": "s4", "name": "Dover Sole Meuniere", "price": "520 TL", "description": "Tam dil baligi, tereyag-limon sosu, kapari ve maydanoz. Klasik Fransiz." },
+          { "id": "s5", "name": "Wagyu Slider Trio", "price": "420 TL", "description": "3 mini Wagyu burger: klasik, truffle, ve foie gras versiyonlari." },
+          { "id": "s6", "name": "Tuna Tataki", "price": "340 TL", "description": "Sashimi kalitesinde ton baligi, ponzu sos, avokado ve mikro yesillikler." },
+          { "id": "s7", "name": "Lobster Thermidor", "price": "780 TL", "description": "Istakoz, kremalı besamel, gruyere peyniri ile gratin. Ozel gun tabagi." },
+          { "id": "s8", "name": "Vegan Degustasyon (4 Sira)", "price": "480 TL", "description": "Tamamen bitkisel 4 sirali tatma menusu. Butun sefin yaraticiligi." },
+          { "id": "s9", "name": "Peynir Tabagi (Premium)", "price": "360 TL", "description": "5 cesit Avrupa peyniri, bal, ceviz, kuru meyve. Sarap esligi icin ideal." },
+          { "id": "s10", "name": "Chocolate Fondant", "price": "180 TL", "description": "Sicak cikolatali sufle, vanilya dondurmasi ve taze frambuaz." },
+          { "id": "s11", "name": "Kokteyl Menusu (Kisi Basi)", "price": "350 TL", "description": "Ayak ustu etkinlik icin 8 cesit canape. Minimum 20 kisi." },
+          { "id": "s12", "name": "Premium Sarap Eslestirmesi", "price": "500 TL", "description": "Sommelier secimi 4 sarap, ana yemekle eslestirilmis. Turk ve dunya saraplari." },
+          { "id": "s13", "name": "Kahvalti (Executive)", "price": "380 TL", "description": "Pazar ozel. Eggs Benedict, sigara boregi, peynir tabagi, granola, taze meyve." },
+          { "id": "s14", "name": "Kaburga (Slow Cook 18h)", "price": "580 TL", "description": "18 saat dusuk isida pisirilen dana kaburga. Barbekü glaze ve coleslaw." }
+        ],
+        "team": [
+          { "id": "t1", "name": "Emre Yildiz", "role": "Kurucu & Executive Chef", "experience": "22 yil" },
+          { "id": "t2", "name": "Pierre Dubois", "role": "Head Chef (Fransiz Mutfagi)", "experience": "15 yil" },
+          { "id": "t3", "name": "Selin Aksoy", "role": "Pastry Chef", "experience": "10 yil" },
+          { "id": "t4", "name": "Kerem Ozer", "role": "Head Sommelier", "experience": "14 yil" },
+          { "id": "t5", "name": "Melis Tan", "role": "Etkinlik Koordinatoru", "experience": "8 yil" },
+          { "id": "t6", "name": "Ahmet Celik", "role": "Sous Chef", "experience": "7 yil" }
+        ]
+      },
+      "content": {
+        "hero": {
+          "badge": "Premium Dining — Levent",
+          "title": "Tabledot by Emre",
+          "subtitle": "Istanbul is dunyasinin bulusma noktasi. Levent'in kalbinde, uluslararasi mutfak, kusursuz servis ve sofistike atmosfer.",
+          "cta1": { "text": "Rezervasyon", "href": "#iletisim" },
+          "cta2": { "text": "Ozel Etkinlik Planla", "href": "#iletisim" }
+        },
+        "about": {
+          "badge": "Biz Kimiz",
+          "title": "Mutfak Sanati Meets Is Dunyasi",
+          "description": "Emre sef, kariyerine Istanbul'un Michelin yildizli restoranlarinda basladi. Paris Le Cordon Bleu'de egitimini tamamladiktan sonra Londra ve Dubai'de Executive Chef olarak calistı. 2018'de Istanbul'a donerek Tabledot'u kurdu. Hedefi, Levent is merkezlerinin yogun temposunda, kurumsal toplantilara uygun ama sıradanlasmamis bir gastronomi deneyimi sunmakti. Mutfagimizda Fransiz teknikleri Turk ve Akdeniz malzemeleriyle bulusuyor. Sef Pierre Dubois, Lyon'dan gelen 15 yillik Fransiz mutfak tecrubesiyle ekibimizin gucunu katlıyor. Ozel etkinlik organizasyonu, kurumsal is yemekleri ve ozel gun kutlamalari icin Istanbul'un en tercih edilen adreslerinden biriyiz."
+        },
+        "services": {
+          "badge": "Menu",
+          "title": "Gastronomi Deneyimi",
+          "subtitle": "Uluslararasi mutfagin en seckin lezzetleri, Istanbul'un en iyi malzemeleriyle."
+        },
+        "stats": {
+          "stats": [
+            { "value": "22", "label": "Yillik Sef Tecrubesi" },
+            { "value": "150K+", "label": "Konuk" },
+            { "value": "4.7", "label": "Google Puan", "suffix": "/5" },
+            { "value": "120+", "label": "Sarap Cesidi" }
+          ]
+        },
+        "gallery": {
+          "badge": "Atmosfer",
+          "title": "Mekan & Sunum"
+        },
+        "testimonials": {
+          "badge": "Konuk Deneyimleri",
+          "title": "Misafirlerimizden",
+          "reviews": [
+            { "name": "Alper G.", "location": "Levent", "rating": 5, "date": "2025-12", "text": "Is yemegi icin birebir. Ogle menusu kalite/fiyat orani harika. Servis hizli ve profesyonel, toplanti yapmak icin ideal atmosfer." },
+            { "name": "Sinem O.", "location": "Etiler", "rating": 5, "date": "2025-11", "text": "Dry aged bonfile hayatimda yedigim en iyi et. Pisirim mükemmel, tableside servis cok sik. Ozel geceler icin favori adresimiz." },
+            { "name": "Burak T.", "location": "Maslak", "rating": 5, "date": "2025-10", "text": "Sirketimizin yillik galasini burada yaptik, 80 kisi. Melis Hanim organizasyonu mukemmeldi. Yemek, servis, dekorasyon — hersey 10/10." },
+            { "name": "Defne A.", "location": "Bebek", "rating": 4, "date": "2025-09", "text": "Lobster Thermidor inanilmazdi. Sarap listesi cok genis, Kerem Bey'in onerileri her zaman tutariyor. Biraz pahali ama hak ediyor." },
+            { "name": "Tolga K.", "location": "Sisli", "rating": 5, "date": "2025-08", "text": "Haftalık is oglenlerinde sadik musterisiyim. Menu her hafta degisiyor, hic sikmiyor. Executive kahvalti da Pazar rituelimiz oldu." },
+            { "name": "Ipek M.", "location": "Atasehir", "rating": 5, "date": "2025-07", "text": "Nikah yemegimizi burada verdik. Pierre sef'in ozel menusu harikaydı. Herkes hala o aksami konusuyor." },
+            { "name": "Ozan R.", "location": "Kadikoy", "rating": 5, "date": "2025-06", "text": "Vegan degustasyon menusu beklentimin cok ustundeydi. Bitkisel malzemelerle bu kadar yaratici bir menu gormedim. Bravo!" },
+            { "name": "Canan E.", "location": "Bakirkoy", "rating": 4, "date": "2025-05", "text": "Kokteyl etkinligi icin mekani kirladik. Canape'ler harika, servis ekibi cok profesyonel. Tek eksik biraz daha genis bir teras olabilirdi." }
+          ]
+        },
+        "team": {
+          "badge": "Ekibimiz",
+          "title": "Mutfak Arkasindaki Isimler"
+        },
+        "contact": {
+          "badge": "Rezervasyon & Etkinlik",
+          "title": "Iletisime Gecin",
+          "subtitle": "Levent Buyukdere Caddesi uzerinde, Kanyon AVM'ye 5 dakika. 120 kisilik ana salon, 40 kisilik ozel oda, 50 kisilik teras."
+        },
+        "faq": {
+          "badge": "SSS",
+          "title": "Sikca Sorulan Sorular",
+          "questions": [
+            { "q": "Kurumsal is yemegi icin ozel paketler var mi?", "a": "Evet, 3 sirali is ogle menusu 450 TL/kisi, 5 sirali premium 700 TL/kisi. 10+ kisilik gruplarda %10 indirim. Toplanti odasi kullanimi, projektor ve beyaz tahta ucretsiz." },
+            { "q": "Ozel etkinlik organizasyonu nasil isliyor?", "a": "Melis Hanim (Etkinlik Koordinatoru) ile birebir gorusme sonrasi kisisellestirilmis teklif hazirliyoruz. Mekan kirasi yoktur, minimum tuketim sarti uygulanir: ana salon 50.000 TL, ozel oda 15.000 TL." },
+            { "q": "Sarap listesi ne kadar genis?", "a": "120+ cesit: 60 Turk, 40 Fransiz, 15 Italyan, 5 Yeni Dunya sarabi. Kerem Bey (Head Sommelier) kisisel sarap danismanligi sunuyor. Ozel sarap gecesi etkinlikleri de duzenliyoruz." },
+            { "q": "Dress code var mi?", "a": "Smart casual. Sortlu, terlikli veya spor kiyafetli konuklari kabul edemiyoruz. Is yemekleri icin takim elbise onerilir ama zorunlu degildir." },
+            { "q": "Canli muzik var mi?", "a": "Cuma ve Cumartesi aksamlari 20:00-23:00 arasi canli jazz trio performansi. Ozel etkinlikler icin DJ, quartet veya solo performans organizasyonu yapilabilir." },
+            { "q": "Alerjilere nasil yaklasiyorsunuz?", "a": "Menumuzde 14 ana alerjen bilgisi isaretlidir. Garsonlarimiz detayli bilgi verebilir. Agir alerji durumlarinda onceden mutfakla iletisime gecmenizi rica ediyoruz." },
+            { "q": "Otopark ve ulasim?", "a": "Bina altinda 200 araclik kapali otopark. Konuklarimiza 4 saat ucretsiz park imkani. Metro Levent istasyonuna 3 dakika yurume mesafesi." },
+            { "q": "Gift card / hediye ceki mevcut mu?", "a": "Evet, 500 TL, 1000 TL ve 2000 TL degerinde hediye kartlarimiz mevcuttur. Online veya restorandan satin alinabilir. 1 yil gecerlidir." },
+            { "q": "Dogum gunu, yildonumu kutlamalari?", "a": "Ozel pasta, balon dekorasyon ve kisisellestirilmis menu hazirliyoruz. 48 saat oncesinden bildirim yeterli. Kutlama paketi 500 TL'den basliyor." },
+            { "q": "Online rezervasyon nasil yapilir?", "a": "WhatsApp uzerinden veya web sitemizden rezervasyon yapabilirsiniz. Cuma-Cumartesi aksami icin en az 3 gun oncesinden rezervasyon onerilir. Ozel oda icin 1 hafta." }
+          ]
+        },
+        "cta": {
+          "badge": "Ozel Davet",
+          "title": "Bir Sonraki Etkinliginiz Icin",
+          "subtitle": "Kurumsal yemek, lansman, nikah veya ozel kutlama — size ozel menu ve organizasyon."
+        },
+        "process_steps": {
+          "badge": "Nasil Calisiyoruz",
+          "title": "Etkinlik Sureci",
+          "steps": [
+            { "title": "Gorusme", "description": "Etkinlik koordinatorumuz ile ihtiyaclarinizi dinliyoruz." },
+            { "title": "Teklif", "description": "Menu, mekan duzeni ve butceye uygun kisisel teklif hazirliyoruz." },
+            { "title": "Planlama", "description": "Dekorasyon, muzik, oturma duzeni — her detay planlanir." },
+            { "title": "Gerceklestirme", "description": "Ekibimiz kusursuz bir deneyim icin sahada." }
+          ]
+        }
+      }
+    },
+    {
+      "id": "restoran-zincir",
+      "variantName": "zincir",
+      "plan": "enterprise",
+      "description": "Cok subeli gurme hamburger ve casual dining zinciri",
+      "designPhilosophy": "Enerjik, genç, marka kimligine sadik — franchise hissi",
+      "isDark": true,
+      "colors": {
+        "bg": "#0C0C0C",
+        "surface": "#161616",
+        "text": "#F5F5F5",
+        "accent": "#FF4500",
+        "accentHover": "#FF5722",
+        "accentLight": "#1A0800",
+        "surfaceElevated": "#1E1E1E",
+        "textSecondary": "#A0A0A0"
+      },
+      "fonts": { "heading": "Space Grotesk", "body": "Inter" },
+      "business": {
+        "name": "BurgerLab Istanbul",
+        "ownerName": "Kaan Yilmaz",
+        "sector": "Restoran",
+        "slogan": "Bilimsel lezzet, laboratuvar hassasiyeti",
+        "phone": "0850 840 5252",
+        "phoneClean": "908508405252",
+        "whatsapp": "905558405252",
+        "email": "info@burgerlab.com.tr",
+        "website": "https://burgerlab.com.tr",
+        "address": "Harbiye Mah. Cumhuriyet Cad. No:16, Sisli/Istanbul (Merkez Sube)",
+        "city": "Istanbul",
+        "district": "Sisli",
+        "neighborhood": "Harbiye",
+        "coordinates": { "lat": 41.0482, "lng": 28.9876 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/burgerlabist",
+          "tiktok": "https://tiktok.com/@burgerlabist",
+          "youtube": "https://youtube.com/@burgerlabist",
+          "twitter": "https://twitter.com/burgerlabist"
+        },
+        "photos": [],
+        "foundedYear": 2019,
+        "experience": "7 yil",
+        "customerCount": "1.200.000+",
+        "rating": 4.6,
+        "reviewCount": 12500,
+        "branches": [
+          { "name": "Harbiye (Merkez)", "address": "Cumhuriyet Cad. No:16, Sisli" },
+          { "name": "Kadikoy", "address": "Bagdat Cad. No:280, Kadikoy" },
+          { "name": "Besiktas", "address": "Barbaros Bulv. No:45, Besiktas" },
+          { "name": "Atasehir", "address": "Brandium AVM No:15, Atasehir" },
+          { "name": "Bakirkoy", "address": "Istasyon Cad. No:8, Bakirkoy" }
+        ],
+        "workingHours": [
+          { "day": "Pazartesi", "open": "11:00", "close": "01:00", "isOpen": true },
+          { "day": "Sali", "open": "11:00", "close": "01:00", "isOpen": true },
+          { "day": "Carsamba", "open": "11:00", "close": "01:00", "isOpen": true },
+          { "day": "Persembe", "open": "11:00", "close": "01:00", "isOpen": true },
+          { "day": "Cuma", "open": "11:00", "close": "02:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "11:00", "close": "02:00", "isOpen": true },
+          { "day": "Pazar", "open": "11:00", "close": "00:00", "isOpen": true }
+        ],
+        "services": [
+          { "id": "s1", "name": "Classic Lab Burger", "price": "220 TL", "description": "200gr dana eti, cheddar, karamelize sogan, Lab sauce, brioche. Formul #001." },
+          { "id": "s2", "name": "Smash Double", "price": "280 TL", "description": "2x120gr smash patty, American cheese, tursu, hardal-ketcap. Cıtir cıtir." },
+          { "id": "s3", "name": "Truffle Experiment", "price": "340 TL", "description": "200gr et, truffle mayo, gruyere, rocket, karamelize mantar. Premium deney." },
+          { "id": "s4", "name": "BBQ Reactor", "price": "300 TL", "description": "200gr et, pulled pork, coleslaw, BBQ glaze, jalapeno. Agir silah." },
+          { "id": "s5", "name": "Chicken Lab", "price": "200 TL", "description": "Crispy tavuk, ranch, iceberg, domates, tursu. Hafif ama doyurucu." },
+          { "id": "s6", "name": "Vegan Formula", "price": "240 TL", "description": "Bitkisel patty, vegan cheddar, avokado, Lab vegan sauce. %100 bitkisel." },
+          { "id": "s7", "name": "Kids Meal (Mini Lab)", "price": "140 TL", "description": "Mini burger + patates + icecek + surpriz oyuncak. 4-12 yas." },
+          { "id": "s8", "name": "Lab Fries (Classic)", "price": "80 TL", "description": "El kesimi patates, Lab seasoning ile. Buyuk porsiyon." },
+          { "id": "s9", "name": "Loaded Fries", "price": "140 TL", "description": "Patates, cheddar sos, bacon parcalari, jalapeno, sour cream." },
+          { "id": "s10", "name": "Onion Rings", "price": "90 TL", "description": "Bira hamurlu sogan halkalari, ranch dip ile." },
+          { "id": "s11", "name": "Milkshake (Classic)", "price": "100 TL", "description": "Cikolata, vanilya veya cilek. Gercek dondurma ile." },
+          { "id": "s12", "name": "Lab Lemonade", "price": "70 TL", "description": "Ev yapimi limonata: klasik, lavanta veya zencefil." },
+          { "id": "s13", "name": "Combo Menu (Burger+Fries+Drink)", "price": "320 TL", "description": "Herhangi bir burger + Lab Fries + icecek. En avantajli secim." },
+          { "id": "s14", "name": "Party Box (4 Kisi)", "price": "900 TL", "description": "4 burger + 2 buyuk patates + 4 icecek + 1 onion rings. Grup siparis." },
+          { "id": "s15", "name": "Lab Wings (8 Parca)", "price": "180 TL", "description": "8 adet tavuk kanat: Buffalo, BBQ veya Garlic Parmesan sos secenekleri." },
+          { "id": "s16", "name": "Caesar Salad", "price": "140 TL", "description": "Romaine, parmesan, crouton, izgara tavuk ve caesar sos." },
+          { "id": "s17", "name": "Brownie Sundae", "price": "120 TL", "description": "Sicak brownie, vanilya dondurmasi, cikolata sosu, findik parcalari." },
+          { "id": "s18", "name": "Wagyu Lab Burger (Limited)", "price": "480 TL", "description": "A5 Wagyu patty, truffle aioli, aged cheddar. Sinirli sayi, sadece hafta sonu." },
+          { "id": "s19", "name": "Mac & Cheese", "price": "130 TL", "description": "Kremali makarna, 3 cesit peynir, pul biber, galeta unu." },
+          { "id": "s20", "name": "Catering Paketi (20 Kisi)", "price": "4500 TL", "description": "Ofis partisi / etkinlik icin 20 kisilik burger bar. Setup ve servis dahil." }
+        ],
+        "team": [
+          { "id": "t1", "name": "Kaan Yilmaz", "role": "Kurucu & CEO", "experience": "12 yil" },
+          { "id": "t2", "name": "Berk Sahin", "role": "Head of Culinary", "experience": "10 yil" },
+          { "id": "t3", "name": "Melike Dogan", "role": "Marketing Director", "experience": "8 yil" },
+          { "id": "t4", "name": "Ozan Kara", "role": "Operations Manager", "experience": "7 yil" },
+          { "id": "t5", "name": "Ece Yildirim", "role": "Supply Chain", "experience": "6 yil" },
+          { "id": "t6", "name": "Arda Cetin", "role": "Head Chef — Harbiye", "experience": "5 yil" },
+          { "id": "t7", "name": "Gizem Acar", "role": "Head Chef — Kadikoy", "experience": "4 yil" },
+          { "id": "t8", "name": "Tolga Bas", "role": "Digital & Loyalty", "experience": "5 yil" }
+        ]
+      },
+      "content": {
+        "hero": {
+          "badge": "Istanbul'un Burger Laboratuvari",
+          "title": "BurgerLab Istanbul",
+          "subtitle": "5 subede, bilimsel hassasiyetle hazirlanan gurme burgerler. Her lokma bir deney, her deney bir basari.",
+          "cta1": { "text": "Online Siparis", "href": "#iletisim" },
+          "cta2": { "text": "En Yakin Sube", "href": "#subeler" }
+        },
+        "about": {
+          "badge": "Lab Hikayesi",
+          "title": "Formul Nasil Bulundu?",
+          "description": "BurgerLab, 2019'da Kaan Yilmaz'in Harbiye'deki 40 metrekarelik ilk 'lab'inda basladi. Yazilimciliktan gastronomi dunyasina gecen Kaan, burger yapimina muhendislik mantigi ile yaklasti: her malzemenin grami olculur, her pisirme saniyesi hesaplanir, her sos formulize edilir. Ilk yilinda Instagram'da viral olan 'Truffle Experiment' burgeri, BurgerLab'i Istanbul'un konusulan markasi yapti. 2021'de Kadikoy ve Besiktas subeleri acildi, 2023'te Atasehir ve Bakirkoy ile 5 subeye ulasti. Bugun 1.2 milyon+ musteri agirlamis, 12.500+ Google yorumunda 4.6 puan ortalamasi yakalamis bir markayiz. Amacimiz 2026 sonuna kadar Ankara ve Izmir'e acilmak. Tum etlerimiz yerel ciftliklerden, ekmeklerimiz kendi firin tesisimizden, soslarimiz sifirdan lab'imizda uretiliyor."
+        },
+        "services": {
+          "badge": "Menu",
+          "title": "Lab Menu",
+          "subtitle": "Her burger bir formul, her sos bir deney. 20 cesit lezzet, sinirsiz kombinasyon."
+        },
+        "stats": {
+          "stats": [
+            { "value": "5", "label": "Sube" },
+            { "value": "1.2M+", "label": "Mutlu Musteri" },
+            { "value": "4.6", "label": "Google Puan", "suffix": "/5" },
+            { "value": "12.500+", "label": "Yorum" }
+          ]
+        },
+        "gallery": {
+          "badge": "Lab Ortami",
+          "title": "Sahne Arkasi"
+        },
+        "testimonials": {
+          "badge": "Lab Raporlari",
+          "title": "Musterilerimizden Geri Bildirim",
+          "reviews": [
+            { "name": "Yagiz S.", "location": "Harbiye", "rating": 5, "date": "2026-01", "text": "Smash Double benim icin en iyi burger Istanbul'da. Citirligi, peynir erimesi, sos dengesi — her sey kusursuz. Haftada 2 kere geliyorum." },
+            { "name": "Ezgi K.", "location": "Kadikoy", "rating": 5, "date": "2025-12", "text": "Vegan Formula gercekten sasirtti. Bitkisel burgerlere supheyle yaklasirdim ama bu baska bir sey. Avokado ve vegan sos harika uyum." },
+            { "name": "Baris D.", "location": "Besiktas", "rating": 5, "date": "2025-11", "text": "Ofis siparisi icin Party Box aldik. 4 kisi tok kalkti, burgerler sicacik geldi. Paket servis kalitesi de mekan kadar iyi." },
+            { "name": "Meltem A.", "location": "Atasehir", "rating": 4, "date": "2025-10", "text": "Cocuklarim Mini Lab'i bayiliyor. Oyuncak surpriz cok guzel bir dokunuz. Yetiskin olarak ben de Truffle Experiment favorim." },
+            { "name": "Omer T.", "location": "Bakirkoy", "rating": 5, "date": "2025-09", "text": "Wagyu Lab Burger icin ozellikle Harbiye subesine gittik. Agiza alindiginda eriyen et, truffle aioli ile muhtesem. Fiyatina deger." },
+            { "name": "Seda N.", "location": "Sisli", "rating": 5, "date": "2025-08", "text": "Loaded Fries ve BBQ Reactor kombinasyonu harika. Porsiyon buyuk, fiyat-kalite dengesi muthis. Atmosfer de enerjik ve eglenceli." },
+            { "name": "Ali V.", "location": "Levent", "rating": 4, "date": "2025-07", "text": "Catering hizmeti icin kullandik, ofis acilisinda 50 kisilik burger bar kurdular. Profesyonel ekip, lezzetli burgerler, sorunsuz organizasyon." },
+            { "name": "Pinar C.", "location": "Maltepe", "rating": 5, "date": "2025-06", "text": "Lab Lemonade lavantali favori icecegim oldu. Onion rings da muthis. Buralarda boyle kaliteli fast food gormemistim." },
+            { "name": "Deniz E.", "location": "Uskudar", "rating": 5, "date": "2025-05", "text": "Her sube ayni kalite, bu cok onemli. Kadikoy'de yedigim ile Harbiye'deki bire bir ayni. Standart tutturmak kolay is degil, helal olsun." },
+            { "name": "Ceren B.", "location": "Beylikduzu", "rating": 4, "date": "2025-04", "text": "Mac & Cheese yan urun olarak cok basarili. Uc peynir harmani kremsi ve lezzetli. Burger yaninda ideal tamamlayici." },
+            { "name": "Hakan R.", "location": "Kartal", "rating": 5, "date": "2025-03", "text": "Instagram'dan gorduğum Smash Double'i denemek icin geldim, beklentimin ustundeydi. Artik Anadolu yakasina da sube acilmali!" },
+            { "name": "Neslihan Y.", "location": "Pendik", "rating": 5, "date": "2025-02", "text": "Brownie Sundae finali muhtesem. Sicak brownie ustune dondurma, cikolata sosu akiyor. Her yemek sonrasi mecburi siparis." }
+          ]
+        },
+        "team": {
+          "badge": "Lab Ekibi",
+          "title": "Formulun Arkasindaki Beyinler"
+        },
+        "contact": {
+          "badge": "Iletisim & Siparis",
+          "title": "Bize Ulasin",
+          "subtitle": "5 subemiz Istanbul'un 5 farkli noktasinda. Online siparis, paket servis ve catering icin bize ulasin."
+        },
+        "faq": {
+          "badge": "SSS",
+          "title": "Sikca Sorulan Sorular",
+          "questions": [
+            { "q": "Hangi subelerde servis veriyorsunuz?", "a": "Harbiye (Merkez), Kadikoy, Besiktas, Atasehir ve Bakirkoy. 5 sube de her gun 11:00'den gece yarisina kadar acik." },
+            { "q": "Online siparis nasil verilir?", "a": "Web sitemiz, Yemeksepeti, Getir ve Trendyol Yemek uzerinden siparis verebilirsiniz. WhatsApp'tan da direkt siparis alinir. 30 dakika icerisinde teslimat." },
+            { "q": "Glutensiz secenekler var mi?", "a": "Evet, glutensiz burger ekmegi secenegi mevcuttur (ek +30 TL). Tum burgerler glutensiz ekmekle siparis edilebilir. Ayrica salata secenekleri de glutensiz." },
+            { "q": "Loyalty / sadakat programi var mi?", "a": "BurgerLab Club uyeliginiz ile her 10 burgerden sonra 1 burger hediye. Uyelik ucretsiz, QR kodla kayit olun. Dogum gununuzde ucretsiz combo menu hediye." },
+            { "q": "Catering / etkinlik hizmeti sunuyor musunuz?", "a": "Evet, 20-200 kisi arasi etkinlikler icin burger bar kurulumu yapiyoruz. Ofis partisi, lansman, dugun — her turlu etkinlige uygun. 48 saat oncesinden siparis, setup ve servis dahil." },
+            { "q": "Franchise veriyor musunuz?", "a": "Su an franchise modeli uzerinde calisiyoruz. 2026 sonuna kadar Ankara ve Izmir'de franchise subeleri acmayi planliyoruz. Basvuru icin info@burgerlab.com.tr adresine yazabilirsiniz." },
+            { "q": "Wagyu burgeri her zaman mevcut mu?", "a": "Wagyu Lab Burger sinirli sayida uretilir ve sadece Harbiye subesinde, Cuma-Cumartesi gunleri satisa sunulur. Instagram'dan stok durumunu takip edin." },
+            { "q": "Vegan secenekler nelerdir?", "a": "Vegan Formula burger, tum salatalar (tavuksuz), Lab Fries, Onion Rings (ayri yagda kizartilir), Lab Lemonade ve brownie haric tum tatlılar vegan secenekle siparis edilebilir." },
+            { "q": "Cocuk dogum gunu partisi yapabilir miyiz?", "a": "Evet, Harbiye ve Atasehir subelerinde cocuk parti alani mevcuttur. 10-20 cocuk icin Mini Lab paketi: burger + patates + icecek + pasta + balon = kisi basi 250 TL." },
+            { "q": "Kalori ve besin degeri bilgisi var mi?", "a": "Evet, tum menumuzun kalori ve makro degerleri web sitemizde ve restoran menusunde mevcuttur. Ozel diyet danismanligi icin nutrisyonist ise birlige yapiyoruz." },
+            { "q": "Paketleme / cevre politikaniz nedir?", "a": "Tum paketleme malzemelerimiz %100 geri donusumlu ve kompostlanabilir. Plastik pipet kullanmıyoruz, kagit pipet tercih ediyoruz. Karbon ayak izimizi yillik raporluyoruz." },
+            { "q": "Personel alimi yapiyor musunuz?", "a": "Surekli ekip arkadasi ariyoruz. kariyer.burgerlab.com.tr uzerinden basvuru yapabilirsiniz. Egitim programi, sigorta ve yemek avantajlari mevcuttur." },
+            { "q": "Ozel diyet (keto, dusuk karbonhidrat) secenekleri var mi?", "a": "Ekmeksiz burger secenegi (lettuce wrap) mevcuttur. Salata tabagi uzerinde burger de siparis edilebilir. Keto-friendly secenek icin garsonumuza danisin." },
+            { "q": "Grup / kurumsal siparis indirimi var mi?", "a": "20+ kisilik siparislerde %10, 50+ kisilik siparislerde %15 indirim uygulanır. Kurumsal anlasmalar icin satis@burgerlab.com.tr adresine ulasabilirsiniz." },
+            { "q": "Muzik / atmosfer nasil?", "a": "Tum subelerde ozel hazirlanan Lab playlist çalar — indie rock, electronic ve hip-hop karisimi. Cuma-Cumartesi aksamları DJ performansi (sadece Harbiye sube)." }
+          ]
+        },
+        "cta": {
+          "badge": "Simdi Dene",
+          "title": "Ilk Siparisinize %20 Indirim",
+          "subtitle": "BurgerLab Club'a ucretsiz uye olun, ilk siparise ozel %20 hosgeldin indirimi kazanin."
+        },
+        "process_steps": {
+          "badge": "Nasil Siparis Verilir",
+          "title": "3 Adimda Lab Deneyimi",
+          "steps": [
+            { "title": "Menu Sec", "description": "Web sitesi, uygulama veya restoranda menuden favori burgerini sec." },
+            { "title": "Kisisellestir", "description": "Sos, peynir, ek malzeme — burgerin sana ozel formulu senin elinde." },
+            { "title": "Lab'a Gel veya Kapinda", "description": "Restoranda ye veya 30 dakikada kapinda. Ayni Lab kalitesi." }
+          ]
+        },
+        "blog_preview": {
+          "badge": "Lab Notlari",
+          "title": "Blog & Haberler",
+          "posts": [
+            { "title": "Smash Burger Nedir? Neden Bu Kadar Populer?", "excerpt": "Smash teknikinin sirri, ince pattynin Maillard reaksiyonu ve citirligi...", "date": "2026-01-15" },
+            { "title": "BurgerLab 5. Yilinda 5. Subesini Acti", "excerpt": "Bakirkoy subemiz Ocak 2024'te kapilerini acti. Ilk hafta 3000+ misafir...", "date": "2025-12-20" },
+            { "title": "Surdurulebilir Paketleme: Sifir Plastik Hedefi", "excerpt": "2025 itibariyla tum ambalajlarimiz %100 kompostlanabilir...", "date": "2025-11-01" }
+          ]
+        },
+        "newsletter": {
+          "badge": "Lab Club",
+          "title": "BurgerLab Club'a Katil",
+          "subtitle": "Ozel kampanyalar, yeni menu haberleri ve Lab etkinlik davetleri icin bultenimize abone ol.",
+          "placeholder": "E-posta adresiniz",
+          "buttonText": "Katil"
+        },
+        "brands_logos": {
+          "badge": "Medyada Biz",
+          "title": "Basinda BurgerLab",
+          "brands": ["Hurriyet", "NTV", "Yemeksepeti", "Getir", "Instagram Turkiye", "Time Out Istanbul", "GQ Turkiye"]
+        }
+      }
+    }
+  ]
+}

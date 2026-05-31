@@ -1,0 +1,392 @@
+{
+  "sectorId": "emlak",
+  "seoSchemaType": "RealEstateAgent",
+  "variants": [
+    {
+      "id": "emlak-konut",
+      "variantName": "konut",
+      "plan": "free",
+      "description": "Mahalle emlakci, konut alim-satim",
+      "designPhilosophy": "Sade, guvenilir, samimi",
+      "isDark": false,
+      "colors": { "bg": "#FFFFFF", "surface": "#F0F5FF", "text": "#1A2744", "accent": "#2563EB" },
+      "fonts": { "heading": "Inter", "body": "Inter" },
+      "business": {
+        "name": "Guven Emlak",
+        "ownerName": "Mustafa Guven",
+        "sector": "Emlak",
+        "slogan": "Hayalinizdeki eve bir adim",
+        "phone": "0216 378 45 60",
+        "phoneClean": "902163784560",
+        "whatsapp": "905321234567",
+        "email": "info@guvenem.com",
+        "address": "Suadiye Mah. Bagdat Cad. No:320, Kadikoy/Istanbul",
+        "city": "Istanbul", "district": "Kadikoy",
+        "mapEmbed": "", "foundedYear": 2003, "experience": "23 yil", "employeeCount": 3,
+        "customerCount": "6.500+", "rating": 4.7, "reviewCount": 580,
+        "workingHours": [
+          { "day": "Pazartesi", "dayTr": "Pazartesi", "open": "09:00", "close": "19:00", "isOpen": true },
+          { "day": "Sali", "dayTr": "Sali", "open": "09:00", "close": "19:00", "isOpen": true },
+          { "day": "Carsamba", "dayTr": "Carsamba", "open": "09:00", "close": "19:00", "isOpen": true },
+          { "day": "Persembe", "dayTr": "Persembe", "open": "09:00", "close": "19:00", "isOpen": true },
+          { "day": "Cuma", "dayTr": "Cuma", "open": "09:00", "close": "19:00", "isOpen": true },
+          { "day": "Cumartesi", "dayTr": "Cumartesi", "open": "10:00", "close": "17:00", "isOpen": true },
+          { "day": "Pazar", "dayTr": "Pazar", "open": "11:00", "close": "16:00", "isOpen": true }
+        ],
+        "services": [
+          { "id": "s1", "name": "Konut Satis", "price": "Komisyon bazli", "duration": "Degisken", "description": "Daire, mustakil ev ve dublex satis isleri. Bolge pazar analizi, profesyonel foto ve ilan yonetimi dahil.", "icon": "Home" },
+          { "id": "s2", "name": "Konut Kiralama", "price": "1 kira bedeli", "duration": "Degisken", "description": "Kiralama surecinin basindan sonuna yonetimi. Kiracı secimi, sozlesme hazirlama ve anahtar teslimi.", "icon": "Key" },
+          { "id": "s3", "name": "Ucretsiz Deger Tespiti", "price": "Ucretsiz", "duration": "1 saat", "description": "Evinizin guncel piyasa degerini belirliyoruz. Bolge emsal karsilastirmasi ve detayli rapor.", "icon": "BarChart" },
+          { "id": "s4", "name": "Kredi Danismanligi", "price": "Ucretsiz", "duration": "30 dk", "description": "Konut kredisi basvurunuzda bankalarla iletisim ve en uygun faiz orani karsilastirmasi.", "icon": "CreditCard" }
+        ],
+        "team": [], "testimonials": [], "gallery": []
+      },
+      "content": {
+        "hero": { "title": "Hayalinizdeki Eve Bir Adim", "subtitle": "23 yildir Kadikoy'de konut alim-satim ve kiralama. Bolge uzmanligi ve guvenilir hizmet.", "badge": "Ucretsiz Deger Tespiti", "ctaText": "Hemen Ara", "ctaLink": "tel:+902163784560" },
+        "about": { "title": "Guven Emlak", "description": "2003 yilinda Mustafa Guven tarafindan kurulan Guven Emlak, Kadikoy Suadiye'de 23 yildir konut alim-satim ve kiralama hizmeti vermektedir. Bolgenin en deneyimli emlakcilarindan biri olarak 6.500'den fazla aileye hayallerindeki evi bulmalarinda yardimci olduk." },
+        "services": { "title": "Emlak Hizmetlerimiz", "subtitle": "Konut alim, satim ve kiralama" },
+        "contact": { "title": "Bize Ulasin", "subtitle": "Evinizin deger tespiti icin bizi arayin" },
+        "faq": [
+          { "q": "Komisyon orani ne kadar?", "a": "Satis islemlerinde %2, kiralama islemlerinde 1 kira bedeli standart komisyon oranlarimizdir." },
+          { "q": "Deger tespiti ucretsiz mi?", "a": "Evet, evinizin guncel piyasa degerini ucretsiz olarak belirliyoruz." },
+          { "q": "Kredi islemleriyle ilgileniyor musunuz?", "a": "Evet, anlasmali bankalarla konut kredisi surecinde rehberlik yapiyoruz." },
+          { "q": "Hangi bolgelerde calisiyorsunuz?", "a": "Kadikoy, Uskudar, Atasehir ve Maltepe baslicdа olmak uzere Anadolu Yakasi'nda aktifiz." }
+        ]
+      }
+    },
+    {
+      "id": "emlak-villa",
+      "variantName": "villa",
+      "plan": "starter",
+      "description": "Villa ve mustakil ev odakli emlak ofisi",
+      "designPhilosophy": "Sicak, dogal, konforlu",
+      "isDark": false,
+      "colors": { "bg": "#FFFFFF", "surface": "#F5F0EB", "text": "#2C1810", "accent": "#92400E" },
+      "fonts": { "heading": "Playfair Display", "body": "Inter" },
+      "business": {
+        "name": "Yesil Vadi Emlak",
+        "ownerName": "Ayse Korkmaz",
+        "sector": "Emlak",
+        "slogan": "Dogayla ic ice yasamin adresi",
+        "phone": "0212 678 90 45",
+        "phoneClean": "902126789045",
+        "whatsapp": "905441234567",
+        "email": "info@yesilvadi.com",
+        "address": "Zekeriyakoy Mah. Kumsal Cad. No:15, Sariyer/Istanbul",
+        "city": "Istanbul", "district": "Sariyer",
+        "mapEmbed": "", "foundedYear": 2010, "experience": "16 yil", "employeeCount": 5,
+        "customerCount": "3.200+", "rating": 4.8, "reviewCount": 450,
+        "workingHours": [
+          { "day": "Pazartesi", "dayTr": "Pazartesi", "open": "09:30", "close": "18:30", "isOpen": true },
+          { "day": "Sali", "dayTr": "Sali", "open": "09:30", "close": "18:30", "isOpen": true },
+          { "day": "Carsamba", "dayTr": "Carsamba", "open": "09:30", "close": "18:30", "isOpen": true },
+          { "day": "Persembe", "dayTr": "Persembe", "open": "09:30", "close": "18:30", "isOpen": true },
+          { "day": "Cuma", "dayTr": "Cuma", "open": "09:30", "close": "18:30", "isOpen": true },
+          { "day": "Cumartesi", "dayTr": "Cumartesi", "open": "10:00", "close": "17:00", "isOpen": true },
+          { "day": "Pazar", "dayTr": "Pazar", "open": "11:00", "close": "16:00", "isOpen": true }
+        ],
+        "services": [
+          { "id": "s1", "name": "Villa Satis & Alim", "price": "Komisyon bazli", "duration": "Degisken", "description": "Sariyer, Kemerburgaz, Zekeriyakoy ve Bahcesehir bolgelerinde villa alim-satim. Drone cekim ve 3D sanal tur dahil.", "icon": "Home" },
+          { "id": "s2", "name": "Villa Kiralama", "price": "1 kira bedeli", "duration": "Degisken", "description": "Yillik ve sezonluk villa kiralama. Kiracı referans kontrolu ve sozlesme yonetimi.", "icon": "Key" },
+          { "id": "s3", "name": "Arazi & Arsa Satis", "price": "Komisyon bazli", "duration": "Degisken", "description": "Imar durumu sorgulama, ifraz-tevhid danismanligi ve arsa deger tespiti. Yatirim odakli arazi portfoyu.", "icon": "Map" },
+          { "id": "s4", "name": "Deger Tespiti & Ekspertiz", "price": "Ucretsiz", "duration": "2 saat", "description": "Bolge emsal analizi, tapu ve imar kontrolu ile profesyonel deger tespiti raporu.", "icon": "FileText" },
+          { "id": "s5", "name": "Yatirim Danismanligi", "price": "Ucretsiz", "duration": "1 saat", "description": "Gayrimenkul yatirim analizi, getiri hesaplama ve portfoy olusturma danismanligi.", "icon": "TrendingUp" },
+          { "id": "s6", "name": "Tapu & Hukuki Islemler", "price": "Ucretsiz", "duration": "Degisken", "description": "Tapu devir islemi koordinasyonu, vekaletname ve satis vaadi sozlesmesi rehberligi.", "icon": "Scale" }
+        ],
+        "team": [
+          { "name": "Ayse Korkmaz", "title": "Kurucu & Gayrimenkul Danismani", "description": "16 yildir Sariyer bolgesi villa pazarinda uzman. 3.200+ basarili islem.", "image": "" },
+          { "name": "Kemal Ozturk", "title": "Arazi & Yatirim Uzmani", "description": "Imar hukuku ve arazi gelistirme konularinda 12 yillik deneyim.", "image": "" }
+        ],
+        "testimonials": [
+          { "name": "Cenk S.", "location": "Zekeriyakoy", "date": "2025-11", "rating": 5, "comment": "Hayalimizdeki villayi Ayse Hanim sayesinde bulduk. 3D sanal tur ile yurt disindan bile evi gorebildik. Surecin her asamasinda yarimzdaydilar." },
+          { "name": "Deniz K.", "location": "Kemerburgaz", "date": "2025-09", "rating": 5, "comment": "Arsamizi en iyi fiyata sattik. Imar durumu ve emsal analizi cok detayliydi. Yatirim danismanligi da cok faydali oldu." },
+          { "name": "Leyla A.", "location": "Bahcesehir", "date": "2025-07", "rating": 4, "comment": "Villa kiralamayla ilgileniyorduk, referans kontrolu ve sozlesme konusunda cok titiz calisitilar." }
+        ],
+        "gallery": []
+      },
+      "content": {
+        "hero": { "title": "Dogayla Ic Ice Yasamin Adresi", "subtitle": "Sariyer, Kemerburgaz ve Zekeriyakoy'de villa alim-satim ve kiralama. 16 yillik bolge uzmanligi.", "badge": "Villa Uzmani", "ctaText": "Portfoyumuzu Gorun", "ctaLink": "tel:+902126789045" },
+        "about": { "title": "Yesil Vadi Emlak", "description": "2010 yilinda kurulan Yesil Vadi Emlak, Istanbul'un kuzey orman bolgelerinde villa ve arazi pazarinda uzmanlasmis bir emlak ofisidir. Zekeriyakoy, Kemerburgaz, Bahcesehir ve Sariyer'de 3.200'den fazla basarili islem gerceklestirdik. Drone cekim, 3D sanal tur ve profesyonel fotograflarla ilanlarimizi olustururuz. Arazi gelistirme, imar danismanligi ve yatirim analizi de hizmet yelpazemizdedir." },
+        "services": { "title": "Emlak Hizmetlerimiz", "subtitle": "Villa, arazi ve yatirim danismanligi" },
+        "stats": { "title": "Rakamlarla Yesil Vadi", "subtitle": "16 yillik villa uzmanligi" },
+        "contact": { "title": "Iletisim & Randevu", "subtitle": "Villa gezisi icin randevu alin" },
+        "faq": [
+          { "q": "Hangi bolgelerde villa portfoyunuz var?", "a": "Zekeriyakoy, Kemerburgaz, Bahcesehir, Goktürk ve Sariyer sahil bolgelerimiz baslicdа lokasyonlarimizdir." },
+          { "q": "3D sanal tur mevcut mu?", "a": "Evet, tum villalarimiz icin 360 derece sanal tur ve drone cekim hizmeti sunuyoruz." },
+          { "q": "Yabancilara satis yapabiliyor musunuz?", "a": "Evet, yabanci uyruklu aliclara tapu devir sureci rehberligi ve noter/tercuman koordinasyonu sagliyoruz." },
+          { "q": "Arsa yatirimi icin danismanlik veriyor musunuz?", "a": "Evet, imar durumu kontrolu, emsal hesaplama ve yatirim getiri analizi yapiyoruz." },
+          { "q": "Komisyon oranlariniz nedir?", "a": "Villa satislarinda %2-3, kiralamalarda 1 kira bedeli standart komisyonumuzdur." },
+          { "q": "Villa gezisi icin randevu gerekli mi?", "a": "Evet, villalarin cogu meskun oldugundan on randevu ile gezileri planliyoruz." }
+        ]
+      }
+    },
+    {
+      "id": "emlak-ticari",
+      "variantName": "ticari",
+      "plan": "growth",
+      "description": "Ticari gayrimenkul danismanligi",
+      "designPhilosophy": "Kurumsal, profesyonel, guclu",
+      "isDark": false,
+      "colors": { "bg": "#FAFAFA", "surface": "#F0F0F5", "text": "#111827", "accent": "#1D4ED8" },
+      "fonts": { "heading": "Montserrat", "body": "Inter" },
+      "business": {
+        "name": "MetroPol Ticari Gayrimenkul",
+        "ownerName": "Cem Erdogan",
+        "sector": "Emlak",
+        "slogan": "Ticari gayrimenkulde stratejik ortak",
+        "phone": "0212 345 00 00",
+        "phoneClean": "902123450000",
+        "whatsapp": "905501234567",
+        "email": "info@metropol-cre.com",
+        "address": "Esentepe Mah. Buyukdere Cad. No:128/5, Sisli/Istanbul",
+        "city": "Istanbul", "district": "Sisli",
+        "mapEmbed": "", "foundedYear": 2008, "experience": "18 yil", "employeeCount": 14,
+        "customerCount": "4.800+", "rating": 4.9, "reviewCount": 1200,
+        "workingHours": [
+          { "day": "Pazartesi", "dayTr": "Pazartesi", "open": "09:00", "close": "18:30", "isOpen": true },
+          { "day": "Sali", "dayTr": "Sali", "open": "09:00", "close": "18:30", "isOpen": true },
+          { "day": "Carsamba", "dayTr": "Carsamba", "open": "09:00", "close": "18:30", "isOpen": true },
+          { "day": "Persembe", "dayTr": "Persembe", "open": "09:00", "close": "18:30", "isOpen": true },
+          { "day": "Cuma", "dayTr": "Cuma", "open": "09:00", "close": "18:30", "isOpen": true },
+          { "day": "Cumartesi", "dayTr": "Cumartesi", "open": "10:00", "close": "14:00", "isOpen": true },
+          { "day": "Pazar", "dayTr": "Pazar", "open": "", "close": "", "isOpen": false }
+        ],
+        "services": [
+          { "id": "s1", "name": "Ofis Kiralama & Satis", "price": "Komisyon bazli", "duration": "Degisken", "description": "A+ plaza, is merkezi ve paylasilmis ofis kiralama/satis. Buyukdere, Maslak, Levent ekseninde genis portfoy.", "icon": "Building" },
+          { "id": "s2", "name": "Magaza & Dukkan Kiralama", "price": "Komisyon bazli", "duration": "Degisken", "description": "Cadde ustu magaza, AVM'içi dukkan ve showroom kiralama. Lokasyon analizi ve trafik etüdü dahil.", "icon": "Store" },
+          { "id": "s3", "name": "Depo & Lojistik Alan", "price": "Komisyon bazli", "duration": "Degisken", "description": "Depo, antrepo ve lojistik merkez kiralama/satis. Hadimkoy, Tuzla ve Gebze bolgelerinde genis portfoy.", "icon": "Warehouse" },
+          { "id": "s4", "name": "Arsa & Arazi Gelistirme", "price": "Komisyon bazli", "duration": "Degisken", "description": "Ticari imar arsasi alim-satim. Fizibilite, imar analizi ve gelistirme danismanligi.", "icon": "Map" },
+          { "id": "s5", "name": "Pazar Arastirmasi & Analiz", "price": "5.000-20.000 TL", "duration": "1-2 hafta", "description": "Bolge ticari gayrimenkul pazar arastirmasi. Emsal analizi, kira trendleri, bosluk orani ve yatirim fizibilitesi.", "icon": "BarChart" },
+          { "id": "s6", "name": "Kiracı Temsili", "price": "Komisyon bazli", "duration": "Degisken", "description": "Sirketiniz adina ideal ofis veya magaza bulma. Kira muzakeresi, sozlesme inceleme ve fit-out koordinasyonu.", "icon": "Users" },
+          { "id": "s7", "name": "Gayrimenkul Degerleme", "price": "2.000-10.000 TL", "duration": "3-5 gun", "description": "SPK lisansli degerleme raporu. Banka, mahkeme ve yatirim amaçli. Gelir indirgemesi ve emsal yontemleri.", "icon": "FileText" },
+          { "id": "s8", "name": "Otel & Turizm Gayrimenkul", "price": "Komisyon bazli", "duration": "Degisken", "description": "Otel, apart otel ve turizm tesisi alim-satim. Isletme analizi, RevPAR hesaplama ve yatirimci eslestirme.", "icon": "Hotel" },
+          { "id": "s9", "name": "Yatirim Portfoy Yonetimi", "price": "Teklif bazli", "duration": "Surekli", "description": "Gayrimenkul yatirim portfoyu olusturma ve yonetme. Kira takibi, kiracı iliskileri ve performans raporlama.", "icon": "PieChart" },
+          { "id": "s10", "name": "Sozlesme & Hukuk Destegi", "price": "1.000-5.000 TL", "duration": "Degisken", "description": "Kira sozlesmesi hazirlama, inceleme ve muzakere. Tapu devir koordinasyonu ve hukuki due diligence.", "icon": "Scale" }
+        ],
+        "team": [
+          { "name": "Cem Erdogan", "title": "Kurucu & Genel Mudur", "description": "18 yillik ticari gayrimenkul deneyimi. RICS (Royal Institution of Chartered Surveyors) uyesi.", "image": "" },
+          { "name": "Selin Aksoy", "title": "Ofis Kiralama Direktoru", "description": "12 yillik plaza ve is merkezi kiralama deneyimi. Buyukdere ekseni uzmani.", "image": "" },
+          { "name": "Burak Celik", "title": "Perakende & Magaza", "description": "AVM ve cadde ustu magaza kiralama. 10 yillik perakende gayrimenkul deneyimi.", "image": "" },
+          { "name": "Dr. Aylin Sahin", "title": "Degerleme & Arastirma", "description": "SPK lisansli gayrimenkul degerleme uzmani. Pazar arastirmasi ve fizibilite raporlari.", "image": "" }
+        ],
+        "testimonials": [
+          { "name": "TechStart A.S.", "location": "Levent", "date": "2025-12", "rating": 5, "comment": "200 kisilik ofis ariyorduk, 3 hafta icinde Maslak'ta muhtesom bir secenegi buldular. Kira muzakeresinde %15 indirim saglаdilar." },
+          { "name": "Doga Perakende", "location": "Beyoglu", "date": "2025-10", "rating": 5, "comment": "Istiklal Caddesi'nde magaza bulma konusunda harika calistilar. Trafik analizi ve emsal karsilаstirmasi cok bilgilendiriciydi." },
+          { "name": "Atlas Lojistik", "location": "Hadimkoy", "date": "2025-08", "rating": 5, "comment": "5.000 m2 depo kiralamasini MetroPol ile gerceklestirdik. Lokasyon secimindetaki analitik yaklasim gercekten farkydi." },
+          { "name": "GoldenGate Otelcilik", "location": "Taksim", "date": "2025-06", "rating": 4, "comment": "Boutique otel yatirimi icin fizibilite raporu hazirladi. Detayli RevPAR analizi ve lokasyon karsilastirmasi." },
+          { "name": "Mavi Danismanlik", "location": "Sisli", "date": "2025-04", "rating": 5, "comment": "Ofis tasinma surecimizi baslangicindan sonuna yonettiler. Yeni ofisi, fit-out'u ve tasima koordinasyonunu da dahil ettiler." },
+          { "name": "Erdem Holding", "location": "Maslak", "date": "2025-02", "rating": 5, "comment": "Gayrimenkul yatirim portfoyumuzu MetroPol yonetiyor. Kira takibi, kiracı iliskileri ve performans raporlari harika." }
+        ],
+        "gallery": []
+      },
+      "content": {
+        "hero": { "title": "Ticari Gayrimenkulde Stratejik Ortak", "subtitle": "Istanbul'da ofis, magaza, depo ve otel gayrimenkul danismanligi. 18 yillik deneyim, 4.800+ islem, RICS kalitesinde hizmet.", "badge": "RICS Uyesi", "ctaText": "Danismanlik Alin", "ctaLink": "tel:+902123450000" },
+        "about": { "title": "MetroPol Ticari Gayrimenkul", "description": "2008 yilinda kurulan MetroPol, Istanbul'un lider ticari gayrimenkul danismanlik firmalarindan biridir. Ofis, magaza, depo, otel ve arsa segmentlerinde 4.800'den fazla basarili isleme imza attik. RICS (Royal Institution of Chartered Surveyors) uyesi olarak uluslararasi standartlarda hizmet sunuyoruz. 14 kisilik uzman kadromuzla pazar arastirmasindan degerlemeye, kiracı temsilinden portfoy yonetimine kadar genis bir hizmet yelpazesi sunuyoruz." },
+        "services": { "title": "Ticari Emlak Hizmetleri", "subtitle": "Ofisten depoya, magazadan otele" },
+        "stats": { "title": "Rakamlarla MetroPol", "subtitle": "18 yillik ticari gayrimenkul deneyimi" },
+        "contact": { "title": "Danismanlik & Iletisim", "subtitle": "Ticari gayrimenkul ihtiyaciniz icin bizi arayin" },
+        "faq": [
+          { "q": "Ofis kiralama sureci ne kadar surer?", "a": "Ihtiyac analizinden anahtar teslime ortalama 2-6 hafta surer. Portfoyumuzde aninda girilebilir secenekler de mevcuttur." },
+          { "q": "SPK lisansli degerleme raporu ne ise yarar?", "a": "Banka teminat, mahkeme bilirkisi, ortaglik paylaşim ve yatirim karar alma amaçlariyla kullanilir. Yasal gercerliligi olan resmi rapordur." },
+          { "q": "Pazar arastirmasi kapsamı nedir?", "a": "Emsal kira analizi, bosluk orani, bolge trendleri, rekabet haritalama ve yatirim getiri projeksiyonu icеrir." },
+          { "q": "Kiracı temsili ne demek?", "a": "Sirketiniz adina ideal mekan bulma, muzakere ve sozlesme surecini yonetme hizmetidir. Komisyon genellikle ev sahibinden alinir." },
+          { "q": "Komisyon oranlari nedir?", "a": "Ofis ve magaza kiralamasinda 1-2 kira bedeli, satista %1-3 arasindadir. Proje buyuklugune gore ozel fiyatlandirma yapilir." },
+          { "q": "Yatirim danismanligi da veriyor musunuz?", "a": "Evet, gayrimenkul yatirim analizi, portfoy olusturma ve yonetim hizmetleri sunuyoruz." },
+          { "q": "Istanbul disinda da calisiyor musunuz?", "a": "Agirlikli olarak Istanbul'da calissiyoruz ancak Kocaeli, Bursa ve Ankara'da da partner agimiz vardir." },
+          { "q": "Yabanci yatirimcilara hizmet veriyor musunuz?", "a": "Evet, yabanci yatirimcilar icin Ingilizce hizmet, hukuki danismanlik ve tapu devir koordinasyonu sagliyoruz." }
+        ]
+      }
+    },
+    {
+      "id": "emlak-yatirim",
+      "variantName": "yatirim",
+      "plan": "pro",
+      "description": "Gayrimenkul yatirim danismanligi",
+      "designPhilosophy": "Premium, analitik, sofistike",
+      "isDark": false,
+      "colors": { "bg": "#FAFBFC", "surface": "#F1F5F9", "text": "#0F172A", "accent": "#0D9488" },
+      "fonts": { "heading": "Raleway", "body": "Inter" },
+      "business": {
+        "name": "CapitalPark Gayrimenkul Yatirim",
+        "ownerName": "Dr. Baris Ozkan",
+        "sector": "Emlak",
+        "slogan": "Veriye dayali gayrimenkul yatirimi",
+        "phone": "0212 567 00 00",
+        "phoneClean": "902125670000",
+        "whatsapp": "905381234567",
+        "email": "info@capitalpark.com.tr",
+        "address": "Barbaros Mah. Halk Cad. No:10/8, Atasehir/Istanbul",
+        "city": "Istanbul", "district": "Atasehir",
+        "mapEmbed": "", "foundedYear": 2012, "experience": "14 yil", "employeeCount": 20,
+        "customerCount": "2.800+", "rating": 4.9, "reviewCount": 850,
+        "workingHours": [
+          { "day": "Pazartesi", "dayTr": "Pazartesi", "open": "09:00", "close": "18:00", "isOpen": true },
+          { "day": "Sali", "dayTr": "Sali", "open": "09:00", "close": "18:00", "isOpen": true },
+          { "day": "Carsamba", "dayTr": "Carsamba", "open": "09:00", "close": "18:00", "isOpen": true },
+          { "day": "Persembe", "dayTr": "Persembe", "open": "09:00", "close": "18:00", "isOpen": true },
+          { "day": "Cuma", "dayTr": "Cuma", "open": "09:00", "close": "18:00", "isOpen": true },
+          { "day": "Cumartesi", "dayTr": "Cumartesi", "open": "10:00", "close": "14:00", "isOpen": true },
+          { "day": "Pazar", "dayTr": "Pazar", "open": "", "close": "", "isOpen": false }
+        ],
+        "services": [
+          { "id": "s1", "name": "Yatirim Fizibilite Raporu", "price": "10.000-50.000 TL", "duration": "2-4 hafta", "description": "Gayrimenkul yatirim fizibilitesi. Pazar analizi, nakit akim projeksiyonu, IRR/NPV hesaplama, risk degerlendirmesi.", "icon": "BarChart" },
+          { "id": "s2", "name": "Portfoy Olusturma & Yonetim", "price": "Teklif bazli", "duration": "Surekli", "description": "Kisisel veya kurumsal gayrimenkul yatirim portfoyu olusturma. Varlik dagitimi, cografic cesitlendirme ve performans takibi.", "icon": "PieChart" },
+          { "id": "s3", "name": "Proje Gelistirme Danismanligi", "price": "Teklif bazli", "duration": "Projeye gore", "description": "Arazi ediniminden satis pazarlamaya proje gelistirme sureci yonetimi. Konsept tasarim, maliyet tahmini ve gelir projeksiyonu.", "icon": "Building" },
+          { "id": "s4", "name": "Due Diligence", "price": "5.000-25.000 TL", "duration": "1-3 hafta", "description": "Gayrimenkul ön inceleme raporu. Hukuki, teknik, mali ve cevre riskleri degerlendirmesi. Yatirim kararindan once zorunlu.", "icon": "Search" },
+          { "id": "s5", "name": "Uluslararasi Yatirimci Hizmeti", "price": "Teklif bazli", "duration": "Degisken", "description": "Yabanci yatirimcilar icin Turkiye gayrimenkul yatirimi. Vatandaslik programi, vergi planlamasi ve tapu sureci.", "icon": "Globe" },
+          { "id": "s6", "name": "GYO & Fon Danismanligi", "price": "Teklif bazli", "duration": "Projeye gore", "description": "Gayrimenkul Yatirim Ortakligi ve fon yapilandirma danismanligi. SPK mevzuati, portfoy olusturma ve yatirimci iliskileri.", "icon": "Landmark" },
+          { "id": "s7", "name": "Pazar Istihbarati", "price": "3.000-15.000 TL/ay", "duration": "Aylik", "description": "Aylik gayrimenkul pazar raporu. Fiyat endeksleri, arz-talep dengesi, bolge karsilastirmalari ve trend analizleri.", "icon": "TrendingUp" },
+          { "id": "s8", "name": "Degerleme & Ekspertiz", "price": "3.000-20.000 TL", "duration": "1-2 hafta", "description": "SPK ve BDDK onаyli gayrimenkul degerleme raporu. Konut, ticari ve ozel mulkler. Uluslararasi degerleme standartlari (IVS).", "icon": "FileText" },
+          { "id": "s9", "name": "Satis & Pazarlama", "price": "Komisyon bazli", "duration": "Degisken", "description": "Premium konut, ticari ve yatirim gayrimenkul satisi. Profesyonel fotografcilik, 3D tur ve dijital pazarlama.", "icon": "Megaphone" },
+          { "id": "s10", "name": "Vergi & Mali Danismanlik", "price": "2.000-10.000 TL", "duration": "Degisken", "description": "Gayrimenkul vergi planlamasi. KDV, tapu harci, gelir vergisi ve kurumlar vergisi optimizasyonu.", "icon": "Calculator" },
+          { "id": "s11", "name": "Kentsel Donusum Danismanligi", "price": "Teklif bazli", "duration": "Projeye gore", "description": "6306 sayili kanun kapsaminda kentsel donusum sureci yonetimi. Riskli yapi tespiti, muteahhit secimi ve hak sahipligi muzakeresi.", "icon": "RefreshCcw" },
+          { "id": "s12", "name": "Kira Geliri Optimizasyonu", "price": "Teklif bazli", "duration": "Surekli", "description": "Mevcut gayrimenkullerin kira gelirini maksimize etme. Kira guncelleme stratejisi, kiracı miks optimizasyonu ve operasyonel iyilestirme.", "icon": "Wallet" },
+          { "id": "s13", "name": "Arazi Bankas& Yonetimi", "price": "Teklif bazli", "duration": "Surekli", "description": "Stratejik arazi edinimi ve banka olusturma. Imar takibi, deger artis stratejisi ve cikis planlamasi.", "icon": "Map" },
+          { "id": "s14", "name": "Stratejik Danismanlik", "price": "Teklif bazli", "duration": "Projeye gore", "description": "Gayrimenkul firmalari ve holdinglere stratejik danismanlik. Pazar giris stratejisi, marka konumlandirma ve buyume plani.", "icon": "Target" }
+        ],
+        "team": [
+          { "name": "Dr. Baris Ozkan", "title": "Kurucu & Yonetici Ortak", "description": "Bogazici Isletme doktorasi. 14 yillik gayrimenkul yatirim danismanligi. RICS Fellow uyesi. Eski Goldman Sachs gayrimenkul birimI.", "image": "" },
+          { "name": "Deniz Aydin", "title": "Yatirim Direktoru", "description": "London Business School MBA. 10 yillik uluslararasi gayrimenkul yatirim deneyimi. Portfoy yonetimi uzmani.", "image": "" },
+          { "name": "Simge Kaplan", "title": "Arastirma & Analiz Muduru", "description": "ODTU Sehir Planlama mezunu. Gayrimenkul pazar arastirmasi, veri analizi ve fizibilite raporlari uzmani.", "image": "" },
+          { "name": "Av. Ceren Dogan", "title": "Hukuk & Due Diligence", "description": "Gayrimenkul hukuku uzmani avukat. Imar, tapu, kentsel donusum ve yabanci yatirimci mevzuati.", "image": "" },
+          { "name": "Tolga Erdem", "title": "Proje Gelistirme Muduru", "description": "Insaat Muhendisligi mezunu, MBA. Arazi gelistirme ve konut projesi yonetiminde 15 yillik deneyim.", "image": "" },
+          { "name": "Elif Sahin", "title": "Uluslararasi Yatirimci Iliskileri", "description": "Ingilizce ve Arapca tercuman. Yabanci yatirimcilar icin vatandaslik programi ve yatirim sureci koordinasyonu.", "image": "" }
+        ],
+        "testimonials": [
+          { "name": "Altintas Holding", "location": "Istanbul", "date": "2025-12", "rating": 5, "comment": "Gayrimenkul yatirim portfoyumuzu CapitalPark yonetiyor. Yillik getiri %28'e ulasti. Detayli analiz ve stratejik yaklasim." },
+          { "name": "Dr. Kemal S.", "location": "Atasehir", "date": "2025-11", "rating": 5, "comment": "Kentsel donusum surecimde hak sahipligi muzakeresini yuruttüler. Muteahhit secimi ve sozlesme incelemesinde cok degerli destek aldim." },
+          { "name": "Al-Rashid Inv.", "location": "Dubai/Istanbul", "date": "2025-10", "rating": 5, "comment": "Turkiye'de 5 konut yatirimi yaptik. Vatandaslik sureci, tapu ve vergi planlamasinin tamami CapitalPark'la halledildi." },
+          { "name": "Yildiz Insaat", "location": "Umraniye", "date": "2025-08", "rating": 5, "comment": "500 konutluk proje icin fizibilite raporu hazirladi. IRR ve nakit akim analizi bankadan kredi almamizda belirleyici oldu." },
+          { "name": "Beyaz Grup", "location": "Kadikoy", "date": "2025-06", "rating": 4, "comment": "Due diligence raporuyla alimindan vazgectiigmiz mulkte sonradan ciddi imar sorunu cikti. Bizi buyuk zarardan kurtardilar." },
+          { "name": "Koc Yatirim", "location": "Maslak", "date": "2025-04", "rating": 5, "comment": "GYO yapilandirma danismanligi aldik. SPK sureci, portfoy olusturma ve yatirimci sunumu dahil. Cok profesyonel ekip." },
+          { "name": "Sevda T.", "location": "Besiktas", "date": "2025-02", "rating": 5, "comment": "3 dairem icin kira optimizasyonu yaptirlar. Yillik kira gelirim %22 artti. Kiracı miks degisikligi ve renovasyon oneriler cok dogru." },
+          { "name": "Kaplan Gayrimenkul", "location": "Sisli", "date": "2025-01", "rating": 5, "comment": "Stratejik danismanlikla firma konumlandirmamizi tamamen degistirdik. Butik segment odagimiz karliligimizi %40 artirdi." }
+        ],
+        "gallery": []
+      },
+      "content": {
+        "hero": { "title": "Veriye Dayali Gayrimenkul Yatirimi", "subtitle": "Istanbul'un lider gayrimenkul yatirim danismanligi. Fizibilite, portfoy yonetimi, proje gelistirme ve uluslararasi yatirimci hizmeti.", "badge": "RICS Fellow", "ctaText": "Yatirim Gorusmesi", "ctaLink": "tel:+902125670000" },
+        "about": { "title": "CapitalPark Gayrimenkul Yatirim", "description": "2012 yilinda Dr. Baris Ozkan tarafindan kurulan CapitalPark, veriye dayali gayrimenkul yatirim danismanligi alaninda Turkiye'nin onde gelen firmalarindan biridir. RICS Fellow uyesi kadromuzla fizibilite analizi, portfoy yonetimi, proje gelistirme, due diligence ve uluslararasi yatirimci hizmeti sunuyoruz. 2.800'den fazla yatirim islemi gerceklestirdik. Musterilerimizin toplam portfoy buyuklugu 5 milyar TL'yi asmistir. Veri odakli yaklasimimiz, pazar istihbarati ve detayli risk analiziyle yatirim kararlarında guvence sagliyoruz." },
+        "services": { "title": "Yatirim Hizmetlerimiz", "subtitle": "Fizibiliteden portfoy yonetimine" },
+        "stats": { "title": "Rakamlarla CapitalPark", "subtitle": "14 yillik yatirim danismanligi" },
+        "contact": { "title": "Yatirim Gorusmesi", "subtitle": "Gayrimenkul yatiriminiz icin ucretsiz on gorusme" },
+        "faq": [
+          { "q": "Fizibilite raporu ne iceriyor?", "a": "Pazar analizi, arsa degerleme, insaat maliyet tahmini, gelir projeksiyonu, nakit akim modeli, IRR/NPV hesaplama ve risk senaryolari." },
+          { "q": "Due diligence neden gerekli?", "a": "Yatirim oncesi hukuki, teknik, mali ve cevre risklerini belirler. Bilmediginiz riskleri ortaya cikarak sizi buyuk kayiplardan korur." },
+          { "q": "Yabanci yatirimcilar icin hizmetleriniz neler?", "a": "Turkce-Ingilizce-Arapca hizmet, vatandaslik programi, vergi planlamasi, tapu sureci ve mulk yonetimi." },
+          { "q": "Portfoy yonetimi ne kapsiyor?", "a": "Kira takibi, kiracı iliskileri, bakim koordinasyonu, performans raporlama, vergi islemleri ve varlik optimizasyonu." },
+          { "q": "GYO danismanligi veriyor musunuz?", "a": "Evet, SPK mevzuatinda GYO kurulusu, portfoy olusturma, halka arz hazirlik ve yatirimci iliskileri danismanligi." },
+          { "q": "Minimum yatirim tutari var mi?", "a": "Bireysel danismanlik icin minimum portfoy buyuklugu genellikle 5 milyon TL'dir. Kurumsal hizmetlerde sinir yoktur." },
+          { "q": "Kentsel donusum danismanligi veriyor musunuz?", "a": "Evet, riskli yapi tespitinden muteahhit secimine, hak sahipligi muzakeresinden sozlesme incelemesine kadar full surec." },
+          { "q": "Pazar istihbarati aboneligi nasil calisiyor?", "a": "Aylik veya ceyreklik detayli pazar raporu. Fiyat endeksleri, arz-talep, kira trendleri, bolge karsilastirmalari ve yatirim firsatlari." },
+          { "q": "Hangi sehirlerde calisiyorsunuz?", "a": "Agirlikli Istanbul. Ankara, Izmir, Antalya ve Bodrum'da da aktif projelerimiz var. Uluslararasi projelerde partner agimizi kullaniyoruz." },
+          { "q": "Referanslarinizi gorebilir miyim?", "a": "NDA kapsaminda olmayan referanslarimizi yatirim gorusmesinde paylasiyoruz." }
+        ]
+      }
+    },
+    {
+      "id": "emlak-lux",
+      "variantName": "lux",
+      "plan": "enterprise",
+      "description": "Ultra-lüks gayrimenkul danismanligi",
+      "designPhilosophy": "Luks, elegan, ozel",
+      "isDark": true,
+      "colors": { "bg": "#0D0D0D", "surface": "#1A1A1A", "text": "#F5F5F5", "accent": "#C4A35A" },
+      "fonts": { "heading": "Playfair Display", "body": "Inter" },
+      "business": {
+        "name": "Bosphorus Premier Estates",
+        "ownerName": "Sinan Karadeniz",
+        "sector": "Emlak",
+        "slogan": "Istanbul'un en seckin adresleri",
+        "phone": "0212 800 00 00",
+        "phoneClean": "902128000000",
+        "whatsapp": "905001234567",
+        "email": "info@bosphoruspremier.com",
+        "address": "Bebek Mah. Cevdet Pasa Cad. No:22, Besiktas/Istanbul",
+        "city": "Istanbul", "district": "Besiktas",
+        "mapEmbed": "", "foundedYear": 2006, "experience": "20 yil", "employeeCount": 35,
+        "customerCount": "4.500+", "rating": 4.9, "reviewCount": 2800,
+        "workingHours": [
+          { "day": "Pazartesi", "dayTr": "Pazartesi", "open": "10:00", "close": "19:00", "isOpen": true },
+          { "day": "Sali", "dayTr": "Sali", "open": "10:00", "close": "19:00", "isOpen": true },
+          { "day": "Carsamba", "dayTr": "Carsamba", "open": "10:00", "close": "19:00", "isOpen": true },
+          { "day": "Persembe", "dayTr": "Persembe", "open": "10:00", "close": "19:00", "isOpen": true },
+          { "day": "Cuma", "dayTr": "Cuma", "open": "10:00", "close": "19:00", "isOpen": true },
+          { "day": "Cumartesi", "dayTr": "Cumartesi", "open": "11:00", "close": "17:00", "isOpen": true },
+          { "day": "Pazar", "dayTr": "Pazar", "open": "Randevu ile", "close": "", "isOpen": true }
+        ],
+        "services": [
+          { "id": "s1", "name": "Yali & Konak Satis", "price": "Ozel", "duration": "Degisken", "description": "Bogaz yalilari, tarihi konaklar ve ultra-lüks villalarin satisi. Gizli portfoy, off-market firsatlar ve VIP musteri eslestirme.", "icon": "Crown" },
+          { "id": "s2", "name": "Premium Rezidans", "price": "Komisyon bazli", "duration": "Degisken", "description": "Istanbul'un en prestijli rezidans projelerinde satis ve kiralama. Zorlu, Raffles, Mandarin Oriental ve One Tower gibi premium konumlar.", "icon": "Building" },
+          { "id": "s3", "name": "Uluslararasi Alici Hizmeti", "price": "Ozel", "duration": "Degisken", "description": "Dunyanin dort bir yanindan gelen ultra-lüks alicilar icin tam hizmet. Jet transfer, ozel gezi, tercuman ve VIP deneyim.", "icon": "Globe" },
+          { "id": "s4", "name": "Off-Market Firsatlar", "price": "Ozel", "duration": "Degisken", "description": "Kamuya acik olmayan ozel portfoy. Yali, ada, tarihi mulk ve benzersiz gayrimenkuller. Sadece davetli musterilere.", "icon": "Lock" },
+          { "id": "s5", "name": "Yatirim & Wealth Planning", "price": "Ozel", "duration": "Surekli", "description": "Gayrimenkul odakli varlik yonetimi. Family office koordinasyonu, vergi optimizasyonu ve nesiller arasi varlik transferi.", "icon": "Landmark" },
+          { "id": "s6", "name": "Vatandaslik & Oturma Izni", "price": "Ozel", "duration": "3-6 ay", "description": "Gayrimenkul yatirimi yoluyla Turk vatandasligi edinimi. 400.000 USD minimum yatirim ile anahtar teslim hizmet.", "icon": "Flag" },
+          { "id": "s7", "name": "Tasinma & Yasam Kurma", "price": "Ozel", "duration": "Degisken", "description": "Istanbul'a tasinma surecinin tamami. Okul secimi, saglik sigortasi, banka hesabi, arac alimi ve yasam danismanligi.", "icon": "Compass" },
+          { "id": "s8", "name": "Mulk Yonetimi (Concierge)", "price": "Teklif bazli", "duration": "Yillik", "description": "Gayrimenkul concierge hizmeti. Bakim, temizlik, bahce, havuz, personel ve guvenlik yonetimi. Yurt disindaki mulk sahipleri icin ideal.", "icon": "Briefcase" },
+          { "id": "s9", "name": "Ic Mimarlik Koordinasyonu", "price": "Ozel", "duration": "Projeye gore", "description": "Premium ic mimarlik firmalariyla koordinasyon. Konsept tasarim, mobilya secimi ve anahtar teslim dekorasyon.", "icon": "Palette" },
+          { "id": "s10", "name": "Degerleme & Due Diligence", "price": "Ozel", "duration": "1-2 hafta", "description": "Ultra-lüks gayrimenkul icin detayli degerleme ve risk analizi. Tarihi yapilar icin restorasyon maliyet tahmini dahil.", "icon": "FileText" },
+          { "id": "s11", "name": "Arazi & Ada Satisi", "price": "Ozel", "duration": "Degisken", "description": "Ozel adalar, sahil arazileri ve benzersiz dogal alanlar. Turkiye kiyilarinda seckin arazi portfoyu.", "icon": "Map" },
+          { "id": "s12", "name": "Tarihi Yapi Restorasyonu", "price": "Ozel", "duration": "Projeye gore", "description": "Yali, konak ve tarihi yapilarin restorasyon sureci danismanligi. Koruma kurulu, proje ve uygulama koordinasyonu.", "icon": "Landmark" },
+          { "id": "s13", "name": "Otel & Butik Yatirim", "price": "Ozel", "duration": "Degisken", "description": "Boutique otel, butik pansiyon ve turizm yatirimi danismanligi. Bogaz ve tarihi yarimada lokasyonlari.", "icon": "Hotel" },
+          { "id": "s14", "name": "Hukuki Danismanlik", "price": "Ozel", "duration": "Degisken", "description": "Gayrimenkul hukuku, imar mevzuati, tapu islemleri ve uluslararasi sozlesme hazırlama. Turkce-Ingilizce-Arapca.", "icon": "Scale" },
+          { "id": "s15", "name": "Dijital Pazarlama & PR", "price": "Ozel", "duration": "Surekli", "description": "Premium gayrimenkul icin ozel pazarlama stratejisi. Uluslararasi medya, sosyal medya, drone video ve luks dergi ilanlari.", "icon": "Megaphone" },
+          { "id": "s16", "name": "Sezonluk Kiralama (Lux)", "price": "Ozel", "duration": "Degisken", "description": "Ultra-lüks villa, yali ve penthouse sezonluk kiralama. Concierge, ozel sef, yacht ve sofor hizmeti dahil paketler.", "icon": "Calendar" },
+          { "id": "s17", "name": "Akilli Ev Entegrasyonu", "price": "Ozel", "duration": "Projeye gore", "description": "Lux gayrimenkuller icin Crestron, Control4 ve Lutron akilli ev sistemi kurulumu. Ev sinema, multiroom ses ve guvenlik.", "icon": "Cpu" },
+          { "id": "s18", "name": "VIP Transfer & Gezi", "price": "Ozel", "duration": "Degisken", "description": "Ozel sofor, helikopter ve yacht ile mulk gezisi organizasyonu. VIP musteriler icin ozellestirilmis Istanbul deneyimi.", "icon": "Plane" },
+          { "id": "s19", "name": "Family Office Koordinasyonu", "price": "Ozel", "duration": "Surekli", "description": "Aile ofisi ile gayrimenkul varlik yonetimi koordinasyonu. Vergi, hukuk, sigorta ve miras planlamasi.", "icon": "Users" },
+          { "id": "s20", "name": "Ozel Proje Gelistirme", "price": "Ozel", "duration": "Projeye gore", "description": "Yatirimci icin sifirdan ozel proje gelistirme. Arsa bulma, mimar secimi, insaat yonetimi ve satis/kiralama.", "icon": "Hammer" }
+        ],
+        "team": [
+          { "name": "Sinan Karadeniz", "title": "Kurucu & CEO", "description": "20 yillik ultra-lüks gayrimenkul deneyimi. Turkiye'nin en degerli 50 gayrimenkul satisina aracililik etmis. Forbes Turkiye 'En Etkin Emlakcilar' listesi.", "image": "" },
+          { "name": "Elena Volkov", "title": "Uluslararasi Musteri Direktoru", "description": "Rusca, Ingilizce ve Turkce. 12 yildir uluslararasi UHNW musterilere hizmet. Eski Christie's International Real Estate.", "image": "" },
+          { "name": "Mehmet Aslan", "title": "Yali & Tarihi Mulk Uzmani", "description": "Restorasyon Mimari, 15 yillik Bogaz yalilari deneyimi. Koruma kurulu surecleri ve tarihi mulk degerleme uzmani.", "image": "" },
+          { "name": "Av. Deniz Kaya", "title": "Hukuk Direktoru", "description": "Gayrimenkul hukuku uzmani. 18 yillik tecrube. Turk-Ingiliz hukuku cift nitelikli avukat.", "image": "" },
+          { "name": "Ayla Demirel", "title": "Pazarlama & PR Direktoru", "description": "Luks marka pazarlamasi uzmani. Eski Louis Vuitton Turkiye. Uluslararasi medya iliskileri ve dijital strateji.", "image": "" },
+          { "name": "Omar Al-Fayed", "title": "Ortadogu & Korfez Temsilcisi", "description": "Arapca, Ingilizce ve Turkce. Dubai, Abu Dhabi ve Riyad'da yatirimci agi. 8 yildir Korfez yatirimcilarina Turkiye gayrimenkul hizmeti.", "image": "" },
+          { "name": "Isabella Chen", "title": "Asya-Pasifik Temsilcisi", "description": "Mandarin ve Ingilizce. Cin, Hong Kong ve Singapur'da yatirimci iliskileri. Premium gayrimenkul satis deneyimi.", "image": "" },
+          { "name": "Baris Ozturk", "title": "Varlik Yonetimi Muduru", "description": "Concierge, mulk yonetimi ve yasam kurma hizmetleri koordinatoru. 10 yillik premium hizmet deneyimi.", "image": "" }
+        ],
+        "testimonials": [
+          { "name": "H.E. Abdullah R.", "location": "Dubai/Istanbul", "date": "2026-01", "rating": 5, "comment": "Bogaz'da yali satin aldik. Bosphorus Premier tum sureci — hukuk, restorasyon, ic mimarlik ve yasam kurma — eksiksiz yonetti. Benzersiz profesyonellik." },
+          { "name": "Dr. James W.", "location": "London/Istanbul", "date": "2025-12", "rating": 5, "comment": "Vatandaslik programi kapsaminda 3 premium daire aldik. Elena ve ekibi tum sureci sorunsuz yonetti. Artik Istanbul'da da evimiz var." },
+          { "name": "Li Wei C.", "location": "Hong Kong/Istanbul", "date": "2025-11", "rating": 5, "comment": "Isabella araciligiyla Bebek'te penthouse satin aldik. VIP gezi organizasyonu ve cok dilli hizmet muhtesom." },
+          { "name": "Koroglu Ailesi", "location": "Istanbul", "date": "2025-10", "rating": 5, "comment": "Ailemize ait tarihi konaginin restorasyonunu ve satisini Bosphorus Premier yonetti. Koruma kurulu sureci dahil her sey profesyonelce halledildi." },
+          { "name": "Viktor M.", "location": "Moskova/Istanbul", "date": "2025-09", "rating": 5, "comment": "Off-market portfoyden harika bir villa bulduk. Kamu ilanina cikmadan, gizlilik icinde tum islem tamamlandi." },
+          { "name": "Yalcin Holding", "location": "Istanbul", "date": "2025-08", "rating": 5, "comment": "5 villa ve 12 rezidans dairesinden olusan portfoyumuzun yonetimini Bosphorus Premier'e devrettik. Concierge hizmeti mukemmel." },
+          { "name": "Sarah & Tom B.", "location": "New York/Istanbul", "date": "2025-07", "rating": 5, "comment": "Istanbul'a tasinmamizi kolaylastirdilar. Ev, okul, sigorta, banka... Her seyi organize ettiler. Artik gercekten Istanbul'lu hissediyoruz." },
+          { "name": "Al-Maktoum Group", "location": "Abu Dhabi", "date": "2025-06", "rating": 5, "comment": "Boutique otel yatirimi icin lokasyon secimi ve fizibilite calismasi. Omar'in Korfez-Istanbul bilgisi yatirim kararimizda belirleyici oldu." },
+          { "name": "Aydin Ailesi", "location": "Sariyer", "date": "2025-05", "rating": 4, "comment": "Aile mulklerinin miras planlamasi ve varlik yonetimini Bosphorus Premier ile cozume kavusturduk. Family office koordinasyonu cok basarili." },
+          { "name": "Chen Investment", "location": "Singapore", "date": "2025-04", "rating": 5, "comment": "Turkiye'de 8 mulkluk portfoy olusturduk. Uzaktan yonetim, kira takibi ve bakim dahil. Yillik raporlari cok detayli." },
+          { "name": "Cinar Ailesi", "location": "Bebek", "date": "2025-03", "rating": 5, "comment": "Evimize Crestron akilli ev sistemi kurulmasini Bosphorus Premier koordine etti. Ic mimar, elektrikci ve otomasyon ekibi uyum icinde calisti." },
+          { "name": "Royal Investments", "location": "Riyad", "date": "2025-02", "rating": 5, "comment": "Sezonluk kiralama icin Bebek'te yali kiraladilar. Ozel sef, yacht ve sofor dahil VIP paket. Turk misafirperverligi en iyi haliyle." }
+        ],
+        "gallery": []
+      },
+      "content": {
+        "hero": { "title": "Istanbul'un En Seckin Adresleri", "subtitle": "Ultra-lüks gayrimenkul danismanligi. Bogaz yalilari, tarihi konaklar, premium rezidanslar ve off-market firsatlar. 20 yillik prestij.", "badge": "Ultra-Lux Portfoy", "ctaText": "Ozel Gorusme", "ctaLink": "tel:+902128000000" },
+        "about": { "title": "Bosphorus Premier Estates", "description": "2006 yilinda kurulan Bosphorus Premier, Istanbul ve Turkiye'nin ultra-lüks gayrimenkul segmentinde lider danismanlik firmasidir. Bogaz yalilari, tarihi konaklar, premium rezidanslar ve benzersiz araziler gibi Istanbul'un en degerli mulklerinin satisinda uzmaniz. 35 kisilik cok dilli kadromuz (Turkce, Ingilizce, Rusca, Arapca, Mandarin) ile Turkiye, Korfez, Avrupa ve Asya'dan gelen ultra-yuksek net degerli (UHNW) musterilere hizmet veriyoruz. Off-market portfoyumuz, VIP gezi organizasyonlarimiz ve concierge hizmetlerimizle gayrimenkul deneyimini yeniden tanimliyoruz. Vatandaslik programi, varlik yonetimi, tarihi yapi restorasyonu ve yasam kurma hizmetlerimizle musterilerimize Istanbul'da eksiksiz bir yasam sunuyoruz." },
+        "services": { "title": "Premium Hizmetlerimiz", "subtitle": "Ultra-lüks gayrimenkulde tam hizmet" },
+        "stats": { "title": "Rakamlarla Bosphorus Premier", "subtitle": "20 yillik prestij ve guven" },
+        "contact": { "title": "Ozel Gorusme", "subtitle": "Randevu ile ozel danismanlik" },
+        "faq": [
+          { "q": "Off-market portfoy ne demek?", "a": "Kamuya ilan edilmeden, sadece sеcilmis musterilere sunulan ozel gayrimenkul portfoyudur. Gizlilik ve ozel yaklasim onceliklidir." },
+          { "q": "Vatandaslik programi nasil calisiyor?", "a": "Minimum 400.000 USD degerinde gayrimenkul yatirimi ile Turk vatandasligi basvurusu yapilir. 3-6 ay icinde sonuclanir. Tum sureci yonetiyoruz." },
+          { "q": "Yali satisinda uzman misiniz?", "a": "Evet, 20 yilda 40'dan fazla Bogaz yalisi satisi gerceklestirdik. Tarihi yapi degerleme, restorasyon danismanligi ve koruma kurulu sureci dahil." },
+          { "q": "Hangi dillerde hizmet veriyorsunuz?", "a": "Turkce, Ingilizce, Rusca, Arapca ve Mandarin dillerinde ana dil seviyesinde hizmet veriyoruz." },
+          { "q": "VIP gezi organizasyonu nasil oluyor?", "a": "Ozel sofor, helikopter veya yacht ile mulk gezisi. Ozel ogle yemegi ve Istanbul kesffi ile birlestirilmis VIP deneyim." },
+          { "q": "Mulk yonetimi hizmetiniz var mi?", "a": "Evet, concierge tabanli mulk yonetimi: bakim, temizlik, bahce, havuz, personel, guvenlik ve kira yonetimi. Yurt disindaki mulk sahipleri icin idealdir." },
+          { "q": "Tarihi yapi aliminda dikkat edilmesi gerekenler?", "a": "Koruma kurulu karari, imar durumu, restorasyon maliyeti ve kullanim sinirlamalari. Ekibimizde restorasyon mimari ve gayrimenkul hukukcusu bulunmaktadir." },
+          { "q": "Sezonluk kiralama yapabiliyor musunuz?", "a": "Evet, ultra-lüks villa, yali ve penthouse sezonluk kiralama. Concierge, sef, yacht ve sofor dahil VIP paketler sunuyoruz." },
+          { "q": "Hangi ulkelerden musteri gelir?", "a": "En yogun Korfez ulkeleri, Rusya, Avrupa, ABD ve Cin'den. Toplam 40+ ulkeden musteri portfoyumuz var." },
+          { "q": "Family office koordinasyonu ne kapsiyor?", "a": "Gayrimenkul varlik yonetimi, vergi planlamasi, sigorta, miras planlama ve hukuki yapilandirma. Ailenin diger danismanlariyla koordineli calisiyoruz." },
+          { "q": "Akilli ev sistemi kurulumu yapiyor musunuz?", "a": "Koordinasyonunu yapiyoruz. Crestron, Control4 ve Lutron gibi premium markalarin yetkili entegratorleriyle calisarak luks evlere ozel cozumler sunuyoruz." },
+          { "q": "Minimum portfoy buyuklugu var mi?", "a": "Ultra-lüks segmentimizde minimum mulk degeri 1 milyon USD'dir. Yatirim danismanligi icin portfoy buyuklugu beklentimiz yoktur." },
+          { "q": "Gizlilik politikaniz nedir?", "a": "Tum islemler katı gizlilik protokolu altinda yapilir. NDA imzasi standart prosedurumurdur. Off-market satislarda taraflar birbirini anlasmaya kadar tanimaz." },
+          { "q": "Istanbul disinda da hizmet veriyor musunuz?", "a": "Bodrum, Cesme, Antalya ve Gokova gibi turistik bolgelerde de ultra-lüks portfoyumuz mevcuttur. Yurt disi icin partner agimizi kullaniyoruz." },
+          { "q": "Restorasyon sureci ne kadar surer?", "a": "Tarihi yapi restorasyonu tipik olarak 12-36 ay surer. Koruma kurulu onay sureci, proje tasarimi ve uygulama asamalarini iceriren." }
+        ]
+      }
+    }
+  ]
+}

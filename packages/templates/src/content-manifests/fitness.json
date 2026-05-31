@@ -1,0 +1,535 @@
+{
+  "sectorId": "fitness",
+  "seoSchemaType": "HealthClub",
+  "variants": [
+    {
+      "id": "fitness-spor",
+      "variantName": "spor",
+      "plan": "free",
+      "description": "Mahalle spor salonu, sade ve ekonomik",
+      "designPhilosophy": "Temiz, enerjik, islevsel",
+      "isDark": false,
+      "colors": {
+        "bg": "#FFFFFF",
+        "surface": "#F5F5F5",
+        "text": "#1A1A1A",
+        "accent": "#E63946"
+      },
+      "fonts": { "heading": "Inter", "body": "Inter" },
+      "business": {
+        "name": "FitForm Spor Salonu",
+        "ownerName": "Emre Korkmaz",
+        "sector": "Fitness",
+        "slogan": "Herkes icin erisilebilir fitness",
+        "phone": "0532 841 57 20",
+        "phoneClean": "905328415720",
+        "whatsapp": "905328415720",
+        "email": "info@fitformspor.com",
+        "address": "Osmanaga Mah. Bahariye Cad. No:95/A, Kadikoy/Istanbul",
+        "city": "Istanbul",
+        "district": "Kadikoy",
+        "neighborhood": "Osmanaga",
+        "coordinates": { "lat": 40.9903, "lng": 29.0275 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/fitformspor"
+        },
+        "photos": [],
+        "foundedYear": 2019,
+        "experience": "7 yil",
+        "customerCount": "3.500+",
+        "rating": 4.6,
+        "reviewCount": 380,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "06:30", "close": "23:00", "isOpen": true },
+          { "day": "Sali", "open": "06:30", "close": "23:00", "isOpen": true },
+          { "day": "Carsamba", "open": "06:30", "close": "23:00", "isOpen": true },
+          { "day": "Persembe", "open": "06:30", "close": "23:00", "isOpen": true },
+          { "day": "Cuma", "open": "06:30", "close": "23:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "08:00", "close": "21:00", "isOpen": true },
+          { "day": "Pazar", "open": "09:00", "close": "19:00", "isOpen": true }
+        ],
+        "services": [
+          { "id": "s1", "name": "Aylik Uyelik", "price": "800 TL/ay", "duration": "sinitsiz", "description": "Tum aletlere ve serbest agirlik bolumune sinitsiz erisim. Soyunma odası ve dus dahil." },
+          { "id": "s2", "name": "Grup Dersleri", "price": "uyelik dahilinde", "duration": "50 dk", "description": "Step, aerobik ve mat pilates dersleri. Haftalik 10+ seans." },
+          { "id": "s3", "name": "Kisisel Antrenman (Tek Seans)", "price": "400 TL", "duration": "60 dk", "description": "Birebir antrenor esliginde kisisellestirilmis antrenman programi." },
+          { "id": "s4", "name": "Vucut Analizi", "price": "Ucretsiz", "duration": "15 dk", "description": "InBody ile vucut kompozisyonu olcumu, kas/yag orani, bazal metabolizma hesaplama." }
+        ],
+        "team": [],
+        "testimonials": [],
+        "faq": [
+          { "q": "Ilk kez spor salonuna geliyorum, ne yapmaliyim?", "a": "Ilk geldiginizde ucretsiz vucut analizi ve tur esliginde tanitim yapiyoruz. Antrenorumuz seviyenize uygun baslangic programi olusturur." },
+          { "q": "Uyelik dondurmak mumkun mu?", "a": "Evet, yillik uyeliklerde toplam 30 gun dondurma hakkiniz vardir. Dondurma islemi resepsiyondan yapilir." },
+          { "q": "Grup derslerine ayrica ucret odeniyor mu?", "a": "Hayir, tum grup dersleri uyelik ucretinize dahildir. Sadece kontenjan nedeniyle bazi derslere ön kayit gerekebilir." },
+          { "q": "Sabah erken saatlerde acik misiniz?", "a": "Evet, hafta ici 06:30'da aciliyoruz. Sabah antrenmanini tercih edenler icin ideal saatler sunuyoruz." }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Herkes Icin Erisilebilir Fitness",
+          "subtitle": "Kadikoy'de uygun fiyatli, temiz ve modern spor salonu. Grup dersleri ve kisisel antrenman ile hedefinize ulasin.",
+          "badge": "Kadikoy'nin Spor Salonu"
+        },
+        "about": {
+          "title": "FitForm Hakkinda",
+          "description": "FitForm Spor Salonu, 2019 yilindan bu yana Kadikoy Osmanaga'da fitness tutkunlarına hizmet veriyor. Amacimiz sporu herkes icin erisilebilir kilmak. Modern alet parkurumuz, serbest agirlik bolumumuz ve grup ders salonumuzla her seviyeden sporcuya uygun ortam sunuyoruz. Deneyimli antrenorlerimiz, yeni baslayanlardan ileri seviyeye kadar herkese kisisellestirilmis program olusturur. Temiz soyunma odalari, dus ve ucretsiz vucut analizi hizmetiyle konforlu bir deneyim yasamanizi sagliyoruz."
+        },
+        "services": {
+          "title": "Uyelik & Hizmetler",
+          "subtitle": "Butcenize uygun fitness cozumleri"
+        },
+        "contact": {
+          "title": "Bize Ulasin",
+          "subtitle": "Ucretsiz deneme icin hemen gelin"
+        }
+      }
+    },
+    {
+      "id": "fitness-yoga",
+      "variantName": "yoga",
+      "plan": "starter",
+      "description": "Yoga ve meditasyon odakli stüdyo",
+      "designPhilosophy": "Huzurlu, organik, sakin",
+      "isDark": false,
+      "colors": {
+        "bg": "#FDFAF5",
+        "surface": "#F3EDE4",
+        "text": "#3D3630",
+        "accent": "#7C956B"
+      },
+      "fonts": { "heading": "Cormorant Garamond", "body": "Inter" },
+      "business": {
+        "name": "Nefes Yoga Studyo",
+        "ownerName": "Selin Erdem",
+        "sector": "Fitness",
+        "slogan": "Nefes al, dengeyi bul",
+        "phone": "0533 692 14 80",
+        "phoneClean": "905336921480",
+        "whatsapp": "905336921480",
+        "email": "info@nefesyoga.com.tr",
+        "address": "Cihangir Mah. Akarsu Cad. No:28/1, Beyoglu/Istanbul",
+        "city": "Istanbul",
+        "district": "Beyoglu",
+        "neighborhood": "Cihangir",
+        "coordinates": { "lat": 41.0318, "lng": 28.9836 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/nefesyogastudyo",
+          "facebook": "https://facebook.com/nefesyoga"
+        },
+        "photos": [],
+        "foundedYear": 2017,
+        "experience": "9 yil",
+        "customerCount": "5.200+",
+        "rating": 4.9,
+        "reviewCount": 720,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "07:00", "close": "21:00", "isOpen": true },
+          { "day": "Sali", "open": "07:00", "close": "21:00", "isOpen": true },
+          { "day": "Carsamba", "open": "07:00", "close": "21:00", "isOpen": true },
+          { "day": "Persembe", "open": "07:00", "close": "21:00", "isOpen": true },
+          { "day": "Cuma", "open": "07:00", "close": "21:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "08:00", "close": "18:00", "isOpen": true },
+          { "day": "Pazar", "open": "09:00", "close": "16:00", "isOpen": true }
+        ],
+        "services": [
+          { "id": "s1", "name": "Hatha Yoga", "price": "300 TL/ders", "duration": "75 dk", "description": "Klasik hatha yoga, nefes teknikleri ve meditasyon ile. Her seviyeye uygun." },
+          { "id": "s2", "name": "Vinyasa Flow", "price": "350 TL/ders", "duration": "60 dk", "description": "Dinamik akyoga, nefes-hareket senkronizasyonu. Orta ve ileri seviye." },
+          { "id": "s3", "name": "Yin Yoga", "price": "300 TL/ders", "duration": "75 dk", "description": "Derin germe ve fasya calismasi. Stres azaltma ve esneklik icin ideal." },
+          { "id": "s4", "name": "Sabah Meditasyonu", "price": "200 TL/ders", "duration": "30 dk", "description": "Gune huzurla baslamak icin rehberli meditasyon ve nefes calismasi." },
+          { "id": "s5", "name": "Aylik Sinitsiz Paket", "price": "2.200 TL/ay", "duration": "sinitsiz", "description": "Tum yoga derslerine ve meditasyon seanslerina sinitsiz katilim." },
+          { "id": "s6", "name": "Ozel Ders (Birebir)", "price": "600 TL", "duration": "60 dk", "description": "Kisisellestirilmis yoga pratigi, ozel ihtiyaclara yonelik program." }
+        ],
+        "team": [
+          { "name": "Selin Erdem", "role": "Kurucu & Bas Egitmen", "bio": "200 saat YTT sertifikali. Hindistan Rishikesh'te ileri egitim. 12 yillik yoga pratigi." },
+          { "name": "Ayse Tuncer", "role": "Vinyasa & Yin Egitmeni", "bio": "500 saat RYT sertifikali. Yin yoga ve mindfulness uzmani. 8 yillik deneyim." }
+        ],
+        "testimonials": [
+          { "name": "Ceren Aksoy", "district": "Cihangir", "date": "2025-11", "rating": 5, "comment": "2 yildir Nefes'e geliyorum, Selin Hocam sayesinde kronik sirt agrilarim tamamen gecti. Studyonun enerjisi harika." },
+          { "name": "Deniz Yalcin", "district": "Galata", "date": "2025-09", "rating": 5, "comment": "Sabah meditasyonlari gune baslamanin en guzel yolu. Sessiz, huzurlu bir ortam. Kesinlikle tavsiye ederim." },
+          { "name": "Baris Ozdamar", "district": "Taksim", "date": "2025-10", "rating": 4, "comment": "Erkek olarak yoga baslama konusunda tereddutlerim vardi ama buradaki ortam cok rahat ve yargilayici degil. Vinyasa derslerini seviyorum." }
+        ],
+        "faq": [
+          { "q": "Hic yoga yapmadum, baslayabilir miyim?", "a": "Kesinlikle! Hatha yoga derslerimiz her seviyeye uygundur. Egitmenimiz baslangic seviyesine ozel yonlendirme yapar." },
+          { "q": "Mat getirmem gerekiyor mu?", "a": "Studyomuzda mat, blok ve kayis gibi tum ekipmanlar mevcuttur. Isterseniz kendi matinizi da getirebilirsiniz." },
+          { "q": "Hamilelikte yoga yapılabilir mi?", "a": "Evet, ikinci trimesterden itibaren hamile yogasi oneriyoruz. Ozel ders formatinda birebir calisiyoruz." },
+          { "q": "Online ders seceneginiz var mi?", "a": "Evet, hafta ici sabah meditasyonu ve Yin Yoga derslerimiz Zoom uzerinden de verilebilmektedir." },
+          { "q": "Kayit icin ne gerekiyor?", "a": "Ilk ders icin sadece rahat kiyafet ve su sisesi yeterlidir. Kayit resepsiyonda veya telefonla yapilir." },
+          { "q": "Ders iptali yapabilir miyim?", "a": "Evet, ders baslangictndan en az 4 saat once iptal edebilirsiniz. Gec iptallerde ders hakkiniz duser." }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Nefes Al, Dengeyi Bul",
+          "subtitle": "Cihangir'in kalbinde huzurlu yoga studyosu. Hatha, Vinyasa ve Yin Yoga ile bedeninizi ve zihninizi dengeleyin.",
+          "badge": "Yoga & Meditasyon"
+        },
+        "about": {
+          "title": "Nefes Yoga Hakkinda",
+          "description": "Nefes Yoga Studyo, 2017 yilindan bu yana Beyoglu Cihangir'de yoga ve meditasyon egitimi vermektedir. Kurucu egitmenimiz Selin Erdem, Hindistan Rishikesh'te aldigi egitim ve 12 yillik pratik deneyimiyle ogrencilerine rehberlik ediyor. Studyomuzda Hatha, Vinyasa Flow ve Yin Yoga dersleri sunuyoruz. Sabah meditasyonu seanslariyla gune huzurla baslamanizi sagliyoruz. Kucuk sinif mevcutlariyla her ogrenciye bireysel ilgi gosteriyoruz. Cihangir'in sakin atmosferinde, dogal isikli studyomuzda yoga pratiginizi derinlestirin. Online ders secenegimizle evden de katilabilirsiniz."
+        },
+        "services": {
+          "title": "Yoga Derslerimiz",
+          "subtitle": "Her seviyeye uygun yoga ve meditasyon programlari"
+        },
+        "contact": {
+          "title": "Kayit & Iletisim",
+          "subtitle": "Ilk dersiniz icin hemen kayit olun"
+        }
+      }
+    },
+    {
+      "id": "fitness-crossfit",
+      "variantName": "crossfit",
+      "plan": "growth",
+      "description": "CrossFit box, performans odakli",
+      "designPhilosophy": "Enerjik, endüstriyel, guclu",
+      "isDark": false,
+      "colors": {
+        "bg": "#F7F7F5",
+        "surface": "#EAEAE6",
+        "text": "#1C1C1A",
+        "accent": "#D4380D"
+      },
+      "fonts": { "heading": "Bebas Neue", "body": "Inter" },
+      "business": {
+        "name": "IronBox CrossFit",
+        "ownerName": "Kagan Demirci",
+        "sector": "Fitness",
+        "slogan": "Sinirlarini as, gucunu kesfet",
+        "phone": "0534 718 42 60",
+        "phoneClean": "905347184260",
+        "whatsapp": "905347184260",
+        "email": "info@ironboxcf.com",
+        "address": "Yenisehir Mah. Ataturk Cad. No:190/B, Atasehir/Istanbul",
+        "city": "Istanbul",
+        "district": "Atasehir",
+        "neighborhood": "Yenisehir",
+        "coordinates": { "lat": 40.9833, "lng": 29.1167 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/ironboxcrossfit",
+          "facebook": "https://facebook.com/ironboxcf",
+          "youtube": "https://youtube.com/@ironboxcf"
+        },
+        "photos": [],
+        "foundedYear": 2018,
+        "experience": "8 yil",
+        "customerCount": "6.800+",
+        "rating": 4.8,
+        "reviewCount": 920,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "06:00", "close": "22:00", "isOpen": true },
+          { "day": "Sali", "open": "06:00", "close": "22:00", "isOpen": true },
+          { "day": "Carsamba", "open": "06:00", "close": "22:00", "isOpen": true },
+          { "day": "Persembe", "open": "06:00", "close": "22:00", "isOpen": true },
+          { "day": "Cuma", "open": "06:00", "close": "22:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "07:00", "close": "18:00", "isOpen": true },
+          { "day": "Pazar", "open": "08:00", "close": "14:00", "isOpen": true }
+        ],
+        "services": [
+          { "id": "s1", "name": "CrossFit WOD (Sinif)", "price": "1.800 TL/ay", "duration": "60 dk", "description": "Gunluk degisen antreman programi, grup motivasyonuyla. Sabah 06:00'dan aksam 21:00'e sinif saatleri." },
+          { "id": "s2", "name": "Foundations Programi", "price": "2.500 TL (4 hafta)", "duration": "60 dk", "description": "Yeni baslayanlar icin 12 seanslık temel hareket egitimi. Squat, deadlift, clean, snatch teknikleri." },
+          { "id": "s3", "name": "Open Gym", "price": "1.200 TL/ay", "duration": "sinitsiz", "description": "Kendi programinizla calisma. Tum ekipmana erisim, sinif saatleri disinda." },
+          { "id": "s4", "name": "Olimpik Halter Sinifi", "price": "2.000 TL/ay", "duration": "75 dk", "description": "Snatch ve clean & jerk teknigi, haftalik 3 seans. Yarismacı ve hobi duzeyinde." },
+          { "id": "s5", "name": "Gymnastics Odakli Ders", "price": "400 TL/ders", "duration": "60 dk", "description": "Muscle-up, handstand, rope climb gibi jimnastik hareketleri. Kuçuk gruplar." },
+          { "id": "s6", "name": "Kisisel Antrenman", "price": "700 TL/seans", "duration": "60 dk", "description": "CrossFit L2 sertifikali antrenorle birebir calisma. Program tasarimi dahil." },
+          { "id": "s7", "name": "Beslenme Danismanligi", "price": "500 TL", "duration": "45 dk", "description": "Sporcu beslenme plani, makro hesaplama, performans odakli diyet." },
+          { "id": "s8", "name": "Vucut Kompozisyonu Analizi", "price": "Ucretsiz", "duration": "15 dk", "description": "InBody 770 ile detayli vucut analizi. Kas kutle, yag orani, su dagılımı." },
+          { "id": "s9", "name": "Yarismaya Hazirlik", "price": "3.000 TL/ay", "duration": "90 dk", "description": "CrossFit yarismalarina ozel program. Haftalik 5 seans, video analiz, strateji." },
+          { "id": "s10", "name": "Kids CrossFit", "price": "1.200 TL/ay", "duration": "45 dk", "description": "7-14 yas arası cocuklar icin eglenceli ve guvenli fonksiyonel fitness. Haftada 2 seans." }
+        ],
+        "team": [
+          { "name": "Kagan Demirci", "role": "Kurucu & Bas Antrenor", "bio": "CrossFit L3 sertifikali. Turkiye CrossFit sampiyonasi finalistii. 10 yillik CrossFit deneyimi." },
+          { "name": "Asli Yildiz", "role": "Olimpik Halter Kocyu", "bio": "Milli takim gecmisli halterci. Turkiye sampiyonu. CrossFit Weightlifting sertifikali." },
+          { "name": "Mert Kaplan", "role": "CrossFit L2 Antrenor", "bio": "Spor bilimleri mezunu. Yarismaci CrossFit atleti. Gymnastics uzmani." },
+          { "name": "Ece Dogan", "role": "Beslenme Danismani", "bio": "Diyetisyen, sporcu beslenmesi uzmani. CrossFit atleti. Makro bazli beslenme plani olusturma." }
+        ],
+        "testimonials": [
+          { "name": "Cem Yilmaz", "district": "Atasehir", "date": "2025-11", "rating": 5, "comment": "3 yildir IronBox'ta antrenman yapiyorum. Foundations programiyla basladim, simdi yarismaya hazirlaniryorum. Ekip ruhui harika, antrenorler cok motive edici." },
+          { "name": "Pelin Arslan", "district": "Kadikoy", "date": "2025-10", "rating": 5, "comment": "Hic spor yapmamis biri olarak CrossFit'e basladim. 6 ayda 12 kilo verdim, ilk muscle-up'imi yaptim. Hayatim degisti diyebilirim." },
+          { "name": "Ahmet Sahin", "district": "Umraniye", "date": "2025-09", "rating": 5, "comment": "Olimpik halter sinifi icin geliyorum. Asli Hoca'nin teknk bilgisi muhtesem. Milli takim gecmisi gercekten fark yaratiyor." },
+          { "name": "Zeynep Kara", "district": "Maltepe", "date": "2025-12", "rating": 4, "comment": "Kucuk oglumu Kids CrossFit'e yazdirdim. Hem egleniyor hem spor yapiyor. Tek elestri: Pazar gunu daha gec kapanabilirler." },
+          { "name": "Burak Ozkan", "district": "Bostanci", "date": "2025-08", "rating": 5, "comment": "Open Gym seceneği cok iyi, kendi programimi yapip geliyorum. Ekipman kalitesi cok yuksek, Rogue malzemeleri kullaniyorlar." },
+          { "name": "Seda Tekin", "district": "Kozyatagi", "date": "2025-07", "rating": 5, "comment": "Beslenme danismanligi ve antrenman birlikte aldim. Ece Hanim'in olusturmasi makro plan ve Kagan Bey'in programi mukkemmel uyum icinde." }
+        ],
+        "faq": [
+          { "q": "CrossFit tehlikeli mi?", "a": "Dogru teknikle CrossFit herhangi bir spordan daha guvenlidir. Foundations programimizda once teknigi ogretiyoruz, sonra agirlik artiyor. Antrenorlerimiz her hareketi gozlemler." },
+          { "q": "Hic spor yapmadim, CrossFit yapabilir miyim?", "a": "Kesinlikle! Tum hareketler seviyeye gore olceklenir (scale). Foundations programimiz sifirdan baslayanlara 4 haftada temel hareketleri ogretir." },
+          { "q": "Kac kisi katiliyor derslere?", "a": "Siniflarimiz maksimum 16 kisidir. Bu sayede antrenor her kisiyle ilgilenebilir ve guvenliginiz saglanir." },
+          { "q": "Ne giymem ve ne getirmem gerekiyor?", "a": "Rahat spor kiyafeti ve duz tabanli spor ayakkabisi yeterlidir. Havlu ve su sisesi getirin. Gripper, diz saricisi gibi ekipmanlar satin alinabilir." },
+          { "q": "Yarismaya katilmak zorunda miyim?", "a": "Hayir, cogu uyemiz saglik ve form icin geliyor. Yarismaya hazirlik ayri bir program olup tamamen isteğe baglidir." },
+          { "q": "Drop-in (tek seans) imkani var mi?", "a": "Evet, CrossFit gecmisi olan sporcular icin drop-in 200 TL'dir. Ayrica 10'lu kart secenegimiz de mevcuttur." },
+          { "q": "Otopark var mi?", "a": "Binamizin alt katinda 15 araclik ucretsiz otopark alani vardir. Sabah saatlerinde genellikle bos yer bulabilirsiniz." },
+          { "q": "Dersler kac dakika suruyor?", "a": "Standart WOD dersleri 60 dakikadir: 15 dk isinma, 15-20 dk teknik/kuvvet, 15-20 dk WOD, 5-10 dk soguma." }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Sinirlarini As, Gucunu Kesfet",
+          "subtitle": "Atasehir'de CrossFit L3 sertifikali antrenorlerle performans odakli antrenman. Foundations'tan yarisma hazirlgina her seviyeye program.",
+          "badge": "CrossFit Box"
+        },
+        "about": {
+          "title": "IronBox CrossFit Hakkinda",
+          "description": "IronBox CrossFit, 2018 yilinda Turkiye CrossFit sampiyonasi finalisti Kagan Demirci tarafindan Atasehir'de kuruldu. 400 metrekarelik box'imizda Rogue ekipmanlarla donatilmis profesyonel antrenman ortami sunuyoruz. Sabah 06:00'dan aksam 22:00'ye kadar gunluk degisen WOD siniflari, olimpik halter dersleri, gymnastics egitimi ve Open Gym saatleri mevcuttur. Foundations programimizla yeni baslayanları guvenle sisteme dahil ediyor, yarismaya hazirlik programimizla ileri seviye atletleri destekliyoruz. Beslenme danismanligi, vucut analizi ve video teknik analiziyle bütüncül performans gelistirme yaklaşımı benimsiyoruz. Cocuklara ozel Kids CrossFit programimizla 7-14 yas grubuna eglenceli fonksiyonel fitness sunuyoruz."
+        },
+        "services": {
+          "title": "Programlarimiz",
+          "subtitle": "Baslangictan yarisma seviyesine kapsamli CrossFit egitimi"
+        },
+        "contact": {
+          "title": "Hemen Basla",
+          "subtitle": "Ucretsiz deneme dersi icin kayit olun"
+        }
+      }
+    },
+    {
+      "id": "fitness-pilates",
+      "variantName": "pilates",
+      "plan": "pro",
+      "description": "Reformer pilates studyosu, premium",
+      "designPhilosophy": "Zarif, feminin, luks",
+      "isDark": false,
+      "colors": {
+        "bg": "#FFFBF7",
+        "surface": "#F8F0E8",
+        "text": "#2C2420",
+        "accent": "#C07A58"
+      },
+      "fonts": { "heading": "Cormorant Garamond", "body": "Lato" },
+      "business": {
+        "name": "Studio B Pilates",
+        "ownerName": "Basak Taner",
+        "sector": "Fitness",
+        "slogan": "Bedeninizi dinleyin, gucunuzu hissedin",
+        "phone": "0535 248 71 30",
+        "phoneClean": "905352487130",
+        "whatsapp": "905352487130",
+        "email": "info@studiobpilates.com",
+        "address": "Fenerbahce Mah. Bagdat Cad. No:245/3, Kadikoy/Istanbul",
+        "city": "Istanbul",
+        "district": "Kadikoy",
+        "neighborhood": "Fenerbahce",
+        "coordinates": { "lat": 40.9715, "lng": 29.0482 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/studiobpilates",
+          "facebook": "https://facebook.com/studiobpilates",
+          "youtube": "https://youtube.com/@studiobpilates",
+          "tiktok": "https://tiktok.com/@studiobpilates"
+        },
+        "photos": [],
+        "foundedYear": 2016,
+        "experience": "10 yil",
+        "customerCount": "9.500+",
+        "rating": 4.9,
+        "reviewCount": 1350,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "07:00", "close": "21:30", "isOpen": true },
+          { "day": "Sali", "open": "07:00", "close": "21:30", "isOpen": true },
+          { "day": "Carsamba", "open": "07:00", "close": "21:30", "isOpen": true },
+          { "day": "Persembe", "open": "07:00", "close": "21:30", "isOpen": true },
+          { "day": "Cuma", "open": "07:00", "close": "21:30", "isOpen": true },
+          { "day": "Cumartesi", "open": "08:00", "close": "18:00", "isOpen": true },
+          { "day": "Pazar", "open": "09:00", "close": "15:00", "isOpen": true }
+        ],
+        "services": [
+          { "id": "s1", "name": "Reformer Pilates (Grup)", "price": "450 TL/ders", "duration": "55 dk", "description": "Maksimum 6 kisilik siniflarda reformer uzerinde pilates. Kor guclenme, esneklik ve durus duzeltme." },
+          { "id": "s2", "name": "Reformer Pilates (Ozel)", "price": "900 TL/ders", "duration": "55 dk", "description": "Birebir reformer calismasi. Ozel ihtiyaclara, sakatlik rehabilitasyonuna uygun program." },
+          { "id": "s3", "name": "Mat Pilates", "price": "300 TL/ders", "duration": "50 dk", "description": "Kucuk ekipmanlarla mat uzerinde pilates. Kor guclenme ve esneklik odakli." },
+          { "id": "s4", "name": "Barre Pilates", "price": "400 TL/ders", "duration": "55 dk", "description": "Bale barri, pilates ve yoga bilesimmi. Uzun, ince kas yapisi icin." },
+          { "id": "s5", "name": "Prenatal Pilates", "price": "500 TL/ders", "duration": "45 dk", "description": "Hamilelikte guvenli pilates. Pelvik taban guclenme, sirt agrisi onleme." },
+          { "id": "s6", "name": "Postnatal Pilates", "price": "500 TL/ders", "duration": "45 dk", "description": "Dogum sonrasi toparlanma programi. Karin ve pelvik taban rehabilitasyonu." },
+          { "id": "s7", "name": "Skolyoz/Durus Duzeltme", "price": "800 TL/ders", "duration": "55 dk", "description": "BASI pilates metoduyla skolyoz ve durus bozukluklarina ozel birebir program." },
+          { "id": "s8", "name": "Cadillac/Tower Calismasi", "price": "700 TL/ders", "duration": "55 dk", "description": "Cadillac ve tower ekipmanlariyla ileri pilates. Omurga mobilizasyonu ve guclenme." },
+          { "id": "s9", "name": "Pilates + Beslenme Paketi", "price": "4.500 TL/ay", "duration": "degisken", "description": "Hafta 3 reformer ders + aylik beslenme programi + vucut analizi." },
+          { "id": "s10", "name": "10'lu Kart (Reformer Grup)", "price": "4.000 TL", "duration": "55 dk", "description": "10 ders iceren kart, 3 ay gecerlilik. Ucretsiz vucut analizi dahil." },
+          { "id": "s11", "name": "Aylik Sinitsiz (Reformer)", "price": "5.500 TL/ay", "duration": "sinitsiz", "description": "Tum reformer grup derslerine sinitsiz katilim. Oncelikli rezervasyon hakki." },
+          { "id": "s12", "name": "Corporate Wellness", "price": "Teklif uzerine", "duration": "degisken", "description": "Sirketler icin ofise veya studyoda grup pilates programlari." },
+          { "id": "s13", "name": "Durus Analizi", "price": "600 TL", "duration": "30 dk", "description": "PostureScreen ile dijital durus analizi, kisisellestirilmis duzeltme programi onerisi." },
+          { "id": "s14", "name": "Esneklik Degerlendirmesi", "price": "Ucretsiz", "duration": "15 dk", "description": "Eklem hareket acikligi ve kas esnekligi olcumu. Ilk kayitta ucretsiz." }
+        ],
+        "team": [
+          { "name": "Basak Taner", "role": "Kurucu & Master Egitmen", "bio": "Polestar Pilates diplomali. 15 yillik egitmenlik deneyimi. BASI pilates skolyoz sertifikali." },
+          { "name": "Yagmur Celik", "role": "Reformer & Barre Egitmeni", "bio": "Balanced Body sertifikali. Profesyonel bale gecmisli. 8 yillik pilates deneyimi." },
+          { "name": "Ece Sarikaya", "role": "Prenatal/Postnatal Uzman Egitmen", "bio": "Fizyoterapist ve pilates egitmeni. Hamileler ve dogum sonrasi icin ozel programlar." },
+          { "name": "Aylin Demirel", "role": "Mat & Tower Egitmeni", "bio": "STOTT Pilates sertifikali. Omurga sagligi ve rehabilitasyon odakli egitim." },
+          { "name": "Defne Akman", "role": "Beslenme Danismani", "bio": "Diyetisyen, sporcu beslenmesi uzmani. Pilates ile entegre beslenme programlari." },
+          { "name": "Cem Tezcan", "role": "Reformer Egitmeni", "bio": "Beden egitimi ogretmeni, Balanced Body sertifikali. Erkeklere ozel pilates programlari." }
+        ],
+        "testimonials": [
+          { "name": "Fulya Ozcan", "district": "Fenerbahce", "date": "2025-12", "rating": 5, "comment": "3 yildir Studio B'ye geliyorum. Kronik bel agrim tamamen gecti, durus bozuklugum duzeldı. Basak Hocam'in BASI metodu mucize gibi." },
+          { "name": "Sinem Arslan", "district": "Caddebostan", "date": "2025-10", "rating": 5, "comment": "Hamilelik boyunca prenatal pilates aldim, dogum cok kolay gecti. Ece Hocam tam bir uzman, her seansa ozel program yapiyor." },
+          { "name": "Melis Kaya", "district": "Bagdat Caddesi", "date": "2025-11", "rating": 5, "comment": "Barre pilates dersleri harika. Yagmur Hocam'in bale gecmisi gercekten fark yaratiyor. Vucut sekillenmeleri gorulmeye basladi." },
+          { "name": "Hande Turk", "district": "Goztepe", "date": "2025-08", "rating": 5, "comment": "Aylik sinitsiz paket aldim, haftada 4-5 gun geliyorum. Her dersten sonra kendimi harika hissediyorum. Studyo cok temiz ve bakimli." },
+          { "name": "Kerem Sahin", "district": "Suadiye", "date": "2025-09", "rating": 4, "comment": "Erkek olarak reformer pilates baslama konusunda tereddutluyduum ama Cem Hoca harika motive ediyor. Sirt agrilarim azaldi, esnekligim artti." },
+          { "name": "Elif Demir", "district": "Bostanci", "date": "2025-07", "rating": 5, "comment": "Postnatal pilates ile dogumdan sonra 4 ayda eski formuma dondum. Pelvik taban egzersizleri cok onemliymis, keske daha once baslasamdim." },
+          { "name": "Cagla Polat", "district": "Erenkoy", "date": "2025-06", "rating": 5, "comment": "Corporate wellness kapsaminda ofisimize geliyorlar. 15 kisilik grubumuz var, masa basi calisanlari icin harika bir mola. Moral ve enerji artti." },
+          { "name": "Merve Yildiz", "district": "Kozyatagi", "date": "2025-11", "rating": 5, "comment": "Durus analizim yapildi, skolyozum varmis habersizmisim. 6 aylik ozel program ile omurgam duzelmeye basladi. Gercek bir farkindalik yaratiyor." }
+        ],
+        "faq": [
+          { "q": "Reformer pilates ile mat pilates arasindaki fark nedir?", "a": "Reformer, yay direnciyle calisan ozel bir aletir. Mat pilatesden daha kontrollü ve farkli acilarda calismaya imkan tanir. Rehabilitasyon ve derin kor calismada reformer daha etkilidir." },
+          { "q": "Pilates kilo verdirir mi?", "a": "Pilates dogrudan yogun kalori yakmaz ancak kas tonusunu arttirir, metabolizmayi hizlandirir ve vucut sekillendirir. Beslenme programıyla birlikte uygulandiginda kilo vermede cok etkilidir." },
+          { "q": "Hamileyken ne zaman baslamaliyim?", "a": "Doktorunuzun onayi ile ikinci trimesterden (13. hafta) itibaren prenatal pilatese baslayabilirsiniz. Daha once pilates deneyiminiz varsa birinci trimesterde devam edebilirsiniz." },
+          { "q": "Bel fitigi olan pilates yapabilir mi?", "a": "Evet, doktor onayi ile reformer pilates bel fitigi rehabilitasyonunda cok etkilidir. Ozel ders formatinda, fizyoterapist egitmenimizle baslamanizi oneririz." },
+          { "q": "Siniflar kac kisilik?", "a": "Reformer grup dersleri maksimum 6 kisidir. Mat ve barre dersleri maksimum 10 kisidir. Bu sayede her ogrenciye bireysel ilgi gosterebiliyoruz." },
+          { "q": "Erkekler icin de uygun mu?", "a": "Kesinlikle! Erkek ogrencilerimizin sayisi giderek artiyor. Ozellikle sirt agrisi, esneklik ve core guclenme icin pilates cok etkilidir. Cem Hocamiz erkeklere ozel programlar uyguluyor." },
+          { "q": "Online ders var mi?", "a": "Mat pilates derslerimiz Zoom uzerinden de verilebilmektedir. Reformer dersler icin studyomuza gelmeniz gerekmektedir." },
+          { "q": "Nasil kayit olabilirim?", "a": "Telefon, WhatsApp veya Instagram DM uzerinden kayit olabilirsiniz. Ilk gelisinizde ucretsiz esneklik degerlendirmesi ve studyo turu yapiyoruz." },
+          { "q": "Iptal politikaniz nedir?", "a": "Dersten 6 saat oncesine kadar ucretsiz iptal veya erteleme yapabilirsiniz. Gec iptallerde ders hakkiniz duseru." },
+          { "q": "Hangi marka reformer kullaniyorsunuz?", "a": "Balanced Body marka reformer ve Cadillac ekipman kullaniyoruz. Tum aletlerimiz profesyonel sinif, duzenli bakim ve sterilizasyon yapilmaktadir." }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Bedeninizi Dinleyin, Gucunuzu Hissedin",
+          "subtitle": "Kadikoy Fenerbahce'de Balanced Body ekipmanli premium reformer pilates studyosu. 10 yillik deneyim, 9.500+ mutlu ogrenci.",
+          "badge": "Premium Pilates Studyosu"
+        },
+        "about": {
+          "title": "Studio B Pilates Hakkinda",
+          "description": "Studio B Pilates, 2016 yilinda Polestar Pilates diplomali Basak Taner tarafindan Kadikoy Fenerbahce'de kurulmustur. Balanced Body marka reformer, Cadillac ve tower ekipmanlarımızla Istanbul'un en donanımli pilates studyolarindan biriyiz. Reformer grup derslerinden ozel seansa, prenatal pilatesten skolyoz rehabilitasyonuna geniş bir hizmet yelpazesi sunuyoruz. 6 kisilik kucuk siniflarla her ogrenciye bireysel ilgi gosteriyoruz. Ekibimiz, Polestar, Balanced Body, STOTT ve BASI sertifikali deneyimli egitmenlerden olusmaktadir. Beslenme danismanligi, durus analizi ve corporate wellness programlarimizla butuncul bir saglik yaklaşımı benimsiyoruz. Fenerbahce, Caddebostan, Suadiye ve Bagdat Caddesi bolgelerinden binlerce ogrenciyle calismaktayiz."
+        },
+        "services": {
+          "title": "Pilates Programlarimiz",
+          "subtitle": "Reformer, mat, barre ve ozel ihtiyaclara yonelik programlar"
+        },
+        "contact": {
+          "title": "Kayit & Randevu",
+          "subtitle": "Ilk gelmenizde ucretsiz esneklik degerlendirmesi hediye"
+        }
+      }
+    },
+    {
+      "id": "fitness-pt",
+      "variantName": "pt",
+      "plan": "enterprise",
+      "description": "Premium kisisel antrenman ve wellness merkezi",
+      "designPhilosophy": "Luks, karanlik, performans odakli",
+      "isDark": true,
+      "colors": {
+        "bg": "#0D1117",
+        "surface": "#161B22",
+        "text": "#E6EDF3",
+        "accent": "#C9A84C"
+      },
+      "fonts": { "heading": "Montserrat", "body": "Inter" },
+      "business": {
+        "name": "Apex Performance Lab",
+        "ownerName": "Dr. Ozan Yildirim",
+        "sector": "Fitness",
+        "slogan": "Bilim odakli antrenman, olculebilir sonuclar",
+        "phone": "0212 555 APEX",
+        "phoneClean": "902125552739",
+        "whatsapp": "905301112233",
+        "email": "info@apexperformance.com.tr",
+        "address": "Akatlar Mah. Ebulula Mardin Cad. No:16, Besiktas/Istanbul",
+        "city": "Istanbul",
+        "district": "Besiktas",
+        "neighborhood": "Akatlar",
+        "coordinates": { "lat": 41.0761, "lng": 29.0212 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/apexperformancelab",
+          "facebook": "https://facebook.com/apexperformancelab",
+          "youtube": "https://youtube.com/@apexperformance",
+          "twitter": "https://twitter.com/apexperformance",
+          "linkedin": "https://linkedin.com/company/apex-performance-lab"
+        },
+        "photos": [],
+        "foundedYear": 2014,
+        "experience": "12 yil",
+        "customerCount": "18.000+",
+        "rating": 4.9,
+        "reviewCount": 2800,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "06:00", "close": "23:00", "isOpen": true },
+          { "day": "Sali", "open": "06:00", "close": "23:00", "isOpen": true },
+          { "day": "Carsamba", "open": "06:00", "close": "23:00", "isOpen": true },
+          { "day": "Persembe", "open": "06:00", "close": "23:00", "isOpen": true },
+          { "day": "Cuma", "open": "06:00", "close": "23:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "07:00", "close": "21:00", "isOpen": true },
+          { "day": "Pazar", "open": "08:00", "close": "18:00", "isOpen": true }
+        ],
+        "services": [
+          { "id": "s1", "name": "Performans Degerlendirmesi", "price": "3.000 TL", "duration": "120 dk", "description": "VO2max testi, laktat esigi, vucut kompozisyonu, hareket taramasi, esneklik ve kuvvet testleri. Kapsamli rapor." },
+          { "id": "s2", "name": "1-1 Kisisel Antrenman", "price": "1.500 TL/seans", "duration": "60 dk", "description": "Egzersiz bilimi doktorali antrenorle birebir calisma. Periodizasyon bazli program tasarimi." },
+          { "id": "s3", "name": "2-1 Semi-Private", "price": "1.000 TL/kisi/seans", "duration": "60 dk", "description": "2 kisilik ozel antrenman. Cift, arkadas veya is ortagi ile birlikte." },
+          { "id": "s4", "name": "Sporcu Beslenmesi", "price": "2.000 TL/ay", "duration": "degisken", "description": "Spor diyetisyeni ile aylik beslenme programi, haftalik takip, supplement onerisi." },
+          { "id": "s5", "name": "Fizyoterapi & Rehabilitasyon", "price": "1.200 TL/seans", "duration": "50 dk", "description": "Spor yaralanmalari, ameliyat sonrasi rehabilitasyon, kronik agri yonetimi." },
+          { "id": "s6", "name": "Spor Psikolojisi", "price": "1.000 TL/seans", "duration": "50 dk", "description": "Performans kaygisi, motivasyon, mental guclenme. Profesyonel ve amator sporcular icin." },
+          { "id": "s7", "name": "Hareket Analizi (3D)", "price": "2.500 TL", "duration": "60 dk", "description": "3D motion capture ile biomekanik hareket analizi. Teknik kusur tespiti ve duzeltme programi." },
+          { "id": "s8", "name": "Grup Performans Sinifi", "price": "500 TL/ders", "duration": "50 dk", "description": "Maksimum 8 kisilik ileri fonksiyonel antrenman. Olimpik hareketler, plyometri, metabolik kondisyon." },
+          { "id": "s9", "name": "Online Coaching", "price": "3.500 TL/ay", "duration": "degisken", "description": "Uzaktan antrenman programi, haftalik video analiz, beslenme takibi. App uzerinden iletisim." },
+          { "id": "s10", "name": "Recovery Suite", "price": "800 TL/seans", "duration": "45 dk", "description": "Kriyoterapi, normatec kompresyon, infrared sauna. Antrenman sonrasi toparlanma." },
+          { "id": "s11", "name": "Uyku Optimizasyonu", "price": "1.500 TL", "duration": "60 dk", "description": "Uyku kalitesi degerlendirmesi, circadian ritm analizi, uyku hijyeni danismanligi." },
+          { "id": "s12", "name": "Executive Wellness Programi", "price": "8.000 TL/ay", "duration": "degisken", "description": "Ust duzey yoneticiler icin: antrenman, beslenme, uyku, stres yonetimi, check-up. Tam entegre." },
+          { "id": "s13", "name": "Maratona Hazirlik", "price": "5.000 TL/ay", "duration": "degisken", "description": "12-16 haftalik maraton hazirlik programi. Kosu analizi, tempo antrenmanlari, beslenme stratejisi." },
+          { "id": "s14", "name": "Post-Partum Fitness", "price": "1.200 TL/seans", "duration": "50 dk", "description": "Dogum sonrasi guvenli geri donus programi. Diastasis recti, pelvik taban rehabilitasyonu." },
+          { "id": "s15", "name": "Senior Fitness (60+)", "price": "800 TL/seans", "duration": "45 dk", "description": "Yas grubuna ozel denge, kuvvet ve mobilite calismasi. Dusme riski azaltma, kemik yogunlugu koruma." },
+          { "id": "s16", "name": "DEXA Vucut Taramasi", "price": "1.500 TL", "duration": "20 dk", "description": "DEXA ile bolgesel yag ve kas kutle olcumu, kemik yogunlugu taramasi. En hassas vucut analiz yontemi." },
+          { "id": "s17", "name": "DNA Bazli Fitness Plani", "price": "5.000 TL", "duration": "degisken", "description": "Genetik test ile kas tipi, metabolizma hizi, sakatlanma riski analizi. Kisisellestirilmis program." },
+          { "id": "s18", "name": "Kan Biomarker Paneli", "price": "3.000 TL", "duration": "15 dk", "description": "40+ belirtec: hormon, vitamin, mineral, iltihap, metabolik saglik. 3 ayda bir tekrar onerisi." },
+          { "id": "s19", "name": "Altitude Training", "price": "600 TL/seans", "duration": "45 dk", "description": "Simule yuksek irtifa ortaminda antrenman. VO2max gelistirme, dayanaklilk artirma." },
+          { "id": "s20", "name": "VIP Locker & Concierge", "price": "2.000 TL/ay", "duration": "sinitsiz", "description": "Kisisel dolap, havlu servisi, otopark, protein bar, concierge hizmeti." }
+        ],
+        "team": [
+          { "name": "Dr. Ozan Yildirim", "role": "Kurucu & Bilimsel Direktor", "bio": "Hacettepe Universitesi Egzersiz Bilimleri doktora. NSCA-CSCS, ACSM-CEP sertifikali. 15 yil elit sporcu koçluğu." },
+          { "name": "Anil Koc", "role": "Performans Kocyu", "bio": "Spor bilimleri yuksek lisans. CrossFit L3, Olimpik halter antrenoru. A Milli Takim sporcularıyla calisti." },
+          { "name": "Dyt. Gokce Arslan", "role": "Spor Diyetisyeni", "bio": "Hacettepe Beslenme ve Diyetetik bolumu. ISSN sertifikali. Profesyonel sporcu beslenmesi uzmani." },
+          { "name": "Fzt. Berk Ozturk", "role": "Spor Fizyoterapisti", "bio": "MSc Spor Fizyoterapisi. FIFA Medical sertifikali. Superlig takimi gecmisli." },
+          { "name": "Psyk. Nihan Sahin", "role": "Spor Psikoloğu", "bio": "Klinik psikolog, spor psikolojisi uzmanligi. Olimpik sporcullarla calışma deneyimi." },
+          { "name": "Can Erdogan", "role": "Recovery & Wellness Uzmani", "bio": "Fizyoloji yuksek lisans. Kriyoterapi, uyku bilimi ve stres yonetimi konularinda uzman." },
+          { "name": "Ece Yalcin", "role": "Hareket Analisti", "bio": "Biomekanik doktora ogrencisi. 3D motion capture ve kosu analizi uzmani." },
+          { "name": "Serhan Dogan", "role": "Senior & Post-Partum Uzman", "bio": "Geriatrik egzersiz ve dogum sonrasi fitness sertifikali. 8 yillik ozel populasyon deneyimi." }
+        ],
+        "testimonials": [
+          { "name": "Selcuk Bayraktar", "district": "Etiler", "date": "2025-12", "rating": 5, "comment": "Executive Wellness programindayim. Antrenman, beslenme, uyku optimizasyonu hepsi entegre. 6 ayda 15 kilo verdim, kolesterolum normalize oldu. Dr. Ozan gercek bir bilim insani." },
+          { "name": "Canan Ozdag", "district": "Akatlar", "date": "2025-11", "rating": 5, "comment": "Istanbul Maratonu'na burada hazirlandim. Kosu analizi, tempo antrenmanlari ve beslenme stratejisi ile PB kilarim 35 dakika duzeldı. Inanilmaz profesyonel." },
+          { "name": "Bulent Aksoy", "district": "Levent", "date": "2025-10", "rating": 5, "comment": "Diz ameliyati sonrasi Fzt. Berk Bey'le rehabilitasyona basladim. 4 ayda tam fonksiyon geri dondu. FIFA sertifikali fizyoterapist farkli oluyor." },
+          { "name": "Aylin Tekin", "district": "Bebek", "date": "2025-09", "rating": 5, "comment": "DNA bazli fitness plani yaptirdim. Genetik olarak dayanaklılık sporlarına yatkin oldugumu ögrendim. Program buna gore sekillendi, sonuclar muthis." },
+          { "name": "Murat Demir", "district": "Nisantasi", "date": "2025-08", "rating": 5, "comment": "Recovery suite'i her antrenman sonrasi kullaniyorum. Kriyoterapi + normatec kombinasyonu kas agrilarimi yuzde 80 azaltti. Butceyi hak ediyor." },
+          { "name": "Nil Ergen", "district": "Ulus", "date": "2025-07", "rating": 5, "comment": "Dogumdan 3 ay sonra post-partum fitness'a basladim. Serhan Bey cok dikkatli ve bilgili. Diastasis recti'm kapanmaya basladi, 6. ayda eski formuma yaklasstim." },
+          { "name": "Cenk Yilmaz", "district": "Maslak", "date": "2025-11", "rating": 4, "comment": "Performans degerlendirmesi yaptirdim, VO2max testim 48 cikti. Detayli raporla zayif noktalarimi gordüm. Fiyatlar cok yuksek ama kalite de oyle." },
+          { "name": "Duygu Sahin", "district": "Arnavutkoy", "date": "2025-06", "rating": 5, "comment": "Online coaching aliyorum, sehir disinda yasiyorum. App uzerinden program, video analiz, beslenme takibi, haftalik gorusme. Uzaktan bile sonuc aliabiliyorsunuz." },
+          { "name": "Hakan Polat", "district": "Sariyer", "date": "2025-10", "rating": 5, "comment": "Senior fitness programina babami yazdirdim, 68 yasinda. 1 yildir geliyor, denge ve yurume kalitesi gözle gorulur sekilde artti. Berk Bey'e minnettariz." },
+          { "name": "Sibel Aksoy", "district": "Besiktas", "date": "2025-12", "rating": 5, "comment": "Kan biomarker paneli yaptirdim, D vitamini ve ferritinin cok dusuk oldugu ortaya cikti. Takviye ve beslenme programiyla 3 ayda normale dondu." },
+          { "name": "Osman Kilic", "district": "Ortakoy", "date": "2025-09", "rating": 5, "comment": "DEXA taramasi ile tam olarak nerede yag depoladigimi gordum. Program buna gore yapildi, 6 ayda bolgesel yag orani %8 dustu." },
+          { "name": "Meltem Dogan", "district": "Tarabya", "date": "2025-08", "rating": 5, "comment": "Spor psikolojisi seanslari hayatimi degistirdi. Yarışma kaygım azaldi, odaklanmam artti. Psyk. Nihan Hanim cok iyi bir dinleyici ve stratejist." }
+        ],
+        "faq": [
+          { "q": "Normal spor salonundan farkiniz ne?", "a": "Apex bir fitness tesis degil, performans laboratuvaridir. VO2max testi, DEXA taramasi, 3D hareket analizi gibi bilimsel olcum araclarina sahibiz. Antrenorlerimiz yuksek lisans/doktora duzeyinde egitim almistir." },
+          { "q": "VO2max testi nedir, neden onemli?", "a": "Maksimum oksijen tuketim kapasitenizi olcer. Kardiyovaskuler fitness'inizin en hassas gostergesidir. Antrenman zonlarinizi ve programinizi buna gore optimize ediyoruz." },
+          { "q": "DNA bazli fitness plani gercekten ise yariyor mu?", "a": "Evet, genetik analizle kas lifi tipi dagilımınızı, sakatlanma risk profilinizi ve metabolik yatkinliklarinizi belirliyoruz. Program bu verilere gore kisisellestirildiginde sonuclar olculebildir sekilde daha iyi oluyor." },
+          { "q": "Kriyoterapi guvenli mi?", "a": "Evet, egitimli personel gozetiminde -110°C'de 2-3 dakikalik seanslar son derece guvenlidir. Raynaud hastaligi, kontrolsuz hipertansiyon gibi durumlar kontrendikedir, on degerlendirme yapilir." },
+          { "q": "Online coaching ile sonuc alinir mi?", "a": "Kesinlikle. App uzerinden programiniz paylasiliyor, her antrenmani video kaydederek gonluyorsunuz, haftalik gorusme yapiyoruz. Beslenme takibi de entegredir." },
+          { "q": "Executive Wellness ne icerir?", "a": "Haftada 3 kisisel antrenman, aylik beslenme programi, uyku optimizasyonu, kan biomarker paneli (3 ayda bir), spor psikolojisi seanslari ve recovery suite erisimi. Ust duzey yoneticiler icin butuncul saglik." },
+          { "q": "Maratona hazirlik ne zaman baslamali?", "a": "Ideal olarak yaristen 16-20 hafta once baslamanizi oneririz. Temel dayanaklılık seviyenize gore program suresi kısaltilabilir. Kosu analizi ile basliyoruz." },
+          { "q": "Senior (60+) programi guvenli mi?", "a": "Evet, her katilimcinin saglik gecmisi ve hareket taramasi yapilir. Denge, kuvvet ve mobilite odakli, dusuk etkili egzersizlerle calisiyoruz. Gerekirse doktor onayı aliriz." },
+          { "q": "DEXA ve InBody arasindaki fark ne?", "a": "DEXA, röntgen tabanli olup bolgesel yag ve kas dagılımını %1-2 hata payiyla olcer. InBody biyoelektrik empedans kullanir ve %3-5 hata payına sahiptir. DEXA altin standart kabul edilir." },
+          { "q": "Altitude training kimin icin uygun?", "a": "Dayanaklılık sporcularına, maraton kosucularına ve futbol/basketbol gibi aerobik kapasitesi gerektiren sporculara idealdir. Kronik hastaligi olmayan herkes fayda gorebilir." },
+          { "q": "Aylik maliyet ne kadar cikar?", "a": "Programiniza gore degisir. 1-1 antrenman haftada 3 seans 18.000 TL/ay, Executive Wellness 8.000 TL/ay, grup sinif 2.000 TL/ay. İlk gorusme ucretsiizdir." },
+          { "q": "Otopark var mi?", "a": "Evet, uyelerimiz icin 10 araclik ucretsiz otopark alani mevcuttur. VIP uyelerimize ayrilmis otopark yeri garantisi vardir." },
+          { "q": "Sporcularla da calisıyor musunuz?", "a": "Evet, A Milli Takim sporculari, Superlig futbolculari ve olimpik adaylarla calisiyoruz. Sporcu gizliligi nedeniyle detay paylasaiyoruz." },
+          { "q": "Ilk gorusme ucreti var mi?", "a": "Hayir, ilk gorusme ve tesis turu tamamen ucretsiizdir. Hedeflerinizi dinleyip size uygun program onerisi sunuyoruz. 30 dakika surer." },
+          { "q": "Sonuclari ne zaman gormeye basliarim?", "a": "Vucut kompozisyonunda 4-6 haftada, performans metriklerinde 8-12 haftada olculebildir degisim goruyoruz. 3 aylik taahhut oneriyoruz ancak zorunlu degil." }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Bilim Odakli Antrenman, Olculebilir Sonuclar",
+          "subtitle": "VO2max'tan DEXA'ya, kriyoterapiden DNA analizine — Istanbul'un en ileri performans laboratuvari. Bilim, teknoloji ve uzmanlik bir arada.",
+          "badge": "Performance Lab"
+        },
+        "about": {
+          "title": "Apex Performance Lab Hakkinda",
+          "description": "Apex Performance Lab, 2014 yilinda Dr. Ozan Yildirim tarafından Besiktas Akatlar'da kurulmustur. Egzersiz bilimleri doktora duzeyinde uzmanlik, son teknoloji olcum araclari ve multidisipliner ekibimizle Istanbul'un en ileri performans merkeziyiz. VO2max testi, DEXA vucut taramasi, 3D hareket analizi, kan biomarker paneli ve DNA bazli fitness planlama gibi bilimsel araclari kullanarak her bireye kisisellestirilmis, olculebilir sonuc odakli programlar olusturuyoruz. Recovery suite'imizde kriyoterapi, normatec kompresyon ve infrared sauna ile toparlanmayi hizlandiriyoruz. Sporcu beslenmesi, fizyoterapi, spor psikolojisi ve uyku optimizasyonu ekibimizle butuncul performans gelistirme yaklaşımı benimsiyoruz. A Milli Takim sporcularindan CEO'lara, maraton kosucularindan dogum sonrasi annelere kadar geniş bir yelpazede hizmet veriyoruz. 18.000'den fazla kisiyle calismis deneyimimizle, kanitlanmis bilimi uygulanabilir sonuclara donusturuyoruz."
+        },
+        "services": {
+          "title": "Performans Hizmetlerimiz",
+          "subtitle": "Bilim ve teknoloji destekli kapsamli performans cozumleri"
+        },
+        "contact": {
+          "title": "Ucretsiz Ilk Gorusme",
+          "subtitle": "Hedeflerinize uygun program icin hemen randevu alin"
+        }
+      }
+    }
+  ]
+}

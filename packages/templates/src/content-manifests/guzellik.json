@@ -1,0 +1,437 @@
+{
+  "sectorId": "guzellik",
+  "seoSchemaType": "BeautySalon",
+  "variants": [
+    {
+      "id": "guzellik-narin",
+      "variantName": "narin",
+      "plan": "free",
+      "description": "Mahalle guzellik salonu, samimi ve uygun fiyatli",
+      "designPhilosophy": "Yumusak, feminen, sade",
+      "isDark": false,
+      "colors": { "bg": "#FFFBF8", "surface": "#FFF0E8", "text": "#2D1F1A", "accent": "#D4756B" },
+      "fonts": { "heading": "Lora", "body": "Inter" },
+      "business": {
+        "name": "Narin Guzellik Salonu",
+        "ownerName": "Narin Aksoy",
+        "sector": "Guzellik",
+        "slogan": "Her kadinin kendinI iyi hissettigi yer",
+        "phone": "0216 567 12 34",
+        "phoneClean": "902165671234",
+        "whatsapp": "905325671234",
+        "email": "info@naringuzellil.com",
+        "address": "Goztepe Mah. Bagdat Cad. No:156/A, Kadikoy/Istanbul",
+        "city": "Istanbul", "district": "Kadikoy", "neighborhood": "Goztepe",
+        "coordinates": { "lat": 40.9730, "lng": 29.0580 },
+        "socialMedia": { "instagram": "https://instagram.com/naringuzellil" },
+        "photos": [], "foundedYear": 2016, "experience": "8 yil",
+        "customerCount": "15.000+", "rating": 4.7, "reviewCount": 620,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "10:00", "close": "20:00", "isOpen": true },
+          { "day": "Sali", "open": "10:00", "close": "20:00", "isOpen": true },
+          { "day": "Carsamba", "open": "10:00", "close": "20:00", "isOpen": true },
+          { "day": "Persembe", "open": "10:00", "close": "20:00", "isOpen": true },
+          { "day": "Cuma", "open": "10:00", "close": "21:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "09:00", "close": "21:00", "isOpen": true },
+          { "day": "Pazar", "open": null, "close": null, "isOpen": false }
+        ],
+        "services": [
+          { "id": "s1", "name": "Kas Alimi", "price": "150 TL", "duration": "15 dk", "description": "Ipler veya pens ile yuz seklinize uygun kas sekillendirme." },
+          { "id": "s2", "name": "Cilt Bakimi (Klasik)", "price": "400 TL", "duration": "60 dk", "description": "Derin temizlik, peeling, maske ve nemlendirme. Tum cilt tiplerine uygun." },
+          { "id": "s3", "name": "Manikur + Pedikur", "price": "350 TL", "duration": "60 dk", "description": "El ve ayak bakimi, tirnak sekillendirme, oje veya kalici oje." },
+          { "id": "s4", "name": "Agda (Tum Vucut)", "price": "600 TL", "duration": "90 dk", "description": "Sir agda ile tum vucut epilasyon. Hassas bolgeler dahil." }
+        ],
+        "team": []
+      },
+      "content": {
+        "hero": {
+          "badge": "Kadikoy Guzellik Salonu",
+          "title": "Narin Guzellik",
+          "subtitle": "Goztepe Bagdat Caddesi'nde, 8 yildir kadinlarin guzellik ve bakim adresi. Uygun fiyat, kaliteli hizmet.",
+          "cta1": { "text": "Randevu Al", "href": "#iletisim" }
+        },
+        "services": { "badge": "Hizmetler", "title": "Bakim Hizmetlerimiz", "subtitle": "Cilt bakimi, agda, manikur-pedikur ve kas alimi." },
+        "contact": { "badge": "Randevu", "title": "Randevu Alin", "subtitle": "Bagdat Caddesi uzerinde, Goztepe tramvay duragina 1 dakika. WhatsApp ile aninda randevu." },
+        "faq": {
+          "badge": "SSS", "title": "Merak Edilenler",
+          "questions": [
+            { "q": "Randevusuz gelebilir miyim?", "a": "Hafta ici musait saatlerde randevusuz kabul edebiliyoruz ama Cumartesi icin mutlaka randevu almaniZi oneririz." },
+            { "q": "Hamile mustelere hizmet veriliyor mu?", "a": "Evet, hamileliğe uygun ozel urunlerle cilt bakimi ve manikur yapilmaktadir. Agda icin doktor onayı gerekebilir." },
+            { "q": "Erkek musteri kabul ediyor musunuz?", "a": "Kas alimi ve cilt bakimi hizmetlerimiz erkek musterilere de aciktir. Agda ve manikur icin ozel saat dilimi ayarlanabilir." },
+            { "q": "Kalici oje ne kadar dayanir?", "a": "CND Shellac ile 14-21 gun dayanir. Tirnak yapisi ve bakim seklinize gore degiskenlik gosterebilir." }
+          ]
+        }
+      }
+    },
+    {
+      "id": "guzellik-glow",
+      "variantName": "glow",
+      "plan": "starter",
+      "description": "Modern cilt bakimi ve lazer merkezi",
+      "designPhilosophy": "Temiz, parlak, profesyonel estetik",
+      "isDark": false,
+      "colors": { "bg": "#FFFCFA", "surface": "#FFF5F0", "text": "#1A1014", "accent": "#E8567C" },
+      "fonts": { "heading": "Poppins", "body": "Inter" },
+      "business": {
+        "name": "Glow Studio Istanbul",
+        "ownerName": "Gamze Tekin",
+        "sector": "Guzellik",
+        "slogan": "Isildayan cildinize kavusun",
+        "phone": "0212 234 56 78",
+        "phoneClean": "902122345678",
+        "whatsapp": "905442345678",
+        "email": "info@glowstudio.com.tr",
+        "address": "Tesvikiye Mah. Abdi Ipekci Cad. No:42/B, Sisli/Istanbul",
+        "city": "Istanbul", "district": "Sisli", "neighborhood": "Tesvikiye",
+        "coordinates": { "lat": 41.0465, "lng": 28.9950 },
+        "socialMedia": { "instagram": "https://instagram.com/glowstudioist", "tiktok": "https://tiktok.com/@glowstudioist" },
+        "photos": [], "foundedYear": 2019, "experience": "5 yil",
+        "customerCount": "20.000+", "rating": 4.8, "reviewCount": 1450,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "10:00", "close": "20:00", "isOpen": true },
+          { "day": "Sali", "open": "10:00", "close": "20:00", "isOpen": true },
+          { "day": "Carsamba", "open": "10:00", "close": "20:00", "isOpen": true },
+          { "day": "Persembe", "open": "10:00", "close": "20:00", "isOpen": true },
+          { "day": "Cuma", "open": "10:00", "close": "21:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "09:00", "close": "21:00", "isOpen": true },
+          { "day": "Pazar", "open": "10:00", "close": "18:00", "isOpen": true }
+        ],
+        "services": [
+          { "id": "s1", "name": "HydraFacial", "price": "1.200 TL", "duration": "45 dk", "description": "Derin temizlik, eksfoliasyon, nemlendirme ve antioksidan serum. Aninda parlaklık." },
+          { "id": "s2", "name": "Lazer Epilasyon (Koltuk Alti)", "price": "400 TL", "duration": "15 dk", "description": "Alexandrite lazer ile kalici tuy azaltma. FDA onaylI cihaz." },
+          { "id": "s3", "name": "Kimyasal Peeling", "price": "800 TL", "duration": "30 dk", "description": "Cilt yenileme, leke tedavisi, ince cizgi azaltma. AHA/BHA formülü." },
+          { "id": "s4", "name": "LED Isik Terapisi", "price": "600 TL", "duration": "30 dk", "description": "Kirmizi ve mavi LED ile akne tedavisi ve kolajen stimulasyonu." },
+          { "id": "s5", "name": "Kirpik Lifting", "price": "500 TL", "duration": "45 dk", "description": "Dogal kirpiklerinizi yukari kaldirarak goz acici etki." },
+          { "id": "s6", "name": "Microblading Kas", "price": "3.000 TL", "duration": "120 dk", "description": "Kalem kalem kas cizimi, 12-18 ay kalici. Dokunus seansı dahil." }
+        ],
+        "team": [
+          { "id": "t1", "name": "Gamze Tekin", "role": "Kurucu & Cilt Bakim Uzmani", "experience": "10 yil" },
+          { "id": "t2", "name": "Merve Sahin", "role": "Lazer Teknisyeni", "experience": "6 yil" }
+        ]
+      },
+      "content": {
+        "hero": { "badge": "Nisantasi'nin Glow Adresi", "title": "Glow Studio Istanbul", "subtitle": "Nisantasi Abdi Ipekci'de, FDA onayli cihazlarla cilt bakimi, lazer epilasyon ve estetik hizmetler.", "cta1": { "text": "Online Randevu", "href": "#iletisim" }, "cta2": { "text": "WhatsApp", "href": "https://wa.me/905442345678" } },
+        "about": { "badge": "Biz Kimiz", "title": "Cildinizin Isildadigi Yer", "description": "Glow Studio, Gamze Tekin tarafindan 2019'da Nisantasi'nda kuruldu. 10 yillik cilt bakimi tecrubesiyle, Turkiye'nin en ileri cihazlarini kullanan modern bir guzellik merkezi. HydraFacial, Alexandrite lazer ve LED terapi ana hizmetlerimiz arasinda. Tum urunlerimiz dermatolojik olarak test edilmis, cihazlarimiz FDA ve CE onayli." },
+        "services": { "badge": "Hizmetler", "title": "Glow Hizmetleri", "subtitle": "Cilt bakimindan lazer epilasyona, bilimsel guzellik cozumleri." },
+        "stats": { "stats": [{ "value": "20K+", "label": "Mutlu Musteri" }, { "value": "5", "label": "Yillik Deneyim" }, { "value": "4.8", "label": "Google Puan", "suffix": "/5" }, { "value": "6", "label": "FDA Onayli Cihaz" }] },
+        "contact": { "badge": "Randevu", "title": "Hemen Randevu Alin", "subtitle": "Abdi Ipekci Caddesi uzerinde, Nisantasi Metro'ya 3 dakika." },
+        "faq": { "badge": "SSS", "title": "Sikca Sorulan Sorular", "questions": [
+          { "q": "Lazer epilasyon kac seans gerektirir?", "a": "Ortalama 6-8 seans, 4-6 hafta arayla. Sonuc hormon dengesi ve tuy yapisina gore degisir. Ilk seansta %30-40 azalma gozlenir." },
+          { "q": "HydraFacial icin hazirlik gerekli mi?", "a": "Hayir, islem oncesi ozel bir hazirlik gerekmez. Makyajsiz gelmeniz yeterli. Islem sonrasi gunes koruyucu kullanmanizionerilir." },
+          { "q": "Microblading ne kadar kalici?", "a": "12-18 ay arasi. Cilt tipinize gore degisir. 6-8 hafta sonra dokunuz seansi yapilir (ucrete dahil)." },
+          { "q": "Hamilelikte lazer epilasyon yapilir mi?", "a": "Hayir, hamilelik ve emzirme doneminde lazer epilasyon uygulanmaz. Dogumdan 6 ay sonra baslayabilirsiniz." },
+          { "q": "Erkek musterilere lazer epilasyon yapilir mi?", "a": "Evet, sırt, gogs, omuz ve yuz bolgeleri icin erkek lazer epilasyon hizmeti mevcuttur." },
+          { "q": "Odeme secenekleri nelerdir?", "a": "Nakit, kredi karti, havale. Lazer paketlerde 6 taksit imkani. 6 seanslik paketlerde %20 indirim uygulanir." }
+        ]}
+      }
+    },
+    {
+      "id": "guzellik-blanc",
+      "variantName": "blanc",
+      "plan": "growth",
+      "description": "Medikal estetik ve anti-aging merkezi",
+      "designPhilosophy": "Luks, minimal, beyaz — klinik hissi",
+      "isDark": false,
+      "colors": { "bg": "#FEFEFE", "surface": "#F8F6F4", "text": "#1A1A1A", "accent": "#9D7B5C", "accentHover": "#B08D6B" },
+      "fonts": { "heading": "Cormorant Garamond", "body": "Inter" },
+      "business": {
+        "name": "Blanc Medikal Estetik",
+        "ownerName": "Dr. Ceren Yilmaz",
+        "sector": "Guzellik",
+        "slogan": "Dogalliginizi koruyan medikal estetik",
+        "phone": "0212 345 67 89",
+        "phoneClean": "902123456780",
+        "whatsapp": "905553456780",
+        "email": "randevu@blancestetik.com",
+        "website": "https://blancestetik.com",
+        "address": "Etiler Mah. Nispetiye Cad. No:78/2, Besiktas/Istanbul",
+        "city": "Istanbul", "district": "Besiktas", "neighborhood": "Etiler",
+        "coordinates": { "lat": 41.0810, "lng": 29.0305 },
+        "socialMedia": { "instagram": "https://instagram.com/blancestetik", "youtube": "https://youtube.com/@drcerenylmz" },
+        "photos": [], "foundedYear": 2018, "experience": "12 yil",
+        "customerCount": "30.000+", "rating": 4.9, "reviewCount": 2100,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "09:00", "close": "19:00", "isOpen": true },
+          { "day": "Sali", "open": "09:00", "close": "19:00", "isOpen": true },
+          { "day": "Carsamba", "open": "09:00", "close": "19:00", "isOpen": true },
+          { "day": "Persembe", "open": "09:00", "close": "19:00", "isOpen": true },
+          { "day": "Cuma", "open": "09:00", "close": "18:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "10:00", "close": "16:00", "isOpen": true },
+          { "day": "Pazar", "open": null, "close": null, "isOpen": false }
+        ],
+        "services": [
+          { "id": "s1", "name": "Botox (Alın + Goz Cevresi)", "price": "4.000 TL", "duration": "20 dk", "description": "Allergan Botox ile mimik cizgi tedavisi. Dogal ifade korunur." },
+          { "id": "s2", "name": "Dolgu (Dudak)", "price": "5.000 TL", "duration": "30 dk", "description": "Juvederm HA dolgu ile dudak dolgunlastirma. Dogal gorunu garanti." },
+          { "id": "s3", "name": "PRP (Vampir Facial)", "price": "3.000 TL", "duration": "45 dk", "description": "Kendi kaninizdan hazirlanan PRP ile cilt yenileme ve kolajen stimulasyonu." },
+          { "id": "s4", "name": "Mezoterapi (Yuz)", "price": "2.500 TL", "duration": "30 dk", "description": "Hyaluronik asit ve vitamin kokteyli ile cilt nemlendiIme ve canlandirma." },
+          { "id": "s5", "name": "Iplik Askisi (PDO)", "price": "8.000 TL", "duration": "60 dk", "description": "Ameliyatsiz yuz gercme. PDO ipleri ile cildi yukari kaldirma." },
+          { "id": "s6", "name": "Karbon Peeling (Lazer)", "price": "1.500 TL", "duration": "30 dk", "description": "Hollywood facial olarak bilinen karbon lazer peeling. Gosen sıkılaştırma." },
+          { "id": "s7", "name": "Lazer Leke Tedavisi", "price": "2.000 TL", "duration": "20 dk", "description": "Q-switched lazer ile gunes lekeleri, melasma tedavisi." },
+          { "id": "s8", "name": "Anti-Aging Paket (Premium)", "price": "15.000 TL", "duration": "120 dk", "description": "Botox + PRP + mezoterapi + LED kombinasyonu. 4 seans, ayda 1." },
+          { "id": "s9", "name": "Goz Alti Isik Dolgusu", "price": "6.000 TL", "duration": "30 dk", "description": "Goz alti morluklari ve cokmelere karsi HA dolgu. Aninda sonuc." },
+          { "id": "s10", "name": "HIFU (Yuz Germe)", "price": "10.000 TL", "duration": "60 dk", "description": "Yuksek yogunluklu odakli ultrason ile ameliyatsiz yuz germe." }
+        ],
+        "team": [
+          { "id": "t1", "name": "Dr. Ceren Yilmaz", "role": "Medikal Estetik Hekimi", "experience": "12 yil" },
+          { "id": "t2", "name": "Dr. Ece Demir", "role": "Dermatoloji Uzmani", "experience": "9 yil" },
+          { "id": "t3", "name": "Selin Kaya", "role": "Cilt Bakim Uzmani", "experience": "7 yil" },
+          { "id": "t4", "name": "Melis Ozer", "role": "Lazer Teknisyeni", "experience": "5 yil" }
+        ]
+      },
+      "content": {
+        "hero": { "badge": "Etiler Medikal Estetik", "title": "Blanc Medikal Estetik", "subtitle": "Dr. Ceren Yilmaz ile dogalliginizi koruyan medikal estetik. Botox, dolgu, PRP ve ileri anti-aging tedaviler.", "cta1": { "text": "Ucretsiz Konsultasyon", "href": "#iletisim" }, "cta2": { "text": "Oncesi/Sonrasi", "href": "#galeri" } },
+        "about": { "badge": "Hakkimizda", "title": "Dogallik Felsefemiz", "description": "Blanc Medikal Estetik, 2018'de Dr. Ceren Yilmaz tarafindan Etiler'de kuruldu. Istanbul Tip Fakultesi mezunu olan Dr. Yilmaz, Fransa'da 2 yil medikal estetik ihtisasi yapmistir. Blanc'in felsefesi 'less is more' — amacimiz sizi degistirmek degil, en iyi halinizi ortaya cikarmak. Tum islemlerimizde FDA onayli, dunyaca taninmis urunler kullaniyoruz: Allergan Botox, Juvederm dolgu, Dermapen 4 mezoterapi. Klinigimiz Saglik Bakanligi ruhsatli, tum islemler doktor tarafindan uygulanir." },
+        "services": { "badge": "Hizmetler", "title": "Medikal Estetik Hizmetleri", "subtitle": "Botox'tan HIFU'ya, bilimsel estetik cozumler." },
+        "stats": { "stats": [{ "value": "30K+", "label": "Islem" }, { "value": "12", "label": "Yil Deneyim" }, { "value": "4.9", "label": "Hasta Memnuniyeti", "suffix": "/5" }, { "value": "100%", "label": "FDA Onayli Urunler" }] },
+        "gallery": { "badge": "Oncesi/Sonrasi", "title": "Sonuclarimiz" },
+        "testimonials": { "badge": "Hasta Yorumlari", "title": "Musterilerimiz Ne Diyor?", "reviews": [
+          { "name": "Aysun K.", "location": "Etiler", "rating": 5, "date": "2025-12", "text": "Botox icin Dr. Ceren'e gidiyorum, 3. yilim. Hic 'donuk' gorunmuyorum, herkes ne kadar dinlenmis gorundugumusoruyor. Dogal sonuc veren tek doktor." },
+          { "name": "Dilek M.", "location": "Bebek", "rating": 5, "date": "2025-11", "text": "Dudak dolgusu yaptirdim, cok korkuyordum ama sonuc mukemmel. Dr. Ceren az az ilerledi, coook dogal gorunuyor." },
+          { "name": "Pinar T.", "location": "Levent", "rating": 5, "date": "2025-10", "text": "PRP + mezoterapi kombinasyonu cildimi yeniden hayata dondurdu. 4 seans sonra 10 yas genc gorundugumu soyluyorlar." },
+          { "name": "Selma A.", "location": "Nisantasi", "rating": 5, "date": "2025-09", "text": "HIFU ile yuz germe yaptirdim, ameliyatsiz bu kadar etkili olabilecegine inanamiyordum. Cenemde belirgin sikilaşma var." },
+          { "name": "Hande Y.", "location": "Atasehir", "rating": 4, "date": "2025-08", "text": "Goz alti dolgusu icin geldim. Morluklanim gitti, aninda sonuc. Biraz pahali ama kalite ve guvenilirlik icin yatirim." },
+          { "name": "Berna S.", "location": "Sariyer", "rating": 5, "date": "2025-07", "text": "Anti-aging paket harika. Her ay farklı islem yapiyoruz, cildim 40 yasinda ama 30'unda gorunuyor. Selin'in cilt bakimi da muhtetem." }
+        ]},
+        "contact": { "badge": "Konsultasyon", "title": "Ucretsiz On Gorusme", "subtitle": "Etiler Nispetiye Caddesi'nde. Ilk gorusme ucretsiz, size ozel tedavi plani hazirliyoruz." },
+        "faq": { "badge": "SSS", "title": "Sikca Sorulan Sorular", "questions": [
+          { "q": "Botox ne kadar surer?", "a": "Etki 4-6 ay surer. Ilk 3-4 gun tam oturmasi beklenir. Duzenli yapildiginda kaslar zayiflar ve etkI suresi uzar." },
+          { "q": "Dolgu geri emilebilir mi?", "a": "Evet, HA dolgu hyaluronidaz enzimi ile ihtiyac durumunda eritilebilir. Bu nedenle HA bazli dolgu kullaniyoruz, kalici dolgu uygulamiyoruz." },
+          { "q": "Islemler agriIi mi?", "a": "Topikal anestezik krem uygulanir, cogu hasta hafif bir basinca benzer his tarif eder. Dudak dolgusu icin sinir blogu uygulanabilir." },
+          { "q": "Erkekler icin de hizmet veriliyor mu?", "a": "Evet, erkek hastalarimiz ozellikle botox, PRP (sac dokulmesi icin) ve lazer leke tedavisi tercih ediyor." },
+          { "q": "Saglik Bakanligi ruhsati var mi?", "a": "Evet, klinigimiz Saglik Bakanligi onayli, tum islemler doktor tarafindan yapilir. Urunlerimizin seri numaralari faturalanir." },
+          { "q": "Ilk gorusme ucretli mi?", "a": "Hayir, ilk konsultasyon ucretsizdir. Yuz analiziniz yapilir, ihtiyaclariniza gore tedavi plani onerilir. Islem yapip yapmamak tamamen size kalmis." },
+          { "q": "Isidemler sonrasi ne yapmaliyim?", "a": "Islem turune gore degisir: Botox sonrası 4 saat yatmayin, dolgu sonrasi 24 saat makyaj yapmayin. Detayli bakim talimati yazili verilir." },
+          { "q": "Taksit imkani var mi?", "a": "Evet, 3-9 taksit imkani mevcuttur. Anti-aging paketlerde pesin odemede %15 indirim uygulanir." }
+        ]}
+      }
+    },
+    {
+      "id": "guzellik-atelier",
+      "variantName": "atelier",
+      "plan": "pro",
+      "description": "Premium spa ve wellness merkezi",
+      "designPhilosophy": "Luks, huzur, spa atmosferi — altin ve bej tonlari",
+      "isDark": false,
+      "colors": { "bg": "#FDFBF7", "surface": "#F5F0E6", "text": "#2C2418", "accent": "#A68B5B", "accentHover": "#BFA06D" },
+      "fonts": { "heading": "Playfair Display", "body": "Lato" },
+      "business": {
+        "name": "Atelier Spa & Wellness",
+        "ownerName": "Sibel Ozturk",
+        "sector": "Guzellik",
+        "slogan": "Bedeninize ve ruhunuza luks bakim",
+        "phone": "0212 789 01 23",
+        "phoneClean": "902127890123",
+        "whatsapp": "905447890123",
+        "email": "info@atelierspa.com.tr",
+        "website": "https://atelierspa.com.tr",
+        "address": "Arnavutkoy Mah. Kuruluslu Cad. No:35, Besiktas/Istanbul",
+        "city": "Istanbul", "district": "Besiktas", "neighborhood": "Arnavutkoy",
+        "coordinates": { "lat": 41.0690, "lng": 29.0430 },
+        "socialMedia": { "instagram": "https://instagram.com/atelierspaist", "facebook": "https://facebook.com/atelierspaist", "pinterest": "https://pinterest.com/atelierspaist" },
+        "photos": [], "foundedYear": 2014, "experience": "10 yil",
+        "customerCount": "45.000+", "rating": 4.9, "reviewCount": 2800,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "09:00", "close": "21:00", "isOpen": true },
+          { "day": "Sali", "open": "09:00", "close": "21:00", "isOpen": true },
+          { "day": "Carsamba", "open": "09:00", "close": "21:00", "isOpen": true },
+          { "day": "Persembe", "open": "09:00", "close": "21:00", "isOpen": true },
+          { "day": "Cuma", "open": "09:00", "close": "22:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "08:00", "close": "22:00", "isOpen": true },
+          { "day": "Pazar", "open": "09:00", "close": "20:00", "isOpen": true }
+        ],
+        "services": [
+          { "id": "s1", "name": "Bali Masaji (60 dk)", "price": "1.200 TL", "duration": "60 dk", "description": "Geleneksel Bali masaji, aromaterapi yaglari ile derin rahatlama." },
+          { "id": "s2", "name": "Hot Stone Masaj (75 dk)", "price": "1.500 TL", "duration": "75 dk", "description": "Volkanik bazalt taslarla kas gerginligi giderme ve enerji dengeleme." },
+          { "id": "s3", "name": "Hamam Ritueli", "price": "1.800 TL", "duration": "90 dk", "description": "Geleneksel Turk hamami: kese, kopuk masaji, nemlendirme. Ozel hamam odasi." },
+          { "id": "s4", "name": "Gold Facial", "price": "2.500 TL", "duration": "75 dk", "description": "24 ayar altin maske, hyaluronik asit serum, LED terapi. Premium cilt bakimi." },
+          { "id": "s5", "name": "Couple Spa Paketi", "price": "4.000 TL", "duration": "120 dk", "description": "Ciftlere ozel: 2 kisilik masaj + hamam + sampanya. Ozel VIP oda." },
+          { "id": "s6", "name": "Detox Body Wrap", "price": "1.400 TL", "duration": "60 dk", "description": "Deniz yosunu sargisl ile toksin atimi ve cilt sikilastirma." },
+          { "id": "s7", "name": "Refleksoloji (Ayak)", "price": "600 TL", "duration": "45 dk", "description": "Ayak basincnoktalarI ile tum vucutta denge ve rahatlama." },
+          { "id": "s8", "name": "Aromaterapi Masaji (90 dk)", "price": "1.600 TL", "duration": "90 dk", "description": "Kisisellesirilmis eterik yag karisimi ile beden-zihin dengesi." },
+          { "id": "s9", "name": "Anti-Cellulite Programi (5 Seans)", "price": "5.000 TL", "duration": "45 dk", "description": "LPG + manuel lenf drenaj kombinasyonu. 5 seans, haftada 1." },
+          { "id": "s10", "name": "Sac Bakimi (Keratin)", "price": "2.000 TL", "duration": "120 dk", "description": "Brezilya keratin bakimi. 3 ay duz, parlak ve bakimli saclar." },
+          { "id": "s11", "name": "Manikur Spa (Gel)", "price": "400 TL", "duration": "45 dk", "description": "Parafinli el bakimi + gel oje. Lux manikur deneyimi." },
+          { "id": "s12", "name": "Full Day Spa Paketi", "price": "6.000 TL", "duration": "360 dk", "description": "Tum gun: masaj + hamam + facial + ogle yemegi + havuz. 6 saat luks." },
+          { "id": "s13", "name": "Gelin Paketi", "price": "8.000 TL", "duration": "240 dk", "description": "Dugun oncesi: hamam + masaj + cilt bakimi + manikur/pedikur + sac bakimi." },
+          { "id": "s14", "name": "Prenatal Masaj", "price": "1.000 TL", "duration": "45 dk", "description": "Hamileliğe ozel yumusak masaj. 2. trimesterden itibaren uygulanir." }
+        ],
+        "team": [
+          { "id": "t1", "name": "Sibel Ozturk", "role": "Kurucu & Spa Direktoru", "experience": "18 yil" },
+          { "id": "t2", "name": "Bali Wayan", "role": "Senior Masoz (Bali)", "experience": "20 yil" },
+          { "id": "t3", "name": "Ayse Koc", "role": "Hamam Ustası", "experience": "15 yil" },
+          { "id": "t4", "name": "Derya Arslan", "role": "Cilt Bakim Uzmani", "experience": "10 yil" },
+          { "id": "t5", "name": "Melis Tan", "role": "Sac Bakim Uzmani", "experience": "8 yil" },
+          { "id": "t6", "name": "Zehra Polat", "role": "Refleksolog", "experience": "12 yil" }
+        ]
+      },
+      "content": {
+        "hero": { "badge": "Premium Spa — Arnavutkoy", "title": "Atelier Spa & Wellness", "subtitle": "Bogazin huzurunda, Arnavutkoy'de 800 metrekarelik luks spa merkezi. Masaj, hamam, cilt bakimi ve wellness bir arada.", "cta1": { "text": "Randevu Al", "href": "#iletisim" }, "cta2": { "text": "Paketleri Incele", "href": "#hizmetler" } },
+        "about": { "badge": "Hikayemiz", "title": "Istanbul'un Huzur Adasi", "description": "Atelier Spa, 2014 yilinda Sibel Ozturk tarafindan Arnavutkoy sahilinde kuruldu. Sibel Hanim, Tayland ve Bali'de 3 yil egitim almis, dunyanin en iyi spa merkezlerinde calismistir. Atelier'in felsefesi Dogu'nun bilgeligi ile Bati'nin teknolojisini bulusturmak. 800 metrekarelik mekanımızda ozel hamam, 4 masaj odasi, VIP cift odasi, havuz ve rahatlama alanı bulunuyor. Masozlerimiz Bali, Tayland ve Turkiye'den gelen deneyimli terapistler. Tum urunlerimiz organik ve cruelty-free. 2022'de World Spa Awards'dan 'Best Day Spa Turkey' odulunu aldik." },
+        "services": { "badge": "Hizmetler", "title": "Spa & Wellness Hizmetleri", "subtitle": "Masajdan hamama, cilt bakimindan wellness paketlerine." },
+        "stats": { "stats": [{ "value": "45K+", "label": "Mutlu Konuk" }, { "value": "10", "label": "Yil" }, { "value": "4.9", "label": "Puan", "suffix": "/5" }, { "value": "1", "label": "Odul (World Spa Awards)" }] },
+        "gallery": { "badge": "Mekanımız", "title": "Atelier Atmosferi" },
+        "testimonials": { "badge": "Konuk Yorumlari", "title": "Konuklarimizdan", "reviews": [
+          { "name": "Zeynep B.", "location": "Bebek", "rating": 5, "date": "2025-12", "text": "Full Day Spa paketini hediye aldım. 6 saatlik luks deneyim, havuzda kokteyl, oglen organik yemek. En guzel hediye!" },
+          { "name": "Asli D.", "location": "Etiler", "rating": 5, "date": "2025-11", "text": "Hamam ritueli baska bir boyut. Ayse Usta'nin kesesi inanilmaz, cildim ipek gibi oldu. Turk hamami deneyiminin zirvesi." },
+          { "name": "Hakan T.", "location": "Sariyer", "rating": 5, "date": "2025-10", "text": "Esimle Couple Spa icin geldik. VIP oda muhtesem, masaj sonrasi sampanya ile Bogaz manzarasi. Yildonumu icin mukemmel." },
+          { "name": "Burcu K.", "location": "Levent", "rating": 5, "date": "2025-09", "text": "Bali masaji icin Wayan'a gidiyorum, 3 yildir ayni terapist. Elleri sihirli, her seanstan sonra yeniden doğmuş gibi hissediyorum." },
+          { "name": "Sinem O.", "location": "Sisli", "rating": 4, "date": "2025-08", "text": "Gold Facial sonuclari gercekten gorunur. Cildim parliyordu, makyajsiz bile kendimi cok iyi hissettim. Biraz pahali ama degeri var." },
+          { "name": "Melike Y.", "location": "Nisantasi", "rating": 5, "date": "2025-07", "text": "Gelin paketi icin geldim, dugunumden 1 hafta once. Her sey mukemmeldi, stres yok, sadece huzur. Dujunume isiIdayan bir ciltler girdim." },
+          { "name": "Tolga A.", "location": "Besiktas", "rating": 5, "date": "2025-06", "text": "Hot stone masaji baslangiçta supheydim ama inanilmaz rahatlattI. Sirtimdaki gerginlik tamamen gitti. Artik aylik rutinm." },
+          { "name": "Derya S.", "location": "Uskudar", "rating": 5, "date": "2025-05", "text": "Prenatal masaj bana hameligimde cok iyi geldi. Bel agrim azaldi, uyku kalitem artti. Teripist cok dikkatli ve ozenli." }
+        ]},
+        "team": { "badge": "Ekibimiz", "title": "Uzman Terapistlerimiz" },
+        "contact": { "badge": "Rezervasyon", "title": "Kendinize Zaman Ayirin", "subtitle": "Arnavutkoy sahilinde, Bogaz manzarali. Vale park mevcut. Grup ve ozel etkinlik icin ozel fiyatlandirma." },
+        "faq": { "badge": "SSS", "title": "Merak Edilenler", "questions": [
+          { "q": "Erkek konuklar da kabul ediliyor mu?", "a": "Evet, tum masaj ve hamam hizmetlerimiz erkek konuklara da aciktir. Erkek ve kadin ayrı bolümlerde hizmet verilir." },
+          { "q": "Hediye karti mevcut mu?", "a": "Evet, 1.000 TL, 2.500 TL, 5.000 TL ve 10.000 TL degerinde hediye kartlarimiz var. Online veya mekanidan alinabilir. 1 yil gecerlidir." },
+          { "q": "Vale park var mi?", "a": "Evet, ucretsiz vale park hizmetimiz mevcuttur. Arnavutkoy'de park sorunu yasamamaniz icin konuklarimizi biz karsilıyoruz." },
+          { "q": "Grup rezervasyonu yapabilir miyim?", "a": "Evet, bekarliga veda, dogum gunu, kurumsal wellness gibi etkinlikler icin 6-20 kisilik grup paketlerimiz mevcuttur. Ozel menu ve dekorasyon yapilabilir." },
+          { "q": "Havuz mevcut mu?", "a": "Evet, isitmali iç mekan havuzumuz ve jakuzimiz mevcuttur. Full Day Spa paketine dahildir, diger konuklara 500 TL ek ucretle sunulur." },
+          { "q": "Cocuklar kabul ediliyor mu?", "a": "12 yas alti cocuklar spa alanina alinmamaktadir. 12-17 yas icin ebeveyn esliginde bazi hizmetler sunulabilir." },
+          { "q": "Iptal politikasi nedir?", "a": "24 saat oncesinden ucretsiz iptal. 24 saatten az surede iptal veya gelmeme durumunda %50 ucret alinir. Grup rezervasyonlarda 48 saat." },
+          { "q": "Organik urunler mi kullaniyorsunuz?", "a": "Evet, tum masaj yaglari organik ve soguk sikma. Cilt bakimi urunleri Fransa'dan ithal, vegan ve cruelty-free. Alerji bilgisi randevu sirasinda sorulur." },
+          { "q": "Kurumsal wellness anlasmasi yapiliyor mu?", "a": "Evet, 10+ calisan icin aylik wellness paketi: masaj veya hamam secenekleri, kisi basi 800 TL'den baslayan fiyatlarla. HR departmaniniz ile gorusme yapiriz." },
+          { "q": "Bogaz manzarali oda var mi?", "a": "VIP cift odamiz ve teras rahatlama alanimiz Bogaz manzaralidir. Diger odalar ic mekan, sessiz ve huzurludur." }
+        ]},
+        "cta": { "badge": "Ozel Teklif", "title": "Ilk Ziyaretinize %15 Indirim", "subtitle": "Online randevu alin, ilk hizmetinizde %15 hosgeldin indirimi kazanin." },
+        "process_steps": { "badge": "Deneyim", "title": "Atelier Deneyimi", "steps": [
+          { "title": "Karsilama", "description": "Bitki cayi ve lukum ile karsilanin, ihtiyaclariniz dinlensin." },
+          { "title": "Kisisel Plan", "description": "Terapistiniz size ozel bakim plani olusturur." },
+          { "title": "Uygulama", "description": "Huzurlu ortamda, uzman ellerinde bakim deneyimi." },
+          { "title": "Rahatlama", "description": "Islem sonrasi havuz veya rahatlama odasinda dinlenin." }
+        ]}
+      }
+    },
+    {
+      "id": "guzellik-dermis",
+      "variantName": "dermis",
+      "plan": "enterprise",
+      "description": "Cok subeli zincir guzellik ve lazer merkezi",
+      "designPhilosophy": "Modern, enerjik, marka kimligi guclu — franchise hissi",
+      "isDark": true,
+      "colors": { "bg": "#0A0612", "surface": "#140F20", "text": "#F0ECF5", "accent": "#A855F7", "accentHover": "#C084FC", "accentLight": "#1A0F2E", "surfaceElevated": "#1E1730", "textSecondary": "#A78BBA" },
+      "fonts": { "heading": "Space Grotesk", "body": "Inter" },
+      "business": {
+        "name": "Dermis Beauty Group",
+        "ownerName": "Deniz Ozkan",
+        "sector": "Guzellik",
+        "slogan": "Istanbul'un 6 noktasinda, tek standart: mukemmellik",
+        "phone": "0850 600 3376",
+        "phoneClean": "908506003376",
+        "whatsapp": "905556003376",
+        "email": "info@dermisbeauty.com.tr",
+        "website": "https://dermisbeauty.com.tr",
+        "address": "Bagdat Cad. No:420/A, Suadiye, Kadikoy/Istanbul (Merkez)",
+        "city": "Istanbul", "district": "Kadikoy", "neighborhood": "Suadiye",
+        "coordinates": { "lat": 40.9610, "lng": 29.0720 },
+        "socialMedia": { "instagram": "https://instagram.com/dermisbeauty", "tiktok": "https://tiktok.com/@dermisbeauty", "youtube": "https://youtube.com/@dermisbeauty", "twitter": "https://twitter.com/dermisbeauty" },
+        "photos": [], "foundedYear": 2016, "experience": "8 yil",
+        "customerCount": "300.000+", "rating": 4.7, "reviewCount": 9500,
+        "branches": [
+          { "name": "Suadiye (Merkez)", "address": "Bagdat Cad. No:420/A, Kadikoy" },
+          { "name": "Nisantasi", "address": "Abdi Ipekci Cad. No:30, Sisli" },
+          { "name": "Levent", "address": "Nispetiye Cad. No:52, Besiktas" },
+          { "name": "Bakirkoy", "address": "Istasyon Cad. No:20, Bakirkoy" },
+          { "name": "Atasehir", "address": "Brandium AVM Kat:2 No:8, Atasehir" },
+          { "name": "Uskudar", "address": "Baglarbaşi Cad. No:14, Uskudar" }
+        ],
+        "workingHours": [
+          { "day": "Pazartesi", "open": "09:00", "close": "21:00", "isOpen": true },
+          { "day": "Sali", "open": "09:00", "close": "21:00", "isOpen": true },
+          { "day": "Carsamba", "open": "09:00", "close": "21:00", "isOpen": true },
+          { "day": "Persembe", "open": "09:00", "close": "21:00", "isOpen": true },
+          { "day": "Cuma", "open": "09:00", "close": "22:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "09:00", "close": "22:00", "isOpen": true },
+          { "day": "Pazar", "open": "10:00", "close": "20:00", "isOpen": true }
+        ],
+        "services": [
+          { "id": "s1", "name": "Alexandrite Lazer (Koltuk Alti)", "price": "500 TL", "duration": "15 dk", "description": "Candela GentleMax Pro ile kalici tuy azaltma." },
+          { "id": "s2", "name": "Alexandrite Lazer (Bikini)", "price": "600 TL", "duration": "20 dk", "description": "Hassas bolge lazer epilasyon. Sogutma sistemi ile agrisiz." },
+          { "id": "s3", "name": "Alexandrite Lazer (Tum Vucut)", "price": "3.000 TL", "duration": "90 dk", "description": "Bas-ayak tum vucut lazer. 8 seans paket 18.000 TL." },
+          { "id": "s4", "name": "HydraFacial MD", "price": "1.500 TL", "duration": "45 dk", "description": "Patentli HydraFacial cihazi ile derin temizlik ve nemlendirme." },
+          { "id": "s5", "name": "Karbon Peeling", "price": "1.200 TL", "duration": "30 dk", "description": "Lazer ile karbon maskesi patlatma. Gosen sikilaotirma ve parlaklık." },
+          { "id": "s6", "name": "Dermapen 4 (Microneedling)", "price": "2.000 TL", "duration": "45 dk", "description": "Kolajen induksiyon terapisi. Akne izleri ve cilt dokusu iyilestirme." },
+          { "id": "s7", "name": "LED Terapi", "price": "500 TL", "duration": "20 dk", "description": "Kirmizi+mavi LED. Akne, anti-aging, cilt yenileme." },
+          { "id": "s8", "name": "IPL Leke Tedavisi", "price": "1.500 TL", "duration": "20 dk", "description": "Yogun atimli isik ile gunes lekeleri ve pigmentasyon tedavisi." },
+          { "id": "s9", "name": "Kirpik Lifting + Boya", "price": "600 TL", "duration": "45 dk", "description": "Dogal kirpikleri yukari kaldirma ve boyama. 6-8 hafta kalici." },
+          { "id": "s10", "name": "Microblading Kas", "price": "4.000 TL", "duration": "120 dk", "description": "Kalem kalem kas cizimi. Dokunuz seansi dahil. 12-18 ay kalici." },
+          { "id": "s11", "name": "BB Glow", "price": "1.800 TL", "duration": "45 dk", "description": "Microneedling ile BB krem infuzyonu. Fondotensiz parlak cilt." },
+          { "id": "s12", "name": "Lenf Drenaj Masaji", "price": "600 TL", "duration": "45 dk", "description": "Manuel lenf drenaj ile odem giderme ve detoks." },
+          { "id": "s13", "name": "Agda (Sir Agda, Tum Vucut)", "price": "800 TL", "duration": "60 dk", "description": "Premium sir agda ile tum vucut epilasyon." },
+          { "id": "s14", "name": "Gelilik Paketi (Premium)", "price": "10.000 TL", "duration": "360 dk", "description": "6 haftalik program: lazer + cilt bakimi + kirpik + kas + manikur." },
+          { "id": "s15", "name": "Cilt Analizi (AI Destekli)", "price": "300 TL", "duration": "15 dk", "description": "Yapay zeka destekli cilt taramasi. Nem, yag, gosen analizi." },
+          { "id": "s16", "name": "Body Contouring (HIFU)", "price": "5.000 TL", "duration": "45 dk", "description": "Vucult sekilleendirme: karin, kalca, bacak. Non-invaziv." },
+          { "id": "s17", "name": "Oxygen Facial", "price": "1.200 TL", "duration": "45 dk", "description": "Oksjen infuzyonu ile cilt canlandirma. Red carpet facial." },
+          { "id": "s18", "name": "Sac Mezoterapisi", "price": "2.500 TL", "duration": "30 dk", "description": "Sac dokulmesine karsi vitamin ve mineral enjeksiyonu." },
+          { "id": "s19", "name": "Kalici Oje (Gel)", "price": "250 TL", "duration": "30 dk", "description": "CND Shellac kalici oje. 14-21 gun dayanir." },
+          { "id": "s20", "name": "Uyelik Paketi (Aylik)", "price": "2.500 TL", "duration": null, "description": "Aylik: 1 cilt bakimi + 1 lazer bolge + sinirsiz kas/kirpik. %40 tasarruf." }
+        ],
+        "team": [
+          { "id": "t1", "name": "Deniz Ozkan", "role": "Kurucu & CEO", "experience": "15 yil" },
+          { "id": "t2", "name": "Dr. Pinar Tepe", "role": "Medikal Danısmani", "experience": "12 yil" },
+          { "id": "t3", "name": "Elif Sahin", "role": "Egitim Direktoru", "experience": "10 yil" },
+          { "id": "t4", "name": "Merve Kaya", "role": "Sube Muduru — Suadiye", "experience": "8 yil" },
+          { "id": "t5", "name": "Gozde Arslan", "role": "Sube Muduru — Nisantasi", "experience": "7 yil" },
+          { "id": "t6", "name": "Selin Polat", "role": "Senior Lazer Teknisyeni", "experience": "9 yil" },
+          { "id": "t7", "name": "Tugce Yildiz", "role": "Cilt Bakim Uzmani", "experience": "6 yil" },
+          { "id": "t8", "name": "Arda Cetin", "role": "Dijital Pazarlama", "experience": "5 yil" }
+        ]
+      },
+      "content": {
+        "hero": { "badge": "Istanbul'un Guzellik Zinciri", "title": "Dermis Beauty Group", "subtitle": "6 subede 300.000+ mutlu musteri. Lazer epilasyon, cilt bakimi, estetik hizmetler — tek standart, tek kalite.", "cta1": { "text": "Online Randevu", "href": "#iletisim" }, "cta2": { "text": "En Yakin Sube", "href": "#subeler" } },
+        "about": { "badge": "Hikayemiz", "title": "8 Yilda 6 Sube, 300K Mutlu Musteri", "description": "Dermis Beauty, 2016 yilinda Deniz Ozkan tarafindan Suadiye'de tek bir stüdyo olarak kuruldu. Lazer epilasyon ve profesyonel cilt bakimi alaninda Istanbul'un en hizli buyuyen markası olan Dermis, bugun 6 subesi, 60+ calisani ve AI destekli cilt analiz teknolojisi ile sektore yon veriyor. Her subemizde ayni cihazlar (Candela GentleMax Pro, HydraFacial MD, Dermapen 4), ayni egitimli ekip ve ayni hizmet standartlari bulunur. 2023'te kurulan Dermis Academy ile kendi personeImizi yetistiriyoruz. 2025 hedefimiz Ankara ve Izmir'e acilmak. Tum hizmetlerimiz SGK disinda olup, ozel saglik sigortası ile kullanilabilir." },
+        "services": { "badge": "Hizmetler", "title": "Dermis Hizmet Portfoyu", "subtitle": "Lazer epilasyondan medikal estetige, 20 cesit profesyonel hizmet." },
+        "stats": { "stats": [{ "value": "6", "label": "Sube" }, { "value": "300K+", "label": "Musteri" }, { "value": "4.7", "label": "Puan", "suffix": "/5" }, { "value": "9.500+", "label": "Google Yorum" }] },
+        "gallery": { "badge": "Subelerimiz", "title": "Dermis Mekanlar" },
+        "testimonials": { "badge": "Musteri Deneyimleri", "title": "Dermis Ailesinden", "reviews": [
+          { "name": "Cansu K.", "location": "Suadiye", "rating": 5, "date": "2026-01", "text": "8 seans lazer sonrasi %95 tuy azalmasi. Candela cihazi cok etkili, agri nerdeyse yok. Aylik uyelik de cok avantajli." },
+          { "name": "Buse T.", "location": "Nisantasi", "rating": 5, "date": "2025-12", "text": "HydraFacial sonrasi cildim parliyordu. Nisantasi subesi cok sik, ekip guleris yuzlu. Hep ayni kalite, hangi subeye gitsem." },
+          { "name": "Ayca D.", "location": "Levent", "rating": 5, "date": "2025-11", "text": "Microblading icin geldim, sonuc muhtesem. Dogal gorunuyor, kas sekli yuzume cok uygun. Dokunuz seansi da dahildi." },
+          { "name": "Serhat O.", "location": "Bakirkoy", "rating": 4, "date": "2025-10", "text": "Erkek olarak lazer epilasyon icin geldim, hic garipsenmeden profesyonel hizmet aldim. Sirt ve omuz bolgeleri icin ideal." },
+          { "name": "Nil A.", "location": "Atasehir", "rating": 5, "date": "2025-09", "text": "AI cilt analizi cok etkileyiciydi. Cildimin ihtiyaclarini grafik olarak gordum. Ona gore tedavi plani cikardi." },
+          { "name": "Melis Y.", "location": "Kadikoy", "rating": 5, "date": "2025-08", "text": "Gelin paketi muhtesemdi. 6 hafta boyunca cildim ve vucudum dugune hazirlandi. O gun gercekten isildiyordum." },
+          { "name": "Tugba S.", "location": "Uskudar", "rating": 5, "date": "2025-07", "text": "Dermapen sonrasi akne izlerim belirgin olarak azaldi. 3 seans yaptirdim, fark gozle goruluyor." },
+          { "name": "Eda N.", "location": "Florya", "rating": 4, "date": "2025-06", "text": "Oxygen Facial red carpet oncesi favori islemim oldu. Makyaj ustune yapmaya gerek kalmiyor, cilt kendi kendine parlıyor." },
+          { "name": "Kerem B.", "location": "Besiktas", "rating": 5, "date": "2025-05", "text": "Sac mezoterapisi baslattim, 4. seanstan sonra belirgin gürlesme var. Dr. Pinar cok bilgili ve guveniIir." },
+          { "name": "Sibel M.", "location": "Maltepe", "rating": 5, "date": "2025-04", "text": "Uyelik paketi hesapli ve pratik. Her ay 1 cilt bakimi + 1 lazer + kas. Ayri ayri alsan 2 katI tutar." },
+          { "name": "Ozlem C.", "location": "Sariyer", "rating": 5, "date": "2025-03", "text": "Body contouring HIFU ile karin bolgesinde 2 cm incelme oldu. Ameliyatsiz, agrisiz, gunluk hayata hemen dondum." },
+          { "name": "Hakan V.", "location": "Beylikduzu", "rating": 4, "date": "2025-02", "text": "Karbon peeling icin Bakirkoy subesine gittim. Islem 30 dk surdu, cilt gercekten parlak gorunuyor. Fiyat-performans iyi." }
+        ]},
+        "team": { "badge": "Dermis Ailesi", "title": "60+ Profesyonel, Tek Standart" },
+        "contact": { "badge": "Iletisim", "title": "Size En Yakin Dermis", "subtitle": "6 subemizden size en yakin olani secin. Online randevu veya 0850 ile 7/24 destek." },
+        "faq": { "badge": "SSS", "title": "Sikca Sorulan Sorular", "questions": [
+          { "q": "Lazer epilasyon kac seans gerektirir?", "a": "Ortalama 6-8 seans, 4-6 hafta arayla. Hormonal ve genetik faktorlere gore degisebilir. Ilk seansta %30-40 azalma." },
+          { "q": "Tum subelerde ayni cihazlar mi var?", "a": "Evet, tum subelerde Candela GentleMax Pro (lazer), HydraFacial MD, Dermapen 4 ve LED cihazlari bulunur. Cihaz farkli olan hizmet yoktur." },
+          { "q": "Uyelik nasil calisiyor?", "a": "Aylik 2.500 TL: 1 HydraFacial + 1 lazer bolge + sinirsiz kas/kirpik bakimi. Minimum 3 ay, iptal 30 gun oncesinden." },
+          { "q": "Erkek musteriler hangi subelerde kabul ediliyor?", "a": "Tum subelerde erkek musterilere acigiz. Sirt, gogs, omuz ve yuz lazer, cilt bakimi, sac mezoterapisi sunulmaktadir." },
+          { "q": "Sigorta ile kullanilabilir mi?", "a": "Medikal islemler (lazer leke tedavisi, mezoterapi) icin ozel saglik sigortaniz kapsaminda fatura duzenlenebilir. Estetik hizmetler sigorta kapsaminda degildir." },
+          { "q": "Hamilelikte hangi hizmetler yapilabilir?", "a": "Hamilelikte lazer, kimyasal peeling ve mezoterapi yapilmaz. Cilt bakimi (yuzeysel), kas bakimi ve manikur yapilabilir." },
+          { "q": "AI cilt analizi ucreti var mi?", "a": "Randevu ile gelen musterilere ucretsizdir. Sadece analiz icin gelenlere 300 TL. Sonuc ve tedavi onerisini rapor halinde alirsiniZ." },
+          { "q": "Online randevu nasil yapilir?", "a": "Web sitemiz, Instagram DM veya WhatsApp ile randevu alinabilir. Sube ve terapist secimi mumkun. SMS hatırlatma gonderilir." },
+          { "q": "Taksit imkani var mi?", "a": "Evet, tum hizmetlerde 3 taksit, paketlerde 6-9 taksit imkani. Uyelik odemeleri otomatik cekim ile yapilir." },
+          { "q": "Franchise veriyor musunuz?", "a": "2025 sonrasindan itibaren franchise modeli planlanmaktadır. On basvuru icin franchise@dermisbeauty.com.tr adresine yazabilirsiniz." },
+          { "q": "Personel egitimi nasil yapiliyor?", "a": "Dermis Academy'de 3 aylik egitim programi: teori + pratik + sinav. Her terapist yilda 2 kez guncelleme egitimi alir." },
+          { "q": "Iptal ve iade politikasi nedir?", "a": "24 saat oncesinden ucretsiz iptal. Son 24 saatte iptal/gelmeme: ilk seferde uyarı, tekrarda seans hakki duser. Paket iadeleri pro-rata hesaplanir." },
+          { "q": "Dermis'e nasil basvurabilirim (kariyer)?", "a": "kariyer.dermisbeauty.com.tr uzerinden basvuru yapabilirsiniz. Lazer teknisyeni, cilt bakim uzmani ve resepsiyon pozisyonlari surekli aciktir." },
+          { "q": "Grup indirimi var mi?", "a": "4+ kisilik grup randevularinda %15 indirim. Bekarliga veda, dogum gunu gibi etkinliklerde ozel paketler hazirlaniir." },
+          { "q": "Sonuclari ne zaman gorebilirim?", "a": "Lazer: ilk seanstan sonra 2 hafta icinde tuy dokulmesi. Cilt bakimi: aninda parlaklık. Microneedling: 4-6 hafta. HIFU: 2-3 ay icinde tam sonuc." }
+        ]},
+        "cta": { "badge": "Hosgeldin Firsati", "title": "Ilk Seansa %30 Indirim", "subtitle": "Online randevu alin, ilk lazer veya cilt bakimi seansında %30 hosgeldin indirimi kazanin." },
+        "process_steps": { "badge": "Dermis Deneyimi", "title": "4 Adimda Guzellik", "steps": [
+          { "title": "AI Analiz", "description": "Cilt taramasi ile ihtiyaclariniz belirlenir." },
+          { "title": "Kisisel Plan", "description": "Uzmaniniz size ozel tedavi protokolü olusturur." },
+          { "title": "Uygulama", "description": "FDA onayli cihazlarla profesyonel islem." },
+          { "title": "Takip", "description": "Sonuc takibi ve bakim enerileri ile destek." }
+        ]},
+        "blog_preview": { "badge": "Dermis Blog", "title": "Guzellik & Bakim Rehberi", "posts": [
+          { "title": "Lazer Epilasyon: 2026 Rehberi", "excerpt": "Alexandrite mi, diode mi? Hangi lazer teknolojisi size uygun? Uzmanlarimiz anlatiyor...", "date": "2026-01-10" },
+          { "title": "HydraFacial vs Karbon Peeling: Hangisin Secmeli?", "excerpt": "Iki populer cilt bakimi tedavisini karsilastirdik...", "date": "2025-12-05" },
+          { "title": "Dermis 6. Subesini Uskudar'da Acti", "excerpt": "Baglarbaşi Caddesi'ndeki yeni subemiz Kasim 2025'te hizmete girdi...", "date": "2025-11-15" }
+        ]},
+        "newsletter": { "badge": "Dermis Club", "title": "Kampanya ve Haberleri Kacirmayin", "subtitle": "Aylik ozel kampanyalar, yeni hizmet haberleri ve guzellik ipuclari icin bultenimize katılin.", "placeholder": "E-posta adresiniz", "buttonText": "Katil" },
+        "brands_logos": { "badge": "Teknoloji Ortaklarimiz", "title": "Cihaz & Urun Partnerlerimiz", "brands": ["Candela", "HydraFacial", "Dermapen", "CND Shellac", "Allergan", "Juvederm", "SkinCeuticals", "Instagram Beauty Awards 2024"] }
+      }
+    }
+  ]
+}

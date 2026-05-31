@@ -8,8 +8,9 @@ import Canvas from './Canvas'
 import RightPanel from './RightPanel'
 import { useEditorStore, type SiteData } from '../store/editor-store'
 import { useEsnaf } from '@/context/EsnafContext'
-import { DEMOLAR } from '@/data/demoVitrinData'
-import { useEditorPreview } from '../hooks/useEditorPreview'
+import { THEME_CATALOG_ARRAY } from '@kepenk/templates/src/registry/theme-catalog'
+import { loadTheme } from '@kepenk/templates/src/registry/config-loader'
+import { themeConfigToSiteData } from '@/utils/themeToSiteData'
 import ContextMenu from './ContextMenu'
 import InlineEditPanel from './InlineEditPanel'
 import ImageEditOverlay from './ImageEditOverlay'
@@ -28,43 +29,42 @@ export default function EditorShell() {
     /* Wait for mount before using portal */
     useEffect(() => { setMounted(true) }, [])
 
-    /* Populate siteData from EsnafContext + DEMOLAR on first load */
+    /* Populate siteData from EsnafContext + ThemeCatalog on first load */
     useEffect(() => {
         if (siteData || esnafLoading) return
 
-        // If esnaf has a saved siteJson from a previous session, reload it
+        // If esnaf has an AST structure in siteData, load it directly
+        if (esnaf?.siteData && typeof esnaf.siteData === 'object' && esnaf.siteData.theme) {
+            setSiteData(esnaf.siteData as SiteData)
+            return
+        }
+
+        // Fallback to legacy siteJson from a previous session
         if (esnaf?.siteJson && typeof esnaf.siteJson === 'object' && esnaf.siteJson.sektorId) {
             setSiteData(esnaf.siteJson as SiteData)
             return
         }
 
-        // Otherwise create initial from DEMOLAR match
+        // Create initial from Theme Catalog match
         const sektor = esnaf?.sektor || ''
-        const demo = DEMOLAR.find(d => d.ad.toLowerCase().includes(sektor.toLowerCase())) || DEMOLAR[0]
+        let match = THEME_CATALOG_ARRAY.find(d => d.sectorLabel.toLowerCase().includes(sektor.toLowerCase()) || d.id.includes(sektor.toLowerCase()))
+        if (!match) match = THEME_CATALOG_ARRAY[0]
 
-        const initial: SiteData = {
-            sektorId: demo.id,
-            kategori: demo.kategori,
-            isletmeAdi: esnaf?.isletmeAdiTam || esnaf?.isletmeAdi || esnaf?.ad || demo.heroBaslik,
-            heroBaslik: esnaf?.isletmeAdiTam || esnaf?.isletmeAdi || demo.heroBaslik,
-            heroAlt: demo.heroAlt,
-            hizmetler: demo.hizmetler,
-            bg: demo.bg,
-            accent: demo.accent,
-            text: demo.text,
-            font: demo.font,
-            unsplash: demo.unsplash,
-            telefon: esnaf?.telefon || esnaf?.waNumarasi || '',
-            adres: esnaf?.ilce ? `${esnaf.ilce}, İstanbul` : 'İstanbul',
-            paket: esnaf?.paket || 'STANDART',
-            moduller: [],
-        }
-
-        setSiteData(initial)
+        loadTheme(match.id).then(res => {
+            if (res) {
+                const initial = themeConfigToSiteData(res.config, res.business, {
+                    isletmeAdi: esnaf?.isletmeAdiTam || esnaf?.isletmeAdi || esnaf?.ad,
+                    telefon: esnaf?.telefon || esnaf?.waNumarasi || '',
+                    adres: esnaf?.ilce ? `${esnaf.ilce}, İstanbul` : 'İstanbul',
+                    paket: esnaf?.paket || 'STANDART',
+                })
+                setSiteData(initial)
+            }
+        }).catch(err => {
+            console.error("Failed to load initial theme:", err)
+        })
     }, [esnaf, esnafLoading, siteData, setSiteData])
 
-    /* Activate the preview hook — watches siteData, generates HTML */
-    useEditorPreview()
 
     /* Activate autosave — 3s debounce + ⌘S */
     useAutosave()

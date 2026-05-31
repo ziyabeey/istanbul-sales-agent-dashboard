@@ -1,0 +1,1332 @@
+{
+  "sectorId": "dis",
+  "seoSchemaType": "Dentist",
+  "variants": [
+    {
+      "id": "dis-modern",
+      "variantName": "modern",
+      "plan": "free",
+      "description": "Mahalle dis klinigi, temiz ve guvenilir",
+      "designPhilosophy": "Temiz, beyaz, saglik hissi",
+      "isDark": false,
+      "colors": {
+        "bg": "#FFFFFF",
+        "surface": "#F5F9FC",
+        "text": "#1A2332",
+        "accent": "#2B7A9E"
+      },
+      "fonts": { "heading": "Inter", "body": "Inter" },
+      "business": {
+        "name": "Dis Hekimi Ayse Korkmaz",
+        "ownerName": "Ayse Korkmaz",
+        "sector": "Dis",
+        "slogan": "Saglikli gulus, mutlu hayat",
+        "phone": "0216 345 12 34",
+        "phoneClean": "902163451234",
+        "whatsapp": "905361234567",
+        "email": "info@dthaysekorkmaz.com",
+        "address": "Acıbadem Mah. Kucuksu Cad. No:45/B, Uskudar/Istanbul",
+        "city": "Istanbul",
+        "district": "Uskudar",
+        "neighborhood": "Acibadem",
+        "coordinates": { "lat": 41.0042, "lng": 29.0391 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/dtaysekorkmaz"
+        },
+        "photos": [],
+        "foundedYear": 2018,
+        "experience": "8 yil",
+        "customerCount": "6.500+",
+        "rating": 4.8,
+        "reviewCount": 520,
+        "services": [
+          {
+            "id": "s1",
+            "name": "Dis Dolgusu (Kompozit)",
+            "price": "800 - 1.500 TL",
+            "duration": "30-45 dk",
+            "description": "Dis renginde estetik dolgular. Curuk tedavisi ve kirik dis onarimi icin kullanilan uzun omurlu kompozit dolgu."
+          },
+          {
+            "id": "s2",
+            "name": "Dis Cekimi",
+            "price": "500 - 2.000 TL",
+            "duration": "20-40 dk",
+            "description": "Lokal anestezi altinda agrisiz dis cekimi. Gomulu 20 yas disi cekimi dahil. Cekim sonrasi bakim yonergeleri verilir."
+          },
+          {
+            "id": "s3",
+            "name": "Dis Tasi Temizligi",
+            "price": "600 TL",
+            "duration": "30 dk",
+            "description": "Ultrasonik cihazla dis tasi ve plak temizligi. 6 ayda bir yapilmasi onerilen rutin bakim islemi."
+          },
+          {
+            "id": "s4",
+            "name": "Kanal Tedavisi",
+            "price": "2.000 - 3.500 TL",
+            "duration": "60-90 dk",
+            "description": "Iltihaplanmis veya enfekte olmus dis sinirinin tedavisi. Disin cekilmeden kurtarilmasini saglayan endodontik islem."
+          }
+        ],
+        "workingHours": [
+          { "day": "Pazartesi", "open": "09:00", "close": "18:00", "isOpen": true },
+          { "day": "Sali", "open": "09:00", "close": "18:00", "isOpen": true },
+          { "day": "Carsamba", "open": "09:00", "close": "18:00", "isOpen": true },
+          { "day": "Persembe", "open": "09:00", "close": "18:00", "isOpen": true },
+          { "day": "Cuma", "open": "09:00", "close": "18:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "10:00", "close": "14:00", "isOpen": true },
+          { "day": "Pazar", "open": null, "close": null, "isOpen": false }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Guler Yuz, Saglıklı Disler",
+          "subtitle": "8 yillik deneyimle dis dolgusundan kanal tedavisine, genel dis sagligi hizmetleriniz icin guvenle gelebilirsiniz.",
+          "badge": "Uskudar"
+        },
+        "about": {
+          "title": "Dt. Ayse Korkmaz",
+          "description": "2018 yilinda Acibadem'de actigim klinikimde, hastalarima samimi ve rahat bir ortamda dis tedavisi sunuyorum. Istanbul Universitesi Dishekimligi Fakultesi mezunuyum.\n\nKlinikimde ozellikle dis korkusu olan hastalara ozel yaklasim gosteriyor, her islemi adim adim anlatarak guvende hissetmelerini sagliyorum. Hijyen ve sterilizasyon konusunda en ust standartlarda calisiyorum.\n\nCocuk dis sagliginda da deneyimliyim ve aile dostu bir klinik ortami sunuyorum."
+        },
+        "services": {
+          "title": "Tedavilerimiz",
+          "subtitle": "Genel dis sagliginiz icin ihtiyaciniz olan tum tedaviler"
+        },
+        "contact": {
+          "title": "Randevu Alin",
+          "subtitle": "Telefonla veya WhatsApp'tan randevu olusturabilirsiniz"
+        },
+        "faq": [
+          {
+            "q": "Dis dolgusu ne kadar dayanir?",
+            "a": "Kompozit dolgular ortalama 5-10 yil dayanir. Dis firlama ve sikma aliskanligi olan hastalarda sure kisalabilir. Duzenli kontrollerle dolgunuzun durumunu takip ediyoruz."
+          },
+          {
+            "q": "Kanal tedavisi agriyor mu?",
+            "a": "Hayir, lokal anestezi altinda agrisiz bir islemdir. Tedavi sirasinda ve sonrasinda hafif hassasiyet olabilir, agri kesicilerle rahatlıkla kontrol altina alinir."
+          },
+          {
+            "q": "Dis tasi temizligi zararlı mi?",
+            "a": "Hayir, aksine dis eti sagliginiz icin gereklidir. Dis tasi dislerinize zarar vermez ama dislerin arasi acilmis gibi hissedebilirsiniz — bu normaldir, dis taslari o boslugu dolduruyordu."
+          },
+          {
+            "q": "SGK'li tedavi yapiyor musunuz?",
+            "a": "Klinikimiz ozel muayenehane oldugundan SGK anlasmasin yoktur. Ancak ozel saglik sigortasi olan hastalarimiz sigortalarini kullanabilir."
+          }
+        ],
+        "testimonials": []
+      }
+    },
+    {
+      "id": "dis-cocuk",
+      "variantName": "cocuk",
+      "plan": "starter",
+      "description": "Cocuk dis klinigi, eglenceli ve renkli",
+      "designPhilosophy": "Canli, samimi, cocuk dostu",
+      "isDark": false,
+      "colors": {
+        "bg": "#FFFBF5",
+        "surface": "#FFF3E4",
+        "text": "#2D2A26",
+        "accent": "#E67E22"
+      },
+      "fonts": { "heading": "Quicksand", "body": "Nunito" },
+      "business": {
+        "name": "Minidis Cocuk Dis Klinigi",
+        "ownerName": "Ozlem Sahin",
+        "sector": "Dis",
+        "slogan": "Kucuk gulucukler icin buyuk ozen",
+        "phone": "0216 520 33 44",
+        "phoneClean": "902165203344",
+        "whatsapp": "905451234567",
+        "email": "merhaba@minidis.com.tr",
+        "address": "Goztepe Mah. Bagdat Cad. No:220/A, Kadikoy/Istanbul",
+        "city": "Istanbul",
+        "district": "Kadikoy",
+        "neighborhood": "Goztepe",
+        "coordinates": { "lat": 40.9741, "lng": 29.0561 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/minidisklinik",
+          "youtube": "https://youtube.com/@minidis"
+        },
+        "photos": [],
+        "foundedYear": 2016,
+        "experience": "10 yil",
+        "customerCount": "12.000+",
+        "rating": 4.9,
+        "reviewCount": 890,
+        "services": [
+          {
+            "id": "s1",
+            "name": "Cocuk Dis Muayenesi",
+            "price": "400 TL",
+            "duration": "30 dk",
+            "description": "Oyun ortaminda yapilan cocuk dostu dis muayenesi. Curuk risk analizi, dis sayimi ve florid uygulama onerisi."
+          },
+          {
+            "id": "s2",
+            "name": "Fissur Ortucu",
+            "price": "500 TL/dis",
+            "duration": "15 dk",
+            "description": "Cocuklarin arka dislerindeki oluklarin koruyucu materyal ile kapatilmasi. Curuk olusumunu %80 azaltir."
+          },
+          {
+            "id": "s3",
+            "name": "Sut Disi Dolgusu",
+            "price": "700 TL",
+            "duration": "20-30 dk",
+            "description": "Curuklu sut dislerinin renkli veya beyaz dolgu ile tedavisi. Cocugun dikkatini dagitan eglenceli ortam."
+          },
+          {
+            "id": "s4",
+            "name": "Yer Tutucu Uygulamasi",
+            "price": "1.200 TL",
+            "duration": "20 dk",
+            "description": "Erken cekilen sut dislerinin yerini daimi dislere kadar korumak icin uygulanan aparey."
+          },
+          {
+            "id": "s5",
+            "name": "Sedasyon Altinda Tedavi",
+            "price": "3.500 TL + tedavi",
+            "duration": "60-120 dk",
+            "description": "Dis korkusu yuksek veya cok kucuk cocuklarda bilinçli sedasyon altında tum tedavilerin tek seansta yapilmasi."
+          },
+          {
+            "id": "s6",
+            "name": "Florid (Flor) Uygulamasi",
+            "price": "350 TL",
+            "duration": "10 dk",
+            "description": "Dis minesini guclendiren ve curuge karsi koruma saglayan profesyonel flor jeli uygulamasi. 6 ayda bir onerilir."
+          }
+        ],
+        "team": [
+          {
+            "name": "Dt. Ozlem Sahin",
+            "title": "Kurucu | Pedodonti Uzmani",
+            "bio": "Marmara Universitesi Dishekimligi, Pedodonti Uzmanligi. 10 yildir sadece cocuk dis sagligi alaninda calisiyor.",
+            "photo": ""
+          },
+          {
+            "name": "Dt. Baris Yalcin",
+            "title": "Pedodonti Uzmani",
+            "bio": "Hacettepe Universitesi Pedodonti. Ozel gereksinimli cocuklarin dis tedavisinde uzman.",
+            "photo": ""
+          }
+        ],
+        "workingHours": [
+          { "day": "Pazartesi", "open": "09:00", "close": "18:00", "isOpen": true },
+          { "day": "Sali", "open": "09:00", "close": "18:00", "isOpen": true },
+          { "day": "Carsamba", "open": "09:00", "close": "18:00", "isOpen": true },
+          { "day": "Persembe", "open": "09:00", "close": "18:00", "isOpen": true },
+          { "day": "Cuma", "open": "09:00", "close": "18:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "10:00", "close": "15:00", "isOpen": true },
+          { "day": "Pazar", "open": null, "close": null, "isOpen": false }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Cocugunuz Icin Eglenceli Dis Bakimi",
+          "subtitle": "Oyun odasindan tedavi koltuğuna — cocuk dis uzmanligiyla korkusuz, agrisiz, eglenceli dis deneyimi.",
+          "badge": "Pedodonti Klinigi"
+        },
+        "about": {
+          "title": "Minidis Hakkinda",
+          "description": "2016 yilinda Bagdat Caddesi'nde kurulan Minidis, Turkiye'nin ilk sadece cocuklara ozel dis kliniklerinden biridir. 12.000'den fazla kucuk hastaya hizmet verdik.\n\nKlinikimizin her koœesi cocuklar dusunulerek tasarlandi: renkli dekorasyon, oyun odasi, tavan ekranlari ve odul sistemi ile tedavi surecini cocuklar icin eglenceli bir deneyime donusturuyoruz.\n\nDt. Ozlem Sahin ve ekibi, cocuklarin dis hekimine olan korkusunu yenmelerine yardimci olmak icin davranissal yaklasim teknikleri kullanmaktadir. Her seans, cocugun yasina ve psikolojik durumuna uygun olarak planlanir."
+        },
+        "services": {
+          "title": "Cocuk Dis Tedavilerimiz",
+          "subtitle": "0-16 yas arasi tum cocuklara ozel dis sagligi hizmetleri"
+        },
+        "stats": {
+          "title": "Minidis Rakamlari",
+          "items": [
+            { "value": "12.000+", "label": "Mutlu Cocuk" },
+            { "value": "10", "label": "Yil Deneyim" },
+            { "value": "4.9", "label": "Google Puan" },
+            { "value": "2", "label": "Uzman Hekim" }
+          ]
+        },
+        "contact": {
+          "title": "Randevu Alin",
+          "subtitle": "Cocugunuz icin online veya telefonla randevu olusturun"
+        },
+        "faq": [
+          {
+            "q": "Cocuklari ilk dis kontrolune kacinda goturmeli?",
+            "a": "Ilk dis ciktiktan sonra, en gec 1 yasinda ilk dis kontrolu yapilmalidir. Erken baslanan kontroller cocugun dis hekimine alismasini saglar ve sorunlarin erken tespitini mumkun kilar."
+          },
+          {
+            "q": "Sut dislerinin tedavi edilmesi gerekli mi?",
+            "a": "Kesinlikle evet. Sut dislerindeki curuler enfeksiyona neden olabilir ve alttan gelen daimi disleri etkileyebilir. Ayrica sut disleri daimi dislerin yerine dogru cikmasini saglayan dogal yer tutuculardir."
+          },
+          {
+            "q": "Sedasyon guvenlii mi?",
+            "a": "Bilincli sedasyon, anestezi uzmani esliginde uygulanan guvenli bir yontemdir. Cocuk uykuda degildir, bilinci yerindedir ama sakindir. Tum vital bulgular islem boyunca izlenir."
+          },
+          {
+            "q": "Dis firmalama diş telı gerektirir mi?",
+            "a": "Her durumda dis teli gerekmez. Erken mudahale ile bazi ortodontik sorunlar aparey ile cozulebilir. Detayli degerlendirme icin muayene gereklidir."
+          },
+          {
+            "q": "Cocugum dis hekiminden cok korkuyor, ne yapmaliyim?",
+            "a": "Minidis'te davranissal yaklasim teknikleri kullaniyoruz: 'soyle-goster-yap' metodu, dikkat dagitma ve pozitif pekistirme. Ilk seansta tedavi yapmayiz, tanitim ve alisma sureci geciriliriz."
+          },
+          {
+            "q": "Fissur ortucu her cocuga yapilmali mi?",
+            "a": "Ozellikle 6 yas dislerinin cikmasiyla birlikte tavsiye edilir. Curuk riski yuksek cocuklarda mutlaka uygulanmalidir. Agrisiz ve tek seansta tamamlanan bir islemdir."
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Esra K.",
+            "location": "Goztepe",
+            "date": "2025-11",
+            "rating": 5,
+            "text": "Oglum dis hekiminden cok korkuyordu. Minidis'e geldikten sonra 'anne ne zaman yine gidecegiz' diyor. Ozlem Hanim harika bir hekim."
+          },
+          {
+            "name": "Burak T.",
+            "location": "Bostanci",
+            "date": "2025-09",
+            "rating": 5,
+            "text": "3 yasindaki kizimiz icin sedasyon altinda tedavi yaptirdik. Cok profesyonel bir ekip, her adimi anlatilar. Kizimiz hicbir sey anlamadi bile."
+          },
+          {
+            "name": "Sibel A.",
+            "location": "Atasehir",
+            "date": "2025-07",
+            "rating": 5,
+            "text": "Iki cocugumu da Minidis'e getiriyorum. Oyun odasi, tavan ekrani, oduller — cocuklar klinige gelmeyi seviyor. Fiyatlar da makul."
+          }
+        ]
+      }
+    },
+    {
+      "id": "dis-estetik",
+      "variantName": "estetik",
+      "plan": "growth",
+      "description": "Estetik dis hekimligi, Hollywood gulus tasarimi",
+      "designPhilosophy": "Sik, beyaz, premium his",
+      "isDark": false,
+      "colors": {
+        "bg": "#FFFFFF",
+        "surface": "#F8F6F3",
+        "text": "#1A1A2E",
+        "accent": "#7C5CBF"
+      },
+      "fonts": { "heading": "Playfair Display", "body": "Lato" },
+      "business": {
+        "name": "White Smile Studio | Dt. Mert Ozkan",
+        "ownerName": "Mert Ozkan",
+        "sector": "Dis",
+        "slogan": "Gulusunuzu tasarliyoruz",
+        "phone": "0212 680 90 12",
+        "phoneClean": "902126809012",
+        "whatsapp": "905371234567",
+        "email": "randevu@whitesmilestudio.com",
+        "address": "Tesvikiye Mah. Abdi Ipekci Cad. No:52/4, Sisli/Istanbul",
+        "city": "Istanbul",
+        "district": "Sisli",
+        "neighborhood": "Tesvikiye",
+        "coordinates": { "lat": 41.0525, "lng": 28.9932 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/whitesmilestudio",
+          "youtube": "https://youtube.com/@whitesmilestudio",
+          "tiktok": "https://tiktok.com/@whitesmilestudio"
+        },
+        "photos": [],
+        "foundedYear": 2014,
+        "experience": "12 yil",
+        "customerCount": "18.000+",
+        "rating": 4.9,
+        "reviewCount": 2100,
+        "services": [
+          {
+            "id": "s1",
+            "name": "Dental Veneer (Porselen Lamine)",
+            "price": "5.000 - 8.000 TL/dis",
+            "duration": "2 seans",
+            "description": "Disin on yuzeyine yapistirilan ince porselen kaplamalar. Dis rengi, sekli ve boyutu degistirilerek mukemmel gulus tasarlanir."
+          },
+          {
+            "id": "s2",
+            "name": "Zirkonyum Dis Kaplama",
+            "price": "4.000 - 6.000 TL/dis",
+            "duration": "2-3 seans",
+            "description": "Yuksek dayaniklilikta, dogal gorunumlu zirkonyum kronlar. Arka ve on dislerde estetik ve fonksiyon bir arada."
+          },
+          {
+            "id": "s3",
+            "name": "Dis Beyazlatma (Ofis Tipi)",
+            "price": "3.000 TL",
+            "duration": "60 dk",
+            "description": "Klinik ortamda profesyonel dis beyazlatma. Tek seansta 3-8 ton beyazlatma. Isik aktivasyonlu jel uygulama."
+          },
+          {
+            "id": "s4",
+            "name": "Gulus Tasarimi (Smile Design)",
+            "price": "25.000 - 80.000 TL",
+            "duration": "3-5 seans",
+            "description": "Dijital gulus analizi ile yuz oranlariniza uygun mukemmel gulus tasarimi. Mockup ile onizleme, hasta onayiyla uygulama."
+          },
+          {
+            "id": "s5",
+            "name": "Dis Eti Esteti (Gum Contouring)",
+            "price": "2.500 TL",
+            "duration": "30-45 dk",
+            "description": "Lazer ile dis eti sekillendirme. Dis etleri fazla gozuken (gummy smile) hastalarda ideal dis eti hatti olusturma."
+          },
+          {
+            "id": "s6",
+            "name": "Bonding (Estetik Dolgu)",
+            "price": "1.500 - 2.500 TL/dis",
+            "duration": "30-60 dk",
+            "description": "Dis renginde kompozit recine ile dis sekli ve boyutu duzeltme. Diastemma (disler arasi bosluk) kapatma islemi."
+          },
+          {
+            "id": "s7",
+            "name": "E-Max Kaplama",
+            "price": "5.500 - 7.500 TL/dis",
+            "duration": "2 seans",
+            "description": "Litiyum disilikat cam seramikten uretilen ultra ince ve son derece estetik porselen kaplamalar."
+          },
+          {
+            "id": "s8",
+            "name": "Ev Tipi Beyazlatma Kiti",
+            "price": "2.000 TL",
+            "duration": "2 hafta kullanim",
+            "description": "Kisiye ozel uretilen plak ve profesyonel beyazlatma jeli ile evde uygulanan beyazlatma tedavisi."
+          },
+          {
+            "id": "s9",
+            "name": "Full Agiz Restorasyon",
+            "price": "50.000 - 150.000 TL",
+            "duration": "5-10 seans",
+            "description": "Tum dislerin estetik ve fonksiyonel olarak yeniden yapilandirmasi. Kapmala, implant ve gulus tasarimi kombine."
+          },
+          {
+            "id": "s10",
+            "name": "Dis Mucevher (Tooth Gem)",
+            "price": "800 TL",
+            "duration": "15 dk",
+            "description": "Swarovski kristal veya altin dis mucevheri uygulamasi. Dise zarar vermeyen yapistirma teknigi ile."
+          }
+        ],
+        "team": [
+          {
+            "name": "Dt. Mert Ozkan",
+            "title": "Kurucu | Estetik Dishekimi",
+            "bio": "Hacettepe Universitesi Dishekimligi. ABD'de UCLA estetik dishekimligi egitimi. 12 yildir gulus tasarimi alaninda calisiyor.",
+            "photo": ""
+          },
+          {
+            "name": "Dt. Irem Aktas",
+            "title": "Estetik Dishekimi",
+            "bio": "Istanbul Universitesi Dishekimligi. Dental veneer ve gulus esteti konusunda 8 yillik deneyim.",
+            "photo": ""
+          },
+          {
+            "name": "Dt. Kagan Arslan",
+            "title": "Protez Uzmani",
+            "bio": "Marmara Universitesi Protetik Dis Tedavisi Uzmanligi. Zirkonyum ve E-Max restorasyonlarda uzmanlik.",
+            "photo": ""
+          },
+          {
+            "name": "Dis Teknikeri Sema Dogan",
+            "title": "CAD/CAM Laboratuvar Sefi",
+            "bio": "15 yillik dis teknikerlik deneyimi. Dijital porselen uretimi ve renk eslestirme uzmani.",
+            "photo": ""
+          }
+        ],
+        "workingHours": [
+          { "day": "Pazartesi", "open": "09:00", "close": "19:00", "isOpen": true },
+          { "day": "Sali", "open": "09:00", "close": "19:00", "isOpen": true },
+          { "day": "Carsamba", "open": "09:00", "close": "19:00", "isOpen": true },
+          { "day": "Persembe", "open": "09:00", "close": "19:00", "isOpen": true },
+          { "day": "Cuma", "open": "09:00", "close": "19:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "10:00", "close": "16:00", "isOpen": true },
+          { "day": "Pazar", "open": null, "close": null, "isOpen": false }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Hayalinizdeki Gulusu Tasarliyoruz",
+          "subtitle": "Dijital gulus tasarimi, porselen veneer ve dis beyazlatma ile dogal, kusursuz guluse kavusun. 18.000+ mutlu hasta.",
+          "badge": "Estetik Dis Merkezi"
+        },
+        "about": {
+          "title": "White Smile Studio'ya Hosgeldiniz",
+          "description": "2014 yilinda Tesvikiye'de kurulan White Smile Studio, Istanbul'un en bilinen estetik dis merkezlerinden biridir. Dt. Mert Ozkan'in UCLA'deki estetik dishekimligi egitimi sonrasi kurdugu klinik, bugun 4 uzman hekimle hizmet vermektedir.\n\nMerkezimizde son teknoloji dijital dis tasarimi (DSD - Digital Smile Design) sistemiyle, tedavi oncesinde gulusunuzun son halini gormenizi sagliyoruz. 3D tarama, dijital mockup ve kisisel analiz ile yuzunuze en uygun gulus tasarlanir.\n\nTurkiye'de dis turizmi alaninda da aktif olan merkezimiz, yurt disindan gelen hastalara VIP transfer, otel ve tercumanlik hizmeti sunmaktadir.\n\nKendi bunyemizdeki CAD/CAM laboratuvarinda tum porselen islemleri yerinde uretiliyor, bu sayede kalite kontrolu ve hiz avantaji sagliyoruz."
+        },
+        "services": {
+          "title": "Estetik Tedavilerimiz",
+          "subtitle": "Hollywood gulusunden dogal beyazlatmaya — gulusunuz icin her sey"
+        },
+        "stats": {
+          "title": "Rakamlarla White Smile",
+          "items": [
+            { "value": "18.000+", "label": "Mutlu Hasta" },
+            { "value": "12", "label": "Yil Deneyim" },
+            { "value": "2.100+", "label": "Google Yorum" },
+            { "value": "4", "label": "Uzman Hekim" }
+          ]
+        },
+        "gallery": {
+          "title": "Once & Sonra",
+          "subtitle": "Hastalarimizin gulus donusumleri"
+        },
+        "contact": {
+          "title": "Ucretsiz Gulus Analizi",
+          "subtitle": "Dijital gulus analiziniz icin randevu alin — ilk konsultasyon ucretsizdir"
+        },
+        "faq": [
+          {
+            "q": "Dental veneer dise zarar verir mi?",
+            "a": "Minimal hazirlama teknigimizle dis yuzeyinden sadece 0.3-0.5mm asindirilir. Disinizin buyuk bolumu korunur. Prep-siz (tornidasiz) veneer secenekleri de mevcuttur."
+          },
+          {
+            "q": "Gulus tasarimi kac seans surer?",
+            "a": "Genellikle 3-5 seans icinde tamamlanir. Ilk seans dijital analiz ve planlama, 2. seans mockup deneme, sonraki seanslar uygulama ve bitirme islemleridir."
+          },
+          {
+            "q": "Zirkonyum mu porselen mi tercih etmeliyim?",
+            "a": "On dislerde estetik acisindan E-Max veya lamine veneer tercih edilir. Arka dislerde ise dayaniklilik icin zirkonyum daha uygundur. Mert Bey durumunuza ozel oneriyi muayene sonrasi yapacaktir."
+          },
+          {
+            "q": "Dis beyazlatma ne kadar surer?",
+            "a": "Ofis tipi beyazlatma tek seansta 60 dakikada tamamlanir. Sonuc 3-8 ton beyazlama olarak gorunur. Ortalama 1-2 yil dayanir, beslenme aliskanliarina bagli olarak degisir."
+          },
+          {
+            "q": "Yurt disindan gelen hastalar icin hizmetiniz var mi?",
+            "a": "Evet, VIP havalimani transferi, partnerotel'lerde konaklama ve Ingilizce-Almanca tercumanlik hizmeti sunuyoruz. Online konsultasyon ile tedavi plani ve fiyat bilgisi onceden paylasilir."
+          },
+          {
+            "q": "Taksit imkani var mi?",
+            "a": "Evet, 12 aya kadar faizsiz taksit seceneklerimiz mevcuttur. Kredi karti, banka transferi ve nakit odeme kabul ediyoruz."
+          },
+          {
+            "q": "Hollywood Smile ne kadar surer?",
+            "a": "Tam agiz gulus tasarimi genellikle 5-7 gun icerisinde tamamlanabilir. Dis turizmi hastalari icin yogun program duzenleniyor."
+          },
+          {
+            "q": "Garanti veriyor musunuz?",
+            "a": "Evet, tum porselen islemlerimizde 5 yil garanti veriyoruz. Garanti kapsaminda herhangi bir sorun yasanmasi durumunda ucretsiz yenileme yapilir."
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Derya M.",
+            "location": "Nisantasi",
+            "date": "2025-12",
+            "rating": 5,
+            "text": "20 dis lamine veneer yaptirdim, sonuc inanilmaz. Dijital tasarimla once sonucu gordum, tam istedigim gibi oldu. Mert Bey ellerinize saglik."
+          },
+          {
+            "name": "Kaan S.",
+            "location": "Levent",
+            "date": "2025-10",
+            "rating": 5,
+            "text": "Dis beyazlatma + 4 dis bonding yaptirdim. Daha once yaptigim kliniklerle kiyaslanamaz. Sonuc cok dogal ve estetik gorunuyor."
+          },
+          {
+            "name": "Sarah J.",
+            "location": "London",
+            "date": "2025-08",
+            "rating": 5,
+            "text": "Came to Istanbul for dental tourism. White Smile Studio exceeded my expectations. The digital smile design process was fascinating. Got 16 veneers in just 5 days."
+          },
+          {
+            "name": "Melis B.",
+            "location": "Besiktas",
+            "date": "2025-06",
+            "rating": 5,
+            "text": "Gummy smile sorunum vardi, lazer ile dis eti esteti ve 6 dis lamine yaptirdik. Artik dislerim gorunuyor, cok mutluyum!"
+          },
+          {
+            "name": "Tolga A.",
+            "location": "Kadikoy",
+            "date": "2025-04",
+            "rating": 4,
+            "text": "Zirkonyum kaplama yaptirdim, dayanikligi ve esteti gerçekten iyi. Tek elestiri: randevu bulmak biraz zor, yogun bir klinik."
+          },
+          {
+            "name": "Emma W.",
+            "location": "Berlin",
+            "date": "2025-02",
+            "rating": 5,
+            "text": "Perfektes Ergebnis! Ich habe 12 Veneers machen lassen. Das digitale Design hat mir vorher genau gezeigt, wie das Ergebnis aussehen wird."
+          }
+        ]
+      }
+    },
+    {
+      "id": "dis-implant",
+      "variantName": "implant",
+      "plan": "pro",
+      "description": "Implant ve cerrahi uzmanligi, profesyonel klinik",
+      "designPhilosophy": "Klinik, steril, guven veren",
+      "isDark": false,
+      "colors": {
+        "bg": "#FAFBFC",
+        "surface": "#EEF2F6",
+        "text": "#0F172A",
+        "accent": "#0369A1"
+      },
+      "fonts": { "heading": "DM Serif Display", "body": "DM Sans" },
+      "business": {
+        "name": "DentaPlus Implant Merkezi",
+        "ownerName": "Serkan Yildiz",
+        "sector": "Dis",
+        "slogan": "Implant'ta uzmanin adresi",
+        "phone": "0212 450 78 90",
+        "phoneClean": "902124507890",
+        "whatsapp": "905481234567",
+        "email": "info@dentaplusimplant.com",
+        "address": "Mecidiyekoy Mah. Buyukdere Cad. No:110 Kat:6, Sisli/Istanbul",
+        "city": "Istanbul",
+        "district": "Sisli",
+        "neighborhood": "Mecidiyekoy",
+        "coordinates": { "lat": 41.0677, "lng": 28.9920 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/dentaplusimplant",
+          "youtube": "https://youtube.com/@dentaplus",
+          "linkedin": "https://linkedin.com/company/dentaplus"
+        },
+        "photos": [],
+        "foundedYear": 2009,
+        "experience": "17 yil",
+        "customerCount": "25.000+",
+        "rating": 4.9,
+        "reviewCount": 3200,
+        "services": [
+          {
+            "id": "s1",
+            "name": "Tek Dis Implant",
+            "price": "12.000 - 18.000 TL",
+            "duration": "45-60 dk cerrahi + 3 ay iyilesme",
+            "description": "Eksik bir disin yerine titanyum implant yerlestirilmesi. 3D tomografi ile hassas planlama, cerrahi rehber ile konumlandirma."
+          },
+          {
+            "id": "s2",
+            "name": "All-on-4 Implant (Tek Cene)",
+            "price": "80.000 - 120.000 TL",
+            "duration": "4 saat cerrahi + ayni gun gecici dis",
+            "description": "4 implant uzerine tum cene sabit protez. Kemik grefti gerektirmeden, ayni gun dislerle ayrilma imkani."
+          },
+          {
+            "id": "s3",
+            "name": "All-on-6 Implant (Tek Cene)",
+            "price": "100.000 - 150.000 TL",
+            "duration": "5 saat cerrahi",
+            "description": "6 implant uzerine tum cene sabit zirkonyum protez. Daha fazla implant ile daha guclu destek ve uzun omur."
+          },
+          {
+            "id": "s4",
+            "name": "Sinüs Lifting",
+            "price": "8.000 - 15.000 TL",
+            "duration": "60-90 dk",
+            "description": "Ust cene arka bolgede yetersiz kemik hacminin artirilmasi islemi. Implant oncesi veya eslik edecek sekilde uygulanir."
+          },
+          {
+            "id": "s5",
+            "name": "Kemik Grefti",
+            "price": "5.000 - 12.000 TL",
+            "duration": "30-60 dk",
+            "description": "Yetersiz kemik hacminin sentetik veya otolog greft ile artirilmasi. Implant icin gerekli altyapinin olusturulmasi."
+          },
+          {
+            "id": "s6",
+            "name": "Gomulu Dis Cerrahisi",
+            "price": "2.500 - 5.000 TL",
+            "duration": "30-60 dk",
+            "description": "Tam veya yari gomulu 20 yas disi ameliyatla cikarilmasi. Panoramik ve 3D rontgenle hassas planlama."
+          },
+          {
+            "id": "s7",
+            "name": "Immediat (Aninda) Implant",
+            "price": "15.000 - 22.000 TL",
+            "duration": "60 dk",
+            "description": "Dis cekimi ile ayni seansta implant yerlestirilmesi. Cekim bolgesi uygunsa bekleme suresini ortadan kaldirir."
+          },
+          {
+            "id": "s8",
+            "name": "Zygomatic Implant",
+            "price": "40.000 - 60.000 TL/implant",
+            "duration": "Cerrahi gunü",
+            "description": "Ciddi kemik kaybi olan hastalarda elmacik kemigine yerlestirilen ozel implantlar. Kemik grefti ihtiyacini ortadan kaldirir."
+          },
+          {
+            "id": "s9",
+            "name": "Dis Eti Cerrahisi (Flap)",
+            "price": "3.000 - 6.000 TL",
+            "duration": "45-60 dk",
+            "description": "Ileri periodontal hastalik tedavisi. Dis eti altindaki enfekte dokularin temizlenmesi ve kemik duzeltmesi."
+          },
+          {
+            "id": "s10",
+            "name": "Dijital Implant Planlama",
+            "price": "2.000 TL",
+            "duration": "45 dk",
+            "description": "3D tomografi ve dijital tarama ile implant konumunun bilgisayar ortaminda hassas planlanmasi. Cerrahi rehber uretimi."
+          },
+          {
+            "id": "s11",
+            "name": "Implant Ustu Zirkonyum Protez",
+            "price": "6.000 - 10.000 TL/dis",
+            "duration": "2-3 seans",
+            "description": "Implant uzerine vidalanan veya simantlanan yuksek estetikli zirkonyum kronlar."
+          },
+          {
+            "id": "s12",
+            "name": "Tam Cene Rehabilitasyon",
+            "price": "150.000 - 300.000 TL",
+            "duration": "3-6 ay",
+            "description": "Her iki cenenin implant ve protezlerle tamamen yeniden yapilandirmasi. Fonksiyon ve estetik restorasyonu."
+          },
+          {
+            "id": "s13",
+            "name": "PRP/PRF Tedavisi",
+            "price": "1.500 TL",
+            "duration": "30 dk",
+            "description": "Hastanin kendi kanindan elde edilen trombositce zengin plazma. Implant cerrahisi ve kemik greftinde iyilesmeyi hizlandirir."
+          },
+          {
+            "id": "s14",
+            "name": "Implant Revizyon Cerrahisi",
+            "price": "8.000 - 20.000 TL",
+            "duration": "60-120 dk",
+            "description": "Basarisiz veya sorunlu implantlarin cikarilmasi, bölgenin tedavisi ve yeni implant planlamasi."
+          }
+        ],
+        "team": [
+          {
+            "name": "Prof. Dr. Serkan Yildiz",
+            "title": "Kurucu | Agiz-Dis-Cene Cerrahisi Uzmani",
+            "bio": "Hacettepe Universitesi Dishekimligi, Cerrahisi Uzmanlik. 17 yildir implant cerrahisi. 8.000+ implant uygulama deneyimi.",
+            "photo": ""
+          },
+          {
+            "name": "Doc. Dr. Banu Celik",
+            "title": "Periodontoloji Uzmani",
+            "bio": "Ankara Universitesi Periodontoloji Uzmanlik. Dis eti hastaliklari ve implant cevresi doku yonetimi uzmani.",
+            "photo": ""
+          },
+          {
+            "name": "Dt. Emre Karaca",
+            "title": "Protetik Dis Tedavisi Uzmani",
+            "bio": "Istanbul Universitesi Protetik Uzmanlik. Implant ustu protez ve full-mouth rehabilitasyon uzmani.",
+            "photo": ""
+          },
+          {
+            "name": "Dt. Aylin Sever",
+            "title": "Endodonti Uzmani",
+            "bio": "Marmara Universitesi Endodonti. Kanal tedavisi ve retreatment islmelerinde 10 yillik deneyim.",
+            "photo": ""
+          },
+          {
+            "name": "Dt. Oguz Han",
+            "title": "Dis Cerrah",
+            "bio": "Gazi Universitesi. Cerrahi implant uygulamalarinda Doc. Dr. Yildiz'in ekibinde 6 yil deneyim.",
+            "photo": ""
+          },
+          {
+            "name": "Dt. Melike Arslan",
+            "title": "Ortodonti Uzmani",
+            "bio": "Ege Universitesi Ortodonti. Seffaf plak (Invisalign) ve dis teli tedavilerinde uzmanlik.",
+            "photo": ""
+          }
+        ],
+        "workingHours": [
+          { "day": "Pazartesi", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Sali", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Carsamba", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Persembe", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Cuma", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "09:00", "close": "17:00", "isOpen": true },
+          { "day": "Pazar", "open": null, "close": null, "isOpen": false }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Implant'ta Uzmanin Adresi",
+          "subtitle": "17 yil, 8.000+ implant. Prof. Dr. Serkan Yildiz ve 6 uzman hekimden olusan ekiple All-on-4'ten zirkonyum proteze tum implant cozumleri.",
+          "badge": "3.200+ Google Degerlendirme"
+        },
+        "about": {
+          "title": "DentaPlus Hakkinda",
+          "description": "2009 yilinda Istanbul Mecidiyekoy'de kurulan DentaPlus, Turkiye'nin onde gelen implant merkezlerinden biridir. Prof. Dr. Serkan Yildiz liderliginde, 6 uzman hekim ve 8 yardimci personelle 600 m2 modern klinik alaninda hizmet veriyoruz.\n\n17 yillik surecto 25.000'den fazla hastaya tedavi uyguladik ve 8.000'den fazla implant yerlestirdik. Straumann, Nobel Biocare ve Megagen gibi dunyanin en guvenilir implant markalarini kullaniyoruz.\n\nMerkezimizde 3D volumetrik tomografi (CBCT), dijital agiz ici tarayici, cerrahi navigasyon sistemi ve PRP/PRF laboratuvari bulunmaktadir. Tum cerrahi islemler steril ameliyathane ortaminda gerceklestirilir.\n\nDis turizmi alaninda 42 ulkeden hasta kabul eden merkezimiz, JCI akreditasyonu surecindedir. Uluslararasi hastalarimiza VIP transfer, tercumanlik ve otel koordinasyonu hizmeti sunuyoruz."
+        },
+        "services": {
+          "title": "Tedavi & Cerrahi Hizmetlerimiz",
+          "subtitle": "Tek dis implant'tan tam cene rehabilitasyona — cerrahi uzmanlıkla kapsamli cozum"
+        },
+        "stats": {
+          "title": "DentaPlus Rakamlari",
+          "items": [
+            { "value": "8.000+", "label": "Implant Uygulama" },
+            { "value": "25.000+", "label": "Hasta" },
+            { "value": "6", "label": "Uzman Hekim" },
+            { "value": "42", "label": "Ulkeden Hasta" }
+          ]
+        },
+        "gallery": {
+          "title": "Klinigimiz & Teknolojimiz",
+          "subtitle": "600 m2 modern klinik, 3 ameliyathane, dijital altyapi"
+        },
+        "process": {
+          "title": "Implant Sureciniz",
+          "steps": [
+            { "title": "3D Tomografi & Planlama", "description": "Volumetrik tomografi ile kemik yapınız analiz edilir, dijital ortamda implant konumu planlanır." },
+            { "title": "Cerrahi Uygulama", "description": "Steril ameliyathane ortamında, cerrahi rehber ile hassas implant yerleştirme." },
+            { "title": "Iyilesme Sureci", "description": "2-4 ay kemik-implant fuzyonu (osteointegrasyon). Gecici protez ile normal hayatınıza devam." },
+            { "title": "Daimi Protez", "description": "Dijital olcu ile kisiye ozel zirkonyum veya porselen proteziniz yerlestirilir." }
+          ]
+        },
+        "contact": {
+          "title": "Ucretsiz Implant Konsultasyonu",
+          "subtitle": "3D tomografi ve dijital planlama ile implant uygunluk degerlendiirmesi"
+        },
+        "faq": [
+          {
+            "q": "Implant agriyor mu?",
+            "a": "Lokal anestezi altinda agrisiz bir islemdir. Cerrahi sonrasi 2-3 gun hafif agri ve simslik olabilir, reçeteli agri kesicilerle kontrol altina alinir. Cogu hastamiz 'bekledigimden cok daha az agridi' demektedir."
+          },
+          {
+            "q": "All-on-4 ile ayni gun dis alabilir miyim?",
+            "a": "Evet, All-on-4 sisteminin en buyuk avantaji budur. Cerrahi sonrasi ayni gun gecici sabit proteziniz takılır ve klinikten dislerinizle ayrilirsiniz. Daimi protez 3-4 ay sonra yapilir."
+          },
+          {
+            "q": "Implant ne kadar dayanir?",
+            "a": "Implant omur boyudur. Duzenli bakim ve kontrol ile %95+ basari oranina sahiptir. Implant uzerindeki protez 10-15 yil dayaniur ve gerektiginde yenilenebilir."
+          },
+          {
+            "q": "Kemik yetersizliginde implant yapilabilir mi?",
+            "a": "Evet, sinus lifting ve kemik grefti islemleriyle kemik hacmi artırılabilir. Zygomatic implant ile kemik grefti ihtiyaci olmadan da cozum mumkundur."
+          },
+          {
+            "q": "Hangi implant markalarini kullaniyorsunuz?",
+            "a": "Straumann (Isvicre), Nobel Biocare (isvec) ve Megagen (Guney Kore) markalarini kullaniyoruz. Tum markalar uluslararasi onaylidir ve uzun donem klinik verilere sahiptir."
+          },
+          {
+            "q": "Dis turizmi hastalari icin hizmet var mi?",
+            "a": "Evet, 42 ulkeden hasta kabul ediyoruz. VIP havalimani transferi, partner otellerde konaklama, Ingilizce/Almanca/Rusca tercumanlik ve yogunlastirilmis tedavi programi sunuyoruz."
+          },
+          {
+            "q": "Sigara icenler implant yaptirabilir mi?",
+            "a": "Sigara implant basari oranini dusurur. Cerrahi oncesi 2 hafta ve sonrasi 2 ay sigara birakmak onerilir. Yine de her hasta bireysel olarak degerlendrilir."
+          },
+          {
+            "q": "Diyabet hastalarinda implant uygulanabilir mi?",
+            "a": "Kontrol altindaki diyabette implant uygulanabilir. HbA1c degeri 7'nin altında olan hastalarda basari orani normaldir. Endokrinolog ile koordineli calisiyoruz."
+          },
+          {
+            "q": "Taksit imkani var mi?",
+            "a": "12 aya kadar faizsiz taksit, ayrica banka saglik kredisi seceneklerimiz mevcuttur. Dis turizmi hastalari icin farkli odeme planlari sunuyoruz."
+          },
+          {
+            "q": "Garanti veriyor musunuz?",
+            "a": "Implant cerrahisi icin 10 yil, implant ustu protez icin 5 yil garanti veriyoruz. Garanti kapsamında periyodik kontrol ve bakim zorunludur."
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Hasan D.",
+            "location": "Fatih",
+            "date": "2025-12",
+            "rating": 5,
+            "text": "All-on-4 yaptirdim, ayni gun gecici dislerimle evime gittim. 3 aydir daimi zirkonyumlarim var, yemek yemek yeniden zevk haline geldi. Serkan Hoca'nin ellerine saglik."
+          },
+          {
+            "name": "Margaret K.",
+            "location": "Dublin",
+            "date": "2025-10",
+            "rating": 5,
+            "text": "Travelled to Istanbul for full mouth implants. DentaPlus was recommended by my dentist in Ireland. The result is incredible — better than I hoped. The team was professional and caring."
+          },
+          {
+            "name": "Nurten S.",
+            "location": "Uskudar",
+            "date": "2025-08",
+            "rating": 5,
+            "text": "60 yasindayim, yillardir taktigi protezden cok sikayetciydim. 6 implant uzerine sabit dis yaptirdik, hayatim degisti. Tesekkurler DentaPlus."
+          },
+          {
+            "name": "Klaus M.",
+            "location": "Munchen",
+            "date": "2025-06",
+            "rating": 5,
+            "text": "In Deutschland hatte man mir 45.000 Euro fur All-on-6 angeboten. Bei DentaPlus habe ich die gleiche Qualitat fur einen Bruchteil des Preises bekommen."
+          },
+          {
+            "name": "Okan R.",
+            "location": "Kadikoy",
+            "date": "2025-04",
+            "rating": 5,
+            "text": "2 implant + sinus lifting yaptirdim. Cerrahiyi hic hissetmedim, iyilesme sureci de cok rahat gecti. Dijital planlama gercekten fark yaratiyor."
+          },
+          {
+            "name": "Fatma C.",
+            "location": "Bakirkoy",
+            "date": "2025-02",
+            "rating": 4,
+            "text": "4 implant tedavim suruyor. Ekip cok ilgili, her asamayi detayli anlatiyorlar. Tek olumsuz: cok yogun oldiklari icin randevu bulmak biraz zor."
+          },
+          {
+            "name": "Ahmed Al-R.",
+            "location": "Riyadh",
+            "date": "2024-12",
+            "rating": 5,
+            "text": "Best dental experience I've had anywhere in the world. The 3D planning and surgical guide technology is on par with the best clinics in Europe."
+          },
+          {
+            "name": "Metin Y.",
+            "location": "Besiktas",
+            "date": "2024-10",
+            "rating": 5,
+            "text": "Zygomatic implant yaptirdim, baska hekimler 'kemik yok, olmaz' demisti. Serkan Hoca cözüm buldu ve mukemmel sonuc aldi. Minnettirim."
+          }
+        ]
+      }
+    },
+    {
+      "id": "dis-premium",
+      "variantName": "premium",
+      "plan": "enterprise",
+      "description": "Cok subeli premium dis sagligi grubu, koyu tema",
+      "designPhilosophy": "Luks, koyu, kurumsal saglik zinciri",
+      "isDark": true,
+      "colors": {
+        "bg": "#0C0C14",
+        "surface": "#161622",
+        "text": "#E8E6E1",
+        "accent": "#00B4D8"
+      },
+      "fonts": { "heading": "DM Serif Display", "body": "Inter" },
+      "business": {
+        "name": "DentalPark Saglik Grubu",
+        "ownerName": "Cagdas Eren",
+        "sector": "Dis",
+        "slogan": "Turkiye'nin dis sagligi merkezi",
+        "phone": "0850 333 34 35",
+        "phoneClean": "908503333435",
+        "whatsapp": "905501234567",
+        "email": "info@dentalpark.com.tr",
+        "address": "Zincirlikuyu Mah. Metrocity AVM A Blok Kat:14, Besiktas/Istanbul",
+        "city": "Istanbul",
+        "district": "Besiktas",
+        "neighborhood": "Zincirlikuyu",
+        "coordinates": { "lat": 41.0694, "lng": 29.0128 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/dentalpark",
+          "youtube": "https://youtube.com/@dentalpark",
+          "linkedin": "https://linkedin.com/company/dentalpark",
+          "tiktok": "https://tiktok.com/@dentalpark",
+          "facebook": "https://facebook.com/dentalpark"
+        },
+        "photos": [],
+        "foundedYear": 2005,
+        "experience": "21 yil",
+        "customerCount": "150.000+",
+        "rating": 4.8,
+        "reviewCount": 12500,
+        "services": [
+          {
+            "id": "s1",
+            "name": "Implant Cerrahisi",
+            "price": "12.000 - 22.000 TL",
+            "duration": "45-90 dk",
+            "description": "Straumann, Nobel Biocare, Osstem implant secenekleri. 3D navigasyonlu cerrahi, ayni gun gecici dis imkani."
+          },
+          {
+            "id": "s2",
+            "name": "All-on-4 / All-on-6",
+            "price": "80.000 - 180.000 TL",
+            "duration": "Cerrahi gunu + 3-4 ay",
+            "description": "Dissiz ceneler icin sabit implant ustu protez. Ayni gun fonksiyon, 3-4 ayda daimi zirkonyum protez."
+          },
+          {
+            "id": "s3",
+            "name": "Hollywood Smile / Gulus Tasarimi",
+            "price": "30.000 - 120.000 TL",
+            "duration": "5-10 gun",
+            "description": "Dijital gulus tasarimi, porselen veneer, zirkonyum kaplama. VIP dis turizmi paketleri dahil."
+          },
+          {
+            "id": "s4",
+            "name": "Ortodonti (Tel Tedavisi)",
+            "price": "25.000 - 60.000 TL",
+            "duration": "12-24 ay",
+            "description": "Metal braket, seramik braket, lingual braket ve Invisalign seffaf plak tedavileri."
+          },
+          {
+            "id": "s5",
+            "name": "Cocuk Dishekimligi",
+            "price": "Tedaviye gore",
+            "duration": "30-60 dk",
+            "description": "Pedodonti uzmanlariyla cocuk dostu ortamda dis tedavisi. Sedasyon ve genel anestezi secenekleri."
+          },
+          {
+            "id": "s6",
+            "name": "Endodonti (Kanal Tedavisi)",
+            "price": "2.500 - 5.000 TL",
+            "duration": "60-90 dk",
+            "description": "Mikroskop altinda hassas kanal tedavisi. Retreatment ve apikal rezeksiyon islmerleri."
+          },
+          {
+            "id": "s7",
+            "name": "Periodontoloji",
+            "price": "1.500 - 8.000 TL",
+            "duration": "Tedaviye gore",
+            "description": "Dis eti tedavileri, flap cerrahisi, kemik rejenerasyonu, dis eti grefti ve pembe estetik."
+          },
+          {
+            "id": "s8",
+            "name": "Dis Beyazlatma",
+            "price": "3.000 - 5.000 TL",
+            "duration": "60 dk",
+            "description": "Zoom, Beyond ve lazer beyazlatma secenekleri. Tek seansta 6-10 ton beyazlama."
+          },
+          {
+            "id": "s9",
+            "name": "Protez (Hareketli & Sabit)",
+            "price": "3.000 - 15.000 TL",
+            "duration": "3-5 seans",
+            "description": "Tam protez, parcali protez, hassas tutuculu protez. Dijital olcu ile kusursuz uyum."
+          },
+          {
+            "id": "s10",
+            "name": "Dis Rontgeni & Tomografi",
+            "price": "300 - 1.500 TL",
+            "duration": "10 dk",
+            "description": "Panoramik rontgen, periapıkal rontgen ve 3D volumetrik tomografi (CBCT). Aninda sonuc."
+          },
+          {
+            "id": "s11",
+            "name": "Agiz-Cene-Yuz Cerrahisi",
+            "price": "Tedaviye gore",
+            "duration": "Degisken",
+            "description": "Gomulu dis cekimi, kist ameliyati, cene kırıgı tedavisi, TME bozukluklari ve ortognatik cerrahi."
+          },
+          {
+            "id": "s12",
+            "name": "Dijital Dis Yapimi (CAD/CAM)",
+            "price": "3.500 - 7.000 TL/dis",
+            "duration": "Tek seans",
+            "description": "CEREC sistemi ile ayni gun dijital olcu, tasarim ve uretim. Seramik inley, onley ve kron."
+          },
+          {
+            "id": "s13",
+            "name": "Sinus Lifting & Kemik Grefti",
+            "price": "8.000 - 18.000 TL",
+            "duration": "60-120 dk",
+            "description": "Implant oncesi kemik hacmi artirma islemleri. Sentetik, allojenik ve otolog greft secenekleri."
+          },
+          {
+            "id": "s14",
+            "name": "Lazer Dis Tedavisi",
+            "price": "Tedaviye gore",
+            "duration": "Degisken",
+            "description": "Er:YAG ve Nd:YAG lazerlerle curuk temizleme, dis eti tedavisi, kanal sterilizasyonu ve beyazlatma."
+          },
+          {
+            "id": "s15",
+            "name": "Uyku Dishekimligi (Genel Anestezi)",
+            "price": "5.000 TL + tedavi",
+            "duration": "2-4 saat",
+            "description": "Anestezi uzmani esliginde, hastane sartlarinda, tum tedavilerin tek seansta yapilmasi. Dis fobisi hastalari icin ideal."
+          },
+          {
+            "id": "s16",
+            "name": "Dis Turizmi VIP Paket",
+            "price": "Tedaviye gore",
+            "duration": "5-14 gun",
+            "description": "Havalimani VIP karsılama, 5 yildizli otel, tercumanlik, sehir turu. Tedavi + tatil kombinasyonu."
+          },
+          {
+            "id": "s17",
+            "name": "Acil Dis Tedavisi",
+            "price": "Tedaviye gore",
+            "duration": "Acil",
+            "description": "7/24 acil dis agrisı, kırık dis, dis travmasi tedavisi. Acil hatta arayin: 0850 333 34 35."
+          },
+          {
+            "id": "s18",
+            "name": "Temporomandibular Eklem (TME)",
+            "price": "4.000 - 15.000 TL",
+            "duration": "Tedavi planina gore",
+            "description": "Cene eklemi rahatsizliklari tedavisi. Splint, fizik tedavi, botox ve gerekirse cerrahi mudahale."
+          },
+          {
+            "id": "s19",
+            "name": "Dental Botox & Dolgu",
+            "price": "3.000 - 6.000 TL",
+            "duration": "20-30 dk",
+            "description": "Gummy smile duzeltme, bruksizm tedavisi, dudak dolgusu. Dishekimi tarafindan yuz esteti uygulamalari."
+          },
+          {
+            "id": "s20",
+            "name": "Koruyucu Dishekimligi",
+            "price": "500 - 1.500 TL",
+            "duration": "30-45 dk",
+            "description": "Dis tasi temizligi, flor uygulamasi, fissur ortucu, agiz bakim egitimi. 6 aylik periyodik kontrol programi."
+          }
+        ],
+        "team": [
+          {
+            "name": "Prof. Dr. Cagdas Eren",
+            "title": "Kurucu Baskan | Implantoloji",
+            "bio": "Istanbul Universitesi, NYU Implantoloji Sertifikasi. 21 yildir dis sagligi sektorunde. 15.000+ implant deneyimi. Turkiye Implantoloji Dernegi Yonetim Kurulu uyesi.",
+            "photo": ""
+          },
+          {
+            "name": "Doc. Dr. Ece Toprak",
+            "title": "Bilimsel Koordinator | Ortodonti",
+            "bio": "Hacettepe Universitesi Ortodonti Uzmanlik, Zurich ETHZ Master. Invisalign Diamond Provider. Avrupa Ortodonti Dernegi uyesi.",
+            "photo": ""
+          },
+          {
+            "name": "Uzm. Dt. Koray Polat",
+            "title": "Klinik Muduru | Cerrahi",
+            "bio": "Ege Universitesi Cerrahisi Uzmanlik. All-on-4 ve zygomatic implant konusunda Turkiye'nin en deneyimli cerrahlarindan.",
+            "photo": ""
+          },
+          {
+            "name": "Uzm. Dt. Yeliz Kara",
+            "title": "Estetik Dishekimligi Bolum Baskani",
+            "bio": "Marmara Universitesi, UCLA Estetik Dishekimligi. Digital Smile Design Master Trainer. 5.000+ veneer uygulamasi.",
+            "photo": ""
+          },
+          {
+            "name": "Uzm. Dt. Baris Demirci",
+            "title": "Endodonti Bolum Baskani",
+            "bio": "Ankara Universitesi Endodonti Uzmanlik. Mikroskobik endodonti ve retreatment uzmani. 12.000+ kanal tedavisi.",
+            "photo": ""
+          },
+          {
+            "name": "Uzm. Dt. Selin Ozturk",
+            "title": "Pedodonti Bolum Baskani",
+            "bio": "Gazi Universitesi Pedodonti Uzmanlik. Ozel gereksinimli cocuklar ve sedasyon altında tedavi uzmani.",
+            "photo": ""
+          },
+          {
+            "name": "Uzm. Dt. Alp Gunay",
+            "title": "Periodontoloji Bolum Baskani",
+            "bio": "Istanbul Universitesi Periodontoloji, ABD AAP uyesi. Implant cevresi doku yonetimi ve pembe estetik uzmani.",
+            "photo": ""
+          },
+          {
+            "name": "Uzm. Dt. Nil Ergin",
+            "title": "Protetik Dis Tedavisi",
+            "bio": "Marmara Universitesi Protetik Uzmanlik. Dijital dishekimligi ve CAD/CAM restorasyonlarda 10 yillik deneyim.",
+            "photo": ""
+          }
+        ],
+        "workingHours": [
+          { "day": "Pazartesi", "open": "08:00", "close": "22:00", "isOpen": true },
+          { "day": "Sali", "open": "08:00", "close": "22:00", "isOpen": true },
+          { "day": "Carsamba", "open": "08:00", "close": "22:00", "isOpen": true },
+          { "day": "Persembe", "open": "08:00", "close": "22:00", "isOpen": true },
+          { "day": "Cuma", "open": "08:00", "close": "22:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "09:00", "close": "20:00", "isOpen": true },
+          { "day": "Pazar", "open": "10:00", "close": "18:00", "isOpen": true }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Turkiye'nin Dis Sagligi Merkezi",
+          "subtitle": "21 yildir, 150.000+ hasta, 8 sube, 40+ uzman hekim. Implant'tan estetik dishekimligine, ortodontiden cocuk dishekimligine — her sey tek catida.",
+          "badge": "7/24 Acil Hizmet"
+        },
+        "about": {
+          "title": "DentalPark Saglik Grubu",
+          "description": "2005 yilinda Istanbul'da tek bir klinikle yola cikan DentalPark, bugun 8 subesiyle Turkiye'nin en buyuk ozel dis sagligi zincirine donusmustur. Prof. Dr. Cagdas Eren'in liderliginde, 40'tan fazla uzman hekim ve 120 saglik personeli ile yilda 50.000'den fazla hastaya hizmet veriyoruz.\n\nHer subemizde son teknoloji ekipman standardi uyguluyoruz: 3D volumetrik tomografi, dijital agiz ici tarayici, CEREC CAD/CAM sistemi, cerrahi navigasyon ve mikroskop. Kendi bunyemizdeki merkezi dis laboratuvarinda 15 tekniker dijital uretim yapmaktadir.\n\nDis turizmi alaninda Turkiye'nin en bilinen markalarindan biri olan DentalPark, yilda 10.000'den fazla uluslararasi hasta kabul etmektedir. Ingilizce, Almanca, Rusca, Arapca ve Farsca dillerinde hizmet veriyoruz.\n\nJCI (Joint Commission International) akreditasyonlu kliniklerimizde, hasta guvenligi ve enfeksiyon kontrolu en ust duzeydedir. ISO 9001:2015 kalite yonetim sistemi sertifkamiz mevcuttur.\n\nDentalPark Akademi araciligiyla dis hekimlerine ve dis teknikerlerine egitim programlari duzenliyoruz. Yillik kongremiz Turkiye'nin en buyuk dis sagligi etkinliklerinden biridir."
+        },
+        "services": {
+          "title": "Hizmetlerimiz",
+          "subtitle": "20 farkli tedavi alaninda, 40+ uzman hekimle kapsamli dis sagligi hizmeti"
+        },
+        "stats": {
+          "title": "Rakamlarla DentalPark",
+          "items": [
+            { "value": "150.000+", "label": "Hasta" },
+            { "value": "8", "label": "Sube" },
+            { "value": "40+", "label": "Uzman Hekim" },
+            { "value": "21", "label": "Yil" }
+          ]
+        },
+        "gallery": {
+          "title": "Kliniklerimiz",
+          "subtitle": "8 sube, 120+ personel, son teknoloji altyapi"
+        },
+        "process": {
+          "title": "DentalPark Deneyimi",
+          "steps": [
+            { "title": "Online Randevu", "description": "Web, WhatsApp veya 0850 333 34 35 uzerinden size en yakin subeye randevu alin." },
+            { "title": "Kapsamli Muayene", "description": "3D tomografi, dijital tarama ve uzman hekim muayenesi ile detayli tani ve tedavi plani." },
+            { "title": "Kisisel Tedavi Plani", "description": "Butce, zaman ve onceliklerinize gore ozellestirilmis tedavi plani ve maliyet bilgisi." },
+            { "title": "Tedavi & Takip", "description": "Uzman hekimlerle tedavi, dijital takip sistemi ve omur boyu destek." }
+          ]
+        },
+        "contact": {
+          "title": "Randevu & Iletisim",
+          "subtitle": "Size en yakin DentalPark subesinden randevu alin"
+        },
+        "cta": {
+          "title": "Ucretsiz Online Konsultasyon",
+          "subtitle": "Dis fotograflarinizi gonderin, uzman hekimlerimiz size ozel tedavi plani ve fiyat bilgisi hazirlasin.",
+          "buttonText": "Hemen Basvur",
+          "buttonUrl": "#contact"
+        },
+        "faq": [
+          {
+            "q": "DentalPark'in kac subesi var?",
+            "a": "Istanbul'da 5, Ankara'da 2, Antalya'da 1 olmak uzere toplam 8 subemiz bulunmaktadir. Tum subelerimizde ayni kalite standardi ve ekipman altyapisi mevcuttur."
+          },
+          {
+            "q": "7/24 acil hizmet veriyor musunuz?",
+            "a": "Evet, Istanbul Zincirlikuyu subemiz 7/24 acil dis tedavisi hizmeti vermektedir. 0850 333 34 35 numarasini arayarak en hızlı sekilde yonlendirilirsiniz."
+          },
+          {
+            "q": "Dis turizmi paketleriniz neler iceriyor?",
+            "a": "VIP havalimani transferi, 5 yildizli otel konaklamasi, tercumanlik, sehir turu, tedavi sonrasi kontroller ve 5 yil uluslararasi garanti dahildir. Online on konsultasyon ile tedavi plani ve fiyat onceden paylasilir."
+          },
+          {
+            "q": "Taksit ve kredi secenekleriniz nelerdir?",
+            "a": "12 aya kadar faizsiz taksit, 36 aya kadar banka saglik kredisi, dis turizmi hastalari icin dovizle odeme ve ozel kurumsal anlasmalar mevcuttur."
+          },
+          {
+            "q": "Hangi sigorta sirketleriyle anlasmaniz var?",
+            "a": "Axa, Allianz, Anadolu Sigorta, Mapfre, Sompo Japan dahil 15+ ozel saglik sigortasi sirketiyle anlasmamiz vardir. Provizyon islemleri resepsiyonumuz tarafindan yapilir."
+          },
+          {
+            "q": "JCI akreditasyonu ne anlama geliyor?",
+            "a": "JCI, dunyanin en prestijli saglik akreditasyon kurulusudur. Hasta guvenligi, enfeksiyon kontrolu, tedavi standartları ve hasta haklari konularinda uluslararasi en yuksek standartlari karsiladigimizi belgeler."
+          },
+          {
+            "q": "Online randevu nasil alinir?",
+            "a": "Web sitemiz, WhatsApp hattimiz veya 0850 333 34 35 cagri merkezimiz uzerinden randevu alabilirsiniz. Online randevu sistemimiz 7/24 aktiftir."
+          },
+          {
+            "q": "Cocuk dis tedavisi icin sedasyon guvenlii mi?",
+            "a": "Bilincli sedasyon, anestezi uzmani esliginde cocuk dostu sedasyon protokolumuzle guvenle uygulanır. Tum vital bulgular islem boyunca izlenir. Pediatrik anestezi deneyimimiz 10.000+ vakadir."
+          },
+          {
+            "q": "Implant garanti sureniz ne kadar?",
+            "a": "Implant cerrahisinde 10 yil, protez islemlerinde 5 yil garanti veriyoruz. Uluslararasi hastalarimiz icin garanti, partner kliniklerimiz araciligiyla kendi ulkelerinde de gecerlidir."
+          },
+          {
+            "q": "DentalPark Akademi nedir?",
+            "a": "Dis hekimlerine ve dis teknikerlerine yonelik egitim programlari duzenledigimiz akademik kolumuz. Implantoloji, estetik dishekimligi ve dijital dishekimligi alanlarinda sertifika programlari sunuyoruz."
+          },
+          {
+            "q": "Kurumsal saglik anlasmaniz var mi?",
+            "a": "Evet, sirketlere ozel kurumsal dis sagligi paketleri sunuyoruz. Calisanlara ozel indirimli fiyatlar, yerinde muayene hizmeti ve periyodik kontrol programlari mevcuttur."
+          },
+          {
+            "q": "Hangi dillerde hizmet veriyorsunuz?",
+            "a": "Turkce, Ingilizce, Almanca, Rusca, Arapca ve Farsca dillerinde hizmet sunuyoruz. Her subemizde en az 2 yabanci dil bilen personelimiz bulunmaktadir."
+          },
+          {
+            "q": "CEREC/CAD-CAM nedir?",
+            "a": "Dijital olcu, bilgisayar destekli tasarim ve uretim sistemidir. Tek seansta seramik kron, inley veya onley uretimi mumkun kilar. Geleneksel olcu ve laboratuvar bekleme suresini ortadan kaldirir."
+          },
+          {
+            "q": "Hamilelikte dis tedavisi yapilabilir mi?",
+            "a": "2. trimester (4-6. ay) en guvenli donemdir. Acil olmayan islemler dogum sonrasina ertelenebilir. Hamilelikte dis eti sorunlari sik goruludugunden kontrol onemlidir."
+          },
+          {
+            "q": "Franchise firsati var mi?",
+            "a": "DentalPark franchise modeli ile buyumektedir. Detayli bilgi icin franchise@dentalpark.com.tr adresine basvurabilirsiniz."
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Bulent E.",
+            "location": "Etiler",
+            "date": "2025-12",
+            "rating": 5,
+            "text": "8 implant + full zirkonyum yaptirdim. Baska klinikleri de gezdim ama DentalPark'in teknolojisi ve ekibi tartismasa bir numara. Cagdas Hoca'ya ve ekibine tesekkurler."
+          },
+          {
+            "name": "Anna S.",
+            "location": "Moscow",
+            "date": "2025-11",
+            "rating": 5,
+            "text": "Приехала из Москвы на лечение. VIP трансфер, отличный отель, профессиональные врачи. DentalPark — лучшая стоматология в Турции."
+          },
+          {
+            "name": "Seda K.",
+            "location": "Ankara",
+            "date": "2025-10",
+            "rating": 5,
+            "text": "Ankara subelerinden Invisalign tedavisi yaptiriyorum. Ece Hanim harika bir ortodontist, her kontrolde gelismeyi gorunce cok mutlu oluyorum."
+          },
+          {
+            "name": "James T.",
+            "location": "London",
+            "date": "2025-09",
+            "rating": 5,
+            "text": "Had All-on-4 on both jaws. The whole process from online consultation to final prosthesis was seamless. The VIP dental tourism package is excellent value."
+          },
+          {
+            "name": "Aysenur D.",
+            "location": "Besiktas",
+            "date": "2025-07",
+            "rating": 5,
+            "text": "Cocugumun dis tedavisi icin geldik. Selin Hanim'in sabirlı ve cocuk dostu yaklasimi sayesinde oglum dis hekiminden korkmuyor artik."
+          },
+          {
+            "name": "Ali Riza H.",
+            "location": "Sisli",
+            "date": "2025-05",
+            "rating": 4,
+            "text": "Kapsamli tedavi plani ve teknoloji cok iyi. Fiyatlar biraz yuksek ama kaliteyi dusununce degdigini anliiyorsunuz. 6 aylik kontrol sistemi de cok faydali."
+          },
+          {
+            "name": "Fatima Al-Z.",
+            "location": "Dubai",
+            "date": "2025-03",
+            "rating": 5,
+            "text": "Best dental experience ever. The JCI accreditation shows in every detail. From reception to treatment to follow-up, everything was world-class."
+          },
+          {
+            "name": "Mehmet S.",
+            "location": "Antalya",
+            "date": "2025-01",
+            "rating": 5,
+            "text": "Antalya subisinde Hollywood Smile yaptirdim. Yeliz Hanim'in dijital tasarimi gercekten gercekten mukemmel. Once-sonra fotograflarim inanilmaz."
+          },
+          {
+            "name": "Thomas B.",
+            "location": "Berlin",
+            "date": "2024-11",
+            "rating": 5,
+            "text": "Excellente Zahnklinik! 4 Implantate und 12 Zirkonkronen in nur 10 Tagen. Die deutsche Betreuung war perfekt. Kann DentalPark nur empfehlen."
+          },
+          {
+            "name": "Gulden Y.",
+            "location": "Kadikoy",
+            "date": "2024-09",
+            "rating": 5,
+            "text": "Tum ailemiz DentalPark'a geliyor. 3 cocugumun kontrollerinden eşimin implantina kadar her seyi burada yaptiriyoruz. Aile dostu bir kurum."
+          },
+          {
+            "name": "Reza M.",
+            "location": "Tehran",
+            "date": "2024-07",
+            "rating": 5,
+            "text": "بهترین تجربه دندانپزشکی. DentalPark واقعاً حرفه‌ای و مجهز است. خدمات به زبان فارسی هم ارائه می‌شود."
+          },
+          {
+            "name": "Zeynep C.",
+            "location": "Beyoglu",
+            "date": "2024-05",
+            "rating": 5,
+            "text": "Dis teli tedavimde son derece memnunum. Ece Hanim her kontrolde cok detayli yaklasiyoyor. 18 aylik tedavimin 12. ayindayim ve sonuc cok guzel gorunuyor."
+          }
+        ]
+      }
+    }
+  ]
+}

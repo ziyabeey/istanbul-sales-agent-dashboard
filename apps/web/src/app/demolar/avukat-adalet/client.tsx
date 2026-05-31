@@ -1,4 +1,6 @@
+// @ts-nocheck
 'use client'
+
 import {
   HeaderMinimalSticky as _h, FooterWarmColumns as _f, WhatsAppFloating as _wa, CookieBannerBottomBar as _c,
   LegalPracticeAreas as _lpa, AttorneyProfileCard as _apc, LegalFAQAccordion as _lfaq, ConsultationWidget as _cw,

@@ -3,8 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import Navbar from "@/components/layout/Navbar";
-import FooterTrustSection from "@/components/sections/FooterTrustSection";
+import PublicPageShell from "@/components/layout/PublicPageShell";
 import { Target, Rocket, Users, BrainCircuit, Heart, Zap, Shield, TrendingUp, Cuboid } from "lucide-react";
 
 /* ── Animated counter ── */
@@ -85,21 +84,20 @@ const FAZ = [
 
 export default function HakkimizdaPage() {
     return (
-        <main className="min-h-screen bg-background font-sans">
-            <Navbar />
+        <PublicPageShell>
 
             {/* ── HERO ── */}
-            <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden perspective-1000">
+            <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
                 <div className="absolute inset-0 pointer-events-none">
-                    <div className="absolute top-1/4 left-1/3 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl animate-pulse" />
-                    <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-steel/6 rounded-full blur-3xl animate-pulse" />
+                    <div className="absolute top-1/4 left-1/3 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
+                    <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-steel/6 rounded-full blur-3xl" />
                 </div>
-                
+
                 <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12 relative z-10">
-                    <motion.div 
-                        initial={{ opacity: 0, x: -50, rotateY: -10 }} 
-                        animate={{ opacity: 1, x: 0, rotateY: 0 }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
+                    <motion.div
+                        initial={{ opacity: 0, x: -40 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.7, ease: "easeOut" }}
                         className="flex-1 text-center md:text-left"
                     >
                         <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-4 py-1.5 mb-6 backdrop-blur-sm">
@@ -116,41 +114,25 @@ export default function HakkimizdaPage() {
                         </p>
                     </motion.div>
 
-                    {/* 3D Abstract Graphic */}
-                    <motion.div 
-                        initial={{ opacity: 0, scale: 0.8, rotateX: 20, rotateY: -20 }}
-                        animate={{ opacity: 1, scale: 1, rotateX: 0, rotateY: 0 }}
-                        transition={{ duration: 1, delay: 0.2 }}
+                    {/* Abstract Graphic */}
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
                         className="flex-1 relative w-full aspect-square max-w-md mx-auto hidden md:block"
-                        style={{ transformStyle: "preserve-3d" }}
                     >
                         <motion.div
-                            animate={{ 
-                                y: [-10, 10, -10],
-                                rotateY: [0, 10, 0],
-                                rotateX: [0, -5, 0]
-                            }}
-                            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                            animate={{ y: [-8, 8, -8] }}
+                            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
                             className="absolute inset-0 flex items-center justify-center"
-                            style={{ transformStyle: "preserve-3d" }}
                         >
-                            <div className="relative w-64 h-64 bg-gradient-to-br from-primary/20 via-primary/10 to-transparent rounded-3xl backdrop-blur-3xl border border-primary/30 flex items-center justify-center shadow-[0_20px_60px_rgba(99,102,241,0.3)] shadow-primary/20 transform rotate-12 rotate-x-12 rotate-y-12 z-20 overflow-hidden">
-                                {/* Sweep reflection */}
-                                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-gray-100 to-transparent transform -skew-x-12 translate-x-[-100%] animate-[shimmer_3s_infinite]" />
+                            <div className="relative w-64 h-64 bg-gradient-to-br from-primary/20 via-primary/10 to-transparent rounded-3xl backdrop-blur-3xl border border-primary/30 flex items-center justify-center shadow-[0_20px_60px_rgba(99,102,241,0.3)] transform rotate-12 z-20">
                                 <Cuboid className="w-32 h-32 text-primary drop-shadow-2xl" />
                             </div>
-                            
-                            {/* Floating decorative elements */}
-                            <motion.div 
-                                animate={{ z: [0, 50, 0], opacity: [0.5, 1, 0.5] }}
-                                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                                className="absolute -top-4 -right-4 w-20 h-20 rounded-full bg-gold/20 blur-xl" 
-                            />
-                            <motion.div 
-                                animate={{ z: [0, -50, 0], y: [0, 20, 0] }}
-                                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                                className="absolute -bottom-8 -left-8 w-32 h-32 rounded-full border border-primary/20 backdrop-blur-md" 
-                            />
+
+                            {/* Static decorative elements */}
+                            <div className="absolute -top-4 -right-4 w-20 h-20 rounded-full bg-gold/20 blur-xl" />
+                            <div className="absolute -bottom-8 -left-8 w-32 h-32 rounded-full border border-primary/20 backdrop-blur-md" />
                         </motion.div>
                     </motion.div>
                 </div>
@@ -158,20 +140,14 @@ export default function HakkimizdaPage() {
 
             {/* ── METRİKLER ── */}
             <section className="py-12 px-4 sm:px-6 lg:px-8 bg-gray-50 border-y border-gray-200 relative z-10">
-                <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 perspective-1000">
+                <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
                     {METRIKLER.map(({ label, value, suffix, icon: Icon, renk }, i) => (
                         <motion.div
                             key={label}
-                            initial={{ opacity: 0, y: 30, rotateX: 10 }}
-                            whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-                            whileHover={{ 
-                                scale: 1.05, 
-                                rotateY: i % 2 === 0 ? 5 : -5,
-                                rotateX: 5,
-                                z: 30,
-                                transition: { duration: 0.3 } 
-                            }}
-                            style={{ transformStyle: "preserve-3d", boxShadow: `0 10px 30px -10px ${renk}15` }}
+                            initial={{ opacity: 0, y: 24 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            whileHover={{ scale: 1.03, y: -4, transition: { duration: 0.25 } }}
+                            style={{ boxShadow: `0 10px 30px -10px ${renk}15` }}
                             viewport={{ once: true }}
                             transition={{ delay: i * 0.1, duration: 0.5 }}
                             className="group relative rounded-3xl border border-gray-200 bg-white shadow-sm p-6 text-center hover:border-gray-300 hover:shadow-lg transition-all overflow-hidden"
@@ -246,28 +222,22 @@ export default function HakkimizdaPage() {
 
             {/* ── DEĞERLER ── */}
             <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 border-y border-gray-200">
-                <div className="max-w-5xl mx-auto perspective-1000">
+                <div className="max-w-5xl mx-auto">
                     <div className="text-center mb-16">
-                        <p className="text-primary font-mono text-xs uppercase tracking-[0.3em] mb-4">Değerlerimiz</p>
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-foreground font-syne drop-shadow-md">Bizi Biz Yapan İlkeler</h2>
+                        <p className="text-primary font-mono text-xs uppercase tracking-[0.3em] mb-4">Degerlerimiz</p>
+                        <h2 className="text-3xl md:text-4xl font-extrabold text-foreground font-syne">Bizi Biz Yapan Ilkeler</h2>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                         {DEGERLER.map(({ icon: Icon, baslik, aciklama, renk }, i) => (
                             <motion.div
                                 key={baslik}
-                                initial={{ opacity: 0, y: 30, rotateX: 5 }}
-                                whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-                                whileHover={{ 
-                                    scale: 1.02, 
-                                    rotateY: i % 2 === 0 ? 3 : -3,
-                                    rotateX: 3,
-                                    z: 20,
-                                    transition: { duration: 0.3 } 
-                                }}
-                                style={{ transformStyle: "preserve-3d", boxShadow: `0 10px 40px -20px ${renk}30` }}
+                                initial={{ opacity: 0, y: 24 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                whileHover={{ scale: 1.02, y: -4, transition: { duration: 0.25 } }}
+                                style={{ boxShadow: `0 10px 40px -20px ${renk}30` }}
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.1, duration: 0.5 }}
-                                className="group relative bg-white shadow-sm border border-gray-200 rounded-3xl p-8 hover:border-gray-300 transition-all flex gap-5 overflow-hidden shadow-lg hover:shadow-lg"
+                                className="group relative bg-white shadow-sm border border-gray-200 rounded-3xl p-8 hover:border-gray-300 transition-all flex gap-5 overflow-hidden hover:shadow-lg"
                             >
                                 {/* Light sweep */}
                                 <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-gray-100/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] pointer-events-none" />
@@ -287,25 +257,18 @@ export default function HakkimizdaPage() {
 
             {/* ── EKİP ── */}
             <section className="py-20 px-4 sm:px-6 lg:px-8">
-                <div className="max-w-6xl mx-auto perspective-1000">
+                <div className="max-w-6xl mx-auto">
                     <div className="text-center mb-16">
                         <p className="text-primary font-mono text-xs uppercase tracking-[0.3em] mb-4">Ekip</p>
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-foreground font-syne drop-shadow-md">İşin Mutfağındakiler</h2>
+                        <h2 className="text-3xl md:text-4xl font-extrabold text-foreground font-syne">Isin Mutfagindakiler</h2>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
                         {EKIP.map(({ isim, unvan, hikaye, renk, emoji }, i) => (
                             <motion.div
                                 key={isim}
-                                initial={{ opacity: 0, y: 30, rotateX: 10 }}
-                                whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-                                whileHover={{ 
-                                    scale: 1.05, 
-                                    rotateY: i === 1 ? 0 : (i === 0 ? 5 : -5),
-                                    rotateX: 5,
-                                    z: 30,
-                                    transition: { duration: 0.3 } 
-                                }}
-                                style={{ transformStyle: "preserve-3d" }}
+                                initial={{ opacity: 0, y: 24 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                whileHover={{ scale: 1.03, y: -4, transition: { duration: 0.25 } }}
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.15, duration: 0.6 }}
                                 className="group relative bg-white shadow-sm border border-gray-200 rounded-3xl p-8 text-center hover:border-gray-300 transition-all flex flex-col items-center overflow-hidden hover:shadow-xl"
@@ -335,25 +298,18 @@ export default function HakkimizdaPage() {
             {/* ── YOL HARİTASI ── */}
             <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 border-y border-gray-200 relative z-10 overflow-hidden">
                 <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
-                <div className="max-w-5xl mx-auto perspective-1000">
+                <div className="max-w-5xl mx-auto">
                     <div className="text-center mb-16 relative z-10">
                         <p className="text-primary font-mono text-xs uppercase tracking-[0.3em] mb-4">Vizyon</p>
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-foreground font-syne">5 Yıllık Yol Haritamız</h2>
+                        <h2 className="text-3xl md:text-4xl font-extrabold text-foreground font-syne">5 Yillik Yol Haritamiz</h2>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {FAZ.map(({ no, baslik, aciklama, durum, renkClass }, i) => (
                             <motion.div
                                 key={no}
-                                initial={{ opacity: 0, y: 30, rotateX: 10, rotateY: -10 }}
-                                whileInView={{ opacity: 1, y: 0, rotateX: 0, rotateY: 0 }}
-                                whileHover={{ 
-                                    scale: 1.05, 
-                                    rotateY: i === 1 ? 0 : (i === 0 ? 5 : -5),
-                                    rotateX: 5,
-                                    z: 40,
-                                    transition: { duration: 0.3 } 
-                                }}
-                                style={{ transformStyle: "preserve-3d" }}
+                                initial={{ opacity: 0, y: 24 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                whileHover={{ scale: 1.03, y: -4, transition: { duration: 0.25 } }}
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.2, duration: 0.6 }}
                                 className="group relative bg-white shadow-sm border border-gray-200 rounded-3xl p-8 hover:border-gray-300 transition-all shadow-lg hover:shadow-lg overflow-hidden"
@@ -399,7 +355,6 @@ export default function HakkimizdaPage() {
                 </div>
             </section>
 
-            <FooterTrustSection />
-        </main>
+        </PublicPageShell>
     );
 }

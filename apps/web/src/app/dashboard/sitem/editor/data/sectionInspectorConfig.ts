@@ -533,4 +533,64 @@ export const SECTION_INSPECTORS: SectionInspectorDef[] = [
             },
         ],
     },
+    /* ── 11. Menu ── */
+    {
+        type: 'menu',
+        label: 'Menü / Fiyat Listesi',
+        icon: '📋',
+        fields: [
+            { key: 'columns', label: 'Sütun Sayısı', type: 'select', options: [{ value: '1', label: '1 Sütun' }, { value: '2', label: '2 Sütun' }], defaultValue: '2', group: 'Düzen' },
+            { key: 'showImages', label: 'Görsel Göster', type: 'toggle', defaultValue: true, group: 'Görünüm' },
+        ],
+    },
+    /* ── 12. Booking ── */
+    {
+        type: 'booking',
+        label: 'Randevu / Rezervasyon',
+        icon: '📅',
+        fields: [
+            { key: 'provider', label: 'Sağlayıcı', type: 'select', options: [{ value: 'custom', label: 'Özel Form' }, { value: 'calendly', label: 'Calendly' }], defaultValue: 'custom', group: 'Düzen' },
+            { key: 'formTitle', label: 'Form Başlığı', type: 'text', defaultValue: 'Online Randevu', group: 'İçerik' },
+        ],
+    },
+    /* ── 13. Products ── */
+    {
+        type: 'products',
+        label: 'Ürünler',
+        icon: '🛍️',
+        fields: [
+            { key: 'columns', label: 'Sütun Sayısı', type: 'select', options: [{ value: '2', label: '2 Sütun' }, { value: '3', label: '3 Sütun' }, { value: '4', label: '4 Sütun' }], defaultValue: '4', group: 'Düzen' },
+            { key: 'showCartButton', label: 'Sepete Ekle Göster', type: 'toggle', defaultValue: true, group: 'Görünüm' },
+        ],
+    },
+    /* ── 14. Stats ── */
+    {
+        type: 'stats',
+        label: 'İstatistikler',
+        icon: '📊',
+        fields: [
+            { key: 'layout', label: 'Yerleşim', type: 'select', options: [{ value: 'row', label: 'Yatay Sıra' }, { value: 'grid', label: 'Izgara' }], defaultValue: 'row', group: 'Düzen' },
+            { key: 'animate', label: 'Sayıları Animasyonlu Arttır', type: 'toggle', defaultValue: true, group: 'Efektler' },
+        ],
+    },
+    /* ── 15. Social Proof ── */
+    {
+        type: 'social_proof',
+        label: 'Sosyal Kanıt / Logolar',
+        icon: '🤝',
+        fields: [
+            { key: 'style', label: 'Görünüm Stili', type: 'select', options: [{ value: 'marquee', label: 'Kayan Yazı (Marquee)' }, { value: 'grid', label: 'Sabit Izgara' }], defaultValue: 'marquee', group: 'Düzen' },
+            { key: 'grayscale', label: 'Logoları Siyah-Beyaz Yap', type: 'toggle', defaultValue: true, group: 'Efektler' },
+        ],
+    },
+    /* ── 16. Process ── */
+    {
+        type: 'process',
+        label: 'Nasıl Çalışır? / Süreç',
+        icon: '⚙️',
+        fields: [
+            { key: 'layout', label: 'Yerleşim', type: 'select', options: [{ value: 'horizontal', label: 'Yatay Adımlar' }, { value: 'vertical', label: 'Dikey Zaman Çizelgesi' }], defaultValue: 'horizontal', group: 'Düzen' },
+            { key: 'showNumbers', label: 'Adım Numaralarını Göster', type: 'toggle', defaultValue: true, group: 'Görünüm' },
+        ],
+    },
 ]

@@ -40,7 +40,27 @@ export default function TopBar() {
         const handler = (e: KeyboardEvent) => {
             if ((e.metaKey || e.ctrlKey) && e.key === 's') { e.preventDefault(); handleSave() }
             if ((e.metaKey || e.ctrlKey) && e.key === 'z' && !e.shiftKey) { e.preventDefault(); undo() }
-            if ((e.metaKey || e.ctrlKey) && (e.key === 'y' || (e.key === 'z' && e.shiftKey))) { e.preventDefault(); redo() }
+            if ((e.metaKey || e.ctrlKey) && e.key === 'y' || ((e.metaKey || e.ctrlKey) && e.key === 'z' && e.shiftKey)) { e.preventDefault(); redo() }
+            
+            // Delete and Duplicate Nodes
+            const target = e.target as HTMLElement
+            const isTyping = target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable
+            
+            if (!isTyping && (e.key === 'Backspace' || e.key === 'Delete')) {
+                const store = useEditorStore.getState()
+                if (store.selectedSectionId) {
+                    e.preventDefault()
+                    store.deleteAstNode(store.selectedSectionId)
+                }
+            }
+            
+            if (!isTyping && (e.metaKey || e.ctrlKey) && e.key === 'd') {
+                const store = useEditorStore.getState()
+                if (store.selectedSectionId) {
+                    e.preventDefault()
+                    store.duplicateAstNode(store.selectedSectionId)
+                }
+            }
         }
         window.addEventListener('keydown', handler)
         return () => window.removeEventListener('keydown', handler)
@@ -66,10 +86,11 @@ export default function TopBar() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     siteJson: siteData,
-                    siteHtml: generatedHtml,
+                    siteHtml: generatedHtml || '', // Boş string gidebilir V2'de
                 }),
             })
             setSaveSuccess(true)
+            useEditorStore.getState().clearDirty()
             setTimeout(() => setSaveSuccess(false), 3000)
         } catch { /* silent */ }
         finally { setSaving(false) }

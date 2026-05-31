@@ -1,0 +1,20 @@
+/** Foto Düğün — romantic wedding photography CSS variables */
+export const FOTO_DUGUN_CSS: Record<string, string> = {
+  '--color-bg': '#FBF9F7',
+  '--color-surface': '#FFFFFF',
+  '--color-surface-elevated': '#FFFFFF',
+  '--color-surface-muted': '#F5F2EF',
+  '--color-text': '#1C1917',
+  '--color-text-secondary': '#78716C',
+  '--color-text-muted': '#A8A29E',
+  '--color-text-on-accent': '#FFFFFF',
+  '--color-text-on-dark': '#FAFAF9',
+  '--color-accent': '#B45309',
+  '--color-accent-hover': '#D97706',
+  '--color-accent-active': '#92400E',
+  '--color-accent-light': '#FFFBEB',
+  '--color-border': '#E7E5E4',
+  '--color-border-subtle': '#F5F5F4',
+  '--font-heading': "'Playfair Display', serif",
+  '--font-body': "'Lato', system-ui, sans-serif",
+}

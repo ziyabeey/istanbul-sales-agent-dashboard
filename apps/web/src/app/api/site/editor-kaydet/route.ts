@@ -50,9 +50,15 @@ export async function POST(request: Request) {
         // Always save siteJson (structured data for editor reload)
         if (siteJson) {
             guncelleme.siteJson = siteJson
+            
+            // AST V2 Motoru için: apps/sites direkt olarak `siteData` üzerinden çalışır.
+            // Eğer theme objesi varsa, bunu V2 formatı olarak kabul edip `siteData`'ya da yazıyoruz.
+            if (siteJson.theme) {
+                guncelleme.siteData = siteJson
+            }
         }
 
-        // Save siteHtml (for live site rendering)
+        // Save siteHtml (for live site rendering - only needed for legacy engine)
         if (siteHtml) {
             guncelleme.siteHtml = siteHtml
         }

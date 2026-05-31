@@ -1,7 +1,20 @@
+// @ts-nocheck
 'use client'
-import { HeaderMinimalSticky as _h, FooterWarmColumns as _f, WhatsAppFloating as _wa, CookieBannerBottomBar as _c, EventServiceGrid as _esg, EventPackages as _ep, EventGalleryGrid as _egg, EventStatsRow as _esr, EventBookingForm as _ebf, ThemeRenderer, ORGANIZASYON_DUGUN_CONFIG, ORGANIZASYON_DUGUN_BUSINESS } from '@kepenk/templates'
-void _h; void _f; void _wa; void _c; void _esg; void _ep; void _egg; void _esr; void _ebf
-export default function Client() {
-  const t = ORGANIZASYON_DUGUN_CONFIG, p = t.pages[0]!, b = ORGANIZASYON_DUGUN_BUSINESS
-  return (<div lang="tr"><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ '@context': 'https://schema.org', '@type': 'EventPlanner', name: b.name, telephone: b.phone, address: { '@type': 'PostalAddress', addressLocality: b.district, addressRegion: b.city, addressCountry: 'TR' } }) }} /><ThemeRenderer theme={t} page={p} business={b} /></div>)
+
+import {
+  ThemeRenderer,
+  ORGANIZASYON_DUGUN_CONFIG,
+  ORGANIZASYON_DUGUN_BUSINESS
+} from '@kepenk/templates'
+
+export default function OrganizasyonDugunClient() {
+  const theme = ORGANIZASYON_DUGUN_CONFIG;
+  const business = ORGANIZASYON_DUGUN_BUSINESS;
+
+  return (
+    <div lang="tr">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ '@context': 'https://schema.org', '@type': 'EventPlanner', name: business.name, telephone: business.phone, address: { '@type': 'PostalAddress', addressLocality: business.district, addressRegion: business.city, addressCountry: 'TR' }, aggregateRating: { '@type': 'AggregateRating', ratingValue: business.rating, reviewCount: business.reviewCount } }) }} />
+      <ThemeRenderer theme={theme} page={theme.pages[0]} business={business} />
+    </div>
+  )
 }

@@ -4,6 +4,10 @@ import React from 'react';
 import Link from 'next/link';
 import { useEsnaf } from '@/context/EsnafContext';
 import SetupWizardBanner from './components/SetupWizardBanner';
+import {
+    Home, PenSquare, Globe, Bot, Users, Settings, MessageSquare,
+    type LucideIcon,
+} from 'lucide-react';
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
     const { esnaf, loading } = useEsnaf();
@@ -29,10 +33,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
             {/* Mobile-First Bottom Nav (Shown only on small screens) */}
             <nav aria-label="Mobil navigasyon" className="md:hidden fixed bottom-0 left-0 w-full h-16 bg-black/40 backdrop-blur-xl border-t border-white/10 z-50 flex items-center justify-around px-2 shadow-[0_-10px_40px_rgba(0,0,0,0.5)]">
-                <BottomNavItem href="/dashboard" icon="🏠" label="Özet" active />
-                <BottomNavItem href="/dashboard/editor" icon="✏️" label="Site" />
-                <BottomNavItem href="/dashboard/mesajlar" icon="💬" label="Mesajlar" />
-                <BottomNavItem href="/dashboard/ayarlar" icon="⚙️" label="Ayarlar" />
+                <BottomNavItem href="/dashboard" icon={Home} label="Özet" active />
+                <BottomNavItem href="/dashboard/editor" icon={PenSquare} label="Site" />
+                <BottomNavItem href="/dashboard/mesajlar" icon={MessageSquare} label="Mesajlar" />
+                <BottomNavItem href="/dashboard/ayarlar" icon={Settings} label="Ayarlar" />
             </nav>
 
             {/* Desktop Sidebar (Hidden on mobile) */}
@@ -47,12 +51,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                     <p className="text-xs text-white/50 mt-1 font-medium">{businessName}</p>
                 </div>
                 <div className="flex-1 py-6 px-4 space-y-2">
-                    <SidebarItem href="/dashboard" icon="🏠" label="Kontrol Paneli" active />
-                    <SidebarItem href="/dashboard/editor" icon="✏️" label="Site Editörü" />
-                    <SidebarItem href="/dashboard/domain" icon="🌐" label="Alan Adım" />
-                    <SidebarItem href="/dashboard/ajanlar" icon="🤖" label="Ajanlarım" badge={3} />
-                    <SidebarItem href="/dashboard/crm" icon="👥" label="Müşteriler (CRM)" />
-                    <SidebarItem href="/dashboard/ayarlar" icon="⚙️" label="Ayarlar" />
+                    <SidebarItem href="/dashboard" icon={Home} label="Kontrol Paneli" active />
+                    <SidebarItem href="/dashboard/editor" icon={PenSquare} label="Site Editörü" />
+                    <SidebarItem href="/dashboard/domain" icon={Globe} label="Alan Adım" />
+                    <SidebarItem href="/dashboard/ajanlar" icon={Bot} label="Ajanlarım" badge={3} />
+                    <SidebarItem href="/dashboard/crm" icon={Users} label="Müşteriler (CRM)" />
+                    <SidebarItem href="/dashboard/ayarlar" icon={Settings} label="Ayarlar" />
                 </div>
                 <div className="p-4 border-t border-white/10 relative overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-t from-indigo-500/5 to-transparent pointer-events-none" />
@@ -90,19 +94,19 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     );
 }
 
-function BottomNavItem({ href, icon, label, active = false }: { href: string, icon: string, label: string, active?: boolean }) {
+function BottomNavItem({ href, icon: Icon, label, active = false }: { href: string, icon: LucideIcon, label: string, active?: boolean }) {
     return (
         <Link href={href} aria-current={active ? 'page' : undefined} aria-label={label} className={`flex flex-col items-center justify-center w-16 h-full gap-1 transition-all ${active ? 'text-indigo-300 scale-105' : 'text-white/40 hover:text-white/70'}`}>
-            <span className="text-xl drop-shadow-md" aria-hidden="true">{icon}</span>
+            <Icon className="w-5 h-5 drop-shadow-md" aria-hidden="true" />
             <span className="text-xs font-medium">{label}</span>
         </Link>
     );
 }
 
-function SidebarItem({ href, icon, label, active = false, badge }: { href: string, icon: string, label: string, active?: boolean, badge?: number }) {
+function SidebarItem({ href, icon: Icon, label, active = false, badge }: { href: string, icon: LucideIcon, label: string, active?: boolean, badge?: number }) {
     return (
         <Link href={href} aria-current={active ? 'page' : undefined} className={`flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all border ${active ? 'bg-indigo-500/10 border-indigo-400/30 text-indigo-300 shadow-[0_0_15px_rgba(99,102,241,0.15)]' : 'border-transparent text-white/50 hover:text-white hover:bg-white/5 hover:border-white/10'}`}>
-            <span className="text-lg drop-shadow-sm" aria-hidden="true">{icon}</span>
+            <Icon className="w-[18px] h-[18px] drop-shadow-sm" aria-hidden="true" />
             <span className="text-sm font-semibold">{label}</span>
             {badge && (
                 <span className={`ml-auto text-[10px] font-bold px-2 py-0.5 rounded-full border ${active ? 'bg-indigo-500 border-indigo-300/50 text-white shadow-md' : 'bg-white/10 border-white/20 text-white'}`}>

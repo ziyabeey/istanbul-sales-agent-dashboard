@@ -1,0 +1,392 @@
+{
+  "sectorId": "kuyumcu",
+  "seoSchemaType": "JewelryStore",
+  "variants": [
+    {
+      "id": "kuyumcu-altin",
+      "variantName": "altin",
+      "plan": "free",
+      "description": "Mahalle kuyumcusu, altin alim-satim",
+      "designPhilosophy": "Sicak, guvenilir, geleneksel",
+      "isDark": false,
+      "colors": { "bg": "#FFFFFF", "surface": "#FFF8E7", "text": "#2C1810", "accent": "#B8860B" },
+      "fonts": { "heading": "Playfair Display", "body": "Inter" },
+      "business": {
+        "name": "Altinbas Kuyumculuk",
+        "ownerName": "Huseyin Altinbas",
+        "sector": "Kuyumcu",
+        "slogan": "3 neslin guvenilir kuyumcusu",
+        "phone": "0216 345 67 89",
+        "phoneClean": "902163456789",
+        "whatsapp": "905321234567",
+        "email": "info@altinbaskuyum.com",
+        "address": "Bostanci Mah. Bagdat Cad. No:380, Kadikoy/Istanbul",
+        "city": "Istanbul", "district": "Kadikoy",
+        "mapEmbed": "", "foundedYear": 1978, "experience": "48 yil", "employeeCount": 3,
+        "customerCount": "30.000+", "rating": 4.8, "reviewCount": 1450,
+        "workingHours": [
+          { "day": "Pazartesi", "dayTr": "Pazartesi", "open": "09:30", "close": "19:30", "isOpen": true },
+          { "day": "Sali", "dayTr": "Sali", "open": "09:30", "close": "19:30", "isOpen": true },
+          { "day": "Carsamba", "dayTr": "Carsamba", "open": "09:30", "close": "19:30", "isOpen": true },
+          { "day": "Persembe", "dayTr": "Persembe", "open": "09:30", "close": "19:30", "isOpen": true },
+          { "day": "Cuma", "dayTr": "Cuma", "open": "09:30", "close": "19:30", "isOpen": true },
+          { "day": "Cumartesi", "dayTr": "Cumartesi", "open": "10:00", "close": "19:00", "isOpen": true },
+          { "day": "Pazar", "dayTr": "Pazar", "open": "11:00", "close": "17:00", "isOpen": true }
+        ],
+        "services": [
+          { "id": "s1", "name": "Altin Alim-Satim", "price": "Gunluk kur", "duration": "Anlik", "description": "22 ayar ve 24 ayar kulce/gram altin alim-satim. Guncel piyasa fiyatiyla anlik islem. Buyuk miktarlarda ozel fiyat.", "icon": "Coins" },
+          { "id": "s2", "name": "Altin Takim & Bilezik", "price": "Modele gore", "duration": "Anlik", "description": "22 ayar set, bilezik, kolye, kupe ve yuzuk. Dugun, nisan ve ozel gun icin genis koleksiyon.", "icon": "Gem" },
+          { "id": "s3", "name": "Altin Tamir & Lehim", "price": "100-500 TL", "duration": "1-3 gun", "description": "Kopuk zincir, bozuk kilit, parca kaybi ve lehim isleri. Tum altin ayarlarda uzman tamir.", "icon": "Wrench" },
+          { "id": "s4", "name": "Altin Degerleme", "price": "Ucretsiz", "duration": "10 dk", "description": "Altinlarinizin ayar tespiti ve guncel deger hesaplamasi. Mihenk tasi ve elektronik test.", "icon": "Scale" }
+        ],
+        "team": [], "testimonials": [], "gallery": []
+      },
+      "content": {
+        "hero": { "title": "3 Neslin Guvenilir Kuyumcusu", "subtitle": "1978'den beri Kadikoy'de altin alim-satim, takim ve tamir. 48 yillik aile geleneginde guven ve kalite.", "badge": "48 Yillik Tecrube", "ctaText": "Hemen Ara", "ctaLink": "tel:+902163456789" },
+        "about": { "title": "Altinbas Kuyumculuk", "description": "1978 yilinda Kadikoy Bostanci'da kurulan Altinbas Kuyumculuk, 48 yillik aile gelenegiyle Istanbul'un en koklü kuyumcularinan biridir. 3 nesil boyunca 30.000'den fazla ailenin guvenini kazandik." },
+        "services": { "title": "Hizmetlerimiz", "subtitle": "Altin alim-satim, takim ve tamir" },
+        "contact": { "title": "Bize Ulasin", "subtitle": "Guncel altin fiyatlari icin bizi arayin" },
+        "faq": [
+          { "q": "Hangi ayar altinlar satiyorsunuz?", "a": "22 ayar takim ve bilezik, 14 ve 18 ayar pirlantali takilar, 24 ayar kulce ve gram altin satiyoruz." },
+          { "q": "Altin iade edebilir miyim?", "a": "Hasarsiz ve faturali urunler 7 gun icinde iade veya degisim yapilabilir. Iscilik ucreti iade kapsaminda degildir." },
+          { "q": "Taksit imkani var mi?", "a": "Evet, anlasmali bankalarla 3-12 ay taksit imkani sunuyoruz." },
+          { "q": "Altin degerleme ucretsiz mi?", "a": "Evet, altinlarinizin ayar tespiti ve deger hesaplamasi tamamen ucretsizdir." }
+        ]
+      }
+    },
+    {
+      "id": "kuyumcu-dugun",
+      "variantName": "dugun",
+      "plan": "starter",
+      "description": "Dugun ve nisan odakli kuyumcu",
+      "designPhilosophy": "Romantik, zarif, ozel",
+      "isDark": false,
+      "colors": { "bg": "#FFFFFF", "surface": "#FDF2F8", "text": "#1F1F2E", "accent": "#9F1239" },
+      "fonts": { "heading": "Cormorant Garamond", "body": "Inter" },
+      "business": {
+        "name": "Alyans Atelier Kuyumculuk",
+        "ownerName": "Sibel Ozturk",
+        "sector": "Kuyumcu",
+        "slogan": "Ebedi bagliliginiZin simgesi",
+        "phone": "0212 234 56 78",
+        "phoneClean": "902122345678",
+        "whatsapp": "905441234567",
+        "email": "info@alyansatelier.com",
+        "address": "Nisantasi Mah. Abdi Ipekci Cad. No:48, Sisli/Istanbul",
+        "city": "Istanbul", "district": "Sisli",
+        "mapEmbed": "", "foundedYear": 2012, "experience": "14 yil", "employeeCount": 6,
+        "customerCount": "8.000+", "rating": 4.9, "reviewCount": 2100,
+        "workingHours": [
+          { "day": "Pazartesi", "dayTr": "Pazartesi", "open": "10:00", "close": "19:30", "isOpen": true },
+          { "day": "Sali", "dayTr": "Sali", "open": "10:00", "close": "19:30", "isOpen": true },
+          { "day": "Carsamba", "dayTr": "Carsamba", "open": "10:00", "close": "19:30", "isOpen": true },
+          { "day": "Persembe", "dayTr": "Persembe", "open": "10:00", "close": "19:30", "isOpen": true },
+          { "day": "Cuma", "dayTr": "Cuma", "open": "10:00", "close": "19:30", "isOpen": true },
+          { "day": "Cumartesi", "dayTr": "Cumartesi", "open": "10:00", "close": "19:00", "isOpen": true },
+          { "day": "Pazar", "dayTr": "Pazar", "open": "12:00", "close": "18:00", "isOpen": true }
+        ],
+        "services": [
+          { "id": "s1", "name": "Nisan Yuzugu", "price": "3.000-30.000 TL", "duration": "Anlik/1 hafta", "description": "Pirlanta tektas, bestas ve fantezi nisan yuzukleri. GIA sertifikali taslar. Kisisel danismanlik ve olcu ayarlama.", "icon": "Ring" },
+          { "id": "s2", "name": "Evlilik Alyans Seti", "price": "2.000-15.000 TL", "duration": "Anlik/1 hafta", "description": "14K ve 18K altin alyans setleri. Klasik, modern, dokulu ve tasli modeller. Ic yüzeye isim ve tarih kazima.", "icon": "Heart" },
+          { "id": "s3", "name": "Ozel Tasarim Yuzuk", "price": "5.000-50.000 TL", "duration": "2-4 hafta", "description": "Hayalinizdeki yuzugun 3D modelleme ile tasarlanip ozel uretiimi. CAD ciziminizi gorup onayladiktan sonra uretilir.", "icon": "Sparkles" },
+          { "id": "s4", "name": "Dugun Takisi Koleksiyonu", "price": "5.000-100.000 TL", "duration": "Anlik", "description": "22 ayar set, bilezik, trabzan altini ve bes bilezik. Dugun geleneklerine uygun genis koleksiyon.", "icon": "Crown" },
+          { "id": "s5", "name": "Pirlanta Degerleme", "price": "Ucretsiz", "duration": "15 dk", "description": "GIA standartlarinda pirlanta degerleme. 4C analizi (Carat, Cut, Color, Clarity) ve piyasa degeri tespiti.", "icon": "Diamond" },
+          { "id": "s6", "name": "Olcu Ayarlama & Tamir", "price": "200-800 TL", "duration": "1-3 gun", "description": "Yuzuk olcu buyutme/kucultme, taş sabitleme, prong tamir ve parlatma. Uzman kuyumcu ellerde.", "icon": "Wrench" }
+        ],
+        "team": [
+          { "name": "Sibel Ozturk", "title": "Kurucu & Tas Uzmani", "description": "GIA Graduate Gemologist. 14 yillik pirlanta ve degerli tas deneyimi. 8.000+ ciftin yüzügünü secti.", "image": "" },
+          { "name": "Emre Kaya", "title": "Kuyumcu Usta", "description": "25 yillik el isciliginde uzman kuyumcu. Ozel tasarim ve restorasyon islerinde usta.", "image": "" }
+        ],
+        "testimonials": [
+          { "name": "Zeynep & Ali", "location": "Sisli", "date": "2025-11", "rating": 5, "comment": "Tektas yuzugumu Sibel Hanim'in rehberligiyle sectik. GIA sertifikalI, tam istedigimiz gibi. Evlilik teklifi muhtesem oldu." },
+          { "name": "Ece & Mert", "location": "Besiktas", "date": "2025-09", "rating": 5, "comment": "Ozel tasarim alyanslarimiz tam hayalimiz gibi oldu. 3D model gösterip onaylattılar, sonuc kusursuz." },
+          { "name": "Defne & Can", "location": "Kadikoy", "date": "2025-07", "rating": 5, "comment": "Dugun takisi icin geldik, butceye uygun harika secenekler sundular. Set ve bilezikler çok sik. Tesekkurler!" }
+        ],
+        "gallery": []
+      },
+      "content": {
+        "hero": { "title": "Ebedi Bagliliginizan Simgesi", "subtitle": "GIA sertifikali pirlanta, ozel tasarim alyans ve dugun takisi. Nisantasi'nda 14 yillik uzmanlıkla hayalinizdeki yuzugu bulun.", "badge": "GIA Gemologist", "ctaText": "Randevu Alin", "ctaLink": "tel:+902122345678" },
+        "about": { "title": "Alyans Atelier Kuyumculuk", "description": "2012 yilinda GIA Graduate Gemologist Sibel Ozturk tarafindan Nisantasi'nda kurulan Alyans Atelier, nisan yuzugu, alyans ve dugun takisi alanında uzman bir kuyumculuk atelyesidir. GIA sertifikali pirlantalar, ozel tasarim hizmeti ve 25 yillik kuyumcu ustalariyla 8.000'den fazla ciftin en degerli anina eslik ettik." },
+        "services": { "title": "Kuyumculuk Hizmetlerimiz", "subtitle": "Tektas, alyans, dugun takisi ve ozel tasarim" },
+        "stats": { "title": "Rakamlarla Alyans Atelier", "subtitle": "14 yillik ask ve zarafet" },
+        "contact": { "title": "Randevu & Iletisim", "subtitle": "Ozel danismanlik icin randevu alin" },
+        "faq": [
+          { "q": "GIA sertifikasi ne anlama geliyor?", "a": "GIA (Gemological Institute of America) pirlantanin 4C degerlerini (agirlik, kesim, renk, berraklik) bagimsiz olarak onaylayan uluslararasi sertifikadir." },
+          { "q": "Ozel tasarim ne kadar suruyor?", "a": "CAD ciziminden uretige genellikle 2-4 hafta. Acil siparislerde 1 haftaya kadar indirebiliriz." },
+          { "q": "Alyansa isim ve tarih yazdirabilir miyim?", "a": "Evet, ic yüzeye lazer ile isim, tarih veya ozel mesaj kazima yapiyoruz." },
+          { "q": "Taksit imkani var mi?", "a": "Evet, tum kredi kartlarina 3-12 ay taksit. Belirli bankalarla ozel kampanyalar." },
+          { "q": "Pirlanta degerleme ucretsiz mi?", "a": "Evet, satin alma niyeti olsun veya olmasin pirlantanizin 4C analizini ucretsiz yapiyoruz." },
+          { "q": "Yuzuk olcumu nasil yapiliyor?", "a": "Magamızda profesyonel olcu seti ile anlik olcum. Online icin olcum kildi gonderiyor veya ip yontemiyle rehberlik ediyoruz." }
+        ]
+      }
+    },
+    {
+      "id": "kuyumcu-gumus",
+      "variantName": "gumus",
+      "plan": "growth",
+      "description": "Tasarim gumus takı ve aksesuar",
+      "designPhilosophy": "Modern, minimal, sanatsal",
+      "isDark": false,
+      "colors": { "bg": "#FAFAFA", "surface": "#F0F0F5", "text": "#1A1A2E", "accent": "#6366F1" },
+      "fonts": { "heading": "Montserrat", "body": "Inter" },
+      "business": {
+        "name": "SilverCraft Tasarim Atölyesi",
+        "ownerName": "Pelin Duman",
+        "sector": "Kuyumcu",
+        "slogan": "Gumusten sanat, sanatlar birligi",
+        "phone": "0212 567 89 00",
+        "phoneClean": "902125678900",
+        "whatsapp": "905561234567",
+        "email": "info@silvercraft.com.tr",
+        "address": "Cukurcuma Mah. Faik Pasa Cad. No:18, Beyoglu/Istanbul",
+        "city": "Istanbul", "district": "Beyoglu",
+        "mapEmbed": "", "foundedYear": 2015, "experience": "11 yil", "employeeCount": 8,
+        "customerCount": "15.000+", "rating": 4.9, "reviewCount": 3400,
+        "workingHours": [
+          { "day": "Pazartesi", "dayTr": "Pazartesi", "open": "10:00", "close": "19:00", "isOpen": true },
+          { "day": "Sali", "dayTr": "Sali", "open": "10:00", "close": "19:00", "isOpen": true },
+          { "day": "Carsamba", "dayTr": "Carsamba", "open": "10:00", "close": "19:00", "isOpen": true },
+          { "day": "Persembe", "dayTr": "Persembe", "open": "10:00", "close": "19:00", "isOpen": true },
+          { "day": "Cuma", "dayTr": "Cuma", "open": "10:00", "close": "19:00", "isOpen": true },
+          { "day": "Cumartesi", "dayTr": "Cumartesi", "open": "11:00", "close": "19:00", "isOpen": true },
+          { "day": "Pazar", "dayTr": "Pazar", "open": "12:00", "close": "18:00", "isOpen": true }
+        ],
+        "services": [
+          { "id": "s1", "name": "Tasarim Gumus Taki", "price": "300-3.000 TL", "duration": "Anlik", "description": "El yapimi 925 ayar gumus kolye, bileklik, kupe ve yuzuk. Minimalist, bohem ve statement parcalar.", "icon": "Gem" },
+          { "id": "s2", "name": "Ozel Tasarim & Siparis", "price": "500-5.000 TL", "duration": "1-3 hafta", "description": "Sizin icin benzersiz taki tasarimi. Eskiz, 3D model ve el yapimi uretim. Isminiz veya semboliniz ile.", "icon": "Sparkles" },
+          { "id": "s3", "name": "Taki Yapim Atolyesi", "price": "400-800 TL/kisi", "duration": "2-3 saat", "description": "Kendi gumus takinizi yapin! Yuzuk, bileklik veya kolye uci. Malzeme ve rehberlik dahil.", "icon": "Hammer" },
+          { "id": "s4", "name": "Gumus Erkek Aksesuar", "price": "200-2.000 TL", "duration": "Anlik", "description": "Gumus kol dugmesi, kravat ignesi, anahtarlik ve bileklik. Kisisellestirilmis erkek aksesuarlari.", "icon": "User" },
+          { "id": "s5", "name": "Degerli Tas Entegrasyonu", "price": "500-5.000 TL", "duration": "1-2 hafta", "description": "Gumus takilariniza ametist, akuamarin, granat, ay tasi ve diger yari degerli taslar ile ozellik katın.", "icon": "Diamond" },
+          { "id": "s6", "name": "Taki Restorasyon", "price": "150-1.000 TL", "duration": "3-7 gun", "description": "Eski ve hasarli gumus takilarin restorasyonu. Parlatma, siyahlatma (oksitleme), lehim ve tas sabitleme.", "icon": "Wrench" },
+          { "id": "s7", "name": "Kurumsal & Promosyon Taki", "price": "Teklif bazli", "duration": "2-4 hafta", "description": "Sirketler icin ozel tasarim promosyon ve hediye takilar. Logo entegrasyonu, ozel paketleme.", "icon": "Building" },
+          { "id": "s8", "name": "Toptan Satis & Bayi", "price": "Teklif bazli", "duration": "Degisken", "description": "Butik mağaza ve online saticilar icin toptan gumus taki temini. Ozel koleksiyon olusturma.", "icon": "Store" },
+          { "id": "s9", "name": "E-Ticaret Fotograf Seti", "price": "50-200 TL/adet", "duration": "Degisken", "description": "Taki fotografciligi hizmeti. Beyaz zemin, lifestyle ve sosyal medya formati. Online satis icin optimize.", "icon": "Camera" },
+          { "id": "s10", "name": "Hediye Danismanligi", "price": "Ucretsiz", "duration": "15 dk", "description": "Ozel gunler icin taki hediye secimi danismanligi. Butce, tarze ve kisiye ozel onerilеr.", "icon": "Gift" }
+        ],
+        "team": [
+          { "name": "Pelin Duman", "title": "Kurucu & Tasarimci", "description": "Mimar Sinan GSF Takı Tasarimi mezunu. 11 yildir gumus taki tasarimi. Koleksiyonlari IF Design Award finalist.", "image": "" },
+          { "name": "Ahmet Sahin", "title": "Kuyumcu Usta", "description": "20 yillik gumus isciliginde uzman. Filigran, oksitleme ve tas monte tekniklerinde usta.", "image": "" },
+          { "name": "Ece Korkmaz", "title": "Atolye Egitmeni", "description": "6 yillik taki yapim egitmenligio. Beginner'dan ileri seviyeye workshop tasarimi ve yonetimi.", "image": "" },
+          { "name": "Merve Yilmaz", "title": "E-Ticaret & Pazarlama", "description": "Online satis, sosyal medya yonetimi ve marka iletisimi. 5 yillik dijital pazarlama deneyimi.", "image": "" }
+        ],
+        "testimonials": [
+          { "name": "Selin A.", "location": "Beyoglu", "date": "2025-12", "rating": 5, "comment": "Taki yapim atolyesine katildim, kendi yuzugumu yaptim. Cok keyifli ve ozel bir deneyimdi. Hediye olarak muhtesem." },
+          { "name": "Deniz K.", "location": "Kadikoy", "date": "2025-10", "rating": 5, "comment": "Ozel tasarim kolye yaptirdim, ismin harflerini baslangic olarak kullandi Pelin Hanim. Sonuc benzersiz ve cok zarif." },
+          { "name": "Nova Butik", "location": "Nisantasi", "date": "2025-08", "rating": 5, "comment": "Butik magazamiz icin ozel koleksiyon olusturdular. Musderilerimiz bayildi. Toptаn calismak cok kolay." },
+          { "name": "Emre T.", "location": "Besiktas", "date": "2025-06", "rating": 5, "comment": "Erkek bilezik koleksiyonu cok sik. Minimalist ve kaliteli. Kol dugmesi de harika bir is hediyesi oldu." },
+          { "name": "Ayca D.", "location": "Cihangir", "date": "2025-04", "rating": 4, "comment": "Annemin eski gumus broşunu restore ettirdim. Yenisi gibi oldu, tum detaylar korunmus. Parlatma ve tas sabitleme muhtesom." },
+          { "name": "Tech Startup Inc.", "location": "Levent", "date": "2025-02", "rating": 5, "comment": "Calisanlarima ozel tasarim gumus anahtarlik yaptirdim. Logo entegrasyonu ve ozel kutu. Kurumsal hediye icin ideal." }
+        ],
+        "gallery": []
+      },
+      "content": {
+        "hero": { "title": "Gumusten Sanat, Sanatlar Birligi", "subtitle": "Cukurcuma'da el yapimi tasarim gumus takılar, ozel siparis ve taki yapim atolyesi. IF Design Award finalist.", "badge": "El Yapimi", "ctaText": "Koleksiyonu Kesfet", "ctaLink": "tel:+902125678900" },
+        "about": { "title": "SilverCraft Tasarim Atölyesi", "description": "2015 yilinda taki tasarimcisi Pelin Duman tarafindan Beyoglu Cukurcuma'da kurulan SilverCraft, el yapimi gumus taki tasarimi alaninda Istanbul'un onde gelen atelyesidir. 925 ayar gumus, yari degerli taslar ve modern tasarim dili ile 15.000'den fazla musteriye benzersiz parcalar olusturduk. Taki yapim atolyelerimizle misafirlerimize kendi takilarini uretme deneyimi sunuyoruz. Kurumsal hediye, toptan satis ve e-ticaret fotografi gibi ek hizmetlerimizle genis bir hizmet yelpazesi sunuyoruz." },
+        "services": { "title": "Taki Hizmetlerimiz", "subtitle": "Tasarim, atolye, ozel siparis ve daha fazlasi" },
+        "stats": { "title": "Rakamlarla SilverCraft", "subtitle": "11 yillik yaratici takı deneyimi" },
+        "contact": { "title": "Iletisim & Siparis", "subtitle": "Ozel tasarim icin bize ulasin" },
+        "faq": [
+          { "q": "925 ayar gumus nedir?", "a": "%92.5 saf gumus ve %7.5 bakir alasimi. Sterling silver olarak da bilinir. Dayaniklili ve parlaklik icin ideal oran." },
+          { "q": "Taki yapim atolyesine katilmak icin tecrube gerekli mi?", "a": "Hayir, tum seviyeler icin uygundur. Ekibimiz adim adim rehberlik eder." },
+          { "q": "Ozel tasarim ne kadar surer?", "a": "Basit parcalar 1 hafta, karmasik tasarimlar 2-3 hafta. Acil siparislerde 3 gune kadar indirebiliriz." },
+          { "q": "Online siparis yapabilir miyim?", "a": "Evet, web sitemizden veya Instagram uzerinden siparis verebilirsiniz. Turkiye geneline kargo." },
+          { "q": "Gumus kararir mi?", "a": "Zamanla hafif oksitlenme olabilir. Gumus parlatma bezi ile kolayca parlatilir. Bakim talimatlarini teslimde veriyoruz." },
+          { "q": "Iade politikaniz nedir?", "a": "Hazir urunlerde 14 gun iade/degisim. Ozel tasarim urunlerde onay sonrasi iade yoktur." },
+          { "q": "Toptan minimum siparis ne kadar?", "a": "Toptan icin minimum 50 adet. Model cesitliligi icin minimum yok, karma siparis kabul ediyoruz." },
+          { "q": "Hediye paketi var mi?", "a": "Evet, tum urunler ozel SilverCraft kutusunda, bakım kilavuzuyla teslim edilir. Hediye notu eklenebilir." }
+        ]
+      }
+    },
+    {
+      "id": "kuyumcu-pirlanta",
+      "variantName": "pirlanta",
+      "plan": "pro",
+      "description": "Pirlanta ve degerli tas uzmani",
+      "designPhilosophy": "Luks, sofistike, zamanin otesinde",
+      "isDark": false,
+      "colors": { "bg": "#FEFEFE", "surface": "#F5F0F7", "text": "#1A0A2E", "accent": "#7C3AED" },
+      "fonts": { "heading": "Cormorant Garamond", "body": "Inter" },
+      "business": {
+        "name": "Karats Pirlanta Maison",
+        "ownerName": "Semra Alkan",
+        "sector": "Kuyumcu",
+        "slogan": "Pirlantada kusursuz secim",
+        "phone": "0212 678 90 00",
+        "phoneClean": "902126789000",
+        "whatsapp": "905381234567",
+        "email": "info@karatspirlanta.com",
+        "address": "Tesvikiye Mah. Tesvikiye Cad. No:100, Sisli/Istanbul",
+        "city": "Istanbul", "district": "Sisli",
+        "mapEmbed": "", "foundedYear": 2006, "experience": "20 yil", "employeeCount": 12,
+        "customerCount": "12.000+", "rating": 4.9, "reviewCount": 4500,
+        "workingHours": [
+          { "day": "Pazartesi", "dayTr": "Pazartesi", "open": "10:00", "close": "19:00", "isOpen": true },
+          { "day": "Sali", "dayTr": "Sali", "open": "10:00", "close": "19:00", "isOpen": true },
+          { "day": "Carsamba", "dayTr": "Carsamba", "open": "10:00", "close": "19:00", "isOpen": true },
+          { "day": "Persembe", "dayTr": "Persembe", "open": "10:00", "close": "19:00", "isOpen": true },
+          { "day": "Cuma", "dayTr": "Cuma", "open": "10:00", "close": "19:00", "isOpen": true },
+          { "day": "Cumartesi", "dayTr": "Cumartesi", "open": "10:30", "close": "19:00", "isOpen": true },
+          { "day": "Pazar", "dayTr": "Pazar", "open": "12:00", "close": "18:00", "isOpen": true }
+        ],
+        "services": [
+          { "id": "s1", "name": "GIA Pirlanta Tektas", "price": "10.000-500.000 TL", "duration": "Anlik/ozel siparis", "description": "GIA sertifikali pirlanta tektas yuzukler. 0.30 karattan 5+ karata kadar genis secim. Ideal kesim pirlantalar.", "icon": "Diamond" },
+          { "id": "s2", "name": "Bestas & Sutasvane", "price": "15.000-200.000 TL", "duration": "Anlik/1 hafta", "description": "Klasik ve modern bestas yuzukler. Pirlanta, safir, yakut ve zumrut tasli seçenekler.", "icon": "Gem" },
+          { "id": "s3", "name": "High Jewelry Koleksiyon", "price": "50.000-2.000.000 TL", "duration": "Anlik/ozel siparis", "description": "Eşsiz high jewelry parcalari. Nadir taslar, ozel montür ve sanat eseri kalitesinde iscilık.", "icon": "Crown" },
+          { "id": "s4", "name": "Ozel Tasarim (Bespoke)", "price": "20.000-500.000 TL", "duration": "4-8 hafta", "description": "Sifirdan ozel taki tasarimi. 3D modelleme, wax prototip ve el iscilik. Benzersiz parcaniz.", "icon": "Sparkles" },
+          { "id": "s5", "name": "Pirlanta Yatirim Danismanligi", "price": "Ucretsiz", "duration": "1 saat", "description": "Yatirim amaçli pirlanta seciminde uzman rehberlik. GIA sertifika okuma, piyasa analizi ve portfoy olusturma.", "icon": "TrendingUp" },
+          { "id": "s6", "name": "Gemolojik Degerleme", "price": "500-2.000 TL", "duration": "1-3 gun", "description": "Pirlanta ve degerli tas degerleme raporu. 4C analizi, orjinallik testi ve piyasa degeri. Sigorta ve miras icin.", "icon": "FileText" },
+          { "id": "s7", "name": "Taki Yenileme (Remake)", "price": "5.000-50.000 TL", "duration": "2-4 hafta", "description": "Miras takilarin modern tasarima donusturulmesi. Mevcut taslari yeni montüre yerleştirme.", "icon": "RefreshCcw" },
+          { "id": "s8", "name": "Evlilik Alyans Koleksiyonu", "price": "3.000-30.000 TL", "duration": "Anlik/ozel siparis", "description": "18K altin ve platin alyans setleri. Pirlantali, düz ve doku islemeli modeller. Kazima dahil.", "icon": "Ring" },
+          { "id": "s9", "name": "Renkli Tas Koleksiyonu", "price": "5.000-200.000 TL", "duration": "Anlik", "description": "Safir, yakut, zumrut, tanzanit ve paraiba. Sertifikalı renkli degerli taslar ve takılar.", "icon": "Palette" },
+          { "id": "s10", "name": "Tamir & Bakim", "price": "300-3.000 TL", "duration": "1-7 gun", "description": "Pirlantali taki tamir, prong kontrolu, tas sabitleme, rodaj ve parlatma hizmeti.", "icon": "Wrench" },
+          { "id": "s11", "name": "Pirlanta Sertifikalama", "price": "1.000-5.000 TL", "duration": "1-2 hafta", "description": "Sertifikasiz pirlantalarinizi GIA veya HRD laboratuvarlarına gonderme ve sertifikalama hizmeti.", "icon": "Award" },
+          { "id": "s12", "name": "VIP Ev/Ofis Ziyareti", "price": "Ucretsiz", "duration": "1-2 saat", "description": "Ozel musteriler icin evinize veya ofisinize koleksiyon ve pirlanta getirme hizmeti. Randevu ile.", "icon": "Car" },
+          { "id": "s13", "name": "Dugun Planlama Ortakligi", "price": "Ozel", "duration": "Degisken", "description": "Dugun planlayicilariyla ortaklik programi. Cekim gun taki kiralama ve ozel fiyat avantajlari.", "icon": "Calendar" },
+          { "id": "s14", "name": "Sigorta Taki Listesi", "price": "Ucretsiz", "duration": "1 saat", "description": "Mevcut taki koleksiyonunuzun sigorta icin detayli envanterini ve deger tespitini yapariz.", "icon": "Shield" }
+        ],
+        "team": [
+          { "name": "Semra Alkan", "title": "Kurucu & GIA Graduate Gemologist", "description": "New York GIA mezunu. 20 yillik pirlanta deneyimi. Turkiye'nin sayili kadin gemolojistlerinden. 12.000+ pirlanta satisi.", "image": "" },
+          { "name": "Ozan Demir", "title": "High Jewelry Tasarimci", "description": "Paris Ecole des Arts Joailliers mezunu. Bespoke ve high jewelry parcaları tasarimi. 10+ yillik luks taki deneyimi.", "image": "" },
+          { "name": "Usta Bekir Sahin", "title": "Bas Kuyumcu", "description": "30 yillik el isciliginde uzman. Prong montaj, pave setleme ve filigran ustasi. Kapali carsi gelenegio.", "image": "" },
+          { "name": "Canan Erdogan", "title": "Satis & VIP Musteri", "description": "15 yillik luks perakende deneyimi. Kisisel taki danismanligi ve VIP musteri iliskileri.", "image": "" },
+          { "name": "Burak Ozturk", "title": "Gemolog & Degerleme Uzmani", "description": "GIA Graduate Gemologist. Pirlanta ve renkli tas degerleme. Sigorta ve miras raporlari.", "image": "" },
+          { "name": "Aysun Kaya", "title": "CAD & 3D Modelleme", "description": "Rhinoceros ve Matrix CAD ile taki tasarimi. Wax prototip ve 3D baski. 8 yillik deneyim.", "image": "" }
+        ],
+        "testimonials": [
+          { "name": "Selin & Emre", "location": "Tesvikiye", "date": "2025-12", "rating": 5, "comment": "2 karat tektas aradık. Semra Hanim'in GIA bilgisi sayesinde butcemize en uygun, ideal kesim pirlantayi bulduk. Tası gercekten göremeden satin alamazdik." },
+          { "name": "Yasemin A.", "location": "Etiler", "date": "2025-10", "rating": 5, "comment": "Annemin miras yuzugunü modern tasarima donusturdteler. Taslari koruduler, yeni montür harika oldu. Duygusal degeri paha bicilmez." },
+          { "name": "Dr. Kemal T.", "location": "Nisantasi", "date": "2025-08", "rating": 5, "comment": "Yatirim icin pirlanta aldım. Semra Hanim'in piyasa analizi ve sertifika rehberligi ile 3 yilda %45 deger artisi yasadim." },
+          { "name": "Nil & Can", "location": "Bebek", "date": "2025-06", "rating": 5, "comment": "Ozel tasarim bestas muhtesemdi. 3D model gorduk, wax prototip onayladik, sonuc hayalimizin otesindeydi." },
+          { "name": "Ceyda K.", "location": "Levent", "date": "2025-04", "rating": 5, "comment": "VIP ev ziyareti hizmetinden faydalandik. Koleksiyon evimize geldi, rahat ortamda secdik. Cok ozel bir deneyimdi." },
+          { "name": "Oztürk Ailesi", "location": "Sisli", "date": "2025-02", "rating": 4, "comment": "Aile taki koleksiyonumuzun sigorta envanterini cikardilar. Her parcanin detayli degerleme raporu. Sigorta icin tam ihtiyacimiz olan seydi." },
+          { "name": "Ipek M.", "location": "Ortakoy", "date": "2025-01", "rating": 5, "comment": "Tanzanit ve pirlanta kombinasyonlu yuzugum benzersiz. Ozan Bey'in tasarimi gercekten sanat eseri. Fransa'da bile ilgi gordu." },
+          { "name": "Ahmet & Zeynep", "location": "Maslak", "date": "2024-11", "rating": 5, "comment": "Platin alyanslarimizin ic yüzüne birbirimize yazdigimiz mesajlar kazindi. Cok ozel bir detay. Karats kalitesini herkese oneriyoruz." }
+        ],
+        "gallery": []
+      },
+      "content": {
+        "hero": { "title": "Pirlantada Kusursuz Secim", "subtitle": "GIA Graduate Gemologist kadrosuyla pirlanta tektas, high jewelry ve ozel tasarim. Tesvikiye'de 20 yillik uzmanlık.", "badge": "GIA Sertifikali", "ctaText": "VIP Randevu", "ctaLink": "tel:+902126789000" },
+        "about": { "title": "Karats Pirlanta Maison", "description": "2006 yilinda New York GIA mezunu Semra Alkan tarafindan Sisli Tesvikiye'de kurulan Karats, Turkiye'nin pirlanta ve degerli tas alaninda onde gelen maison'larindan biridir. GIA sertifikalI pirlantalar, Paris egitimli tasarimcimizin bespoke parcalari ve 30 yillik deneyime sahip ustalarimizin el isciligioiyle 12.000'den fazla musteriye hizmet verdik. Yatirim pirlantasi danismanligi, gemolojik degerleme ve VIP ev/ofis ziyareti gibi ozel hizmetlerimizle fark yaratiyoruz." },
+        "services": { "title": "Pirlanta Hizmetlerimiz", "subtitle": "Tektas, high jewelry, ozel tasarim ve yatirim" },
+        "stats": { "title": "Rakamlarla Karats", "subtitle": "20 yillik pirlanta uzmanligi" },
+        "contact": { "title": "VIP Randevu", "subtitle": "Ozel gosterim icin randevu alin" },
+        "faq": [
+          { "q": "GIA sertifikasi neden onemli?", "a": "GIA pirlantanin 4C degerlerini bagimsiz olarak dogrulan dünyanin en guvenilir gemoloji enstitusudur. Yatirim ve sigorta icin zorunludur." },
+          { "q": "Pirlanta yatirim icin iyi mi?", "a": "1 karat ustu, D-G renk, VVS1-VS1 berraklik ve excellent kesim pirlantalar uzun vadeli iyi yatirim aracidir. Detayli danismanlik sunuyoruz." },
+          { "q": "Bespoke tasarim ne kadar surer?", "a": "Konsept'den teslime 4-8 hafta. 3D modelleme, wax prototip onay ve el iscilik asamalarini iceririn." },
+          { "q": "VIP ev ziyareti nasil calisiyor?", "a": "Randevu ile evinize veya ofisinize koleksiyon ve pirlanta getiriyoruz. Ozel ve rahat ortamda secim yapaрsiniz." },
+          { "q": "Miras takilari yenileyebilir misiniz?", "a": "Evet, mevcut degeri tas ve metali koruyarak modern tasarima donusturebiliriz." },
+          { "q": "Renkli tas sertifikasi verebiliyor musunuz?", "a": "GIA, Gubelin ve SSEF laboratuvarlarina gonderme hizmeti sunuyoruz. Safir, yakut ve zumrut icin onemlidir." },
+          { "q": "Taksit imkani var mi?", "a": "Evet, 3-12 ay taksit. 50.000 TL ustu alimlar icin ozel odeme plani olusturulabilir." },
+          { "q": "Sigorta icin ne gereklidir?", "a": "Detayli degerleme raporu ve fotografli envanter listesi. Her ikisini de hazirliyoruz." },
+          { "q": "Platin ve altin arasındaki fark nedir?", "a": "Platin daha dayanikli, hipoalerjenik ve agir. Altin daha geleneksel, renk secenekleri var (sari, beyaz, rose). Tercihe gore oneririz." },
+          { "q": "Pave ve prong montaj nedir?", "a": "Pave: kucuk taslar yan yana dizerek yuzey kaplama. Prong: buyuk taslari 4-6 tirnak ile sabitleme. Her ikisinde de uzman ustalarimiz var." }
+        ]
+      }
+    },
+    {
+      "id": "kuyumcu-lux",
+      "variantName": "lux",
+      "plan": "enterprise",
+      "description": "Ultra-luks kuyumculuk ve saat evi",
+      "designPhilosophy": "Luks, ikonik, zamanin otesinde",
+      "isDark": true,
+      "colors": { "bg": "#0A0A0A", "surface": "#1A1510", "text": "#F5F0E8", "accent": "#C8A96E" },
+      "fonts": { "heading": "Playfair Display", "body": "Inter" },
+      "business": {
+        "name": "Maison Topkapi",
+        "ownerName": "Selim Kavak",
+        "sector": "Kuyumcu",
+        "slogan": "Istanbul'un en degerli hazinesi",
+        "phone": "0212 800 10 10",
+        "phoneClean": "902128001010",
+        "whatsapp": "905001234567",
+        "email": "info@maisontopkapi.com",
+        "address": "Bebek Mah. Cevdet Pasa Cad. No:40, Besiktas/Istanbul",
+        "city": "Istanbul", "district": "Besiktas",
+        "mapEmbed": "", "foundedYear": 1985, "experience": "41 yil", "employeeCount": 40,
+        "customerCount": "25.000+", "rating": 4.9, "reviewCount": 6800,
+        "workingHours": [
+          { "day": "Pazartesi", "dayTr": "Pazartesi", "open": "10:00", "close": "19:00", "isOpen": true },
+          { "day": "Sali", "dayTr": "Sali", "open": "10:00", "close": "19:00", "isOpen": true },
+          { "day": "Carsamba", "dayTr": "Carsamba", "open": "10:00", "close": "19:00", "isOpen": true },
+          { "day": "Persembe", "dayTr": "Persembe", "open": "10:00", "close": "19:00", "isOpen": true },
+          { "day": "Cuma", "dayTr": "Cuma", "open": "10:00", "close": "19:00", "isOpen": true },
+          { "day": "Cumartesi", "dayTr": "Cumartesi", "open": "10:00", "close": "19:00", "isOpen": true },
+          { "day": "Pazar", "dayTr": "Pazar", "open": "Randevu ile", "close": "", "isOpen": true }
+        ],
+        "services": [
+          { "id": "s1", "name": "Haute Joaillerie Koleksiyon", "price": "100.000-10.000.000 TL", "duration": "Anlik/ozel", "description": "Dunyaca unlu tasarimcilarin haute joaillerie parcalari. Tek uretim, nadir taslar ve muzе kalitesinde iscilık.", "icon": "Crown" },
+          { "id": "s2", "name": "Pirlanta & Degerli Tas", "price": "5.000-5.000.000 TL", "duration": "Anlik", "description": "GIA, HRD ve Gubelin sertifikali pirlanta, safir, yakut, zumrut. Yatirim kalitesinde 1-50+ karat taslar.", "icon": "Diamond" },
+          { "id": "s3", "name": "Bespoke Haute Joaillerie", "price": "50.000-5.000.000 TL", "duration": "6-16 hafta", "description": "Tamamen size ozel haute joaillerie parçasi. Paris ve Istanbul atolyelerinde el iscilik. Her parça bir sanat eseri.", "icon": "Sparkles" },
+          { "id": "s4", "name": "Luks Saat Koleksiyonu", "price": "20.000-5.000.000 TL", "duration": "Anlik", "description": "Patek Philippe, Rolex, Audemars Piguet, Richard Mille ve diger markalarin resmi bayisi. Yeni ve vintage.", "icon": "Watch" },
+          { "id": "s5", "name": "Saat Servis & Bakim", "price": "500-50.000 TL", "duration": "1-8 hafta", "description": "Isvicreli usta saatciler tarafindan mekanik saat servisi. Overhaul, pil, kayis ve cam degisimi. Tum markalar.", "icon": "Settings" },
+          { "id": "s6", "name": "Yatirim Pirlanta Portfoyu", "price": "Ozel", "duration": "Surekli", "description": "GIA D-F, IF-VVS1, 2+ karat pirlantalarla yatirim portfoyu olusturma. Piyasa analizi, alim-satim ve depolama.", "icon": "TrendingUp" },
+          { "id": "s7", "name": "Miras Taki Restorasyonu", "price": "5.000-200.000 TL", "duration": "4-12 hafta", "description": "Antika ve miras takilarin profesyonel restorasyonu. Donem analizi, tas koruma ve orijinal teknik ile onarim.", "icon": "History" },
+          { "id": "s8", "name": "Gemolojik Laboratuvar", "price": "1.000-10.000 TL", "duration": "1-5 gun", "description": "Yerinde gemolojik laboratuvar ile pirlanta, renkli tas ve inci degerleme. Orjinallik, isil islem ve sentetik testi.", "icon": "Microscope" },
+          { "id": "s9", "name": "Private Showroom", "price": "Ozel", "duration": "Randevu ile", "description": "VIP musteriler icin ozel showroom deneyimi. Sampanya, kisisel danismanlik ve ozel koleksiyona erisim.", "icon": "Lock" },
+          { "id": "s10", "name": "Global Tedarik & Auction", "price": "Ozel", "duration": "Degisken", "description": "Christie's, Sotheby's ve ozel koleksiyonlardan degerli tas ve taki tedarigio. Muayere baslidi temsil.", "icon": "Globe" },
+          { "id": "s11", "name": "Saat & Taki Sigorta", "price": "Ozel", "duration": "Degisken", "description": "Degerli taki ve saat koleksiyonunuz icin ozel sigorta danismanligi. AXA Art, Chubb ve Lloyd's ile is birligi.", "icon": "Shield" },
+          { "id": "s12", "name": "VIP Ev/Ofis Servisi", "price": "Ozel", "duration": "Randevu ile", "description": "Koleksiyon, pirlanta veya saat'i evinize veya ofisinize getirme. Guvenlik esliginde ozel gosterim.", "icon": "Car" },
+          { "id": "s13", "name": "Kuyumculuk Egitimi", "price": "10.000-30.000 TL", "duration": "3-5 gun", "description": "Pirlanta ve degerli tas egitimi. 4C analizi, sertifika okuma, yatirim stratejisi. Bireysel ve kurumsal.", "icon": "GraduationCap" },
+          { "id": "s14", "name": "Dugun & Ozel Gun Paketi", "price": "Ozel", "duration": "Degisken", "description": "Nisan, dugun ve yildonumu icin ozel paket. Tektas, alyans, dugun takisi ve hediyeler. Konsept danismanlik.", "icon": "Heart" },
+          { "id": "s15", "name": "Tasima & Depolama Kasasi", "price": "Ozel", "duration": "Yillik", "description": "Banka kasasi seviyesinde ozel depolama hizmeti. Sigorta, envanter yonetimi ve güvenlik.", "icon": "Vault" },
+          { "id": "s16", "name": "Kurumsal Hediye Programi", "price": "Ozel", "duration": "Degisken", "description": "CEO, yonetim kurulu ve VIP musteriler icin ozel tasarim kurumsal hediyeler. Logo entegrasyonu ve premium paketleme.", "icon": "Gift" },
+          { "id": "s17", "name": "Antik & Vintage Taki", "price": "5.000-1.000.000 TL", "duration": "Anlik", "description": "Art Deco, Belle Epoque ve Osmanlı donemi antik takilar. Donem tespiti, orijinallik sertifikasi ve restorasyon.", "icon": "Landmark" },
+          { "id": "s18", "name": "Inci Koleksiyonu", "price": "5.000-500.000 TL", "duration": "Anlik", "description": "Japon Akoya, Guney Denizi, Tahiti ve dogal inci. Kolye, kupe ve yuzuk. Hanadama sertifikalі.", "icon": "Circle" },
+          { "id": "s19", "name": "Erkek Lux Aksesuar", "price": "2.000-100.000 TL", "duration": "Anlik/ozel", "description": "Erkek pirlantali yuzuk, kol dugmesi, kravat ignesi ve bileklik. Gumus, altin ve platin secenekleri.", "icon": "User" },
+          { "id": "s20", "name": "Marka Buyukelci Programi", "price": "Ozel", "duration": "Yillik", "description": "Secilmis musteriler icin marka buyukelcisi programi. Ozel koleksiyona erken erisim, ozel etkinlikler ve indirimler.", "icon": "Star" }
+        ],
+        "team": [
+          { "name": "Selim Kavak", "title": "Kurucu & Baskаn", "description": "3. nesil kuyumcu. 41 yillik sektör deneyimi. Turkiye Kuyumcular Dernegi baskani. Uluslararasi taki fuarlarinda juri uyesi.", "image": "" },
+          { "name": "Aylin Kavak", "title": "Creative Director", "description": "Central Saint Martins (Londra) mezunu. Haute joaillerie tasarimi. Vogue, Tatler ve Harper's Bazaar'da yer almis koleksiyonlar.", "image": "" },
+          { "name": "Pierre Lefebvre", "title": "Bas Usta (Maitre Joaillier)", "description": "Paris Place Vendome gelenegio. 35 yillik haute joaillerie ustasi. Cartier ve Van Cleef & Arpels gecmisi.", "image": "" },
+          { "name": "Dr. Emre Ozkan", "title": "Bas Gemolog", "description": "GIA GG ve FGA. 18 yillik gemoloji deneyimi. Nadir taslar ve tarihi parcalar uzmanI.", "image": "" },
+          { "name": "Hans Mueller", "title": "Bas Saatci (Maitre Horloger)", "description": "WOSTEP (Isviçre) mezunu. Patek Philippe ve Rolex sertifikalI. 25 yillik mekanik saat servis ustasi.", "image": "" },
+          { "name": "Canan Demir", "title": "VIP Musteri Iliskileri Direktoru", "description": "20 yillik luks perakende ve musteri deneyimi. UHNW musteriler ve aile koleksiyonlari yonetimi.", "image": "" },
+          { "name": "Marco Rossi", "title": "Auction & Tedarik Direktoru", "description": "Eski Christie's uzmanI. Uluslararasi muayere ve ozel koleksiyon tedarigio. 15 yillik deneyim.", "image": "" },
+          { "name": "Zehra Aksoy", "title": "Saat Departmani Muduru", "description": "10 yillik luks saat perakende deneyimi. Patek Philippe, Rolex ve AP koleksiyon bilgisi.", "image": "" }
+        ],
+        "testimonials": [
+          { "name": "Sabanci Ailesi", "location": "Istanbul", "date": "2026-01", "rating": 5, "comment": "Aile miras koleksiyonumuzun restorasyonunu Maison Topkapi yonetti. Pierre Usta'nin iscilik kalitesi Paris seviyesinde. 41 yillik guven." },
+          { "name": "H.E. Al-Thani", "location": "Doha/Istanbul", "date": "2025-12", "rating": 5, "comment": "5 karat D flawless pirlanta icin global arama yaptiler. Christies'de buldular, muayere temsili ve depolama dahil. Kusursuz hizmet." },
+          { "name": "Ece K.", "location": "Bebek", "date": "2025-11", "rating": 5, "comment": "Bespoke haute joaillerie yuzugum 12 haftada tamamlandi. Aylin Hanim'in tasarimi ve Pierre Usta'nin isciligioyi... Bir sanat eseri." },
+          { "name": "Viktor & Elena M.", "location": "Moskova/Istanbul", "date": "2025-10", "rating": 5, "comment": "Private showroom deneyimi muhtesom. Sampanya esliginde koleksiyonu inceledik. Bugun 3 parca aldik, gelecek ay tekrar geliyoruz." },
+          { "name": "Yildirim Holding", "location": "Istanbul", "date": "2025-09", "rating": 5, "comment": "Yonetim kurulu uyeleri icin kurumsal hediye programi olusturduk. Ozel tasarim kol dugmeleri ve saat. Patron cok memnun kaldi." },
+          { "name": "Dr. James L.", "location": "London", "date": "2025-08", "rating": 5, "comment": "Patek Philippe Nautilus aradim, Turkiye'de bulmak zor. Maison Topkapi'nin ag sayesinde 2 haftada teslim aldim." },
+          { "name": "Aydin Ailesi", "location": "Nisantasi", "date": "2025-07", "rating": 5, "comment": "3 nesil boyunca Maison Topkapi ile calisiyoruz. Annemin setini Aylin Hanim modern tasarima donusturdu. Duygusal deger korundu." },
+          { "name": "Sheikh Ahmed R.", "location": "Dubai", "date": "2025-06", "rating": 5, "comment": "Kasmira safir ve pirlanta gerdanlik ozel siparisi verdim. 16 hafta surdu ama sonuc muze kalitesinde. Dunyа standartlarinda." },
+          { "name": "Selin T.", "location": "Etiler", "date": "2025-05", "rating": 5, "comment": "Pirlanta yatirim portfoyumu Dr. Emre Bey ile olusturduk. 3 yilda %60 deger artisi. Gemolojik bilgisi olağanustu." },
+          { "name": "Ozturk Vakfi", "location": "Istanbul", "date": "2025-04", "rating": 5, "comment": "Vakfa ait Osmanlı donemi takilarin restorasyonu. Donem tespiti, orijinallik analizi ve museumа uygun konservasyon. Tarihe saygi." },
+          { "name": "Isabella C.", "location": "Milano", "date": "2025-03", "rating": 5, "comment": "Tahiti inci kolekiyonlari harika. Hanadama sertifikali Akoya set aldim. Kalite Roma ve Milano ile yarisiyor." },
+          { "name": "Koroglu Ailesi", "location": "Istanbul", "date": "2025-02", "rating": 5, "comment": "Taki ve saat koleksiyonumuzun sigorta degerlenmesini yaptilar. 120 parcalik detayli envanter ve fotograf. Sigortacimiz cok memnun." }
+        ],
+        "gallery": []
+      },
+      "content": {
+        "hero": { "title": "Istanbul'un En Degerli Hazinesi", "subtitle": "41 yildir haute joaillerie, yatirim pirlantasi ve luks saat. Paris ustaligio, GIA güvencesi ve 3 nesil kuyumculuk gelenegió.", "badge": "Haute Joaillerie", "ctaText": "Private Randevu", "ctaLink": "tel:+902128001010" },
+        "about": { "title": "Maison Topkapi", "description": "1985 yilinda 3. nesil kuyumcu Selim Kavak tarafindan kurulan Maison Topkapi, Istanbul'un en prestijli kuyumculuk ve saat evidir. Bebek'teki flagship showroom'umuzda haute joaillerie koleksiyonlari, GIA sertifikalI yatirim pirlantalar, Paris ve Istanbul atolyelerinde uretilen bespoke parcalar ve Patek Philippe, Rolex gibi luks saat markalarini bir arada sunuyoruz. 40 kisilik uluslararasi kadromuzda Paris Place Vendome gelengioden Maitre Joaillier, GIA Graduate Gemologist, WOSTEP sertifikalI saatci ve Christie's gecmisli tedarik uzmani yer alir. 25.000'den fazla musterimize hizmet verdik. Miras takilarin restorasyonu, antik koleksiyon tedarigio, ozel depolama ve sigorta danismanligi gibi hizmetlerimizle Turkiye'nin en kapsamli luks kuyumculuk deneyimini sunuyoruz." },
+        "services": { "title": "Maison Hizmetleri", "subtitle": "Haute joaillerie, pirlanta, saat ve daha fazlasi" },
+        "stats": { "title": "Rakamlarla Maison Topkapi", "subtitle": "41 yillik luks kuyumculuk mirasi" },
+        "contact": { "title": "Private Randevu", "subtitle": "Ozel showroom deneyimi icin randevu alin" },
+        "faq": [
+          { "q": "Haute joaillerie nedir?", "a": "En yuksek kalite taslar ve el isciligioiyle uretilen, sanat eseri niteliğinde tek uretim takilardir. Her parca benzersizdir." },
+          { "q": "Hangi saat markalarinin bayisisiniz?", "a": "Patek Philippe, Rolex, Audemars Piguet, Jaeger-LeCoultre, IWC ve Cartier resmi bayisiyiz. Vintage parcalar da mevcuttur." },
+          { "q": "Pirlanta yatirim danismanligi ucretsiz mi?", "a": "Ilk gorusme ucretsizdir. Portfoy olusturma ve surekli takip icin ozel danismanlik hizmeti sunuyoruz." },
+          { "q": "Private showroom randevusu nasil aliniyor?", "a": "Telefon veya WhatsApp ile iletisime gecin. VIP danismanımız size uygun tarih ve saat belirleyecektir." },
+          { "q": "Bespoke haute joaillerie ne kadar surer?", "a": "Konsept'den teslime 6-16 hafta. Karmasik parcalarda 6 aya kadar uzayabilir. Her asama müsteri onayi ile ilerler." },
+          { "q": "Christie's ve Sotheby's'den taki alabilir miyim?", "a": "Evet, muayere temsili hizmetimizle dunyanin onde gelen muayede evlerinden sizin adıniza alim yapiyoruz." },
+          { "q": "Saat servisi ne kadar suruyor?", "a": "Pil degisimi anlik, overhaul 4-8 hafta. Nadir parcalar ve Isviçre'ye gonderilmesi gerekenler 8-12 hafta." },
+          { "q": "Antik taki orijinalligini nasil dogruluyorsunuz?", "a": "Gemolojik laboratuvarimizda donem analizi, imalat teknigi tespiti, tas orjinallik testi ve metal bilesim analizi yapiyoruz." },
+          { "q": "Koleksiyon sigortasi icin ne gerekiyor?", "a": "Detayli degerleme raporu, fotografli envanter ve muhafaza kosullari degerlendirmesi. Anlasmali sigorta sirketleriyle çalissiyoruz." },
+          { "q": "Ozel depolama kasaniz guvenli mi?", "a": "Banka kasasi standartlarinda, 7/24 guvenlik, sicaklik/nem kontrolu ve sigorta kapsaminda. Yillik envanter kontrolu dahil." },
+          { "q": "Marka buyukelcisi programinа nasil katilirim?", "a": "Davet usulu bir programdir. VIP danismanımız belirlі kriterlere gore secilmis musterileri davet eder." },
+          { "q": "Egitim programlari kimlere yonelik?", "a": "Bireysel meraklilar, koleksiyoncular ve sektör profesyonellerine yonelik pirlanta ve degerli tas egitim programlari." },
+          { "q": "Yurt disi musderilere hizmet veriyor musunuz?", "a": "Evet, Korfez, Avrupa, Rusya ve Asya'dan musterilerimiz var. Uluslararasi kargo, gumruk ve sigorta islemlerini yonetiyoruz." },
+          { "q": "Iade politikaniz nedir?", "a": "Hazir parcalarda 7 gun iade. Bespoke ve ozel sipariselerde uretim onaylmasinin sonrasi iade yoktur. Degisim mumkundur." },
+          { "q": "Erkek musteriler icin ne var?", "a": "Pirlantali yuzuk, kol dugmesi, bileklik ve luks saat koleksiyonumuz erkek musterilere yonelik genis bir secim sunar." }
+        ]
+      }
+    }
+  ]
+}

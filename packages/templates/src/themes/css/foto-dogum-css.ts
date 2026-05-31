@@ -1,0 +1,20 @@
+/** Foto Doğum — soft newborn photography CSS variables */
+export const FOTO_DOGUM_CSS: Record<string, string> = {
+  '--color-bg': '#FDF8F6',
+  '--color-surface': '#FFFFFF',
+  '--color-surface-elevated': '#FFFFFF',
+  '--color-surface-muted': '#FBF4F0',
+  '--color-text': '#1C1917',
+  '--color-text-secondary': '#78716C',
+  '--color-text-muted': '#A8A29E',
+  '--color-text-on-accent': '#FFFFFF',
+  '--color-text-on-dark': '#FAFAF9',
+  '--color-accent': '#EC4899',
+  '--color-accent-hover': '#F472B6',
+  '--color-accent-active': '#DB2777',
+  '--color-accent-light': '#FDF2F8',
+  '--color-border': '#E7E5E4',
+  '--color-border-subtle': '#F5F5F4',
+  '--font-heading': "'Cormorant Garamond', serif",
+  '--font-body': "'Nunito', system-ui, sans-serif",
+}

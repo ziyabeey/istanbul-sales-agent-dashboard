@@ -31,9 +31,6 @@ Sentry.init({
     return event
   },
 
-  // Ad blocker bypass
-  tunnelRoute: '/monitoring',
-
   integrations: [
     Sentry.replayIntegration({
       maskAllText: false,

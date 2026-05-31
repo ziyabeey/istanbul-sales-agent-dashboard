@@ -1,2 +1,1 @@
-import ClientComponent from './client';
-export default function Page() { return <ClientComponent />; }
+export { default } from './client'

@@ -1,0 +1,20 @@
+/** Eczane LUX — Dark luxury wellness pharmacy CSS variables */
+export const ECZANE_LUX_CSS: Record<string, string> = {
+  '--color-bg': '#0A0A0F',
+  '--color-surface': '#12121A',
+  '--color-surface-elevated': '#1A1A25',
+  '--color-surface-muted': '#08080D',
+  '--color-text': '#EAEAF0',
+  '--color-text-secondary': '#9898A8',
+  '--color-text-muted': '#606070',
+  '--color-text-on-accent': '#FFFFFF',
+  '--color-text-on-dark': '#F0F0F5',
+  '--color-accent': '#7B61FF',
+  '--color-accent-hover': '#9580FF',
+  '--color-accent-active': '#6B51EF',
+  '--color-accent-light': '#1A1530',
+  '--color-border': '#252535',
+  '--color-border-subtle': '#1A1A28',
+  '--font-heading': "'Cinzel', serif",
+  '--font-body': "'Plus Jakarta Sans', system-ui, sans-serif",
+}

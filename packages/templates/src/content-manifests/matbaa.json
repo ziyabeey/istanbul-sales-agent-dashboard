@@ -1,0 +1,1458 @@
+{
+  "sectorId": "matbaa",
+  "seoSchemaType": "PrintService",
+  "variants": [
+    {
+      "id": "matbaa-dijital",
+      "variantName": "dijital",
+      "plan": "free",
+      "description": "Dijital baskı matbaası — modern, temiz tasarım",
+      "designPhilosophy": "Net çizgiler, CMYK renk referansı, profesyonel",
+      "isDark": false,
+      "colors": {
+        "bg": "#FFFFFF",
+        "surface": "#F5F5F5",
+        "text": "#1A1A1A",
+        "accent": "#00BCD4"
+      },
+      "fonts": {
+        "heading": "Inter",
+        "body": "Inter"
+      },
+      "business": {
+        "name": "Pixel Dijital Baskı",
+        "sector": "matbaa",
+        "ownerName": "Hakan Yılmaz",
+        "slogan": "Dijital baskıda hız ve kalite bir arada",
+        "phone": "0212 543 2100",
+        "phoneClean": "02125432100",
+        "email": "info@pixeldijital.com",
+        "address": "Merter Mah. Tekstilciler Cad. No:67, Güngören/İstanbul",
+        "city": "İstanbul",
+        "district": "Güngören",
+        "coordinates": {
+          "lat": 41.0125,
+          "lng": 28.8883
+        },
+        "socialMedia": {
+          "instagram": "pixeldijitalbaski"
+        },
+        "photos": [],
+        "foundedYear": 2019,
+        "experience": "7 yıl",
+        "customerCount": "2.500+",
+        "rating": 4.6,
+        "reviewCount": 210,
+        "workingHours": [
+          {
+            "day": "Pazartesi",
+            "open": "08:30",
+            "close": "18:30",
+            "isOpen": true
+          },
+          {
+            "day": "Salı",
+            "open": "08:30",
+            "close": "18:30",
+            "isOpen": true
+          },
+          {
+            "day": "Çarşamba",
+            "open": "08:30",
+            "close": "18:30",
+            "isOpen": true
+          },
+          {
+            "day": "Perşembe",
+            "open": "08:30",
+            "close": "18:30",
+            "isOpen": true
+          },
+          {
+            "day": "Cuma",
+            "open": "08:30",
+            "close": "18:30",
+            "isOpen": true
+          },
+          {
+            "day": "Cumartesi",
+            "open": "09:00",
+            "close": "14:00",
+            "isOpen": true
+          },
+          {
+            "day": "Pazar",
+            "open": "",
+            "close": "",
+            "isOpen": false
+          }
+        ],
+        "services": [
+          {
+            "id": "s1",
+            "name": "Kartvizit Baskı",
+            "price": "250 TL / 1000 adet",
+            "duration": "1 iş günü",
+            "description": "350gr kuşe, mat veya parlak selefon, standart veya özel kesim kartvizit baskısı."
+          },
+          {
+            "id": "s2",
+            "name": "Broşür / Katalog",
+            "price": "1.500 TL / 1000 adet",
+            "duration": "2-3 iş günü",
+            "description": "A4 veya A5 boyut, 170gr kuşe kağıda renkli broşür ve katalog baskısı."
+          },
+          {
+            "id": "s3",
+            "name": "Afiş / Poster Baskı",
+            "price": "80 TL/m²",
+            "duration": "Aynı gün",
+            "description": "50x70, 70x100 veya özel boyut, yüksek çözünürlüklü dijital poster baskısı."
+          },
+          {
+            "id": "s4",
+            "name": "Sticker / Etiket",
+            "price": "400 TL / 1000 adet",
+            "duration": "1 iş günü",
+            "description": "Yapışkanlı kağıt veya vinil üzerine kesimli sticker ve etiket baskısı."
+          }
+        ],
+        "team": [],
+        "testimonials": []
+      },
+      "content": {
+        "hero": {
+          "title": "Dijital Baskıda Yeni Nesil",
+          "subtitle": "Kartvizit, broşür, afiş — aynı gün teslimat. Güngören'de hızlı dijital baskı.",
+          "badge": "Aynı Gün Teslimat"
+        },
+        "about": {
+          "title": "Pixel Dijital Baskı Hakkında",
+          "description": "2019 yılında kurulan Pixel Dijital Baskı, son teknoloji HP Indigo ve Xerox makineleriyle yüksek kaliteli dijital baskı hizmeti sunar. Küçük tirajlardan büyük siparişlere kadar hızlı ve ekonomik çözümler üretiyoruz."
+        },
+        "services": {
+          "title": "Baskı Hizmetlerimiz",
+          "subtitle": "Kartvizit, broşür, afiş ve daha fazlası"
+        },
+        "contact": {
+          "title": "Teklif Alın",
+          "subtitle": "Projeniz için hemen fiyat teklifi isteyin"
+        },
+        "faq": [
+          {
+            "question": "Minimum sipariş adedi var mı?",
+            "answer": "Dijital baskıda minimum adet yoktur. 1 adet bile basabiliriz. Ancak birim fiyat büyük adetlerde düşer."
+          },
+          {
+            "question": "Dosya formatı ne olmalı?",
+            "answer": "PDF, AI, PSD veya TIFF formatında, 300 DPI çözünürlükte, CMYK renk modunda dosyalar kabul edilir."
+          },
+          {
+            "question": "Tasarım hizmeti veriyor musunuz?",
+            "answer": "Evet, grafik tasarım ekibimiz kurumsal kimlik, broşür ve afiş tasarımı yapabilir. Fiyat projeye göre değişir."
+          },
+          {
+            "question": "Teslimat süresi ne kadar?",
+            "answer": "Kartvizit ve sticker aynı gün, broşür ve katalog 2-3 iş gününde teslim edilir. Acil işler için ekspres seçenek mevcuttur."
+          }
+        ]
+      }
+    },
+    {
+      "id": "matbaa-ofset",
+      "variantName": "ofset",
+      "plan": "starter",
+      "description": "Ofset baskı matbaası — endüstriyel, güçlü tasarım",
+      "designPhilosophy": "Endüstriyel güç, büyük tiraj güveni",
+      "isDark": false,
+      "colors": {
+        "bg": "#FAFAFA",
+        "surface": "#F0F0F0",
+        "text": "#1E1E1E",
+        "accent": "#1565C0",
+        "accentHover": "#0D47A1"
+      },
+      "fonts": {
+        "heading": "Inter",
+        "body": "Inter"
+      },
+      "business": {
+        "name": "Atlas Ofset Matbaacılık",
+        "sector": "matbaa",
+        "ownerName": "Mehmet Aydın",
+        "slogan": "Büyük tirajlarda kusursuz baskı kalitesi",
+        "phone": "0212 876 5400",
+        "phoneClean": "02128765400",
+        "email": "info@atlasofset.com",
+        "address": "İkitelli OSB Mah. Demirciler San. Sit. No:34, Başakşehir/İstanbul",
+        "city": "İstanbul",
+        "district": "Başakşehir",
+        "coordinates": {
+          "lat": 41.0689,
+          "lng": 28.7944
+        },
+        "socialMedia": {
+          "instagram": "atlasofsetmatbaa",
+          "facebook": "atlasofset"
+        },
+        "photos": [],
+        "foundedYear": 2005,
+        "experience": "21 yıl",
+        "customerCount": "4.000+",
+        "rating": 4.7,
+        "reviewCount": 380,
+        "workingHours": [
+          {
+            "day": "Pazartesi",
+            "open": "08:00",
+            "close": "18:00",
+            "isOpen": true
+          },
+          {
+            "day": "Salı",
+            "open": "08:00",
+            "close": "18:00",
+            "isOpen": true
+          },
+          {
+            "day": "Çarşamba",
+            "open": "08:00",
+            "close": "18:00",
+            "isOpen": true
+          },
+          {
+            "day": "Perşembe",
+            "open": "08:00",
+            "close": "18:00",
+            "isOpen": true
+          },
+          {
+            "day": "Cuma",
+            "open": "08:00",
+            "close": "18:00",
+            "isOpen": true
+          },
+          {
+            "day": "Cumartesi",
+            "open": "09:00",
+            "close": "13:00",
+            "isOpen": true
+          },
+          {
+            "day": "Pazar",
+            "open": "",
+            "close": "",
+            "isOpen": false
+          }
+        ],
+        "services": [
+          {
+            "id": "s1",
+            "name": "Kitap Baskı (Ofset)",
+            "price": "Tiraj bazlı teklif",
+            "duration": "5-7 iş günü",
+            "description": "Roman, ders kitabı, kılavuz — 1.000'den 100.000 tiraja kadar ofset kitap baskısı."
+          },
+          {
+            "id": "s2",
+            "name": "Dergi / Gazete Baskı",
+            "price": "Tiraj bazlı teklif",
+            "duration": "3-5 iş günü",
+            "description": "Süreli yayın, şirket bülteni, gazete formatında ofset baskı."
+          },
+          {
+            "id": "s3",
+            "name": "Ambalaj ve Kutu",
+            "price": "Tiraj bazlı teklif",
+            "duration": "7-10 iş günü",
+            "description": "Ürün kutusu, ambalaj, display standı — ofset ve sıvama teknikleriyle."
+          },
+          {
+            "id": "s4",
+            "name": "Etiket Baskı (Rulo)",
+            "price": "2.000 TL / 10.000 adet",
+            "duration": "3 iş günü",
+            "description": "Rulo etiket, barkod etiketi, ürün etiketi — flexo ve dijital baskı."
+          },
+          {
+            "id": "s5",
+            "name": "Kurumsal Kimlik Seti",
+            "price": "8.000 TL",
+            "duration": "5 iş günü",
+            "description": "Kartvizit, antetli kağıt, zarf, dosya, bloknot — tam set kurumsal baskı."
+          },
+          {
+            "id": "s6",
+            "name": "Davetiye / Özel Baskı",
+            "price": "3.500 TL / 500 adet",
+            "duration": "5 iş günü",
+            "description": "Düğün, açılış, etkinlik davetiyeleri — kabartma, varak yaldız seçenekleriyle."
+          }
+        ],
+        "team": [
+          {
+            "name": "Mehmet Aydın",
+            "title": "Kurucu & Genel Müdür",
+            "description": "30 yıllık matbaa deneyimi, ofset baskı uzmanı."
+          },
+          {
+            "name": "Serkan Demir",
+            "title": "Baskı Müdürü",
+            "description": "Heidelberg sertifikalı makine operatörü, renk yönetimi uzmanı."
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Yayınevi Direktörü Ahmet B.",
+            "district": "Cağaloğlu",
+            "date": "2025-11",
+            "rating": 5,
+            "comment": "50.000 tiraj kitap basımında renk tutarlılığı mükemmeldi. Zamanında teslim ettiler."
+          },
+          {
+            "name": "Pazarlama Müdürü Seda K.",
+            "district": "Levent",
+            "date": "2025-10",
+            "rating": 5,
+            "comment": "Kurumsal kimlik setimizi Atlas'a yaptırdık. Kabartma kalitesi çok iyi."
+          },
+          {
+            "name": "E-ticaret girişimcisi Mert Y.",
+            "district": "Kadıköy",
+            "date": "2025-12",
+            "rating": 4,
+            "comment": "Ambalaj kutuları harika çıktı ama teslimat bir gün gecikti. Kalite olarak 5/5."
+          }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Ofset Baskıda 21 Yıllık Güven",
+          "subtitle": "Kitap, dergi, ambalaj — 1.000'den 100.000'e kadar tirajlarda kusursuz ofset baskı.",
+          "badge": "Heidelberg Teknoloji"
+        },
+        "about": {
+          "title": "Atlas Ofset Matbaacılık",
+          "description": "2005 yılında İkitelli OSB'de kurulan Atlas Ofset, Heidelberg Speedmaster makineleriyle büyük tiraj baskıda İstanbul'un güvenilir adresidir. 2.000 metrekarelik tesisimizde baskı öncesi hazırlık, ofset baskı, cilt ve ambalaj üretimi tek çatı altında gerçekleştirilir. 21 yıllık deneyimimizle yayınevleri, kurumsal firmalar ve e-ticaret girişimcileri için güvenilir baskı çözümleri sunuyoruz."
+        },
+        "services": {
+          "title": "Ofset Baskı Hizmetleri",
+          "subtitle": "Kitaptan ambalaja, büyük tirajlarda profesyonel çözümler"
+        },
+        "contact": {
+          "title": "Teklif İsteyin",
+          "subtitle": "Projeniz için detaylı fiyat teklifi alın"
+        },
+        "faq": [
+          {
+            "question": "Ofset ve dijital baskı arasındaki fark nedir?",
+            "answer": "Ofset baskı büyük tirajlarda (1.000+) birim maliyeti düşük ve renk kalitesi üstündür. Dijital baskı küçük tirajlar ve kişiselleştirme için idealdir."
+          },
+          {
+            "question": "Minimum sipariş adedi nedir?",
+            "answer": "Ofset baskıda minimum 1.000 adet önerilir. Altındaki tirajlar için dijital baskı daha ekonomiktir."
+          },
+          {
+            "question": "Pantone renk eşleştirmesi yapıyor musunuz?",
+            "answer": "Evet, Pantone PMS sistemiyle birebir renk eşleştirmesi yapabiliyoruz. Ek kalıp maliyeti uygulanır."
+          },
+          {
+            "question": "Baskı öncesi prova alabilir miyim?",
+            "answer": "Dijital prova ücretsizdir. Makinede prova baskı talep edilebilir, ek ücret ile."
+          },
+          {
+            "question": "ISBN basımı yapıyor musunuz?",
+            "answer": "Evet, ISBN, barkod ve bandrol işlemlerini tamamlayarak kitap basımı gerçekleştiriyoruz."
+          },
+          {
+            "question": "Kargo ile teslimat yapıyor musunuz?",
+            "answer": "İstanbul içi ücretsiz teslimat. Türkiye geneline anlaşmalı kargo ile gönderim yapılır."
+          }
+        ]
+      }
+    },
+    {
+      "id": "matbaa-reklam",
+      "variantName": "reklam",
+      "plan": "growth",
+      "description": "Reklam ve tabela matbaası — canlı, etkileyici tasarım",
+      "designPhilosophy": "Dikkat çekici, vibrante, outdoor odaklı",
+      "isDark": false,
+      "colors": {
+        "bg": "#FFFEF9",
+        "surface": "#F5F3ED",
+        "text": "#1A1917",
+        "accent": "#FF6B00",
+        "accentHover": "#E05F00",
+        "accentLight": "#FFF3E6",
+        "surfaceElevated": "#FFFFFF",
+        "textSecondary": "#6B6860"
+      },
+      "fonts": {
+        "heading": "Poppins",
+        "body": "Inter"
+      },
+      "business": {
+        "name": "Neon Reklam & Tabela",
+        "sector": "matbaa",
+        "ownerName": "Burak Çetin",
+        "slogan": "Markanızı sokakta görünür kılıyoruz",
+        "phone": "0212 456 7890",
+        "phoneClean": "02124567890",
+        "email": "info@neonreklam.com.tr",
+        "address": "Topkapı Mah. Davutpaşa Cad. No:92, Zeytinburnu/İstanbul",
+        "city": "İstanbul",
+        "district": "Zeytinburnu",
+        "coordinates": {
+          "lat": 41.0106,
+          "lng": 28.9175
+        },
+        "socialMedia": {
+          "instagram": "neonreklamtabela",
+          "facebook": "neonreklam",
+          "youtube": "neonreklamtabela"
+        },
+        "photos": [],
+        "foundedYear": 2010,
+        "experience": "16 yıl",
+        "customerCount": "6.000+",
+        "rating": 4.8,
+        "reviewCount": 520,
+        "workingHours": [
+          {
+            "day": "Pazartesi",
+            "open": "08:00",
+            "close": "19:00",
+            "isOpen": true
+          },
+          {
+            "day": "Salı",
+            "open": "08:00",
+            "close": "19:00",
+            "isOpen": true
+          },
+          {
+            "day": "Çarşamba",
+            "open": "08:00",
+            "close": "19:00",
+            "isOpen": true
+          },
+          {
+            "day": "Perşembe",
+            "open": "08:00",
+            "close": "19:00",
+            "isOpen": true
+          },
+          {
+            "day": "Cuma",
+            "open": "08:00",
+            "close": "19:00",
+            "isOpen": true
+          },
+          {
+            "day": "Cumartesi",
+            "open": "09:00",
+            "close": "15:00",
+            "isOpen": true
+          },
+          {
+            "day": "Pazar",
+            "open": "",
+            "close": "",
+            "isOpen": false
+          }
+        ],
+        "services": [
+          {
+            "id": "s1",
+            "name": "Kutu Harf Tabela",
+            "price": "1.500 TL/harf",
+            "duration": "5-7 iş günü",
+            "description": "Paslanmaz çelik veya galvaniz kutu harf, LED aydınlatmalı tabela üretimi."
+          },
+          {
+            "id": "s2",
+            "name": "Işıklı Tabela (Lightbox)",
+            "price": "2.500 TL/m²",
+            "duration": "3-5 iş günü",
+            "description": "Alüminyum kasalı, LED aydınlatmalı ışıklı tabela ve totem üretimi."
+          },
+          {
+            "id": "s3",
+            "name": "Araç Giydirme",
+            "price": "8.000 TL",
+            "duration": "2-3 iş günü",
+            "description": "Tam veya yarım araç kaplama, cast folyo ile profesyonel araç giydirme."
+          },
+          {
+            "id": "s4",
+            "name": "Billboard / Megaboard",
+            "price": "Proje bazlı",
+            "duration": "7-10 iş günü",
+            "description": "Dış mekan billboard baskı ve montajı, UV dayanıklı malzemelerle."
+          },
+          {
+            "id": "s5",
+            "name": "Dijital Baskı (Geniş Format)",
+            "price": "60 TL/m²",
+            "duration": "1 iş günü",
+            "description": "Branda, mesh, folyo, one-way vision — geniş format dijital baskı."
+          },
+          {
+            "id": "s6",
+            "name": "Neon Tabela",
+            "price": "3.000 TL'den başlayan",
+            "duration": "7 iş günü",
+            "description": "Gerçek neon cam veya LED neon flex ile retro ve modern tabela üretimi."
+          },
+          {
+            "id": "s7",
+            "name": "Cephe Giydirme",
+            "price": "Proje bazlı",
+            "duration": "5-10 iş günü",
+            "description": "Kompozit panel, ACP kaplama ve vinil giydirme ile bina cephesi yenileme."
+          },
+          {
+            "id": "s8",
+            "name": "Yönlendirme Tabelası",
+            "price": "500 TL/adet",
+            "duration": "3 iş günü",
+            "description": "İç ve dış mekan yönlendirme panoları, bilgilendirme tabelaları."
+          },
+          {
+            "id": "s9",
+            "name": "Roll-up Banner",
+            "price": "350 TL/adet",
+            "duration": "Aynı gün",
+            "description": "85x200 cm standart roll-up, taşıma çantası dahil."
+          },
+          {
+            "id": "s10",
+            "name": "Fuar Standı Tasarım & Üretim",
+            "price": "15.000 TL'den başlayan",
+            "duration": "10-15 iş günü",
+            "description": "Modüler veya özel tasarım fuar standı üretimi ve montajı."
+          }
+        ],
+        "team": [
+          {
+            "name": "Burak Çetin",
+            "title": "Kurucu & Genel Müdür",
+            "description": "Grafik tasarım ve reklam sektöründe 20 yıl deneyim."
+          },
+          {
+            "name": "Ali Kara",
+            "title": "Üretim Müdürü",
+            "description": "CNC, lazer kesim ve tabela üretim süreçleri uzmanı."
+          },
+          {
+            "name": "Deniz Aksoy",
+            "title": "Grafik Tasarımcı",
+            "description": "Mimar Sinan GSF mezunu, kurumsal kimlik ve tabela tasarımı."
+          },
+          {
+            "name": "Okan Şahin",
+            "title": "Montaj Ekip Şefi",
+            "description": "Yüksekte çalışma sertifikalı, 12 yıllık montaj deneyimi."
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Cafe sahibi Elif D.",
+            "district": "Karaköy",
+            "date": "2026-01",
+            "rating": 5,
+            "comment": "Neon tabelamız çok dikkat çekici oldu. Instagram'da herkes soruyor nereden yaptırdığımızı."
+          },
+          {
+            "name": "Filo müdürü Kemal T.",
+            "district": "Ümraniye",
+            "date": "2025-11",
+            "rating": 5,
+            "comment": "20 araçlık filomuzun tamamını giydirdiler. Hem hızlı hem kaliteli iş çıkardılar."
+          },
+          {
+            "name": "AVM yöneticisi Gül S.",
+            "district": "Bağcılar",
+            "date": "2025-10",
+            "rating": 4,
+            "comment": "Yönlendirme tabelaları çok profesyonel. Teslimatta küçük gecikme oldu ama sonuç mükemmel."
+          },
+          {
+            "name": "Restaurant sahibi Orhan K.",
+            "district": "Beyoğlu",
+            "date": "2025-12",
+            "rating": 5,
+            "comment": "Kutu harf tabelamız gece çok etkileyici görünüyor. LED aydınlatma kalitesi harika."
+          },
+          {
+            "name": "Mağaza müdürü Pelin A.",
+            "district": "Bakırköy",
+            "date": "2026-02",
+            "rating": 5,
+            "comment": "Cephe giydirme projemiz tam istediğimiz gibi oldu. Kompozit panel kalitesi çok iyi."
+          },
+          {
+            "name": "Fuar organizatörü Cenk M.",
+            "district": "Tuzla",
+            "date": "2025-09",
+            "rating": 5,
+            "comment": "3 fuarda üst üste standımızı yaptılar. Her seferinde farklı tasarım, her seferinde mükemmel."
+          }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Markanızı Görünür Kılın",
+          "subtitle": "Tabela, araç giydirme, billboard — İstanbul'un reklam ve tabela uzmanı. 16 yıldır markaları sokakta parlatan ekip.",
+          "badge": "6.000+ Proje"
+        },
+        "about": {
+          "title": "Neon Reklam & Tabela Hakkında",
+          "description": "2010 yılında Zeytinburnu'nda kurulan Neon Reklam, İstanbul'un en kapsamlı outdoor reklam ve tabela üretim tesislerinden birini işletmektedir. 1.500 metrekarelik üretim alanımızda CNC router, lazer kesim, dijital baskı ve LED montaj hatları bulunmaktadır. Kutu harf tabeladan araç giydirmeye, neon cam tabeladan fuar standına kadar geniş yelpazede hizmet sunuyoruz. 6.000'den fazla projeyle İstanbul'un sokaklarını renklendirdik."
+        },
+        "services": {
+          "title": "Reklam & Tabela Hizmetleri",
+          "subtitle": "Kutu harf, neon, araç giydirme ve geniş format baskı çözümleri"
+        },
+        "contact": {
+          "title": "Projenizi Konuşalım",
+          "subtitle": "Ücretsiz keşif ve teklif için bizi arayın"
+        },
+        "faq": [
+          {
+            "question": "Kutu harf tabela ne kadar dayanır?",
+            "answer": "Paslanmaz çelik kutu harfler 15+ yıl, galvaniz harfler 10+ yıl dayanır. LED modülleri ortalama 50.000 saat ömre sahiptir."
+          },
+          {
+            "question": "Belediye izni gerekiyor mu?",
+            "answer": "Evet, dış cephe tabelaları için belediye ruhsatı gerekir. İzin sürecini sizin adınıza takip ediyoruz."
+          },
+          {
+            "question": "Araç giydirme boyayı etkiler mi?",
+            "answer": "Hayır, profesyonel cast folyo kullanılır ve söküldüğünde boyaya zarar vermez. 3M ve Avery garanti kapsamındadır."
+          },
+          {
+            "question": "Gece görünümü nasıl sağlanır?",
+            "answer": "LED front-lit veya back-lit aydınlatma ile gece de mükemmel görünüm sağlanır. Enerji tasarruflu SMD LED kullanıyoruz."
+          },
+          {
+            "question": "Montaj hizmeti dahil mi?",
+            "answer": "Evet, İstanbul içi montaj ücretsizdir. İstanbul dışı projeler için montaj ekibimiz gönderilebilir."
+          },
+          {
+            "question": "Tasarım yapmıyorsak hazır tasarımla gelebilir miyiz?",
+            "answer": "Elbette. AI, PDF veya CDR formatında baskıya hazır dosyalarınızla gelebilirsiniz. Tasarım kontrolü ücretsiz yapılır."
+          },
+          {
+            "question": "Garanti süresi ne kadar?",
+            "answer": "Tabela ürünlerinde 2 yıl, araç giydirmede 3 yıl, LED aydınlatmada 3 yıl garanti sunuyoruz."
+          },
+          {
+            "question": "Acil sipariş alıyor musunuz?",
+            "answer": "Evet, %30 ekspres ek ücretiyle 1-2 gün içinde tabela üretimi yapabiliyoruz."
+          }
+        ]
+      }
+    },
+    {
+      "id": "matbaa-ambalaj",
+      "variantName": "ambalaj",
+      "plan": "pro",
+      "description": "Ambalaj ve paketleme matbaası — premium, güvenilir tasarım",
+      "designPhilosophy": "Endüstriyel güç, kurumsal güvenilirlik",
+      "isDark": false,
+      "colors": {
+        "bg": "#FAFAF7",
+        "surface": "#F0EDE6",
+        "text": "#1E1D18",
+        "accent": "#2E7D32",
+        "accentHover": "#1B5E20",
+        "accentLight": "#E8F5E9",
+        "surfaceElevated": "#FFFFFF",
+        "textSecondary": "#6B685E",
+        "surfaceMuted": "#E8E5DD",
+        "textMuted": "#9A9689"
+      },
+      "fonts": {
+        "heading": "Playfair Display",
+        "body": "Inter"
+      },
+      "business": {
+        "name": "Paketsan Ambalaj Matbaacılık",
+        "sector": "matbaa",
+        "ownerName": "İbrahim Koç",
+        "slogan": "Ürününüzü sarıp sarmalayan profesyonel ambalaj çözümleri",
+        "phone": "0212 671 5500",
+        "phoneClean": "02126715500",
+        "email": "satis@paketsan.com.tr",
+        "address": "Hadımköy Mah. Sanayi Sit. No:18, Arnavutköy/İstanbul",
+        "city": "İstanbul",
+        "district": "Arnavutköy",
+        "coordinates": {
+          "lat": 41.1853,
+          "lng": 28.7231
+        },
+        "socialMedia": {
+          "instagram": "paketsanambalaj",
+          "facebook": "paketsanmatbaa",
+          "youtube": "paketsan",
+          "linkedin": "paketsan-ambalaj"
+        },
+        "photos": [],
+        "foundedYear": 2000,
+        "experience": "26 yıl",
+        "customerCount": "12.000+",
+        "rating": 4.9,
+        "reviewCount": 780,
+        "workingHours": [
+          {
+            "day": "Pazartesi",
+            "open": "07:30",
+            "close": "18:30",
+            "isOpen": true
+          },
+          {
+            "day": "Salı",
+            "open": "07:30",
+            "close": "18:30",
+            "isOpen": true
+          },
+          {
+            "day": "Çarşamba",
+            "open": "07:30",
+            "close": "18:30",
+            "isOpen": true
+          },
+          {
+            "day": "Perşembe",
+            "open": "07:30",
+            "close": "18:30",
+            "isOpen": true
+          },
+          {
+            "day": "Cuma",
+            "open": "07:30",
+            "close": "18:30",
+            "isOpen": true
+          },
+          {
+            "day": "Cumartesi",
+            "open": "08:00",
+            "close": "14:00",
+            "isOpen": true
+          },
+          {
+            "day": "Pazar",
+            "open": "",
+            "close": "",
+            "isOpen": false
+          }
+        ],
+        "services": [
+          {
+            "id": "s1",
+            "name": "Ürün Kutusu (Ofset Baskı)",
+            "price": "Proje bazlı",
+            "duration": "7-10 iş günü",
+            "description": "Mukavva veya karton kutu, ofset baskılı, özel kesim kalıplı ürün ambalajı."
+          },
+          {
+            "id": "s2",
+            "name": "E-ticaret Kargo Kutusu",
+            "price": "3.500 TL / 1000 adet",
+            "duration": "5 iş günü",
+            "description": "Baskılı veya baskısız oluklu mukavva kargo kutuları, çeşitli boyutlarda."
+          },
+          {
+            "id": "s3",
+            "name": "Gıda Ambalajı",
+            "price": "Proje bazlı",
+            "duration": "10-15 iş günü",
+            "description": "Gıdaya temas eden güvenli ambalaj, FDA onaylı malzemelerle."
+          },
+          {
+            "id": "s4",
+            "name": "Kozmetik Kutu Tasarım & Üretim",
+            "price": "Proje bazlı",
+            "duration": "10-15 iş günü",
+            "description": "Lüks kozmetik kutuları, manyetik kapaklı, kadife iç yüzey seçenekli."
+          },
+          {
+            "id": "s5",
+            "name": "Şişe Etiket (Shrink Sleeve)",
+            "price": "8.000 TL / 10.000 adet",
+            "duration": "7 iş günü",
+            "description": "360 derece shrink sleeve etiket, gravür veya dijital baskı."
+          },
+          {
+            "id": "s6",
+            "name": "Esnek Ambalaj (Poşet/Doypack)",
+            "price": "5.000 TL / 5.000 adet",
+            "duration": "10 iş günü",
+            "description": "Stand-up pouch, doypack, 3 taraf kapatma poşet — gıda güvenli laminasyon."
+          },
+          {
+            "id": "s7",
+            "name": "Display & Standı",
+            "price": "2.500 TL/adet",
+            "duration": "5-7 iş günü",
+            "description": "Mağaza içi ürün teşhir standı, karton veya ahşap malzeme seçenekli."
+          },
+          {
+            "id": "s8",
+            "name": "Hediye Kutusu",
+            "price": "Proje bazlı",
+            "duration": "7-10 iş günü",
+            "description": "Özel tasarım hediye kutuları, kurdeleli, sıcak varak yaldızlı."
+          },
+          {
+            "id": "s9",
+            "name": "Kağıt Poşet (Baskılı)",
+            "price": "4.000 TL / 1000 adet",
+            "duration": "5 iş günü",
+            "description": "Büküm saplı veya düz saplı baskılı kağıt taşıma poşetleri."
+          },
+          {
+            "id": "s10",
+            "name": "Shrink Film",
+            "price": "Proje bazlı",
+            "duration": "5 iş günü",
+            "description": "Ürün grubu paketleme için PVC/POF shrink film."
+          },
+          {
+            "id": "s11",
+            "name": "Kalıp Tasarımı",
+            "price": "1.500 TL",
+            "duration": "2 iş günü",
+            "description": "Özel boyut kutu ve ambalaj için 3D kalıp tasarımı ve prototip."
+          },
+          {
+            "id": "s12",
+            "name": "Prototip Üretim",
+            "price": "500 TL/adet",
+            "duration": "1-2 iş günü",
+            "description": "Seri üretime geçmeden önce numune ambalaj üretimi."
+          },
+          {
+            "id": "s13",
+            "name": "Sıcak Varak Yaldız Baskı",
+            "price": "Ek hizmet",
+            "duration": "+1 iş günü",
+            "description": "Altın, gümüş veya renkli hot-foil baskı ile premium görünüm."
+          },
+          {
+            "id": "s14",
+            "name": "Kabartma / Gofraj",
+            "price": "Ek hizmet",
+            "duration": "+1 iş günü",
+            "description": "Blind emboss veya deboss tekniğiyle dokunsal kabartma efekti."
+          }
+        ],
+        "team": [
+          {
+            "name": "İbrahim Koç",
+            "title": "Kurucu & CEO",
+            "description": "Ambalaj sektöründe 30 yıl, İTÜ Endüstri Mühendisliği."
+          },
+          {
+            "name": "Zeynep Koç",
+            "title": "Tasarım Direktörü",
+            "description": "Ambalaj tasarımı uzmanı, Red Dot Design ödüllü."
+          },
+          {
+            "name": "Volkan Şen",
+            "title": "Kalite Kontrol Müdürü",
+            "description": "ISO 9001 ve FSC sertifikasyon denetçisi."
+          },
+          {
+            "name": "Hülya Arslan",
+            "title": "Satış Müdürü",
+            "description": "B2B ambalaj satışında 15 yıl deneyim."
+          },
+          {
+            "name": "Emre Topçu",
+            "title": "Üretim Müdürü",
+            "description": "Bobst ve Kama makineleri sertifikalı."
+          },
+          {
+            "name": "Ayşe Çınar",
+            "title": "Ar-Ge Koordinatörü",
+            "description": "Sürdürülebilir ambalaj malzemeleri araştırmacısı."
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Gıda markası sahibi Tuncay M.",
+            "district": "Esenyurt",
+            "date": "2026-01",
+            "rating": 5,
+            "comment": "Doypack ambalajlarımız rafta çok dikkat çekiyor. Baskı kalitesi ve malzeme mükemmel."
+          },
+          {
+            "name": "Kozmetik girişimcisi Ayça L.",
+            "district": "Beşiktaş",
+            "date": "2025-12",
+            "rating": 5,
+            "comment": "Manyetik kapaklı kutularımız lüks hissiyat veriyor. Tasarım ekibi vizyonumuzu tam anladı."
+          },
+          {
+            "name": "E-ticaret CEO'su Barış G.",
+            "district": "Kadıköy",
+            "date": "2025-11",
+            "rating": 5,
+            "comment": "Aylık 50.000 kargo kutusu basıyoruz. Hiç kalite sorunu yaşamadık, teslimatlar düzenli."
+          },
+          {
+            "name": "Zeytinyağı üreticisi Hamdi T.",
+            "district": "Edremit",
+            "date": "2025-10",
+            "rating": 5,
+            "comment": "Şişe etiketlerimiz İstanbul'dan geliyor. Shrink sleeve kalitesi ithal ürünlerle yarışır."
+          },
+          {
+            "name": "Oyuncak markası Lale N.",
+            "district": "Bağcılar",
+            "date": "2026-02",
+            "rating": 4,
+            "comment": "Display standları çok sağlam ve şık. Sadece ilk siparişte renk tonunda küçük fark vardı, sonrakilerde düzeldi."
+          },
+          {
+            "name": "Çikolata atölyesi Melis S.",
+            "district": "Çekmeköy",
+            "date": "2025-09",
+            "rating": 5,
+            "comment": "Hediye kutularımız bayram döneminde kapışıldı. Varak yaldız detayı çok şık."
+          },
+          {
+            "name": "İlaç firması kalite müdürü Dr. Can A.",
+            "district": "Kurtköy",
+            "date": "2025-08",
+            "rating": 5,
+            "comment": "FDA uyumlu gıda ambalajları üretiyorlar. Sertifikasyon süreci sorunsuz geçti."
+          },
+          {
+            "name": "Kahve markası Serdar B.",
+            "district": "Beykoz",
+            "date": "2025-07",
+            "rating": 5,
+            "comment": "250g kahve doypack ambalajımız aroma korumada mükemmel. Gravür baskı çok net."
+          }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Ambalaj Sanatı, Endüstriyel Güçle",
+          "subtitle": "Gıdadan kozmetiğe, e-ticaretten perakendeye — 26 yıldır Türkiye'nin ambalaj çözüm ortağı.",
+          "badge": "ISO 9001 & FSC Sertifikalı"
+        },
+        "about": {
+          "title": "Paketsan Ambalaj Matbaacılık",
+          "description": "2000 yılında Arnavutköy Hadımköy'de kurulan Paketsan, 5.000 metrekarelik üretim tesisinde ofset baskı, oluklu mukavva üretimi, kalıp kesim, sıvama, laminasyon ve ambalaj montajı gerçekleştirmektedir. ISO 9001 kalite yönetim sistemi ve FSC (Forest Stewardship Council) sertifikasına sahip tesisimizde, gıda, kozmetik, ilaç ve e-ticaret sektörlerine yönelik ambalaj çözümleri üretiyoruz. 26 yılda 12.000'den fazla müşteriye hizmet verdik. Sürdürülebilir ambalaj malzemeleri konusundaki Ar-Ge çalışmalarımız ile çevre dostu üretim hedefimize ilerliyoruz."
+        },
+        "services": {
+          "title": "Ambalaj Çözümlerimiz",
+          "subtitle": "Kutu, poşet, etiket ve display — ürününüz için en doğru ambalaj"
+        },
+        "contact": {
+          "title": "Ambalaj Danışmanlığı",
+          "subtitle": "Ürününüz için en uygun ambalaj çözümünü birlikte belirleyelim"
+        },
+        "faq": [
+          {
+            "question": "Minimum sipariş adedi nedir?",
+            "answer": "Ürün kutularında minimum 1.000, doypack'te 5.000, etiketlerde 10.000 adettir. Prototip ve numune için minimum adet yoktur."
+          },
+          {
+            "question": "Gıda güvenliği sertifikalarınız var mı?",
+            "answer": "Evet, gıdaya temas eden ürünlerimiz FDA ve AB gıda temas yönetmeliğine uygun sertifikalara sahiptir."
+          },
+          {
+            "question": "Tasarım hizmeti veriyor musunuz?",
+            "answer": "Evet, ambalaj yapısal tasarımı ve grafik tasarım ekibimiz mevcuttur. 3D görselleştirme ile onay sürecini hızlandırıyoruz."
+          },
+          {
+            "question": "Sürdürülebilir ambalaj seçenekleriniz var mı?",
+            "answer": "FSC sertifikalı kağıt/karton, geri dönüştürülebilir malzemeler, biyobozunur film ve soya bazlı mürekkepler kullanıyoruz."
+          },
+          {
+            "question": "Kalıp maliyeti ne kadar?",
+            "answer": "Standart kalıplar 1.500-3.000 TL arasında, karmaşık kalıplar proje bazlı fiyatlandırılır. Kalıp müşteriye aittir."
+          },
+          {
+            "question": "İhracat ambalajı yapıyor musunuz?",
+            "answer": "Evet, AB ve ABD pazarına uygun ambalaj üretimi yapıyoruz. Dil ve yasal uyarı düzenlemelerinde destek veriyoruz."
+          },
+          {
+            "question": "Numune ne kadar sürede hazır olur?",
+            "answer": "Dijital baskı ile prototip 1-2 iş gününde, ofset baskı numune 3-5 iş gününde hazırdır."
+          },
+          {
+            "question": "Depolama ve lojistik hizmeti var mı?",
+            "answer": "Evet, 1.000 m² depo alanımızda stok tutabilir ve partiler halinde sevkiyat planlayabiliriz."
+          },
+          {
+            "question": "Farklı malzeme alternatifleri sunuyor musunuz?",
+            "answer": "Her proje için en az 2-3 malzeme alternatifi ve maliyet karşılaştırması sunuyoruz."
+          },
+          {
+            "question": "Ödeme koşulları nedir?",
+            "answer": "%50 sipariş onayında, %50 teslimatta. Düzenli müşterilerimize 30-60 gün vade tanınır."
+          }
+        ]
+      }
+    },
+    {
+      "id": "matbaa-lux",
+      "variantName": "lux",
+      "plan": "enterprise",
+      "description": "Premium matbaa — lüks, koyu tonlar, yaldız detaylar",
+      "designPhilosophy": "Ultra premium, tipografi odaklı, yaldız vurgular",
+      "isDark": true,
+      "colors": {
+        "bg": "#0A0A0A",
+        "surface": "#1A1714",
+        "text": "#F5F0E8",
+        "accent": "#C9A84C",
+        "accentHover": "#D4B85C",
+        "accentActive": "#B8963C",
+        "accentLight": "#2A2418",
+        "surfaceElevated": "#252017",
+        "surfaceMuted": "#151210",
+        "textSecondary": "#BEB5A5",
+        "textMuted": "#8A8070",
+        "textOnAccent": "#0A0A0A",
+        "border": "#2A2520",
+        "borderSubtle": "#1F1B17"
+      },
+      "fonts": {
+        "heading": "Cormorant Garamond",
+        "body": "Inter"
+      },
+      "business": {
+        "name": "Aurelius Print & Packaging",
+        "sector": "matbaa",
+        "ownerName": "Cengiz Kartal",
+        "slogan": "Baskıda mükemmellik — premium markalar için premium matbaa",
+        "phone": "0212 999 8800",
+        "phoneClean": "02129998800",
+        "email": "info@aureliusprint.com.tr",
+        "address": "Maslak Mah. Eski Büyükdere Cad. No:19 Kat:15, Sarıyer/İstanbul",
+        "city": "İstanbul",
+        "district": "Sarıyer",
+        "coordinates": {
+          "lat": 41.1098,
+          "lng": 29.0215
+        },
+        "socialMedia": {
+          "instagram": "aureliusprint",
+          "facebook": "aureliusprintpackaging",
+          "youtube": "aureliusprint",
+          "linkedin": "aurelius-print",
+          "twitter": "aureliusprint"
+        },
+        "photos": [],
+        "foundedYear": 1995,
+        "experience": "31 yıl",
+        "customerCount": "20.000+",
+        "rating": 5.0,
+        "reviewCount": 1200,
+        "workingHours": [
+          {
+            "day": "Pazartesi",
+            "open": "08:00",
+            "close": "19:00",
+            "isOpen": true
+          },
+          {
+            "day": "Salı",
+            "open": "08:00",
+            "close": "19:00",
+            "isOpen": true
+          },
+          {
+            "day": "Çarşamba",
+            "open": "08:00",
+            "close": "19:00",
+            "isOpen": true
+          },
+          {
+            "day": "Perşembe",
+            "open": "08:00",
+            "close": "19:00",
+            "isOpen": true
+          },
+          {
+            "day": "Cuma",
+            "open": "08:00",
+            "close": "19:00",
+            "isOpen": true
+          },
+          {
+            "day": "Cumartesi",
+            "open": "09:00",
+            "close": "16:00",
+            "isOpen": true
+          },
+          {
+            "day": "Pazar",
+            "open": "",
+            "close": "",
+            "isOpen": false
+          }
+        ],
+        "services": [
+          {
+            "id": "s1",
+            "name": "Lüks Kurumsal Kimlik",
+            "price": "25.000 TL'den başlayan",
+            "duration": "10 iş günü",
+            "description": "Kartvizit, antetli kağıt, zarf, dosya — letterpress, varak yaldız, özel kağıt seçenekleri."
+          },
+          {
+            "id": "s2",
+            "name": "Prestige Davetiye",
+            "price": "15.000 TL / 500 adet",
+            "duration": "10 iş günü",
+            "description": "El yapımı kağıt, mühür lak, kabartma ve varak yaldız ile haute couture davetiye."
+          },
+          {
+            "id": "s3",
+            "name": "Sanat Kitabı Basımı",
+            "price": "Proje bazlı",
+            "duration": "15-20 iş günü",
+            "description": "Coffee table book, sanat kataloğu — Stochastic screening, Pantone HiFi renk."
+          },
+          {
+            "id": "s4",
+            "name": "Limited Edition Ambalaj",
+            "price": "Proje bazlı",
+            "duration": "15-20 iş günü",
+            "description": "Sınırlı üretim lüks ambalaj, numaralı seri, el işçiliği detaylar."
+          },
+          {
+            "id": "s5",
+            "name": "Parfüm & Kozmetik Kutu",
+            "price": "Proje bazlı",
+            "duration": "15-20 iş günü",
+            "description": "Manyetik kapaklı, floklu iç yüzey, holografik folyo, premium kozmetik ambalajı."
+          },
+          {
+            "id": "s6",
+            "name": "Wine & Spirits Label",
+            "price": "Proje bazlı",
+            "duration": "10 iş günü",
+            "description": "Şarap, viski ve premium içecekler için özel kağıt, varak ve kabartma etiket."
+          },
+          {
+            "id": "s7",
+            "name": "İçecek Ambalaj Sistemi",
+            "price": "Proje bazlı",
+            "duration": "15-20 iş günü",
+            "description": "Şişe, kutu ve taşıma çözümlerinden oluşan entegre içecek ambalaj tasarımı."
+          },
+          {
+            "id": "s8",
+            "name": "Letterpress Baskı",
+            "price": "8.000 TL / 500 adet",
+            "duration": "7 iş günü",
+            "description": "Geleneksel letterpress tekniğiyle dokulu, el hissi veren baskılar."
+          },
+          {
+            "id": "s9",
+            "name": "Serigrafi Baskı",
+            "price": "5.000 TL / 500 adet",
+            "duration": "5 iş günü",
+            "description": "Özel yüzeylere (cam, ahşap, metal, tekstil) serigrafi baskı."
+          },
+          {
+            "id": "s10",
+            "name": "Dijital Folyo Baskı",
+            "price": "Proje bazlı",
+            "duration": "3 iş günü",
+            "description": "Seri numaralı, kişiselleştirilmiş metalik folyo baskı teknolojisi."
+          },
+          {
+            "id": "s11",
+            "name": "Holografik Baskı",
+            "price": "Proje bazlı",
+            "duration": "7 iş günü",
+            "description": "Güvenlik ve dekoratif amaçlı holografik baskı ve etiket üretimi."
+          },
+          {
+            "id": "s12",
+            "name": "Kumaş Baskı (Dijital)",
+            "price": "120 TL/m²",
+            "duration": "3 iş günü",
+            "description": "Polyester kumaşa direkt dijital baskı, fuar ve etkinlik uygulamaları."
+          },
+          {
+            "id": "s13",
+            "name": "3D Lentiküler Baskı",
+            "price": "Proje bazlı",
+            "duration": "10 iş günü",
+            "description": "Derinlik ve hareket efektli 3D lentiküler baskı teknolojisi."
+          },
+          {
+            "id": "s14",
+            "name": "Marka Danışmanlığı",
+            "price": "15.000 TL'den başlayan",
+            "duration": "Proje bazlı",
+            "description": "Marka stratejisi, görsel kimlik ve ambalaj tasarım danışmanlığı."
+          },
+          {
+            "id": "s15",
+            "name": "Prototip Lab",
+            "price": "2.000 TL'den başlayan",
+            "duration": "2-3 iş günü",
+            "description": "Hızlı prototipleme, renk prova, malzeme testi ve mockup üretimi."
+          },
+          {
+            "id": "s16",
+            "name": "Sürdürülebilir Baskı Çözümleri",
+            "price": "Proje bazlı",
+            "duration": "Proje bazlı",
+            "description": "Karbon nötr üretim, soya mürekkebi, geri dönüşümlü malzeme ile çevreci baskı."
+          },
+          {
+            "id": "s17",
+            "name": "VIP Kişiselleştirme",
+            "price": "Proje bazlı",
+            "duration": "5-10 iş günü",
+            "description": "Her bir ürün için kişiselleştirilmiş isim, numara veya mesaj baskısı."
+          },
+          {
+            "id": "s18",
+            "name": "Arşiv & Restorasyon",
+            "price": "Proje bazlı",
+            "duration": "Proje bazlı",
+            "description": "Tarihi belge, kitap ve baskı eserlerinin dijitalleştirme ve reprodüksiyonu."
+          },
+          {
+            "id": "s19",
+            "name": "E-ticaret Unboxing Deneyimi",
+            "price": "Proje bazlı",
+            "duration": "10 iş günü",
+            "description": "İpek kağıt, sticker, teşekkür kartı ve kutu tasarımından oluşan unboxing deneyimi paketi."
+          },
+          {
+            "id": "s20",
+            "name": "Global Marka Uyumu",
+            "price": "Proje bazlı",
+            "duration": "Proje bazlı",
+            "description": "Çok ülkeli marka tutarlılığı, dil uyarlaması ve yasal uyum danışmanlığı."
+          }
+        ],
+        "team": [
+          {
+            "name": "Cengiz Kartal",
+            "title": "Kurucu & CEO",
+            "description": "31 yıllık baskı sektörü deneyimi, Heidelberg Ambassador."
+          },
+          {
+            "name": "Dr. Elif Kartal",
+            "title": "Kreatif Direktör",
+            "description": "Parsons School of Design, 20 yıl marka ve ambalaj tasarımı."
+          },
+          {
+            "name": "Marcus Weber",
+            "title": "Baskı Teknoloji Direktörü",
+            "description": "Alman baskı mühendisi, 25 yıl Heidelberg ve Komori deneyimi."
+          },
+          {
+            "name": "Sinem Kaya",
+            "title": "Müşteri İlişkileri Direktörü",
+            "description": "Lüks marka yönetimi uzmanı, LVMH geçmişli."
+          },
+          {
+            "name": "Oğuz Demir",
+            "title": "Kalite Güvence Müdürü",
+            "description": "ISO 12647 renk yönetimi uzmanı, G7 sertifikalı."
+          },
+          {
+            "name": "İpek Sarı",
+            "title": "Sürdürülebilirlik Koordinatörü",
+            "description": "Çevre mühendisi, karbon ayak izi hesaplama ve FSC denetimi."
+          },
+          {
+            "name": "Kemal Aydoğan",
+            "title": "Strateji & İş Geliştirme",
+            "description": "INSEAD MBA, stratejik ortaklıklar ve uluslararası büyüme."
+          },
+          {
+            "name": "Nazlı Çetinkaya",
+            "title": "Prototip Lab Müdürü",
+            "description": "Endüstriyel tasarımcı, hızlı prototipleme ve malzeme bilimi uzmanı."
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Lüks moda markası CMO Leyla T.",
+            "district": "Nişantaşı",
+            "date": "2026-02",
+            "rating": 5,
+            "comment": "Sezon koleksiyon kutularımız birer sanat eseri. Aurelius'un letterpress işçiliği benzersiz."
+          },
+          {
+            "name": "Şarap üreticisi Pierre M.",
+            "district": "Urla (İzmir)",
+            "date": "2026-01",
+            "rating": 5,
+            "comment": "Etiketlerimiz uluslararası yarışmalarda ödül aldı. Kabartma ve varak yaldız detayı mükemmel."
+          },
+          {
+            "name": "Parfüm markası kurucusu Derya A.",
+            "district": "Bebek",
+            "date": "2025-12",
+            "rating": 5,
+            "comment": "Kutu açma deneyimimizi Aurelius tasarladı. Müşterilerimiz unboxing videolarını paylaşıyor."
+          },
+          {
+            "name": "Otel grubu genel müdürü Ahmet K.",
+            "district": "Taksim",
+            "date": "2025-11",
+            "rating": 5,
+            "comment": "5 otelimizin tüm basılı materyallerini yaptılar. Tutarlılık ve kalite her zaman üst düzey."
+          },
+          {
+            "name": "Yayınevi editörü Prof. Zehra S.",
+            "district": "Cağaloğlu",
+            "date": "2025-10",
+            "rating": 5,
+            "comment": "Sanat kitabımızın baskı kalitesi orijinal eserlere çok yakın. Renk kalibrasyonu mükemmel."
+          },
+          {
+            "name": "Çikolata markası CEO'su Emre B.",
+            "district": "Beşiktaş",
+            "date": "2025-09",
+            "rating": 5,
+            "comment": "Limited edition bayram kutuları rekor sattı. Manyetik kapak ve flok kaplama çok premium."
+          },
+          {
+            "name": "Kozmetik girişimcisi Ceren Y.",
+            "district": "Etiler",
+            "date": "2025-08",
+            "rating": 5,
+            "comment": "Holografik kutu tasarımımız Instagram'da viral oldu. Aurelius'un yaratıcı ekibi vizyonumuzu aştı."
+          },
+          {
+            "name": "Mücevher markası Serhat G.",
+            "district": "Nişantaşı",
+            "date": "2025-07",
+            "rating": 5,
+            "comment": "Her mücevher için kişiselleştirilmiş isimli kutu basıyorlar. VIP müşterilerimiz bayılıyor."
+          },
+          {
+            "name": "İthalat CEO'su Mustafa E.",
+            "district": "Maslak",
+            "date": "2026-03",
+            "rating": 5,
+            "comment": "5 ülkeye aynı anda ambalaj sevkiyatı koordine ettiler. Global marka uyumu mükemmel."
+          },
+          {
+            "name": "E-ticaret markası kurucusu Nil D.",
+            "district": "Kadıköy",
+            "date": "2025-06",
+            "rating": 5,
+            "comment": "Unboxing deneyim paketimiz müşteri memnuniyetini %40 artırdı. İpek kağıt ve sticker detayı harika."
+          },
+          {
+            "name": "Galeri sahibi İlhan Ö.",
+            "district": "Beyoğlu",
+            "date": "2025-05",
+            "rating": 5,
+            "comment": "Sergi kataloglarımız koleksiyon parçası oluyor. Baskı kalitesi müze standardında."
+          },
+          {
+            "name": "Reklam ajansı CD Pınar K.",
+            "district": "Şişli",
+            "date": "2026-01",
+            "rating": 4,
+            "comment": "Kreatif süreçte mükemmel iş ortağı. Sadece bazen timeline'lar sıkışabiliyor, ama sonuç her zaman harika."
+          }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Baskıda Mükemmellik Standardı",
+          "subtitle": "Letterpress, varak yaldız, holografik — 31 yıldır premium markalar için premium baskı. İstanbul'dan dünyaya.",
+          "badge": "Heidelberg Ambassador Partner"
+        },
+        "about": {
+          "title": "Aurelius Print & Packaging",
+          "description": "1995 yılında kurulan Aurelius, Türkiye'nin en prestijli baskı ve ambalaj atölyesidir. Maslak'taki showroom ve Hadımköy'deki 8.000 metrekarelik üretim tesisimizde Heidelberg Speedmaster XL, Komori Lithrone ve HP Indigo makineleriyle çalışıyoruz. Letterpress, serigrafi, dijital folyo, holografik baskı ve 3D lentiküler teknolojilere yatırım yapan nadir tesislerden biriyiz. Müşteri portföyümüzde LVMH, Estée Lauder, Godiva ve Türkiye'nin önde gelen holding grupları yer almaktadır. ISO 12647 renk yönetimi, G7 Master sertifikası ve FSC zincir denetimi ile uluslararası kalite standartlarını karşılıyoruz. Sürdürülebilirlik stratejimiz kapsamında 2025 itibarıyla karbon nötr üretim hedefini gerçekleştirdik."
+        },
+        "services": {
+          "title": "Premium Baskı & Ambalaj Çözümleri",
+          "subtitle": "Letterpress'ten holografik baskıya — baskı sanatının tüm disiplinleri"
+        },
+        "contact": {
+          "title": "Baskı Danışmanlığı",
+          "subtitle": "Markanız için kusursuz baskı deneyimi planlayalım"
+        },
+        "faq": [
+          {
+            "question": "Letterpress baskı nedir?",
+            "answer": "19. yüzyıldan gelen geleneksel baskı tekniği. Metal veya polimer kalıplarla kağıda fiziksel baskı uygulayarak dokulu, el hissi veren sonuçlar üretir."
+          },
+          {
+            "question": "Hangi premium teknolojilere sahipsiniz?",
+            "answer": "Heidelberg XL 106, Komori Lithrone G40, HP Indigo 12000, Kurz dijital folyo, Scodix Ultra ve Highcon Euclid lazer kesim."
+          },
+          {
+            "question": "Uluslararası markalarla çalışıyor musunuz?",
+            "answer": "Evet, LVMH grubu, Estée Lauder, Godiva, Kering ve birçok uluslararası marka ile 15+ ülkeye teslimat yapıyoruz."
+          },
+          {
+            "question": "Karbon nötr üretim ne demek?",
+            "answer": "Üretim sürecindeki CO₂ emisyonlarını ölçüyor, azaltıyor ve kalan miktarı sertifikalı karbon kredisi ile dengeliyoruz."
+          },
+          {
+            "question": "Renk tutarlılığını nasıl sağlıyorsunuz?",
+            "answer": "ISO 12647 standardında G7 Master kalibrasyonu, spektrofotometre ölçüm ve ICC profil yönetimi ile."
+          },
+          {
+            "question": "Prototip süreci nasıl işliyor?",
+            "answer": "3D modelleme → malzeme seçimi → dijital prova → fiziksel prototip. Süreç 2-5 iş günüdür."
+          },
+          {
+            "question": "Kişiselleştirilmiş baskı yapıyor musunuz?",
+            "answer": "Evet, HP Indigo teknolojisiyle her adet farklı isim, numara veya tasarımla üretilebilir."
+          },
+          {
+            "question": "Holografik baskı ne amaçla kullanılır?",
+            "answer": "Hem güvenlik (sahtecilik önleme) hem dekoratif (göz alıcı ambalaj) amaçlı kullanılır."
+          },
+          {
+            "question": "Minimum sipariş adedi nedir?",
+            "answer": "Letterpress: 100 adet, ofset: 500 adet, dijital folyo: 1 adet bile olabilir. Premium işlerde düşük tiraj sorun değildir."
+          },
+          {
+            "question": "Tasarım hizmeti sunuyor musunuz?",
+            "answer": "Parsons ve Central Saint Martins mezunu kreatif ekibimiz tam kapsamlı marka ve ambalaj tasarımı sunar."
+          },
+          {
+            "question": "Showroom ziyareti yapılabilir mi?",
+            "answer": "Evet, Maslak showroom'umuzda malzeme örnekleri, baskı teknikleri ve portfolio incelemesi yapabilirsiniz. Randevu önerilir."
+          },
+          {
+            "question": "Ödeme koşullarınız nedir?",
+            "answer": "Standart: %50 sipariş, %50 teslim. Kurumsal müşterilerimize 30-90 gün vade. Yıllık anlaşma indirimleri mevcuttur."
+          },
+          {
+            "question": "Teslimat yapıyor musunuz?",
+            "answer": "İstanbul içi özel araçlarla ücretsiz teslimat. Yurt dışına DHL/FedEx ile sigortalı sevkiyat yapılır."
+          },
+          {
+            "question": "Hangi sertifikalarınız var?",
+            "answer": "ISO 9001, ISO 12647, G7 Master, FSC CoC, BSCI ve karbon nötr sertifikalarına sahibiz."
+          },
+          {
+            "question": "İade ve garanti politikanız nedir?",
+            "answer": "Baskı hatası durumunda ücretsiz yeniden basım. Müşteri onaylı provaya uygunluk %99.5 oranında garanti edilir."
+          }
+        ]
+      }
+    }
+  ]
+}

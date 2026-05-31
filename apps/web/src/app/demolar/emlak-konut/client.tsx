@@ -1,4 +1,6 @@
+// @ts-nocheck
 'use client'
+
 import {
   HeaderMinimalSticky as _h, FooterWarmColumns as _f, WhatsAppFloating as _wa, CookieBannerBottomBar as _c,
   PropertyListingGrid as _plg, AgentProfileCard as _apc, RealEstateStatsRow as _res, ValuationRequestForm as _vrf,

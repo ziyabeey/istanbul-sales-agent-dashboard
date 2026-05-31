@@ -29,6 +29,7 @@ export async function geminiCalistir(
     options?: {
         thinkingLevel?: ThinkingLevel
         maxOutputTokens?: number
+        responseSchema?: any
     }
 ): Promise<string> {
     const { thinkingLevel = 'medium', maxOutputTokens = 8192 } = options ?? {}
@@ -39,15 +40,22 @@ export async function geminiCalistir(
     // Low: 1024, Medium: 4096, High: 8192
     const thinkingBudget = thinkingLevel === 'low' ? 1024 : thinkingLevel === 'medium' ? 4096 : 8192
 
+    const generationConfig: any = {
+        maxOutputTokens,
+        ...(isGemini3 ? {
+            thinkingConfig: { thinkingBudget }
+        } : {}),
+    }
+
+    if (options?.responseSchema) {
+        generationConfig.responseMimeType = 'application/json'
+        generationConfig.responseSchema = options.responseSchema
+    }
+
     const modelInstance = genAI.getGenerativeModel({
         model,
         systemInstruction: sistemPrompt,
-        generationConfig: {
-            maxOutputTokens,
-            ...(isGemini3 ? {
-                thinkingConfig: { thinkingBudget }
-            } : {}),
-        },
+        generationConfig,
         safetySettings: [
             {
                 category: HarmCategory.HARM_CATEGORY_HARASSMENT,

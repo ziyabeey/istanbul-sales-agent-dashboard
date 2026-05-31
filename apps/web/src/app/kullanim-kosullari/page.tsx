@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import PublicPageShell from '@/components/layout/PublicPageShell'
 
 export const metadata = {
     title: 'Kullanım Koşulları | kepenk.ai',
@@ -6,10 +6,8 @@ export const metadata = {
 
 export default function KullanimKosullariPage() {
     return (
-        <div className="min-h-screen bg-background p-8 max-w-2xl mx-auto">
-            <Link href="/" className="text-muted-foreground text-sm mb-6 block hover:text-rust transition-colors">
-                ← Ana Sayfa
-            </Link>
+        <PublicPageShell>
+            <section className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
             <h1 className="text-foreground font-syne font-extrabold text-3xl mb-6">
                 Kullanım Koşulları
             </h1>
@@ -32,6 +30,7 @@ export default function KullanimKosullariPage() {
 
                 <p className="text-muted-foreground/50 text-sm mt-8">Son güncelleme: Ocak 2026</p>
             </div>
-        </div>
+            </section>
+        </PublicPageShell>
     )
 }

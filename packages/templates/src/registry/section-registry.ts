@@ -6,9 +6,9 @@
  */
 
 import type { ComponentType } from 'react'
-import type { SectionType, SectionProps } from '../types/section-types'
+export type { SectionType, SectionProps } from '../types/section-types'
 
-type SectionComponent = ComponentType<SectionProps<Record<string, unknown>>>
+type SectionComponent = ComponentType<SectionProps<any>>
 
 /** Registry: nested map of type → variant → component */
 const registry = new Map<string, Map<string, SectionComponent>>()

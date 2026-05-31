@@ -1,11 +1,9 @@
 import React from 'react'
-import Navbar from '@/components/layout/Navbar'
-import FooterTrustSection from '@/components/sections/FooterTrustSection'
+import PublicPageShell from '@/components/layout/PublicPageShell'
 
 export default function GizlilikPage() {
     return (
-        <main className="min-h-screen bg-background text-foreground font-sans">
-            <Navbar />
+        <PublicPageShell>
 
             <section className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
                 <div className="mb-12">
@@ -62,7 +60,6 @@ export default function GizlilikPage() {
                 </div>
             </section>
 
-            <FooterTrustSection />
-        </main>
+        </PublicPageShell>
     )
 }

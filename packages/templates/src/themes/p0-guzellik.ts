@@ -45,8 +45,8 @@ export const GUZELLIK_THEMES: P0ThemeDef[] = [
     isDark: false,
     fonts: { heading: { family: 'Cormorant Garamond', weights: [400, 600, 700] }, body: { family: 'DM Sans', weights: [400, 500] } },
     cssOverrides: { '--color-accent': '#1A1A1A', '--color-accent-hover': '#374151', '--font-heading': "'Cormorant Garamond', serif", '--font-body': "'DM Sans', sans-serif", },
-    homeSections: ['hero::fullscreen_kenburns', 'philosophy', 'services::editorial_zigzag', 'before_after::curtain_reveal', 'team::full_page_snap', 'gallery::horizontal_snap', 'testimonials::editorial_single', 'blog_preview', 'booking::inline_calendar'],
-    pages: ['home', 'hizmetler', 'galeri', 'ekip', 'blog', 'iletisim'], sectorSections: ['before_after', 'booking'], animationLevel: 'gsap-allowed', demoBusinessKey: 'atolye',
+    homeSections: ['hero::guzellik_bespoke_hero', 'services::guzellik_bespoke_services', 'about::guzellik_bespoke_about', 'contact::guzellik_bespoke_contact'],
+    pages: ['home'], sectorSections: ['before_after', 'booking'], animationLevel: 'gsap-allowed', demoBusinessKey: 'atolye',
   },
   {
     id: 'guzellik-glamour', name: 'Glamour', sectorId: 'guzellik', plan: 'enterprise',

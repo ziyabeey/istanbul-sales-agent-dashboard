@@ -9,21 +9,25 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "next": "15.1.0",
-    "@kepenk/ui": "workspace:*",
     "@kepenk/config": "workspace:*",
+    "@kepenk/db": "workspace:*",
     "@kepenk/shared": "workspace:*",
-    "@kepenk/db": "workspace:*"
+    "@kepenk/templates": "workspace:*",
+    "@kepenk/ui": "workspace:*",
+    "firebase-admin": "^13.6.1",
+    "framer-motion": "^11.0.0",
+    "lucide-react": "^0.460.0",
+    "next": "15.1.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "autoprefixer": "^10.4.20",
     "postcss": "^8",
     "tailwindcss": "^4",
-    "autoprefixer": "^10.4.20",
     "typescript": "^5"
   }
 }

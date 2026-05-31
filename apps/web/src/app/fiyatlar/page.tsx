@@ -1,6 +1,5 @@
 import React from "react";
-import Navbar from "@/components/layout/Navbar";
-import FooterTrustSection from "@/components/sections/FooterTrustSection";
+import PublicPageShell from "@/components/layout/PublicPageShell";
 import PricingCards from "@/components/sections/PricingCards";
 import { CheckCircle2, HelpCircle, Globe, Shield, Zap, HeadphonesIcon } from "lucide-react";
 import { Metadata } from "next";
@@ -38,8 +37,7 @@ const allPlansInclude = [
 
 export default function FiyatlarPage() {
     return (
-        <main className="min-h-screen bg-background font-sans">
-            <Navbar />
+        <PublicPageShell>
 
             {/* Single clean header */}
             <section className="pt-32 pb-6 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto text-center">
@@ -107,7 +105,6 @@ export default function FiyatlarPage() {
                 </div>
             </section>
 
-            <FooterTrustSection />
-        </main>
+        </PublicPageShell>
     );
 }

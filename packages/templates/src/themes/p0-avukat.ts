@@ -46,8 +46,8 @@ export const AVUKAT_THEMES: P0ThemeDef[] = [
     fonts: { heading: { family: 'Cormorant Garamond', weights: [400, 600, 700] }, body: { family: 'DM Sans', weights: [400, 500] } },
     cssOverrides: { '--color-accent': '#7F1D1D', '--color-accent-hover': '#6B1717', '--font-heading': "'Cormorant Garamond', serif", '--font-body': "'DM Sans', sans-serif",
     },
-    homeSections: ['hero::fullscreen_kenburns', 'philosophy', 'practice_areas::card_grid', 'case_results::stats_row', 'team::full_page_snap', 'blog_preview', 'awards_press', 'social_proof', 'testimonials::editorial_single', 'contact::split_form_map'],
-    pages: ['home', 'hizmetler', 'ekip', 'hakkimizda', 'blog', 'iletisim'], sectorSections: ['practice_areas', 'case_results', 'confidentiality', 'awards_press'], animationLevel: 'gsap-allowed', demoBusinessKey: 'kursu',
+    homeSections: ['hero::hukuk_bespoke_hero', 'services::hukuk_bespoke_services', 'about::hukuk_bespoke_about', 'contact::hukuk_bespoke_contact'],
+    pages: ['home'], sectorSections: ['practice_areas', 'case_results', 'confidentiality', 'awards_press'], animationLevel: 'gsap-allowed', demoBusinessKey: 'kursu',
   },
   {
     id: 'avukat-kuresel', name: 'Küresel', sectorId: 'avukat', plan: 'enterprise',

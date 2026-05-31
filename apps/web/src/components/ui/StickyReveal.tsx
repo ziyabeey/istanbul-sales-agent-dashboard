@@ -29,7 +29,7 @@ export default function StickyReveal({ items, className = "" }: StickyRevealProp
   return (
     <div
       ref={containerRef}
-      style={{ height: `${items.length * 100}vh` }}
+      style={{ height: `${(items.length + 0.5) * 100}vh` }}
       className={`relative ${className}`}
     >
       {items.map((item, i) => {
@@ -69,13 +69,13 @@ function StickyRevealItemComponent({
 }) {
   const opacity = useTransform(
     progress,
-    [rangeStart, rangeStart + 0.05, rangeEnd - 0.05, rangeEnd],
-    [0, 1, 1, isLast ? 1 : 0]
+    [rangeStart, rangeStart + 0.08, rangeEnd - 0.08, rangeEnd],
+    [index === 0 ? 1 : 0, 1, 1, isLast ? 1 : 0]
   );
-  const y = useTransform(progress, [rangeStart, rangeStart + 0.1], [60, 0]);
+  const y = useTransform(progress, [rangeStart, rangeStart + 0.15], [index === 0 ? 0 : 60, 0]);
 
   return (
-    <motion.div style={{ opacity, y }} className="sticky top-0 h-screen flex items-center">
+    <motion.div style={{ opacity, y, willChange: 'transform, opacity' }} className="sticky top-0 h-screen flex items-center">
       <div className="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
         {/* Sol: Metin */}
         <div>

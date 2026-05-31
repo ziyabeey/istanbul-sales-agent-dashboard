@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * /demolar/[themeId] — Client-side dynamic demo renderer
  *

@@ -1,0 +1,20 @@
+/** Eczane Mahalle — warm neighborhood pharmacy CSS variables */
+export const ECZANE_MAHALLE_CSS: Record<string, string> = {
+  '--color-bg': '#FAFAF8',
+  '--color-surface': '#FFFFFF',
+  '--color-surface-elevated': '#FFFFFF',
+  '--color-surface-muted': '#F5F5F2',
+  '--color-text': '#1A1A1A',
+  '--color-text-secondary': '#6B7280',
+  '--color-text-muted': '#9CA3AF',
+  '--color-text-on-accent': '#FFFFFF',
+  '--color-text-on-dark': '#F5F5F5',
+  '--color-accent': '#2E7D32',
+  '--color-accent-hover': '#388E3C',
+  '--color-accent-active': '#1B5E20',
+  '--color-accent-light': '#E8F5E9',
+  '--color-border': '#E5E7EB',
+  '--color-border-subtle': '#F3F4F6',
+  '--font-heading': "'Merriweather', serif",
+  '--font-body': "'Inter', system-ui, sans-serif",
+}

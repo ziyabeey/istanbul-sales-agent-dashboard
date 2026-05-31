@@ -1,0 +1,1329 @@
+{
+  "sectorId": "avukat",
+  "seoSchemaType": "LegalService",
+  "variants": [
+    {
+      "id": "avukat-adalet",
+      "variantName": "adalet",
+      "plan": "free",
+      "description": "Bireysel avukat, mahalle danismanligi",
+      "designPhilosophy": "Ciddi, guvenilir, minimal",
+      "isDark": false,
+      "colors": {
+        "bg": "#FFFFFF",
+        "surface": "#F5F5F0",
+        "text": "#1C1C1C",
+        "accent": "#1B3A4B"
+      },
+      "fonts": { "heading": "Playfair Display", "body": "Inter" },
+      "business": {
+        "name": "Av. Kemal Yildirim Hukuk Burosu",
+        "ownerName": "Kemal Yildirim",
+        "sector": "Avukat",
+        "slogan": "Hakkinizi bilmek, hakkinizi aramaktir",
+        "phone": "0212 345 67 89",
+        "phoneClean": "902123456789",
+        "whatsapp": "905351234567",
+        "email": "av.kemal@yildirimhukuk.com",
+        "address": "Osmanaga Mah. Bahariye Cad. No:78/3, Kadikoy/Istanbul",
+        "city": "Istanbul",
+        "district": "Kadikoy",
+        "neighborhood": "Osmanaga",
+        "coordinates": { "lat": 40.9903, "lng": 29.0277 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/avkemalyildirim"
+        },
+        "photos": [],
+        "foundedYear": 2010,
+        "experience": "14 yil",
+        "customerCount": "3.200+",
+        "rating": 4.7,
+        "reviewCount": 285,
+        "services": [
+          {
+            "id": "s1",
+            "name": "Bosanma Davasi",
+            "price": "15.000 TL'den baslayan",
+            "duration": "60 dk gorusme",
+            "description": "Anlasmalit ve cekismeli bosanma davalari. Velayet, nafaka, mal paylasimi konularinda kapsamli hukuki destek."
+          },
+          {
+            "id": "s2",
+            "name": "Is Hukuku Danismanligi",
+            "price": "3.000 TL",
+            "duration": "45 dk",
+            "description": "Ise iade, kidem-ihbar tazminati, iscretim alacagi davalari. Iscinin haklarini korumak icin profesyonel dava takibi."
+          },
+          {
+            "id": "s3",
+            "name": "Trafik Kazasi Tazminati",
+            "price": "Dava degerinin %15'i",
+            "duration": "45 dk",
+            "description": "Maddi ve manevi tazminat davalari. Sigorta sirketleriyle muhatap olma, uzlasma ve dava surecleri."
+          },
+          {
+            "id": "s4",
+            "name": "Miras Hukuku",
+            "price": "8.000 TL'den baslayan",
+            "duration": "60 dk",
+            "description": "Veraset ilami, miras paylasimi, vasiyetname duzenleme. Aile ici anlasmazliklarda arabuluculuk ve dava."
+          }
+        ],
+        "workingHours": [
+          { "day": "Pazartesi", "open": "09:00", "close": "18:00", "isOpen": true },
+          { "day": "Sali", "open": "09:00", "close": "18:00", "isOpen": true },
+          { "day": "Carsamba", "open": "09:00", "close": "18:00", "isOpen": true },
+          { "day": "Persembe", "open": "09:00", "close": "18:00", "isOpen": true },
+          { "day": "Cuma", "open": "09:00", "close": "18:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "10:00", "close": "14:00", "isOpen": true },
+          { "day": "Pazar", "open": null, "close": null, "isOpen": false }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Haklarinizi Koruyoruz",
+          "subtitle": "14 yillik mesleki tecrube ile bosanma, is hukuku, trafik kazasi ve miras davalarinda yaninizdayiz. Ilk gorusme ucretsiz.",
+          "badge": "Kadikoy Barosu"
+        },
+        "about": {
+          "title": "Av. Kemal Yildirim Kimdir?",
+          "description": "2010 yilinda Kadikoy'de actigimiz hukuk buromuzda, bireylerin gunluk hayatta karsilastigi hukuki sorunlara cozum uretiyoruz. Istanbul Universitesi Hukuk Fakultesi mezunu olarak meslek hayatima Istanbul Barosu'nda baslayarak 3.200'den fazla muvekkilime hizmet verdim.\n\nOzellikle aile hukuku ve is hukuku alanlarinda uzmanlasmis buromuz, her davaya bireysel yaklasim ilkesiyle calismaktadir. Muvekkillerimizin haklarini en etkin sekilde savunmak icin guncel mevzuati yakindan takip ediyor, her dosyaya ozenle hazirlaniyoruz.\n\nBarodan alinan uzlastirmaci ve arabulucu yetki belgeleriyle, dava oncesi sulh ve arabuluculuk sureclerinde de profesyonel destek sunuyoruz. Amacimiz her zaman muvekkilimizin en az zarala, en hizli sekilde sonuca ulasmasi."
+        },
+        "services": {
+          "title": "Hukuki Hizmetlerimiz",
+          "subtitle": "Bireylerin en cok ihtiyac duydugu hukuk alanlarinda uzman kadromuzla yaninizdayiz"
+        },
+        "contact": {
+          "title": "Ucretsiz On Gorusme",
+          "subtitle": "Davaniz hakkinda bilgi almak icin bizi arayin. Ilk degerlendirme gorusmesi ucretsizdir."
+        },
+        "faq": [
+          {
+            "q": "Bosanma davasi ne kadar surer?",
+            "a": "Anlasmalit bosanma genellikle 1-3 ay icerisinde sonuclanir. Cekismeli bosanma davalarinda sure 1-3 yil arasinda degisebilir. Velayet, nafaka ve mal paylasimi konularindaki uyusmazliklar sureyi uzatabilir."
+          },
+          {
+            "q": "Ilk gorusme ucretli mi?",
+            "a": "Hayir, buromuzda ilk degerlendirme gorusmesi tamamen ucretsizdir. Bu gorusmede davanizin genel cercevesini, basari sansini ve tahmini maliyeti birlikte degerlendiririz."
+          },
+          {
+            "q": "Avukatlik ucretleri nasil belirleniyor?",
+            "a": "Ucretlerimiz Istanbul Barosu Asgari Ucret Tarifesi'ne uygundur. Dava turune gore sabit ucret veya dava degerinin belirli bir yuzdesi olarak belirlenir. Her durumda yazili sozlesme yapilir."
+          },
+          {
+            "q": "Online gorusme yapabiliyor musunuz?",
+            "a": "Evet, Zoom veya Google Meet uzerinden online gorusme imkanimiz mevcuttur. Ozellikle sehir disi muvekkillerimiz icin bu secenegi siklika tercih ediyoruz."
+          }
+        ],
+        "testimonials": []
+      }
+    },
+    {
+      "id": "avukat-aile",
+      "variantName": "aile",
+      "plan": "starter",
+      "description": "Aile hukuku uzmani, sicak ve profesyonel",
+      "designPhilosophy": "Yakin, samimi ama profesyonel",
+      "isDark": false,
+      "colors": {
+        "bg": "#FAFAF7",
+        "surface": "#F0EDE8",
+        "text": "#2D2A26",
+        "accent": "#6B4C3B"
+      },
+      "fonts": { "heading": "Merriweather", "body": "Source Sans Pro" },
+      "business": {
+        "name": "Avukat Selin Arslan | Aile Hukuku Merkezi",
+        "ownerName": "Selin Arslan",
+        "sector": "Avukat",
+        "slogan": "Ailenizin hukuki guvencesi",
+        "phone": "0216 489 32 10",
+        "phoneClean": "902164893210",
+        "whatsapp": "905421234567",
+        "email": "selin@arslanhukuk.com.tr",
+        "address": "Fenerbahce Mah. Bagdat Cad. No:156/5, Kadikoy/Istanbul",
+        "city": "Istanbul",
+        "district": "Kadikoy",
+        "neighborhood": "Fenerbahce",
+        "coordinates": { "lat": 40.9714, "lng": 29.0372 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/avselinarslan",
+          "linkedin": "https://linkedin.com/in/selinarslan"
+        },
+        "photos": [],
+        "foundedYear": 2015,
+        "experience": "11 yil",
+        "customerCount": "2.800+",
+        "rating": 4.9,
+        "reviewCount": 412,
+        "services": [
+          {
+            "id": "s1",
+            "name": "Anlasmalit Bosanma",
+            "price": "12.000 TL",
+            "duration": "60 dk",
+            "description": "Taraflarin karsilikli anlasmasiyla yurutulen bosanma sureci. Protokol hazirlama, mahkemeye sunma ve durusma takibi dahil."
+          },
+          {
+            "id": "s2",
+            "name": "Cekismeli Bosanma",
+            "price": "25.000 TL'den baslayan",
+            "duration": "90 dk",
+            "description": "Anlasma saglanamayan bosanma davalarinda, kusur tespiti, delil toplama ve tam dava takibi hizmeti."
+          },
+          {
+            "id": "s3",
+            "name": "Velayet Davasi",
+            "price": "18.000 TL'den baslayan",
+            "duration": "60 dk",
+            "description": "Cocugun ustun yararina uygun velayet kararlari icin uzman pedagoglarla is birligi icinde dava takibi."
+          },
+          {
+            "id": "s4",
+            "name": "Nafaka Davasi",
+            "price": "8.000 TL",
+            "duration": "45 dk",
+            "description": "Istirak nafakasi, yoksulluk nafakasi ve tedbir nafakasi taleplerinin hazirlanmasi ve dava takibi."
+          },
+          {
+            "id": "s5",
+            "name": "Koruma Karari Basvurusu",
+            "price": "5.000 TL",
+            "duration": "Acil islem",
+            "description": "6284 sayili kanun kapsaminda siddet magdurlari icin acil koruma karari basvurusu ve takibi."
+          },
+          {
+            "id": "s6",
+            "name": "Aile Arabuluculugu",
+            "price": "7.500 TL",
+            "duration": "120 dk",
+            "description": "Dava oncesi arabuluculuk surecinde taraflar arasi uzlasma saglanmasi. Bosanma, nafaka ve velayet konularinda."
+          }
+        ],
+        "team": [
+          {
+            "name": "Av. Selin Arslan",
+            "title": "Kurucu Ortak | Aile Hukuku Uzmani",
+            "bio": "Marmara Universitesi Hukuk Fakultesi mezunu. 11 yildir aile hukuku alaninda calisiyor. Arabuluculuk ve uzlastirmacilik sertifikalari mevcut.",
+            "photo": ""
+          },
+          {
+            "name": "Av. Deniz Korkmaz",
+            "title": "Kidemli Avukat",
+            "bio": "Galatasaray Universitesi mezunu. Ozellikle velayet ve cocuk haklari davalarinda 8 yillik deneyim.",
+            "photo": ""
+          }
+        ],
+        "workingHours": [
+          { "day": "Pazartesi", "open": "09:00", "close": "18:30", "isOpen": true },
+          { "day": "Sali", "open": "09:00", "close": "18:30", "isOpen": true },
+          { "day": "Carsamba", "open": "09:00", "close": "18:30", "isOpen": true },
+          { "day": "Persembe", "open": "09:00", "close": "18:30", "isOpen": true },
+          { "day": "Cuma", "open": "09:00", "close": "18:30", "isOpen": true },
+          { "day": "Cumartesi", "open": "10:00", "close": "15:00", "isOpen": true },
+          { "day": "Pazar", "open": null, "close": null, "isOpen": false }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Ailenizin Hukuki Kalkaniyiz",
+          "subtitle": "Bosanma, velayet, nafaka ve aile ici siddet davalarinda 11 yillik uzmanlik. Hassasiyetle, kararlilikla yaninizdayiz.",
+          "badge": "Aile Hukuku Uzmani"
+        },
+        "about": {
+          "title": "Neden Bizi Secmelisiniz?",
+          "description": "Aile hukuku, insanlarin hayatinin en hassas donemlerinde devreye giren bir hukuk dali. 2015 yilinda Bagdat Caddesi'nde kurdigumiz merkezimizde, bu hassasiyetin bilincinde calisiyoruz.\n\nAv. Selin Arslan olarak mesleki hayatima Istanbul Barosu'nda aile hukuku komisyonunda baslayarak, 2.800'den fazla aileye hukuki destek verdim. Ekibimizle birlikte her davaya bireysel yaklasim gosteriyor, muvekkillerimizin duygusal sureclerini de goz onunde bulundurarak hareket ediyoruz.\n\nOfisimizde cocuk psikolojisi uzmanlariyla is birligi icinde calisarak, velayet davalarinda cocugun ustun yararini on planda tutuyoruz. Arabuluculuk sertifikamizla dava oncesi cozum odakli yaklasim sunuyoruz.\n\nBize ulasan her muvekkil, once dinlenir, sonra bilgilendirilir, en son harekete gecilir. Bu siralamayi hic degistirmedik."
+        },
+        "services": {
+          "title": "Aile Hukuku Hizmetlerimiz",
+          "subtitle": "Bosanmadan velayete, nafakadan koruma kararina — her adimda yaninizdayiz"
+        },
+        "stats": {
+          "title": "Rakamlarla Arslanhukuk",
+          "items": [
+            { "value": "2.800+", "label": "Muvekkil" },
+            { "value": "11", "label": "Yil Deneyim" },
+            { "value": "%94", "label": "Basari Orani" },
+            { "value": "4.9", "label": "Google Puan" }
+          ]
+        },
+        "contact": {
+          "title": "Randevu Alin",
+          "subtitle": "Gizlilik ilkesiyle, yuz yuze veya online gorusme imkani sunuyoruz"
+        },
+        "faq": [
+          {
+            "q": "Bosanma davasinda mal paylasimi nasil yapilir?",
+            "a": "2002 sonrasi evliliklerde edinilmis mallara katilma rejimi uygulanir. Evlilik suresince edinilen mallar esit olarak paylasilir. Kisisel mallar (miras, hediye) paylasima dahil degildir."
+          },
+          {
+            "q": "Velayet karari degistirilebilir mi?",
+            "a": "Evet, cocugun ustun yarari gerektiriyorsa velayet degisikligi davasi acilabilir. Cocugun yasi, tercihi, ebeveynlerin yasam kosullari degerlendirmeye alinir."
+          },
+          {
+            "q": "Koruma karari ne kadar surede alinir?",
+            "a": "Acil durumlarda ayni gun icerisinde koruma karari alinabilir. Basvuru Aile Mahkemesi'ne yapilir, durusmasiz karar verilmesi mumkundur."
+          },
+          {
+            "q": "Arabuluculuk zorunlu mu?",
+            "a": "2024 itibariyla bazi aile hukuku davalarinda dava oncesi arabuluculuk zorunludur. Anlasmalit bosanma, nafaka ve mal paylasimi konularinda oncelikle arabuluculuk yoluna basvurulmasi gerekmektedir."
+          },
+          {
+            "q": "Online danismanlik hizmeti veriyor musunuz?",
+            "a": "Evet, Zoom ve Google Meet uzerinden online gorusme yapabiliyoruz. Ilk degerlendirme gorusmesi 30 dakika ucretsizdir."
+          },
+          {
+            "q": "Dava ucretlerinde taksit imkani var mi?",
+            "a": "Evet, dava ucretlerini 3-6 taksit seklinde odeyebilirsiniz. Ayrintili bilgi icin ofisimizi arayabilirsiniz."
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Ayse K.",
+            "location": "Kadikoy",
+            "date": "2025-11",
+            "rating": 5,
+            "text": "Bosanma surecimde beni hem hukuki hem psikolojik olarak desteklediler. Selin Hanim'in sabri ve profesyonelligi sayesinde sureci en az hasarla atlattim."
+          },
+          {
+            "name": "Mehmet D.",
+            "location": "Atasehir",
+            "date": "2025-09",
+            "rating": 5,
+            "text": "Velayet davamda cocugumun menfaatini on planda tutan yaklasimlarindan dolayi minnettarim. Sonuc tam istedigim gibi oldu."
+          },
+          {
+            "name": "Zeynep A.",
+            "location": "Maltepe",
+            "date": "2025-07",
+            "rating": 5,
+            "text": "Koruma karari surecinde cok hizli hareket ettiler. Ayni gun icerisinde basvurumu yapip karari aldik. Hayat kurtarici bir hizmet."
+          }
+        ]
+      }
+    },
+    {
+      "id": "avukat-modern",
+      "variantName": "modern",
+      "plan": "growth",
+      "description": "Ticaret hukuku odakli, modern ve dinamik",
+      "designPhilosophy": "Keskin, corporate, guven veren",
+      "isDark": false,
+      "colors": {
+        "bg": "#FFFFFF",
+        "surface": "#F2F4F7",
+        "text": "#111827",
+        "accent": "#0F4C81"
+      },
+      "fonts": { "heading": "DM Serif Display", "body": "DM Sans" },
+      "business": {
+        "name": "Aksoy & Turan Hukuk Ortakligi",
+        "ownerName": "Burak Aksoy",
+        "sector": "Avukat",
+        "slogan": "Ticaretinizin hukuki mimarisi",
+        "phone": "0212 276 54 98",
+        "phoneClean": "902122765498",
+        "whatsapp": "905331234567",
+        "email": "info@aksoyturan.av.tr",
+        "address": "Levent Mah. Buyukdere Cad. No:185 Kat:12, Sisli/Istanbul",
+        "city": "Istanbul",
+        "district": "Sisli",
+        "neighborhood": "Levent",
+        "coordinates": { "lat": 41.0825, "lng": 29.0103 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/aksoyturanhukuk",
+          "linkedin": "https://linkedin.com/company/aksoyturan"
+        },
+        "photos": [],
+        "foundedYear": 2008,
+        "experience": "18 yil",
+        "customerCount": "5.400+",
+        "rating": 4.8,
+        "reviewCount": 678,
+        "services": [
+          {
+            "id": "s1",
+            "name": "Sirket Kurulusu",
+            "price": "8.000 TL'den baslayan",
+            "duration": "Proje bazli",
+            "description": "Limited ve anonim sirket kurulusu, ana sozlesme hazirlama, ticaret sicil islemleri ve vergi kaydi sureclerinin tamaminin yonetimi."
+          },
+          {
+            "id": "s2",
+            "name": "Ticari Sozlesme Hazirlama",
+            "price": "5.000 TL",
+            "duration": "3-5 is gunu",
+            "description": "Bayi, distributorluk, franchise, hizmet ve tedarik sozlesmeleri. Risk analizi ve muzakere destegi dahil."
+          },
+          {
+            "id": "s3",
+            "name": "Sirket Birlesme & Devralma (M&A)",
+            "price": "Proje bazli fiyatlandirma",
+            "duration": "Proje bazli",
+            "description": "Due diligence, deger tespiti, hisse devri ve birlesme sureclerinin hukuki yonetimi. Yerli ve yabanci yatirimci islemleri."
+          },
+          {
+            "id": "s4",
+            "name": "Fikri Mulkiyet Koruma",
+            "price": "6.000 TL'den baslayan",
+            "duration": "Proje bazli",
+            "description": "Marka tescili, patent basvurusu, endustriyel tasarim korumasi. TURKPATENT sureclerinin yonetimi ve ihlal davalari."
+          },
+          {
+            "id": "s5",
+            "name": "Is Hukuku Danismanligi",
+            "price": "Aylik 4.500 TL",
+            "duration": "Surekli hizmet",
+            "description": "Is sozlesmeleri, disiplin surecleri, ise alim-cikarma prosedurlerinde hukuki danismanlik. SGK islemleri ve is guvenligi mevzuati."
+          },
+          {
+            "id": "s6",
+            "name": "Iflas & Konkordato",
+            "price": "25.000 TL'den baslayan",
+            "duration": "Proje bazli",
+            "description": "Mali zorluktaki sirketler icin konkordato sureci yonetimi, alacakli toplantilari ve iflas islemleri."
+          },
+          {
+            "id": "s7",
+            "name": "Tahkim & Arabuluculuk",
+            "price": "Dava bazli",
+            "duration": "Degisken",
+            "description": "Ulusal ve uluslararasi tahkim davalari. ICC, ISTAC tahkim kurallarina gore temsil. Ticari arabuluculuk surecleri."
+          },
+          {
+            "id": "s8",
+            "name": "KVKK Uyum Danismanligi",
+            "price": "12.000 TL",
+            "duration": "2-4 hafta",
+            "description": "Kisisel verilerin korunmasi kanunu kapsaminda sirket uyum sureci. Aydinlatma metni, riza formu, VERBiS kaydi ve veri envanteri."
+          },
+          {
+            "id": "s9",
+            "name": "E-Ticaret Hukuku",
+            "price": "7.500 TL",
+            "duration": "Proje bazli",
+            "description": "E-ticaret siteleri icin mesafeli satis sozlesmesi, iade politikasi, KVKK uyumu ve tuketici hukuku danismanligi."
+          },
+          {
+            "id": "s10",
+            "name": "Vergi Hukuku Danismanligi",
+            "price": "6.000 TL'den baslayan",
+            "duration": "Dava bazli",
+            "description": "Vergi cezasi itirazlari, vergi inceleme sureclerinde temsil, uzlasma basvurulari ve vergi planlamasi."
+          }
+        ],
+        "team": [
+          {
+            "name": "Av. Burak Aksoy",
+            "title": "Kurucu Ortak | Ticaret Hukuku",
+            "bio": "Ankara Universitesi Hukuk Fakultesi, NYU LLM. 18 yillik ticaret hukuku deneyimi. ICC tahkim hakemi.",
+            "photo": ""
+          },
+          {
+            "name": "Av. Elif Turan",
+            "title": "Kurucu Ortak | Sirketler Hukuku",
+            "bio": "Koc Universitesi Hukuk, LSE Master. M&A ve venture capital islemlerinde 15 yillik deneyim.",
+            "photo": ""
+          },
+          {
+            "name": "Av. Can Ozdemir",
+            "title": "Kidemli Avukat | Fikri Mulkiyet",
+            "bio": "Bilgi Universitesi Hukuk. TURKPATENT marka vekili. Teknoloji ve startup hukuku uzmani.",
+            "photo": ""
+          },
+          {
+            "name": "Av. Zehra Kaya",
+            "title": "Avukat | Is Hukuku",
+            "bio": "Marmara Universitesi Hukuk. Is hukuku ve sosyal guvenlik alaninda 7 yillik deneyim.",
+            "photo": ""
+          }
+        ],
+        "workingHours": [
+          { "day": "Pazartesi", "open": "08:30", "close": "18:30", "isOpen": true },
+          { "day": "Sali", "open": "08:30", "close": "18:30", "isOpen": true },
+          { "day": "Carsamba", "open": "08:30", "close": "18:30", "isOpen": true },
+          { "day": "Persembe", "open": "08:30", "close": "18:30", "isOpen": true },
+          { "day": "Cuma", "open": "08:30", "close": "18:30", "isOpen": true },
+          { "day": "Cumartesi", "open": null, "close": null, "isOpen": false },
+          { "day": "Pazar", "open": null, "close": null, "isOpen": false }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Isletmenizin Hukuki Guvencesi",
+          "subtitle": "Sirket kurulusundan M&A'ya, sozlesmeden tahkime — ticari hayatinizin her asamasinda profesyonel hukuki destek.",
+          "badge": "18 Yillik Deneyim"
+        },
+        "about": {
+          "title": "Aksoy & Turan Hukuk Ortakligi",
+          "description": "2008 yilinda Istanbul finans merkezinde kurulan buromuz, Turkiye'nin onde gelen ticaret hukuku ofislerinden biri olma vizyonuyla calismaktadir. Kurucu ortaklarimiz Av. Burak Aksoy ve Av. Elif Turan, uluslararasi egitim ve deneyimlerini Turk hukuk sistemine entegre ederek fark yaratan bir hizmet anlayisi ortaya koymustur.\n\n4 avukat ve 2 hukuk danismanindan olusan ekibimizle, KOBi'lerden cok uluslu sirketlere kadar genis bir musteri portfoyune hizmet veriyoruz. Her musteri icin ozel atanan vaka yoneticisi sistemiyle, surecin her asamasini seffaf bir sekilde paylasiyor ve hizli geri donus garantisi sunuyoruz.\n\nBuromuz ICC (Uluslararasi Ticaret Odasi) ve ISTAC (Istanbul Tahkim Merkezi) nezdinde tahkim islemlerinde aktif rol almakta, uluslararasi ticari uyusmazliklarda Turk sirketlerini temsil etmektedir.\n\nTeknoloji odakli calisma anlayisimizla, tum dosya takiplerini dijital ortamda gerceklestiriyor, muvekkillerimize online erisim paneli sunuyoruz."
+        },
+        "services": {
+          "title": "Hukuki Cozumlerimiz",
+          "subtitle": "Ticaret hukukunun her alaninda uzman kadromuzla kapsamli hizmet"
+        },
+        "stats": {
+          "title": "Rakamlarla Aksoy & Turan",
+          "items": [
+            { "value": "5.400+", "label": "Tamamlanan Dosya" },
+            { "value": "18", "label": "Yil Deneyim" },
+            { "value": "4", "label": "Uzman Avukat" },
+            { "value": "48", "label": "Kurumsal Musteri" }
+          ]
+        },
+        "gallery": {
+          "title": "Ofisimiz",
+          "subtitle": "Levent'teki modern ofisimizde profesyonel calisma ortami"
+        },
+        "contact": {
+          "title": "Bize Ulasin",
+          "subtitle": "Ticari hukuki ihtiyaclarinizi degerlendirmek icin randevu alin"
+        },
+        "faq": [
+          {
+            "q": "Sirket kurulusu ne kadar surer?",
+            "a": "Limited sirket kurulusu MERSiS basvurusu ile 3-5 is gunu icerisinde tamamlanir. Anonim sirket kurulusu biraz daha uzun surabilir. Tum evrak hazirlik ve sicil islemlerini biz yonetiyoruz."
+          },
+          {
+            "q": "Aylik danismanlik hizmeti nasil calisiyor?",
+            "a": "Aylik sabit ucret karsliginda sinursiz telefon/email danismanlik, sozlesme inceleme (ayda 5'e kadar), is hukuku destek ve yasal mevzuat bilgilendirmesi alirsiniz."
+          },
+          {
+            "q": "Uluslararasi islemlerde de destek verebilir misiniz?",
+            "a": "Evet, ozellikle M&A ve tahkim alaninda uluslararasi deneyimimiz vardir. ICC ve ISTAC nezdinde tahkim davalarinda aktif rol aliyoruz. Ingilizce ve Almanca hukuki yazisma desteAi de sunuyoruz."
+          },
+          {
+            "q": "KVKK uyum sureci ne kadar surer?",
+            "a": "Sirketin buyuklugune gore 2-4 hafta surer. Veri envanteri cikarma, aydinlatma metinleri hazirlama, acik riza formlari ve VERBiS kaydi islemleri dahildir."
+          },
+          {
+            "q": "Hangi sektorlere hizmet veriyorsunuz?",
+            "a": "Teknoloji, e-ticaret, uretim, insaat, saglik ve finans sektorlerinde aktif musteri portfoyumuz vardir. Sektor ozelinde uzman avukatlarimiz her alana ozel hukuki cozum sunar."
+          },
+          {
+            "q": "Online dosya takip sisteminiz var mi?",
+            "a": "Evet, tum muvekkillerimize ozel online panel uzerinden dosya durumu, yapilan islemler ve gelecek adimlar hakkinda anlik bilgi alabilirsiniz."
+          },
+          {
+            "q": "Startup'lar icin ozel paketiniz var mi?",
+            "a": "Evet, yeni kurulan girisimlere ozel baslangic paketi sunuyoruz: sirket kurulusu + ortaklik sozlesmesi + KVKK uyumu + marka tescili kombinasyonu ile uygun fiyat avantaji."
+          },
+          {
+            "q": "Acil durumlarda ulasabilir miyiz?",
+            "a": "Aylik danismanlik muvekkillerimiz icin 7/24 acil destek hattimiz mevcuttur. Ihtiyati tedbir, icra takibi engelleme gibi acil islemlerde hizli mudahale ediyoruz."
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Ali R.",
+            "location": "Maslak",
+            "date": "2025-12",
+            "rating": 5,
+            "text": "E-ticaret sitemizin tum hukuki altyapisini Aksoy & Turan hazirladii. KVKK, mesafeli satis sozlesmesi, iade politikasi — her seyi dusunmusler. 2 yildir aylik danismanlik aliyoruz."
+          },
+          {
+            "name": "Sema Y.",
+            "location": "Levent",
+            "date": "2025-10",
+            "rating": 5,
+            "text": "Sirketimizin birlesme surecini yonettiler. Due diligence asamasindan hisse devrine kadar her adimda yanımızdaydılar. Profesyonel ve seffaf calisma tarzlari takdire deger."
+          },
+          {
+            "name": "Omer F.",
+            "location": "Umraniye",
+            "date": "2025-08",
+            "rating": 4,
+            "text": "Marka tescil surecimizi cok hizli ve sorunsuz yonettiler. Rakip firma tecavuz davasinda da basarili bir sonuc aldik."
+          },
+          {
+            "name": "Defne B.",
+            "location": "Besiktas",
+            "date": "2025-06",
+            "rating": 5,
+            "text": "Startup'imiz icin ozel paket aldik. Sirket kurulusu, ortaklik sozlesmesi ve yatirimci anlasmasini cok makul fiyatla hazirladilar. Girisimcilere kesinlikle tavsiye ediyorum."
+          },
+          {
+            "name": "Hakan T.",
+            "location": "Sariyer",
+            "date": "2025-04",
+            "rating": 5,
+            "text": "Is hukuku konusunda 3 yildir danismanligimizi yapiyorlar. Isci-isveren uyusmazliklarinda cok hizli mudahale ediyorlar. Online dosya takip sistemi de cok pratik."
+          },
+          {
+            "name": "Gamze S.",
+            "location": "Sisli",
+            "date": "2025-02",
+            "rating": 5,
+            "text": "Konkordato sureci cok stresli bir donemdi ama Burak Bey ve ekibi süreci basariyla yonetti. Sirketimizi kurtardik diyebilirim."
+          }
+        ]
+      }
+    },
+    {
+      "id": "avukat-prestige",
+      "variantName": "prestige",
+      "plan": "pro",
+      "description": "Cok alanli, prestijli hukuk burosu",
+      "designPhilosophy": "Luks, otoriter, kurumsal",
+      "isDark": false,
+      "colors": {
+        "bg": "#FDFCFA",
+        "surface": "#F0EDE5",
+        "text": "#1A1814",
+        "accent": "#8B6914"
+      },
+      "fonts": { "heading": "Cormorant Garamond", "body": "Nunito Sans" },
+      "business": {
+        "name": "Erdem & Soylu Avukatlik Ortakligi",
+        "ownerName": "Hasan Erdem",
+        "sector": "Avukat",
+        "slogan": "Hukukun gucu, tecrubemizin guvencesinde",
+        "phone": "0212 520 11 22",
+        "phoneClean": "902125201122",
+        "whatsapp": "905441234567",
+        "email": "info@erdemsoylu.av.tr",
+        "address": "Harbiye Mah. Cumhuriyet Cad. No:220 Kat:8, Sisli/Istanbul",
+        "city": "Istanbul",
+        "district": "Sisli",
+        "neighborhood": "Harbiye",
+        "coordinates": { "lat": 41.0484, "lng": 28.9922 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/erdemsoyluhukuk",
+          "linkedin": "https://linkedin.com/company/erdemsoylu",
+          "twitter": "https://twitter.com/erdemsoyluhukuk"
+        },
+        "photos": [],
+        "foundedYear": 2002,
+        "experience": "24 yil",
+        "customerCount": "12.000+",
+        "rating": 4.9,
+        "reviewCount": 1540,
+        "services": [
+          {
+            "id": "s1",
+            "name": "Gayrimenkul Hukuku",
+            "price": "Proje bazli",
+            "duration": "Degisken",
+            "description": "Tapu devri, kat mulkiyeti, insaat sozlesmeleri, imar uyusmazliklari. Yabanci uyruklu alicilar icin ozel hizmet."
+          },
+          {
+            "id": "s2",
+            "name": "Ceza Hukuku",
+            "price": "20.000 TL'den baslayan",
+            "duration": "Dava bazli",
+            "description": "Agir ceza, asliye ceza, sulh ceza davalari. Tutukluluga itiraz, tahliye basvurusu, istinaf ve temyiz surecleri."
+          },
+          {
+            "id": "s3",
+            "name": "Ticaret Hukuku",
+            "price": "Proje bazli",
+            "duration": "Degisken",
+            "description": "Sirket kurulusu, birlesme-devralma, ortaklik uyusmazliklari, rekabet hukuku ve ticari dava takibi."
+          },
+          {
+            "id": "s4",
+            "name": "Aile Hukuku",
+            "price": "15.000 TL'den baslayan",
+            "duration": "Dava bazli",
+            "description": "Bosanma, velayet, nafaka, mal paylasimi. Diplomatik ve uluslararasi aile hukuku konularinda ozel deneyim."
+          },
+          {
+            "id": "s5",
+            "name": "Idare Hukuku",
+            "price": "10.000 TL'den baslayan",
+            "duration": "Dava bazli",
+            "description": "Idari islemlerin iptali, tam yargi davalari, kamu ihaleleri ve imar plani degisikligi davalari."
+          },
+          {
+            "id": "s6",
+            "name": "Icra & Iflas Hukuku",
+            "price": "Alacagin %10'u",
+            "duration": "Degisken",
+            "description": "Ilamsiz icra, ilamli icra, kambiyo senetlerine dayali takip, iflas erteleme ve konkordato surecleri."
+          },
+          {
+            "id": "s7",
+            "name": "Vatandaslik & Goc Hukuku",
+            "price": "15.000 TL'den baslayan",
+            "duration": "3-12 ay",
+            "description": "Turk vatandasligi basvurusu, calisma izni, oturma izni, sinir disi kararina itiraz, multeci hukuku."
+          },
+          {
+            "id": "s8",
+            "name": "Saglik Hukuku",
+            "price": "Dava bazli",
+            "duration": "Degisken",
+            "description": "Hekim malpraktis davalari, hasta haklari, tibbi ihmal tazminati. Saglik personeli ve hastane savunmasi."
+          },
+          {
+            "id": "s9",
+            "name": "Tuketici Hukuku",
+            "price": "3.000 TL'den baslayan",
+            "duration": "Degisken",
+            "description": "Ayipli mal ve hizmet davalari, tuketici hakem heyeti basvurulari, garanti ve iade uyusmazliklari."
+          },
+          {
+            "id": "s10",
+            "name": "Spor Hukuku",
+            "price": "Proje bazli",
+            "duration": "Degisken",
+            "description": "Sporcu sozlesmeleri, kulup-federasyon uyusmazliklari, CAS tahkim surecleri, menajerlik anlasmalari."
+          },
+          {
+            "id": "s11",
+            "name": "Noterlik & Tercume",
+            "price": "2.000 TL'den baslayan",
+            "duration": "1-3 is gunu",
+            "description": "Yeminli tercume, apostil, konsolosluk islemleri. Ingilizce, Almanca, Arapca ve Rusca hukuki tercume."
+          },
+          {
+            "id": "s12",
+            "name": "Sigorta Hukuku",
+            "price": "Tazminat bazli",
+            "duration": "Degisken",
+            "description": "Kasko, trafik, saglik ve hayat sigortasi uyusmazliklari. Sigorta tazminati tahsili ve rucuu davalari."
+          },
+          {
+            "id": "s13",
+            "name": "Deniz Ticaret Hukuku",
+            "price": "Proje bazli",
+            "duration": "Degisken",
+            "description": "Navlun sozlesmeleri, gemi ipotegi, deniz kazasi tazminati, liman isletme uyusmazliklari. P&I Club temsili."
+          },
+          {
+            "id": "s14",
+            "name": "Enerji Hukuku",
+            "price": "Proje bazli",
+            "duration": "Degisken",
+            "description": "Yenilenebilir enerji lisanslari, elektrik piyasasi mevzuati, EPDK basvurulari, enerji yatirim sozlesmeleri."
+          }
+        ],
+        "team": [
+          {
+            "name": "Av. Hasan Erdem",
+            "title": "Kurucu Ortak | Baro Baskan Yardimcisi",
+            "bio": "Ankara Universitesi Hukuk, Viyana Universitesi LLM. 24 yillik mesleki deneyim. Istanbul Barosu Baskan Yardimciligi gorevi.",
+            "photo": ""
+          },
+          {
+            "name": "Av. Neslihan Soylu",
+            "title": "Kurucu Ortak | Gayrimenkul Hukuku",
+            "bio": "Galatasaray Universitesi Hukuk, Paris II Pantheon-Assas LLM. Gayrimenkul ve insaat hukuku alaninda 20 yillik uzmanlik.",
+            "photo": ""
+          },
+          {
+            "name": "Av. Emre Yilmaz",
+            "title": "Ortak | Ceza Hukuku",
+            "bio": "Istanbul Universitesi Hukuk. Agir ceza davalarinda 15 yillik deneyim. CMK zorunlu mudafi listesinde.",
+            "photo": ""
+          },
+          {
+            "name": "Av. Pinar Demir",
+            "title": "Kidemli Avukat | Idare Hukuku",
+            "bio": "Bilkent Universitesi Hukuk. Danistay'da 5 yil tetkik hakimligi sonrasi avukatliga gecis. Kamu ihaleleri uzmani.",
+            "photo": ""
+          },
+          {
+            "name": "Av. Serkan Koc",
+            "title": "Kidemli Avukat | Ticaret Hukuku",
+            "bio": "ODTU MBA, Koc Universitesi Hukuk. Sirketler hukuku ve M&A alaninda 12 yillik deneyim.",
+            "photo": ""
+          },
+          {
+            "name": "Av. Aylin Celik",
+            "title": "Avukat | Aile Hukuku",
+            "bio": "Marmara Universitesi Hukuk. Uluslararasi aile hukuku ve diplomatik davalar konusunda uzmanlik.",
+            "photo": ""
+          }
+        ],
+        "workingHours": [
+          { "day": "Pazartesi", "open": "08:00", "close": "19:00", "isOpen": true },
+          { "day": "Sali", "open": "08:00", "close": "19:00", "isOpen": true },
+          { "day": "Carsamba", "open": "08:00", "close": "19:00", "isOpen": true },
+          { "day": "Persembe", "open": "08:00", "close": "19:00", "isOpen": true },
+          { "day": "Cuma", "open": "08:00", "close": "19:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "10:00", "close": "15:00", "isOpen": true },
+          { "day": "Pazar", "open": null, "close": null, "isOpen": false }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Hukukun En Guclu Sesi",
+          "subtitle": "24 yillik deneyim, 12.000'den fazla tamamlanmis dosya. Gayrimenkul, ceza, ticaret ve idare hukukunda Turkiye'nin saygin burolari arasindayiz.",
+          "badge": "1540+ Google Degerlendirme"
+        },
+        "about": {
+          "title": "Erdem & Soylu Hakkinda",
+          "description": "2002 yilinda Av. Hasan Erdem ve Av. Neslihan Soylu tarafindan kurulan buromuz, Istanbul Harbiye'deki merkez ofisimizden Turkiye genelinde hukuki hizmet sunmaktadir. Baslangicta 2 avukattan olusan kadromuz, bugun 6 avukat, 3 stajyer ve 4 idari personelile profesyonel bir ekibe donusmustur.\n\nBuromuzun kurulusu itibariyla benimsedigi temel ilke, her muvekkilin farkli oldugu ve standart cozumlerin yeterli olmadigi gercegigir. Bu nedenle her dosyaya ozel strateji gelistiriyor, muvekkillerimizle birlikte karar aliyoruz.\n\nUluslararasi is birlikleriyle guclu baglarımız vardir. Viyana, Paris ve Londra'daki partner bürolar araciligiyla sinir otesi islemlerde etkin temsil sunuyoruz. Yabanci yatirimcilar icin Turkiye giris stratejileri ve vatandaslik programlari konusunda kapsamli deneyimimiz bulunmaktadir.\n\nIstanbul Barosu, Turk-Alman Hukukculari Dernegi ve International Bar Association uyeliklerimizle ulusal ve uluslararasi hukuk camiasinda aktif rol almaktayiz."
+        },
+        "services": {
+          "title": "Uzmanlik Alanlarimiz",
+          "subtitle": "14 farkli hukuk dalinda, 6 uzman avukatla kapsamli cozumler"
+        },
+        "stats": {
+          "title": "Neden Erdem & Soylu?",
+          "items": [
+            { "value": "12.000+", "label": "Tamamlanan Dosya" },
+            { "value": "24", "label": "Yil Deneyim" },
+            { "value": "6", "label": "Uzman Avukat" },
+            { "value": "%97", "label": "Musteri Memnuniyeti" }
+          ]
+        },
+        "gallery": {
+          "title": "Ofisimiz & Ekibimiz",
+          "subtitle": "Harbiye'deki 300 m2 ofisimizde modern calisma ortami"
+        },
+        "process": {
+          "title": "Nasil Calisiyoruz?",
+          "steps": [
+            { "title": "Ilk Gorusme", "description": "Ucretsiz 30 dakikalik degerlendirme gorusmesi ile davanizin genel cizgilerini cizeriz." },
+            { "title": "Strateji Belirleme", "description": "Dosyaniza ozel hukuki strateji hazirlayip sizinle paylasir, onay aliriz." },
+            { "title": "Aktif Takip", "description": "Tum hukuki surecleri biz yonetir, sizi her asamada bilgilendiririz." },
+            { "title": "Sonuc & Raporlama", "description": "Dosya kapanisinda detayli rapor sunarak seffaf bir sekilde sureci tamamlariz." }
+          ]
+        },
+        "contact": {
+          "title": "Randevu Talebi",
+          "subtitle": "Yuz yuze, telefon veya video konferans ile gorusme imkani"
+        },
+        "faq": [
+          {
+            "q": "Hangi sehirlerde hizmet veriyorsunuz?",
+            "a": "Merkez ofisimiz Istanbul Harbiye'dedir. Ankara ve Izmir'de de partner ofislerimiz vardir. Turkiye genelinde dava takibi yapiyoruz."
+          },
+          {
+            "q": "Yabanci muvekkillerle de calisabiliyor musunuz?",
+            "a": "Evet, Ingilizce, Almanca, Rusca ve Arapca hukuki hizmet sunabiliyoruz. Yabanci yatirimci islemleri ve vatandaslik basvurulari konusunda genis deneyimimiz vardir."
+          },
+          {
+            "q": "Ilk gorusme ucretli mi?",
+            "a": "Ilk 30 dakikalik degerlendirme gorusmesi ucretsizdir. Detayli hukuki analiz gerektiren konular icin ayri bir danismanlik ucreti uygulanir."
+          },
+          {
+            "q": "Dava surecinde beni nasil bilgilendireceksiniz?",
+            "a": "Online dosya takip sistemimiz uzerinden anlik bilgi alabilirsiniz. Ayrica her onemli gelismede telefonla bilgilendirme yapiyoruz."
+          },
+          {
+            "q": "Kurumsal danismanlik paketiniz var mi?",
+            "a": "Evet, KOBi ve buyuk sirketler icin aylik sabit ucretli danismanlik paketlerimiz mevcuttur. Paket icerigini sirketinizin ihtiyaclarina gore ozellestirebiliyoruz."
+          },
+          {
+            "q": "Acil durumlarda ne kadar hizli mudahale ediyorsunuz?",
+            "a": "Tutuklama, ihtiyati tedbir ve icra takibi gibi acil durumlarda ayni gun icerisinde mudahale ediyoruz. 7/24 acil destek hattimiz kurumsal muvekkillerimiz icin aktiftir."
+          },
+          {
+            "q": "Tahkim nedir, ne zaman tercih edilir?",
+            "a": "Tahkim, mahkeme yerine bagimsiz hakemlerin karar verdigi bir uyusmazlik cozum yontemidir. Ozellikle uluslararasi ticari sozlesmelerde ve gizlilik gerektiren davalarda tercih edilir."
+          },
+          {
+            "q": "Adli yardim basvurusu yapabilir misiniz?",
+            "a": "Evet, maddi durumu yetersiz muvekkillerimiz icin adli yardim basvurusu yapiyoruz. Baro tarafindan gorevlendirme ile CMK zorunlu mudafilik de ustleniyoruz."
+          },
+          {
+            "q": "Gayrimenkul davalarinda basari oraniniz nedir?",
+            "a": "Gayrimenkul davalarinda %92 basari oranina sahibiz. Ozellikle imar plani degisikligi, tapu iptali ve insaat uyusmazliklarinda guclu bir sicilimiz vardir."
+          },
+          {
+            "q": "Staj basvurusu yapabilir miyim?",
+            "a": "Evet, her yil 3-4 stajyer avukat kabul ediyoruz. Basvurularinizi kariyer@erdemsoylu.av.tr adresine gonderebilirsiniz."
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Turgut M.",
+            "location": "Harbiye",
+            "date": "2025-12",
+            "rating": 5,
+            "text": "Gayrimenkul davamda Neslihan Hanim'in uzmanligi muhtesemdi. 3 yildir surunen imar davasini 6 ayda sonuclandirdi. Tesekkurler."
+          },
+          {
+            "name": "Fatma O.",
+            "location": "Bakirkoy",
+            "date": "2025-11",
+            "rating": 5,
+            "text": "Ceza davasiyla geldim, cok stresli bir donemdi. Emre Bey'in profesyonelligi ve insan tarafli yaklasimi sayesinde en iyi sonucu aldik."
+          },
+          {
+            "name": "Ibrahim K.",
+            "location": "Atasehir",
+            "date": "2025-09",
+            "rating": 5,
+            "text": "Sirketimizin ticaret hukuku danismanlgini 5 yildir Aksoy & Turan yapiyor. Her konuda hizli ve dogru yonlendirme. Profesyonel ekip."
+          },
+          {
+            "name": "Elena V.",
+            "location": "Besiktas",
+            "date": "2025-08",
+            "rating": 5,
+            "text": "As a foreign investor, I received excellent legal support for my Turkish citizenship application. The team handled everything professionally and the process was smooth."
+          },
+          {
+            "name": "Murat A.",
+            "location": "Kadikoy",
+            "date": "2025-06",
+            "rating": 4,
+            "text": "Idare hukuku davasinda Pinar Hanim'in Danistay tecrubesi cok fark yaratti. Dava stratejisini cok iyi belirlediler."
+          },
+          {
+            "name": "Sevgi T.",
+            "location": "Sisli",
+            "date": "2025-04",
+            "rating": 5,
+            "text": "Bosanma surecimde Aylin Hanim'le calıstik. Uluslararasi evlilik bosanmasi karmasik bir surecti ama her adimda doğru yonlendirme aldim."
+          },
+          {
+            "name": "Kerem D.",
+            "location": "Sariyer",
+            "date": "2025-02",
+            "rating": 5,
+            "text": "Sigorta tazminat davamda tam tutar aldim. Baska avukatlar 'zor' demisti ama Erdem & Soylu baska. Sonuc odakli calisiyorlar."
+          },
+          {
+            "name": "Gulden N.",
+            "location": "Beyoglu",
+            "date": "2024-12",
+            "rating": 5,
+            "text": "Tuketici davamda hakem heyeti kararina ragmen dava actik ve kazandik. Hizli surecti, 4 ayda sonuclandi. Avukatlik ucretleri de cok makul."
+          }
+        ]
+      }
+    },
+    {
+      "id": "avukat-ticaret",
+      "variantName": "ticaret",
+      "plan": "enterprise",
+      "description": "Uluslararasi hukuk firması, elit ve koyu tema",
+      "designPhilosophy": "Koyu, lukseri, otoriter, uluslararasi",
+      "isDark": true,
+      "colors": {
+        "bg": "#0A0A0F",
+        "surface": "#15151E",
+        "text": "#E8E6E1",
+        "accent": "#C9A84C"
+      },
+      "fonts": { "heading": "Cormorant Garamond", "body": "Inter" },
+      "business": {
+        "name": "Bayraktar Kaplan Uluslararasi Hukuk",
+        "ownerName": "Ozge Bayraktar",
+        "sector": "Avukat",
+        "slogan": "Global vizyonla yerel guc",
+        "phone": "0212 380 22 33",
+        "phoneClean": "902123802233",
+        "whatsapp": "905551234567",
+        "email": "contact@bayraktarkaplan.law",
+        "address": "Maslak Mah. AOS 55. Sok. No:2 42Maslak Kat:28, Sariyer/Istanbul",
+        "city": "Istanbul",
+        "district": "Sariyer",
+        "neighborhood": "Maslak",
+        "coordinates": { "lat": 41.1089, "lng": 29.0201 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/bayraktarkaplanlaw",
+          "linkedin": "https://linkedin.com/company/bayraktarkaplan",
+          "twitter": "https://twitter.com/bklaw_istanbul"
+        },
+        "photos": [],
+        "foundedYear": 1998,
+        "experience": "28 yil",
+        "customerCount": "25.000+",
+        "rating": 4.9,
+        "reviewCount": 3200,
+        "services": [
+          {
+            "id": "s1",
+            "name": "Uluslararasi Ticaret Hukuku",
+            "price": "Proje bazli",
+            "duration": "Degisken",
+            "description": "Sinir otesi ticaret, ihracat-ithalat sozlesmeleri, gumruk hukuku, CISG uygulamasi ve uluslararasi ticari uyusmazlik cozumu."
+          },
+          {
+            "id": "s2",
+            "name": "Yabanci Yatirim Danismanligi",
+            "price": "Proje bazli",
+            "duration": "Degisken",
+            "description": "Dogrudan yabanci yatirim, sirket kurulusu, ortaklik yapisi, yatirim tesvik mevzuati ve serbest bolge islemleri."
+          },
+          {
+            "id": "s3",
+            "name": "M&A (Birlesme & Devralma)",
+            "price": "Proje bazli",
+            "duration": "3-12 ay",
+            "description": "Due diligence, sirket degerleme, hisse devri, varlik devri, rekabet kurulu basvurulari ve kapani sonrasi entegrasyon."
+          },
+          {
+            "id": "s4",
+            "name": "Sermaye Piyasasi Hukuku",
+            "price": "Proje bazli",
+            "duration": "Degisken",
+            "description": "Halka arz, tahvil ihraci, SPK uyum surecleri, ozel sermaye fonlari ve risk sermayesi yapilandirmasi."
+          },
+          {
+            "id": "s5",
+            "name": "Bankacilik & Finans Hukuku",
+            "price": "Proje bazli",
+            "duration": "Degisken",
+            "description": "Kredi sozlesmeleri, proje finansmani, sendikasyon kredileri, BDDK mevzuati ve finansal yeniden yapilandirma."
+          },
+          {
+            "id": "s6",
+            "name": "Rekabet Hukuku",
+            "price": "Proje bazli",
+            "duration": "Degisken",
+            "description": "Rekabet Kurumu sorusturmalari, birlesme-devralma bildirimi, rekabet uyum programlari ve hakim durumun kotuye kullanimi davalari."
+          },
+          {
+            "id": "s7",
+            "name": "Fikri Mulkiyet & Teknoloji",
+            "price": "Proje bazli",
+            "duration": "Degisken",
+            "description": "Patent, marka, telif hakki korumasi. Yazilim lisanslama, veri koruma, siber guvenlik hukuku ve dijital platform mevzuati."
+          },
+          {
+            "id": "s8",
+            "name": "Insaat & Altyapi Hukuku",
+            "price": "Proje bazli",
+            "duration": "Degisken",
+            "description": "FIDIC sozlesmeleri, KOI (Kamu-Ozel Is birligi), insaat tahkimi, proje gelistirme ve cevresel etki degerlendirmesi."
+          },
+          {
+            "id": "s9",
+            "name": "Enerji & Dogal Kaynaklar",
+            "price": "Proje bazli",
+            "duration": "Degisken",
+            "description": "Enerji lisanslari, yenilenebilir enerji projeleri, petrol-gaz hukuku, EPDK surecleri ve enerji ticaret sozlesmeleri."
+          },
+          {
+            "id": "s10",
+            "name": "Denizcilik Hukuku",
+            "price": "Proje bazli",
+            "duration": "Degisken",
+            "description": "Deniz tasimaciligi, gemi insasi, P&I sigortasi, deniz kazasi tazminati, liman isletme ve deniz ticareti."
+          },
+          {
+            "id": "s11",
+            "name": "Uluslararasi Tahkim",
+            "price": "Proje bazli",
+            "duration": "6-24 ay",
+            "description": "ICC, LCIA, ICSID, ISTAC tahkim davalarinda temsil. Yatirimci-devlet tahkimi, ticari tahkim ve tahkim karari tenfizi."
+          },
+          {
+            "id": "s12",
+            "name": "Saglik & Ilac Hukuku",
+            "price": "Proje bazli",
+            "duration": "Degisken",
+            "description": "Ilac ruhsatlari, klinik arastirma hukuku, hastane isletmeciligi, saglik turizmi ve tibbi cihaz mevzuati."
+          },
+          {
+            "id": "s13",
+            "name": "Is Hukuku & Sosyal Guvenlik",
+            "price": "Aylik danismanlik",
+            "duration": "Surekli",
+            "description": "Is sozlesmeleri, toplu is hukuku, sendikayla muzakere, yabanci calisan izinleri, SGK islemleri ve is guvenligi."
+          },
+          {
+            "id": "s14",
+            "name": "Gayrimenkul Yatirim",
+            "price": "Proje bazli",
+            "duration": "Degisken",
+            "description": "GYO yapilandirmasi, gayrimenkul fonlari, otel yatirimi, AVM hukuku, kira sozlesmeleri ve tapu islemleri."
+          },
+          {
+            "id": "s15",
+            "name": "Vergi Planlamasi & Uyusmazlik",
+            "price": "Proje bazli",
+            "duration": "Degisken",
+            "description": "Uluslararasi vergi planlamasi, cifte vergilendirme, transfer fiyatlandirmasi, vergi incelemesi ve vergi cezasi davalari."
+          },
+          {
+            "id": "s16",
+            "name": "Veri Koruma & Siber Guvenlik",
+            "price": "12.000 TL'den baslayan",
+            "duration": "4-8 hafta",
+            "description": "KVKK ve GDPR uyum surecleri, veri ihlali mudahalesi, sinir otesi veri aktarimi ve siber guvenlik hukuku."
+          },
+          {
+            "id": "s17",
+            "name": "Gumruk & Dis Ticaret",
+            "price": "Proje bazli",
+            "duration": "Degisken",
+            "description": "Gumruk vergisi uyusmazliklari, anti-damping sorusturmalari, serbest bolge islemleri ve ihracat kontrolleri."
+          },
+          {
+            "id": "s18",
+            "name": "Kripto & Blockchain Hukuku",
+            "price": "Proje bazli",
+            "duration": "Degisken",
+            "description": "Kripto para mevzuati, ICO/STO yapilandirmasi, DeFi hukuku, NFT telif haklari ve MASAK uyum surecleri."
+          },
+          {
+            "id": "s19",
+            "name": "Cevre Hukuku",
+            "price": "Proje bazli",
+            "duration": "Degisken",
+            "description": "CED raporu surecleri, cevre cezalarina itiraz, karbon ticareti, surdurulebilirlik raporlamasi ve ESG uyumu."
+          },
+          {
+            "id": "s20",
+            "name": "White Collar Crime",
+            "price": "Proje bazli",
+            "duration": "Degisken",
+            "description": "Ekonomik suclar, dolandiricilik, zimmet, kara para aklama, OFAC yaptirimlari ve ic sorusturma yonetimi."
+          }
+        ],
+        "team": [
+          {
+            "name": "Av. Ozge Bayraktar",
+            "title": "Yonetici Ortak | Uluslararasi Ticaret",
+            "bio": "Istanbul Universitesi Hukuk, Harvard LLM. 28 yillik uluslararasi hukuk deneyimi. ICC Tahkim Komisyonu uyesi. 3 dil: Turkce, Ingilizce, Fransizca.",
+            "photo": ""
+          },
+          {
+            "name": "Av. Cenk Kaplan",
+            "title": "Yonetici Ortak | M&A & Sermaye Piyasasi",
+            "bio": "Bilkent Universitesi Hukuk, Columbia LLM. 25 yillik M&A deneyimi. Fortune 500 sirketlerine danismanlik. 2 dil: Turkce, Ingilizce.",
+            "photo": ""
+          },
+          {
+            "name": "Av. Dr. Leyla Sahin",
+            "title": "Ortak | Rekabet & Enerji Hukuku",
+            "bio": "ODTU, Heidelberg Universitesi Doktora. Rekabet Kurumu eski raportoru. AB rekabet hukuku uzmani. 3 dil: Turkce, Almanca, Ingilizce.",
+            "photo": ""
+          },
+          {
+            "name": "Av. Riza Karatas",
+            "title": "Ortak | Bankacilik & Finans",
+            "bio": "Koc Universitesi Hukuk & MBA. 15 yil uluslararasi banka hukuk departmanlarinda deneyim sonrasi avukatliga gecis.",
+            "photo": ""
+          },
+          {
+            "name": "Av. Sophie Laurent",
+            "title": "Of Counsel | Fransiz Hukuku",
+            "bio": "Paris Pantheon-Sorbonne, Istanbul Bilgi Universitesi. Fransiz-Turk ticari iliskileri uzmani. 3 dil: Fransizca, Ingilizce, Turkce.",
+            "photo": ""
+          },
+          {
+            "name": "Av. Gokhan Oztürk",
+            "title": "Kidemli Avukat | Insaat & Altyapi",
+            "bio": "Yeditepe Universitesi Hukuk. FIDIC sozlesmeleri ve KOI projeleri uzmanı. Mega insaat projelerinde 10 yillik deneyim.",
+            "photo": ""
+          },
+          {
+            "name": "Av. Melis Acar",
+            "title": "Kidemli Avukat | IP & Teknoloji",
+            "bio": "Sabanci Universitesi Hukuk & Bilisim. Startup ekosistemi ve fintech hukuku uzmani. Patent vekili.",
+            "photo": ""
+          },
+          {
+            "name": "Av. Dmitry Volkov",
+            "title": "Of Counsel | Rusya & BDT Hukuku",
+            "bio": "Moskova Devlet Universitesi Hukuk, Galatasaray Universitesi. Rus-Turk ticari iliskileri ve yatirim danismanligi. 3 dil: Rusca, Turkce, Ingilizce.",
+            "photo": ""
+          }
+        ],
+        "workingHours": [
+          { "day": "Pazartesi", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Sali", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Carsamba", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Persembe", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Cuma", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "10:00", "close": "16:00", "isOpen": true },
+          { "day": "Pazar", "open": null, "close": null, "isOpen": false }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Sinir Tanimayan Hukuk",
+          "subtitle": "28 yildir uluslararasi arenada Turk ve yabanci sirketlere stratejik hukuki danismanlik. Istanbul, Londra, Dubai ofisleriyle global hizmet.",
+          "badge": "Top 20 Turkiye Hukuk Burosu"
+        },
+        "about": {
+          "title": "Bayraktar Kaplan Hakkinda",
+          "description": "1998 yilinda Istanbul'da kurulan Bayraktar Kaplan, bugun Turkiye'nin en buyuk bagimsiz hukuk burolarindan biridir. Maslak'taki 1.200 m2 merkez ofisimizden, 42 ulkede musteri portfoyumuze hizmet sunuyoruz.\n\n28 yillik yolculugumuzda 25.000'den fazla dosya tamamladik, 3 milyar USD'yi asan islem hacminde hukuki danismanlik verdik. Fortune 500 sirketlerinden butik startup'lara, devlet kuruluslarindan uluslararasi yatirim fonlarina kadar genis bir yelpazede calisiyoruz.\n\nEkibimiz 8 avukat, 4 hukuk danismani ve 6 idari personelden olusmaktadir. Harvard, Columbia, Heidelberg ve Sorbonne gibi dunya'nin onde gelen universitelerinden mezun avukatlarimiz, 6 farkli dilde hukuki hizmet sunabilmektedir.\n\nLondra ve Dubai'deki temsilcilik ofislerimizle Orta Dogu, Avrupa ve BDT bolgelerinde guclu bir ag olusturmus durumdayiz. ICC, LCIA ve ICSID gibi uluslararasi tahkim kurumlari nezdinde aktif faaliyet gosteriyoruz.\n\nChambers & Partners, Legal 500 ve IFLR1000 tarafindan surekli olarak dereclendirilen buromuz, 'Band 1' ve 'Tier 1' siralamalariyla Turkiye'nin en prestijli hukuk burolari arasinda yer almaktadir."
+        },
+        "services": {
+          "title": "Uzmanlik Alanlarimiz",
+          "subtitle": "20 farkli pratik alaninda, 8 uzman avukatla global standartlarda hukuki cozum"
+        },
+        "stats": {
+          "title": "Sayilarla Bayraktar Kaplan",
+          "items": [
+            { "value": "25.000+", "label": "Tamamlanan Dosya" },
+            { "value": "$3B+", "label": "Islem Hacmi" },
+            { "value": "42", "label": "Ulke" },
+            { "value": "28", "label": "Yil" }
+          ]
+        },
+        "gallery": {
+          "title": "Ofislerimiz",
+          "subtitle": "Istanbul Maslak, Londra City, Dubai DIFC — uc kitada hizmet"
+        },
+        "process": {
+          "title": "Calisma Metodolojimiz",
+          "steps": [
+            { "title": "Ihtiyac Analizi", "description": "Kapsamli bir ön degerlendirmeyle hukuki ihtiyaclarinizi ve risk haritanizi cikariz." },
+            { "title": "Ekip Atama", "description": "Dosyaniza uygun uzmanlik alanlarindan cross-functional ekip atanir." },
+            { "title": "Strateji & Uygulama", "description": "Cok katmanli hukuki strateji gelistirilir ve proaktif olarak uygulanir." },
+            { "title": "Raporlama & Takip", "description": "Haftalik ilerleme raporlari, online portal erisimi ve 7/24 kidemli avukat erisimi." }
+          ]
+        },
+        "contact": {
+          "title": "Iletisim",
+          "subtitle": "Istanbul, Londra veya Dubai ofislerimiz uzerinden bize ulasin"
+        },
+        "cta": {
+          "title": "Uluslararasi Hukuki Destek mi Ariyorsunuz?",
+          "subtitle": "Bayraktar Kaplan ekibi olarak, isletmenizin global buyumesine hukuki guvenle eslik ediyoruz.",
+          "buttonText": "Ucretsiz Degerlendirme Talep Et",
+          "buttonUrl": "#contact"
+        },
+        "faq": [
+          {
+            "q": "Turkiye'de yabanci yatirim icin sirket kurulumu nasil yapilir?",
+            "a": "Yabanci yatirimcilar Turkiye'de %100 yabanci sermayeli sirket kurabilir. Limited veya anonim sirket secenekleri mevcuttur. Kuruluşsüreci MERSiS uzerinden 5-7 is gununde tamamlanir. Yatirim tesvik belgeleri ve serbest bolge avantajlarindan da yararlanilabilir."
+          },
+          {
+            "q": "ICC tahkimi nedir ve ne kadar surer?",
+            "a": "ICC (Uluslararasi Ticaret Odasi) tahkimi, uluslararasi ticari uyusmazliklarin bagimsiz hakemler tarafindan cozuldugu bir yontemdir. Ortalama sure 12-18 ay, karar tum ICC uye ulkelerinde icra edilebilir."
+          },
+          {
+            "q": "Turkiye'de marka tescili icin neler gereklidir?",
+            "a": "TURKPATENT'e basvuru yapilir. Basvuru sureci 6-8 ay surer. Oncesinde marka arastirmasi ve sinif belirleme yapilmasi onemlidir. Uluslararasi tescil icin Madrid Protokolu uygulanir."
+          },
+          {
+            "q": "KVKK ve GDPR arasindaki farklar nelerdir?",
+            "a": "KVKK buyuk olcude GDPR ile uyumludur ancak bazi farklar vardir: VERBiS kayit zorunlulugu, veri koruma gorevlisi atama kriterleri ve idari para cezasi sinirlar farklidir. AB ile veri aktarimi icin ek guvencelere ihtiyac duyulabilir."
+          },
+          {
+            "q": "Turkiye'de gayrimenkul yatirimi icin vatandaslik alinabilir mi?",
+            "a": "Evet, 400.000 USD degerinde gayrimenkul yatirimi ile Turk vatandasligi basvurusu yapilabilir. Gayrimenkulun 3 yil satilmama taahhudu gereklidir. Basvuru sureci 3-6 ay surer."
+          },
+          {
+            "q": "Sirket birlesme/devralma surecinde ne kadar zaman alir?",
+            "a": "Islemin buyuklugu ve karmasikligina gore 3-12 ay arasinda degisir. Due diligence, deger tespiti, SPA muzakereleri, Rekabet Kurulu onay sureci ve kapanıis islemleri ana asamalari olusturur."
+          },
+          {
+            "q": "Hangi dillerde hukuki hizmet veriyorsunuz?",
+            "a": "Turkce, Ingilizce, Fransizca, Almanca, Rusca ve Arapca dillerinde hukuki hizmet sunabiliyoruz. Tum dillerde sozlesme hazirlama ve muzakere kapasitemiz mevcuttur."
+          },
+          {
+            "q": "Enerji yatirimi icin hangi lisanslar gereklidir?",
+            "a": "Yenilenebilir enerji projeleri icin EPDK'dan uretim lisansi, baglanti anlasmasi ve CED raporu gereklidir. Gunes ve ruzgar santralleri icin arazi tahsis ve imar izinleri de alinmalidir."
+          },
+          {
+            "q": "Kripto para mevzuati Turkiye'de nasil?",
+            "a": "Turkiye'de kripto para odemeler yasaklidir ancak yatirim amacli tutma serbesttir. MASAK raporlama yukumlulugu vardir. Yeni yasal düzenleme calismalari devam etmektedir. Kripto varlik hizmet saglayicilari icin SPK lisansi gerekecektir."
+          },
+          {
+            "q": "Rekabet Kurulu sorusturmasinda ne yapmaliyiz?",
+            "a": "Sorusturma bildirimini aldığınızda derhal hukuki destek alin. Sorusturma surecinde savunma hazirlama, sozlu savunma, taahhut sunma ve uzlasma secenekleri degerlendirilebilir. Idari para cezasina itiraz Danistay'a yapilir."
+          },
+          {
+            "q": "White collar crime davalarinda savunma stratejiniz nedir?",
+            "a": "Ekonomik suc davalarinda once detayli ic sorusturma yapar, delil analizi gerceklestiririz. Savcilıkla etkin isbirligi, uzlasma imkanlarinin degerlendirilmesi ve gerektiginde agresif savunma stratejileri uygulanir."
+          },
+          {
+            "q": "Ofislerinize nasil ulasabilirim?",
+            "a": "Istanbul Maslak ofisimize 42Maslak'ta (No:2, Kat:28) ulasabilirsiniz. Metro ile Maslak istasyonu 300m mesafededir. Londra ve Dubai ofislerimiz icin web sitemizden randevu alabilirsiniz."
+          },
+          {
+            "q": "Pro bono calismalar yapiyor musunuz?",
+            "a": "Evet, buromuz yillik olarak belirli sayida pro bono dava kabul etmektedir. Ozellikle multeci hukuku, insan haklari ve toplumsal cinsiyet esitligi alanlarinda pro bono hizmet veriyoruz."
+          },
+          {
+            "q": "Staj ve kariyer imkanlari hakkinda bilgi alabilir miyim?",
+            "a": "Her yil 6-8 stajyer avukat ve 2-3 deneyimli avukat istihdam ediyoruz. LLM programi destegi, uluslararasi rotasyon ve liderlik gelistirme programlarimiz mevcuttur. Basvurular: kariyer@bayraktarkaplan.law"
+          },
+          {
+            "q": "ESG ve surdurulebilirlik raporlamasi konusunda destek verebilir misiniz?",
+            "a": "Evet, AB Surdurulebilirlik Raporlama Direktifi (CSRD) ve Turkiye'deki yeni raporlama yukumlulukleri konusunda danismanlik veriyoruz. Karbon ayak izi raporlari, ESG uyum politikalari ve yesil finansman hukuku alanlarinda calisiyoruz."
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Michael R.",
+            "location": "London",
+            "date": "2025-12",
+            "rating": 5,
+            "text": "Outstanding legal support for our Turkish market entry. The BK team handled the entire M&A process flawlessly, from due diligence to closing. Highly recommended for cross-border transactions."
+          },
+          {
+            "name": "Ahmet S.",
+            "location": "Maslak",
+            "date": "2025-11",
+            "rating": 5,
+            "text": "Enerji sektorundeki yatirimlarimiz icin 10 yildir Bayraktar Kaplan ile calisiyoruz. EPDK surecleri, lisanslama ve proje finansmani konularinda benzersiz bir deneyime sahipler."
+          },
+          {
+            "name": "Sophie M.",
+            "location": "Paris",
+            "date": "2025-10",
+            "rating": 5,
+            "text": "Notre partenaire juridique de confiance en Turquie. L'equipe maitrise parfaitement le droit commercial turc et les normes internationales."
+          },
+          {
+            "name": "Mustafa E.",
+            "location": "Ankara",
+            "date": "2025-09",
+            "rating": 5,
+            "text": "Rekabet Kurulu sorusturmasinda bizi basariyla savundular. Ceza almadan sorusturmanin kapanmasini sagladilar. Stratejik yaklasim ve derin mevzuat bilgisi takdire deger."
+          },
+          {
+            "name": "Vladimir K.",
+            "location": "Dubai",
+            "date": "2025-08",
+            "rating": 5,
+            "text": "Bayraktar Kaplan helped us structure our investment in Turkey and obtain citizenship for our executives. Dmitry Volkov's expertise in Russian-Turkish business law is exceptional."
+          },
+          {
+            "name": "Elif Z.",
+            "location": "Besiktas",
+            "date": "2025-06",
+            "rating": 5,
+            "text": "Startup'imiz icin yatirim turu yapilanmasini yonettiler. SAFE, hisse devri sozlesmeleri ve yatirimci iliskileri konusunda cok profesyonel rehberlik aldik."
+          },
+          {
+            "name": "Hans W.",
+            "location": "Frankfurt",
+            "date": "2025-04",
+            "rating": 5,
+            "text": "Hervorragende Rechtsberatung fur unsere Investitionen in der Turkei. Dr. Sahin kennt das deutsche und turkische Recht gleich gut."
+          },
+          {
+            "name": "Zeynep A.",
+            "location": "Levent",
+            "date": "2025-02",
+            "rating": 5,
+            "text": "Gayrimenkul yatirim fonumuzu yapilandirdılar. GYO kurulusu, SPK basvurusu ve portfoy yonetimi sozlesmelerinde muhtesem bir is cikardilar."
+          },
+          {
+            "name": "Kadir P.",
+            "location": "Atasehir",
+            "date": "2024-12",
+            "rating": 4,
+            "text": "KVKK ve GDPR uyum projemizi 6 haftada tamamladilar. Veri envanteri, aydinlatma metinleri, cerez politikasi — her seyi detayli hazirlailar."
+          },
+          {
+            "name": "Chen L.",
+            "location": "Shanghai",
+            "date": "2024-10",
+            "rating": 5,
+            "text": "BK Law provided excellent guidance for our Belt and Road investments in Turkey. Their understanding of Chinese-Turkish trade dynamics is impressive."
+          },
+          {
+            "name": "Deniz O.",
+            "location": "Sariyer",
+            "date": "2024-08",
+            "rating": 5,
+            "text": "Kripto varlik platformumuzun hukuki altyapisini Bayraktar Kaplan kurdu. MASAK uyumu, kullanici sozlesmeleri ve SPK iliskileri konusunda kapsamli destek aldik."
+          },
+          {
+            "name": "Ibrahim G.",
+            "location": "Kadikoy",
+            "date": "2024-06",
+            "rating": 5,
+            "text": "Deniz ticaret hukuku konusunda Turkiye'nin en iyi ekibi. Gemi ipotegi ve P&I davamizda uluslararasi deneyimleri cok fark yaratti."
+          }
+        ]
+      }
+    }
+  ]
+}

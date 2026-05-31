@@ -1,0 +1,535 @@
+{
+  "sectorId": "terzi",
+  "seoSchemaType": "TailorShop",
+  "variants": [
+    {
+      "id": "terzi-tadilat",
+      "variantName": "tadilat",
+      "plan": "free",
+      "description": "Mahalle terzisi, tadilat ve tamir odakli",
+      "designPhilosophy": "Sade, guvenilir, islevsel",
+      "isDark": false,
+      "colors": {
+        "bg": "#FFFFFF",
+        "surface": "#F7F5F2",
+        "text": "#1A1A1A",
+        "accent": "#6B4C3B"
+      },
+      "fonts": { "heading": "Inter", "body": "Inter" },
+      "business": {
+        "name": "Huseyin Usta Terzi",
+        "ownerName": "Huseyin Celik",
+        "sector": "Terzi",
+        "slogan": "40 yillik usta eli, her kiyafete cozum",
+        "phone": "0532 615 84 20",
+        "phoneClean": "905326158420",
+        "whatsapp": "905326158420",
+        "email": "info@huseyinustaterzi.com",
+        "address": "Rasimpasa Mah. Sogutlucesme Cad. No:31/B, Kadikoy/Istanbul",
+        "city": "Istanbul",
+        "district": "Kadikoy",
+        "neighborhood": "Rasimpasa",
+        "coordinates": { "lat": 40.9925, "lng": 29.0310 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/huseyinustaterzi"
+        },
+        "photos": [],
+        "foundedYear": 1986,
+        "experience": "40 yil",
+        "customerCount": "60.000+",
+        "rating": 4.7,
+        "reviewCount": 890,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "08:30", "close": "19:00", "isOpen": true },
+          { "day": "Sali", "open": "08:30", "close": "19:00", "isOpen": true },
+          { "day": "Carsamba", "open": "08:30", "close": "19:00", "isOpen": true },
+          { "day": "Persembe", "open": "08:30", "close": "19:00", "isOpen": true },
+          { "day": "Cuma", "open": "08:30", "close": "19:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "09:00", "close": "17:00", "isOpen": true },
+          { "day": "Pazar", "open": "00:00", "close": "00:00", "isOpen": false }
+        ],
+        "services": [
+          { "id": "s1", "name": "Pantolon Paca Kisaltma", "price": "150 TL", "duration": "30 dk", "description": "Her turlu kumastan pantolon paca kisaltma. Orijinal dikisin korunmasi ile." },
+          { "id": "s2", "name": "Fermuar Degisimi", "price": "200 TL", "duration": "45 dk", "description": "Pantolon, mont, etek fermuar degisimi. Orijinal renge uygun fermuar secimi." },
+          { "id": "s3", "name": "Beden Daraltma/Genisletme", "price": "300 TL", "duration": "60 dk", "description": "Gomlek, ceket, pantolon beden ayarlama. Kalip bozulmadan profesyonel mudahale." },
+          { "id": "s4", "name": "Yirtik/Soku Tamiri", "price": "100 TL'den baslayan", "duration": "20 dk", "description": "Her turlu yirtik, soku ve delik tamiri. Gorunmez dikis teknigi ile." }
+        ],
+        "team": [],
+        "testimonials": [],
+        "faq": [
+          { "q": "Tadilat ne kadar surede tamamlanir?", "a": "Basit islemler (paca, fermuar) ayni gun, karmasik islemler (beden degisikligi) 2-3 is gununde tamamlanir." },
+          { "q": "Deri ve suni deri urunlerde tadilat yapiyor musunuz?", "a": "Evet, deri ceket, mont ve canta tadilatı yapiyoruz. Deri islemlerde fiyat standart kumastan %30-50 daha yuksektir." },
+          { "q": "Gelinlik tadilatı yapiyor musunuz?", "a": "Evet, gelinlik beden ayarlama ve boy kisaltma yapiyoruz. Gelinlik islemleri icin onceden randevu almanizi oneririz." },
+          { "q": "Kargo ile gonderebilir miyim?", "a": "Maalesef tadilat islmelerinde prova gerektiginden, kiyafetin sahsen getirilmesi gerekmektedir." }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "40 Yillik Usta Eli, Her Kiyafete Cozum",
+          "subtitle": "Kadikoy'de guvenilir terzi hizmeti. Pantolon kisaltmadan beden ayarlamaya, fermuar degisiminden yirtik tamirine profesyonel tadilat.",
+          "badge": "Kadikoy'nin Terzisi"
+        },
+        "about": {
+          "title": "Huseyin Usta Hakkinda",
+          "description": "1986 yilindan bu yana Kadikoy Rasimpasa'da terzilik yapiyoruz. Huseyin Celik, 14 yasinda cirak olarak basladigi mesleginde 40 yili askin deneyime sahiptir. Her turlu kumastan tadilat, tamir ve beden ayarlama islerinizi titizlikle gerceklestiriyoruz. Gorunmez dikis teknigi, orijinal fermuar eslestirme ve kalip bozulmadan beden mudahalesi konusunda uzmaniz. Mahalle terzisi olarak binlerce musterimizin guvenini kazandik. Kiyafetlerinize yeniden hayat veriyoruz."
+        },
+        "services": {
+          "title": "Tadilat Hizmetlerimiz",
+          "subtitle": "Her turlu kiyafet tadilati ve tamiri"
+        },
+        "contact": {
+          "title": "Bize Ulasin",
+          "subtitle": "Kiyafetinizi getirin, birlikte degerlendielim"
+        }
+      }
+    },
+    {
+      "id": "terzi-erkek",
+      "variantName": "erkek",
+      "plan": "starter",
+      "description": "Erkek giyim odakli terzi, kisisel dikim",
+      "designPhilosophy": "Maskulen, klasik, guvenilir",
+      "isDark": false,
+      "colors": {
+        "bg": "#F9F8F6",
+        "surface": "#EEECEA",
+        "text": "#1C1B18",
+        "accent": "#2C3E50"
+      },
+      "fonts": { "heading": "DM Serif Display", "body": "Inter" },
+      "business": {
+        "name": "Sahin Bespoke Erkek Terzisi",
+        "ownerName": "Mehmet Sahin",
+        "sector": "Terzi",
+        "slogan": "Ozel dikimde erkek elegansı",
+        "phone": "0533 472 19 60",
+        "phoneClean": "905334721960",
+        "whatsapp": "905334721960",
+        "email": "info@sahinbespoke.com",
+        "address": "Tesvikiye Mah. Abdi Ipekci Cad. No:52/A, Sisli/Istanbul",
+        "city": "Istanbul",
+        "district": "Sisli",
+        "neighborhood": "Tesvikiye",
+        "coordinates": { "lat": 41.0497, "lng": 28.9954 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/sahinbespoke",
+          "facebook": "https://facebook.com/sahinbespoke"
+        },
+        "photos": [],
+        "foundedYear": 2005,
+        "experience": "21 yil",
+        "customerCount": "8.000+",
+        "rating": 4.8,
+        "reviewCount": 640,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "09:30", "close": "19:30", "isOpen": true },
+          { "day": "Sali", "open": "09:30", "close": "19:30", "isOpen": true },
+          { "day": "Carsamba", "open": "09:30", "close": "19:30", "isOpen": true },
+          { "day": "Persembe", "open": "09:30", "close": "19:30", "isOpen": true },
+          { "day": "Cuma", "open": "09:30", "close": "19:30", "isOpen": true },
+          { "day": "Cumartesi", "open": "10:00", "close": "18:00", "isOpen": true },
+          { "day": "Pazar", "open": "00:00", "close": "00:00", "isOpen": false }
+        ],
+        "services": [
+          { "id": "s1", "name": "Ismarlama Takim Elbise", "price": "8.000 - 25.000 TL", "duration": "3-4 hafta", "description": "Vucuda ozel olcu ile Italyan ve Ingiliz kumaslardan takim elbise dikimi. 3 prova dahil." },
+          { "id": "s2", "name": "Ismarlama Gomlek", "price": "1.500 - 4.000 TL", "duration": "10 gun", "description": "Boyun, omuz, kol olcusune gore ozel gomlek. Yaka ve manset modeli secimi." },
+          { "id": "s3", "name": "Ismarlama Pantolon", "price": "2.500 - 6.000 TL", "duration": "2 hafta", "description": "Klasik, slim fit veya rahat kesim pantolon. Kumas secimi dahil." },
+          { "id": "s4", "name": "Palto/Mont Dikimi", "price": "6.000 - 18.000 TL", "duration": "4 hafta", "description": "Kasmir, yun veya tiftik karisim kumaslardan ozel palto ve kaban." },
+          { "id": "s5", "name": "Takim Elbise Tadilati", "price": "500 - 2.000 TL", "duration": "1 hafta", "description": "Mevcut takim elbise beden ayarlama, astarlama, dugme degisimi." },
+          { "id": "s6", "name": "Damatlik Paketi", "price": "12.000 - 35.000 TL", "duration": "6 hafta", "description": "Takim elbise + 2 gomlek + kravat/papyon + cep mendili. Prova ve son ayar dahil." }
+        ],
+        "team": [
+          { "name": "Mehmet Sahin", "role": "Bas Terzi & Kurucu", "bio": "3. nesil terzi. Istanbul'da ve Londra Savile Row'da egitim. Bespoke tailoring'de 21 yil deneyim." },
+          { "name": "Kemal Ozturk", "role": "Kalfa Terzi", "bio": "15 yildir Sahin atölyesinde calisiyor. Ceket ve palto dikiminde uzman." }
+        ],
+        "testimonials": [
+          { "name": "Burak Aydogan", "district": "Nisantasi", "date": "2025-11", "rating": 5, "comment": "Ilk ismarlama takimimi burada diktirdim. Olcu alma sureci cok detayli, kumaş secenekleri zengin. Sonuc mukemmel, hazir giyimle kiyaslanamaz." },
+          { "name": "Cenk Yildiz", "district": "Levent", "date": "2025-09", "rating": 5, "comment": "Dügünüm icin damatlik paketini aldim. Mehmet Bey her detayi dusunuyor. 3 prova yapildi, son hali kusursuzdu." },
+          { "name": "Alper Dogan", "district": "Besiktas", "date": "2025-10", "rating": 4, "comment": "Gomleklerimi hep buradan diktiriyorum. Boyun ve kol olcum tam, hazir giyimde hic uymuyor. Fiyatlar yuksek ama kalite cok iyi." }
+        ],
+        "faq": [
+          { "q": "Ismarlama takim ne kadar surede hazir olur?", "a": "Standart suremiz 3-4 haftadir. Acil siparisler icin 10 gune kadar hizlandirabiliriz, ek ucret uygulanir." },
+          { "q": "Kumas seciminde yardim ediyor musunuz?", "a": "Evet, kullanim amacina, mevsime ve butcenize gore kumas onerisi yapiyoruz. Italyan ve Ingiliz kumas koleksiyonumuzdan secim yapabilirsiniz." },
+          { "q": "Kac prova yapiliyor?", "a": "Takim elbisede standart 3 prova: ham kalip, yari mamul ve son prova. Gomlekte 1-2 prova yeterlidir." },
+          { "q": "Sehir disindan siparis verebilir miyim?", "a": "Ilk olcu alinmasi icin mutlaka gelmeniz gerekir. Sonraki siparislerinizde olculeriniz kayitli oldugundan uzaktan siparis alabiliyoruz." },
+          { "q": "Mevcut takimimi modernize edebilir misiniz?", "a": "Evet, eski takim elbiselerin kesimini modernlestirme, beden ayarlama ve astar degisimi yapiyoruz." },
+          { "q": "Kravat ve aksesuar da satiyorsunuz musunuz?", "a": "Evet, el yapimi kravat, papyon, cep mendili ve kol dugmesi koleksiyonumuz mevcuttur." }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Ozel Dikimde Erkek Elegansi",
+          "subtitle": "Sisli Tesvikiye'de 21 yillik bespoke terzilik. Italyan ve Ingiliz kumaslarla vucudunuza ozel takim elbise, gomlek ve palto.",
+          "badge": "Bespoke Tailoring"
+        },
+        "about": {
+          "title": "Sahin Bespoke Hakkinda",
+          "description": "Sahin Bespoke, 2005 yilinda 3. nesil terzi Mehmet Sahin tarafindan Sisli Tesvikiye'de kurulmustur. Mehmet Usta, aile gelenegini Londra Savile Row'da aldigi egitimle birlestirerek Istanbul'da kaliteli bespoke terzilik sunmaktadir. Italyan ve Ingiliz kumaslarin en iyilerini kullaniyor, her musteri icin en az 30 olcu alarak vucut tipine ozel kalip cikartiyoruz. Takim elbise, gomlek, pantolon ve palto dikiminde 21 yillik deneyimimizle binlerce beye hizmet verdik. Damatlik paketlerimizle ozel gunlerinizde de yaninzdayiz. Her kiyafet, atolyemizde elden dikilerek tamamlanir."
+        },
+        "services": {
+          "title": "Dikim Hizmetlerimiz",
+          "subtitle": "Vucut olculerinize ozel el yapimi kiyafetler"
+        },
+        "contact": {
+          "title": "Randevu & Iletisim",
+          "subtitle": "Olcu randevunuzu hemen alin"
+        }
+      }
+    },
+    {
+      "id": "terzi-gelin",
+      "variantName": "gelin",
+      "plan": "growth",
+      "description": "Gelinlik ve abiye odakli kadin terzisi",
+      "designPhilosophy": "Romantik, zarif, feminin",
+      "isDark": false,
+      "colors": {
+        "bg": "#FFFBF8",
+        "surface": "#FFF3EC",
+        "text": "#2A2220",
+        "accent": "#C4788C"
+      },
+      "fonts": { "heading": "Cormorant Garamond", "body": "Inter" },
+      "business": {
+        "name": "Atölye Nur Gelinlik & Abiye",
+        "ownerName": "Nur Aksoy",
+        "sector": "Terzi",
+        "slogan": "Hayalinizdeki gelinlik, ellerimizde hayat bulur",
+        "phone": "0534 891 62 30",
+        "phoneClean": "905348916230",
+        "whatsapp": "905348916230",
+        "email": "info@atolyenur.com.tr",
+        "address": "Cankurtaran Mah. Akbiyik Cad. No:18, Fatih/Istanbul",
+        "city": "Istanbul",
+        "district": "Fatih",
+        "neighborhood": "Cankurtaran",
+        "coordinates": { "lat": 41.0054, "lng": 28.9782 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/atolyenurgelinlik",
+          "facebook": "https://facebook.com/atolyenur",
+          "pinterest": "https://pinterest.com/atolyenur"
+        },
+        "photos": [],
+        "foundedYear": 2010,
+        "experience": "16 yil",
+        "customerCount": "4.500+",
+        "rating": 4.9,
+        "reviewCount": 1100,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "10:00", "close": "19:00", "isOpen": true },
+          { "day": "Sali", "open": "10:00", "close": "19:00", "isOpen": true },
+          { "day": "Carsamba", "open": "10:00", "close": "19:00", "isOpen": true },
+          { "day": "Persembe", "open": "10:00", "close": "19:00", "isOpen": true },
+          { "day": "Cuma", "open": "10:00", "close": "19:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "10:00", "close": "18:00", "isOpen": true },
+          { "day": "Pazar", "open": "00:00", "close": "00:00", "isOpen": false }
+        ],
+        "services": [
+          { "id": "s1", "name": "Ismarlama Gelinlik", "price": "15.000 - 80.000 TL", "duration": "8-12 hafta", "description": "Sifirdan tasarim, kumas secimi, el islemesi detaylar. 4-5 prova ile mukemmel kalip." },
+          { "id": "s2", "name": "Gelinlik Tadilatı", "price": "2.000 - 8.000 TL", "duration": "2-3 hafta", "description": "Mevcut gelinlik beden ayarlama, dantel ekleme, kol/etek mudahale." },
+          { "id": "s3", "name": "Ismarlama Abiye", "price": "5.000 - 25.000 TL", "duration": "4-6 hafta", "description": "Ozel gun icin tasarlanmis abiye elbise. Kumas, renk ve model tamamen size ozel." },
+          { "id": "s4", "name": "Nisan/Soz Elbisesi", "price": "4.000 - 15.000 TL", "duration": "3-4 hafta", "description": "Nisan ve soz torenleri icin sik ve zarif elbise dikimi." },
+          { "id": "s5", "name": "Kina Kiyafeti", "price": "3.000 - 10.000 TL", "duration": "2-3 hafta", "description": "Geleneksel veya modern kina gecesi kiyafeti. El nakisi ve boncuk isleme." },
+          { "id": "s6", "name": "Anne/Kayinvalide Kiyafeti", "price": "4.000 - 12.000 TL", "duration": "3-4 hafta", "description": "Dugun gunu icin anne ve kayinvalide abiyeleri. Sik ve yas grubuna uygun." },
+          { "id": "s7", "name": "Nedime/Drujba Elbisesi", "price": "2.000 - 6.000 TL", "duration": "3 hafta", "description": "Tema ve renge uygun nedime elbiseleri. Grup siparislerinde indirim." },
+          { "id": "s8", "name": "Duvak & Aksesuar", "price": "500 - 3.000 TL", "duration": "1 hafta", "description": "El yapimi duvak, tac, sac aksesuari. Gelinlik ile uyumlu tasarim." },
+          { "id": "s9", "name": "Dugun Danismanligi", "price": "Ucretsiz", "duration": "60 dk", "description": "Dugun temasina, mekana ve mevsime gore kiyafet planlamasi." },
+          { "id": "s10", "name": "Gelinlik Koruma & Temizlik", "price": "1.500 TL", "duration": "1 hafta", "description": "Dugun sonrasi profesyonel temizlik, ozel kutu ile saklama." }
+        ],
+        "team": [
+          { "name": "Nur Aksoy", "role": "Kurucu & Bas Tasarimci", "bio": "Mimar Sinan Guzel Sanatlar tekstil bolumu mezunu. 16 yildir gelinlik ve abiye tasarliyor. 3.000+ gelinlik dikmis." },
+          { "name": "Sevgi Kara", "role": "Dantel & Isleme Uzmani", "bio": "25 yillik el islemesi ustasi. Fransiz danteli, boncuk ve payetli islemeler konusunda uzman." },
+          { "name": "Derya Polat", "role": "Kalipci & Prova Sorumlusu", "bio": "Teknik kalipcilik ve drapaj uzmani. Vucuda ozel kalip cikartma ve ayarlamada 12 yil deneyim." },
+          { "name": "Elif Candan", "role": "Stil Danismani", "bio": "Moda tasarimi mezunu. Gelin adaylarina kiyafet, aksesuar ve renk danismanligi yapiyor." }
+        ],
+        "testimonials": [
+          { "name": "Merve Yilmaz", "district": "Uskudar", "date": "2025-10", "rating": 5, "comment": "Hayalimde bir gelinlik vardi, Nur Hanim aynen hayal ettigim gibi tasarladi. Her provada heyecanim artti. Dugun gununde gozlerim doldu, o kadar guzel olmustu." },
+          { "name": "Selin Demir", "district": "Kadikoy", "date": "2025-09", "rating": 5, "comment": "Annem icin dugun kiyafeti diktirdik. 58 yasinda ama cok sik ve yas grubuna uygun bir abiye oldu. Nur Hanim annemi dinledi, tam istedigini yapti." },
+          { "name": "Busra Ozcan", "district": "Beyoglu", "date": "2025-11", "rating": 5, "comment": "5 nedime elbisesi diktirdik, hepsi ayni renk farkli model. Her biri kendi vucuduna uygun oldu. Fotgraflarda muhtesem gorunduler." },
+          { "name": "Tugce Sahin", "district": "Fatih", "date": "2025-08", "rating": 5, "comment": "Kina kiyafetim el nakisiyla bezenmisti, herkes nereden aldigimi sordu. El islemesi detaylar gercekten fark yaratiyor." },
+          { "name": "Aylin Korkmaz", "district": "Bakirkoy", "date": "2025-07", "rating": 4, "comment": "Abiye diktirdim, cok guzel oldu. Tek sorunum teslimatın planlanandan 5 gun gecikmesiydi ama sonuc buna degerdi." },
+          { "name": "Zehra Aksoy", "district": "Eyupsultan", "date": "2025-12", "rating": 5, "comment": "Gelinligimi anneannemin gelinliginden esinlenerek yaptirdim. Nur Hanim eski fotograflardan ilham aldi, modern bir yorum katti. Aile buyukleri cok duygulandı." }
+        ],
+        "faq": [
+          { "q": "Gelinlik dikimi ne kadar once baslamali?", "a": "Ideal olarak dugun tarihinden 4-6 ay once baslamanizi oneririz. Yogun sezon (Haziran-Eylul) oncesi erken rezervasyon onemlidir." },
+          { "q": "Kendi tasarimimi getirebilir miyim?", "a": "Evet, Pinterest, dergi veya cizim olarak getirdiginiz tasarimlari uyarliyoruz. Vucudunuza ve butcenize gore oneriler de sunuyoruz." },
+          { "q": "Kac prova yapiliyor?", "a": "Gelinlikte ortalama 4-5 prova, abiyelerde 2-3 prova yapiyoruz. Her prova yaklasik 45-60 dakika surer." },
+          { "q": "Yurtdisindan siparis alıyor musunuz?", "a": "Evet, yurtdisindan gelen gelin adaylarimiz var. Ilk olcu ve tasarim gorusmesi icin Istanbul'a bir kez gelmeniz yeterli, sonraki provalar video ile de yurutulebilir." },
+          { "q": "Abiye kiralaması yapiyor musunuz?", "a": "Hayir, tum kiyafetlerimiz ismarlama dikimdir. Her parca o kisi icin ozel olarak uretilir." },
+          { "q": "Grup indirimi var mi?", "a": "Evet, 3 ve ustu nedime elbisesi siparislerinde %10, anne + kayinvalide + gelin paketinde %15 indirim uyguluyoruz." },
+          { "q": "Gelinlik saklama hizmeti nedir?", "a": "Dugun sonrasi gelinliginizi profesyonel olarak temizliyor, asitsiz kutuya yerlestirip uzun sure saklanabilir hale getiriyoruz." },
+          { "q": "Odeme plani sunuyor musunuz?", "a": "Evet, siparis onayinda %40, ikinci provada %30, teslimatta %30 olmak uzere 3 taksit ile odeme plani sunuyoruz." }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Hayalinizdeki Gelinlik, Ellerimizde Hayat Bulur",
+          "subtitle": "Fatih'te 16 yillik gelinlik ve abiye atolyesi. 3.000'den fazla gelinlik, her biri size ozel tasarim ve el islemesi.",
+          "badge": "Gelinlik & Abiye Atolyesi"
+        },
+        "about": {
+          "title": "Atolye Nur Hakkinda",
+          "description": "Atolye Nur, 2010 yilinda Mimar Sinan Guzel Sanatlar mezunu Nur Aksoy tarafindan Fatih Cankurtaran'da kurulmustur. 16 yillik gecmisimizde 3.000'den fazla gelinlik ve binlerce abiye diktik. Her gelinlik, gelin adayinin vucut olculeri ve hayalleri dogrultusunda sifirdan tasarlanir. Fransiz danteli, Italyan tulu, el yapimi boncuk islemesi gibi premium malzemeler kullaniyoruz. Atolyemizde 4 kisilik uzman ekibimiz, kalipciliktan islemeye her asamayi elden gerceklestirir. Gelinlik disinda abiye, nisan elbisesi, kina kiyafeti, anne/kayinvalide ve nedime elbiseleri de dikiyoruz. Dugun danismanligi hizmetimizle tema, mevsim ve mekana uygun kiyafet planlamasi yapiyoruz."
+        },
+        "services": {
+          "title": "Dikim & Tasarim Hizmetlerimiz",
+          "subtitle": "Gelinlikten abiyeye, her ozel gun icin ismarlama kiyafet"
+        },
+        "contact": {
+          "title": "Randevu Alin",
+          "subtitle": "Hayalinizdeki kiyafeti birlikte tasarlayalim"
+        }
+      }
+    },
+    {
+      "id": "terzi-geleneksel",
+      "variantName": "geleneksel",
+      "plan": "pro",
+      "description": "Geleneksel Turk terzilik sanati, haute couture",
+      "designPhilosophy": "Geleneksel, zanaat, otantik",
+      "isDark": false,
+      "colors": {
+        "bg": "#FDFAF5",
+        "surface": "#F5EDE0",
+        "text": "#2B2620",
+        "accent": "#8B5E3C"
+      },
+      "fonts": { "heading": "Playfair Display", "body": "Source Sans Pro" },
+      "business": {
+        "name": "Usta Eller Terzihanesi",
+        "ownerName": "Mustafa Karaca",
+        "sector": "Terzi",
+        "slogan": "Osmanli'dan gunumuze, terzilik sanatinin mirasciları",
+        "phone": "0535 318 74 90",
+        "phoneClean": "905353187490",
+        "whatsapp": "905353187490",
+        "email": "info@ustaellerterzihane.com",
+        "address": "Alemdar Mah. Divanyolu Cad. No:64/2, Fatih/Istanbul",
+        "city": "Istanbul",
+        "district": "Fatih",
+        "neighborhood": "Alemdar",
+        "coordinates": { "lat": 41.0086, "lng": 28.9745 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/ustaellerterzihane",
+          "facebook": "https://facebook.com/ustaellerterzihane",
+          "youtube": "https://youtube.com/@ustaeller",
+          "tiktok": "https://tiktok.com/@ustaellerterzihane"
+        },
+        "photos": [],
+        "foundedYear": 1968,
+        "experience": "58 yil",
+        "customerCount": "35.000+",
+        "rating": 4.9,
+        "reviewCount": 2100,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "09:00", "close": "19:00", "isOpen": true },
+          { "day": "Sali", "open": "09:00", "close": "19:00", "isOpen": true },
+          { "day": "Carsamba", "open": "09:00", "close": "19:00", "isOpen": true },
+          { "day": "Persembe", "open": "09:00", "close": "19:00", "isOpen": true },
+          { "day": "Cuma", "open": "09:00", "close": "19:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "10:00", "close": "17:00", "isOpen": true },
+          { "day": "Pazar", "open": "00:00", "close": "00:00", "isOpen": false }
+        ],
+        "services": [
+          { "id": "s1", "name": "Erkek Takim Elbise (El Dikimi)", "price": "15.000 - 45.000 TL", "duration": "5-6 hafta", "description": "Tamamen el dikimi, Canvassli yapilandirma, Italyan/Ingiliz kumas. 5 prova." },
+          { "id": "s2", "name": "Kadin Kostum/Tayor", "price": "8.000 - 25.000 TL", "duration": "4-5 hafta", "description": "Klasik veya modern kesim kadin tayyoru. Vucuda ozel kalip." },
+          { "id": "s3", "name": "Kaftan Dikimi", "price": "5.000 - 20.000 TL", "duration": "3-4 hafta", "description": "Geleneksel Osmanli kaftani, el nakisi ve sırma isleme secenekleriyle." },
+          { "id": "s4", "name": "Bindalli Dikimi", "price": "8.000 - 35.000 TL", "duration": "6-8 hafta", "description": "Geleneksel bindalli, tel kirma, maras isi veya dival isi islemeli." },
+          { "id": "s5", "name": "Cepken/Yelek Dikimi", "price": "3.000 - 8.000 TL", "duration": "2-3 hafta", "description": "Geleneksel veya modern yorumlu erkek ve kadin cepken/yelek." },
+          { "id": "s6", "name": "Entari Dikimi", "price": "4.000 - 12.000 TL", "duration": "3-4 hafta", "description": "Ev entarisi veya toren entarisi. Pamuk, ipek veya kadife secenekleri." },
+          { "id": "s7", "name": "El Nakisi Isleme", "price": "2.000 - 15.000 TL", "duration": "2-6 hafta", "description": "Gul deseni, lale motifi, suzeni teknigiyle el nakisi. Kiyafet veya tablo olarak." },
+          { "id": "s8", "name": "Gomlek (El Dikimi)", "price": "2.500 - 6.000 TL", "duration": "2 hafta", "description": "Tamamen el dikimi gomlek, inci dugme ve el acilmis ilik detayli." },
+          { "id": "s9", "name": "Kumas Danismanligi", "price": "Ucretsiz", "duration": "30 dk", "description": "Kumas cesidi, kalitesi ve kullanim amacina gore profesyonel danismanlik." },
+          { "id": "s10", "name": "Vintage Kiyafet Restorasyonu", "price": "1.500 - 8.000 TL", "duration": "2-4 hafta", "description": "Antika ve vintage kiyafet tamiri, kumaas sagliklastirma, astar degisimi." },
+          { "id": "s11", "name": "Terzilik Workshopu", "price": "1.200 TL/kisi", "duration": "4 saat", "description": "El dikisi, dugme dikme, yama yapma temelleri. Atolyemizde grup etkinligi." },
+          { "id": "s12", "name": "Cocuk Sünnet Kiyafeti", "price": "2.000 - 6.000 TL", "duration": "2 hafta", "description": "Geleneksel sunnet kiyafeti seti. Sarık, yelek, salvar ve cepken." },
+          { "id": "s13", "name": "Tiyatro/Film Kostumu", "price": "3.000 - 20.000 TL", "duration": "3-6 hafta", "description": "Donem kostumleri, tiyatro ve sinema produksiyonlari icin ozel dikim." },
+          { "id": "s14", "name": "Yillik Bakim Sozlesmesi", "price": "3.000 TL/yil", "duration": "degisken", "description": "Yilda 4 kez kontrol, dugme/astar degisimi, kucuk tadilat dahil." }
+        ],
+        "team": [
+          { "name": "Mustafa Karaca", "role": "Bas Usta & Kurucu", "bio": "4. nesil terzi. Babasi Haci Ismail Usta'dan devraldigi terzihaneyi 58 yildir isletiyor. Osmanli terziligi gelenegi." },
+          { "name": "Yusuf Karaca", "role": "Kalipci & Usta Terzi", "bio": "Mustafa Usta'nin oglu. 20 yildir atolyede calisiyor. Erkek takim ve kadin tayyorunda uzman." },
+          { "name": "Fatma Hanim", "role": "Nakis & Isleme Ustasi", "bio": "35 yillik el nakisi ustasi. Tel kirma, Maras isi, suzeni teknikleri. Bindalli ve kaftan islemesinde Turkiye'nin sayili isimlerinden." },
+          { "name": "Hasan Dogan", "role": "Kalfa Terzi", "bio": "18 yillik deneyim. Palto, kaban ve dis giyim dikiminde uzman. Soguk iklim kiyafetlerinde ozel teknikler." },
+          { "name": "Zehra Yilmaz", "role": "Restorasyon Uzmani", "bio": "Tekstil koruma ve restorasyon egitimi. Antika kiyafet tamiri ve kumas saglıklastırma konusunda uzman." },
+          { "name": "Ahmet Kaya", "role": "Kumas Tedarikcisi", "bio": "30 yildir Italya, Ingiltere ve Turkiye'den en kaliteli kumaslari temin ediyor. Kumas bilgisi ansiklopedik." }
+        ],
+        "testimonials": [
+          { "name": "Prof. Dr. Mehmet Akin", "district": "Eminonu", "date": "2025-11", "rating": 5, "comment": "30 yildir takim elbiselerimi Mustafa Usta'ya diktiriyorum. El dikimi canvassli ceket baska hicbir yerde bulamıyorsunuz. Gerçek zanaat bu." },
+          { "name": "Ayse Gurkan", "district": "Sultanahmet", "date": "2025-10", "rating": 5, "comment": "Kizimin dugunü icin bindalli diktirdik. Fatma Hanim'in tel kirma islemesi goz kamastirici. Herkes nereden aldigimizi sordu." },
+          { "name": "Ozan Tekin", "district": "Besiktas", "date": "2025-09", "rating": 5, "comment": "Dedemmden kalma paltoyu restore ettirdim. Zehra Hanim kuması sagliklastirdi, astarini degistirdi. 60 yillik palto yeniden hayat buldu." },
+          { "name": "Neslihan Dogan", "district": "Bakirkoy", "date": "2025-08", "rating": 5, "comment": "Workshop'a katildim, hayatimda ilk kez el dikisi yaptim. Mustafa Usta cok sabırli, 4 saatte basit bir yama yapmayi ogrendik. Harika deneyim." },
+          { "name": "Kemal Ozdemir", "district": "Kadikoy", "date": "2025-07", "rating": 5, "comment": "Tiyatro oyunumuz icin 15. yuzyil Osmanli kostumleri diktirdik. Tarihsel dogruluk ve dikis kalitesi olagnustu. Produksiyon ekibi hayran kaldi." },
+          { "name": "Sibel Arslan", "district": "Uskudar", "date": "2025-12", "rating": 4, "comment": "Kaftan diktirdim, isleme suresi beklenenden uzun surdu ama sonuc kusursuz. Gercek el nakisi zaman istiyor, bunu anliyorum." },
+          { "name": "Huseyin Cetin", "district": "Sariyer", "date": "2025-06", "rating": 5, "comment": "Oglumun sunnet kiyafetini burada diktirdik. Geleneksel stil, modern dokunuslarla. Fotograflar muhteşem cikti." },
+          { "name": "Dr. Cemile Tan", "district": "Sisli", "date": "2025-11", "rating": 5, "comment": "Yillik bakim sozlesmesi aldim. Butun elbiselerimin dugmeleri, astarlari duzenli kontrol ediliyor. Bu hizmeti sunan baska terzi bilmiyorum." }
+        ],
+        "faq": [
+          { "q": "El dikimi ile makine dikimi arasindaki fark nedir?", "a": "El dikimi daha esnek, vucuda uyumlu ve dayaniklidir. Ozellikle ceket yaka, ilik ve omuz dikislerinde el isi fark yarattır. Makine dikimi hizlidir ama el dikiminin zarafetini yakalayamaz." },
+          { "q": "Bindalli isleme suresi neden uzun?", "a": "Bir bindallinın el islemesi 200-400 saat surer. Tel kirma ve Maras isi gibi teknikler her ilmegi tek tek islemeyi gerektirir. Bu gercek zanaat, hizlandirilamaz." },
+          { "q": "Kaftan ile bindalli farkı nedir?", "a": "Kaftan onü acik, kemer ile belen bir dis giyimdir. Bindalli ise onü kapali, islemeli bir elbisedir. Her ikisi de Osmanli doneminden gelen geleneksel kiyafetlerdir." },
+          { "q": "Vintage kiyafet restorasyonu neleri kapsar?", "a": "Kumas sagliklastirma, yirtik tamiri, astar degisimi, dugme/toka onarimi, leke cikarma ve gerekiyorsa parcali yenileme islemlerini kapsar." },
+          { "q": "Tiyatro/film kostumleri icin referanslariniz var mi?", "a": "Evet, Istanbul Devlet Tiyatrosu, BKM ve cesitli bagimsiz film produksiyonlariyla calıstık. Donem dogrulugu ve sahne dayanikliligi konusunda deneyimliyiz." },
+          { "q": "Workshop'a kimler katılabilir?", "a": "18 yas ustu herkes katılabilir. Deneyim gerektirmez. Grup halinde (4-8 kisi) yapilan workshop'larda temel el dikisi teknikleri ogretilir." },
+          { "q": "Yurtdisina gonderim yapiyor musunuz?", "a": "Evet, ozellikle kaftan ve bindalli siparisleri icin yurtdisina kargo ile gonderim yapiyoruz. Koruma ambalaji ve sigorta dahildir." },
+          { "q": "Kumasimi kendim getirebilir miyim?", "a": "Evet, kendi kumasinizla dikim yapabiliriz. Ancak kumas kalitesini degerlendirir ve uygun degilse alternattif oneririz." },
+          { "q": "Erkek ve kadin icin ayri atölye mi var?", "a": "Hayir, ayni atolyede calisiyoruz. Ancak prova odalari ozeldir ve randevular cakısmayacak sekilde planlanir." },
+          { "q": "Yillik bakim sozlesmesi ne icerir?", "a": "Yilda 4 kontrol ziyareti, dugme/kopca degisimi, kucuk yirtik tamiri, astar onarimi ve basit beden ayarlama dahildir." }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Osmanli'dan Gunumuze, Terzilik Sanatinin Mirascilari",
+          "subtitle": "Fatih'te 58 yillik aile terzihhanesi. El dikimi takim elbiseden Osmanli kaftanına, bindallıdan donem kostumune — gercek zanaat.",
+          "badge": "1968'den Beri"
+        },
+        "about": {
+          "title": "Usta Eller Terzihanesi Hakkinda",
+          "description": "Usta Eller Terzihanesi, 1968 yilinda Haci Ismail Karaca tarafindan Fatih'te kurulmus, bugun 4. nesil terzi Mustafa Karaca tarafindan isletilmektedir. 58 yillik gecmisimizde Osmanli terzilik gelenegini yasatmaya devam ediyoruz. El dikimi takim elbise, kadin tayyoru, kaftan, bindalli, cepken ve donem kostumleri dikiyoruz. Atolyemizde 35 yillik el nakisi ustasi Fatma Hanim'in tel kirma ve Maras isi islemeleri, restorasyon uzmani Zehra Hanim'in antika kiyafet onarimlarıyla zanaat mirasi korunuyor. Tiyatro ve sinema produksiyonlari icin donem kostumleri, sunnet ve dugun kiyafetleri, terzilik workshoplari ve yillik bakim sozlesmeleriyle genis bir hizmet yelpazesi sunuyoruz."
+        },
+        "services": {
+          "title": "Terzilik Hizmetlerimiz",
+          "subtitle": "El dikiminden geleneksel islemeye, restorasyondan workshopa"
+        },
+        "contact": {
+          "title": "Randevu & Bilgi",
+          "subtitle": "Atolyemizi ziyaret edin, zanaati yakından gorun"
+        }
+      }
+    },
+    {
+      "id": "terzi-lux",
+      "variantName": "lux",
+      "plan": "enterprise",
+      "description": "Luks moda evi, haute couture",
+      "designPhilosophy": "Ultra luks, karanlik, haute couture",
+      "isDark": true,
+      "colors": {
+        "bg": "#0C0A08",
+        "surface": "#1A1714",
+        "text": "#E8E4DE",
+        "accent": "#C9A84C"
+      },
+      "fonts": { "heading": "Playfair Display", "body": "Inter" },
+      "business": {
+        "name": "Maison Elif Istanbul",
+        "ownerName": "Elif Toprak",
+        "sector": "Terzi",
+        "slogan": "Istanbul'dan dunyaya, haute couture",
+        "phone": "0212 227 ELIF",
+        "phoneClean": "902122273543",
+        "whatsapp": "905301234890",
+        "email": "atelier@maisonelif.com",
+        "address": "Abdi Ipekci Mah. Valikonagi Cad. No:22, Sisli/Istanbul",
+        "city": "Istanbul",
+        "district": "Sisli",
+        "neighborhood": "Abdi Ipekci",
+        "coordinates": { "lat": 41.0516, "lng": 28.9928 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/maisonelif",
+          "facebook": "https://facebook.com/maisonelif",
+          "youtube": "https://youtube.com/@maisonelif",
+          "twitter": "https://twitter.com/maisonelif",
+          "linkedin": "https://linkedin.com/company/maison-elif"
+        },
+        "photos": [],
+        "foundedYear": 2006,
+        "experience": "20 yil",
+        "customerCount": "6.000+",
+        "rating": 5.0,
+        "reviewCount": 3200,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "10:00", "close": "19:00", "isOpen": true },
+          { "day": "Sali", "open": "10:00", "close": "19:00", "isOpen": true },
+          { "day": "Carsamba", "open": "10:00", "close": "19:00", "isOpen": true },
+          { "day": "Persembe", "open": "10:00", "close": "19:00", "isOpen": true },
+          { "day": "Cuma", "open": "10:00", "close": "19:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "11:00", "close": "17:00", "isOpen": true },
+          { "day": "Pazar", "open": "00:00", "close": "00:00", "isOpen": false }
+        ],
+        "services": [
+          { "id": "s1", "name": "Haute Couture Gelinlik", "price": "50.000 - 500.000 TL", "duration": "12-20 hafta", "description": "Tamamen el dikimi, ozel tasarim gelinlik. Fransiz danteli, Swarovski kristal, ipek mikado. 8-10 prova." },
+          { "id": "s2", "name": "Haute Couture Abiye", "price": "25.000 - 200.000 TL", "duration": "8-12 hafta", "description": "Gala, odul toreni ve ozel davet icin tasarim abiye. Kumas ithal, isleme el yapimi." },
+          { "id": "s3", "name": "Bespoke Takim (Erkek)", "price": "20.000 - 80.000 TL", "duration": "6-8 hafta", "description": "Full canvass, el dikimi, Loro Piana/Dormeuil kumas. Savile Row standartlarinda." },
+          { "id": "s4", "name": "Bespoke Takim (Kadin)", "price": "18.000 - 70.000 TL", "duration": "6-8 hafta", "description": "Power suit'den feminen kesime. Vucuda ozel kalip, premium kumas." },
+          { "id": "s5", "name": "Ready-to-Wear Koleksiyonu", "price": "3.000 - 15.000 TL", "duration": "hazir", "description": "Sezonluk limitli uretim koleksiyon parcalari. Atolyede uretilmis, premium kalite." },
+          { "id": "s6", "name": "Damatlik & Dugun Paketi", "price": "35.000 - 150.000 TL", "duration": "10-16 hafta", "description": "Damat + gelin kiyafet seti, aksesuar, ayakkabi danismanligi. Komple dugun stili." },
+          { "id": "s7", "name": "Kapsul Garderop Danismanligi", "price": "5.000 TL", "duration": "3 saat", "description": "Yasam tarziniza uygun 30 parcalik kapsul garderop planlama. Kumas, renk, kalip analizi." },
+          { "id": "s8", "name": "VIP Stil Danismanligi", "price": "10.000 TL/ay", "duration": "degisken", "description": "Aylik stil danismanligi, alisveriş eslik, etkinlik kiyafet planlama, garderop duzenleme." },
+          { "id": "s9", "name": "Deri & Kurk Atölyesi", "price": "15.000 - 80.000 TL", "duration": "4-8 hafta", "description": "El dikimi deri ceket, suni kurk kaban. Italyan deri, ozel tasarim." },
+          { "id": "s10", "name": "Islemeli Aksesuar", "price": "2.000 - 20.000 TL", "duration": "1-3 hafta", "description": "El islemeli clutch, kemer, sac aksesuari, sal. Kiyafetle uyumlu ozel tasarim." },
+          { "id": "s11", "name": "Made-to-Measure Gomlek", "price": "3.000 - 8.000 TL", "duration": "2 hafta", "description": "Ozel olculu gomlek, Thomas Mason/Albini kumaslar. Monogram secenegi." },
+          { "id": "s12", "name": "Podyum Kiralama", "price": "8.000 - 30.000 TL/gun", "duration": "1 gun", "description": "Atolye ici showroom ve mini podyum kiralama. Marka lansmanı, ozel gosterim." },
+          { "id": "s13", "name": "Tekstil Egitim Programi", "price": "15.000 TL/kisi", "duration": "12 hafta", "description": "12 haftalik ileri terzilik egitimi. Kalip, dikim, kumas bilgisi, drapaj. Sinirli kontenjan." },
+          { "id": "s14", "name": "Kurumsal Uniform Tasarimi", "price": "Teklif uzerine", "duration": "8-12 hafta", "description": "Otel, restoran, havaayolu icin kurumsal kiyafet tasarimi ve uretimi." },
+          { "id": "s15", "name": "Vintage Couture Restorasyonu", "price": "5.000 - 25.000 TL", "duration": "4-8 hafta", "description": "Marka tasarim kiyafet restorasyonu. Chanel, Dior, Balenciaga vintage parcalar." },
+          { "id": "s16", "name": "Ayakkabi Tasarimi", "price": "8.000 - 30.000 TL", "duration": "6-8 hafta", "description": "El yapimi deri ayakkabi, kiyafetle uyumlu ozel tasarim. Italyan derisi." },
+          { "id": "s17", "name": "Mevsimlil Stil Raporu", "price": "3.000 TL/sezon", "duration": "7 gun", "description": "Sezonluk trend analizi, garderop onerisi, alisveriş listesi. Kisisellestirilmis PDF rapor." },
+          { "id": "s18", "name": "Sahne & Performans Kostumleri", "price": "10.000 - 60.000 TL", "duration": "4-8 hafta", "description": "Konser, sahne ve performans icin gosterisli kostum tasarimi. LED, hareket ve dayaniklilik odakli." },
+          { "id": "s19", "name": "Ozel Etkinlik Stili", "price": "5.000 TL/etkinlik", "duration": "1 gun", "description": "Gala, odul toreni, lansman icin komple stil paketi: kiyafet, aksesuar, sac/makyaj koordinasyonu." },
+          { "id": "s20", "name": "Uluslararasi Shipping & Concierge", "price": "degisken", "duration": "3-7 gun", "description": "Dunyada her yere sigortalı gonderim, gumruk islemleri, VIP musteri concierge hizmeti." }
+        ],
+        "team": [
+          { "name": "Elif Toprak", "role": "Kurucu & Kreatif Direktor", "bio": "Parsons School of Design mezunu. 20 yillik haute couture deneyimi. Cannes, Met Gala ve Venedik Film Festivali'nde giyilen tasarimlar." },
+          { "name": "Pierre Laurent", "role": "Atolye Sefi", "bio": "Paris haute couture atolyelerinde 25 yil deneyim. Dior ve Givenchy'de calisimis. El dikimi ve drapaj usta." },
+          { "name": "Ceren Aktas", "role": "Bespoke Erkek Giyim Uzmani", "bio": "Londra Savile Row egitimli. Erkek bespoke tailoring'de 12 yil. Full canvass ceket dikiminde uzman." },
+          { "name": "Nadia Petrova", "role": "Isleme & Nakis Atolye Sefi", "bio": "Lesage (Paris) isleme okulu mezunu. Haute couture islemecilikte 18 yil. Swarovski, payete ve ipek isleme." },
+          { "name": "Dyt. Aysegul Kaya", "role": "Stil & Imaj Danismani", "bio": "Londra College of Fashion imaj danismanligi. 15 yildir unluler ve CEO'larla calisiyor." },
+          { "name": "Emre Deniz", "role": "Deri & Aksesuar Tasarimcisi", "bio": "Polimoda (Floransa) mezunu. El yapimi deri urunler ve aksesuar tasariminda 10 yil." },
+          { "name": "Meryem Yildiz", "role": "Tekstil Muhendisi", "bio": "ITU Tekstil Muhendisligi. Kumas AR-GE, kalite kontrol ve tedariik zinciri yonetimi." },
+          { "name": "Hakan Korkmaz", "role": "Uretim & Operasyon Muduru", "bio": "Atölye isleyisi, tedarik, planlama ve kalite kontrol. 15 yillik moda sektoru deneyimi." }
+        ],
+        "testimonials": [
+          { "name": "Asli Enver", "district": "Nisantasi", "date": "2025-12", "rating": 5, "comment": "Cannes'a giderken giydigim elbiseyi Elif Hanim tasarladi. Her kristal el ile dikilmisti. Kırmizi halida fotograflar dunyaca yayildi. Gercek haute couture bu." },
+          { "name": "Cem Kartal", "district": "Etiler", "date": "2025-11", "rating": 5, "comment": "Dugunum icin bespoke takim diktirdim. Loro Piana kumaş, full canvass, el dikimi. Pierre Usta'nin 25 yillik Paris deneyimi her dikiste hissediliyor." },
+          { "name": "Deniz Ugur", "district": "Levent", "date": "2025-10", "rating": 5, "comment": "Garderop danismanligi aldim. Aysegul Hanim 3 saatte butun garderobuumu analiz etti, 30 parcalik kapsul plan olusturdu. Artik her sabah ne giyecegimi biliyorum." },
+          { "name": "Selin Sabanci", "district": "Bebek", "date": "2025-09", "rating": 5, "comment": "Gelinligim 20 hafta surdü ama sonuc muhtesem. 8 prova yapildi, her detay kusursuz. Dugun fotograflarim dergi kapagi oldu." },
+          { "name": "Baris Manco Jr.", "district": "Sariyer", "date": "2025-08", "rating": 5, "comment": "Konser kostumlerimi Maison Elif tasarliyor. LED ve hareket ozgurluğu dusunulmus, sahne performansima harika katkı sagliyor." },
+          { "name": "Ozge Dogan", "district": "Besiktas", "date": "2025-07", "rating": 5, "comment": "Vintage Chanel ceketimi restore ettirdim. Nadia Hanim Lesage islemeciligi bilgisiyle orijinal islemeyi birebir yeniledi. Muze kalitesi." },
+          { "name": "Hakan Yildiz", "district": "Uskudar", "date": "2025-11", "rating": 4, "comment": "Made-to-measure gomlek aldim, Thomas Mason kumasıyla. Monogram detayi harika. Tek eksik: teslimat 3 gun gecikti." },
+          { "name": "Pinar Aksoy", "district": "Kadikoy", "date": "2025-06", "rating": 5, "comment": "Deri ceket diktirdim, Emre Bey'in tasarimi minimalist ve sik. Italyan deri kalitesi ve el dikisi fark yaratiyor. 5 yil giyerim rahat." },
+          { "name": "Tolga Cevik", "district": "Maslak", "date": "2025-10", "rating": 5, "comment": "Sirketimizin otel zinciri icin uniform tasarlatti. 200 kisilik kadro icin 6 farkli model, hepsi sik ve rahat. Misafirlerden cok olumlu geri donus aliyoruz." },
+          { "name": "Ece Varol", "district": "Arnavutkoy", "date": "2025-09", "rating": 5, "comment": "Tekstil egitim programina katildim, 12 haftada inanilmaz seeyler ogrendim. Elif Hanim ve Pierre Usta'dan dersler almak bir ayricalik." },
+          { "name": "Cagla Yilmaz", "district": "Ortakoy", "date": "2025-12", "rating": 5, "comment": "Odul torenine ozel etkinlik stili paketi aldim. Kiyafet, clutch, ayakkabi, sac ve makyaj hepsi koordineli. Tum gece en sik bendim." },
+          { "name": "Merve Karahan", "district": "Tarabya", "date": "2025-08", "rating": 5, "comment": "Aylık VIP stil danismanligi aliyorum. Her ay garderobum guncelleniyor, alisveriş listem hazir geliyor. Zamanımdan cok tasarruf ediyorum." }
+        ],
+        "faq": [
+          { "q": "Haute couture ile ready-to-wear farki nedir?", "a": "Haute couture, tamamen el dikimi, kişiye ozel olcu ve tasarimdir. Ready-to-wear ise atolyemizde uretilmis, standart bedenlerde sinirli sayida parca uretimimizdir." },
+          { "q": "Gelinlik icin ne kadar once randevu almaliyim?", "a": "Haute couture gelinlik icin dugun tarihinden en az 6 ay once basvurmanizi oneririz. Sezon yogunlugunda bu sure 8-10 aya cikabilir." },
+          { "q": "Uluslararasi musteri kabul ediyor musunuz?", "a": "Evet, musterilerimizin %30'u yurtdisindan. Istanbul'a bir kez gelmeniz yeterli, sonraki provalar video ile yapilabilir. Dunyaya sigortalı kargo ile gonderim yapiyoruz." },
+          { "q": "Fiyatlar neden bu kadar yuksek?", "a": "Her parca tamamen el dikimi olup, premium ithal kumaslar, Swarovski kristaller ve saatler suren el islemesi kullanilmaktadir. Haute couture bir sanat eseridir, seri uretim degildir." },
+          { "q": "Atolyeyi ziyaret edebilir miyim?", "a": "Evet, randevu ile atolye turu duzenliyoruz. Dikim surecini, kumas arsivini ve isleme atolyesini yakindan gorebilirsiniz." },
+          { "q": "Sahne kostumlerin LED entegrasyonu nasil yapiliyor?", "a": "Minyatur LED seritler dikis arasina gizlenir, hafif pil unitesiyle besslenir. Hareket ozgurlugu korunur, yikanabilir baglanti noktalari kullanilir." },
+          { "q": "Kurumsal uniform icin minimum siparis adedi var mi?", "a": "Evet, minimum 20 adet siparis kabul ediyoruz. Tasarim sureci ayridir ve marka kimligi ile uyum onemlidir. Teklif toplantisi icin randevu alin." },
+          { "q": "Tekstil egitim programina kimler katılabilir?", "a": "Moda tasarimi ogrencileri, hobi olarak terzilikle ilgilenenler ve kariyer degisikligi yapmak isteyenler katılabilir. Baslangic seviyesi kabul edilir." },
+          { "q": "Vintage couture restorasyonunda garantii veriyor musunuz?", "a": "Evet, restorasyondan sonra 1 yil garanti veriyoruz. Orijinal kumas bütünlüğüne müdahale etmeden, en az mudahale ilkesiyle calisiyoruz." },
+          { "q": "Podyum kiralama nasil calisiyor?", "a": "Atölye ici showroom alanımızda 30 kisilik mini defile veya marka lansmanı duzenleyebilirsiniz. Isik, ses ve backstage alani dahildir." },
+          { "q": "Ayakkabi tasariminda hangi numaralar mevcut?", "a": "35-46 arasi tum numaralarda ozel uretim yapiyoruz. Ilk sipariste ayak kalibiniz cikarilir, sonraki siparislerde kullanılır." },
+          { "q": "Kapsul garderop nedir?", "a": "30 parcayla 100'den fazla kombin olusturulabilen, birbiriyle uyumlu, kaliteli parcalardan olusan garderooptur. Yasam tarziniza, vucudunuza ve renk analizinize gore planlanir." },
+          { "q": "Ozel etkinlik stili paketi neleri kapsar?", "a": "Kiyafet secimi/dikimi, aksesuar eslestirme, sac ve makyaj koordinasyonu, etkinlik gunu son kontrol. Gerekirse kiyafet odunc verme de dahildir." },
+          { "q": "Musteri bilgileri gizli tutuluyor mu?", "a": "Kesinlikle. VIP musterilerimizin kimlik bilgileri, olculeri ve kiyafet detaylari tam gizlilik ile korunur. Sosyal medyada paylasım icin ayrica izin alinir." },
+          { "q": "Taksit imkani var mi?", "a": "Evet, 50.000 TL ustu siparislerimizde 6-12 taksit imkani sunuyoruz. Kurumsal siparislerde ozel odeme plani olusturuyoruz." }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Istanbul'dan Dunyaya, Haute Couture",
+          "subtitle": "Cannes kirmizi halisindan Istanbul gala gecelerine — el dikimi, ozel tasarim, sinir tanimiyan zarafet. 20 yillik couture mirasi.",
+          "badge": "Haute Couture Atolyesi"
+        },
+        "about": {
+          "title": "Maison Elif Hakkinda",
+          "description": "Maison Elif Istanbul, 2006 yilinda Parsons School of Design mezunu Elif Toprak tarafından Sisli Nisantasi'nda kurulmustur. 20 yillik haute couture mirasimizla Istanbul'un en prestijli moda evlerinden biriyiz. Paris haute couture atolyelerinde 25 yil deneyimli Pierre Laurent'in atolye sefliginde, Lesage isleme okulu mezunu Nadia Petrova'nin el islemeleriyle, Savile Row egitimli Ceren Aktas'in bespoke erkek giyim uzmanligiyla multidisipliner bir ekip calisiyoruz. Haute couture gelinlik ve abiyeden bespoke takim elbiseye, sahne kostumlerinden kurumsal uniform tasarimina genis bir yelpazede hizmet sunuyoruz. Loro Piana, Dormeuil, Thomas Mason gibi dunyanin en iyi kumas markalarini kullanıyor, Swarovski kristal, el isleme payete ve Fransiz danteli gibi premium malzemelerle calisiyoruz. Kapsul garderop danismanligi, VIP stil hizmeti ve tekstil egitim programiyla Istanbul'un moda ekosistemïne kapsamli katki sagliyoruz."
+        },
+        "services": {
+          "title": "Couture & Stil Hizmetlerimiz",
+          "subtitle": "El dikimi haute couture'dan stil danismanligina eksiksiz luks moda deneyimi"
+        },
+        "contact": {
+          "title": "Ozel Randevu",
+          "subtitle": "VIP danismanliginiz icin ozel randevu alin"
+        }
+      }
+    }
+  ]
+}

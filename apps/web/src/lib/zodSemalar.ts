@@ -54,6 +54,7 @@ export const siteGuncelleSema = z.object({
     temaId: z.string().max(50).optional(),
     paletId: z.string().max(50).optional(),
     prompt: guvenliMetin.optional(),
+    siteData: z.record(z.string(), z.any()).optional(),
 })
 
 export type SiteGuncelleInput = z.infer<typeof siteGuncelleSema>

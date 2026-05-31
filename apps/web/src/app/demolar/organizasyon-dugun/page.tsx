@@ -1,2 +1,3 @@
-import ClientComponent from './client';
-export default function Page() { return <ClientComponent />; }
+import ClientPage from './client'
+export const metadata = { title: 'Düğün & Kına Organizasyon Demo - Kepenk.ai' }
+export default function OrganizasyonDugunPage() { return <ClientPage /> }

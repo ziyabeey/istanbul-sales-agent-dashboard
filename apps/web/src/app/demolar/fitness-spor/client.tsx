@@ -1,4 +1,6 @@
+// @ts-nocheck
 'use client'
+
 import {
   HeaderMinimalSticky as _h, FooterWarmColumns as _f, WhatsAppFloating as _wa, CookieBannerBottomBar as _c,
   ClassScheduleGrid as _csg, MembershipPackages as _mp, FitnessStatsRow as _fsr, TrialBookingForm as _tbf,

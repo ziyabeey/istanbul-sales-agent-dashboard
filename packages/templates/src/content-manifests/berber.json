@@ -1,0 +1,775 @@
+{
+  "sectorId": "berber",
+  "seoSchemaType": "BarberShop",
+  "variants": [
+    {
+      "id": "berber-sade",
+      "variantName": "sade",
+      "plan": "free",
+      "description": "Mahalle berberi, sade ve guvenilir hizmet",
+      "designPhilosophy": "Minimalist, temiz, islevsel",
+      "isDark": false,
+      "colors": {
+        "bg": "#FFFFFF",
+        "surface": "#F8F8F8",
+        "text": "#1A1A1A",
+        "accent": "#2C2C2C"
+      },
+      "fonts": { "heading": "Inter", "body": "Inter" },
+      "business": {
+        "name": "Kadir Usta Kuafor",
+        "ownerName": "Kadir Aydin",
+        "sector": "Berber",
+        "slogan": "30 yildir ayni titizlikle, ayni mahallede",
+        "phone": "0532 418 67 90",
+        "phoneClean": "905324186790",
+        "whatsapp": "905324186790",
+        "email": "info@kadirustakuafor.com",
+        "address": "Caferaga Mah. Moda Cad. No:42/A, Kadikoy/Istanbul",
+        "city": "Istanbul",
+        "district": "Kadikoy",
+        "neighborhood": "Caferaga",
+        "coordinates": { "lat": 40.9868, "lng": 29.0256 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/kadirustakuafor"
+        },
+        "photos": [],
+        "foundedYear": 1994,
+        "experience": "30 yil",
+        "customerCount": "45.000+",
+        "rating": 4.8,
+        "reviewCount": 1250,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "09:00", "close": "20:00", "isOpen": true },
+          { "day": "Sali", "open": "09:00", "close": "20:00", "isOpen": true },
+          { "day": "Carsamba", "open": "09:00", "close": "20:00", "isOpen": true },
+          { "day": "Persembe", "open": "09:00", "close": "20:00", "isOpen": true },
+          { "day": "Cuma", "open": "09:00", "close": "20:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "08:30", "close": "21:00", "isOpen": true },
+          { "day": "Pazar", "open": "10:00", "close": "18:00", "isOpen": true }
+        ],
+        "services": [
+          {
+            "id": "s1",
+            "name": "Erkek Sac Kesimi",
+            "price": "200 TL",
+            "duration": "30 dk",
+            "description": "Yuz seklini analiz ederek en uygun kesimi belirliyoruz. Yikama ve sekillendirme dahil."
+          },
+          {
+            "id": "s2",
+            "name": "Sakal Tiras ve Sekillendirme",
+            "price": "150 TL",
+            "duration": "20 dk",
+            "description": "Sicak havlu, kopu tiras ve sakal hattiniza uygun profesyonel sekillendirme."
+          },
+          {
+            "id": "s3",
+            "name": "Sac + Sakal Kombo",
+            "price": "300 TL",
+            "duration": "45 dk",
+            "description": "Sac kesimi ve sakal bakimini bir arada. En cok tercih edilen paketimiz."
+          },
+          {
+            "id": "s4",
+            "name": "Cocuk Kesimi (0-12 yas)",
+            "price": "120 TL",
+            "duration": "20 dk",
+            "description": "Cocuklara ozel sabir ve ilgiyle yapilan kesim. Tablet esliginde rahat bir deneyim."
+          }
+        ],
+        "team": []
+      },
+      "content": {
+        "hero": {
+          "badge": "Kadikoy'un Kuaforu",
+          "title": "Kadir Usta Kuafor",
+          "subtitle": "1994'ten bu yana Kadikoy Moda'da, kusursuz kesim ve geleneksel tiras. Babadan ogula gecen ustalik.",
+          "cta1": { "text": "Randevu Al", "href": "#iletisim" }
+        },
+        "services": {
+          "badge": "Hizmetler",
+          "title": "Ne Yapiyoruz?",
+          "subtitle": "Her kesim bir sanat eseri. 30 yillik tecrubemizle size ozel cozumler sunuyoruz."
+        },
+        "contact": {
+          "badge": "Iletisim",
+          "title": "Bizi Ziyaret Edin",
+          "subtitle": "Kadikoy Moda'da, deniz kokulu sokaklarin arasinda bizi bulabilirsiniz. Randevu almadan da gelebilirsiniz."
+        },
+        "faq": {
+          "badge": "SSS",
+          "title": "Merak Edilenler",
+          "questions": [
+            {
+              "q": "Randevu almadan gelebilir miyim?",
+              "a": "Elbette. Sirali calisiyoruz ama yogun saatlerde bekleme olabilir. WhatsApp'tan anlik doluluk durumunu ogrenebilirsiniz."
+            },
+            {
+              "q": "Cocuk kesimi kac yasindan itibaren yapilir?",
+              "a": "2 yasindan itibaren cocuk kesimi yapiyoruz. Cocugunuzun rahat hissetmesi icin tablet ve oyuncak bulunduruyoruz."
+            },
+            {
+              "q": "Hangi odeme yontemlerini kabul ediyorsunuz?",
+              "a": "Nakit, kredi karti ve banka karti kabul ediyoruz. 200 TL ustu islemlerde taksit imkani mevcuttur."
+            },
+            {
+              "q": "Otopark var mi?",
+              "a": "Dukkanin 50 metre ilerisinde belediye otopaki bulunuyor. Cumartesi gunleri yogun olabilir, toplu tasima oneririz."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "berber-klasik",
+      "variantName": "klasik",
+      "plan": "starter",
+      "description": "Geleneksel Turk berber kulturu, modern dokunuslarla",
+      "designPhilosophy": "Sicak, samimi, geleneksel",
+      "isDark": false,
+      "colors": {
+        "bg": "#FBF9F6",
+        "surface": "#F3EDE4",
+        "text": "#2D2418",
+        "accent": "#8B6914"
+      },
+      "fonts": { "heading": "Playfair Display", "body": "Lora" },
+      "business": {
+        "name": "Nizam Berber Salonu",
+        "ownerName": "Huseyin Nizam",
+        "sector": "Berber",
+        "slogan": "Uc kusaktir Istanbul'un tiras gelenegini yasatiyoruz",
+        "phone": "0212 243 56 78",
+        "phoneClean": "902122435678",
+        "whatsapp": "905387654321",
+        "email": "info@nizamberber.com",
+        "address": "Kuloglu Mah. Turnacibasi Cad. No:18, Beyoglu/Istanbul",
+        "city": "Istanbul",
+        "district": "Beyoglu",
+        "neighborhood": "Kuloglu",
+        "coordinates": { "lat": 41.0335, "lng": 28.9809 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/nizamberber",
+          "facebook": "https://facebook.com/nizamberber"
+        },
+        "photos": [],
+        "foundedYear": 1968,
+        "experience": "56 yil",
+        "customerCount": "120.000+",
+        "rating": 4.9,
+        "reviewCount": 3200,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Sali", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Carsamba", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Persembe", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Cuma", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "07:30", "close": "21:00", "isOpen": true },
+          { "day": "Pazar", "open": "09:00", "close": "18:00", "isOpen": true }
+        ],
+        "services": [
+          { "id": "s1", "name": "Klasik Erkek Kesimi", "price": "250 TL", "duration": "35 dk", "description": "Makine ve makassiz kesim secenekleriyle yuz hatlariniza ozel profesyonel sac kesimi." },
+          { "id": "s2", "name": "Osmanli Usulu Tiras", "price": "200 TL", "duration": "30 dk", "description": "Sicak havlu, gul suyu ve geleneksel kopu tiras. Cildinizi bebek cildi gibi yapan ozel bakimla tamamlanir." },
+          { "id": "s3", "name": "Sakal Tasarimi", "price": "180 TL", "duration": "25 dk", "description": "Yuz seklinize gore sakal hatti belirleme, bakimli ve duzgun sakal icin profesyonel sekillendirme." },
+          { "id": "s4", "name": "Damat Paketi", "price": "600 TL", "duration": "90 dk", "description": "Ozel gununuz icin sac kesimi, tiras, cilt bakimi ve sakal sekillendirme. Sampanya ikramimizla kutlayin." },
+          { "id": "s5", "name": "Kulak ve Burun Agda", "price": "80 TL", "duration": "10 dk", "description": "Hizli ve acisiz islem. Sac kesimi ile birlikte yaptiranlara ucretsiz." },
+          { "id": "s6", "name": "Cilt Bakimi (Erkek)", "price": "300 TL", "duration": "40 dk", "description": "Derin temizlik, peeling ve nemlendirme. Sehir hayatinin cildinize verdigi zarari onarin." }
+        ],
+        "team": [
+          { "id": "t1", "name": "Huseyin Nizam", "role": "Kurucu Usta", "experience": "40+ yil", "speciality": "Geleneksel tiras ve kesim" },
+          { "id": "t2", "name": "Emre Nizam", "role": "Kalfa Berber", "experience": "15 yil", "speciality": "Modern erkek sac tasarimi" }
+        ]
+      },
+      "content": {
+        "hero": {
+          "badge": "1968'den Beri",
+          "title": "Nizam Berber Salonu",
+          "subtitle": "Beyoglu'nun kalbinde, uc kusaktir Istanbul'un tiras gelenegini yasatiyoruz. Osmanli usulu sicak havlu tiras ve modern kesim bir arada.",
+          "cta1": { "text": "Randevu Al", "href": "#iletisim" },
+          "cta2": { "text": "Hizmetleri Gor", "href": "#hizmetler" }
+        },
+        "about": {
+          "badge": "Hikayemiz",
+          "title": "Uc Kusaklik Gelenek",
+          "description": "1968 yilinda Nizam dede'nin Beyoglu Istiklal Caddesi'nin arka sokaklarinda actigi kucuk berber dukkani, bugun ucuncu kusak Emre Nizam'la birlikte gelenegini surduruyor. Babamiz Hasan Usta bu duvarlarin arasinda binlerce insana ilk tiras deneyimini yasatti. Biz de ayni titizlikle, ayni samimiyetle devam ediyoruz.\n\nGeleneksel Turk berber kulturunu modern tekniklerle birlestiriyoruz. Sicak havlu, gul suyu ve Osmanli usulu kopu tiras bizim imza hizmetimiz. Ama ayni zamanda en yeni trendleri de takip ediyoruz — fade, undercut, textured crop her ne isterseniz.\n\nBize gelen herkes bir dost olarak ayrilir. Cay ikramimiz, sohbetimiz ve samimiyetimiz 56 yildir degismedi."
+        },
+        "services": {
+          "badge": "Hizmetler",
+          "title": "Ustalarin Elinden",
+          "subtitle": "Her hizmetimiz yillardan suzulen tecrube ve sabrin urunudur. Acelemiz yok, isimizi dogru yapmak icin gerekli zamani ayiriyoruz."
+        },
+        "stats": {
+          "stats": [
+            { "value": "56", "label": "Yillik Gelenek", "icon": "calendar" },
+            { "value": "120.000+", "label": "Mutlu Musteri", "icon": "users" },
+            { "value": "4.9", "label": "Google Puan", "icon": "star", "suffix": "/5" },
+            { "value": "3", "label": "Kusak", "icon": "heart" }
+          ]
+        },
+        "contact": {
+          "badge": "Iletisim",
+          "title": "Gelin Tanisalim",
+          "subtitle": "Beyoglu Turnacibasi Caddesi'nde, Istiklal'in iki dakika ilerisindeyiz. Randevusuz da gelebilirsiniz ama cumartesi gunleri onceden aramani oneririz."
+        },
+        "faq": {
+          "badge": "SSS",
+          "title": "Sikca Sorulan Sorular",
+          "questions": [
+            { "q": "Osmanli usulu tiras nedir, normal tirastan farki ne?", "a": "Osmanli usulu tirasta once sicak havluyla gozeneklarinizi acariz. Ardindan ozel kopu ile iki kat tiras yapariz. Sonunda gul suyu ve soguk havlu ile cildinizi kapatiriz. Tum islem 30 dakika surer ve cildiniz ipek gibi olur." },
+            { "q": "Damat paketi ne icerir?", "a": "Sac kesimi, Osmanli tirasi, cilt bakimi ve sakal sekillendirme. Tum islem 90 dakika surer. Ozel gununuz icin sampanya ikrami yapilir. Dugun gunu sabahi icin ozel randevu da verebiliyoruz." },
+            { "q": "Cocuklara hizmet veriyor musunuz?", "a": "Evet, 5 yasindan itibaren cocuk kesimi yapiyoruz. Cocuklarin rahat etmesi icin ozel koltugumuz var. Fiyatimiz 150 TL." },
+            { "q": "Kredi karti gecerli mi?", "a": "Evet, tum kredi kartlari ve banka kartlari gecerlidir. 300 TL uzeri islemlerde 2 taksit yapabiliyoruz." },
+            { "q": "Nasil randevu alabilirim?", "a": "WhatsApp uzerinden veya telefon ile randevu alabilirsiniz. Ayrica web sitemizdeki formu doldurarak da randevu talebi olusturabilirsiniz." },
+            { "q": "Hafta ici en sakin saatler ne zaman?", "a": "Sali-Carsamba gunleri 10:00-14:00 arasi en sakin zamanlarimiz. Cumartesi gunleri ise en yogun gunumuz, kesinlikle randevu oneririz." }
+          ]
+        },
+        "testimonials": {
+          "badge": "Yorumlar",
+          "title": "Musterilerimiz Ne Diyor?",
+          "reviews": [
+            { "name": "Ahmet K.", "location": "Sisli", "date": "2024-11", "rating": 5, "text": "20 yildir baska berbere gitmiyorum. Huseyin usta'nin elinden cikan isi kimse yapamaz. Osmanli tirasi icin bile gidilir." },
+            { "name": "Can D.", "location": "Besiktas", "date": "2024-10", "rating": 5, "text": "Damat paketini aldim, harika bir deneyimdi. Sampanya ikrami, sohbet ve mukemmel bir kesim. Dugun fotograflarinda sac modeli en cok begeniyi topladi." },
+            { "name": "Burak Y.", "location": "Uskudar", "date": "2024-09", "rating": 4, "text": "Kadikoy'den Beyoglu'na gelmeye deger. Ortam nostaljik, hizmet birinci sinif. Tek sikinti cumartesi cok kalabalik oluyor." }
+          ]
+        }
+      }
+    },
+    {
+      "id": "berber-blade",
+      "variantName": "blade",
+      "plan": "growth",
+      "description": "Modern erkek bakim studiosu, premium deneyim",
+      "designPhilosophy": "Karanlik tonlar, keskin hatlar, maskulen estetik",
+      "isDark": true,
+      "colors": {
+        "bg": "#0F0F0F",
+        "surface": "#1A1A1A",
+        "text": "#F5F5F5",
+        "accent": "#C9A96E",
+        "textSecondary": "#A0A0A0",
+        "border": "#2A2A2A"
+      },
+      "fonts": { "heading": "Syne", "body": "Inter" },
+      "business": {
+        "name": "Blade & Beard Studio",
+        "ownerName": "Kaan Ozturk",
+        "sector": "Berber",
+        "slogan": "Kesim bir sanattir. Biz de sanatciyiz.",
+        "phone": "0536 890 12 34",
+        "phoneClean": "905368901234",
+        "whatsapp": "905368901234",
+        "email": "hello@bladeandbeared.com",
+        "website": "https://bladeandbeard.com",
+        "address": "Tesvikiye Mah. Abdi Ipekci Cad. No:72/B, Nisantasi/Istanbul",
+        "city": "Istanbul",
+        "district": "Sisli",
+        "neighborhood": "Tesvikiye",
+        "coordinates": { "lat": 41.0476, "lng": 28.9929 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/bladeandbeard",
+          "tiktok": "https://tiktok.com/@bladeandbeard",
+          "youtube": "https://youtube.com/@bladeandbeardstudio"
+        },
+        "photos": [],
+        "foundedYear": 2018,
+        "experience": "6 yil",
+        "customerCount": "28.000+",
+        "rating": 4.9,
+        "reviewCount": 2100,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "10:00", "close": "21:00", "isOpen": true },
+          { "day": "Sali", "open": "10:00", "close": "21:00", "isOpen": true },
+          { "day": "Carsamba", "open": "10:00", "close": "21:00", "isOpen": true },
+          { "day": "Persembe", "open": "10:00", "close": "21:00", "isOpen": true },
+          { "day": "Cuma", "open": "10:00", "close": "22:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "09:00", "close": "22:00", "isOpen": true },
+          { "day": "Pazar", "open": "11:00", "close": "19:00", "isOpen": true }
+        ],
+        "services": [
+          { "id": "s1", "name": "Signature Cut", "price": "400 TL", "duration": "45 dk", "description": "Yuz analizi, stil danismanligi ve hassas kesim. Premium sampuan ve bakim urunleriyle tamamlanir." },
+          { "id": "s2", "name": "Beard Sculpting", "price": "300 TL", "duration": "35 dk", "description": "Cenesinden favorilerine, sakalinizi bir sanat eserine donusturuyoruz. Sicak havlu ve ozel yaglar dahil." },
+          { "id": "s3", "name": "The Full Experience", "price": "650 TL", "duration": "75 dk", "description": "Sac kesimi + sakal tasarimi + cilt bakimi. Espresso ikramiyla baslayan, hot towel finish ile biten premium deneyim." },
+          { "id": "s4", "name": "Fade & Texture", "price": "350 TL", "duration": "40 dk", "description": "Skin fade, mid fade, taper — istediginiz gecisi milimetrik hassasiyetle yapiyoruz. Textured crop ve modern stiller." },
+          { "id": "s5", "name": "Hair Color / Highlights", "price": "500 TL", "duration": "60 dk", "description": "Dogal gorunumlu renklerden cesur degisimlere. Ammonyaksiz premium boyalar kullaniyoruz." },
+          { "id": "s6", "name": "Keratin Sac Bakimi", "price": "800 TL", "duration": "90 dk", "description": "Elektriklenme ve kabarma sorununa kalici cozum. 3 aya kadar duz ve parlak saclar." },
+          { "id": "s7", "name": "Head Shave & Scalp Care", "price": "250 TL", "duration": "30 dk", "description": "Profesyonel kafa tirasi ve cilt bakimi. Nemlendiricili masaj ile tamamlanir." },
+          { "id": "s8", "name": "Kids Cut (6-14)", "price": "200 TL", "duration": "25 dk", "description": "Genc beylere ozel modern kesimler. TikTok trendlerini biliyoruz." },
+          { "id": "s9", "name": "Damat & Ozel Gun", "price": "900 TL", "duration": "120 dk", "description": "Dugun, mezuniyet, ozel davet oncesi komple bakim paketi. Whiskey ikramiyla servis edilir." },
+          { "id": "s10", "name": "Kaslari Sekillendirme", "price": "100 TL", "duration": "15 dk", "description": "Erkek kas bakimi — fazlaliklari temizleyip dogal sekli koruyoruz." }
+        ],
+        "team": [
+          { "id": "t1", "name": "Kaan Ozturk", "role": "Kurucu & Baş Stilist", "experience": "12 yil", "speciality": "Fade teknikleri, modern erkek stili" },
+          { "id": "t2", "name": "Deniz Aktas", "role": "Senior Barber", "experience": "8 yil", "speciality": "Sakal tasarimi, geleneksel tiras" },
+          { "id": "t3", "name": "Cem Yilmaz", "role": "Color Specialist", "experience": "10 yil", "speciality": "Erkek sac boyama, highlights" },
+          { "id": "t4", "name": "Baris Kaya", "role": "Junior Barber", "experience": "3 yil", "speciality": "Trend kesimler, sosyal medya icerikleri" }
+        ]
+      },
+      "content": {
+        "hero": {
+          "badge": "Nisantasi Premium",
+          "title": "Blade & Beard Studio",
+          "subtitle": "Kesim bir sanattir. Nisantasi'nin kalbinde, modern erkek bakiminin adresiyiz. Her detay ozenle, her musteri ozel.",
+          "cta1": { "text": "Randevu Al", "href": "#iletisim" },
+          "cta2": { "text": "Instagram", "href": "https://instagram.com/bladeandbeard" }
+        },
+        "about": {
+          "badge": "Hikayemiz",
+          "title": "Sanatimiz Keskindir",
+          "description": "2018'de Kaan Ozturk'un bir hayaliyle basladi Blade & Beard. Amac basitti: Istanbul'da erkeklerin kendilerini ozel hissedecegi, sadece sac kestirmek icin degil, bir deneyim yasamak icin gelecekleri bir mekan yaratmak.\n\nBugün dort kisilik uzman kadromuzla Nisantasi Abdi Ipekci Caddesi'nde hizmet veriyoruz. Studiomuza adim attiginizda espresso kokusu, ozenle secilmis muzik ve karanlik ahsap tonlari sizi karsilar.\n\nFade kesimden sakal heykeltrasligina, keratin bakimdan renk degisikligine kadar genis bir yelpazede calisiyoruz. Kullandigimiz urunler — Reuzel, Uppercut Deluxe, Baxter of California — sektorde en iyileri.\n\nBize gore berberlik sadece kesim degil, kisisel bir donusum deneyimi. Her musterimiz studiodan farkli bir enerjiyle cikar."
+        },
+        "services": {
+          "badge": "Hizmetler",
+          "title": "Craft & Precision",
+          "subtitle": "Her hizmetimiz bir deneyimdir. Espresso veya whiskey esliginde, kendinizi ozel hissedin."
+        },
+        "stats": {
+          "stats": [
+            { "value": "28.000+", "label": "Premium Musteri", "icon": "users" },
+            { "value": "4.9", "label": "Google Puani", "icon": "star", "suffix": "/5" },
+            { "value": "2.100+", "label": "5 Yildiz Yorum", "icon": "message-circle" },
+            { "value": "4", "label": "Uzman Barber", "icon": "scissors" }
+          ]
+        },
+        "gallery": {
+          "badge": "Galeri",
+          "title": "Isimizden Kareler",
+          "subtitle": "Her kesim bir imza. Calismaalarimizdan ornekleri inceleyin."
+        },
+        "testimonials": {
+          "badge": "Yorumlar",
+          "title": "Musteri Deneyimleri",
+          "reviews": [
+            { "name": "Selim T.", "location": "Levent", "date": "2024-12", "rating": 5, "text": "Istanbul'da gidilecek en iyi berber. Kaan Bey'in fade teknigi muhtesem. Ortam da ayri bir sey — espresso, iyi muzik ve karanlik ahsap. Berbere gitmek artik bir keyif." },
+            { "name": "Mert A.", "location": "Etiler", "date": "2024-11", "rating": 5, "text": "Full Experience paketini aldim, 75 dakika boyunca krallar gibi hissettim. Sakal tasarimi ozellikle cok iyi. Deniz Bey elinden inanilmaz isler cikariyor." },
+            { "name": "Tolga K.", "location": "Bebek", "date": "2024-11", "rating": 5, "text": "Damat paketini burada yaptirdim. Whiskey ikrami, detayli bakim, mukemmel sonuc. Dugun fotograflarimda herkes sac modelimi sordu." },
+            { "name": "Ali R.", "location": "Mecidiyekoy", "date": "2024-10", "rating": 4, "text": "Fiyatlar biraz yuklu ama kaliteyi dusununce deger. Highlights yaptirdim, Cem Bey cok iyi is cikardi. Dogal gorunumlu oldu." },
+            { "name": "Efe D.", "location": "Besiktas", "date": "2024-09", "rating": 5, "text": "Oglumu getirdim, TikTok'taki kesimi istedi. Baris Bey tam olarak ne istedigini anladi. Oglum hayatinda ilk kez berberden mutlu cikti." },
+            { "name": "Kerem B.", "location": "Kadikoy", "date": "2024-08", "rating": 5, "text": "Asya yakasindayim ama buraya gelmeye deger. Keratin bakimini yaptirdim, 3 aydir sacarimla cok mutluyum. Kabarma ve seklini kaybetme yok." }
+          ]
+        },
+        "contact": {
+          "badge": "Randevu",
+          "title": "Studiomuza Gelin",
+          "subtitle": "Nisantasi Abdi Ipekci Caddesi'nde, metro cikisina 3 dakika yurume mesafesinde. Online randevu veya WhatsApp ile bize ulasin."
+        },
+        "faq": {
+          "badge": "SSS",
+          "title": "Bilmeniz Gerekenler",
+          "questions": [
+            { "q": "Randevu sarimi mi?", "a": "Evet, randevulu calisiyoruz. WhatsApp veya web sitemizden randevu alabilirsiniz. Yogun gunlerde (Cuma, Cumartesi) en az 2 gun onceden randevu oneririz." },
+            { "q": "Full Experience ne kadar suruyor?", "a": "Toplam 75 dakika. Sac kesimi (45dk) + sakal tasarimi (15dk) + cilt bakimi (15dk). Espresso ikramiyla baslar, hot towel finish ile biter." },
+            { "q": "Hangi urunleri kullaniyorsunuz?", "a": "Reuzel, Uppercut Deluxe, Baxter of California ve American Crew urunleri kullaniyoruz. Tum urunlerimiz orijinaldir ve studiomuzda satin alinabilir." },
+            { "q": "Kadin musterilere hizmet veriyor musunuz?", "a": "Studioumuz erkek bakimina ozellessmis durumda. Ancak kisa sac kesimi isteyen kadin musterilerimize de hizmet veriyoruz." },
+            { "q": "Otopark imkani var mi?", "a": "200 metre ileride City's Nisantasi AVM otopaki bulunuyor. Ayrica valepark hizmeti de mevcuttur." },
+            { "q": "Hediye cekileri satiliyor mu?", "a": "Evet, 500 TL, 1000 TL ve 2000 TL'lik hediye ceki seceneklerimiz var. Dogum gunu veya ozel gunler icin ideal." },
+            { "q": "Iptal ve erteleme politikaniz nedir?", "a": "Randevunuzu en az 4 saat oncesinden iptal veya erteleyebilirsiniz. Son dakika iptallerde 100 TL iptal ucreti uygulanir." },
+            { "q": "Sakal yoksa Beard Sculpting yaptirabilir miyim?", "a": "Sakal uzunlugunuzun en az 1 cm olmasi gerekir. Daha kisa sakallar icin sakal sekillendirme hizmeti sunuyoruz (150 TL)." }
+          ]
+        },
+        "cta": {
+          "badge": "Baslayin",
+          "title": "Deneyimi Yasamaya Hazir misiniz?",
+          "subtitle": "Bir kesim sadece kesim degildir. Blade & Beard farkini kendiniz gorün.",
+          "cta": { "text": "Randevu Al", "href": "#iletisim" },
+          "secondaryCta": { "text": "WhatsApp", "href": "https://wa.me/905368901234" }
+        }
+      }
+    },
+    {
+      "id": "berber-gentleman",
+      "variantName": "gentleman",
+      "plan": "pro",
+      "description": "Lux erkek bakim salonu, VIP deneyim",
+      "designPhilosophy": "Zarif, koyu tonlar, altin aksanlar, editorial tipografi",
+      "isDark": true,
+      "colors": {
+        "bg": "#0A0A0A",
+        "surface": "#141414",
+        "surfaceElevated": "#1E1E1E",
+        "text": "#F0EDE8",
+        "textSecondary": "#9A9490",
+        "accent": "#B8860B",
+        "accentHover": "#D4A017",
+        "border": "#252525"
+      },
+      "fonts": { "heading": "Cormorant Garamond", "body": "Lora" },
+      "business": {
+        "name": "The Gentleman's Quarter",
+        "ownerName": "Serkan Demirci",
+        "sector": "Berber",
+        "slogan": "Luks erkek bakiminin Etiler adresi",
+        "phone": "0212 358 90 12",
+        "phoneClean": "902123589012",
+        "whatsapp": "905441234567",
+        "email": "concierge@gentlemansquarter.com.tr",
+        "website": "https://gentlemansquarter.com.tr",
+        "address": "Etiler Mah. Nispetiye Cad. No:24/1, Besiktas/Istanbul",
+        "city": "Istanbul",
+        "district": "Besiktas",
+        "neighborhood": "Etiler",
+        "coordinates": { "lat": 41.0807, "lng": 29.0315 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/gentlemansquarter",
+          "linkedin": "https://linkedin.com/company/gentlemansquarter",
+          "youtube": "https://youtube.com/@gentlemansquarter"
+        },
+        "photos": [],
+        "foundedYear": 2015,
+        "experience": "9 yil",
+        "customerCount": "35.000+",
+        "rating": 5.0,
+        "reviewCount": 1800,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "10:00", "close": "21:00", "isOpen": true },
+          { "day": "Sali", "open": "10:00", "close": "21:00", "isOpen": true },
+          { "day": "Carsamba", "open": "10:00", "close": "21:00", "isOpen": true },
+          { "day": "Persembe", "open": "10:00", "close": "21:00", "isOpen": true },
+          { "day": "Cuma", "open": "10:00", "close": "22:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "09:00", "close": "22:00", "isOpen": true },
+          { "day": "Pazar", "open": "Kapali", "close": "Kapali", "isOpen": false }
+        ],
+        "services": [
+          { "id": "s1", "name": "The Gentleman's Cut", "price": "600 TL", "duration": "50 dk", "description": "Konsultasyon ile baslayan, yuz analizi ve yasam tarziniza uygun profesyonel kesim. Tom Ford sampuan ve Truefitt & Hill urunleriyle." },
+          { "id": "s2", "name": "Royal Shave", "price": "450 TL", "duration": "40 dk", "description": "Lavanta esansiyle baslayan, 3 katli sicak havlu, iki kat tiras ve kollagen maske ile biten kraliyetin tirasi." },
+          { "id": "s3", "name": "Beard Architecture", "price": "400 TL", "duration": "35 dk", "description": "Sakalinizi mimarlikla insa ediyoruz. Lazerli hat belirleme ve ozel sakal serumu ile." },
+          { "id": "s4", "name": "The Full Gentleman", "price": "1.200 TL", "duration": "120 dk", "description": "2 saatlik komple VIP deneyim: kesim, tiras, cilt bakimi, el bakimi, boyun ve omuz masaji. Viski veya sampanya ikramiyla." },
+          { "id": "s5", "name": "Executive Express", "price": "350 TL", "duration": "25 dk", "description": "Zamaniniz kisitli ama gorunumunuzden odun vermek istemiyorsaniz. Hizli ama kaliteli kesim ve duzeltme." },
+          { "id": "s6", "name": "Scalp Treatment", "price": "500 TL", "duration": "45 dk", "description": "Sac derisini besleyen, dokulmey yarlastan, canliligi artiran ozel bakim. Mikroskop ile analiz dahil." },
+          { "id": "s7", "name": "Gray Blending", "price": "550 TL", "duration": "50 dk", "description": "Beyaz saclari boyamak yerine dogal gorunumlu harmanlama. Yasinizi saklamak degil, en iyi halinizi yasamak." },
+          { "id": "s8", "name": "Luxury Facial", "price": "700 TL", "duration": "60 dk", "description": "Derinlemesine cilt temizligi, enzim peeling, hyaluronik asit serumu ve LED terapi. Isadami yorgunluguna son." },
+          { "id": "s9", "name": "Bridal Groom Package", "price": "2.500 TL", "duration": "180 dk", "description": "Dugun gunu komple VIP paket: sac, sakal, cilt, manikur, masaj. Ozel odada sampanya ve muzikle." },
+          { "id": "s10", "name": "Father & Son", "price": "900 TL", "duration": "60 dk", "description": "Baba-ogul ozel kesim deneyimi. Yan yana koltuklarda, ayni anda bakilirsınız. Anı olsun diye fotograf cekimi dahil." },
+          { "id": "s11", "name": "Hand & Nail Care", "price": "250 TL", "duration": "25 dk", "description": "Erkek manikuru: tirnak bakimi, tirnak eti temizligi, el nemlendirme. Toplanti oncesi ellerin kusursuz gorunsun." },
+          { "id": "s12", "name": "Hot Towel Neck Shave", "price": "150 TL", "duration": "15 dk", "description": "Ense tirasi ve sicak havlu uygulamasi. Kesim sonrasi tamamlayici hizmet." },
+          { "id": "s13", "name": "Membership: Gold", "price": "4.500 TL/ay", "duration": null, "description": "Ayda 4 kesim + 2 tiras + 1 cilt bakimi. Oncelikli randevu ve %15 urun indirimi." },
+          { "id": "s14", "name": "Membership: Platinum", "price": "8.000 TL/ay", "duration": null, "description": "Sinirsiz kesim ve tiras + ayda 2 Full Gentleman + viski koleksiyonundan ikram + valepark." }
+        ],
+        "team": [
+          { "id": "t1", "name": "Serkan Demirci", "role": "Founder & Master Barber", "experience": "20 yil", "speciality": "VIP musteri yonetimi, luks bakim konseptleri" },
+          { "id": "t2", "name": "Onur Sahin", "role": "Senior Barber", "experience": "14 yil", "speciality": "Klasik kesimler, Ingiliz tarz tiras" },
+          { "id": "t3", "name": "Yigit Arslan", "role": "Beard Specialist", "experience": "10 yil", "speciality": "Sakal mimarisi, sakal bakim urunleri danismanligi" },
+          { "id": "t4", "name": "Mehmet Can", "role": "Color & Style Expert", "experience": "12 yil", "speciality": "Gray blending, renk gecisleri, trend analizi" },
+          { "id": "t5", "name": "Dr. Elif Koc", "role": "Skin Care Specialist", "experience": "8 yil", "speciality": "Erkek cilt bakimi, anti-aging, dermatolojik analiz" },
+          { "id": "t6", "name": "Arda Tekin", "role": "Junior Barber", "experience": "4 yil", "speciality": "Modern fade teknikleri, sosyal medya trendleri" }
+        ]
+      },
+      "content": {
+        "hero": {
+          "badge": "Etiler VIP",
+          "title": "The Gentleman's Quarter",
+          "subtitle": "Luks erkek bakiminin Etiler adresi. Sac kesiminden cilt bakimina, her detay bir sanat eseri. Viski esliginde kendinizi VIP hissedin.",
+          "cta1": { "text": "Randevu Al", "href": "#iletisim" },
+          "cta2": { "text": "VIP Uyeik", "href": "#membership" }
+        },
+        "about": {
+          "badge": "Hikayemiz",
+          "title": "Lüksü Yeniden Tanimliyoruz",
+          "description": "2015'te Serkan Demirci'nin Londra'da edinidigi deneyimlerle kurulan The Gentleman's Quarter, Istanbul'un ilk gercek anlamda luks erkek bakim salonu olma iddiasinda.\n\nEtiler Nispetiye Caddesi'ndeki mekanımız bir berber dukkanindan fazlasi: koyu meşe kaplamalar, Chesterfield koltukar, el yapimi kütüphane ve özel viski koleksiyonu. Buraya gelen beyefendiler sadece sac kestirmeye degil, bir ritüele katilmaya geliyor.\n\nAlti kisilik uzman kadromuzun her biri kendi alaninda Istanbul'un en iyileri arasinda. Master Barber Serkan Bey 20 yillik kariyerinde Turkiye'nin onde gelen is insanlarindan sanatcilara kadar genis bir musteri portfoyune hizmet verdi.\n\nGold ve Platinum uyelik programlarimiz duzenli musterilerimize oncelikli randevu, ozel fiyatlar ve ekstra ayricaliklar sunuyor.\n\nBize gore luks, altin yaldiz degil — ozen, zaman ve ustaliktir."
+        },
+        "services": {
+          "badge": "Hizmetler",
+          "title": "Craft & Luxury",
+          "subtitle": "Her hizmetimiz bir deneyimdir. Viski ya da sampanya esliginde, ozenle secilmis urunlerle, ustalarimizin ellerinde kendinizi birakın."
+        },
+        "stats": {
+          "stats": [
+            { "value": "35.000+", "label": "VIP Musteri", "icon": "crown" },
+            { "value": "5.0", "label": "Kusursuz Puan", "icon": "star", "suffix": "/5" },
+            { "value": "1.800+", "label": "5 Yildiz Yorum", "icon": "message-circle" },
+            { "value": "6", "label": "Uzman Kadro", "icon": "users" }
+          ]
+        },
+        "team": {
+          "badge": "Kadromuz",
+          "title": "Ustalarimiz",
+          "subtitle": "Her biri alaninda en az 4 yil deneyime sahip, sureki egitimlerle kendini gelistiren uzmanlar."
+        },
+        "gallery": {
+          "badge": "Atmosfer",
+          "title": "Mekanımızdan Kareler",
+          "subtitle": "Chesterfield koltuklar, mese ahsap kaplamalar ve ozenle tasarlanmis aydinlatma."
+        },
+        "testimonials": {
+          "badge": "Referanslar",
+          "title": "Beyefendilerimiz Ne Diyor?",
+          "reviews": [
+            { "name": "Ozan G.", "location": "Etiler", "date": "2024-12", "rating": 5, "text": "Istanbul'da bundan daha iyi bir berber deneyimi bulamazsiniz. Full Gentleman paketi hayatimda aldigim en iyi 2 saatlik moladir. Viski koleksiyonu da ayrica takdire deger." },
+            { "name": "Cenk B.", "location": "Levent", "date": "2024-12", "rating": 5, "text": "Platinum uyelik aldigimdan beri baska yere gitmeyi aklimdan bile gecirmiyorum. Valepark, oncelikli randevu ve sinirsiz kesim — her kurus deger." },
+            { "name": "Hakan E.", "location": "Sariyer", "date": "2024-11", "rating": 5, "text": "Is toplantisi oncesi Executive Express'e girdim, 25 dakikada ciktigimda 10 yas genclessmistim. Hizli ama asla acelesiz degil." },
+            { "name": "Murat D.", "location": "Bebek", "date": "2024-11", "rating": 5, "text": "Gray Blending yaptirdim, Mehmet Bey harika is cikardi. Beyaz saclari saklamamak, onlari samimiyetle tasimak — tam da istedigim sonuc." },
+            { "name": "Tarik S.", "location": "Ulus", "date": "2024-10", "rating": 5, "text": "Father & Son paketini 14 yasindaki oglumla aldik. Yan yana koltuklarda oturarak beraber bakildik. Fotograf cekimi surprizdi, carceveledik eve koyduk." },
+            { "name": "Umut A.", "location": "Nisantasi", "date": "2024-10", "rating": 4, "text": "Tek eksik Pazar gunu acik olmalari. Onun disinda her sey mukemmel. Scalp Treatment sonrasi sac dokulmemin azaldigini fark ettim." },
+            { "name": "Vedat K.", "location": "Arnavutkoy", "date": "2024-09", "rating": 5, "text": "Dugununen bir gun once Bridal Groom Package aldim. 3 saat boyunca kralyie gibi hissettim. Sampanya, masaj, kusursuz kesim. Hayatin en guzel bakim deneyimiydi." },
+            { "name": "Yusuf L.", "location": "Maslak", "date": "2024-08", "rating": 5, "text": "Luxury Facial sorunlardan kurtardi. Elif Hanim'in dermatolojik yaklasimi bir berber salonunda beklediginiz seviyenin cok otesinde." }
+          ]
+        },
+        "contact": {
+          "badge": "Randevu",
+          "title": "Randevunuzu Alin",
+          "subtitle": "Etiler Nispetiye Caddesi'nde, Akmerkez'e 5 dakika yurume mesafesinde. Valepark mevcuttur. Concierge hattimizdan veya WhatsApp'tan ulasın."
+        },
+        "faq": {
+          "badge": "SSS",
+          "title": "Sikca Sorulan Sorular",
+          "questions": [
+            { "q": "Uyelik programlari nasil calisiyor?", "a": "Gold uyelik ayda 4.500 TL: 4 kesim, 2 tiras, 1 cilt bakimi, oncelikli randevu ve %15 urun indirimi. Platinum ayda 8.000 TL: sinirsiz kesim/tiras, ayda 2 Full Gentleman, viski ikrami ve valepark." },
+            { "q": "Randevusuz gelebilir miyim?", "a": "Yalnizca randevuyla calisiyoruz. Bu sayede her musterimize ayrilmis zamani garanti edebiliyoruz. Acil durumlar icin ayni gun randevu talep edebilirsiniz." },
+            { "q": "Hediye ceki veya kurumsal paket var mi?", "a": "Evet. 1.000, 2.500 ve 5.000 TL'lik hediye ceklerimiz var. Kurumsal firmalar icin 10+ kisilik ozel paketler de sunuyoruz." },
+            { "q": "Full Gentleman paketinde ne var?", "a": "2 saatlik VIP deneyim: The Gentleman's Cut, Royal Shave, Luxury Facial, Hand & Nail Care, boyun-omuz masaji. Viski veya sampanya ikrami, ozel odada." },
+            { "q": "Valepark hizmeti var mi?", "a": "Evet, Platinum uyeler icin ucretsiz valepark mevcuttur. Diger musterilerimiz icin 100 TL valepark ucreti vardir." },
+            { "q": "Kac gun onceden randevu almaliyim?", "a": "Hafta ici icin 1-2 gun, cumartesi icin en az 3-4 gun onceden randevu almanizi oneririz. Platinum uyeler ayni gun oncelikli randevu alabilir." },
+            { "q": "Hangi odeme yontemlerini kabul ediyorsunuz?", "a": "Nakit, tum kredi kartlari, Apple Pay ve havale kabul ediyoruz. Uyelik odemeleri otomatik cekimle yapilir." },
+            { "q": "Iptal politikaniz nedir?", "a": "6 saat oncesine kadar ucretsiz iptal. 6 saatten az surede iptal halinde hizmet bedelinin %50'si tahsil edilir. No-show durumunda tam ucret yansitilir." },
+            { "q": "Ozel etkinlikler icin mekaninizi kullanabilir miyiz?", "a": "Evet, 10 kisiye kadar ozel etkinlikler (bekarliga veda, is toplantisi vb.) icin mekanımızı kiralayabilirsiniz. Detaylar icin concierge hattimizi arayin." },
+            { "q": "Cilt bakimi icin doktor gorusu gerekir mi?", "a": "Hayır, Elif Hanim dermatoloji uzmanligiyla tum cilt tiplerini degerlendirebilir. Ciddi dermatolojik sorunlar icin uzman yonlendirmesi yapilir." }
+          ]
+        },
+        "cta": {
+          "badge": "VIP",
+          "title": "Gentleman Deneyimine Katilin",
+          "subtitle": "Gold veya Platinum uyelikle ayricaliklardan yararlanin. Ilk seansinizda %20 indirim.",
+          "cta": { "text": "Uyelik Basvurusu", "href": "#iletisim" },
+          "secondaryCta": { "text": "Concierge Hatti", "href": "tel:902123589012" }
+        },
+        "process_steps": {
+          "badge": "Nasil Calisir?",
+          "title": "Deneyim Adimlari",
+          "steps": [
+            { "step": 1, "title": "Randevu", "description": "Online, WhatsApp veya concierge hattindan randevunuzu alin." },
+            { "step": 2, "title": "Karsilama", "description": "Valepark veya danisma masasinda karsilanin. Icecek tercihiniz alinir." },
+            { "step": 3, "title": "Konsultasyon", "description": "Ustanizla yuz yuze gorusme. Istekleriniz, stil tercihiniz ve oneriler." },
+            { "step": 4, "title": "Deneyim", "description": "Sectiginiz hizmet ozenle uygulanir. Rahatlamak icin kendinizi birakin." },
+            { "step": 5, "title": "Finishing", "description": "Son dokunuslar, urun onerileri ve bir sonraki randevunuzun planlanmasi." }
+          ]
+        }
+      }
+    },
+    {
+      "id": "berber-studio",
+      "variantName": "studio",
+      "plan": "enterprise",
+      "description": "Cok subeli premium erkek bakim markasi",
+      "designPhilosophy": "Sinematik, full-bleed, marka odakli, editorial",
+      "isDark": true,
+      "colors": {
+        "bg": "#050505",
+        "surface": "#0F0F0F",
+        "surfaceElevated": "#181818",
+        "surfaceMuted": "#0A0A0A",
+        "text": "#EDEDED",
+        "textSecondary": "#888888",
+        "textMuted": "#555555",
+        "textOnAccent": "#000000",
+        "accent": "#E8C547",
+        "accentHover": "#F0D060",
+        "accentActive": "#D4B030",
+        "accentLight": "#1A1808",
+        "border": "#1F1F1F",
+        "borderSubtle": "#141414"
+      },
+      "fonts": { "heading": "Syne", "body": "Inter" },
+      "business": {
+        "name": "Studio 34",
+        "ownerName": "Tarik Basaran",
+        "sector": "Berber",
+        "slogan": "Istanbul'un 3 noktasinda, ayni kusursuzlukla",
+        "phone": "0212 900 34 34",
+        "phoneClean": "902129003434",
+        "whatsapp": "905559003434",
+        "email": "info@studio34.com.tr",
+        "website": "https://studio34.com.tr",
+        "address": "Bebek Mah. Cevdetpasa Cad. No:91, Besiktas/Istanbul",
+        "city": "Istanbul",
+        "district": "Besiktas",
+        "neighborhood": "Bebek",
+        "coordinates": { "lat": 41.0768, "lng": 29.0432 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/studio34istanbul",
+          "tiktok": "https://tiktok.com/@studio34",
+          "youtube": "https://youtube.com/@studio34istanbul",
+          "linkedin": "https://linkedin.com/company/studio34istanbul"
+        },
+        "photos": [],
+        "foundedYear": 2016,
+        "experience": "8 yil",
+        "customerCount": "85.000+",
+        "rating": 4.9,
+        "reviewCount": 5600,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "09:00", "close": "22:00", "isOpen": true },
+          { "day": "Sali", "open": "09:00", "close": "22:00", "isOpen": true },
+          { "day": "Carsamba", "open": "09:00", "close": "22:00", "isOpen": true },
+          { "day": "Persembe", "open": "09:00", "close": "22:00", "isOpen": true },
+          { "day": "Cuma", "open": "09:00", "close": "23:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "08:00", "close": "23:00", "isOpen": true },
+          { "day": "Pazar", "open": "10:00", "close": "20:00", "isOpen": true }
+        ],
+        "services": [
+          { "id": "s1", "name": "Signature Haircut", "price": "500 TL", "duration": "45 dk", "description": "Dijital stil konsultasyonu ile baslayan, hassas kesim ve premium styling ile tamamlanan imza hizmetimiz." },
+          { "id": "s2", "name": "Precision Fade", "price": "450 TL", "duration": "40 dk", "description": "Skin fade'den drop fade'e, milimetrik hassasiyetle yapilan gradyan kesimler." },
+          { "id": "s3", "name": "Beard Design", "price": "350 TL", "duration": "30 dk", "description": "Yuz oranlariniza gore lazer rehberli sakal hatti belirleme ve profesyonel bakım." },
+          { "id": "s4", "name": "The Studio Experience", "price": "950 TL", "duration": "90 dk", "description": "Kesim + sakal + cilt bakimi + boyun masaji. Single malt veya craft kahve esliginde." },
+          { "id": "s5", "name": "Color Lab", "price": "600 TL", "duration": "60 dk", "description": "Sac rengi degisimi veya gray blending. Renk analizi dahil, ammonyaksiz formullerle." },
+          { "id": "s6", "name": "Scalp Detox", "price": "400 TL", "duration": "40 dk", "description": "Sac derisi derin temizlik, exfoliation ve besin serumu uygulamasi. Sac sagliginin temeli." },
+          { "id": "s7", "name": "Royal Shave", "price": "300 TL", "duration": "30 dk", "description": "Geleneksel sicak havlu tirasi. 3 katli havlu, premium krem ve after-shave balsam." },
+          { "id": "s8", "name": "Keratin Smooth", "price": "900 TL", "duration": "90 dk", "description": "Brezilya keratin bakimi. 3 aya kadar puruzsuz, parlak ve kolay sekillenebilen saclar." },
+          { "id": "s9", "name": "Brow Shaping", "price": "120 TL", "duration": "15 dk", "description": "Erkek kas bakimi — dogal gorunumu koruyarak fazlaliklari temizliyoruz." },
+          { "id": "s10", "name": "Kids Trend Cut", "price": "250 TL", "duration": "25 dk", "description": "7-16 yas arasi gencler icin trend kesimler. TikTok ve Instagram'dan referans gosterebilirler." },
+          { "id": "s11", "name": "Pre-Event Package", "price": "1.500 TL", "duration": "120 dk", "description": "Dugun, gala, odul toreni oncesi komple hazirlık. Sac, sakal, cilt, el bakimi ve styling." },
+          { "id": "s12", "name": "Corporate Grooming", "price": "400 TL", "duration": "30 dk", "description": "Kurumsal profesyoneller icin hizli ama kaliteli bakim. Ogle tatilinde gel, toplantiya hazir don." },
+          { "id": "s13", "name": "Luxury Facial", "price": "650 TL", "duration": "50 dk", "description": "LED terapi, hyaluronik asit, kolajen maske. Cilt yenilenme programi baslangic seansi." },
+          { "id": "s14", "name": "Hot Towel Neck Clean", "price": "100 TL", "duration": "10 dk", "description": "Kesim sonrasi ense temizligi ve sicak havlu uygulamasi. Tum kesimlerle ucretsiz." },
+          { "id": "s15", "name": "Monthly Unlimited", "price": "3.500 TL/ay", "duration": null, "description": "Aylik sinirsiz kesim ve tiras. Tum subelerde gecerli. Oncelikli randevu hakki." },
+          { "id": "s16", "name": "Annual VIP Pass", "price": "35.000 TL/yil", "duration": null, "description": "Yillik VIP: sinirsiz tum hizmetler, ayda 2 facial, ozel etkinliklere davet, valepark, partner indirimleri." },
+          { "id": "s17", "name": "Hair Tattoo / Design", "price": "350 TL", "duration": "30 dk", "description": "Sacda cizgi, logo veya ozel desen. Ozel gun veya cesur bir gorunum icin." },
+          { "id": "s18", "name": "Aromatherapy Massage", "price": "300 TL", "duration": "25 dk", "description": "Boyun, omuz ve kafa derisi masaji. Lavanta ve okaliptus yaglariyla stres atma seansi." },
+          { "id": "s19", "name": "Dandruff Treatment", "price": "350 TL", "duration": "35 dk", "description": "Kepek ve kaşıntı tedavisi. Ozel sampuan ve serum kombinasyonuyla uzun sureli sonuc." },
+          { "id": "s20", "name": "Gift Card", "price": "500-5000 TL", "duration": null, "description": "Ozel kutulu hediye karti. Dogum gunu, yildonumu veya kurumsal hediye icin ideal." }
+        ],
+        "team": [
+          { "id": "t1", "name": "Tarik Basaran", "role": "Founder & Creative Director", "experience": "18 yil", "speciality": "Marka stratejisi, premium berber konseptleri, VIP musteri iliskileri" },
+          { "id": "t2", "name": "Alp Yildirim", "role": "Head Barber — Bebek", "experience": "14 yil", "speciality": "Precision cutting, editorial styling, fotograf cekimi oncesi hazirlık" },
+          { "id": "t3", "name": "Sinan Koc", "role": "Head Barber — Nisantasi", "experience": "12 yil", "speciality": "Fade teknikleri, sac donusumu, renk degisimi" },
+          { "id": "t4", "name": "Berkay Demir", "role": "Head Barber — Kadikoy", "experience": "10 yil", "speciality": "Sakal mimarisi, geleneksel tiras, genç musteri segmenti" },
+          { "id": "t5", "name": "Zeynep Aras", "role": "Skin Care Director", "experience": "9 yil", "speciality": "Dermatolojik bakim, anti-aging, LED terapi, cilt analizi" },
+          { "id": "t6", "name": "Okan Celik", "role": "Color Specialist", "experience": "11 yil", "speciality": "Renk formulleri, gray blending, creative coloring" },
+          { "id": "t7", "name": "Furkan Ay", "role": "Senior Barber", "experience": "7 yil", "speciality": "Modern erkek stili, sosyal medya trendleri, hair tattoo" },
+          { "id": "t8", "name": "Ege Turk", "role": "Junior Barber", "experience": "3 yil", "speciality": "Gen-Z trendleri, dijital konsultasyon, TikTok icerikleri" }
+        ]
+      },
+      "content": {
+        "hero": {
+          "badge": "3 Sube — Bebek, Nisantasi, Kadikoy",
+          "title": "Studio 34",
+          "subtitle": "Istanbul'un uc yakasinda, ayni kusursuzlukla. Erkek bakimini sanata donusturen premium zincir. 85.000+ beyefendinin tercihi.",
+          "cta1": { "text": "Randevu Al", "href": "#iletisim" },
+          "cta2": { "text": "Subeleri Gor", "href": "#subeler" },
+          "badges": ["Bebek", "Nisantasi", "Kadikoy"]
+        },
+        "about": {
+          "badge": "Marka Hikayesi",
+          "title": "Bir Vizyonun Hikayesi",
+          "description": "2016'da Tarik Basaran tek bir soruyla yola cikti: 'Istanbul'da erkekler neden birinci sinif bir bakim deneyimi yasamasin?'\n\nBebek'teki ilk subemiz 40 metrekarelik kucuk bir mekandi. Bugün uc subede, 8 uzman kadromuzla Istanbul'un en bilinen erkek bakim markalarindan biriyiz.\n\nStudio 34'un DNA'si uc kelimenin üzerine kurulu: **hassasiyet**, **deneyim** ve **tutarlılık**. Hangi subemize gelirseniz gelin, ayni kalitede hizmet alacaginizi garanti ediyoruz.\n\nKurumsal kimligimiz, ic mekan tasarimimiz ve hizmet standartlarimiz tek bir merkezden yonetilir. Her barber'imiz Studio 34 Akademi'den gecmis, standardimizi icsellesirmistir.\n\nTeknoloji de isimizin ayrilmaz parcasi: dijital stil konsultasyonu, online randevu, musteri profil sistemi ve sadakat programi. Sac gecmisinizi biliyoruz, tercihinizi hatirliyoruz.\n\n85.000'den fazla musterimiz bize guvendiyor. Biz de bu guvene her kesimde, her tiraşta layık olmaya calışıyoruz."
+        },
+        "services": {
+          "badge": "Hizmetler",
+          "title": "20 Premium Hizmet",
+          "subtitle": "Basit bir kesimden yillik VIP uyelike, erkek bakiminin her alaninda yaninizdayiz."
+        },
+        "stats": {
+          "stats": [
+            { "value": "85.000+", "label": "Toplam Musteri", "icon": "users" },
+            { "value": "3", "label": "Sube", "icon": "map-pin" },
+            { "value": "4.9", "label": "Ortalama Puan", "icon": "star", "suffix": "/5" },
+            { "value": "5.600+", "label": "Google Yorum", "icon": "message-circle" }
+          ]
+        },
+        "team": {
+          "badge": "Kadromuz",
+          "title": "8 Uzman, 3 Sube",
+          "subtitle": "Her barber Studio 34 Akademi'den gecmis, alaninda en az 3 yil deneyime sahip profesyonellerdir."
+        },
+        "gallery": {
+          "badge": "Portfolio",
+          "title": "Calismalarimizdan",
+          "subtitle": "Her kesim bir imza, her musteri bir hikaye. Studiolarimizdan ve calismalarimizdan kareler."
+        },
+        "testimonials": {
+          "badge": "Referanslar",
+          "title": "85.000+ Musterimizin Sesi",
+          "reviews": [
+            { "name": "Bora S.", "location": "Bebek", "date": "2024-12", "rating": 5, "text": "Bebek subesine gidiyorum, Alp Bey her seferinde beklentiyi asiyor. Artik baska berbere gitmem mumkun degil. Dijital konsultasyon sistemi de cok kullanisli." },
+            { "name": "Cem T.", "location": "Nisantasi", "date": "2024-12", "rating": 5, "text": "Annual VIP Pass aldim, hayatimin en iyi yatirimi. Ayda iki facial, sinirsiz kesim ve valepark. Is yukunun arasinda kendime ayrdigim en degerli zaman." },
+            { "name": "Deniz M.", "location": "Kadikoy", "date": "2024-11", "rating": 5, "text": "Asya yakasinda boyle bir yer olmasi buyuk sans. Berkay Bey sakal konusunda inanilmaz. Kadikoy subesi de tasis bakimindan hic geride kalmiyor." },
+            { "name": "Erdem A.", "location": "Levent", "date": "2024-11", "rating": 5, "text": "Firmamizin 20 kisilik ekibi icin Corporate Grooming paketi aldik. Nisantasi subesinde ogle tatilinde geldiler, herkes cok memnun kaldi." },
+            { "name": "Fatih K.", "location": "Sariyer", "date": "2024-10", "rating": 5, "text": "Pre-Event Package ile kizimin dugonune hazirlandim. 2 saatlik seremoni gibiydi. Sampanya, masaj, kusursuz sonuc. Dugun fotograflarinda herkes sac modelimi sordu." },
+            { "name": "Gokhan B.", "location": "Atasehir", "date": "2024-10", "rating": 4, "text": "Fiyatlar premium segment ama kalite tartismasiz. Color Lab'da gray blending yaptirdim, Okan Bey mukemmel is cikardi. 15 yas genclesmis gorunuyorum." },
+            { "name": "Halil O.", "location": "Besiktas", "date": "2024-09", "rating": 5, "text": "Hair tattoo yaptirdim, Furkan Bey inanilmaz detayli calisti. Instagrama koydum, 500 begeni geldi. Cesur ama zarif bir sonuc." },
+            { "name": "Ilker Y.", "location": "Bakirkoy", "date": "2024-09", "rating": 5, "text": "3 subeyi de denedim, her yerde ayni kalite. Bu tutarlilık bir zincir icin inanılmaz zor bir sey. Tarik Bey'in vizyonu gercekten fark yaratiyor." },
+            { "name": "Kagan R.", "location": "Maltepe", "date": "2024-08", "rating": 5, "text": "Kids Trend Cut icin oglumu getirdim. Ege Bey TikTok'taki modeli birebir yapti. Oglum okula gidince arkadaslari hayran kaldi." },
+            { "name": "Levent C.", "location": "Uskudar", "date": "2024-08", "rating": 5, "text": "Scalp Detox + Dandruff Treatment kombinasyonu hayatimi kurtardi. Yillarca kepek sorunum vardi, 3 seans sonra tamamen gecti." },
+            { "name": "Murat N.", "location": "Beyoglu", "date": "2024-07", "rating": 5, "text": "Monthly Unlimited ile her hafta kesim yaptiriyorum. 3 subede gecerli olmasi isime cok yariyor — ofise yakin subeden randevu aliyorum." },
+            { "name": "Nedim P.", "location": "Sisli", "date": "2024-07", "rating": 4, "text": "Aromatherapy masaji surpriz oldu, cok rahatlatici. Sadece stres atma icin bile gelinir. Fiyat/performans orani makul." }
+          ]
+        },
+        "contact": {
+          "badge": "Iletisim",
+          "title": "Size En Yakin Sube",
+          "subtitle": "Istanbul'un 3 noktasinda hizmetinizdeyiz. Online randevu alin veya bizi arayin."
+        },
+        "faq": {
+          "badge": "SSS",
+          "title": "Her Sey Hakkinda",
+          "questions": [
+            { "q": "Hangi subelerde hizmet veriyorsunuz?", "a": "Bebek (Cevdetpasa Cad. No:91), Nisantasi (Abdi Ipekci Cad. No:55) ve Kadikoy (Bagdat Cad. No:200). Uc sube de her gun aciktir." },
+            { "q": "Monthly Unlimited nasil calisiyor?", "a": "Ayda 3.500 TL karsiliginda sinirsiz kesim ve tiras. 3 subede gecerli. Oncelikli randevu hakki dahil. Minimum 3 ay taahhut." },
+            { "q": "Annual VIP Pass ne iceriyor?", "a": "Yillik 35.000 TL: sinirsiz tum hizmetler, ayda 2 facial, ozel etkinliklere davet, valepark, partner markalarda indirim (restoran, otel, spor salonu)." },
+            { "q": "Dijital stil konsultasyonu nedir?", "a": "WhatsApp veya uygulamamız uzerinden fotografinizi gonderirsiniz. Barber'ınız yuz analizi yaparak 3 farkli stil onerisi hazirlar. Randevuya geldiginizde zaman kaybetmezsiniz." },
+            { "q": "Kurumsal paketler var mi?", "a": "Evet. 5+ kisilik ekipler icin Corporate Grooming (kisi basi 400 TL), 20+ kisi icin toplu indirimler. Ozel fatura ve sozlesme duzenlenir." },
+            { "q": "Urun satisi yapiyor musunuz?", "a": "Evet. Reuzel, Uppercut, Baxter of California, Truefitt & Hill, Tom Ford ve kendi ozel urunlerimiz studiolarimizda ve online magazamizda satilmaktadir." },
+            { "q": "Randevu iptal politikasi nedir?", "a": "8 saat oncesine kadar ucretsiz iptal. 8 saatten az: %50 ucret. No-show: tam ucret. Uyelik sahiplerine esneklik taninir." },
+            { "q": "Franchise veriyor musunuz?", "a": "Su an icin hayir. Tum subeler sirket bunyesinde isletilmektedir. Ilerleyen donemde franchise modeli degerlendirilebilir." },
+            { "q": "Engelli erisimi var mi?", "a": "Evet, uc subemiz de tekerlekli sandalye erisimine uygundur. Asansor ve engelli tuvaleti mevcuttur." },
+            { "q": "Hediye karti nasil kullanilir?", "a": "500-5000 TL arasi seceneklerle satin alinabilir. Ozel kutuda teslim edilir. 1 yil gecerlidir, tum subelerde tum hizmetlerde kullanilabilir." },
+            { "q": "Sosyal medya icin fotograf cekebilir miyim?", "a": "Tabii! Studiolarimizda ozel fotograf kosesi var. Bizi etiketleyen paylasimlara %10 indirim kuponu veriyoruz." },
+            { "q": "Pazar gunu acik misiniz?", "a": "Evet, uc subemiz de Pazar gunu 10:00-20:00 arasi aciktir." },
+            { "q": "Baska sehirlerde subeniz var mi?", "a": "Su an yalnizca Istanbul'dayiz. 2025'te Ankara ve Izmir icin planlarimiz var." },
+            { "q": "COVID-19 onlemleriniz nedir?", "a": "Tum araçlar her musteriden sonra sterilize edilir. HEPA filtreli havalandirma sistemi mevcuttur. Ekibimiz duzenli saglik kontrolunden gecer." },
+            { "q": "Online magazanizda ne var?", "a": "Sac bakimi, sakal bakimi, cilt bakimi urunleri ve aksesuarlar. Istanbul ici ayni gun teslimat. 500 TL uzeri ucretsiz kargo." }
+          ]
+        },
+        "cta": {
+          "badge": "Katılın",
+          "title": "Studio 34 Ailesine Hosgeldiniz",
+          "subtitle": "Ilk randevunuzda %15 indirim. Veya uyelik programlarimizi inceleyin — erkek bakimini bir rutine donusturun.",
+          "cta": { "text": "Ilk Randevumu Al", "href": "#iletisim" },
+          "secondaryCta": { "text": "Uyelik Programlari", "href": "#uyelik" }
+        },
+        "process_steps": {
+          "badge": "Surecimiz",
+          "title": "Studio 34 Deneyimi",
+          "steps": [
+            { "step": 1, "title": "Online Randevu", "description": "Web sitesi, uygulama veya WhatsApp'tan istediginiz sube ve barber'i secin." },
+            { "step": 2, "title": "Dijital Konsultasyon", "description": "Opsiyonel: fotografinizi gonderin, barber'iniz 3 stil onerisi hazirlasin." },
+            { "step": 3, "title": "Studioya Gelin", "description": "Valepark veya danisma masasinda karsilanin. Icecek tercihiniz alinir." },
+            { "step": 4, "title": "Hizmet", "description": "Sectiginiz hizmet ozenle uygulanir. Premium urunlerle tamamlanir." },
+            { "step": 5, "title": "Sonuc & Bakim", "description": "Sonucu birlikte degerlendirir, evde bakim onerileri alinir." },
+            { "step": 6, "title": "Sonraki Randevu", "description": "Bir sonraki randevunuz planlanir. Uyelik sahiplerine otomatik hatirlatma gonderilir." }
+          ]
+        },
+        "blog_preview": {
+          "badge": "Blog",
+          "title": "Grooming Journal",
+          "articles": [
+            { "title": "2024'un En Trend 5 Erkek Sac Modeli", "summary": "Fade'den textured crop'a, bu yil en cok talep edilen kesimler ve kimlere yakisir.", "date": "2024-12-15", "category": "Trend" },
+            { "title": "Sakal Bakiminin 7 Altin Kurali", "summary": "Evde sakal bakimi nasil yapilir? Dogru urunler, dogru teknikler ve kacınılması gereken hatalar.", "date": "2024-11-28", "category": "Bakim" },
+            { "title": "Gray Blending: Beyaz Saclarla Baris Yapın", "summary": "Boyamak yerine harmanlama tekniginin avantajlari ve sonuclari. Gercek musteri hikayeleri.", "date": "2024-11-10", "category": "Stil" }
+          ]
+        },
+        "newsletter": {
+          "badge": "Bulten",
+          "title": "Studio 34 Bulten",
+          "subtitle": "Aylik bakim ipuclari, ozel kampanyalar ve yeni hizmet duyurularindan haberdar olun.",
+          "placeholder": "E-posta adresiniz",
+          "buttonText": "Abone Ol",
+          "consent": "KVKK kapsaminda e-posta adresiniz saklanacaktir."
+        },
+        "brands_logos": {
+          "badge": "Partnerlerimiz",
+          "title": "Calistigimiz Markalar",
+          "brands": [
+            { "name": "Reuzel", "category": "Styling" },
+            { "name": "Uppercut Deluxe", "category": "Pomade" },
+            { "name": "Baxter of California", "category": "Skin Care" },
+            { "name": "Truefitt & Hill", "category": "Shaving" },
+            { "name": "Tom Ford", "category": "Fragrance" },
+            { "name": "American Crew", "category": "Hair Care" },
+            { "name": "Proraso", "category": "Shaving" },
+            { "name": "Kevin Murphy", "category": "Styling" }
+          ]
+        }
+      }
+    }
+  ]
+}

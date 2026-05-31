@@ -74,12 +74,17 @@ export const staggerChild: Variants = {
 
 // ─── Animation Map ───
 
-export const ANIMATION_MAP: Record<AnimationPreset, Variants> = {
+export const ANIMATION_MAP: Record<string, Variants> = {
   none: { hidden: {}, visible: {} },
   fadeUp,
   fadeIn,
+  fade: fadeIn,
+  'slide-up': fadeUp,
   slideLeft,
   slideRight,
   scaleUp,
   stagger: staggerContainer,
+  parallax3d: fadeUp,
+  kenBurns: fadeIn,
+  morphBlob: scaleUp,
 }

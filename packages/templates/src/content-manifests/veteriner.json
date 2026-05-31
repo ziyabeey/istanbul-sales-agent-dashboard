@@ -1,0 +1,535 @@
+{
+  "sectorId": "vet",
+  "seoSchemaType": "VeterinaryCare",
+  "variants": [
+    {
+      "id": "vet-klinik",
+      "variantName": "klinik",
+      "plan": "free",
+      "description": "Mahalle veteriner klinigi, samimi ve guvenilir",
+      "designPhilosophy": "Temiz, sicak, islevsel",
+      "isDark": false,
+      "colors": {
+        "bg": "#FFFFFF",
+        "surface": "#F5F9F5",
+        "text": "#1A1A1A",
+        "accent": "#3A7D44"
+      },
+      "fonts": { "heading": "Inter", "body": "Inter" },
+      "business": {
+        "name": "Patiler Veteriner Klinigi",
+        "ownerName": "Dr. Vet. Hkn. Selim Yildiz",
+        "sector": "Veteriner",
+        "slogan": "Dostlariniz icin ozenli bakim",
+        "phone": "0532 714 28 50",
+        "phoneClean": "905327142850",
+        "whatsapp": "905327142850",
+        "email": "info@patilerklinik.com",
+        "address": "Caferaga Mah. Moda Cad. No:78/B, Kadikoy/Istanbul",
+        "city": "Istanbul",
+        "district": "Kadikoy",
+        "neighborhood": "Caferaga",
+        "coordinates": { "lat": 40.9871, "lng": 29.0258 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/patilerveteriner"
+        },
+        "photos": [],
+        "foundedYear": 2015,
+        "experience": "11 yil",
+        "customerCount": "8.500+",
+        "rating": 4.7,
+        "reviewCount": 620,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "09:00", "close": "19:00", "isOpen": true },
+          { "day": "Sali", "open": "09:00", "close": "19:00", "isOpen": true },
+          { "day": "Carsamba", "open": "09:00", "close": "19:00", "isOpen": true },
+          { "day": "Persembe", "open": "09:00", "close": "19:00", "isOpen": true },
+          { "day": "Cuma", "open": "09:00", "close": "19:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "10:00", "close": "17:00", "isOpen": true },
+          { "day": "Pazar", "open": "00:00", "close": "00:00", "isOpen": false }
+        ],
+        "services": [
+          { "id": "s1", "name": "Genel Muayene", "price": "500 TL", "duration": "30 dk", "description": "Detayli fizik muayene, kilo takibi, kulak/goz/dis kontrolu." },
+          { "id": "s2", "name": "Asi Uygulamasi", "price": "350 TL", "duration": "15 dk", "description": "Karma, kuduz ve lösemi asilari, asi karti duzenleme." },
+          { "id": "s3", "name": "Dis Tasi Temizligi", "price": "1.200 TL", "duration": "45 dk", "description": "Ultrasonik dis tasi temizligi, anestezi altinda guvenli islem." },
+          { "id": "s4", "name": "Tirnak Kesimi", "price": "150 TL", "duration": "10 dk", "description": "Kedi ve kopek tirnak bakimi, kanama kontrol ile." }
+        ],
+        "team": [],
+        "testimonials": [],
+        "faq": [
+          { "q": "Ilk muayene icin ne getirmeliyim?", "a": "Varsa onceki asi karti ve saglik raporlarini getirmenizi oneririz. Ilk muayenede hayvaninizin tam oykusu alinir." },
+          { "q": "Acil durumlarda sizi arayabilir miyim?", "a": "Klinigimiz mesai saatleri icerisinde hizmet vermektedir. Acil durumlar icin 7/24 acil veteriner hatlarina yonlendirme yapiyoruz." },
+          { "q": "Asi takvimi nasil belirleniyor?", "a": "Hayvaninizin yasina ve saglik durumuna gore bireysel asi takvimi olusturuyoruz. Ilk asi 6-8 haftada baslar." },
+          { "q": "Odeme secenekleriniz nelerdir?", "a": "Nakit, kredi karti ve banka karti ile odeme kabul ediyoruz. 500 TL ustu islemlerde 3 taksit imkani sunuyoruz." }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Dostlariniz Icin Ozenli Veteriner Bakimi",
+          "subtitle": "Kadikoy'de 11 yildir evcil hayvanlarinizin sagligi icin buradayiz. Deneyimli ekibimizle guvenilir veteriner hizmeti.",
+          "badge": "Kadikoy'nin Guvenilir Veterineri"
+        },
+        "about": {
+          "title": "Patiler Veteriner Hakkinda",
+          "description": "2015 yilindan bu yana Kadikoy Caferaga'da evcil hayvan sahiplerine hizmet veriyoruz. Dr. Selim Yildiz tarafindan kurulan klinigimiz, kedi ve kopeklerin temel saglik ihtiyaclarini karsilamak uzere kurulmustur. Her muayenede hayvaninizi kendi dostumuz gibi gorur, detayli muayene ve acik iletisim ile sizi bilgilendiririz. Samimi ortamimiz ve sabirl yaklasimimizla hayvanlarinizin klinikte rahat hissetmesini sagliyoruz. Asi takibi, dis bakim, tirnak kesimi gibi rutin islemleri titizlikle gerceklestiriyor, gerektiginde uzman kliniklere yonlendirme yapiyoruz."
+        },
+        "services": {
+          "title": "Veteriner Hizmetlerimiz",
+          "subtitle": "Evcil dostlariniz icin temel saglik hizmetleri"
+        },
+        "contact": {
+          "title": "Bize Ulasin",
+          "subtitle": "Randevu almak veya bilgi edinmek icin bizi arayin"
+        }
+      }
+    },
+    {
+      "id": "vet-petshop",
+      "variantName": "petshop",
+      "plan": "starter",
+      "description": "Veteriner klinik ve pet shop bir arada",
+      "designPhilosophy": "Canli, samimi, pet-friendly",
+      "isDark": false,
+      "colors": {
+        "bg": "#FFFDF7",
+        "surface": "#FFF8ED",
+        "text": "#2D2A24",
+        "accent": "#E8832A"
+      },
+      "fonts": { "heading": "DM Sans", "body": "Inter" },
+      "business": {
+        "name": "PatiDost Veteriner & Pet Shop",
+        "ownerName": "Dr. Vet. Hkn. Burcu Ozkan",
+        "sector": "Veteriner",
+        "slogan": "Saglik, bakim ve mutluluk tek cati altinda",
+        "phone": "0533 862 15 40",
+        "phoneClean": "905338621540",
+        "whatsapp": "905338621540",
+        "email": "info@patidost.com.tr",
+        "address": "Levent Mah. Nispetiye Cad. No:34/A, Besiktas/Istanbul",
+        "city": "Istanbul",
+        "district": "Besiktas",
+        "neighborhood": "Levent",
+        "coordinates": { "lat": 41.0782, "lng": 29.0134 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/patidostveteriner",
+          "facebook": "https://facebook.com/patidostveteriner"
+        },
+        "photos": [],
+        "foundedYear": 2018,
+        "experience": "8 yil",
+        "customerCount": "12.000+",
+        "rating": 4.8,
+        "reviewCount": 890,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "09:00", "close": "20:00", "isOpen": true },
+          { "day": "Sali", "open": "09:00", "close": "20:00", "isOpen": true },
+          { "day": "Carsamba", "open": "09:00", "close": "20:00", "isOpen": true },
+          { "day": "Persembe", "open": "09:00", "close": "20:00", "isOpen": true },
+          { "day": "Cuma", "open": "09:00", "close": "20:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "09:30", "close": "19:00", "isOpen": true },
+          { "day": "Pazar", "open": "10:00", "close": "16:00", "isOpen": true }
+        ],
+        "services": [
+          { "id": "s1", "name": "Genel Saglik Muayenesi", "price": "600 TL", "duration": "30 dk", "description": "Kapsamli fizik muayene, vital bulgular, kulak/goz/dis ve deri kontrolu." },
+          { "id": "s2", "name": "Karma Asi Paketi", "price": "450 TL", "duration": "20 dk", "description": "Yillik karma asi, kuduz asisi dahil, dijital asi karti." },
+          { "id": "s3", "name": "Ic/Dis Parazit Tedavisi", "price": "300 TL", "duration": "15 dk", "description": "Sezonluk pire, kene ve ic parazit koruma programi." },
+          { "id": "s4", "name": "Mikrocip Uygulamasi", "price": "500 TL", "duration": "10 dk", "description": "ISO standartli mikrocip, ulusal veri tabanina kayit." },
+          { "id": "s5", "name": "Kopek/Kedi Banyosu", "price": "250 TL", "duration": "45 dk", "description": "Irka uygun sampuan, kurutma, tirnak kesimi dahil tam bakim." },
+          { "id": "s6", "name": "Pet Shop Danismanligi", "price": "Ucretsiz", "duration": "15 dk", "description": "Mama secimi, aksesuar onerisi, beslenme danismanligi." }
+        ],
+        "team": [
+          { "name": "Dr. Burcu Ozkan", "role": "Klinik Sahibi & Bas Hekim", "bio": "Ankara Universitesi Veteriner Fakultesi mezunu. Kucuk hayvan ic hastaliklari uzmani." },
+          { "name": "Gokhan Tekin", "role": "Veteriner Teknisyeni", "bio": "8 yillik deneyimli teknisyen. Asi, tirnak ve bakim islemlerinde uzman." }
+        ],
+        "testimonials": [
+          { "name": "Elif Demir", "district": "Levent", "date": "2025-10", "rating": 5, "comment": "Kedimiz Luna'nin asi takibini burada yaptiriyoruz. Hem klinik hem pet shop ayni yerde olmasi cok pratik. Dr. Burcu Hanim cok ilgili." },
+          { "name": "Mert Sahin", "district": "Etiler", "date": "2025-08", "rating": 5, "comment": "Kopegimiz Max'i her ay banyoya getiriyoruz. Cok temiz ve ozenli calisiyorlar. Pet shop tarafindaki mama cesitleri de harika." },
+          { "name": "Zeynep Arslan", "district": "Ulus", "date": "2025-11", "rating": 4, "comment": "Mikrocip taktirdik, islem cok hizli ve agrisiz oldu. Fiyatlar bolgede makul seviyede." }
+        ],
+        "faq": [
+          { "q": "Randevu almadan gelebilir miyiz?", "a": "Evet, randevusuz hastalarimizi da kabul ediyoruz. Ancak yogun saatlerde bekleme suresi olabilir, bu yuzden randevu almanizi oneririz." },
+          { "q": "Pet shop urunleriniz hangi markalari kapsiyor?", "a": "Royal Canin, Hills, Acana, Orijen, Proplan gibi premium markalarin mama ve takviyelerini bulunduruyoruz. Ozel siparis de verebilirsiniz." },
+          { "q": "Yavrumu ilk kez getiriyorum, ne yapmaliyim?", "a": "6-8 haftalik yavrular icin ilk muayene ve asi planlama yapiyoruz. Varsa annesinin asi kartini getirmeniz faydali olur." },
+          { "q": "Kedi ve kopek ayni anda gelebilir mi?", "a": "Bekleme alaninda kedi ve kopek bolumleri ayridir. Her ikisini birden getirebilirsiniz, muayeneler ayri odalarda yapilir." },
+          { "q": "Eve veteriner hizmeti var mi?", "a": "Su an klinik ortaminda hizmet veriyoruz. Cok buyuk veya tasima zorlusu olan hastalar icin ozel duzenleme yapabiliriz." },
+          { "q": "Taksit imkani sunuyor musunuz?", "a": "Evet, 500 TL ustu islemlerimizde 3 ve 6 taksit secenegi sunuyoruz. Pet shop alisverislerinde de gecerlidir." }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Saglik ve Mutluluk Tek Cati Altinda",
+          "subtitle": "Besiktas Levent'te veteriner klinik ve pet shop bir arada. Evcil dostunuzun saglik, bakim ve beslenme ihtiyaclari icin tek adres.",
+          "badge": "Klinik & Pet Shop"
+        },
+        "about": {
+          "title": "PatiDost Hakkinda",
+          "description": "PatiDost, 2018 yilinda Dr. Burcu Ozkan tarafindan Besiktas Levent'te kuruldu. Veteriner klinik ve pet shop hizmetlerini ayni cati altinda sunarak evcil hayvan sahiplerinin hayatini kolaylastiriyoruz. Klinigimizde genel muayene, asilama, parazit tedavisi ve mikrocip uygulamasi gibi temel veteriner hizmetleri sunarken, pet shop bolumumuzde premium mama markalari, saglik takviyeleri ve bakim urunleri bulabilirsiniz. Ekibimiz her hayvani ozel ilgiyle karsilar, sahibine detayli bilgi verir. Levent, Etiler ve Ulus bolgelerinden binlerce evcil hayvan sahibinin guvenini kazandik. Hastalarimizin konforunu on planda tutarak, stressiz muayene ortami olusturuyoruz."
+        },
+        "services": {
+          "title": "Klinik & Pet Shop Hizmetlerimiz",
+          "subtitle": "Saglik bakimindan beslenme danismanligina eksiksiz hizmet"
+        },
+        "contact": {
+          "title": "Randevu & Iletisim",
+          "subtitle": "Kliniimize gelmeden once randevu alabilir veya sorularinizi iletebilirsiniz"
+        }
+      }
+    },
+    {
+      "id": "vet-cerrahi",
+      "variantName": "cerrahi",
+      "plan": "growth",
+      "description": "Cerrahi odakli veteriner hastanesi",
+      "designPhilosophy": "Profesyonel, steril, guven veren",
+      "isDark": false,
+      "colors": {
+        "bg": "#F8FBFC",
+        "surface": "#EEF4F7",
+        "text": "#1C2B33",
+        "accent": "#0E7490"
+      },
+      "fonts": { "heading": "Poppins", "body": "Inter" },
+      "business": {
+        "name": "VetCer Veteriner Cerrahi Merkezi",
+        "ownerName": "Prof. Dr. Vet. Hkn. Ayhan Kara",
+        "sector": "Veteriner",
+        "slogan": "Ileri cerrahi, guvenli eller",
+        "phone": "0534 295 68 10",
+        "phoneClean": "905342956810",
+        "whatsapp": "905342956810",
+        "email": "info@vetcer.com.tr",
+        "address": "Esentepe Mah. Buyukdere Cad. No:112/3, Sisli/Istanbul",
+        "city": "Istanbul",
+        "district": "Sisli",
+        "neighborhood": "Esentepe",
+        "coordinates": { "lat": 41.0675, "lng": 29.0042 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/vetcercerrahi",
+          "facebook": "https://facebook.com/vetcercerrahi",
+          "youtube": "https://youtube.com/@vetcer"
+        },
+        "photos": [],
+        "foundedYear": 2012,
+        "experience": "14 yil",
+        "customerCount": "22.000+",
+        "rating": 4.9,
+        "reviewCount": 1780,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "08:30", "close": "20:00", "isOpen": true },
+          { "day": "Sali", "open": "08:30", "close": "20:00", "isOpen": true },
+          { "day": "Carsamba", "open": "08:30", "close": "20:00", "isOpen": true },
+          { "day": "Persembe", "open": "08:30", "close": "20:00", "isOpen": true },
+          { "day": "Cuma", "open": "08:30", "close": "20:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "09:00", "close": "18:00", "isOpen": true },
+          { "day": "Pazar", "open": "10:00", "close": "15:00", "isOpen": true }
+        ],
+        "services": [
+          { "id": "s1", "name": "Kisirlasmirma Ameliyati (Kedi)", "price": "2.500 TL", "duration": "60 dk", "description": "Laparoskopik kisirlasmirma, minimal kesi, hizli iyilesme. Anestezi ve ilaclarda dahil." },
+          { "id": "s2", "name": "Kisirlasmirma Ameliyati (Kopek)", "price": "3.500 TL", "duration": "90 dk", "description": "Ovariohisterektomi, genel anestezi altinda. Ameliyat sonrasi 24 saat gozlem." },
+          { "id": "s3", "name": "Ortopedik Cerrahi", "price": "5.000 - 15.000 TL", "duration": "120 dk", "description": "Kirik tedavisi, capraz bag operasyonu, patella luks. BT ile ameliyat oncesi planlama." },
+          { "id": "s4", "name": "Tumor Cerrahisi", "price": "3.000 - 8.000 TL", "duration": "90 dk", "description": "Kitle cikarma, biyopsi, onkolojik cerrahi. Patoloji sonucu ile takip." },
+          { "id": "s5", "name": "Goz Cerrahisi", "price": "2.000 - 6.000 TL", "duration": "60 dk", "description": "Katarakt, entropion, cherry eye operasyonlari. Mikrocerrahi teknikler." },
+          { "id": "s6", "name": "Dis Cerrahisi", "price": "1.500 - 4.000 TL", "duration": "45 dk", "description": "Dis cekimi, oral tumor, cene kirigi. Dental rontgen ile teshis." },
+          { "id": "s7", "name": "Yumusalak Doku Cerrahisi", "price": "2.500 - 7.000 TL", "duration": "90 dk", "description": "Dalak, mesane, barsak operasyonlari. Ileri laparoskopi imkani." },
+          { "id": "s8", "name": "Ameliyat Sonrasi Bakim", "price": "800 TL/gun", "duration": "24 saat", "description": "Yogun bakim unitesinde 24 saat monitorizasyon, agri yonetimi, pansuman." },
+          { "id": "s9", "name": "Ultrasonografi", "price": "600 TL", "duration": "20 dk", "description": "Batin ve toraks ultrasonu, gebeli teshisi, organ degerlendirmesi." },
+          { "id": "s10", "name": "Dijital Rontgen", "price": "400 TL", "duration": "15 dk", "description": "Yuksek cozunurluk dijital rontgen, kirik ve akgier degerlendirmesi." }
+        ],
+        "team": [
+          { "name": "Prof. Dr. Ayhan Kara", "role": "Kurucu & Bas Cerrah", "bio": "Istanbul Universitesi Veteriner Cerrahisi ogretim uyesi. 20 yil cerrahi deneyimi, 5.000+ operasyon." },
+          { "name": "Dr. Selin Aktas", "role": "Ortopedi Uzmani", "bio": "Uludag Universitesi mezunu. Capraz bag ve patella cerrahisinde uzman. Almanya'da ileri egitim." },
+          { "name": "Dr. Emre Yilmaz", "role": "Yumusak Doku Cerrahisi", "bio": "Ankara Universitesi mezunu. Laparoskopik cerrahi ve onkoloji alaninda deneyimli." },
+          { "name": "Nurse Derya Koc", "role": "Anestezi Teknisyeni", "bio": "12 yillik deneyimli veteriner anestezist. Guvensiz hasta yonetimi ve yogun bakim uzmani." }
+        ],
+        "testimonials": [
+          { "name": "Hakan Turk", "district": "Mecidiyekoy", "date": "2025-11", "rating": 5, "comment": "Kopegim Zeytin'in capraz bag ameliyatini burada yaptirdik. Prof. Ayhan Bey eliyle ameliyat etti. 3 haftada yuruyusu normale dondu. Mukkemmel ekip." },
+          { "name": "Canan Erdogan", "district": "Nisantasi", "date": "2025-09", "rating": 5, "comment": "Kedim Pamuk'un tumoru cikarildi. Ameliyat ve patoloji sonucu cok hizli geldi. Iyi huylu cikti, cok rahatladik. Ilgili ve bilgili hekim kadrosu." },
+          { "name": "Burak Sevim", "district": "Levent", "date": "2025-12", "rating": 5, "comment": "Kisirlasmirma icin geldik, laparoskopik yontemle yapildi. Kedimiz ertesi gun normal aktivitesine dondu. Yogun bakim odasi cok temiz." },
+          { "name": "Ayse Polat", "district": "Besiktas", "date": "2025-07", "rating": 4, "comment": "Goz ameliyati icin baska klinikten sevk edildik. Dr. Selin Hanim cok basarili bir operasyon yapti. Fiyatlar biraz yuksek ama kalite de oyle." },
+          { "name": "Serkan Dogan", "district": "Kagithane", "date": "2025-10", "rating": 5, "comment": "Kopegimizin bacak kirigini plakla tedavi ettiler. Ameliyat sonrasi bakim ve kontroller cok duzenli. Her asamada bilgilendirme yaptilari." },
+          { "name": "Neslihan Cakir", "district": "Gayrettepe", "date": "2025-06", "rating": 5, "comment": "Kedimizin dis sorunu vardi, dental rontgen cektiler ve 3 dis cektiler. Cok profesyonel bir ortam, sterilizasyon konusunda cok titizler." }
+        ],
+        "faq": [
+          { "q": "Ameliyat oncesi ne gibi hazirliklar yapilmali?", "a": "Ameliyattan 12 saat once yem kesilmeli, 6 saat once su kesilmelidir. Ameliyat sabahi kan tahlili yapilir ve anestezi uygunlugu degerlendirilir." },
+          { "q": "Ameliyat sonrasi ne kadar hastanede kaliyor?", "a": "Kisirlasmirma gibi rutin islemlerde ayni gun taburcu edilir. Ortopedik cerrahilerde 1-3 gun gozlem oneriyoruz. Yogun bakim gerektiren vakalarda sure uzayabilir." },
+          { "q": "Laparoskopik cerrahi nedir, avantaji ne?", "a": "Kucuk kesilerle kamera esliginde yapilan ameliyattir. Daha az agri, daha hizli iyilesme ve daha az enfeksiyon riski saglar. Kisirlasmirma ve bazi batin ameliyatlarinda uygulanir." },
+          { "q": "Ameliyat fiyatlarina neler dahil?", "a": "Anestezi, ameliyat, kullanilan malzeme, ameliyat sonrasi ilk gun bakim ve ilaclara dahildir. Ek yogun bakim gunu ayri ucretlendirilir." },
+          { "q": "Yasi buyuk hayvanima ameliyat yapilabilir mi?", "a": "Ameliyat oncesi detayli kan tahlili ve kalp ultrasonuyla risk degerlendirmesi yapariz. Gerekli gorulen durumlarda ic hastaliklari uzmani ile konsultasyon yapilir." },
+          { "q": "Acil ameliyat durumunda sizi arayabilir miyim?", "a": "Mesai saatleri icerisinde acil vakalari kabul ediyoruz. Mesai disi icin 0534 295 68 10 numaramizdan nobet hekimimize ulasabilirsiniz." },
+          { "q": "Ameliyat sonrasi kontroller ucretli mi?", "a": "Ilk ameliyat sonrasi kontrol ucretisizdir. Dikiis alma ve pansuman islemi ameliyat ucretine dahildir. Ek muayeneler standart ucrettedir." },
+          { "q": "Baska ilden gelebilir miyim?", "a": "Evet, sehir disi hastalarimiz icin ameliyat gunu randevusu ve yakinlardaki konaklama onerileri sunuyoruz. Ameliyat sonrasi takip icin online goruntulu gorusme yapabiliyoruz." }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Ileri Veteriner Cerrahisi, Guvenli Ellerle",
+          "subtitle": "Sisli'de 14 yillik deneyim, 5.000'den fazla basarili operasyon. Ortopediden onkolojiye, evcil dostunuz icin ileri cerrahi cozumler.",
+          "badge": "Cerrahi Merkezi"
+        },
+        "about": {
+          "title": "VetCer Hakkinda",
+          "description": "VetCer Veteriner Cerrahi Merkezi, 2012 yilinda Prof. Dr. Ayhan Kara tarafindan Istanbul Sisli'de kurulmustur. Ortopedik cerrahi, tumor cerrahisi, goz ve dis cerrahisi, yumusak doku operasyonlari gibi genis bir yelpazede ileri veteriner cerrahi hizmeti sunuyoruz. Klinigimiz, dijital rontgen, ultrasonografi ve laparoskopi cihazlariyla donatilmis modern ameliyathane ve yogun bakim unitesine sahiptir. Her ameliyat oncesinde detayli teshis ile risk degerlendirmesi yapilir, hasta sahiplerine operasyon sureci ve sonrasi hakkinda seffaf bilgi verilir. Ekibimiz, universite duzeyinde egitim almis uzman veteriner hekimlerden olusmaktadir. Mecidiyekoy, Nisantasi, Levent ve cevre ilcelerden gelen hastalarimiza guvenilir cerrahi cozumler sunmaktayiz."
+        },
+        "services": {
+          "title": "Cerrahi Hizmetlerimiz",
+          "subtitle": "Ortopediden onkolojiye kapsamli cerrahi cozumler"
+        },
+        "contact": {
+          "title": "Ameliyat Randevusu",
+          "subtitle": "Ameliyat oncesi degerlendirme icin hemen randevu alin"
+        }
+      }
+    },
+    {
+      "id": "vet-egzotik",
+      "variantName": "egzotik",
+      "plan": "pro",
+      "description": "Egzotik ve ozel tur hayvan uzmanligi",
+      "designPhilosophy": "Dogal, bilimsel, kesfedici",
+      "isDark": false,
+      "colors": {
+        "bg": "#FDFCF9",
+        "surface": "#F4F1EA",
+        "text": "#2B2924",
+        "accent": "#8B6914"
+      },
+      "fonts": { "heading": "Playfair Display", "body": "Source Sans Pro" },
+      "business": {
+        "name": "ExoVet Egzotik Hayvan Klinigi",
+        "ownerName": "Dr. Vet. Hkn. Deniz Acar",
+        "sector": "Veteriner",
+        "slogan": "Papagandan iguana'ya, her ture ozel uzmanlik",
+        "phone": "0535 417 93 20",
+        "phoneClean": "905354179320",
+        "whatsapp": "905354179320",
+        "email": "info@exovet.com.tr",
+        "address": "Acıbadem Mah. Bagdat Cad. No:205/1, Uskudar/Istanbul",
+        "city": "Istanbul",
+        "district": "Uskudar",
+        "neighborhood": "Acibadem",
+        "coordinates": { "lat": 41.0012, "lng": 29.0387 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/exovetistanbul",
+          "facebook": "https://facebook.com/exovetistanbul",
+          "youtube": "https://youtube.com/@exovet",
+          "tiktok": "https://tiktok.com/@exovetistanbul"
+        },
+        "photos": [],
+        "foundedYear": 2016,
+        "experience": "10 yil",
+        "customerCount": "15.000+",
+        "rating": 4.9,
+        "reviewCount": 1420,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "09:00", "close": "19:30", "isOpen": true },
+          { "day": "Sali", "open": "09:00", "close": "19:30", "isOpen": true },
+          { "day": "Carsamba", "open": "09:00", "close": "19:30", "isOpen": true },
+          { "day": "Persembe", "open": "09:00", "close": "19:30", "isOpen": true },
+          { "day": "Cuma", "open": "09:00", "close": "19:30", "isOpen": true },
+          { "day": "Cumartesi", "open": "09:30", "close": "17:00", "isOpen": true },
+          { "day": "Pazar", "open": "10:00", "close": "15:00", "isOpen": true }
+        ],
+        "services": [
+          { "id": "s1", "name": "Papagan Muayenesi", "price": "700 TL", "duration": "30 dk", "description": "Genel saglik kontrolu, tuylerin durumu, gaga ve tirnak degerlendirmesi. Beslenme danismanligi dahil." },
+          { "id": "s2", "name": "Surungan Muayenesi", "price": "800 TL", "duration": "40 dk", "description": "Iguana, kaplumbaga, yilan ve kertenkele turlerinde fiziksel muayene, kabuk/deri kontrolu." },
+          { "id": "s3", "name": "Tavsan/Kemirgen Muayenesi", "price": "500 TL", "duration": "25 dk", "description": "Tavsan, hamster, ginepig, sincap muayenesi. Dis kontrolu ve beslenme degerlendirmesi." },
+          { "id": "s4", "name": "Kus Kanat/Tirnak Bakimi", "price": "300 TL", "duration": "15 dk", "description": "Kanat tuy kesimi, tirnak duzeltme, gaga bakimi. Stressiz ortamda." },
+          { "id": "s5", "name": "Egzotik Hayvan Cerrahisi", "price": "2.000 - 8.000 TL", "duration": "60-120 dk", "description": "Kus, surungan ve kemirgen cerrahisi. Mikrocerrani teknikleriyle ozel ameliyatlar." },
+          { "id": "s6", "name": "Surungan Teraryum Danismanligi", "price": "Ucretsiz", "duration": "20 dk", "description": "ISI, nem, UV ve zemin secimi hakkinda uzman danismanlik." },
+          { "id": "s7", "name": "Papagan Davranis Danismanligi", "price": "600 TL", "duration": "45 dk", "description": "Tuyu yolma, agresyon, seslilik sorunlarinda davranissal degerlendirme ve cozum plani." },
+          { "id": "s8", "name": "Mikrobiyolojik Analiz", "price": "500 TL", "duration": "3-5 gun", "description": "Gaitadan parazit taramasi, kultur ve antibiyogram. Sonuc 3-5 is gununde." },
+          { "id": "s9", "name": "Kaplumbaga Kabuk Tedavisi", "price": "400 - 1.500 TL", "duration": "30 dk", "description": "Kabuk curumesi, kirik tamiri, mantar tedavisi. Uzun sureli takip programi." },
+          { "id": "s10", "name": "Kan Tahlili (Egzotik)", "price": "600 TL", "duration": "10 dk", "description": "Kus ve surungan icin ozel referans degerlerle hematoloji ve biyokimya." },
+          { "id": "s11", "name": "Dijital Rontgen (Egzotik)", "price": "450 TL", "duration": "15 dk", "description": "Kus ve surungan icin ozel pozisyonlama ile yuksek cozunurluk goruntuleme." },
+          { "id": "s12", "name": "Beslenme Plani Olusturma", "price": "400 TL", "duration": "30 dk", "description": "Ture ozel beslenme programi, vitamin/mineral takviyesi onerisi. Yazili plan verilir." },
+          { "id": "s13", "name": "DNA Cinsiyet Tayini", "price": "350 TL", "duration": "3-7 gun", "description": "Kus turlerinde DNA ile kesin cinsiyet belirleme. Tuy ornegi yeterlidir." },
+          { "id": "s14", "name": "Yillik Saglik Paketi", "price": "1.200 TL", "duration": "60 dk", "description": "Yilda 2 muayene, 1 kan tahlili, 1 parazit taramasi, beslenme kontrolu." }
+        ],
+        "team": [
+          { "name": "Dr. Deniz Acar", "role": "Kurucu & Egzotik Hayvan Uzmani", "bio": "Istanbul Universitesi Veteriner Fakultesi mezunu. Ingiltere'de egzotik hayvan tibbi uzmanligi. 15 yil deneyim." },
+          { "name": "Dr. Zehra Kozan", "role": "Kus Hastaliklari Uzmani", "bio": "Uludag Universitesi mezunu. Papagan ve sus kuslari hastaliklari konusunda doktora yapmis uzman hekim." },
+          { "name": "Dr. Can Erdogan", "role": "Surungan Uzmani", "bio": "Ankara Universitesi mezunu. Kaplumbaga, iguana ve yilan turlerinde cerrahi ve ic hastaliklari deneyimi." },
+          { "name": "Nil Aksoy", "role": "Egzotik Hayvan Bakicisi", "bio": "6 yildir egzotik hayvanlarla calisiyor. Papagan egitimi ve surungan bakim protokollerinde deneyimli." },
+          { "name": "Ahmet Guler", "role": "Laboratuvar Teknisyeni", "bio": "Egzotik hayvan hematolojisi ve mikrobiyoloji uzmani. Kus ve surungan referans degerleri konusunda deneyimli." },
+          { "name": "Dr. Berna Ozturk", "role": "Kemirgen Uzmani", "bio": "Tavsan, ginepig ve hamster hastaliklari konusunda uzmanlasmis. Dis hastaliklari ve beslenme bozukluklari uzmani." }
+        ],
+        "testimonials": [
+          { "name": "Gizem Yilmaz", "district": "Acibadem", "date": "2025-11", "rating": 5, "comment": "Afrika gri papaganimiz Coco'yu 3 yildir buraya getiriyoruz. Tuyu yolma sorunu vardi, Dr. Deniz Bey'in davranis planıyla tamamen duzeldı. Turkiye'de bu konuda en iyi klinik." },
+          { "name": "Tolga Kaya", "district": "Kadikoy", "date": "2025-09", "rating": 5, "comment": "Iguana'm Zeus'un kabuk sorunu vardi. Dr. Can Bey aylar suren tedavi ile tamamen iyilestirdi. Teraryum duzenleme onerisi de cok isime yaradi." },
+          { "name": "Ebru Sahin", "district": "Uskudar", "date": "2025-10", "rating": 5, "comment": "Tavsan Pofuduk'un dislerinde sorun vardi, yeme guclugu cekiyordu. Dis operasyonu basarili gecti. Kemirgen uzmani Dr. Berna Hanim cok ilgili." },
+          { "name": "Kerem Yildirim", "district": "Maltepe", "date": "2025-08", "rating": 5, "comment": "Muhabbet kusumun kanat tirpanlamasini burda yaptiriyoruz. Kus stres almadan islem bitiriyor. Cok nazik ve sabırli bir ekip." },
+          { "name": "Seda Celik", "district": "Atasehir", "date": "2025-12", "rating": 4, "comment": "Sultan papaganimiza DNA cinsiyet tayini yaptirdik. Sonuc 5 gunde geldi, disimis meğer erkek. Fiyatlar biraz yuksek ama uzmanlik gerektiren bir alan." },
+          { "name": "Ali Riza Demir", "district": "Bostanci", "date": "2025-07", "rating": 5, "comment": "Kaplumbagamiz Tosun'un kabugunda curume baslamisti. Aylar suren tedavi ile tamamen iyilesti. Sabir ve bilgiyle yaklasan nadir bir klinik." },
+          { "name": "Pinar Aksoy", "district": "Fenerbahce", "date": "2025-06", "rating": 5, "comment": "3 ginepig'imiz var. Yillik saglik paketini aldik, cok avantajli. Her kontrolde detayli bilgi veriyorlar, beslenme planlarini bile yazili veriyorlar." },
+          { "name": "Omer Gunay", "district": "Suadiye", "date": "2025-11", "rating": 5, "comment": "Yilan besliyorum, burun enfeksiyonu olmustu. Dr. Deniz Bey kultur aldı, antibiyotik basladi, 2 haftada iyilesti. Bu alanda gercekten uzman." }
+        ],
+        "faq": [
+          { "q": "Hangi tur egzotik hayvanları kabul ediyorsunuz?", "a": "Papagan, muhabbet kusu, kanarya gibi kus turleri; iguana, kaplumbaga, kertenkele, yilan gibi surunganlar; tavsan, hamster, ginepig, sincap gibi kemirgenler. Balik ve amfibyenler icin ozel duzenleme gerekir." },
+          { "q": "Papaganimiz cok bagiriyor, bu normal mi?", "a": "Papaganlarda asiri seslilik davranissal bir sorun olabilir. Ortam stresi, dikkat arayisi veya hormonal dongulerle ilgili olabilir. Davranis danismanligi randevusu almanizi oneririz." },
+          { "q": "Kaplumbagamin kabuğu yumusamaya basladi, ne yapmaliyim?", "a": "Kabuk yumasaması genellikle kalsiyum/D3 vitamini eksikligi veya UVB isik yetersizliiginden kaynaklanir. Acil muayene oneriyoruz, erken mudahale onemlidir." },
+          { "q": "Egzotik hayvan ameliyati riskli midir?", "a": "Her ameliyat risk tasir ancak modern anestezi ve mikrocerrahi teknikleriyle risk minimumdadir. Ameliyat oncesi detayli degerlendirme yapariz, riski hasta sahibiyle paylasiriz." },
+          { "q": "Surunganim yemek yemiyor, ne kadar beklemeliyim?", "a": "Ture gore degisir. Kaplumbagalarda 1-2 haftaliık iştahsızlık mevsimsel olabilir, ancak yilanlarda uzun sureli aclik hibernasyon isareti olabilir. 3-5 gunluk iştahsızlıkta muayene oneririz." },
+          { "q": "Hayvanımı nasil taşımalıyım?", "a": "Kuslar icin karanlık ve havalandirilmis tasima kutusu, surunganlar icin isitilmis tasima kasası, kemirgenler icin stressiz kafes oneriyoruz. Detayli bilgiyi randevu sirasinda veriyoruz." },
+          { "q": "Eve gelir misiniz?", "a": "Ozellikle buyuk teraryum veya kafes sahibi hastalar icin ev ziyareti hizmetimiz vardir. Eve giderek ortam degerlendirmesi ve bakim danismanligi yapabiliriz." },
+          { "q": "Turkiye'de egzotik hayvan veterineri bulmak neden zor?", "a": "Egzotik hayvan tibbi, standart veteriner egitiminin disinda ozel uzmanlik gerektirir. Ekibimiz yurtdisinda ek egitim almis ve bu alanda uzmanlasmistir." },
+          { "q": "Online danismanlik veriyor musunuz?", "a": "Evet, rutin beslenme ve bakim sorulari icin goruntulu gorusme ile danismanlik veriyoruz. Ancak muayene gerektiren durumlarda klinige gelmeniz gerekir." },
+          { "q": "Siradan veterinerden farkınız ne?", "a": "Egzotik hayvanların fizyolojisi kedi/kopekten cok farklıdır. Farkli referans degerleri, ozel anestezi protokolleri ve tur-spesifik ilaçlar kullanıyoruz. Bu nedenle uzmanlik sart." }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Egzotik Dostlariniz Icin Uzman Veteriner",
+          "subtitle": "Papagan, surungan, tavsan ve daha fazlasi — Uskudar'da Turkiye'nin oncu egzotik hayvan kliniginde ozel ilgi ve uzman bakim.",
+          "badge": "Egzotik Hayvan Uzmani"
+        },
+        "about": {
+          "title": "ExoVet Hakkinda",
+          "description": "ExoVet, 2016 yilinda Dr. Deniz Acar tarafindan Uskudar Acibadem'de kurulmustur. Turkiye'nin sayili egzotik hayvan kliniklerinden biri olarak papagan, surungan, kemirgen ve diger ozel tur hayvanlara uzmanlasmis veteriner hizmeti sunuyoruz. Ekibimiz, Ingiltere, Almanya ve Hollanda'da egzotik hayvan tibbi alaninda ileri egitim almis hekimlerden olusmaktadir. Klinigimizde egzotik hayvanlara ozel anestezi protokolleri, mikrocerrahi ekipmanlari ve laboratuvar altyapisi bulunmaktadir. Her ture ozgu beslenme, bakim ve habitat danismanligi veriyoruz. Istanbul'un dort bir yanindan ve sehir disindan gelen hasta sahipleriyle calisiyoruz. Amacimiz, egzotik hayvan sahiplerinin dogru bilgiye ve kaliteli veteriner hizmetine kolayca ulasmalarını saglamaktir."
+        },
+        "services": {
+          "title": "Egzotik Veteriner Hizmetlerimiz",
+          "subtitle": "Papagandan surunagan, tavşandan yılana — her ture ozel uzman bakim"
+        },
+        "contact": {
+          "title": "Randevu & Danismanlik",
+          "subtitle": "Egzotik dostunuz icin hemen randevu alin veya online danismanlik talep edin"
+        }
+      }
+    },
+    {
+      "id": "vet-lux",
+      "variantName": "lux",
+      "plan": "enterprise",
+      "description": "Premium 7/24 veteriner hastanesi zinciri",
+      "designPhilosophy": "Luks, kurumsal, guven veren karanlik tema",
+      "isDark": true,
+      "colors": {
+        "bg": "#0F1419",
+        "surface": "#1A2332",
+        "text": "#E8ECF0",
+        "accent": "#C9A84C"
+      },
+      "fonts": { "heading": "Playfair Display", "body": "Inter" },
+      "business": {
+        "name": "VetPlatinum Hayvan Hastanesi",
+        "ownerName": "Prof. Dr. Vet. Hkn. Mehmet Ozdemir",
+        "sector": "Veteriner",
+        "slogan": "7/24 ileri veteriner tibbi, her an yaninizda",
+        "phone": "0212 444 8 VET",
+        "phoneClean": "902124448838",
+        "whatsapp": "905301234567",
+        "email": "info@vetplatinum.com.tr",
+        "address": "Etiler Mah. Nispetiye Cad. No:88, Sariyer/Istanbul",
+        "city": "Istanbul",
+        "district": "Sariyer",
+        "neighborhood": "Etiler",
+        "coordinates": { "lat": 41.0820, "lng": 29.0345 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/vetplatinum",
+          "facebook": "https://facebook.com/vetplatinum",
+          "youtube": "https://youtube.com/@vetplatinum",
+          "twitter": "https://twitter.com/vetplatinum",
+          "linkedin": "https://linkedin.com/company/vetplatinum"
+        },
+        "photos": [],
+        "foundedYear": 2008,
+        "experience": "18 yil",
+        "customerCount": "85.000+",
+        "rating": 4.9,
+        "reviewCount": 5200,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "00:00", "close": "23:59", "isOpen": true },
+          { "day": "Sali", "open": "00:00", "close": "23:59", "isOpen": true },
+          { "day": "Carsamba", "open": "00:00", "close": "23:59", "isOpen": true },
+          { "day": "Persembe", "open": "00:00", "close": "23:59", "isOpen": true },
+          { "day": "Cuma", "open": "00:00", "close": "23:59", "isOpen": true },
+          { "day": "Cumartesi", "open": "00:00", "close": "23:59", "isOpen": true },
+          { "day": "Pazar", "open": "00:00", "close": "23:59", "isOpen": true }
+        ],
+        "services": [
+          { "id": "s1", "name": "7/24 Acil Servis", "price": "1.500 TL", "duration": "degisken", "description": "Gece-gunduz acil veteriner mudahale. Travma, zehirlenme, solunum sikinntisi icin aninda muayene." },
+          { "id": "s2", "name": "Ileri Goruntuleme (MRI/BT)", "price": "3.000 - 6.000 TL", "duration": "45 dk", "description": "1.5 Tesla MRI ve 64-kesit BT ile detayli goruntuleme. Norolojik ve ortopedik teshiste altin standart." },
+          { "id": "s3", "name": "Ortopedik Cerrahi", "price": "5.000 - 20.000 TL", "duration": "120 dk", "description": "TPLO, TTA, total kalca protezi, spinal cerrahi. Avrupa standartlarinda implant ve teknikler." },
+          { "id": "s4", "name": "Onkoloji Tedavisi", "price": "2.000 - 12.000 TL", "duration": "degisken", "description": "Kemoterapi, hedefe yonelik tedavi, cerrahi onkoloji. Multidisipliner tumor konseyi ile vaka degerlendirmesi." },
+          { "id": "s5", "name": "Kardiyoloji", "price": "1.200 TL", "duration": "40 dk", "description": "Ekokardiyografi, EKG, Holter monitorizasyonu. Kalp yetmezligi ve aritmilerde uzman takip." },
+          { "id": "s6", "name": "Noroloji", "price": "1.500 TL", "duration": "45 dk", "description": "Norolojik muayene, MRI, beyin omurilik sivisi analizi. Epilepsi, disk hernisi ve felc tedavisi." },
+          { "id": "s7", "name": "Dermatoloji", "price": "800 TL", "duration": "30 dk", "description": "Alerji testleri, biyopsi, intradermal test. Kronik deri hastalikari ve otoimmun bozukluklarda uzman yaklasim." },
+          { "id": "s8", "name": "Goz Cerrahisi", "price": "3.000 - 10.000 TL", "duration": "60 dk", "description": "Katarakt fakoemulsifikasyon, kornea transplantasyonu, goz ici basınc tedavisi." },
+          { "id": "s9", "name": "Dis Hastaliklari", "price": "1.000 - 5.000 TL", "duration": "60 dk", "description": "Dental rontgen, periodontal tedavi, kok kanal tedavisi. Veteriner dis hekimligi uzmani ile." },
+          { "id": "s10", "name": "Dogum & Reprodüksiyon", "price": "2.500 - 8.000 TL", "duration": "degisken", "description": "Sezaryen, yapay tohumlama, gebeli takibi. Yuksek riskli gebeliklerde 24 saat gozlem." },
+          { "id": "s11", "name": "Fizik Tedavi & Rehabilitasyon", "price": "600 TL/seans", "duration": "45 dk", "description": "Su alti kosyu bandi, lazer tedavi, elektroterapi. Ameliyat sonrasi ve kronik agri yonetimi." },
+          { "id": "s12", "name": "Yogun Bakim Unitesi", "price": "2.500 TL/gun", "duration": "24 saat", "description": "Solunum destegi, monitorizasyon, infuzyon tedavisi. Kritik hasta yonetiminde uzman ekip." },
+          { "id": "s13", "name": "Laboratuvar Hizmetleri", "price": "200 - 1.500 TL", "duration": "1-24 saat", "description": "Hematoloji, biyokimya, idrar analizi, hormon paneli. Acil sonuclar 1 saatte, rutin 24 saatte." },
+          { "id": "s14", "name": "Diyetisyen Danismanligi", "price": "500 TL", "duration": "30 dk", "description": "Obezite, diyabet, bobrek yetmezligi icin ozel beslenme plani. Klinik diyetisyen tarafindan." },
+          { "id": "s15", "name": "Davranis Tibbi", "price": "1.000 TL", "duration": "60 dk", "description": "Agresyon, ayrilik kaygisi, kompulsif bozukluklar. Veteriner davranis uzmani ile detayli degerlendirme." },
+          { "id": "s16", "name": "Check-Up Paketleri", "price": "2.000 - 5.000 TL", "duration": "120 dk", "description": "Yas grubuna ozel saglik taramasi. Kan, idrar, goruntuleme ve uzman muayenelerini iceren paketler." },
+          { "id": "s17", "name": "VIP Transfer Hizmeti", "price": "500 - 1.500 TL", "duration": "degisken", "description": "Ozel ambulans ile evden hastaneye transfer. Klimali arac, veteriner teknisyen esliginde." },
+          { "id": "s18", "name": "Egzotik Hayvan Bolumu", "price": "degisken", "duration": "degisken", "description": "Papagan, surungan, kemirgen icin ayri klinik ve uzman hekim. Ozel anestezi ve cerrahi altyapisi." },
+          { "id": "s19", "name": "Genetik Test & Irk Tespiti", "price": "1.500 TL", "duration": "7-10 gun", "description": "DNA ile irk tespiti, kalitsal hastalik taramasi. Uluslararasi akredite laboratuvar is birligi." },
+          { "id": "s20", "name": "Otel & Kreş Hizmeti", "price": "350 - 800 TL/gun", "duration": "24 saat", "description": "Klima kontrollü bireysel odalar, gunde 3 ogun, veteriner gozlemli guvenli konaklama. Kamera ile canli izleme." }
+        ],
+        "team": [
+          { "name": "Prof. Dr. Mehmet Ozdemir", "role": "Kurucu & Bashekim", "bio": "Istanbul Universitesi Veteriner Fakultesi ogretim uyesi. 25 yil klinik deneyimi, uluslararasi yayin ve konferans konusmacisi." },
+          { "name": "Doc. Dr. Elif Arslan", "role": "Cerrahi Bolum Sefi", "bio": "ECVS diplomali (Avrupa Veteriner Cerrahi Uzmanligi). TPLO ve total kalca protezinde Turkiye referansi." },
+          { "name": "Dr. Baris Yildirim", "role": "Kardiyoloji Uzmani", "bio": "Ankara Universitesi doktora. Ekokardiyografi ve kalp yetmezligi tedavisinde 12 yil deneyim." },
+          { "name": "Dr. Aylin Koc", "role": "Noroloji Uzmani", "bio": "Almanya Hannover Veteriner Yuksekokulu'nda noroloji uzmanligi. Epilepsi ve spinal cerrahi uzmani." },
+          { "name": "Dr. Umut Celik", "role": "Onkoloji Uzmani", "bio": "ABD UC Davis'de onkoloji staji. Kemoterapi protokolleri ve tumor cerrahisi konusunda uzman." },
+          { "name": "Dr. Zeynep Akin", "role": "Dermatoloji Uzmani", "bio": "ECVD diplomali. Alerji testleri ve otoimmun deri hastaliklari konusunda Turkiye'nin sayili uzmanlari." },
+          { "name": "Dr. Cem Taskin", "role": "Goz Uzmani", "bio": "ECVO diplomali. Katarakt ve kornea cerrahisinde 1.000+ basarili operasyon." },
+          { "name": "Dr. Irmak Demir", "role": "Fizik Tedavi Uzmani", "bio": "Ingiltere'de veteriner fizyoterapi sertifikasi. Su alti kosyu bandi ve lazer tedavi uzmani." }
+        ],
+        "testimonials": [
+          { "name": "Sinem Ozturk", "district": "Etiler", "date": "2025-12", "rating": 5, "comment": "Kopegimiz Max'in gece 3'te nefes darligi oldu, acil servisi aradik 15 dakikada hastanedeydik. Aninda mudahale ettiler, simdi sapasaglam. 7/24 acil servis gercekten hayat kurtariyor." },
+          { "name": "Arda Basar", "district": "Bebek", "date": "2025-11", "rating": 5, "comment": "Golden Retriever'imiz Boncuk'a total kalca protezi takildi. Doc. Dr. Elif Hanim eliyle yapildi. 2 ayda normal kosusuna dondu. Türkiye'de bu operasyonu yapabilecek cok az yer var." },
+          { "name": "Derya Kilic", "district": "Nisantasi", "date": "2025-10", "rating": 5, "comment": "Kedimize MRI cektirdik, norolojik sorun supesiyle. Dr. Aylin Hanim Almanya'dan getirdigi bilgiyle teshis koydu, ilacc tedavisiyle bayagi iyi geldi. Tam bir universite hastanesi kalitesi." },
+          { "name": "Emre Toprak", "district": "Sariyer", "date": "2025-09", "rating": 5, "comment": "Labrador'umuzun tumoru tespit edildi, onkoloji bolumunde kemoterapi baslandi. Her seansta detayli bilgi veriyorlar. Multidisipliner yaklasim gercekten fark yaratiyor." },
+          { "name": "Cagla Erdem", "district": "Levent", "date": "2025-08", "rating": 5, "comment": "VIP transfer hizmeti muhteşem. Kedimiz travmaya uğrayınca ambulans 20 dakikada kapimizda oldu. Aracta bile veteriner teknisyen vardi. Para etmiş." },
+          { "name": "Koray Gunes", "district": "Ulus", "date": "2025-11", "rating": 4, "comment": "Kopegimizin deri alerjisi icin Dr. Zeynep Hanim'a geldik. Intradermal test yaptılar, ozel diyet programi cikarildi. Fiyatlar yuksek ama uzmanlik seviyesi buna deger." },
+          { "name": "Berna Aydin", "district": "Tarabya", "date": "2025-07", "rating": 5, "comment": "Fizik tedavi icin geliyoruz, kopegimizin ameliyat sonrasi su alti kosu bandi cok iyi geldi. Dr. Irmak Hanim harika motive ediyor hayvani. 8 seansta yurume duzeldi." },
+          { "name": "Sinan Polat", "district": "Besiktas", "date": "2025-10", "rating": 5, "comment": "Yillik check-up paketini aldik, her seyi basından sonuna yaptilar. Kan, idrar, ultrason, dis kontrolu... 2 saatte bitti. Saglik raporu PDF olarak geldi. Cok profesyonel." },
+          { "name": "Asli Cetin", "district": "Istinye", "date": "2025-12", "rating": 5, "comment": "Kedimiz kalp yetmezliginden takipte. Dr. Baris Bey her kontrolde ekokardiyografi yapiyor, ilac dozunu ayarliyor. 2 yildir stabil, minnetariz." },
+          { "name": "Ozkan Duman", "district": "Maslak", "date": "2025-06", "rating": 5, "comment": "Kopegimizin goz ameliyatini Dr. Cem Bey yapti. Katarakt ameliyati, ertesi gun gormeye basladi. 1000+ operasyon yapan bir uzman farkli oluyor gercekten." },
+          { "name": "Melis Tan", "district": "Arnavutkoy", "date": "2025-09", "rating": 4, "comment": "Yogun bakim hizmeti cok iyi ama gunluk ucreti yüksek. Hastanemizin kalitesine guveniyoruz, sadece butce planlamasi iyi yapilmali." },
+          { "name": "Hasan Korkmaz", "district": "Kemerburgaz", "date": "2025-11", "rating": 5, "comment": "Papaganimiz icin egzotik bolumune geldik. Ayri klinik ve uzman hekim olmasi cok guven verici. Dr. ekibi kus konusunda cok bilgili." }
+        ],
+        "faq": [
+          { "q": "Gece acil durumda sizi arayabilir miyim?", "a": "Evet, 7/24 acil servisimiz aktiftir. 0212 444 8 VET numarasindan bize hemen ulasabilirsiniz. Gece nobetci hekim ve teknisyen ekibi her zaman hazirdir." },
+          { "q": "MRI ve BT cekim randevusu nasil alinir?", "a": "Ileri goruntuleme icin once uzman hekimimizin muayenesi gerekir. Muayene sonrasinda uygun gorulurse goruntuleme randevusu planlanir. Acil durumlarda ayni gun cekim yapilabilir." },
+          { "q": "Kemoterapi sirasinda hayvanim aci ceker mi?", "a": "Veteriner kemoterapisi insanlardakine gore cok daha dusuk dozlarda uygulanir. Amac yasam kalitesini korumaktir. Yan etkiler minimumda tutulur, her seansta degerlendirilir." },
+          { "q": "Total kalca protezi icin yasam suresi kisitlamasi var mi?", "a": "Genellikle 1-7 yas arasi ideal adaylardir, ancak her vaka bireysel degerlendirilir. Ameliyat oncesi detayli goruntuleme ve fizik muayene ile karar verilir." },
+          { "q": "VIP transfer hizmeti Istanbul'un neresinden gelir?", "a": "Istanbul Avrupa ve Anadolu yakasinin her noktasindan transfer hizmeti veriyoruz. Mesafeye gore ucretlendirme yapilir. Ambulansta klimali kafes ve veteriner teknisyen bulunur." },
+          { "q": "Otel hizmetinde kamera ile izleme var mi?", "a": "Evet, her bireysel odada kamera sistemi vardir. Mobil uygulamamiz uzerinden 7/24 canli izleme yapabilirsiniz. Gunde 3 kez foto/video guncelleme de gonderiyoruz." },
+          { "q": "Sigorta kabul ediyor musunuz?", "a": "Evet, Pet Plan, Allianz ve Anadolu Sigorta hayvan sagligi policelerini kabul ediyoruz. Provizyon islemini biz yapiyoruz, fark ucreti varsa bilgilendiriyoruz." },
+          { "q": "Fizik tedavi kac seans suruyor?", "a": "Duruma gore 6-12 seans arasinda degisir. Ilk degerlemeden sonra bireysel tedavi plani olusturulur. Her 4 seansta ilerleme raporu hazirlanir." },
+          { "q": "Yurtdisindan hasta kabul ediyor musunuz?", "a": "Evet, ozellikle cerrahi vakalar icin yurtdisindan hasta kabul ediyoruz. Online ön degerlendirme, havaalani transferi ve yakin otel onerileri sunuyoruz." },
+          { "q": "Genetik test sonuclari ne kadar guvenilir?", "a": "Uluslararasi akredite laboratuvarlarla calisiyoruz. Irk tespiti %95+ dogrulukla, kalitsal hastalik taramasi tum bilinen mutasyonlari kapsar. Sonuclar 7-10 is gununde gelir." },
+          { "q": "Ayni anda birden fazla uzmanliktan hizmet alabilir miyim?", "a": "Evet, multidisipliner yaklasimimiz budur. Ornegin bir onkoloji hastasi icin cerrahi, goruntuleme ve dahiliye uzmanlari birlikte calısır. Konsey toplantisiyla vaka degerlendirmesi yapilir." },
+          { "q": "Taksit ve odeme secenekleriniz nelerdir?", "a": "Nakit, kredi karti (12 taksit), havale/EFT kabul ediyoruz. 5.000 TL ustu islemlerde ozel odeme plani olusturabiliyoruz. Sigorta provizyon hizmeti de mevcuttur." },
+          { "q": "Kreş hizmetinde kopekler gruplanir mi?", "a": "Evet, kopekler boyut ve temperamana gore gruplanır. Kucuk irklar, buyuk irklar ve yavru gruplari ayridir. Her grupta en fazla 6 kopek bulunur, egitmen gozetimindedir." },
+          { "q": "COVID ve bularici hastalik onlemleriniz nedir?", "a": "Hastane genelinde HEPA filtreli havalandirma, UV sterilizasyon ve duzenli dezenfeksiyon yapilmaktadir. Bularici hastalik supesi olan hastalar ayri izolasyon odasinda degerlendirilir." },
+          { "q": "Randevu iptali icin ne kadar once haber vermeliyim?", "a": "24 saat once iptal veya erteleme yapabilirsiniz. Son 24 saatte yapilan iptallerde %50 iptal ucreti uygulanir. Acil durumlar bu politikadan muaftir." }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "7/24 Ileri Veteriner Tibbi",
+          "subtitle": "MRI'dan onkolojiye, ortopediden norolojiye — Istanbul'un en kapsamli veteriner hastanesi. 8 uzmanlik dalı, 18 yillik deneyim, 85.000+ hasta.",
+          "badge": "Premium Hayvan Hastanesi"
+        },
+        "about": {
+          "title": "VetPlatinum Hakkinda",
+          "description": "VetPlatinum Hayvan Hastanesi, 2008 yılında Prof. Dr. Mehmet Ozdemir tarafından Sariyer'de kurulmustur. 18 yillik gecmisimizle Istanbul'un en kapsamli veteriner saglik merkeziyiz. Hastanemiz; cerrahi, kardiyoloji, noroloji, onkoloji, dermatoloji, goz hastaliklari, fizik tedavi ve egzotik hayvan bolumu olmak uzere 8 uzmanlik dalinda hizmet vermektedir. 1.5 Tesla MRI, 64-kesit BT, dijital rontgen ve ultrasonografi cihazlarimizla ileri goruntuleme imkani sunuyoruz. 7/24 acil servisimiz, yogun bakim unitemiz ve VIP ambulans hizmetimiz ile her an hastalarinizin yanindayiz. Ekibimiz, Avrupa diplomali uzman veteriner hekimlerden olusmakta olup, uluslararasi standartlarda teshis ve tedavi protokolleri uygulamaktadir. 85.000'den fazla hastaya hizmet verdik. Check-up paketleri, otel ve kres hizmetimizle evcil dostlarinizin yasam kalitesini en ust duzeyde tutmayi hedefliyoruz."
+        },
+        "services": {
+          "title": "Uzmanlik Dallarimiz & Hizmetlerimiz",
+          "subtitle": "8 uzmanlik dalinda uluslararasi standartlarda veteriner tibbi"
+        },
+        "contact": {
+          "title": "7/24 Iletisim & Acil Hat",
+          "subtitle": "Acil durumlar dahil her an bize ulasabilirsiniz"
+        }
+      }
+    }
+  ]
+}

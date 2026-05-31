@@ -18,7 +18,7 @@ async function syncUrunlerToSiteJson(esnafId: string) {
     .orderBy('sira', 'asc')
     .get()
 
-  const urunler = snap.docs.map(d => ({
+  const urunler = snap.docs.map((d: any) => ({
     id: d.id,
     ad: d.data().ad,
     aciklama: d.data().aciklama || '',

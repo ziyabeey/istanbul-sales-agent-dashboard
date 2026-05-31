@@ -1,0 +1,535 @@
+{
+  "sectorId": "temizlik",
+  "seoSchemaType": "CleaningService",
+  "variants": [
+    {
+      "id": "temizlik-ev",
+      "variantName": "ev",
+      "plan": "free",
+      "description": "Ev temizligi hizmeti, guvenilir ve ekonomik",
+      "designPhilosophy": "Temiz, sade, guven verici",
+      "isDark": false,
+      "colors": {
+        "bg": "#FFFFFF",
+        "surface": "#F0F7FA",
+        "text": "#1A1A1A",
+        "accent": "#1E88E5"
+      },
+      "fonts": { "heading": "Inter", "body": "Inter" },
+      "business": {
+        "name": "Piril Ev Temizlik",
+        "ownerName": "Fatma Sahin",
+        "sector": "Temizlik",
+        "slogan": "Eviniz piril piril, gundeminiz rahat",
+        "phone": "0532 945 71 30",
+        "phoneClean": "905329457130",
+        "whatsapp": "905329457130",
+        "email": "info@pirilevtemizlik.com",
+        "address": "Hasanpasa Mah. Fahrettin Kerim Gokay Cad. No:115, Kadikoy/Istanbul",
+        "city": "Istanbul",
+        "district": "Kadikoy",
+        "neighborhood": "Hasanpasa",
+        "coordinates": { "lat": 40.9885, "lng": 29.0322 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/pirilevtemizlik"
+        },
+        "photos": [],
+        "foundedYear": 2016,
+        "experience": "10 yil",
+        "customerCount": "12.000+",
+        "rating": 4.6,
+        "reviewCount": 780,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "08:00", "close": "18:00", "isOpen": true },
+          { "day": "Sali", "open": "08:00", "close": "18:00", "isOpen": true },
+          { "day": "Carsamba", "open": "08:00", "close": "18:00", "isOpen": true },
+          { "day": "Persembe", "open": "08:00", "close": "18:00", "isOpen": true },
+          { "day": "Cuma", "open": "08:00", "close": "18:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "09:00", "close": "16:00", "isOpen": true },
+          { "day": "Pazar", "open": "00:00", "close": "00:00", "isOpen": false }
+        ],
+        "services": [
+          { "id": "s1", "name": "Genel Ev Temizligi", "price": "1.200 TL", "duration": "4-5 saat", "description": "Tum odalar, mutfak, banyo, toz alma, supurme, paspas. 1+1'den 3+1'e kadar." },
+          { "id": "s2", "name": "Tasinma Oncesi/Sonrasi", "price": "2.000 TL", "duration": "6-8 saat", "description": "Bos ev detayli temizlik. Dolap ici, pencere, mutfak dolapları dahil." },
+          { "id": "s3", "name": "Utu Hizmeti", "price": "400 TL", "duration": "3 saat", "description": "Ev tekstili ve kiyafet utuleme. Askili teslim." },
+          { "id": "s4", "name": "Haftalik Abonelik", "price": "4.000 TL/ay", "duration": "hafta 1 gun", "description": "Haftada 1 gun duzeli ev temizligi. Aylik 4 ziyaret." }
+        ],
+        "team": [],
+        "testimonials": [],
+        "faq": [
+          { "q": "Temizlik malzemeleri sizde mi?", "a": "Evet, tum temizlik malzemeleri ve ekipmanlar bize aittir. Ozel markayli, cevreye duyarli urunler kullaniyoruz." },
+          { "q": "Sigortali personel calisiyor mu?", "a": "Evet, tum calisanlarimmiz SGK sigortali ve referans kontrolunden gecmistir." },
+          { "q": "Kac kisi geliyor?", "a": "1+1 ve 2+1 daireler icin 1 kisi, 3+1 ve ustu icin 2 kisi gorevlendirilir." },
+          { "q": "Ayni kisiyi her seferinde isteyebilir miyim?", "a": "Evet, abonelik programimizda size ozel sabit personel atamasi yapiyoruz." }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Eviniz Piril Piril, Gundeminiz Rahat",
+          "subtitle": "Kadikoy'de guvenilir ev temizlik hizmeti. Sigortali personel, profesyonel ekipman, uygun fiyat.",
+          "badge": "Guvenilir Ev Temizligi"
+        },
+        "about": {
+          "title": "Piril Ev Temizlik Hakkinda",
+          "description": "Piril Ev Temizlik, 2016 yilindan bu yana Kadikoy ve cevre ilcelerde ev temizlik hizmeti sunmaktadir. Sigortali ve referans kontrolunden gecmis personelimiz, profesyonel temizlik ekipmanlari ve cevre dostu urunlerle evinizi titizlikle temizler. Genel temizlikten tasinma temizligine, utu hizmetinden haftalik abonelige genis bir hizmet yelpazesi sunuyoruz. 12.000'den fazla ev temizligi gerceklestirdik."
+        },
+        "services": {
+          "title": "Temizlik Hizmetlerimiz",
+          "subtitle": "Eviniz icin profesyonel temizlik cozumleri"
+        },
+        "contact": {
+          "title": "Randevu Alin",
+          "subtitle": "Hemen arayin, ayni hafta icinde gelelim"
+        }
+      }
+    },
+    {
+      "id": "temizlik-ofis",
+      "variantName": "ofis",
+      "plan": "starter",
+      "description": "Ofis ve is yeri temizligi",
+      "designPhilosophy": "Kurumsal, guvenilir, profesyonel",
+      "isDark": false,
+      "colors": {
+        "bg": "#F8FAFB",
+        "surface": "#EDF2F5",
+        "text": "#1C2A33",
+        "accent": "#0D6E6E"
+      },
+      "fonts": { "heading": "DM Sans", "body": "Inter" },
+      "business": {
+        "name": "ProClean Ofis Temizlik",
+        "ownerName": "Kemal Aydin",
+        "sector": "Temizlik",
+        "slogan": "Temiz ofis, verimli calisma ortami",
+        "phone": "0533 812 64 50",
+        "phoneClean": "905338126450",
+        "whatsapp": "905338126450",
+        "email": "info@procleanofis.com.tr",
+        "address": "Mecidiyekoy Mah. Buyukdere Cad. No:78/B, Sisli/Istanbul",
+        "city": "Istanbul",
+        "district": "Sisli",
+        "neighborhood": "Mecidiyekoy",
+        "coordinates": { "lat": 41.0635, "lng": 28.9912 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/procleanofis",
+          "facebook": "https://facebook.com/procleanofis"
+        },
+        "photos": [],
+        "foundedYear": 2014,
+        "experience": "12 yil",
+        "customerCount": "800+",
+        "rating": 4.7,
+        "reviewCount": 420,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "06:00", "close": "22:00", "isOpen": true },
+          { "day": "Sali", "open": "06:00", "close": "22:00", "isOpen": true },
+          { "day": "Carsamba", "open": "06:00", "close": "22:00", "isOpen": true },
+          { "day": "Persembe", "open": "06:00", "close": "22:00", "isOpen": true },
+          { "day": "Cuma", "open": "06:00", "close": "22:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "07:00", "close": "18:00", "isOpen": true },
+          { "day": "Pazar", "open": "00:00", "close": "00:00", "isOpen": false }
+        ],
+        "services": [
+          { "id": "s1", "name": "Gunluk Ofis Temizligi", "price": "Teklif uzerine", "duration": "mesai oncesi/sonrasi", "description": "Her gun duzeli ofis temizligi. Masa, zemin, tuvalet, mutfak. Mesai disinda calisma." },
+          { "id": "s2", "name": "Haftalik Ofis Temizligi", "price": "2.500 TL/hafta", "duration": "3-4 saat", "description": "Haftada 1 detayli temizlik. Cam, haliyikama ve zemin cilalamaaa dahil." },
+          { "id": "s3", "name": "Insat Sonrasi Temizlik", "price": "5.000 - 15.000 TL", "duration": "1-3 gun", "description": "Tadilat/insaat sonrasi detayli temizlik. Toz, boya artigi, moloz kalintisi." },
+          { "id": "s4", "name": "Cam Temizligi", "price": "1.000 - 5.000 TL", "duration": "2-6 saat", "description": "Ic/dis cam temizligi. Yuksek katlarda profesyonel ekipman ile." },
+          { "id": "s5", "name": "Zemin Cilalama", "price": "15 TL/m2", "duration": "degisken", "description": "Mermer, granit, porselen zemin cilalama ve parlatma." },
+          { "id": "s6", "name": "Hali Yikama (Yerinde)", "price": "20 TL/m2", "duration": "degisken", "description": "Ofis hali ve kaplama yerinde yikama. Islak/kuru yontem." }
+        ],
+        "team": [
+          { "name": "Kemal Aydin", "role": "Kurucu & Genel Mudur", "bio": "15 yillik temizlik sektoru deneyimi. ISO 9001 kalite yonetim sistemi uzmani." },
+          { "name": "Ayse Dogan", "role": "Operasyon Koordinatoru", "bio": "800+ kurumsal musteri hesabini yonetiyor. Ekip planlama ve kalite kontrol." }
+        ],
+        "testimonials": [
+          { "name": "Mehmet Kaya", "district": "Mecidiyekoy", "date": "2025-11", "rating": 5, "comment": "30 kisilik ofisimizin gunluk temizligini ProClean yapiyor. Sabah ofise geldigimizde her yer piril piril. Mesai disinda calismalari cok pratik." },
+          { "name": "Selin Yildiz", "district": "Levent", "date": "2025-09", "rating": 4, "comment": "Insaat sonrasi temizlik icin cagirdik. 200 m2 ofisi 2 gunde tertemiz teslim ettiler. Detayli calisiyorlar." },
+          { "name": "Bulent Ozcan", "district": "Maslak", "date": "2025-10", "rating": 5, "comment": "Zemin cilalama ve cam temizligi yaptirdik. Sonuc muhtesem, ofis yenilenmis gibi gorunuyor. Duzenli sozlesme yaptik." }
+        ],
+        "faq": [
+          { "q": "Mesai saatleri disinda calisabiliyor musunuz?", "a": "Evet, sabah 06:00'dan aksam 22:00'ye kadar calisiyoruz. Cogu mussterimiz mesai oncesi veya sonrasi temizlik tercih ediyor." },
+          { "q": "Sozlesme zorunlu mu?", "a": "Hayir, tek seferlik hizmet de verebiliyoruz. Ancak duzenli musterilerimize indirimli sozlesme fiyati sunuyoruz." },
+          { "q": "Gizlilik politikaniz nedir?", "a": "Tum personelimiz gizlilik sozlesmesi imzalar. Ofisteki evraak ve ekipmanlara dokunulmaz, sadece temizlik yapilir." },
+          { "q": "Kendi malzemenizi mi kullaniyorsunuz?", "a": "Evet, endustriyel kalite temizlik malzemeleri ve ekipmanlari bize aittir. Tercih ederseniz sizin malzemelerinizle de calisabiliriz." },
+          { "q": "Fatura kesiyor musunuz?", "a": "Evet, kurumsal fatura kesiyoruz. KDV dahil fiyatlandirma yapiyoruz." },
+          { "q": "Hangi bolgelere hizmet veriyorsunuz?", "a": "Istanbul Avrupa yakasi agirlkili olmak uzere tum Istanbul'a hizmet veriyoruz." }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Temiz Ofis, Verimli Calisma Ortami",
+          "subtitle": "Sisli'de 12 yillik kurumsal ofis temizlik hizmeti. Mesai disinda calisma, sigortali personel, ISO kalite standartlari.",
+          "badge": "Kurumsal Ofis Temizligi"
+        },
+        "about": {
+          "title": "ProClean Hakkinda",
+          "description": "ProClean Ofis Temizlik, 2014 yilindan bu yana Istanbul'daki ofis ve is yerlerine profesyonel temizlik hizmeti sunmaktadir. ISO 9001 kalite yonetim sistemi standardinda calisiyor, sigortali ve gizlilik sozlesmeli personelimizle kurumsal guvence sagliyoruz. Gunluk, haftalik veya tek seferlik temizlik hizmetlerimiz mesai disinda gerceklestirilir. Insaat sonrasi temizlik, cam temizligi, zemin cilalama ve hali yikama gibi ozel hizmetler de sunuyoruz. 800'den fazla kurumsal musteriye hizmet verdik."
+        },
+        "services": {
+          "title": "Ofis Temizlik Hizmetlerimiz",
+          "subtitle": "Kurumsal standartlarda profesyonel temizlik"
+        },
+        "contact": {
+          "title": "Teklif Alin",
+          "subtitle": "Ofisiniz icin ucretsiz keif ve teklif"
+        }
+      }
+    },
+    {
+      "id": "temizlik-hali",
+      "variantName": "hali",
+      "plan": "growth",
+      "description": "Hali yikama ve koltuk temizleme uzmani",
+      "designPhilosophy": "Dinamik, guvenilir, temiz",
+      "isDark": false,
+      "colors": {
+        "bg": "#F7FBFC",
+        "surface": "#E8F4F8",
+        "text": "#1A2B33",
+        "accent": "#2196F3"
+      },
+      "fonts": { "heading": "Poppins", "body": "Inter" },
+      "business": {
+        "name": "YikaPlus Hali & Koltuk Yikama",
+        "ownerName": "Hasan Korkmaz",
+        "sector": "Temizlik",
+        "slogan": "Haliniz ve koltugunuz fabrika cikisi gibi",
+        "phone": "0534 281 93 70",
+        "phoneClean": "905342819370",
+        "whatsapp": "905342819370",
+        "email": "info@yikaplus.com.tr",
+        "address": "Icerenkoy Mah. Kayisdagi Cad. No:72, Atasehir/Istanbul",
+        "city": "Istanbul",
+        "district": "Atasehir",
+        "neighborhood": "Icerenkoy",
+        "coordinates": { "lat": 40.9790, "lng": 29.1030 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/yikaplus",
+          "facebook": "https://facebook.com/yikaplus",
+          "youtube": "https://youtube.com/@yikaplus"
+        },
+        "photos": [],
+        "foundedYear": 2011,
+        "experience": "15 yil",
+        "customerCount": "35.000+",
+        "rating": 4.8,
+        "reviewCount": 2200,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "07:00", "close": "20:00", "isOpen": true },
+          { "day": "Sali", "open": "07:00", "close": "20:00", "isOpen": true },
+          { "day": "Carsamba", "open": "07:00", "close": "20:00", "isOpen": true },
+          { "day": "Persembe", "open": "07:00", "close": "20:00", "isOpen": true },
+          { "day": "Cuma", "open": "07:00", "close": "20:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "08:00", "close": "18:00", "isOpen": true },
+          { "day": "Pazar", "open": "09:00", "close": "15:00", "isOpen": true }
+        ],
+        "services": [
+          { "id": "s1", "name": "Makine Hali Yikama", "price": "40 TL/m2", "duration": "2-3 gun", "description": "Fabrikada makine yikama, sifir atik su sistemi. Teslim alma ve birakma dahil." },
+          { "id": "s2", "name": "El Hali Yikama", "price": "80 TL/m2", "duration": "3-5 gun", "description": "Ipek, yun ve el dokuma halilar icin nazik el yikama. Ozel deterjan." },
+          { "id": "s3", "name": "Koltuk Yikama (Yerinde)", "price": "300 TL/koltuk", "duration": "45 dk/koltuk", "description": "Evinizde koltuk yikama. Leke cikarma, dezenfeksiyon, 2-3 saatte kuruma." },
+          { "id": "s4", "name": "Yatak/Siltee Yikama", "price": "500 TL/adet", "duration": "60 dk", "description": "Yerinde yatak ve silte temizligi. Akar buharli dezenfeksiyon." },
+          { "id": "s5", "name": "Perde Yikama & Asma", "price": "25 TL/m2", "duration": "2 gun", "description": "Perde sokme, yikama, utuleme ve yeniden asma. Tul ve kalin perde." },
+          { "id": "s6", "name": "Hali Onarimi", "price": "100 - 500 TL", "duration": "3-7 gun", "description": "Hali kirpigi, saçak onarimi, delik tamiri. El dokuma halilarda uzman iscilik." },
+          { "id": "s7", "name": "Leke Cikarma (Ozel)", "price": "200 TL", "duration": "degisken", "description": "Inatci lekeler icin ozel islem: boya, murekkkep, pet lekesi, kan." },
+          { "id": "s8", "name": "Anti-Alerjen Islem", "price": "30 TL/m2", "duration": "ek", "description": "Akar, toz ve alerjen giderme ozel islemi. Alerji hastalaari icin oneriliir." },
+          { "id": "s9", "name": "Hali Motalama", "price": "20 TL/m2", "duration": "1-2 gun", "description": "Temizlik sonrasi guveye karsi motalama islemi. 6 ay koruma." },
+          { "id": "s10", "name": "Ucretsiz Teslim Alma/Birakma", "price": "Ucretsiz", "duration": "degisken", "description": "Kadikoy, Atasehir, Uskudar, Maltepe bolgesinde ucretsiz servis." }
+        ],
+        "team": [
+          { "name": "Hasan Korkmaz", "role": "Kurucu & Genel Mudur", "bio": "2. nesil hali yikamaci. Babasi 1985'ten beri sektorde. 15 yillik deneyim, modern fabrika yatirimi." },
+          { "name": "Mustafa Yilmaz", "role": "El Yikama Ustasi", "bio": "25 yillik el hali yikama ustasi. Ipek ve antika hali yikamada uzman." },
+          { "name": "Serkan Demir", "role": "Yerinde Hizmet Ekip Sefi", "bio": "Koltuk, yatak ve perde temizliginde 10 yil deneyim. 5 kisilik mobil ekip yonetiyor." },
+          { "name": "Elif Ozturk", "role": "Musteri Iliskileri", "bio": "Siparis koordinasyonu, teslim takibi ve memnuniyet yonetimi. 8 yildir YikaPlus'ta." }
+        ],
+        "testimonials": [
+          { "name": "Ayse Demir", "district": "Atasehir", "date": "2025-11", "rating": 5, "comment": "3 halimiizi yikattik, hepsi piril piril geldi. Renkler canlanmis, koku tamamen gitmis. Ucretsiz servis de buyuk kolaylik." },
+          { "name": "Murat Sahin", "district": "Kadikoy", "date": "2025-10", "rating": 5, "comment": "Koltuk yikama icin eve geldiler. L koltuk + 2 tekli 1.5 saatte bitti. Lekeler tamamen cikmis. Cok memnunuuz." },
+          { "name": "Zehra Kaya", "district": "Uskudar", "date": "2025-09", "rating": 5, "comment": "El dokuma ipek halimi burada yikattim. Mustafa Usta cok dikkatli, el ile yuuzarak yikadi. Sonuc muhtesem." },
+          { "name": "Burak Yildiz", "district": "Maltepe", "date": "2025-08", "rating": 4, "comment": "Perde yikama hizmetini denedik. Sokme ve asma dahil, cok pratik. Tek sorun: teslim 1 gun gecikti." },
+          { "name": "Neslihan Aksoy", "district": "Kartal", "date": "2025-07", "rating": 5, "comment": "Anti-alerjen islem yaptirdik, cocugumun alerjisi vardi. Islem sonrasi belirgin rahatlama oldu. Artik duzenli yaptiriyoruz." },
+          { "name": "Hakan Tekin", "district": "Umraniye", "date": "2025-12", "rating": 5, "comment": "Antika halimizin saçaklari dokulmustu. Onarim yaptillar, yeni gibi oldu. El isciiligi gercekten farkli." }
+        ],
+        "faq": [
+          { "q": "Hali yikama ne kadar suruyor?", "a": "Makine yikama 2-3 is gunu, el yikama 3-5 is gunu surmektedir. Yogun sezon (bahar/yaz) biraz daha uzayabilir." },
+          { "q": "Ucretsiz servis hangi bolgeler?", "a": "Kadikoy, Atasehir, Uskudar, Maltepe, Kartal, Pendik ve Umraniye bolgesinde ucretsiz teslim alma ve birakma yapiyoruz." },
+          { "q": "Ipek hali yikayabiliyor musunuz?", "a": "Evet, ipek ve el dokuma halilar icin ozel el yikama hizmetimiz var. Ustamiz 25 yillik deneyimlidir, haliniz guvenli ellerde." },
+          { "q": "Koltuk yikama sonrasi ne kadar surede kuruyor?", "a": "Ortalama 2-4 saatte kuruyor. Havalandirilmis ortamda daha hizli kururr. Fan kullanmanizi oneririz." },
+          { "q": "Anti-alerjen islem nedir?", "a": "Halinizdeki toz akarilari, alerjenler ve bakterileri ozel islemle giderir. Alerji ve astim hastalarına oneriliir. Yikama sonrasi ek islem olarak uygulanir." },
+          { "q": "Hali onarimi yapiyor musunuz?", "a": "Evet, kirpik, sacak, delik tamiri ve renk rotuslama yapiyoruz. El dokuma haliler icin ustamiz el isciilgiyle onarim yapar." },
+          { "q": "Garanti veriyor musunuz?", "a": "Evet, yikama sonrasi 3 gun icinde memnun kalmazsaniz ucretsiz yeniden yikama yapiyoruz." },
+          { "q": "Odeme nasil yapiliir?", "a": "Nakit, kredi karti ve havale kabul ediyoruz. Teslimatta odeme yapilir." }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Haliniz ve Koltugunuz Fabrika Cikisi Gibi",
+          "subtitle": "Atasehir'de 15 yillik hali yikama ve koltuk temizleme uzmani. Makine ve el yikama, yerinde koltuk temizligi, ucretsiz servis.",
+          "badge": "Hali & Koltuk Uzmani"
+        },
+        "about": {
+          "title": "YikaPlus Hakkinda",
+          "description": "YikaPlus, 2011 yilinda 2. nesil hali yikamaci Hasan Korkmaz tarafindan Atasehir'de kurulmustur. Modern fabrikamizda makine yikama, 25 yillik deneyimli ustamizla el yikama ve mobil ekibimizle yerinde koltuk/yatak temizligi hizmeti sunuyoruz. Sifir atik su sistemi, cevre dostu deterjanlar ve anti-alerjen islem seceneklerimizle saglikli temizlik sagliyoruz. Hali onarimi, perde yikama ve motalama hizmetlerimizle kapsamli cozumler sunuyoruz. Kadikoy, Atasehir, Uskudar ve cevre ilcelere ucretsiz teslim alma/birakma servisimiz mevcuttur."
+        },
+        "services": {
+          "title": "Yikama & Temizlik Hizmetlerimiz",
+          "subtitle": "Hali, koltuk, yatak, perde — her tekstil icin cozum"
+        },
+        "contact": {
+          "title": "Siparis & Servis",
+          "subtitle": "Ucretsiz teslim alma icin hemen arayin"
+        }
+      }
+    },
+    {
+      "id": "temizlik-dezenfektan",
+      "variantName": "dezenfektan",
+      "plan": "pro",
+      "description": "Dezenfeksiyon ve hijyen uzmani",
+      "designPhilosophy": "Bilimsel, steril, guven veren",
+      "isDark": false,
+      "colors": {
+        "bg": "#F8FCFA",
+        "surface": "#E8F5EE",
+        "text": "#1A2B24",
+        "accent": "#00897B"
+      },
+      "fonts": { "heading": "Poppins", "body": "Inter" },
+      "business": {
+        "name": "HijyenPro Dezenfeksiyon",
+        "ownerName": "Dr. Cem Arslan",
+        "sector": "Temizlik",
+        "slogan": "Bilimsel dezenfeksiyon, gozle gorulen hijyen",
+        "phone": "0535 614 28 90",
+        "phoneClean": "905356142890",
+        "whatsapp": "905356142890",
+        "email": "info@hijyenpro.com.tr",
+        "address": "Kozyatagi Mah. Saniye Ermutlu Sok. No:6/A, Kadikoy/Istanbul",
+        "city": "Istanbul",
+        "district": "Kadikoy",
+        "neighborhood": "Kozyatagi",
+        "coordinates": { "lat": 40.9718, "lng": 29.0812 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/hijyenprotr",
+          "facebook": "https://facebook.com/hijyenpro",
+          "youtube": "https://youtube.com/@hijyenpro",
+          "linkedin": "https://linkedin.com/company/hijyenpro"
+        },
+        "photos": [],
+        "foundedYear": 2019,
+        "experience": "7 yil",
+        "customerCount": "5.000+",
+        "rating": 4.9,
+        "reviewCount": 1100,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "07:00", "close": "21:00", "isOpen": true },
+          { "day": "Sali", "open": "07:00", "close": "21:00", "isOpen": true },
+          { "day": "Carsamba", "open": "07:00", "close": "21:00", "isOpen": true },
+          { "day": "Persembe", "open": "07:00", "close": "21:00", "isOpen": true },
+          { "day": "Cuma", "open": "07:00", "close": "21:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "08:00", "close": "18:00", "isOpen": true },
+          { "day": "Pazar", "open": "09:00", "close": "15:00", "isOpen": true }
+        ],
+        "services": [
+          { "id": "s1", "name": "Mekan Dezenfeksiyonu", "price": "15 TL/m2", "duration": "1-3 saat", "description": "ULV cihaz ile tum yuzey dezenfeksiyonu. Virus, bakteri ve mantar giderme. TSE onayli urunler." },
+          { "id": "s2", "name": "Klima & Havalandirma Temizligi", "price": "800 TL/cihaz", "duration": "45 dk", "description": "Split ve merkezi klima ic/dis unite temizligi, antibakteriyel islem." },
+          { "id": "s3", "name": "Haşere Ilaclamasi", "price": "1.500 - 5.000 TL", "duration": "1-2 saat", "description": "Hamam bocegi, karinca, bit, pire, fare ilaclamasi. Kokusuz ve kalintisiz urunler." },
+          { "id": "s4", "name": "Su Deposu Temizligi", "price": "1.000 - 3.000 TL", "duration": "2-4 saat", "description": "Apartman ve bina su deposu temizligi ve dezenfeksiyonu. Analiz raporu dahil." },
+          { "id": "s5", "name": "Ozon Tedavisi", "price": "2.000 TL/oda", "duration": "2-4 saat", "description": "Ozon gazı ile derin dezenfeksiyon. Koku giderme, allerjen yok etme. Insan/hayvan girisinden once havalandirma sart." },
+          { "id": "s6", "name": "Hastane/Klinik Dezenfeksiyonu", "price": "Teklif uzerine", "duration": "degisken", "description": "Saglik kuruluslari icin ozel dezenfeksiyon protokolu. ISO 14001 uyumlu." },
+          { "id": "s7", "name": "Okul/Kres Dezenfeksiyonu", "price": "Teklif uzerine", "duration": "4-8 saat", "description": "Cocuk dostu urunlerle okul ve kres dezenfeksiyonu. Yuzey swab testi dahil." },
+          { "id": "s8", "name": "Restoran/Kafe HACCP Temizligi", "price": "3.000 - 8.000 TL", "duration": "4-6 saat", "description": "Gida isletmeleri icin HACCP uyumlu temizlik ve dezenfeksiyon. Denetim hazirliği." },
+          { "id": "s9", "name": "Otomobil Dezenfeksiyonu", "price": "500 TL", "duration": "30 dk", "description": "Arac ici ozon ve ULV dezenfeksiyonu. Koku giderme, alerjen temizleme." },
+          { "id": "s10", "name": "Biyolojik Temizlik", "price": "5.000 - 20.000 TL", "duration": "degisken", "description": "Olay yeri, hoarding, hayvan birikimi sonrasi biyolojik tehlikeli ortam temizligi." },
+          { "id": "s11", "name": "Periyodik Hijyen Programi", "price": "Teklif uzerine", "duration": "aylik/ceyreklik", "description": "Duzeli dezenfeksiyon sozlesmesi. Aylik rapor, swab testi, sertifika." },
+          { "id": "s12", "name": "ATP Hijyen Testi", "price": "200 TL/nokta", "duration": "5 dk", "description": "Yuzey hijyen seviyesini aninda olcen ATP biyoluminisans testi. Sonuc 15 saniye." },
+          { "id": "s13", "name": "Mantar Giderme", "price": "1.500 - 5.000 TL", "duration": "1-2 gun", "description": "Duvar, tavan, banyo mantar giderme ve anti-mantar koruma." },
+          { "id": "s14", "name": "Hijyen Egitimi", "price": "2.000 TL/seans", "duration": "2 saat", "description": "Personel hijyen egitimi. El yikama, yuzey temizligi, kisisel koruyucu ekipman. Sertifika." }
+        ],
+        "team": [
+          { "name": "Dr. Cem Arslan", "role": "Kurucu & Hijyen Danismani", "bio": "Cevre muhendisligi doktora. Dezenfeksiyon ve halk sagligi konusunda 15 yillik deneyim. TSE komite uyesi." },
+          { "name": "Murat Yildiz", "role": "Saha Operasyon Muduru", "bio": "10 yillik hasere ve dezenfeksiyon deneyimi. 5 kisilik saha ekibi yonetiyor." },
+          { "name": "Dr. Elif Kara", "role": "Biyolog & Laboratuvar Sorumlusu", "bio": "Mikrobiyoloji uzmani. ATP ve swab testleri, dezenfeksiyon etkinlik dogrulama." },
+          { "name": "Ahmet Celik", "role": "Klima & Havalandirma Uzmani", "bio": "12 yillik HVAC temizlik deneyimi. Merkezi ve split sistem bakiminda uzman." },
+          { "name": "Zeynep Dogan", "role": "HACCP & Gida Hijyeni Danismani", "bio": "Gida muhendisi. Restoran, otel ve fabrika HACCP uyumluluk danismanligi." },
+          { "name": "Kadir Ozturk", "role": "Biyolojik Temizlik Uzmani", "bio": "Ozel egitimli biyolojik tehlike temizlik uzmani. Kisisel koruyucu ekipman sertifikali." }
+        ],
+        "testimonials": [
+          { "name": "Park Hastanesi Kadikoy", "district": "Kadikoy", "date": "2025-12", "rating": 5, "comment": "Ameliyathane ve hasta odalari dezenfeksiyonunu HijyenPro yapiyor. Her islem sonrasi ATP testi yapilir, sonuclar raporlanir. Guvenceli ve bilimsel yaklasim." },
+          { "name": "Gunaydin Restoran", "district": "Besiktas", "date": "2025-11", "rating": 5, "comment": "HACCP denetimi oncesi kapsamli temizlik yaptirdik. Denetimden tam not aldik. Dr. Cem Bey'in danismanligi cok degerli." },
+          { "name": "ABC Kres Zinciri", "district": "Atasehir", "date": "2025-10", "rating": 5, "comment": "3 subemizde ceyreklik dezenfeksiyon programi uyguluyoruz. Cocuk dostu urunler kullanilmasi ve swab test raporlari velilere guvence veriyor." },
+          { "name": "Mehmet Yildiz", "district": "Maltepe", "date": "2025-09", "rating": 5, "comment": "Evimizde hamam bocegi sorunu vardi, iilaclama yaptilar. 3 aydir tek bocek gormedik. Kokusuz urun kullanmalari aile icin cok onemli." },
+          { "name": "Selin Ozcan", "district": "Uskudar", "date": "2025-08", "rating": 5, "comment": "Banyodaki kuf/mantar sorununu cozdüler. Anti-mantar islem sonrasi 6 aydir tekrar etmedi. Garantili calisiyorlar." },
+          { "name": "Yesil Vadi Apartmani Yonetimi", "district": "Umraniye", "date": "2025-07", "rating": 5, "comment": "Su deposu temizligi yaptirdik, analiz raporu verdiler. Su kalitesi gozle gorulur sekilde iyilesti. Her yil tekrarlıyoruz." },
+          { "name": "Tolga Aksoy", "district": "Kartal", "date": "2025-06", "rating": 4, "comment": "Aracima ozon dezenfeksiyonu yaptirdim. Sigara kokusu tamamen gitti. Tek sorun: randevu bekleme suresi uzun olabiliyor." },
+          { "name": "Hilton Garden Inn Atasehir", "district": "Atasehir", "date": "2025-11", "rating": 5, "comment": "Otel genelinde periyodik hijyen programi uyguluyoruz. Aylik rapor, sertifika ve acil destek. Profesyonel ve guvenilir partner." }
+        ],
+        "faq": [
+          { "q": "Dezenfeksiyon sonrasi ne zaman ortama girilebilir?", "a": "ULV dezenfeksiyonu sonrasi 30-60 dakika, ozon tedavisi sonrasi 2-4 saat havalandirma suresince beklenmesi gerekir." },
+          { "q": "Kullanilan kimyasallar sagliğa zararli mi?", "a": "TSE ve Saglik Bakanligi onayli, insana ve hayvana zararsiz urunler kullaniyoruz. Cocuk ve evcil hayvan olan evlerde ozel formul uygulanir." },
+          { "q": "ATP testi nedir?", "a": "Yuzey hijyen seviyesini 15 saniyede olcen biyoluminisans testidir. Hastaane, restoran ve gida isletmelerinde altin standart sayilir. Isleem sonrasi yuzey temizligini dogrular." },
+          { "q": "Hasere ilaaclamasi garantili mi?", "a": "Evet, 3 ay garanti veriyoruz. Garanti suresi icinde tekrar gorulurse ucretsiz ilaclama yapariz." },
+          { "q": "HACCP uyumlu temizlik nedir?", "a": "Gida isletmeleri icin uluslararasi hijyen standarti. Kritik kontrol noktalari, sicaklik takibi, yuzey dezenfeksiyonu ve dokuumantasyon icerir." },
+          { "q": "Ozon tedavisi ne ise yarar?", "a": "Ozon gazi guclu bir oksitleyicidir. Virus, bakteri, mantar ve kokulari yok eder. Sigara kokusu, rutubet kokusu ve pet kokusu giderrmede cok etkilidir." },
+          { "q": "Biyolojik temizlik nedir?", "a": "Kan, vucut sıvıları, biyo-tehlikeli maddeler iceren ortamlarin ozel ekipman ve kimyasallarla temizlenmesidir. Ozel eğitimli personelimiz koruyucu ekipmanla calisiir." },
+          { "q": "Periyodik program zorunlu mu?", "a": "Zorunlu degildir ama hastane, okul, restoran gibi isletmeler icin sidddetle tavsiye edilir. Duzenli dezenfeksiyon saglik riskini minimumda tutar." },
+          { "q": "Fiyatlara KDV dahil mi?", "a": "Hayir, belirtilen fiyatlar KDV haric net fiyatlardir. Kurumsal fatura keserek KDV dahil toplam bildiririz." },
+          { "q": "Hangi bolgelere hizmet veriyorsunuz?", "a": "Istanbul genelinde hizmet veriyoruz. Anadolu yakasi agirlıklı olmak uzere Avrupa yakasina da geliyoruz." }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Bilimsel Dezenfeksiyon, Gozle Gorulen Hijyen",
+          "subtitle": "Istanbul'da 7 yildir hastane, okul, restoran ve ev dezenfeksiyonu. TSE onayli urunler, ATP hijyen testi, raporlu hizmet.",
+          "badge": "Dezenfeksiyon Uzmani"
+        },
+        "about": {
+          "title": "HijyenPro Hakkinda",
+          "description": "HijyenPro, 2019 yilinda cevre muhendisligi doktorali Dr. Cem Arslan tarafindan Istanbul'da kurulmustur. Bilimsel temelli dezenfeksiyon, hasere ilaclama, klima temizligi ve ozel hijyen cozumleri sunuyoruz. TSE ve Saglik Bakanligi onayli urunler, ULV cihazlar ve ozon jeneratöleri kullaniyoruz. Her islem sonrasi ATP biyoluminisans testi ile hijyen seviyesini dogruluyoruz. Hastaneler, okullar, restoranlar, oteller ve bireysel musterilere hizmet veriyoruz. HACCP uyumlu gida hijyeni, biyolojik temizlik ve periyodik hijyen programlari ile kapsamli cozumler sunmaktayız."
+        },
+        "services": {
+          "title": "Dezenfeksiyon & Hijyen Hizmetlerimiz",
+          "subtitle": "Mekan dezenfeksiyonundan hasere ilaaclamaya, klima temizliginden hijyen egitimine"
+        },
+        "contact": {
+          "title": "Ucretsiz Kesif & Teklif",
+          "subtitle": "Mekaniiniz icin hijyen plani olusturalim"
+        }
+      }
+    },
+    {
+      "id": "temizlik-lux",
+      "variantName": "lux",
+      "plan": "enterprise",
+      "description": "Premium kurumsal tesis yonetimi ve temizlik zinciri",
+      "designPhilosophy": "Kurumsal, premium, karanlik tema",
+      "isDark": true,
+      "colors": {
+        "bg": "#0D1117",
+        "surface": "#161D27",
+        "text": "#E2E8F0",
+        "accent": "#C9A84C"
+      },
+      "fonts": { "heading": "Montserrat", "body": "Inter" },
+      "business": {
+        "name": "CleanElite Tesis Yonetimi",
+        "ownerName": "Burak Senturk",
+        "sector": "Temizlik",
+        "slogan": "Kurumsal temizlik ve tesis yonetiminde altin standart",
+        "phone": "0212 444 ELIT",
+        "phoneClean": "902124443548",
+        "whatsapp": "905301234789",
+        "email": "info@cleanelite.com.tr",
+        "address": "Maslak Mah. Eski Buyukdere Cad. No:12/1, Sariyer/Istanbul",
+        "city": "Istanbul",
+        "district": "Sariyer",
+        "neighborhood": "Maslak",
+        "coordinates": { "lat": 41.1092, "lng": 29.0218 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/cleanelitetr",
+          "facebook": "https://facebook.com/cleanelite",
+          "youtube": "https://youtube.com/@cleanelite",
+          "twitter": "https://twitter.com/cleanelitetr",
+          "linkedin": "https://linkedin.com/company/cleanelite-tr"
+        },
+        "photos": [],
+        "foundedYear": 2008,
+        "experience": "18 yil",
+        "customerCount": "500+",
+        "rating": 4.9,
+        "reviewCount": 3500,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "00:00", "close": "23:59", "isOpen": true },
+          { "day": "Sali", "open": "00:00", "close": "23:59", "isOpen": true },
+          { "day": "Carsamba", "open": "00:00", "close": "23:59", "isOpen": true },
+          { "day": "Persembe", "open": "00:00", "close": "23:59", "isOpen": true },
+          { "day": "Cuma", "open": "00:00", "close": "23:59", "isOpen": true },
+          { "day": "Cumartesi", "open": "00:00", "close": "23:59", "isOpen": true },
+          { "day": "Pazar", "open": "00:00", "close": "23:59", "isOpen": true }
+        ],
+        "services": [
+          { "id": "s1", "name": "7/24 Kurumsal Temizlik", "price": "Teklif uzerine", "duration": "7/24", "description": "AVM, plaza, hastane, fabrika icin kesintisiz temizlik. Vardiyali ekip, gunluk rapor." },
+          { "id": "s2", "name": "Otel Housekeeping Outsource", "price": "Teklif uzerine", "duration": "7/24", "description": "4-5 yildizli otellerde housekeeping departmani disourcing. Egitimli ekip, kalite standartlari." },
+          { "id": "s3", "name": "Hastane Temizligi (JCI Uyumlu)", "price": "Teklif uzerine", "duration": "7/24", "description": "JCI akreditasyon standartlarinda hastane temizligi. Ameliyathane, yogun bakim, hasta odasi." },
+          { "id": "s4", "name": "AVM & Plaza Temizligi", "price": "Teklif uzerine", "duration": "7/24", "description": "Alisveris merkezi ve is merkezi komple temizlik yonetimi. Zemin, cam, wc, ortak alan." },
+          { "id": "s5", "name": "Fabrika & Uretim Tesisi", "price": "Teklif uzerine", "duration": "degisken", "description": "GMP/ISO uyumlu uretim alani temizligi. Temiz oda, steril bolge dahil." },
+          { "id": "s6", "name": "Dis Cephe & Cam Temizligi", "price": "Teklif uzerine", "duration": "degisken", "description": "Yuksek bina dis cephe ve cam temizligi. Alpin ve BMU (Building Maintenance Unit) sistemleri." },
+          { "id": "s7", "name": "Zemin Bakim Programi", "price": "Teklif uzerine", "duration": "periyodik", "description": "Mermer, granit, vinil, epoksi zemin kristalizasyon, cilalama ve koruma." },
+          { "id": "s8", "name": "Atik Yonetimi", "price": "Teklif uzerine", "duration": "sureklii", "description": "Geri donusum, tibbi atik, tehlikeli atik ayristirma ve bertarafi. Yasal uyumluluk." },
+          { "id": "s9", "name": "Dezenfeksiyon & Hijyen", "price": "Teklif uzerine", "duration": "periyodik", "description": "ULV, ozon, UV-C dezenfeksiyon. ATP testi ve raporlama. Pandemi protokolleri." },
+          { "id": "s10", "name": "Peyzaj & Dis Alan Bakim", "price": "Teklif uzerine", "duration": "aylik", "description": "Kampus, rezidans, AVM dis alan bakim, cesme susleme, bitki bakimi." },
+          { "id": "s11", "name": "Personel Outsourcing", "price": "Teklif uzerine", "duration": "sureklii", "description": "Resepsiyon, guvenlik, vale, kurye personel tedaarik. Egitim ve yonetim dahil." },
+          { "id": "s12", "name": "IoT Tabanli Temizlik Yonetimi", "price": "Teklif uzerine", "duration": "sureklii", "description": "Sensor tabanli tuvalet doluluk, sabunluk, havluluk takibi. Anlik bildirim ve analitik." },
+          { "id": "s13", "name": "Enerji & HVAC Yonetimi", "price": "Teklif uzerine", "duration": "sureklii", "description": "Klima bakim, enerji izleme, filtre degisim programi. Enerji tasarrufu raporlama." },
+          { "id": "s14", "name": "Ozel Etkinlik Temizligi", "price": "5.000 - 50.000 TL", "duration": "degisken", "description": "Konser, kongre, fuar, lansman oncesi/sonrasi temizlik. Hizli kurulum ve demontaj." },
+          { "id": "s15", "name": "Rezidans & Site Yonetimi", "price": "Teklif uzerine", "duration": "sureklii", "description": "Luks rezidans ve site ortak alan temizligi, guvenlik, teknik bakim. Tam entegre yonetim." },
+          { "id": "s16", "name": "Green Clean (Sertifikali)", "price": "ek ucret", "duration": "ek", "description": "LEED uyumlu yesil temizlik. Cevre dostu kimyasallar, karbon ayak izi raporlama." },
+          { "id": "s17", "name": "Pandemi & Kriz Mudahale", "price": "Acil", "duration": "degisken", "description": "Pandemi, sel, yangin sonrasi acil temizlik ve dezenfeksiyon. 2 saat icerisinde mudahale." },
+          { "id": "s18", "name": "Egitim & Sertifikasyon", "price": "Dahili", "duration": "sureklii", "description": "Calisan hijyen egitimi, is guvenligi, HACCP ve JCI uyumluluk egiitimleri." },
+          { "id": "s19", "name": "Musteri Memnuniyeti Sistemi", "price": "Dahili", "duration": "sureklii", "description": "Dijital anket, QR degerlendirme, aylik memnuniyet raporu ve iyilestirme plani." },
+          { "id": "s20", "name": "VIP Villa & Konak Hizmeti", "price": "8.000 - 30.000 TL/ay", "duration": "haftalik/gunluk", "description": "Luks villa ve konak icin ozel temizlik ekibi. Garson, bahcivan, sofor koordinasyonu." }
+        ],
+        "team": [
+          { "name": "Burak Senturk", "role": "Kurucu & CEO", "bio": "18 yillik tesis yonetimi deneyimi. IFMA (International Facility Management Association) uyeligi. 500+ kurumsal musteri portfoyuu." },
+          { "name": "Ayse Koc", "role": "Operasyon Genel Muduru", "bio": "15 yillik saha deneyimi. 2.000+ kisilik temizlik ekibini yonetiyor. ISO 9001 ve 14001 ic denetci." },
+          { "name": "Dr. Nihan Yilmaz", "role": "Hijyen & Kalite Muduru", "bio": "Mikrobiyoloji doktora. JCI ve HACCP uyumluluk danismani. Dezenfeksiyon protokol gelistirme." },
+          { "name": "Mert Ozdemir", "role": "IoT & Teknoloji Muduru", "bio": "Endustrri muhendisi. Sensor tabanli temizlik yonetim sistemi gelistirdi. Dijital donusum uzmani." },
+          { "name": "Fatma Aksoy", "role": "Insan Kaynaklari Muduru", "bio": "2.000+ calisan isee alim, egitim ve performans yonetimi. 12 yillik IK deneyimi." },
+          { "name": "Serhat Dogan", "role": "Dis Cephe & Ozel Projeler", "bio": "Alpin ve BMU sertifıkalı. 50+ yuksek bina projesini yonetiyor. Is guvenligi uzmani." },
+          { "name": "Elif Cetin", "role": "Surdurulebiirlik Muduru", "bio": "Cevre muhendisi. LEED uyumlu yesil temizlik programi ve karbon ayak izi raporlama." },
+          { "name": "Can Tekin", "role": "Otel & Rezidans Bolum Muduru", "bio": "10 yillik 5 yildizli otel housekeeping deneyimi. Luks segment standartlarinda uzman." }
+        ],
+        "testimonials": [
+          { "name": "Zorlu Center AVM", "district": "Besiktas", "date": "2025-12", "rating": 5, "comment": "3 yildir CleanElite ile calisiyoruz. 200.000 m2 alanin 7/24 temizligini kusursuz yonetiyorlar. IoT sistemiyle tuvalet temizlik takibi cok inovatif." },
+          { "name": "Acibadem Hastaneler Grubu", "district": "Kadikoy", "date": "2025-11", "rating": 5, "comment": "JCI uyumlu hastane temizligi konusunda CleanElite standartlari cok yuksek. Ameliyathane temizlik protokolleri kusursuz. Denetimden her zaman tam not aliyoruz." },
+          { "name": "Raffles Istanbul", "district": "Besiktas", "date": "2025-10", "rating": 5, "comment": "Housekeeping ekibimizi tamamen CleanElite'e devrettik. Egitim kalitesi ve servis standardi beklentimizi asti. Misafir memnuniyeti puan artti." },
+          { "name": "Toyota Turkiye Fabrikasi", "district": "Sakarya", "date": "2025-09", "rating": 5, "comment": "Uretim alani temizligi GMP standartlarinda yapiliyor. Atik yonetimi programi sayesinde geri donusum oranımız %40 artti." },
+          { "name": "Nidya Rezidans", "district": "Sariyer", "date": "2025-08", "rating": 5, "comment": "350 daireli rezidansimizin komple yonetimini yapiyorlar. Temizlik, guvenlik, teknik bakim hep bir elden. Sakinlerimiz cok memnun." },
+          { "name": "IstinyePark AVM", "district": "Sariyer", "date": "2025-07", "rating": 5, "comment": "Dis cephe cam temizligi dahil komple hizmet aliyoruz. BMU sistemleriyle yuksek katlarda guvenli calisma. Hic aksaklik yasamadik." },
+          { "name": "Coca-Cola Turkiye Genel Merkezi", "district": "Kadikoy", "date": "2025-11", "rating": 5, "comment": "Green Clean sertifikali temizlik programi uygulanıyor. LEED binaamızla uyumlu cevre dostu temizlik. Karbon raporlama cok detayli." },
+          { "name": "Koc Holding", "district": "Sariyer", "date": "2025-06", "rating": 5, "comment": "5 farkli tesisimizde CleanElite calisiyor. Tek muhatap, tek standart, tek kalite. 18 yillik is ortakligi." },
+          { "name": "Istanbul Kongre Merkezi", "district": "Bakirkoy", "date": "2025-10", "rating": 5, "comment": "Uluslararasi kongre oncesi/sonrasi temizlik hizmetinde muhtesem hiz ve kalite. 10.000 kisilik etkinlik alanini 4 saatte hazirliyorlar." },
+          { "name": "Hasan Ozturk (Villa Sahibi)", "district": "Bebek", "date": "2025-09", "rating": 5, "comment": "VIP villa hizmeti aliyorum. Haftalik detayli temizlik, bahce bakimi, sofor koordinasyonu hep bir elden. Hayatimi cok kolaylastirdilar." },
+          { "name": "Turkcell Genel Merkezi", "district": "Maltepe", "date": "2025-08", "rating": 4, "comment": "Sensor tabanli tuvalet takip sistemi cok inovatif, aninda bildirim geliyor. Enerji yonetimi raporlari da cok faydali. Tek oneri: raporlama paneli daha sezgisel olabilir." },
+          { "name": "Memorial Hastanesi", "district": "Sisli", "date": "2025-12", "rating": 5, "comment": "Pandemi doneminden beri CleanElite ile calisiyoruz. Kriz mudahale hizlari inanilmaz, 2 saatte sahada oluyorlar. Hijyen standardimiz hic dusmeedi." }
+        ],
+        "faq": [
+          { "q": "Minimum sozlesme suresi ne kadar?", "a": "Kurumsal sozlesmelerimiz minimum 1 yillik olup, karsilikli memnuniyet esasina dayanir. Deneme suresi olarak 3 aylik pilot uygulama baslatabiliriz." },
+          { "q": "Kac kisi calistiriyorsunuz?", "a": "Toplam 2.000'den fazla calisanimiz var. Projeye gore 5 kisilik ekipten 200 kisilik kadroya kadar olcekleniriz." },
+          { "q": "ISO sertifikalariniz nelerdir?", "a": "ISO 9001 (Kalite), ISO 14001 (Cevre), ISO 45001 (Is Sagligi ve Guvenligi) sertifıkalarına sahibiz. LEED uyumlu Green Clean sertifikamiz da mevcuttur." },
+          { "q": "IoT temizlik yonetim sistemi nasil calisiyor?", "a": "Tuvalet, sabunluk ve havluluk sensorleri doluluk/bosalma durumunu anlik takip eder. Temizlik personeline mobil bildirim gider, mudahale suresi raporlanır." },
+          { "q": "JCI uyumlu temizlik nedir?", "a": "Joint Commission International sağlık kuruluşları akreditasyon standardıdır. Ameliyathane, yogun bakım, hasta odası gibi alanlarda ozel protokollerle calişılır." },
+          { "q": "Dis cephe temizliginde guvenlik nasil saglaniyor?", "a": "IRATA sertifikalı alpin ekibi ve BMU (Building Maintenance Unit) sistemleri kullanıyoruz. Her projeye ozel is guuvenligi planı hazirlanir." },
+          { "q": "Personel outsourcing nasil calisiyor?", "a": "Ihtiyaciniza uygun personel profili belirlenir, biz ise alim, egitim ve bordroo sureclerini yonetiriz. Personel bizim kadromuzda, sizin saha yonetiminizde calısır." },
+          { "q": "Green Clean programı ne icerir?", "a": "Cevre dostu kimyasallar, mikro fiber teknoloji, su tasarrufu programi, atik azaltma ve karbon ayak izi raporlama. LEED binalari icin zorunlluudur." },
+          { "q": "Pandemi kriz mudahalesi ne kadar surede baslıyor?", "a": "Istanbul icinde 2 saat icinde saha ekibi yonetir. 7/24 kriz hatti aktiftir. Ozel egitimli pandemi mudahale ekibi hazir bekler." },
+          { "q": "Enerji yonetimi ne tasarruf sagliyor?", "a": "HVAC optimizasyonu, aydinlatma zamanlama ve enerji izleme ile ortalama %15-25 enerji tasarrufu saglanmaktadır. ROI genellikle 6-12 ayda geri doner." },
+          { "q": "Fabrika icin GMP uyumlu temizlik nedir?", "a": "Good Manufacturing Practice standartlarinda uretim alani temizligi. Temiz oda siniflandirmasi, partikul olcumu, temas yuzey testi dahildir." },
+          { "q": "Musteri memnuniyet sistemi nasil calisiyor?", "a": "QR kod ile anlik degerlendirme, aylik dijital anket ve ceyreklik yuz yuze gorusme. Sonuclar dashboardda izlenir, iyilestirme plani hazirlanir." },
+          { "q": "Fiyatlandirma nasil yapiliyor?", "a": "Metrekare, personel sayisi, hizmet sikligi ve ozel gereksinimlere gore teklif olusturuyoruz. Ucretsiz kesif ziyareti sonrasi detayli teklif sunuyoruz." },
+          { "q": "Referanslarinizi gorebilir miyim?", "a": "Evet, 500+ kurumsal referansimiz mevcuttur. Sektore gore (saglik, otel, AVM, fabrika) gruplanmis referans listesi paylasabiliriz." },
+          { "q": "Atik yonetiminde yasal uyumluluk nasil saglaniyor?", "a": "Cevre Bakanligi lisansli atik toplama ve bertaraf firmalariyla calisiyoruz. Tibbi atik, tehlikeli atik ve geri donusum ayristirma protokolleri mevcut. Yillik rapor sunulur." }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Kurumsal Temizlik ve Tesis Yonetiminde Altin Standart",
+          "subtitle": "500+ kurumsal musteri, 2.000+ calisan, ISO sertifikalı. AVM'den hastaneye, otelden fabrikaya — 7/24 entegre tesis yonetimi.",
+          "badge": "Enterprise Tesis Yonetimi"
+        },
+        "about": {
+          "title": "CleanElite Hakkinda",
+          "description": "CleanElite Tesis Yonetimi, 2008 yilinda Burak Senturk tarafindan kurulmus olup Istanbul'un en buyuk kurumsal temizlik ve tesis yonetim sirketlerinden biridir. ISO 9001, 14001 ve 45001 sertifikalı kalite yonetim sistemimizle AVM, hastane, otel, fabrika, rezidans ve ofis gibi her turlu tesis icin 7/24 entegre hizmet sunuyoruz. 2.000'den fazla calisanımiz, IoT tabanli dijital yonetim sistemimiz ve JCI/HACCP/GMP uyumlu temizlik protokollerimizle sektorde oncu konumdayiz. Green Clean sertifikali cevre dostu temizlik programlarimiz, enerji yonetimi, atik yonetimi ve personel outsourcing hizmetlerimizle tesis yonetiminizi tek elden profesyonel sekilde yonetiyoruz. Zorlu Center, Acibadem Hastaneleri, Raffles Istanbul, Koc Holding gibi Turkiye'nin onde gelen kurumlarina hizmet veriyoruz."
+        },
+        "services": {
+          "title": "Tesis Yonetim Hizmetlerimiz",
+          "subtitle": "7/24 entegre temizlik, hijyen, enerji ve personel yonetimi"
+        },
+        "contact": {
+          "title": "Kurumsal Teklif & Iletisim",
+          "subtitle": "Tesisiniz icin ucretsiz kesif ve teklif alin"
+        }
+      }
+    }
+  ]
+}

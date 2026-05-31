@@ -1,0 +1,20 @@
+/** Foto Portre — clean portrait photography CSS variables */
+export const FOTO_PORTRE_CSS: Record<string, string> = {
+  '--color-bg': '#FAFAFA',
+  '--color-surface': '#FFFFFF',
+  '--color-surface-elevated': '#FFFFFF',
+  '--color-surface-muted': '#F5F5F5',
+  '--color-text': '#171717',
+  '--color-text-secondary': '#737373',
+  '--color-text-muted': '#A3A3A3',
+  '--color-text-on-accent': '#FFFFFF',
+  '--color-text-on-dark': '#FAFAFA',
+  '--color-accent': '#404040',
+  '--color-accent-hover': '#525252',
+  '--color-accent-active': '#262626',
+  '--color-accent-light': '#F5F5F5',
+  '--color-border': '#E5E5E5',
+  '--color-border-subtle': '#F0F0F0',
+  '--font-heading': "'Sora', sans-serif",
+  '--font-body': "'Inter', system-ui, sans-serif",
+}

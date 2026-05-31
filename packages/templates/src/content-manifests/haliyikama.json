@@ -1,0 +1,535 @@
+{
+  "sectorId": "haliyikama",
+  "seoSchemaType": "DryCleaningOrLaundry",
+  "variants": [
+    {
+      "id": "haliyikama-ev",
+      "variantName": "ev",
+      "plan": "free",
+      "description": "Ev halisi toplama ve yikama hizmeti",
+      "designPhilosophy": "Sade, guvenilir, ekonomik",
+      "isDark": false,
+      "colors": {
+        "bg": "#FFFFFF",
+        "surface": "#F5F7FA",
+        "text": "#1A1A1A",
+        "accent": "#2196F3"
+      },
+      "fonts": { "heading": "Inter", "body": "Inter" },
+      "business": {
+        "name": "Temiz Hali Yikama",
+        "ownerName": "Ahmet Demir",
+        "sector": "Hali Yikama",
+        "slogan": "Haliniz bizde, temizlik garantimizle",
+        "phone": "0532 417 68 30",
+        "phoneClean": "905324176830",
+        "whatsapp": "905324176830",
+        "email": "info@temizhaliyikama.com",
+        "address": "Caferaga Mah. Moda Cad. No:72/A, Kadikoy/Istanbul",
+        "city": "Istanbul",
+        "district": "Kadikoy",
+        "neighborhood": "Caferaga",
+        "coordinates": { "lat": 40.9870, "lng": 29.0265 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/temizhaliyikama"
+        },
+        "photos": [],
+        "foundedYear": 2015,
+        "experience": "11 yil",
+        "customerCount": "18.000+",
+        "rating": 4.6,
+        "reviewCount": 640,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "08:00", "close": "19:00", "isOpen": true },
+          { "day": "Sali", "open": "08:00", "close": "19:00", "isOpen": true },
+          { "day": "Carsamba", "open": "08:00", "close": "19:00", "isOpen": true },
+          { "day": "Persembe", "open": "08:00", "close": "19:00", "isOpen": true },
+          { "day": "Cuma", "open": "08:00", "close": "19:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "09:00", "close": "17:00", "isOpen": true },
+          { "day": "Pazar", "open": "00:00", "close": "00:00", "isOpen": false }
+        ],
+        "services": [
+          { "id": "s1", "name": "Makine Halisi Yikama", "price": "80 TL/m2", "duration": "2-3 gun", "description": "Makine halisi ve dokuma hali profesyonel yikama. Ucretsiz toplama ve teslim." },
+          { "id": "s2", "name": "Yun Hali Yikama", "price": "120 TL/m2", "duration": "3-5 gun", "description": "El dokuma ve yun halilara ozel hassas yikama. Lif koruma garantili." },
+          { "id": "s3", "name": "Hali Leke Cikarma", "price": "150 TL/m2", "duration": "3-5 gun", "description": "Inatci lekeler icin ozel islem. Cay, kahve, boya, pet lekeleri." },
+          { "id": "s4", "name": "Hali Teslim Al-Gotyr", "price": "Ucretsiz", "duration": "aynii gun", "description": "Kadikoy ve cevre ilcelerde ucretsiz hali toplama ve teslim hizmeti." }
+        ],
+        "team": [],
+        "testimonials": [],
+        "faq": [
+          { "q": "Hali yikama kac gun suruyor?", "a": "Makine halilari 2-3 gun, yun ve el dokuma halillar 3-5 gun icinde teslim edilir. Acil durumlarda 24 saat ekspres hizmetimiz de vardir." },
+          { "q": "Toplama ve teslim ucretsiz mi?", "a": "Evet, Kadikoy ve cevre ilcelerde (Uskudar, Atasehir, Maltepe) toplama ve teslim tamamen ucretsizdir." },
+          { "q": "Hali zarar gorur mu?", "a": "Hayir, hali tipine uygun yikama yontemi secilir. Yun halillar dusuk sicaklikta, makine halilari normal programda yikanir. Lif bozulmasi olmaz." },
+          { "q": "Fiyat nasil hesaplaniyor?", "a": "Fiyatlandirma metrekare uzerinden yapilir. Halinizin olcusu alinir ve tipine gore metrekare birim fiyati uygulanir." }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Haliniz Bizde, Temizlik Garantimizle",
+          "subtitle": "Kadikoy'de 11 yillik hali yikama deneyimi. Ucretsiz toplama ve teslim, profesyonel yikama, uygun fiyat.",
+          "badge": "Guvenilir Hali Yikama"
+        },
+        "about": {
+          "title": "Temiz Hali Yikama Hakkinda",
+          "description": "Temiz Hali Yikama, 2015 yilindan bu yana Kadikoy ve cevre ilcelerde profesyonel hali yikama hizmeti sunmaktadir. Makine halisi, yun hali, el dokuma hali ve ozel dokuma halilarin yikamasinda 11 yillik deneyime sahibiz. Ucretsiz toplama ve teslim hizmetimizle kapinizdan alip, tertemiz olarak geri getiriyoruz. 18.000'den fazla hali yikama islemi gerceklestirdik."
+        },
+        "services": {
+          "title": "Hali Yikama Hizmetlerimiz",
+          "subtitle": "Her turlu hali icin profesyonel yikama cozumleri"
+        },
+        "contact": {
+          "title": "Hemen Arayin",
+          "subtitle": "Halinizi kapinizdan alalim, tertemiz teslim edelim"
+        }
+      }
+    },
+    {
+      "id": "haliyikama-fabrika",
+      "variantName": "fabrika",
+      "plan": "starter",
+      "description": "Endustriyel hali yikama fabrikasi",
+      "designPhilosophy": "Endustriyel, guclu, profesyonel",
+      "isDark": false,
+      "colors": {
+        "bg": "#F8FAFB",
+        "surface": "#EDF2F5",
+        "text": "#1C2A33",
+        "accent": "#0D7377"
+      },
+      "fonts": { "heading": "Inter", "body": "Inter" },
+      "business": {
+        "name": "FabrikaYikama Endustriyel Hali Tesisi",
+        "ownerName": "Kemal Ozturk",
+        "sector": "Hali Yikama",
+        "slogan": "Fabrika kapasitesiyle kusursuz temizlik",
+        "phone": "0533 289 54 10",
+        "phoneClean": "905332895410",
+        "whatsapp": "905332895410",
+        "email": "info@fabrikayikama.com.tr",
+        "address": "Esenkent Mah. Dudullu Organize Sanayi Bolgesi 1. Cad. No:38, Umraniye/Istanbul",
+        "city": "Istanbul",
+        "district": "Umraniye",
+        "neighborhood": "Esenkent",
+        "coordinates": { "lat": 41.0255, "lng": 29.1540 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/fabrikayikama",
+          "facebook": "https://facebook.com/fabrikayikama"
+        },
+        "photos": [],
+        "foundedYear": 2010,
+        "experience": "16 yil",
+        "customerCount": "45.000+",
+        "rating": 4.7,
+        "reviewCount": 1250,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "07:00", "close": "20:00", "isOpen": true },
+          { "day": "Sali", "open": "07:00", "close": "20:00", "isOpen": true },
+          { "day": "Carsamba", "open": "07:00", "close": "20:00", "isOpen": true },
+          { "day": "Persembe", "open": "07:00", "close": "20:00", "isOpen": true },
+          { "day": "Cuma", "open": "07:00", "close": "20:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "08:00", "close": "18:00", "isOpen": true },
+          { "day": "Pazar", "open": "09:00", "close": "15:00", "isOpen": true }
+        ],
+        "services": [
+          { "id": "s1", "name": "Standart Hali Yikama", "price": "80 TL/m2", "duration": "2 gun", "description": "Makine halisi, akrilik ve polyester hali yikama. Otomatik hat sistemiyle yuksek kapasite." },
+          { "id": "s2", "name": "Yun Hali Yikama", "price": "130 TL/m2", "duration": "3-4 gun", "description": "El dokuma, yun ve ipek karisim halilara ozel dusuk sicaklik programi." },
+          { "id": "s3", "name": "Antika Hali Restorasyonu", "price": "200 TL/m2", "duration": "5-7 gun", "description": "Degerli ve antika halilarin ozel elle yikama ve onarim islemi." },
+          { "id": "s4", "name": "Hali Kurutma", "price": "30 TL/m2", "duration": "1 gun", "description": "Endustriyel kurutma tunelinde hijyenik kurutma. Nem ve kuf onleme." },
+          { "id": "s5", "name": "Hali Astar Tamiri", "price": "60 TL/m2", "duration": "2-3 gun", "description": "Yipranmis veya kopmus hali astari degisimi ve tamiri." },
+          { "id": "s6", "name": "Toplu Hali Yikama (Kurumsal)", "price": "65 TL/m2", "duration": "3-5 gun", "description": "Otel, cami, okul gibi kurumsal musteriler icin toplu indirimli yikama." }
+        ],
+        "team": [
+          { "name": "Kemal Ozturk", "role": "Kurucu & Tesis Muduru", "bio": "16 yillik hali yikama deneyimi. 2.000 m2 kapali alanda 3 uretim hatti yonetiyor." },
+          { "name": "Selim Aktas", "role": "Uretim Sefi", "bio": "10 yillik endustriyel hali yikama tecrobesi. Makine bakimi ve kalite kontrol sorumlusu." }
+        ],
+        "testimonials": [
+          { "name": "Zeynep Yilmaz", "district": "Umraniye", "date": "2025-11", "rating": 5, "comment": "3 tane buyuk salon halisi yikattim. 2 gunde tertemiz teslim ettiler. Renkleri canlanmis, mis gibi kokuyor." },
+          { "name": "Murat Kaya", "district": "Atasehir", "date": "2025-09", "rating": 5, "comment": "Cami halilarimizi yikattik, 500 m2. Toplu fiyat cok uygundu. Kalite ve hiz mukemmeldi." },
+          { "name": "Elif Sahin", "district": "Cekmekoy", "date": "2025-10", "rating": 4, "comment": "Yun halim vardi, biraz endiseliydim ama gayet guzel yikamisllar. Tek eksi: teslim 1 gun gecikti." }
+        ],
+        "faq": [
+          { "q": "Gunluk kapasiteniz ne kadar?", "a": "Endustriyel tesisimizde gunluk 3.000 m2 hali yikama kapasitemiz vardir. Yogun donemllerde ek vardiya acilir." },
+          { "q": "Toplama ve teslim yapiliyor mu?", "a": "Evet, Istanbul genelinde ucretsiz toplama ve teslim hizmeti sunuyoruz. Anadolu yakasinda ayni gun, Avrupa yakasinda ertesi gun teslim." },
+          { "q": "Kurumsal indirim var mi?", "a": "Evet, 100 m2 ustu siparislerde %15, 500 m2 ustu siparislerde %25 kurumsal indirim uygulanir." },
+          { "q": "Antika halilara zarar verir misiniz?", "a": "Antika ve degerli halillar ozel elle yikama unitesinde, dusuk sicaklikta, pH dengeli solusyonlarla yikanir. Hasar riski yoktur." },
+          { "q": "Hali nasil kurutuluyor?", "a": "Endustriyel kurutma tunelimizde kontrol altinda kurutulur. Nem orani olculur, kuf ve bakteri olusumu engellenir." },
+          { "q": "Fatura kesiyor musunuz?", "a": "Evet, bireysel ve kurumsal fatura kesiyoruz. KDV dahil fiyatlandirma yapilmaktadir." }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Fabrika Kapasitesiyle Kusursuz Hali Temizligi",
+          "subtitle": "Umraniye'de 2.000 m2 kapali alanda endustriyel hali yikama tesisi. Gunluk 3.000 m2 kapasite, ucretsiz toplama-teslim.",
+          "badge": "Endustriyel Hali Yikama"
+        },
+        "about": {
+          "title": "FabrikaYikama Hakkinda",
+          "description": "FabrikaYikama, 2010 yilindan bu yana Umraniye Dudullu Organize Sanayi Bolgesinde faaliyet gostermektedir. 2.000 m2 kapali alandaki 3 otomatik yikama hattimizla gunluk 3.000 m2 hali yikama kapasitesine sahibiz. Makine halisi, yun hali, el dokuma hali, antika hali ve kurumsal toplu hali yikama konularinda uzmaniz. Endustriyel kurutma tunelimizde hijyenik kurutma garantisi veriyoruz. 45.000'den fazla hali yikama islemi tamamladik. Otel, cami, okul ve fabrika gibi kurumsal musterilere toplu indirimli hizmet sunuyoruz."
+        },
+        "services": {
+          "title": "Hali Yikama Hizmetlerimiz",
+          "subtitle": "Endustriyel kapasiteyle her turlu hali icin profesyonel cozum"
+        },
+        "contact": {
+          "title": "Teklif Alin",
+          "subtitle": "Toplu siparisleriniz icin ozel fiyat teklifi"
+        }
+      }
+    },
+    {
+      "id": "haliyikama-koltuk",
+      "variantName": "koltuk",
+      "plan": "growth",
+      "description": "Hali, koltuk ve perde yikama uzmani",
+      "designPhilosophy": "Dinamik, cok yonlu, guvenilir",
+      "isDark": false,
+      "colors": {
+        "bg": "#F7FBFC",
+        "surface": "#E8F4F8",
+        "text": "#1A2B33",
+        "accent": "#00897B"
+      },
+      "fonts": { "heading": "Poppins", "body": "Inter" },
+      "business": {
+        "name": "YikaPlus Hali Koltuk Perde",
+        "ownerName": "Hasan Korkmaz",
+        "sector": "Hali Yikama",
+        "slogan": "Haliniz, koltugunuz, perdeniz — hepsi tertemiz",
+        "phone": "0534 612 87 40",
+        "phoneClean": "905346128740",
+        "whatsapp": "905346128740",
+        "email": "info@yikaplus.com.tr",
+        "address": "Kartaltepe Mah. Incirli Cad. No:56/B, Bakirkoy/Istanbul",
+        "city": "Istanbul",
+        "district": "Bakirkoy",
+        "neighborhood": "Kartaltepe",
+        "coordinates": { "lat": 40.9812, "lng": 28.8720 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/yikaplus",
+          "facebook": "https://facebook.com/yikaplus",
+          "youtube": "https://youtube.com/@yikaplus"
+        },
+        "photos": [],
+        "foundedYear": 2012,
+        "experience": "14 yil",
+        "customerCount": "35.000+",
+        "rating": 4.8,
+        "reviewCount": 1820,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Sali", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Carsamba", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Persembe", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Cuma", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "09:00", "close": "18:00", "isOpen": true },
+          { "day": "Pazar", "open": "10:00", "close": "16:00", "isOpen": true }
+        ],
+        "services": [
+          { "id": "s1", "name": "Makine Halisi Yikama", "price": "85 TL/m2", "duration": "2-3 gun", "description": "Akrilik, polyester ve makine dokuma halilarin profesyonel yikamasi." },
+          { "id": "s2", "name": "Yun Hali Yikama", "price": "130 TL/m2", "duration": "3-5 gun", "description": "El dokuma, yun ve ipek halilara ozel hassas yikama programi." },
+          { "id": "s3", "name": "Koltuk Yikama (Yerinde)", "price": "800 TL/takim", "duration": "2-3 saat", "description": "Kumas ve deri koltuk takimi yerinde yikama. Ozel solusyon ve buhar makinesi ile." },
+          { "id": "s4", "name": "Perde Yikama", "price": "40 TL/m2", "duration": "2-3 gun", "description": "Tul, fon perde, stor perde sokme-takma dahil komple yikama ve utuleme." },
+          { "id": "s5", "name": "Yorgan ve Battaniye Yikama", "price": "250 TL/adet", "duration": "2-3 gun", "description": "Yun, pamuk ve sentetik yorgan-battaniye hijyenik yikama ve kurutma." },
+          { "id": "s6", "name": "Yatak Temizligi", "price": "500 TL/adet", "duration": "2-3 saat", "description": "Yatak yuzeyinde akar, toz ve leke temizligi. UV sterilizasyon dahil." },
+          { "id": "s7", "name": "Oto Koltuk Yikama", "price": "1.200 TL", "duration": "2-3 saat", "description": "Arac ic koltuk, tavan ve taban komple yikama. Koku giderme dahil." },
+          { "id": "s8", "name": "Hali Leke Cikarma (Ozel)", "price": "150 TL/m2", "duration": "3-5 gun", "description": "Boya, mum, sigara yanigi, pet lekeleri icin ozel kimyasal islem." },
+          { "id": "s9", "name": "Anti-Bakteriyel Islem", "price": "30 TL/m2 ek", "duration": "isleme ek", "description": "Yikama sonrasi anti-bakteriyel ve anti-alerjen kaplama uygulama." },
+          { "id": "s10", "name": "Ekspres Yikama (24 Saat)", "price": "%50 ek ucret", "duration": "24 saat", "description": "Acil durumlarda 24 saat icinde yikama ve teslim. Tum hali ve koltuk turleri." }
+        ],
+        "team": [
+          { "name": "Hasan Korkmaz", "role": "Kurucu & Genel Mudur", "bio": "14 yillik hali ve koltuk yikama deneyimi. Tekstil temizlik teknolojileri konusunda uzman." },
+          { "name": "Aysel Demir", "role": "Musteri Iliskileri Muduru", "bio": "8 yildir YikaPlus'ta. 35.000+ musteri portfoyunu yonetiyor. Sikayet cozum orani %98." },
+          { "name": "Tuncay Arslan", "role": "Yerinde Servis Ekip Sefi", "bio": "Koltuk yikama ve perde sokme-takma konusunda 10 yillik deneyim. 5 kisilik mobil ekip yonetiyor." },
+          { "name": "Fatma Celik", "role": "Uretim Sorumlusu", "bio": "Fabrika yikama hatlarini yonetiyor. Kalite kontrol ve hali tipi tespit uzmani." }
+        ],
+        "testimonials": [
+          { "name": "Selin Kaya", "district": "Bakirkoy", "date": "2025-11", "rating": 5, "comment": "Koltuk takimimizi yikattik, renk farki bile belli oluyor artik. Yerinde hizmet cok pratik, evi dagitmadan hallettiler." },
+          { "name": "Burak Yildiz", "district": "Bahcelievler", "date": "2025-10", "rating": 5, "comment": "4 oda halisi ve perdeleri yikattim. Toplama-teslim ucretsiz, fiyat gayet makul. Sonuc muhtesem." },
+          { "name": "Melek Ozcan", "district": "Zeytinburnu", "date": "2025-09", "rating": 5, "comment": "Yorgan ve battaniyelerimizi yikattik. Mis gibi kokuyor, paketli teslim ettiler. Hijyenik hissettiriyor." },
+          { "name": "Ali Sahin", "district": "Florya", "date": "2025-08", "rating": 4, "comment": "Oto koltuk yikama yaptirdim. Cok guzel temizlediler ama randevu 2 gun sonrasina verilebiliyordu, biraz yogunlar." },
+          { "name": "Derya Aksoy", "district": "Yesilkoy", "date": "2025-07", "rating": 5, "comment": "Yun halimiz cok lekelliydi, ozel islem uyguladilar. Lekeler tamamen cikti, hali zarar gormedi. Ellerinize saglik." },
+          { "name": "Tolga Polat", "district": "Bakirkoy", "date": "2025-06", "rating": 5, "comment": "Perdeleri soktular, yikadilar, utuleyip geri taktilar. Komple hizmet, tek telefon ile hersey halloluyor." }
+        ],
+        "faq": [
+          { "q": "Koltuk yikama yerinde mi yapiliyor?", "a": "Evet, koltuk yikama evinizde yerinde yapilir. Ozel cihaz ve solusyonlarla 2-3 saat icinde tamamlanir." },
+          { "q": "Perde sokme-takma dahil mi?", "a": "Evet, perde yikama hizmetimize sokme ve geri takma islemi dahildir. Ek ucret alinmaz." },
+          { "q": "Deri koltuk da yikaniyor mu?", "a": "Evet, deri ve suni deri koltuklara ozel pH dengeli solusyonlarla temizlik yapilir. Deri bakim kremi de uygulanir." },
+          { "q": "Anti-bakteriyel islem nedir?", "a": "Yikama sonrasi hali veya koltuk yuzeyine uygulanan koruyucu kaplamadir. Bakteri, akar ve alerjenlere karsi 6 ay koruma saglar." },
+          { "q": "Ekspres hizmet ne kadar surede tamamlanir?", "a": "Ekspres hizmette haliniz 24 saat icinde yikanip teslim edilir. Normal surecin yarisindan az surede tamamlanir." },
+          { "q": "Hangi bolgelere hizmet veriyorsunuz?", "a": "Istanbul Avrupa yakasi agirlikli olmak uzere tum Istanbul'a hizmet veriyoruz. Bakirkoy, Bahcelievler, Zeytinburnu, Florya ve Yesilkoy oncelikli bolgelerimizdir." },
+          { "q": "Odeme nasil yapilir?", "a": "Nakit, kredi karti ve havale/EFT kabul ediyoruz. Koltuk yikamada yerinde odeme, hali yikamada teslimde odeme yapilir." },
+          { "q": "Hali zarar gorur mu?", "a": "Hayir, her hali tipine uygun yikama programi uygulanir. Yun halillar elle, makine halilari otomatik hatta yikanir. 14 yillik deneyimle hasar riski sifirdir." }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Hali, Koltuk, Perde — Hepsi Tertemiz",
+          "subtitle": "Bakirkoy'de 14 yillik deneyim. Hali yikama, koltuk yikama, perde yikama ve yorgan temizligi tek elden.",
+          "badge": "Hali & Koltuk Yikama Uzmani"
+        },
+        "about": {
+          "title": "YikaPlus Hakkinda",
+          "description": "YikaPlus, 2012 yilindan bu yana Bakirkoy ve cevre ilcelerde hali yikama, koltuk yikama, perde yikama ve tekstil temizlik hizmeti sunmaktadir. Fabrikamizda hali yikama, evinizde koltuk ve yatak temizligi, perdenizi sokup yikayip geri takma — tum tekstil temizlik ihtiyaclariniz tek elden karsilanir. Anti-bakteriyel islem, leke cikarma ve ekspres hizmet secenekleriyle farklilik yaratiyoruz. 35.000'den fazla musteri memnuniyetiyle buyumeye devam ediyoruz."
+        },
+        "services": {
+          "title": "Yikama Hizmetlerimiz",
+          "subtitle": "Hali, koltuk, perde ve tekstil temizlikte komple cozum"
+        },
+        "contact": {
+          "title": "Randevu & Teklif",
+          "subtitle": "Ucretsiz kesif icin hemen arayin"
+        }
+      }
+    },
+    {
+      "id": "haliyikama-organik",
+      "variantName": "organik",
+      "plan": "pro",
+      "description": "Organik ve cevre dostu hali yikama",
+      "designPhilosophy": "Dogal, premium, cevre duyarli",
+      "isDark": false,
+      "colors": {
+        "bg": "#FAFBF7",
+        "surface": "#EFF3E8",
+        "text": "#1A2618",
+        "accent": "#558B2F"
+      },
+      "fonts": { "heading": "Playfair Display", "body": "Inter" },
+      "business": {
+        "name": "YesilYikama Organik Hali Temizlik",
+        "ownerName": "Dr. Elif Tuncer",
+        "sector": "Hali Yikama",
+        "slogan": "Dogaya saygi, haliniza ozen",
+        "phone": "0535 748 21 60",
+        "phoneClean": "905357482160",
+        "whatsapp": "905357482160",
+        "email": "info@yesilyikama.com.tr",
+        "address": "Levent Mah. Nispetiye Cad. No:34/C, Besiktas/Istanbul",
+        "city": "Istanbul",
+        "district": "Besiktas",
+        "neighborhood": "Levent",
+        "coordinates": { "lat": 41.0810, "lng": 29.0130 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/yesilyikama",
+          "facebook": "https://facebook.com/yesilyikama",
+          "youtube": "https://youtube.com/@yesilyikama",
+          "twitter": "https://twitter.com/yesilyikama"
+        },
+        "photos": [],
+        "foundedYear": 2016,
+        "experience": "10 yil",
+        "customerCount": "22.000+",
+        "rating": 4.9,
+        "reviewCount": 2100,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Sali", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Carsamba", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Persembe", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Cuma", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "09:00", "close": "18:00", "isOpen": true },
+          { "day": "Pazar", "open": "10:00", "close": "16:00", "isOpen": true }
+        ],
+        "services": [
+          { "id": "s1", "name": "Organik Hali Yikama", "price": "120 TL/m2", "duration": "3-4 gun", "description": "Bitkisel bazli, kimyasal icermeyen organik solusyonlarla hali yikama. Cocuk ve evcil hayvan guvenli." },
+          { "id": "s2", "name": "Yun Hali Ozel Bakim", "price": "160 TL/m2", "duration": "4-6 gun", "description": "El dokuma yun halilara ozel dogal sabun ve dusuk sicaklik programi. Lif koruma garantili." },
+          { "id": "s3", "name": "Bebek Odasi Hali Temizligi", "price": "140 TL/m2", "duration": "2-3 gun", "description": "%100 dogal urunlerle bebek odasi hali ve hali kaplama temizligi. Alerjen giderme dahil." },
+          { "id": "s4", "name": "Organik Koltuk Yikama", "price": "1.200 TL/takim", "duration": "3 saat", "description": "Bitkisel solusyonlarla koltuk yikama. Deri bakim icin dogal balik yagi kremi." },
+          { "id": "s5", "name": "Anti-Alerjen Hali Islemi", "price": "50 TL/m2 ek", "duration": "isleme ek", "description": "Toz akari, polen ve evcil hayvan alerjeni giderme. Alerji hastalari icin ozel program." },
+          { "id": "s6", "name": "Dogal Leke Cikarma", "price": "180 TL/m2", "duration": "3-5 gun", "description": "Bitkisel enzim bazli leke cikarma. Kimyasal kullanilmadan inatci lekelere cozum." },
+          { "id": "s7", "name": "Ipek Hali Yikama", "price": "200 TL/m2", "duration": "5-7 gun", "description": "Saf ipek ve ipek karisim halilara ozel PH notr, elle yikama programi." },
+          { "id": "s8", "name": "Hali Koku Giderme (Dogal)", "price": "40 TL/m2 ek", "duration": "isleme ek", "description": "Karbonat ve essansiyel yag bazli dogal koku giderme ve ferahlama islemi." },
+          { "id": "s9", "name": "Perde Yikama (Organik)", "price": "55 TL/m2", "duration": "2-3 gun", "description": "Tul ve fon perde dogal deterjanla yikama. Sokme-takma dahil." },
+          { "id": "s10", "name": "Ozon Dezenfeksiyon", "price": "60 TL/m2 ek", "duration": "1 gun ek", "description": "Yikama sonrasi ozon gazi ile derinlemesine dezenfeksiyon. Virus ve bakteri yok etme." },
+          { "id": "s11", "name": "Antika Hali Konservasyonu", "price": "250 TL/m2", "duration": "7-10 gun", "description": "Muzze standartlarinda antika hali temizleme ve konservasyonu. Yikama, onariim ve koruma." },
+          { "id": "s12", "name": "Ev Tekstili Paket", "price": "3.500 TL", "duration": "3-5 gun", "description": "5 adet hali + 1 koltuk takimi + perdeler komple organik yikama paketi." },
+          { "id": "s13", "name": "Yorgan & Yastik (Organik)", "price": "300 TL/adet", "duration": "2-3 gun", "description": "Yun ve kus tuyu yorgan-yastik dogal solusyonla yikama ve ozonlama." },
+          { "id": "s14", "name": "Cevre Etki Raporu", "price": "Ucretsiz", "duration": "hizmetle birlikte", "description": "Her yikamada kullanilan su, kimyasal ve enerji miktarini gosteren cevre etki raporu." }
+        ],
+        "team": [
+          { "name": "Dr. Elif Tuncer", "role": "Kurucu & Cevre Danismani", "bio": "Cevre muhendisligi doktorasi. Organik temizlik formulleri gelistirme. 10 yillik sektfor deneyimi." },
+          { "name": "Baris Yilmaz", "role": "Uretim & Kalite Muduru", "bio": "Tekstil muhendisi. Organik sertifikali uretim hattini yonetiyor. Su geri donusum sistemi sorumlusu." },
+          { "name": "Seda Ozkan", "role": "Musteri Deneyimi Muduru", "bio": "22.000+ organik bilinclii musteri portfoyunu yonetiyor. Alerji danismanligi da yapiyor." },
+          { "name": "Emre Dogan", "role": "Antika Hali Uzmani", "bio": "15 yillik antika hali restorasyon deneyimi. El dokuma, ipek ve yun hali konservasyonunda uzman." },
+          { "name": "Zeynep Aksoy", "role": "Ar-Ge Sorumlusu", "bio": "Kimya muhendisi. Bitkisel bazli temizlik formulleri gelistiriyor. 3 patent sahibi." },
+          { "name": "Can Korkmaz", "role": "Lojistik Koordinatoru", "bio": "Elektrikli araclarla toplama-teslim filosunu yonetiyor. Karbon notr lojistik planlama." }
+        ],
+        "testimonials": [
+          { "name": "Aylin Sahin", "district": "Besiktas", "date": "2025-12", "rating": 5, "comment": "Bebegim yerde oynuyor, kimyasal kullanilmadan yikama yaptilar. Icim rahat, haliniz tertemiz ve dogal kokuyor." },
+          { "name": "Mehmet Kara", "district": "Etiler", "date": "2025-11", "rating": 5, "comment": "Antika Hereke halimizi yikattim. Muze standartlarinda islem yaptilar, renkler canlanmis. Emre Bey'in uzmanligi asikar." },
+          { "name": "Sinem Polat", "district": "Levent", "date": "2025-10", "rating": 5, "comment": "Alerji hastasiyim, anti-alerjen islem yaptirdim. Gercekten fark ediyor, hapsirma ve kasinti azaldi." },
+          { "name": "Burak Ozdemir", "district": "Ulus", "date": "2025-09", "rating": 5, "comment": "Ev tekstili paketini aldim — halillar, koltuk, perdeler. Hepsi organik yikandi, ev yenilenimmis gibi." },
+          { "name": "Deniz Arslan", "district": "Ortakoy", "date": "2025-08", "rating": 4, "comment": "Organik yikama biraz daha uzun suruyor ama sonuc buna deger. Cocuklar icin kimyasalsiz olmasi buyuk arti." },
+          { "name": "Pelin Celik", "district": "Bebek", "date": "2025-07", "rating": 5, "comment": "Cevre etki raporu cok hosuma gitti. Ne kadar su ve enerji harcadigini gormek bilinclii tuketici icin onemli." },
+          { "name": "Tamer Yildiz", "district": "Sisli", "date": "2025-06", "rating": 5, "comment": "Ipek halimiz vardi, baska yere vermekten korkuyordum. Buraya verdim, muhtesem sonuc. PH notr yikama fark yaratiyor." },
+          { "name": "Nurgul Dogan", "district": "Nisantasi", "date": "2025-05", "rating": 5, "comment": "3 kedim var, hali surekli kirleniyor. Organik yikama kedilere zararsiz, koku da dogal yontemlerle gideriliyor. Duzenli musteri oldum." }
+        ],
+        "faq": [
+          { "q": "Organik yikama nedir, normal yikamadan farki ne?", "a": "Organik yikamada bitkisel bazli, kimyasal icermeyen deterjanlar kullanilir. Cocuk, bebek ve evcil hayvanlar icin guvenlidir. Cevreye zararsizdir." },
+          { "q": "Organik urunler ayni temizligi sagliyor mu?", "a": "Evet, bitkisel enzimler lekeleri ayni etkinlikte cozer. Farkli olan kimyasal kalinti birakmamasidir. Sonuc olarak hem temiz hem saglikli." },
+          { "q": "Alerji icin hangi islemi onerirsiniz?", "a": "Anti-alerjen hali islemi oneriyoruz. Toz akari, polen ve pet alerjenleri ozel enzim formuluyle giderilir. 6 ay etkili koruma saglar." },
+          { "q": "Antika halimi teslim edebilir miyim?", "a": "Evet, antika ve degerli halillar sigorta kapsaminda teslim alinir. Konservasyon uzmanimmiz Emre Bey tarafindan degerlendirilir." },
+          { "q": "Cevre etki raporu ne iceriyor?", "a": "Yikamanizda kullanilan su miktari, enerji tuketimi, kimyasal kullanimi (sifir) ve karbon ayak izi bilgilerini iceren detayli rapordur." },
+          { "q": "Elektrikli aracla mi toplama yapiyorsunuz?", "a": "Evet, toplama ve teslim filomuz tamamen elektrikli araclardan olusmaktadir. Sifir emisyonlu lojistik hizmeti sunuyoruz." },
+          { "q": "Bebek halisi icin ozel program var mi?", "a": "Evet, %100 dogal urunlerle yikama, anti-alerjen islem ve ozon dezenfeksiyon iceren ozel bebek odasi programimiz var." },
+          { "q": "Ipek hali yikama riski var mi?", "a": "Ipek halillar uzman ellerde, PH notr solusyonla, elle yikanir. 15 yillik antika hali uzmanimmiz isllemi gerceklestirir. Hasar riski yoktur." },
+          { "q": "Ozon dezenfeksiyon nedir?", "a": "Yikama sonrasi ozon gazi ile derinlemesine dezenfeksiyon. Virus, bakteri ve mantar sporlarini yok eder. Kimyasal kalinti birakmaz." },
+          { "q": "Sertifikaniz var mi?", "a": "Evet, organik temizlik sertifikasi, ISO 14001 cevre yonetim sertifikasi ve karbon notr lojistik belgelerimiz mevcuttur." }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Dogaya Saygi, Haliniza Ozen",
+          "subtitle": "Besiktas'ta organik ve cevre dostu hali yikama. Kimyasalsiz, alerjen-free, bebek ve evcil hayvan guvenli.",
+          "badge": "Organik Hali Yikama"
+        },
+        "about": {
+          "title": "YesilYikama Hakkinda",
+          "description": "YesilYikama, 2016 yilinda cevre muhendisi Dr. Elif Tuncer tarafindan kurulmus, Turkiye'nin ilk tamamen organik hali yikama markassidir. Bitkisel bazli, kimyasal icermeyen temizlik solusyonlarimizla halinizi hem tertemiz yapiyor hem de sagliginizi koruyoruz. Bebek odalari, alerji hastalari ve evcil hayvan sahipleri icin ozel programlarimiz var. Antika hali konservasyonu, ipek hali bakimi ve organik koltuk yikama hizmetlerimizle premium segment musterilere hitap ediyoruz. Su geri donusum sistemimiz ve elektrikli toplama-teslim filomuzla karbon ayak izimizi minimumda tutuyoruz. Her yikamada cevre etki raporu sunarak musterilerimize seffaf bilgi sagliyoruz. 22.000'den fazla bilinclii musteriye hizmet verdik."
+        },
+        "services": {
+          "title": "Organik Yikama Hizmetlerimiz",
+          "subtitle": "Kimyasalsiz, cevre dostu, sagliga duyarli temizlik cozumleri"
+        },
+        "contact": {
+          "title": "Organik Teklif Alin",
+          "subtitle": "Saglikli ve cevre dostu yikama icin bizi arayin"
+        }
+      }
+    },
+    {
+      "id": "haliyikama-lux",
+      "variantName": "lux",
+      "plan": "enterprise",
+      "description": "Premium tekstil bakim grubu, kurumsal ve bireysel",
+      "designPhilosophy": "Luks, karanlik tema, altin aksan",
+      "isDark": true,
+      "colors": {
+        "bg": "#0A0A0A",
+        "surface": "#161616",
+        "text": "#E8E4DE",
+        "accent": "#C9A84C"
+      },
+      "fonts": { "heading": "Cormorant Garamond", "body": "Inter" },
+      "business": {
+        "name": "GoldTex Premium Tekstil Bakim",
+        "ownerName": "Cenk Basar",
+        "sector": "Hali Yikama",
+        "slogan": "Tekstil bakiminda altin standart",
+        "phone": "0530 914 37 80",
+        "phoneClean": "905309143780",
+        "whatsapp": "905309143780",
+        "email": "info@goldtex.com.tr",
+        "address": "Tarabya Mah. Haydar Aliyev Cad. No:120, Sariyer/Istanbul",
+        "city": "Istanbul",
+        "district": "Sariyer",
+        "neighborhood": "Tarabya",
+        "coordinates": { "lat": 41.1320, "lng": 29.0520 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/goldtextekstil",
+          "facebook": "https://facebook.com/goldtex",
+          "youtube": "https://youtube.com/@goldtex",
+          "twitter": "https://twitter.com/goldtex",
+          "linkedin": "https://linkedin.com/company/goldtex-tr"
+        },
+        "photos": [],
+        "foundedYear": 2005,
+        "experience": "21 yil",
+        "customerCount": "60.000+",
+        "rating": 4.9,
+        "reviewCount": 4200,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "07:00", "close": "22:00", "isOpen": true },
+          { "day": "Sali", "open": "07:00", "close": "22:00", "isOpen": true },
+          { "day": "Carsamba", "open": "07:00", "close": "22:00", "isOpen": true },
+          { "day": "Persembe", "open": "07:00", "close": "22:00", "isOpen": true },
+          { "day": "Cuma", "open": "07:00", "close": "22:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Pazar", "open": "09:00", "close": "18:00", "isOpen": true }
+        ],
+        "services": [
+          { "id": "s1", "name": "Premium Hali Yikama", "price": "150 TL/m2", "duration": "3-5 gun", "description": "Makine ve el dokuma halilara ozel 12 asamali yikama prosesi. Leke analizi, yikama, durulama, kurutma dahil." },
+          { "id": "s2", "name": "Hereke Ipek Hali Bakimi", "price": "300 TL/m2", "duration": "7-10 gun", "description": "Hereke ipek halilara muze standartlarinda elle yikama ve konservasyon. Sertifikali uzman islemi." },
+          { "id": "s3", "name": "Antika Hali Restorasyonu", "price": "250 TL/m2", "duration": "7-14 gun", "description": "Degerli antika halilarin temizlik, onarim, sacak tamiri ve renk canlandirma islemi." },
+          { "id": "s4", "name": "VIP Koltuk & Mobilya Bakimi", "price": "2.000 TL/takim", "duration": "4 saat", "description": "Luks kumas ve deri koltuk, sandalye ve oturma grubu yerinde profesyonel bakim." },
+          { "id": "s5", "name": "Otel & Rezidans Hali Programi", "price": "Teklif uzerine", "duration": "periyodik", "description": "5 yildizli otel ve luks rezidanslar icin periyodik hali ve tekstil bakim sozlesmesi." },
+          { "id": "s6", "name": "Cami Halisi Yikama", "price": "70 TL/m2", "duration": "3-5 gun", "description": "Cami halilari toplu yikama. Yerinden alma, yikama, kurutma ve geri serme dahil." },
+          { "id": "s7", "name": "Perde & Tul Bakim", "price": "60 TL/m2", "duration": "3 gun", "description": "Luks perde ve tul kumaslara ozel yikama, utuleme, sokme-takma. Motorlu perde dahil." },
+          { "id": "s8", "name": "Yorgan & Yatak Hijyen Paketi", "price": "500 TL/adet", "duration": "2-3 gun", "description": "Yun, kus tuyu ve ortopedik yorgan-yatak yikama, ozonlama ve vakumlu paketleme." },
+          { "id": "s9", "name": "Oto Detay Tekstil", "price": "1.500 TL", "duration": "3-4 saat", "description": "Luks arac ic tekstil komple yikama. Koltuk, tavan, hali, bagaj. Deri bakim dahil." },
+          { "id": "s10", "name": "Hali Sigorta Degerleme", "price": "500 TL", "duration": "1-2 gun", "description": "Degerli halilarin sigorta ve miras amacli ekspertiz degerleme raporu. Fotografli dokumantasyon." },
+          { "id": "s11", "name": "Anti-Guve Koruma", "price": "40 TL/m2 ek", "duration": "isleme ek", "description": "Yikama sonrasi dogal anti-guve kaplama. Yun ve ipek halilari guve tahribatindan korur." },
+          { "id": "s12", "name": "Su Hasari Kurtarma", "price": "200 TL/m2", "duration": "3-7 gun", "description": "Sel, boru patlamasi sonrasi islanmis halilarin acil kurtarma, kurutma ve restorasyon islemi." },
+          { "id": "s13", "name": "Haliya Ozel Depolama", "price": "15 TL/m2/ay", "duration": "aylik", "description": "Klima kontrollii depoda hali saklama. Guve koruma, nem kontrol ve sigorta dahil." },
+          { "id": "s14", "name": "Kurumsal Tekstil Outsourcing", "price": "Teklif uzerine", "duration": "surekli", "description": "Otel, restoran ve ofisler icin masa ortusu, peceete, yatak carsafi yikama ve kiralama." },
+          { "id": "s15", "name": "Hali Tamir & Sacak Orumu", "price": "100 TL/cm", "duration": "5-10 gun", "description": "Yirtik, delik ve sacak tamiri. El dokuma halilarda orijinal desen ile restorasyon." },
+          { "id": "s16", "name": "Kus Tuyu Yorgan Premium", "price": "800 TL/adet", "duration": "3-5 gun", "description": "Orijinal kus tuyu yorgan yikama, tuy ayristirma ve yeniden dolum. Kabarma garantili." },
+          { "id": "s17", "name": "Buyukelci & Konsolosluk Servisi", "price": "Teklif uzerine", "duration": "degisken", "description": "Diplomatik konutlar icin ozel guvenlik protokolu ile tekstil bakim hizmeti." },
+          { "id": "s18", "name": "Yat & Tekne Tekstil", "price": "Teklif uzerine", "duration": "degisken", "description": "Yat dosemeleri, tente, perde ve minder yikama. Tuzlu su hasari giderme." },
+          { "id": "s19", "name": "Abonelik Programi (VIP)", "price": "5.000 TL/ay", "duration": "aylik", "description": "Aylik duzenli hali, koltuk ve perde bakimi. Oncelikli randevu, ozel fiyat, kisi ozel mudur." },
+          { "id": "s20", "name": "Muze & Koleksiyon Bakimi", "price": "Teklif uzerine", "duration": "proje bazli", "description": "Muze, galeri ve ozel koleksiyonlardaki tekstil eserlerin bilimsel yontemlerle bakimi." }
+        ],
+        "team": [
+          { "name": "Cenk Basar", "role": "Kurucu & CEO", "bio": "21 yillik tekstil bakim deneyimi. Hereke Hali Enstitusu mezunu. Turkiye Hali Ihracatciilari Birligi danismani." },
+          { "name": "Dr. Nurhan Aktas", "role": "Tekstil Konservasyon Muduru", "bio": "Tekstil muhendisligi doktorasi. 18 yillik antika hali restorasyon deneyimi. Topkapi Sarayi danismani." },
+          { "name": "Serkan Yilmaz", "role": "Operasyon Genel Muduru", "bio": "15 yillik uretim yonetimi deneyimi. 3 tesis ve 80 kisilik ekibi yonetiyor. ISO 9001 ic denetci." },
+          { "name": "Ayse Koc", "role": "VIP Musteri Iliskileri Muduru", "bio": "12 yillik luks segment deneyimi. 500+ VIP hane ve 50+ otel hesabini yonetiyor." },
+          { "name": "Murat Cetin", "role": "Lojistik & Depo Muduru", "bio": "Klima kontrollu 1.500 m2 depo yonetimi. Sigortali depolama ve lojistik planlama uzmani." },
+          { "name": "Zeynep Tuncer", "role": "Hali Ekspertiz Uzmani", "bio": "Hereke, Gordes, Kayseri halilari konusunda 20 yillik degerleme deneyimi. Sworn expert sertifikali." },
+          { "name": "Emre Ozkan", "role": "Kurumsal Satis Muduru", "bio": "Otel zincirleri ve rezidans yonetim sirketleriyle kurumsal sozlesme gelistirme. 10 yillik B2B deneyimi." },
+          { "name": "Fatma Arslan", "role": "Kalite Kontrol Sefi", "bio": "Her halinin yikama oncesi ve sonrasi fotografli kalite kontrol surecini yonetiyor. Leke analiz uzmani." }
+        ],
+        "testimonials": [
+          { "name": "Four Seasons Bosphorus", "district": "Besiktas", "date": "2025-12", "rating": 5, "comment": "8 yildir tum otel tekstilimizi GoldTex yonetiyor. Hali, perde, yatak takimi — hepsi kusursuz. Misafir memnuniyetimize dogrudan katkisi var." },
+          { "name": "Sakip Sabanci Muzesi", "district": "Sariyer", "date": "2025-11", "rating": 5, "comment": "Koleksiyonumuzdaki Osmanli donemi hali ve kilimlerin bakimini GoldTex yapiyor. Dr. Nurhan Hanim'in uzmanligi paha bicilemez." },
+          { "name": "Prof. Dr. Ayhan Yilmaz", "district": "Bebek", "date": "2025-10", "rating": 5, "comment": "Dedemden kalma Hereke ipek haliyi yikattim. Renkler canlanmis, sacaklar onarilmis. Muze standartlarinda is. Cok memnunum." },
+          { "name": "Yali Konaklari Yonetimi", "district": "Sariyer", "date": "2025-09", "rating": 5, "comment": "32 daireli rezidansimizin tum hali ve perde bakimini yapiyorlar. Periyodik program, oncelikli randevu ve ozel fiyat. Mukemmel partner." },
+          { "name": "Elif Basar", "district": "Etiler", "date": "2025-08", "rating": 5, "comment": "VIP abonelik programindayim. Her ay gelip halilari, koltuklari ve perdeleri kontrol edip temizliyorlar. Kisisel mudurumuz Ayse Hanim her seyi takip ediyor." },
+          { "name": "Ciragan Palace Kempinski", "district": "Besiktas", "date": "2025-07", "rating": 5, "comment": "Saray halilerimizin bakimini GoldTex'e emanet ettik. Hassas isleme ihtiyac duyan tarihi tekstillerde guvendigimiz tek firma." },
+          { "name": "Almanya Baskonsoloslugu", "district": "Beyoglu", "date": "2025-06", "rating": 5, "comment": "Diplomatik konut tekstil bakimi icin ozel guvenlik protokolu uyguluyorlar. 5 yildir memnunuz." },
+          { "name": "Deniz Korkmaz", "district": "Tarabya", "date": "2025-05", "rating": 5, "comment": "Yatimin tum doseme ve perdelerini yikattim. Tuzlu su hasari giderme konusunda uzmanlar. Sonuc muhttesem." },
+          { "name": "Soho House Istanbul", "district": "Beyoglu", "date": "2025-04", "rating": 5, "comment": "Kurumsal tekstil outsourcing hizmeti aliyoruz. Masa ortusu, pecete ve yatak takimi yikama ve kiralama. Kalite hic dusmedi." },
+          { "name": "Mehmet Ali Aydogan", "district": "Emirgan", "date": "2025-03", "rating": 4, "comment": "Hali depolama hizmeti kullaniyorum. Klima kontrollu, sigortali depo. Tek oneri: online takip paneli olsa harika olurdu." },
+          { "name": "Su Hasari Kurtarma Vakasi - Levent Villa", "district": "Levent", "date": "2025-02", "rating": 5, "comment": "Boru patladi, 15 hali suda kaldi. GoldTex ayni gun geldi, hepsini kurtarip restore etti. Acil mudahale konusunda cok hizlilar." },
+          { "name": "Pera Palace Hotel", "district": "Beyoglu", "date": "2025-01", "rating": 5, "comment": "Tarihi otelimizin orijinal halilarin bakimi ve restorasyonu icin GoldTex ile calisiyoruz. 21 yillik deneyim kendini gosteriyor." }
+        ],
+        "faq": [
+          { "q": "Premium yikama normal yikamadan ne farki var?", "a": "Premium yikamada 12 asamali proses uygulanir: on inceleme, leke analizi, toz alma, on islem, ana yikama, durulama, asit notralizasyon, yumusatma, centrifuj, kurutma, kalite kontrol ve paketleme." },
+          { "q": "Hereke ipek hali yikama guvenli mi?", "a": "Evet, Hereke Hali Enstitusu mezunu uzmanlarimiz tarafindan PH notr solusyonla elle yikanir. 21 yillik deneyimle binlerce ipek hali yikadik, sifir hasar kaydi." },
+          { "q": "Antika hali degerleme raporu ne ise yarar?", "a": "Sigorta, miras paylasimi veya satis amacli kullanilir. Halinin yassi, menssei, desen analizi, durumu ve piyasa degeri fotografli olarak raporlanir. Sworn expert sertifikali uzmanimiz hazirlar." },
+          { "q": "VIP abonelik programi ne iceriyor?", "a": "Aylik duzenli hali, koltuk ve perde bakimi, oncelikli randevu, kisisel musteri muduru, ozel indirimli fiyatlandirma ve yillik genel tekstil envanter kontrolu." },
+          { "q": "Hali depolama kosullari nelerdir?", "a": "1.500 m2 klima kontrollu depomuzda %45-55 nem araligi, 18-22 derece sicaklik, anti-guve koruma ve 7/24 guvenlik sistemi mevcuttur. Tum halilar sigorta kapsamindadir." },
+          { "q": "Otel ve rezidanslara nasil hizmet veriyorsunuz?", "a": "Periyodik bakim sozlesmesi ile calisiriz. Aylik, 3 aylik veya 6 aylik programlar sunuyoruz. Yerinde ve fabrika yikama kombinasyonu uygulanir." },
+          { "q": "Su hasari durumunda ne yapmaliyim?", "a": "Hemen bizi arayin. Acil mudahale ekibimiz Istanbul ici 2 saat icinde geliir. Halillar yerinden alinip kurutma unitesine tasinnir. Restorasyon sureci hasar durumuna gore 3-7 gun surer." },
+          { "q": "Yat ve tekne tekstili icin ozel bir islem var mi?", "a": "Evet, tuzlu su hasari giderme, UV dayanim artirma ve anti-kuf islem uyguluyoruz. Deniz tekstili icin ozel formul ve uygulama sertifikamiz vardir." },
+          { "q": "Kurumsal tekstil kiralama nasil calisiyor?", "a": "Otel, restoran ve etkinlik mekanlari icin masa ortusu, pecete, yatak takimi ve havlu kiralama hizmeti. Duzenli toplama, yikama ve teslim programi. Stok yonetimi bize aittir." },
+          { "q": "Diplomatik konutlara ozel ne sunuyorsunuz?", "a": "Ozel guvenlik taramasi gecmis personel, gizlilik sozlesmesi, randevulu ve eskorlu giris protokolu. Buyukelcilik ve konsolosluk tekstil bakim standartlarina uyumlu hizmet." },
+          { "q": "Muze koleksiyonlari icin nasil calisiyorsunuz?", "a": "Koleksiyon yoneticisiyle birlikte restorasyon plani olusturulur. Islem fotograf ve raporla belgelenir. Tekstil konservasyon uzmanimiz Dr. Nurhan Aktas prosesi yonetir." },
+          { "q": "ISO sertifikaniz var mi?", "a": "Evet, ISO 9001 Kalite Yonetimi ve ISO 14001 Cevre Yonetimi sertifikalarimiz mevcuttur. Yillik disss denetimden geciyoruz." },
+          { "q": "Fiyatlandirma nasil yapiliyor?", "a": "Bireysel musterilerde metrekare bazli net fiyat, kurumsal musterilerde hacim indiriimli teklif sistemi uygulanir. VIP abonelikte sabit aylik ucret. Ucretsiz kesif ve teklif hizmeti sunuyoruz." },
+          { "q": "Garanti veriyor musunuz?", "a": "Evet, tum yikama islemleriinde memnuniyet garantisi veriyoruz. Sonuctan memnun kalmazsaniz ucretsiz tekrar yikama yapariz. Antika halilarda sigorta teminati da mevcuttur." },
+          { "q": "Hangi bolgelere hizmet veriyorsunuz?", "a": "Istanbul genelinde hizmet veriyoruz. Sariyer, Besiktas, Sisli, Kadikoy gibi premium bolgelerde ayni gun toplama garantisi. Tum Istanbul icin en gec ertesi gun toplama." }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Tekstil Bakiminda Altin Standart",
+          "subtitle": "21 yillik deneyim, 60.000+ musteri, 5 yildizli otellerden muzelere. Istanbul'un en prestijli tekstil bakim markasi.",
+          "badge": "Premium Tekstil Bakim"
+        },
+        "about": {
+          "title": "GoldTex Hakkinda",
+          "description": "GoldTex Premium Tekstil Bakim, 2005 yilinda Cenk Basar tarafindan Istanbul'da kurulmus olup Turkiye'nin en prestijli hali yikama ve tekstil bakim markassidir. 21 yillik deneyimimizle Hereke ipek hali bakimindan antika hali restorasyonuna, 5 yildizli otel tekstil yonetiminden diplomatik konut servisine kadar genis bir hizmet yelpazesi sunuyoruz. Tesislerimizde ISO 9001 ve ISO 14001 sertifikali kalite ve cevre yonetim standartlarinda calisiyoruz. 1.500 m2 klima kontrollu depolama alanimmiz, su hasari acil mudahale ekibimiz ve muze standartlarinda konservasyon laboratuvarimizla sektorde benzersiz bir konum elde ettik. Four Seasons, Ciragan Palace Kempinski, Pera Palace, Sakip Sabanci Muzesi ve pek cok diplomatik misyon gibi Istanbul'un en seecckin kurumlarina hizmet veriyoruz. 60.000'den fazla bireysel ve kurumsal musteriye ulastik. VIP abonelik programimiz, kurumsal tekstil outsourcing hizmetimiz ve hali ekspertiz birimimizle musterilerimize 360 derece tekstil bakim deneyimi sunmaktayiz."
+        },
+        "services": {
+          "title": "Premium Tekstil Hizmetlerimiz",
+          "subtitle": "Bireysel bakimdan kurumsal outsourcinge, restorasyondan depolamaya"
+        },
+        "contact": {
+          "title": "VIP Iletisim & Teklif",
+          "subtitle": "Ozel ihtiyaclariniz icin kisisel danismaninizla gorusun"
+        }
+      }
+    }
+  ]
+}

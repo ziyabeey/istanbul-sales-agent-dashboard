@@ -1,0 +1,479 @@
+{
+  "sectorId": "boyaci",
+  "seoSchemaType": "HousePainter",
+  "variants": [
+    {
+      "id": "boyaci-ev",
+      "variantName": "ev",
+      "plan": "free",
+      "description": "Ev boyama ve badana hizmeti",
+      "designPhilosophy": "Sade, temiz, pratik",
+      "isDark": false,
+      "colors": { "bg": "#FFFFFF", "surface": "#F9FAFB", "text": "#1F2937", "accent": "#3B82F6" },
+      "fonts": { "heading": "Inter", "body": "Inter" },
+      "business": {
+        "name": "Usta Boyaci Mehmet",
+        "ownerName": "Mehmet Karatas",
+        "sector": "Boyaci",
+        "slogan": "Evinize renk, hayatiniza enerji",
+        "phone": "0532 845 12 30",
+        "phoneClean": "905328451230",
+        "whatsapp": "905328451230",
+        "email": "info@ustaboyacimehmet.com",
+        "address": "Osmanaga Mah. Bahariye Cad. No:112/B, Kadikoy/Istanbul",
+        "city": "Istanbul",
+        "district": "Kadikoy",
+        "neighborhood": "Osmanaga",
+        "coordinates": { "lat": 40.9905, "lng": 29.0280 },
+        "socialMedia": { "instagram": "https://instagram.com/ustaboyacimehmet" },
+        "photos": [],
+        "foundedYear": 2010,
+        "experience": "14 yil",
+        "customerCount": "3.200+",
+        "rating": 4.6,
+        "reviewCount": 410,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "08:00", "close": "18:00", "isOpen": true },
+          { "day": "Sali", "open": "08:00", "close": "18:00", "isOpen": true },
+          { "day": "Carsamba", "open": "08:00", "close": "18:00", "isOpen": true },
+          { "day": "Persembe", "open": "08:00", "close": "18:00", "isOpen": true },
+          { "day": "Cuma", "open": "08:00", "close": "18:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "09:00", "close": "15:00", "isOpen": true },
+          { "day": "Pazar", "open": "Kapali", "close": "Kapali", "isOpen": false }
+        ],
+        "services": [
+          { "id": "s1", "name": "Ic Cephe Boyama", "price": "35 TL/m2", "duration": "1-3 gun", "description": "Tavan ve duvar boyama, macun ve astar dahil komple ic cephe boyama hizmeti." },
+          { "id": "s2", "name": "Badana", "price": "20 TL/m2", "duration": "1-2 gun", "description": "Ekonomik badana uygulamasi. Kirac ve ev sahipleri icin uygun fiyatli cozum." },
+          { "id": "s3", "name": "Alci ve Macun Islemleri", "price": "45 TL/m2", "duration": "1-2 gun", "description": "Duvar catlaklari, derz bosluklari ve yuzey duzeltme islemleri." },
+          { "id": "s4", "name": "Tavan Boyama", "price": "30 TL/m2", "duration": "1 gun", "description": "Tavan yuzeyinin temizlenmesi, astarlanmasi ve boyanmasi." }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Profesyonel Ev Boyama Hizmeti",
+          "subtitle": "Kadikoy ve cevre ilcelerde 14 yildir ev boyama, badana ve alci islemleri yapiyoruz.",
+          "badge": "Ucretsiz Kesfif"
+        },
+        "about": {
+          "title": "Usta Boyaci Mehmet Hakkinda",
+          "description": "2010'dan bu yana Kadikoy bolgesinde ev boyama hizmeti veriyoruz. 3.200'den fazla ev ve daire boyadik. Jotun, Marshall ve Fawori gibi A sinifi boyalar kullaniyoruz. Temiz is, zamaninda teslim ve uygun fiyat garantisi."
+        },
+        "services": { "title": "Hizmetlerimiz", "subtitle": "Profesyonel boyama ve badana cozumleri" },
+        "contact": { "title": "Iletisim", "subtitle": "Ucretsiz kesfif icin hemen arayin" },
+        "faq": [
+          { "q": "Bir daire boyama ne kadar surer?", "a": "2+1 bir daire ortalama 2-3 gunde, 3+1 bir daire 3-4 gunde tamamlanir." },
+          { "q": "Hangi marka boyalar kullaniyorsunuz?", "a": "Jotun, Marshall, Fawori ve DYO gibi kaliteli markalarin urunlerini kullaniyoruz." },
+          { "q": "Esyalari tasimak gerekiyor mu?", "a": "Buyuk esyalari koruma altina aliyoruz. Kucuk esyalarin odadan cikarilmasi yeterli." },
+          { "q": "Kesfif ucreti var mi?", "a": "Hayir, kesfif ve fiyat teklifi tamamen ucretsizdir." }
+        ],
+        "testimonials": [],
+        "team": []
+      }
+    },
+    {
+      "id": "boyaci-dis",
+      "variantName": "dis",
+      "plan": "starter",
+      "description": "Dis cephe ve bina boyama uzmani",
+      "designPhilosophy": "Guvenilir, profesyonel, dayanikli",
+      "isDark": false,
+      "colors": { "bg": "#F0FDF4", "surface": "#DCFCE7", "text": "#14532D", "accent": "#16A34A" },
+      "fonts": { "heading": "Inter", "body": "Inter" },
+      "business": {
+        "name": "CephePro Dis Cephe Boyama",
+        "ownerName": "Selcuk Arslan",
+        "sector": "Boyaci",
+        "slogan": "Binanizin dis yuzu bizim isimiz",
+        "phone": "0532 845 12 31",
+        "phoneClean": "905328451231",
+        "whatsapp": "905328451231",
+        "email": "info@cephepro.com.tr",
+        "address": "Esatpasa Mah. Alemddag Cad. No:76, Umraniye/Istanbul",
+        "city": "Istanbul",
+        "district": "Umraniye",
+        "neighborhood": "Esatpasa",
+        "coordinates": { "lat": 41.0150, "lng": 29.0980 },
+        "socialMedia": { "instagram": "https://instagram.com/cephepro" },
+        "photos": [],
+        "foundedYear": 2008,
+        "experience": "16 yil",
+        "customerCount": "1.800+",
+        "rating": 4.7,
+        "reviewCount": 520,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "07:30", "close": "18:00", "isOpen": true },
+          { "day": "Sali", "open": "07:30", "close": "18:00", "isOpen": true },
+          { "day": "Carsamba", "open": "07:30", "close": "18:00", "isOpen": true },
+          { "day": "Persembe", "open": "07:30", "close": "18:00", "isOpen": true },
+          { "day": "Cuma", "open": "07:30", "close": "18:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "08:00", "close": "14:00", "isOpen": true },
+          { "day": "Pazar", "open": "Kapali", "close": "Kapali", "isOpen": false }
+        ],
+        "services": [
+          { "id": "s1", "name": "Dis Cephe Boyama", "price": "55 TL/m2", "duration": "5-15 gun", "description": "Bina dis cephesinin iskele kurulumu, yikama, astar ve boyama islemi." },
+          { "id": "s2", "name": "Mantolama Ustu Boya", "price": "40 TL/m2", "duration": "3-7 gun", "description": "Mantolama uygulamasi uzerine dis cephe boya ve kaplama." },
+          { "id": "s3", "name": "Cephe Yikama ve Temizlik", "price": "15 TL/m2", "duration": "1-3 gun", "description": "Basincli su ile bina dis cephesinin yikamassi ve yosun temizligi." },
+          { "id": "s4", "name": "Demir Korkuluk ve Parmaklik Boyama", "price": "60 TL/m2", "duration": "1-2 gun", "description": "Pas temizligi, astar ve antipas boya uygulamasi." },
+          { "id": "s5", "name": "Cati Boyama", "price": "45 TL/m2", "duration": "2-5 gun", "description": "Metal ve kiremit cati yuzeylerinin boyanmasi ve su yalitimi." },
+          { "id": "s6", "name": "Apartman Merdiven Boyama", "price": "30 TL/m2", "duration": "2-4 gun", "description": "Apartman ic merdiven, koridor ve giris boluumu boyama." }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Dis Cephe Boyama Uzmani",
+          "subtitle": "Bina dis cephesi, cati, demir aksam ve mantolama ustu boyama hizmetleri.",
+          "badge": "Profesyonel Ekip"
+        },
+        "about": {
+          "title": "CephePro Hakkinda",
+          "description": "2008'den bu yana Istanbul genelinde dis cephe boyama hizmeti veriyoruz. 1.800'den fazla bina ve apartman dis cephesini boyadik. Iskele kurulumu, cephe yikama, astar ve boyama islemlerini eksiksiz yapiyoruz. Is guvenligi sertifikali ekibimizle yuksek katlarda guvenle calisiyoruz."
+        },
+        "services": { "title": "Dis Cephe Hizmetlerimiz", "subtitle": "Binanizin dis cephesi icin profesyonel cozumler" },
+        "contact": { "title": "Teklif Alin", "subtitle": "Bina yonetimi icin ucretsiz kesfif ve fiyat teklifi" },
+        "faq": [
+          { "q": "Iskele kurulumu fiyata dahil mi?", "a": "Evet, iskele kurulumu ve sokulumu boyama fiyatina dahildir." },
+          { "q": "Dis cephe boyasi ne kadar dayanir?", "a": "Kaliteli dis cephe boyasi 8-12 yil dayanir. Iklim kosullarina gore degisir." },
+          { "q": "Hava kosullari isi etkiler mi?", "a": "Yagmurlu ve cok soguk gunlerde calisamayiz. Sezonu Nisan-Kasim arasi planliyoruz." },
+          { "q": "Apartman yonetim karari gerekli mi?", "a": "Evet, dis cephe boyamasi icin kat malikleri kurulu karari gereklidir." },
+          { "q": "Garantili boya kullaniyor musunuz?", "a": "Jotun ve Marshall dis cephe boyalarini tercih ediyoruz. Uretici garantisi mevcuttur." },
+          { "q": "Komple bina boyama ne kadar surer?", "a": "5 katli bir apartman ortalama 7-10 gunde tamamlanir. Bina buyuklugune gore degisir." }
+        ],
+        "testimonials": [
+          { "name": "Kemal Ozen", "district": "Umraniye", "date": "2025-01", "rating": 5, "comment": "Apartmanimizin dis cephesini komple boyadilar. Bina yeniden yeni gibi gorunuyor." },
+          { "name": "Sevgi Aksu", "district": "Kadikoy", "date": "2024-11", "rating": 5, "comment": "6 katli binamizin cephesini ve catiisini boyadilar. Cok temiz is cikardilar." },
+          { "name": "Murat Ercan", "district": "Atasehir", "date": "2024-09", "rating": 4, "comment": "Is kalitesi guzel ama baslama tarihi 3 gun gecikti. Yine de sonuc memnun edici." }
+        ],
+        "team": [
+          { "name": "Selcuk Arslan", "role": "Kurucu & Saha Muduru", "image": "", "bio": "20 yillik dis cephe boyama tecrubesi. Is guvenligi uzmani." },
+          { "name": "Hakan Polat", "role": "Iskele ve Lojistik Sorumlusu", "image": "", "bio": "Iskele kurulum ve saha guvenligi koordinasyonu." }
+        ]
+      }
+    },
+    {
+      "id": "boyaci-dekoratif",
+      "variantName": "dekoratif",
+      "plan": "growth",
+      "description": "Dekoratif ve sanatsal boyama atolyesi",
+      "designPhilosophy": "Yaratici, sanatsal, ilham verici",
+      "isDark": false,
+      "colors": { "bg": "#FFF7ED", "surface": "#FFEDD5", "text": "#431407", "accent": "#EA580C", "textSecondary": "#78716C", "border": "#FED7AA" },
+      "fonts": { "heading": "Poppins", "body": "Inter" },
+      "business": {
+        "name": "Renk Sanatcisi Dekoratif Boyama",
+        "ownerName": "Zehra Inal",
+        "sector": "Boyaci",
+        "slogan": "Duvarlariniz birer tuval",
+        "phone": "0532 845 12 32",
+        "phoneClean": "905328451232",
+        "whatsapp": "905328451232",
+        "email": "info@renksanatcisi.com.tr",
+        "address": "Kartaltepe Mah. Incirli Cad. No:34/A, Bakirkoy/Istanbul",
+        "city": "Istanbul",
+        "district": "Bakirkoy",
+        "neighborhood": "Kartaltepe",
+        "coordinates": { "lat": 40.9800, "lng": 28.8710 },
+        "socialMedia": { "instagram": "https://instagram.com/renksanatcisi" },
+        "photos": [],
+        "foundedYear": 2013,
+        "experience": "11 yil",
+        "customerCount": "2.100+",
+        "rating": 4.9,
+        "reviewCount": 640,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "09:00", "close": "18:00", "isOpen": true },
+          { "day": "Sali", "open": "09:00", "close": "18:00", "isOpen": true },
+          { "day": "Carsamba", "open": "09:00", "close": "18:00", "isOpen": true },
+          { "day": "Persembe", "open": "09:00", "close": "18:00", "isOpen": true },
+          { "day": "Cuma", "open": "09:00", "close": "18:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "10:00", "close": "15:00", "isOpen": true },
+          { "day": "Pazar", "open": "Kapali", "close": "Kapali", "isOpen": false }
+        ],
+        "services": [
+          { "id": "s1", "name": "Dekoratif Boya Uygulamasi", "price": "120 TL/m2", "duration": "2-5 gun", "description": "Venedik sivasi, trevertan, sahte mermer gibi dekoratif boya teknikleri." },
+          { "id": "s2", "name": "Duvar Resmi (Mural)", "price": "800 TL/m2", "duration": "3-10 gun", "description": "Ozel tasarim duvar resimleri. Cocuk odalari, ofisler ve kafelere ozel." },
+          { "id": "s3", "name": "Venedik Sivasi", "price": "150 TL/m2", "duration": "2-4 gun", "description": "Cok katli cilali efektli premium Venedik sivasi uygulamasi." },
+          { "id": "s4", "name": "Beton Gorunum Siva", "price": "95 TL/m2", "duration": "1-3 gun", "description": "Modern ve endustriyel tarza uygun beton efektli duvar uygulamasi." },
+          { "id": "s5", "name": "Altin ve Gumus Varak", "price": "250 TL/m2", "duration": "2-5 gun", "description": "Duvar, tavan ve mobilya uzerine altin ve gumus varak uygulamasi." },
+          { "id": "s6", "name": "Stencil Desen Uygulamasi", "price": "80 TL/m2", "duration": "1-3 gun", "description": "Sablon ile duvar deseni uygulamasi. Geometrik, botanik ve Osmanli motifleri." },
+          { "id": "s7", "name": "Renk Danismanligi", "price": "500 TL", "duration": "2 saat", "description": "Mekan analizi ve renk paleti onerisi. Aydinlatma ve mobilya uyumu." },
+          { "id": "s8", "name": "Eski Mobilya Boyama", "price": "1.500 TL/parca", "duration": "2-3 gun", "description": "Antik ve vintage mobilyalarin boyama ile yenilenmesi." },
+          { "id": "s9", "name": "Faux Finish (Sahte Doku)", "price": "130 TL/m2", "duration": "2-4 gun", "description": "Ahsap, mermer, tas gorunumlu sahte doku boyama teknikleri." },
+          { "id": "s10", "name": "Ofis ve Magaza Dekoratif Boya", "price": "100 TL/m2", "duration": "3-7 gun", "description": "Ticari mekanlar icin kurumsal renk ve desen uygulamasi." }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Dekoratif Boyama ile Mekanlari Donusturen",
+          "subtitle": "Venedik sivasi, duvar resmi, varak ve ozel doku uygulamalariyla mekanlariniza sanat katiyoruz.",
+          "badge": "Sanatsal Boyama"
+        },
+        "about": {
+          "title": "Renk Sanatcisi Hakkinda",
+          "description": "Guzel Sanatlar Fakultesi mezunu ekibimizle 2013'ten bu yana dekoratif boyama hizmeti veriyoruz. 2.100'den fazla mekani ozel tasarim boyama teknikleriyle donusturduk. Venedik sivasi, mural, varak ve faux finish gibi ustallik gerektiren tekniklerde uzmaniz. Ev, ofis, otel, restoran ve kafeler icin kisiye ozel renk danismanligi ve dekoratif boyama cozumleri sunuyoruz."
+        },
+        "services": { "title": "Dekoratif Cozumlerimiz", "subtitle": "Her mekan icin ozel tasarim boyama teknikleri" },
+        "contact": { "title": "Projenizi Anlatin", "subtitle": "Ucretsiz renk danismanligi ve teklif icin bizi arayin" },
+        "faq": [
+          { "q": "Dekoratif boya normal boyadan ne farkli?", "a": "Dekoratif boya ozel tekniklerle uygulanir ve doku, efekt veya desen icerir. Normal duz boyadan gorsel olarak cok farklidir." },
+          { "q": "Venedik sivasi ne kadar dayanir?", "a": "Kaliteli uygulama ile 15-20 yil dayanir. Ciziilmeye ve darbelere karsi mukavemetlidir." },
+          { "q": "Duvar resmi icin duvar hazirligi gerekir mi?", "a": "Evet, duvar duzgun ve astarlanmis olmalidir. Hazirligi biz yapiyoruz." },
+          { "q": "Renk seciminde yardimci oluyor musunuz?", "a": "Evet, mekan analizi yaparak aydinlatma, mobilya ve genel ambiyansa uygun renk paleti oneriyoruz." },
+          { "q": "Hangi markalarin urunlerini kullaniyorsunuz?", "a": "San Marco, Valpaint, Candis gibi premium dekoratif boya markalarini tercih ediyoruz." },
+          { "q": "Ticari mekanlar icin de calissiyor musunuz?", "a": "Evet, otel, restoran, kafe, ofis ve magaza dekoratif boyama projelerimiz var." },
+          { "q": "Varak uygulamasi gercek altin mi?", "a": "Hem gercek altin varak hem de yaprak altin secenekleri mevcuttur. Butceye gore oneriyoruz." },
+          { "q": "Ornek goruntuleri nereden gorebilirim?", "a": "Instagram sayfamizda 500'den fazla proje fotoografimiz var. Atoleymizde de ornekleri yerinde gorebilirsiniz." }
+        ],
+        "testimonials": [
+          { "name": "Aylin Dogan", "district": "Bakirkoy", "date": "2025-02", "rating": 5, "comment": "Salonumuza Venedik sivasi yaptirdik. Isik oyunlari muhtesem, salon bambaaska oldu." },
+          { "name": "Cem Bayrak", "district": "Nisantasi", "date": "2025-01", "rating": 5, "comment": "Butik otelimizin lobisine duvar resmi yaptilar. Misafirlerimiz selfie cekmek icin siraya giriyor." },
+          { "name": "Pinar Akman", "district": "Bebek", "date": "2024-12", "rating": 5, "comment": "Kizimin odasina peri masali temali mural yaptirdik. Hayran kaldi, hala sevgiyle bakiyor." },
+          { "name": "Tolga Ilhan", "district": "Kadikoy", "date": "2024-11", "rating": 4, "comment": "Ofisimize beton efektli siva yaptirdik. Modern gorunum cok iyi ama kuruma suresi beklenenden uzundu." },
+          { "name": "Sinem Ozer", "district": "Atasehir", "date": "2024-10", "rating": 5, "comment": "Antik buyukannem yadigari konsolu boyamayla yenilediler. Gozlerim doldu, eskisinden guzel oldu." },
+          { "name": "Koray Ergun", "district": "Besiktas", "date": "2024-09", "rating": 5, "comment": "Kafeemizin duvararina geometrik desen uyguladiilar. Instagram'da begeni patlamasi yasadik." }
+        ],
+        "team": [
+          { "name": "Zehra Inal", "role": "Kurucu & Sanat Yonetmeni", "image": "", "bio": "Mimar Sinan GSF Resim Bolumu mezunu. 15 yillik dekoratif boyama tecrubesi." },
+          { "name": "Baris Yavuz", "role": "Kidemli Uygulamaci", "image": "", "bio": "Venedik sivasi ve faux finish uzmani. Italya'da egitim almis." },
+          { "name": "Ece Turhan", "role": "Mural Sanatcisi", "image": "", "bio": "Grafik tasarimci. Buyuk olcekli duvar resimleri ve ilustrasyonlar yapiyor." },
+          { "name": "Can Ozdemir", "role": "Renk Danismani", "image": "", "bio": "Ic mimarlik mezunu. Mekan analizi ve renk paleti olusturma uzmani." }
+        ]
+      }
+    },
+    {
+      "id": "boyaci-endustriyel",
+      "variantName": "endustriyel",
+      "plan": "pro",
+      "description": "Endustriyel boyama ve koruyucu kaplama",
+      "designPhilosophy": "Teknik, guclu, kurumsal",
+      "isDark": false,
+      "colors": { "bg": "#F8FAFC", "surface": "#F1F5F9", "surfaceElevated": "#E2E8F0", "text": "#0F172A", "textSecondary": "#64748B", "accent": "#0369A1", "accentHover": "#075985", "border": "#CBD5E1" },
+      "fonts": { "heading": "Playfair Display", "body": "Inter" },
+      "business": {
+        "name": "EndPaint Endustriyel Boyama Sistemleri",
+        "ownerName": "Okan Sener",
+        "sector": "Boyaci",
+        "slogan": "Endustriyel yuzeyler icin muhendislik boyaciligi",
+        "phone": "0532 845 12 33",
+        "phoneClean": "905328451233",
+        "whatsapp": "905328451233",
+        "email": "info@endpaint.com.tr",
+        "address": "Aydini Mah. E-5 Yan Yol No:220, Tuzla/Istanbul",
+        "city": "Istanbul",
+        "district": "Tuzla",
+        "neighborhood": "Aydini",
+        "coordinates": { "lat": 40.8260, "lng": 29.2950 },
+        "socialMedia": { "instagram": "https://instagram.com/endpaint", "linkedin": "https://linkedin.com/company/endpaint" },
+        "photos": [],
+        "foundedYear": 2001,
+        "experience": "23 yil",
+        "customerCount": "4.500+",
+        "rating": 4.8,
+        "reviewCount": 780,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "07:00", "close": "18:00", "isOpen": true },
+          { "day": "Sali", "open": "07:00", "close": "18:00", "isOpen": true },
+          { "day": "Carsamba", "open": "07:00", "close": "18:00", "isOpen": true },
+          { "day": "Persembe", "open": "07:00", "close": "18:00", "isOpen": true },
+          { "day": "Cuma", "open": "07:00", "close": "18:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "08:00", "close": "14:00", "isOpen": true },
+          { "day": "Pazar", "open": "Kapali", "close": "Kapali", "isOpen": false }
+        ],
+        "services": [
+          { "id": "s1", "name": "Celik Konstruksiyon Boyama", "price": "65 TL/m2", "duration": "5-15 gun", "description": "Fabrika, hangar ve celik yapilar icin antipas + astar + son kat boya uygulamasi." },
+          { "id": "s2", "name": "Epoksi Zemin Boyama", "price": "120 TL/m2", "duration": "3-5 gun", "description": "Fabrika, otopark ve depo zeminleri icin dayanikli epoksi kaplama." },
+          { "id": "s3", "name": "Polyurea Kaplama", "price": "180 TL/m2", "duration": "1-3 gun", "description": "Yuksek asinma direncli elastik su yalitim ve zemin kaplama sistemi." },
+          { "id": "s4", "name": "Elektrostatik Toz Boya", "price": "45 TL/parca", "duration": "1-2 gun", "description": "Metal parcalar icin firinli toz boya uygulamasi. Yuksek dayaniklilik." },
+          { "id": "s5", "name": "Yangin Geciktirici Boya", "price": "95 TL/m2", "duration": "2-5 gun", "description": "Celik ve ahsap yapilarda yangin dayanim suresi artiran ozel boyalar." },
+          { "id": "s6", "name": "Korozyon Koruma Sistemi", "price": "85 TL/m2", "duration": "3-7 gun", "description": "Deniz ortami, kimyasal tesisler ve agresif kosullar icin korozyon koruma." },
+          { "id": "s7", "name": "Silo ve Tank Boyama", "price": "75 TL/m2", "duration": "5-10 gun", "description": "Gida, kimya ve petrol sektorlerinde silo ve depolama tanki boyama." },
+          { "id": "s8", "name": "Boru Hatti Boyama", "price": "55 TL/m", "duration": "3-7 gun", "description": "Endustriyel boru hatlari icin renk kodlamali koruyucu boyama." },
+          { "id": "s9", "name": "Kumlama ve Yuzey Hazirlama", "price": "40 TL/m2", "duration": "2-5 gun", "description": "Boya oncesi metal yuzey hazirlama. Sa 2.5 standartinda kumlama." },
+          { "id": "s10", "name": "Gemi ve Yat Boyama", "price": "150 TL/m2", "duration": "10-20 gun", "description": "Deniz araclari icin antifouling ve koruyucu boya uygulamasi." },
+          { "id": "s11", "name": "Kule ve Direk Boyama", "price": "70 TL/m2", "duration": "3-7 gun", "description": "Enerji nakil hatlari, GSM kuleleri ve aydinlatma direkleri boyama." },
+          { "id": "s12", "name": "Isi Yalitim Boyasi", "price": "110 TL/m2", "duration": "2-4 gun", "description": "Isiya dayanikli termal bariyer boyalar. 600°C'ye kadar dayanim." },
+          { "id": "s13", "name": "Endustriyel Cizgi Cekme", "price": "25 TL/m", "duration": "1-2 gun", "description": "Fabrika zemini, otopark ve yol cizgi uygulamasi." },
+          { "id": "s14", "name": "Boyama Sozlesmesi ve Danismanlik", "price": "5.000 TL", "duration": "3-5 gun", "description": "Boya secimi, yuzey analizi, maliyet hesaplama ve proje planlama danismanligi." }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Endustriyel Boyama ve Kaplama Cozumleri",
+          "subtitle": "Celik konstruksiyon, epoksi zemin, tank boyama ve korozyon koruma sistemlerinde 23 yillik uzmanlik.",
+          "badge": "ISO 12944 Sertifikali"
+        },
+        "about": {
+          "title": "EndPaint Hakkinda",
+          "description": "2001'den bu yana endustriyel boyama sektorunde hizmet veriyoruz. Tuzla'daki 1.500 m2 atoelyemizde elektrostatik toz boya, Turkiye genelinde saha ekiplerimizle celik konstruksiyon, epoksi zemin ve tank boyama isleri yapiyoruz. 4.500'den fazla endustriyel proje tamamladik. Otomotiv fabrikalari, enerji santralleri, petrokimya tesisleri ve tersanelerin guvenilir boyama cozum ortagiyiz. ISO 12944 korozyon koruma standartlarina uygun calisiyoruz. FROSIO sertifikali boya muefettisimiz kalite kontrolu sagliyor."
+        },
+        "services": { "title": "Endustriyel Boyama Hizmetleri", "subtitle": "Her sektore ozel koruyucu boyama ve kaplama sistemleri" },
+        "contact": { "title": "Proje Teklifi Alin", "subtitle": "Teknik ekibimizle saha incelemesi ve teklif icin iletisime gecin" },
+        "faq": [
+          { "q": "Epoksi zemin boyasi ne kadar dayanir?", "a": "Kaliteli epoksi uygulama ile 10-15 yil dayanir. Trafik yogunluguna gore degisir." },
+          { "q": "Celik konstruksiyon boyamada garanti var mi?", "a": "ISO 12944'e uygun uygulama ile 15-25 yil koruma garanti ediyoruz." },
+          { "q": "Kumlama neden gerekli?", "a": "Boyanin yuzede tutunmasi icin yuzey Sa 2.5 standartinda hazirlanmalidir. Kumlama en etkili yontemdir." },
+          { "q": "Fabrika calisirken boyama yapilabilir mi?", "a": "Evet, uretimi durdurmadan gece vardiyasi veya hafta sonu calismasi planlayabiliyoruz." },
+          { "q": "Yangin geciktirici boya ne kadar koruma saglar?", "a": "R30, R60, R90 ve R120 yangin dayanim siniflarinda boya seceneklerimiz var." },
+          { "q": "Gida sektorune uygun boyalar var mi?", "a": "Evet, FDA ve AB onayli gida temasina uygun epoksi ve polyurea kaplamalar kullaniyoruz." },
+          { "q": "Toz boya icin minimum siparis var mi?", "a": "Minimum 50 parca siparis aliyoruz. Buyuk partilerde birim fiyatta indirim uygulanir." },
+          { "q": "Saha disinda proje aliyor musunuz?", "a": "Evet, Turkiye genelinde ve yurt disinda projeler yapiyoruz. Konaklama ve ulasim dahil teklif veriyoruz." },
+          { "q": "Boya raporu ve sertifika veriyor musunuz?", "a": "Evet, kuru film kalinligi, yapisme testi ve gorsel raporlari iceren detayli boya raporu hazirliyoruz." },
+          { "q": "Odeme kosullari nasil?", "a": "%30 avans, %40 ara hakedis, %30 teslimde olmak uzere 3 taksit uyguluyoruz." }
+        ],
+        "testimonials": [
+          { "name": "Tarik Gunes", "district": "Tuzla", "date": "2025-02", "rating": 5, "comment": "Tersanemizdeki celik konstruksiyonlari boyadilar. Korozyon korumasi muhteesem, ISO raporlari eksiksiz." },
+          { "name": "Derya Soylu", "district": "Gebze", "date": "2025-01", "rating": 5, "comment": "Fabrikamizin 5.000 m2 zeminini epoksi ile kapladilar. Forklift trafigine ragmen 3 yildir sapasaglam." },
+          { "name": "Volkan Aksoy", "district": "Dilovasi", "date": "2024-12", "rating": 5, "comment": "Kimya tesisimizin tanklarini boyadilar. Korozif ortamda 5 yillik garanti verdiler." },
+          { "name": "Elif Korkmaz", "district": "Ikitelli", "date": "2024-11", "rating": 4, "comment": "Toz boya kalitesi mukemmel ama teslimat 2 gun gecikti. Sonuc olarak memnunuz." },
+          { "name": "Cengiz Ozkan", "district": "Hadimkoy", "date": "2024-10", "rating": 5, "comment": "Lojistik depomuzun celik konstruksiyonunu ve zeminini birlikte yaptirdik. Tek elden halletmek buyuk avantaj." },
+          { "name": "Nurdan Yilmaz", "district": "Avcilar", "date": "2024-09", "rating": 5, "comment": "AVM otoparkinin zemin cizgilerini ve epoksi kaplamasini yaptirdiik. Cok profesyonel is." },
+          { "name": "Bulent Ak", "district": "Kartal", "date": "2024-08", "rating": 5, "comment": "Enerji santralimizdeki boru hatlarini renk kodlamasiyla boyadilar. Is guvenligi standartlarina tam uygun." },
+          { "name": "Serap Erdem", "district": "Tuzla", "date": "2024-07", "rating": 4, "comment": "Yat boyama isleri icin tercih ettik. Anti-fouling sonucu gayet iyi ama fiyat ortalamanin biraz uzerinde." }
+        ],
+        "team": [
+          { "name": "Okan Sener", "role": "Kurucu & Genel Mudur", "image": "", "bio": "Kimya muhendisi. 25 yillik endustriyel boyama tecrubesi." },
+          { "name": "Tugba Kara", "role": "Kalite Kontrol Muduru", "image": "", "bio": "FROSIO Level III sertifikali boya muefettisi." },
+          { "name": "Serdar Polat", "role": "Saha Operasyonlari Muduru", "image": "", "bio": "18 yillik saha tecrubesi. Celik konstruksiyon boyama uzmani." },
+          { "name": "Metin Yildiz", "role": "Atoolye Muduru", "image": "", "bio": "Elektrostatik toz boya ve kumlama tesisi yoneticisi." },
+          { "name": "Ebru Demirel", "role": "Proje Muhendisi", "image": "", "bio": "Malzeme muhendisi. Boya secimi ve yuzey analizi uzmani." },
+          { "name": "Cem Bayram", "role": "Is Guvenligi Uzmani", "image": "", "bio": "A sinifi ISGUM belgeli. Saha guvenlik protokollerini yonetiyor." }
+        ]
+      }
+    },
+    {
+      "id": "boyaci-lux",
+      "variantName": "lux",
+      "plan": "enterprise",
+      "description": "Premium boyama ve dekorasyon grubu",
+      "designPhilosophy": "Luks, prestijli, ust segment",
+      "isDark": true,
+      "colors": {
+        "bg": "#0A0A0A",
+        "surface": "#111111",
+        "surfaceElevated": "#1A1A1A",
+        "surfaceMuted": "#0D0D0D",
+        "text": "#F0EDE8",
+        "textSecondary": "#9A9490",
+        "textMuted": "#555555",
+        "textOnAccent": "#000000",
+        "accent": "#C9A84C",
+        "accentHover": "#D4B85C",
+        "accentActive": "#B89A40",
+        "accentLight": "#1A1808",
+        "border": "#1F1F1F",
+        "borderSubtle": "#141414"
+      },
+      "fonts": { "heading": "Cormorant Garamond", "body": "Inter" },
+      "business": {
+        "name": "ColorElite Premium Boyama ve Dekorasyon",
+        "ownerName": "Sinan Erkoc",
+        "sector": "Boyaci",
+        "slogan": "Rengin en rafine hali",
+        "phone": "0532 845 12 34",
+        "phoneClean": "905328451234",
+        "whatsapp": "905328451234",
+        "email": "info@colorelite.com.tr",
+        "address": "Maslak Mah. Eski Buyukdere Cad. No:65 Maslak 1453 B Blok Kat:12, Sariyer/Istanbul",
+        "city": "Istanbul",
+        "district": "Sariyer",
+        "neighborhood": "Maslak",
+        "coordinates": { "lat": 41.1085, "lng": 29.0200 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/colorelite",
+          "linkedin": "https://linkedin.com/company/colorelite",
+          "pinterest": "https://pinterest.com/colorelite"
+        },
+        "photos": [],
+        "foundedYear": 1995,
+        "experience": "29 yil",
+        "customerCount": "12.000+",
+        "rating": 4.9,
+        "reviewCount": 1850,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "08:00", "close": "19:00", "isOpen": true },
+          { "day": "Sali", "open": "08:00", "close": "19:00", "isOpen": true },
+          { "day": "Carsamba", "open": "08:00", "close": "19:00", "isOpen": true },
+          { "day": "Persembe", "open": "08:00", "close": "19:00", "isOpen": true },
+          { "day": "Cuma", "open": "08:00", "close": "19:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "09:00", "close": "15:00", "isOpen": true },
+          { "day": "Pazar", "open": "Kapali", "close": "Kapali", "isOpen": false }
+        ],
+        "services": [
+          { "id": "s1", "name": "VIP Konut Boyama Paketi", "price": "150 TL/m2", "duration": "5-10 gun", "description": "Mobilya koruma, premium malzeme, renk danismanligi ve detay iscilik dahil ust segment konut boyama." },
+          { "id": "s2", "name": "Luks Villa Komple Boyama", "price": "200.000 TL", "duration": "15-25 gun", "description": "Ic ve dis cephe, garaj, peyzaj duvar dahil villa projesi." },
+          { "id": "s3", "name": "Otel ve Resort Boyama", "price": "Projeye Ozel", "duration": "30-60 gun", "description": "5 yildizli otel, butik otel ve resort projelerine ozel boyama cozumleri." },
+          { "id": "s4", "name": "Italyan Dekoratif Siva", "price": "250 TL/m2", "duration": "3-7 gun", "description": "San Marco ve Candis ithal dekoratif sivalar ile ust segment uygulamalar." },
+          { "id": "s5", "name": "Saray Tavan ve Kartonpiyer Boyama", "price": "350 TL/m2", "duration": "5-10 gun", "description": "Alci tavan susleri, kartonpiyer ve rozet boyama ile varak uygulamasi." },
+          { "id": "s6", "name": "Antika Restorasyon Boyama", "price": "5.000 TL/parca", "duration": "5-15 gun", "description": "Antika mobilya, kapi ve ahsap aksam orijinal renk restorasyonu." },
+          { "id": "s7", "name": "Epoksi Sanat Zemin", "price": "300 TL/m2", "duration": "3-7 gun", "description": "3D gorunumlu, metalik ve mermer efektli sanatsal epoksi zemin uygulamasi." },
+          { "id": "s8", "name": "Dis Cephe Premium Boyama", "price": "85 TL/m2", "duration": "10-20 gun", "description": "Bina dis cephesi icin premium silikon bazli boyalar ile uzun omurlu uygulama." },
+          { "id": "s9", "name": "Ofis ve Plaza Boyama", "price": "Projeye Ozel", "duration": "10-30 gun", "description": "Kurumsal renk kilavuzuna uygun plaza ve ofis ic cephe boyama." },
+          { "id": "s10", "name": "AVM ve Magaza Boyama", "price": "Projeye Ozel", "duration": "Gece Calismasi", "description": "Perakende mekanlar icin gece calismasi ile isletme aksatmadan boyama." },
+          { "id": "s11", "name": "Hastane ve Saglik Tesisi Boyama", "price": "80 TL/m2", "duration": "10-20 gun", "description": "Antibakteriyel ve hijyenik boyalarla saglik tesisi boyama." },
+          { "id": "s12", "name": "Okul ve Kreser Boyama", "price": "55 TL/m2", "duration": "5-10 gun", "description": "Cocuk dostu, kokusuz ve alerjen icermeyen boyalarla egitim kurumu boyama." },
+          { "id": "s13", "name": "Cami ve Ibadet Yeri Boyama", "price": "Projeye Ozel", "duration": "15-30 gun", "description": "Dini mekanlar icin ozel motif, hat ve susleme boyama." },
+          { "id": "s14", "name": "Tarihi Yapi Restorasyon Boyama", "price": "Projeye Ozel", "duration": "30-90 gun", "description": "Koruma kurulu onayli tarihi bina ve konak boyama restorasyonu." },
+          { "id": "s15", "name": "Renk Danismanligi ve Proje Yonetimi", "price": "10.000 TL", "duration": "3-5 gun", "description": "Buyuk projeler icin renk paleti olusturma, malzeme secimi ve is programi hazirlama." },
+          { "id": "s16", "name": "Yat ve Tekne Boyama", "price": "200 TL/m2", "duration": "10-20 gun", "description": "Luks yat ve tekneler icin gelcoat, antifouling ve kozmetik boyama." },
+          { "id": "s17", "name": "Havuz ve Spa Boyama", "price": "180 TL/m2", "duration": "5-10 gun", "description": "Yuzme havuzu ve spa alanlari icin kloura dayanikli ozel kaplama." },
+          { "id": "s18", "name": "Teras ve Balkon Boyama", "price": "70 TL/m2", "duration": "2-4 gun", "description": "Dis mekana dayanikli zemin ve duvar boyama uygulamasi." },
+          { "id": "s19", "name": "Garanti Bakim Programi", "price": "15.000 TL/yil", "duration": "Yillik", "description": "Yillik kontrole, kucuk onarimlar ve retus dahil VIP bakim programi." },
+          { "id": "s20", "name": "Acil Hasar Onarim", "price": "Projeye Ozel", "duration": "1-3 gun", "description": "Su baskin, yangin ve diger hasarlardan sonra acil boya ve restorasyon mudahalesi." }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Premium Boyama ve Dekorasyon Grubu",
+          "subtitle": "29 yillik tecrube, 12.000+ proje. Turkiye'nin en prestijli konut, otel ve ticari mekanlarinin boyama cozum ortagi.",
+          "badge": "Turkiye'nin Premium Boyacisi"
+        },
+        "about": {
+          "title": "ColorElite Hakkinda",
+          "description": "1995'te kurulan ColorElite, bugun Turkiye'nin en buyuk premium boyama ve dekorasyon grubu olarak 29 yillik basari hikayesini yazmaya devam ediyor. Sariyer Maslak'taki merkez ofisimiz, Tuzla'daki uygulama merkezimiz ve 6 ildeki bolge mudurluklerimizle Turkiye genelinde hizmet veriyoruz. 12.000'den fazla projede imzamiz var: Turkiye'nin en luks residence projelerinden 5 yildizli otel zincirlerine, tarihi restorasyon projelerinden kurumsal plaza boyamalariiina kadar genis bir portfolyoye sahibiz. Italya, Almanya ve Japonya'dan ithal ettigimiz premium boyalar ve dekoratif malzemelerle sektorde fark yaratiyoruz. San Marco, Farrow & Ball, Little Greene ve Benjamin Moore gibi dunyanin en prestijli boya markalarinin Turkiye distributorlugunu yapiyoruz. 85 kissilik profesyonel ekibimiz, FROSIO ve NACE sertifikali kalite kontrol muefettislerimiz ve ic mimar danismanlarimizla her projeye ozel cozumler uretiyoruz."
+        },
+        "services": { "title": "Premium Hizmetlerimiz", "subtitle": "Konuttan otele, restorasyondan endustriye — kusursuz boyama ve dekorasyon" },
+        "contact": { "title": "Projenizi Planlyalim", "subtitle": "VIP danisma hattimizdan randevu alin" },
+        "faq": [
+          { "q": "ColorElite'i diger boyacilardan ne ayiriyor?", "a": "29 yillik tecrube, ithal premium boya markalari, ic mimar danismanlik ve garanti bakim programi." },
+          { "q": "Hangi boya markalarini kullaniyorsunuz?", "a": "San Marco, Farrow & Ball, Little Greene, Benjamin Moore, Jotun Lady ve Caparol gibi premium markalari kullaniyoruz." },
+          { "q": "VIP konut boyama paketinde neler var?", "a": "Renk danismanligi, mobilya koruma, premium malzeme, detay iscilik, temizlik ve 2 yil garanti dahildir." },
+          { "q": "Tarihi yapi boyamasi yapabiliyor musunuz?", "a": "Evet, koruma kurulu onayli projelerle calissiyoruz. Restorasyon uzmanlarimiz orijinal renk ve teknikleri arastirir." },
+          { "q": "Otel projelerinde gece calismasi yapiyor musunuz?", "a": "Evet, misafir konforunu bozmamak icin gece vardiyalari ve kat kat planlama yapiyoruz." },
+          { "q": "Antibakteriyel boya nedir?", "a": "Gumus iyon teknolojili boyalar bakteri ve kuf olusumunu %99.9 onler. Hastane ve okul projelerinde kullaniyoruz." },
+          { "q": "Garanti bakim programi nasil calisiyor?", "a": "Yilda 2 kez kontrol ziyareti, kucuk retus ve onarimlar, oncelikli randevu hakki dahildir." },
+          { "q": "3D epoksi zemin nedir?", "a": "Seffaf epoksi katmani altina yerlestirilen gorsellerle 3 boyutlu efekt yaratan dekoratif zemin uygulamasidir." },
+          { "q": "Yurt disi projeleriniz var mi?", "a": "Dubai, Katar, Azerbaycan ve KKTC'de tamamlanmis otel ve residence projelerimiz var." },
+          { "q": "Proje yonetimi hizmeti nedir?", "a": "Buyuk projelerde renk secimi, malzeme tedaariki, is programi, kalite kontrolu ve saha koordinasyonunu ustleniyoruz." },
+          { "q": "Kokusuz boya secenegi var mi?", "a": "Evet, sifir VOC iceren kokusuz premium boyalarla calisiyoruz. Ozellikle kresr ve hastane projelerinde tercih edilir." },
+          { "q": "Finansman imkani var mi?", "a": "Buyuk projelerde taksitlendirme ve kurumsal fatura secenekleri sunuyoruz." },
+          { "q": "Referanslariniz nelerdir?", "a": "Four Seasons, Raffles, Mandarin Oriental, Rixos gibi 5 yildizli otel zincirleri ve Turkiye'nin oncu insaat firmalari." },
+          { "q": "Cevreye duyarli boyalar kullaniyor musunuz?", "a": "Evet, dusuk VOC, dogal pigment ve geri donusumlu ambalaj kullanan markalari tercih ediyoruz." },
+          { "q": "Ne kadar surede teklif alabiliirim?", "a": "Kesfif sonrasi 24 saat icinde detayli teklif iletiyoruz. Acil projelerde ayni gun teklif verebiliyoruz." }
+        ],
+        "testimonials": [
+          { "name": "Canan Arici", "district": "Bebek", "date": "2025-03", "rating": 5, "comment": "Bogazici villamizi komple boyadilar. Farrow & Ball renkleriyle her oda ayri bir sanat eseri oldu. ColorElite farkli bir seviye." },
+          { "name": "Kerem Atasoy", "district": "Nisantasi", "date": "2025-02", "rating": 5, "comment": "Butik otelimizin tum katlarini gece calismmasiyla boyadilar. Misafirlerimiz hicbir sey fark etmedi. Muhtesem organizasyon." },
+          { "name": "Defne Kocaman", "district": "Etiler", "date": "2025-01", "rating": 5, "comment": "Penthouse dairemize Venedik sivasi ve altin varak yaptirdik. Italyan ustanin isciligi buyuleyici." },
+          { "name": "Serdar Toprak", "district": "Levent", "date": "2024-12", "rating": 5, "comment": "30 katli plaza projemizi ColorElite ile calistik. Kurumsal renk kilavuzumuza birebir uyum saglladilar." },
+          { "name": "Ipek Tuncel", "district": "Sariyer", "date": "2024-11", "rating": 5, "comment": "Tarihi yalimizin restorasyon boyamasini yaptilar. Koruma kurulu cok begendi, orijinal tonlari yakalamisslar." },
+          { "name": "Onur Demirkol", "district": "Atasehir", "date": "2024-10", "rating": 4, "comment": "AVM boyama projesi genel olarak mukemmel ama bazzi renk tonlarinda revizyon gerekti. Sonuc memnun edici." },
+          { "name": "Yesim Baran", "district": "Bakirkoy", "date": "2024-09", "rating": 5, "comment": "Ozel hastaanemizi antibakteriyel boyalarla boyadilar. Hijyen testlerinden tam puan aldik." },
+          { "name": "Alp Yalcin", "district": "Bodrum", "date": "2024-08", "rating": 5, "comment": "Bodrum'daki yazlik villamamizi boyadilar. Istanbul'dan ekip geldi, Ege isigina uygun mukemmel renkler sectiler." },
+          { "name": "Selen Oz", "district": "Kadikoy", "date": "2024-07", "rating": 5, "comment": "Kresimizi cocuk dostu, kokusuz boyalarla boyadilar. Veliler cok memnun, renkler canli ve neseli." },
+          { "name": "Bora Isik", "district": "Beyoglu", "date": "2024-06", "rating": 5, "comment": "Tarihi apartman girisimizi restorasyon boyama ile canlandirdilar. Komsular hayran kaldilar." },
+          { "name": "Merve Tan", "district": "Sisli", "date": "2024-05", "rating": 5, "comment": "Luks residence projemizin 200 dairesini boyadilar. Her daire ayri renk paleti, sifir hata." },
+          { "name": "Erhan Cicek", "district": "Zekeriyakoy", "date": "2024-04", "rating": 4, "comment": "Villamizin dis cephesini premium silikon boyayla boyadilar. 2 yildir renk ayni, sadece kesfif sureci biraz uzundu." }
+        ],
+        "team": [
+          { "name": "Sinan Erkoc", "role": "Kurucu & CEO", "image": "", "bio": "Ic mimarlik mezunu. 30 yildir boyama ve dekorasyon sektorunde. BOSAD yonetim kurulu uyesi." },
+          { "name": "Marco Bianchi", "role": "Italyan Dekoratif Uzman", "image": "", "bio": "Venedik'ten gelen usta. 25 yillik dekoratif siva ve varak tecrubesi." },
+          { "name": "Asli Kaplan", "role": "Tasarim Direktoru", "image": "", "bio": "Ic mimar. Renk danismanligi ve mekan tasarimi. 50+ otel projesi tecrubesi." },
+          { "name": "Ugur Yildirim", "role": "Operasyon Direktoru", "image": "", "bio": "Insaat muhendisi. 150+ kisilik saha ekibinin operasyon yonetimi." },
+          { "name": "Pelin Savas", "role": "Kalite ve Ceevre Muduru", "image": "", "bio": "Cevre muhendisi. NACE sertifikali. Surdurulebilir boyama uygulamalari uzmani." },
+          { "name": "Arda Kocak", "role": "Restorasyon Uzmani", "image": "", "bio": "Sanat tarihcisi. Tarihi yapi renk analizi ve restorasyon boyamasi." },
+          { "name": "Nilgun Ercan", "role": "Kurumsal Satis Muduru", "image": "", "bio": "15 yillik B2B satis tecrubesi. Otel zincirleri ve insaat firmaalari iliskileri." },
+          { "name": "Deniz Acar", "role": "Dijital Pazarlama Muduru", "image": "", "bio": "Proje portfoyou yonetimi, sosyal medya ve marka iletisimi." }
+        ]
+      }
+    }
+  ]
+}

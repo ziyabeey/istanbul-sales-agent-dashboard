@@ -1,7 +1,34 @@
-'use client'
-import { HeaderMinimalSticky as _h, FooterWarmColumns as _f, WhatsAppFloating as _wa, CookieBannerBottomBar as _c, CarpetServiceGrid as _csg, CarpetPricingTable as _cpt, CarpetProcessSteps as _cps, CarpetStatsRow as _csr, CarpetPickupForm as _cpf, ThemeRenderer, HALIYIKAMA_ORGANIK_CONFIG, HALIYIKAMA_ORGANIK_BUSINESS } from '@kepenk/templates'
-void _h; void _f; void _wa; void _c; void _csg; void _cpt; void _cps; void _csr; void _cpf
-export default function Client() {
-  const t = HALIYIKAMA_ORGANIK_CONFIG, p = t.pages[0]!, b = HALIYIKAMA_ORGANIK_BUSINESS
-  return (<div lang="tr"><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ '@context': 'https://schema.org', '@type': 'Laundry', name: b.name, telephone: b.phone, address: { '@type': 'PostalAddress', addressLocality: b.district, addressRegion: b.city, addressCountry: 'TR' } }) }} /><ThemeRenderer theme={t} page={p} business={b} /></div>)
+import { MinimalLayout } from '@/components/layout/MinimalLayout';
+import { SectionRenderer } from '@/components/PreviewViewer';
+import { HALIYIKAMA_ORGANIK_CONFIG, HALIYIKAMA_ORGANIK_BUSINESS } from '@xinxia/templates';
+
+import { 
+  HaliyikamaOrganikHero, 
+  HaliyikamaOrganikAbout, 
+  HaliyikamaOrganikServices, 
+  HaliyikamaOrganikGallery, 
+  HaliyikamaOrganikContact 
+} from '@xinxia/templates';
+
+const componentMap: Record<string, React.FC<any>> = {
+  'haliyikama_organik_hero': HaliyikamaOrganikHero,
+  'haliyikama_organik_about': HaliyikamaOrganikAbout,
+  'haliyikama_organik_services': HaliyikamaOrganikServices,
+  'haliyikama_organik_gallery': HaliyikamaOrganikGallery,
+  'haliyikama_organik_contact': HaliyikamaOrganikContact
+};
+
+export default function HaliyikamaOrganikDemoClient() {
+  const anasayfa = HALIYIKAMA_ORGANIK_CONFIG.pages.find((p: any) => p.id === 'anasayfa');
+  if (!anasayfa) return <div>Sayfa bulunamadı</div>;
+
+  return (
+    <MinimalLayout themeConfig={HALIYIKAMA_ORGANIK_CONFIG} businessData={HALIYIKAMA_ORGANIK_BUSINESS}>
+      <SectionRenderer 
+        sections={anasayfa.sections} 
+        componentMap={componentMap} 
+        businessData={HALIYIKAMA_ORGANIK_BUSINESS} 
+      />
+    </MinimalLayout>
+  );
 }

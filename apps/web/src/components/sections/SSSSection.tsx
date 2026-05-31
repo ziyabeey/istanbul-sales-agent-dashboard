@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
+import { waLink } from '@/data/iletisim'
 
 const sorular = [
     {
@@ -38,7 +39,7 @@ export default function SSSSection() {
     const [acik, setAcik] = useState<number | null>(null)
 
     return (
-        <section className="py-24 relative bg-white" id="sss">
+        <section className="py-24 relative bg-gray-50/60" id="sss">
             <div className="max-w-3xl mx-auto px-4 sm:px-6">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -103,7 +104,7 @@ export default function SSSSection() {
                 >
                     <p className="text-gray-500 text-sm mb-4">Başka sorunuz mu var?</p>
                     <a
-                        href="https://wa.me/905XXXXXXXXX?text=KPNK%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum"
+                        href={waLink('KPNK hakkında bilgi almak istiyorum')}
                         target="_blank"
                         rel="noreferrer"
                         className="inline-flex items-center gap-2 bg-green-50 border border-green-200 text-green-700 px-6 py-3 rounded-xl font-syne font-bold hover:bg-green-100 transition-colors"

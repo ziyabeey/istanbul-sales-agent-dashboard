@@ -1,7 +1,37 @@
-'use client'
-import { HeaderMinimalSticky as _h, FooterWarmColumns as _f, WhatsAppFloating as _wa, CookieBannerBottomBar as _c, PaintServiceGrid as _psg, PaintColorPalette as _pcp, PaintProcessSteps as _pps, PaintStatsRow as _psr, PaintQuoteForm as _pqf, ThemeRenderer, BOYACI_DEKORATIF_CONFIG, BOYACI_DEKORATIF_BUSINESS } from '@kepenk/templates'
-void _h; void _f; void _wa; void _c; void _psg; void _pcp; void _pps; void _psr; void _pqf
-export default function Client() {
-  const t = BOYACI_DEKORATIF_CONFIG, p = t.pages[0]!, b = BOYACI_DEKORATIF_BUSINESS
-  return (<div lang="tr"><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ '@context': 'https://schema.org', '@type': 'HousePainter', name: b.name, telephone: b.phone, address: { '@type': 'PostalAddress', addressLocality: b.district, addressRegion: b.city, addressCountry: 'TR' } }) }} /><ThemeRenderer theme={t} page={p} business={b} /></div>)
+'use client';
+
+import React from 'react';
+import { ThemeRenderer, generateStructuredData } from '@kepenk/templates';
+import type { ThemeConfig } from '@kepenk/templates';
+
+export default function ClientPage({ theme }: { theme: ThemeConfig }) {
+  const schemaStr = React.useMemo(() => {
+    try {
+      const schemaObj = generateStructuredData(theme);
+      return JSON.stringify(schemaObj);
+    } catch (e) {
+      console.error('Failed to generate schema', e);
+      return null;
+    }
+  }, [theme]);
+
+  React.useEffect(() => {
+    if (theme.cssVariables) {
+      Object.entries(theme.cssVariables).forEach(([key, value]) => {
+        document.documentElement.style.setProperty(key, value as string);
+      });
+    }
+  }, [theme.cssVariables]);
+
+  return (
+    <main>
+      {schemaStr && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: schemaStr }}
+        />
+      )}
+      <ThemeRenderer theme={theme} />
+    </main>
+  );
 }

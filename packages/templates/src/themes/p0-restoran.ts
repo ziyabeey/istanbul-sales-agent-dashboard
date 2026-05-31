@@ -6,6 +6,24 @@ import type { P0ThemeDef } from './p0-themes'
 
 export const RESTORAN_THEMES: P0ThemeDef[] = [
   {
+    id: 'restoran-fine',
+    name: 'Lumière',
+    sectorId: 'restoran',
+    plan: 'enterprise',
+    description: 'Michelin konseptli Fine Dining ve tadım menüsü mimarisi.',
+    designPhilosophy: 'Karanlık, lüks, asil. Cormorant Garamond fontuyla Michelin düzeyinde görsel şölen.',
+    isDark: true,
+    fonts: { heading: { family: 'Cormorant Garamond', weights: [400, 600, 700] }, body: { family: 'Source Sans 3', weights: [400, 600] } },
+    cssOverrides: {
+      '--color-accent': '#C9A84C', '--font-heading': "'Cormorant Garamond', serif", '--font-body': "'Source Sans 3', sans-serif",
+    },
+    homeSections: ['hero::restoran_bespoke_hero', 'services::restoran_bespoke_services', 'about::restoran_bespoke_about', 'contact::restoran_bespoke_contact'],
+    pages: ['home'],
+    sectorSections: ['menu'],
+    animationLevel: 'framer-full',
+    demoBusinessKey: 'lumiere',
+  },
+  {
     id: 'restoran-sofra',
     name: 'Sofra',
     sectorId: 'restoran',

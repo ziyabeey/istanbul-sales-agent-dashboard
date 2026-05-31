@@ -64,25 +64,47 @@ export async function esnafSiteUret(esnafId: string): Promise<string> {
     // Slug ve subdomain
     const slug = esnaf.slug ?? slugOlustur(esnaf.isletmeAdiTam || esnaf.ad, esnafId)
     const subdomain = esnaf.subdomain ?? slug
+    const siteUrl = `https://${subdomain}.kepenk.ai`
 
-    // HTML üret (hakem onaylı)
-    const html = await htmlUretVeOnayla(esnaf, yorumlar, esnafId)
+    // AST tabanlı ThemeConfig üret
+    const { generateAstSiteData } = await import('@/utils/ai/astGenerator')
+    const themeConfig = await generateAstSiteData(esnaf, yorumlar)
 
-    // Deploy et
-    const siteUrl = await siteYayinla({ esnafId, slug, subdomain, html })
+    // Business verilerini hazırla (ThemeConfig ile birlikte apps/sites tarafına geçecek)
+    const businessData = {
+      name: esnaf.isletmeAdiTam || esnaf.ad,
+      phone: esnaf.telefon || '',
+      email: esnaf.email || '',
+      address: [esnaf.mahalle, esnaf.ilce, esnaf.sehir].filter(Boolean).join(', '),
+      workingHours: {
+        weekdays: '09:00 - 18:00',
+        weekend: '10:00 - 15:00'
+      },
+      socialMedia: {
+        instagram: esnaf.instagramUsername ? `https://instagram.com/${esnaf.instagramUsername}` : undefined,
+        facebook: esnaf.facebookUrl || undefined
+      },
+      reviews: yorumlar
+    }
 
-    // Firestore güncelle
+    const siteData = {
+      theme: themeConfig,
+      business: businessData
+    }
+
+    // Firestore güncelle (Cloudflare deployment iptal edildi, site anında yayında)
     await doc.ref.update({
         slug,
         subdomain,
         subdomainUrl: siteUrl,
-        siteHtml: html,
+        siteData,
+        temaId: 'v2-ast-generated', // Legacy uyumluluk için
         siteVersiyon: (esnaf.siteVersiyon ?? 0) + 1,
         siteGuncelleme: Timestamp.now(),
     })
 
     await telegramGonder(
-        `🌐 <b>Site Yayında!</b>\n` +
+        `🌐 <b>Site AST ile Yayında!</b>\n` +
         `${esnaf.isletmeAdiTam || esnaf.ad}\n` +
         `<a href="${siteUrl}">${siteUrl}</a>`
     )
@@ -90,9 +112,8 @@ export async function esnafSiteUret(esnafId: string): Promise<string> {
     const { waMesajGonder } = await import('@/lib/twilioClient')
     await waMesajGonder(
         esnaf.waNumarasi,
-        `✅ Siteniz hazır!\n\n` +
+        `✅ Siteniz yapay zeka tarafından (AST Engine V2) tasarlandı!\n\n` +
         `🌐 ${siteUrl}\n\n` +
-        `Telefon numaranız, Google yorumlarınız ve bilgileriniz siteye eklendi.\n` +
         `İçerik güncellemek için: ${process.env.NEXT_PUBLIC_APP_URL}/dashboard`,
         esnafId,
         'site_hazir'

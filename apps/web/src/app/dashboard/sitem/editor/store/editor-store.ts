@@ -69,28 +69,34 @@ export interface MediaItem {
     createdAt: string
 }
 
+import type { ThemeConfig, BusinessData as AstBusinessData } from '@kepenk/templates/src/types/section-types'
+
 /* ── Site Data (demo sync) ── */
 export interface SiteData {
-    sektorId: number
-    kategori: string
-    isletmeAdi: string
-    heroBaslik: string
-    heroAlt: string
-    hizmetler: [string, string, string]
-    bg: string
-    accent: string
-    text: string
-    font: string
-    unsplash: string
-    telefon: string
-    adres: string
-    paket: string
-    moduller: string[]
+    sektorId?: number
+    kategori?: string
+    isletmeAdi?: string
+    heroBaslik?: string
+    heroAlt?: string
+    hizmetler?: [string, string, string]
+    bg?: string
+    accent?: string
+    text?: string
+    font?: string
+    unsplash?: string
+    telefon?: string
+    adres?: string
+    paket?: string
+    moduller?: string[]
     modulConfig?: Record<string, Record<string, unknown>>
     modulIcerik?: Record<string, unknown[]>
     gizliModuller?: string[]
     fontSettings?: FontSettings
     designSettings?: DesignSettings
+
+    // V2 AST Engine Fields
+    theme?: ThemeConfig
+    business?: AstBusinessData
 }
 
 /* ── Context Menu ── */
@@ -188,6 +194,7 @@ interface EditorState {
     saveSuccess: boolean
     lastSavedAt: Date | null
     autosaveStatus: 'idle' | 'saving' | 'saved' | 'error'
+    clearDirty: () => void
 
     /* Site data (demo sync) */
     siteData: SiteData | null
@@ -244,6 +251,13 @@ interface EditorState {
     applySablon: (sablonId: string, moduller: string[]) => void
     setEditorMode: (mode: 'standard' | 'ai') => void
     setAiTokensUsed: (n: number) => void
+
+    /* AST Node Operations */
+    updateAstNodeStyle: (nodeId: string, styles: Partial<Record<string, unknown>>) => void
+    updateAstNodeProps: (nodeId: string, propsType: string, props: Record<string, unknown>) => void
+    deleteAstNode: (nodeId: string) => void
+    duplicateAstNode: (nodeId: string) => void
+    addAstNode: (parentId: string, nodeType: string) => void
 
     /* Save */
     setSaving: (v: boolean) => void
@@ -510,9 +524,216 @@ export const useEditorStore = create<EditorState>((set, get) => ({
     setEditorMode: (mode) => set({ editorMode: mode }),
     setAiTokensUsed: (n) => set({ aiTokensUsed: n }),
 
+    /* AST Node Operations */
+    updateAstNodeStyle: (nodeId, styles) => {
+        const s = get()
+        if (!s.siteData?.theme) return
+        
+        const updateNode = (node: any): any => {
+            if (node.id === nodeId) {
+                return { ...node, styles: { ...node.styles, ...styles } }
+            }
+            if (node.children) {
+                return { ...node, children: node.children.map(updateNode) }
+            }
+            return node
+        }
+
+        const newTheme = {
+            ...s.siteData.theme,
+            pages: s.siteData.theme.pages?.map(p => ({
+                ...p,
+                sections: p.sections?.map(sec => ({
+                    ...sec,
+                    blockTree: sec.blockTree ? updateNode(sec.blockTree) : sec.blockTree
+                }))
+            }))
+        }
+
+        set({
+            undoStack: [...s.undoStack.slice(-19), { pages: s.pages, siteData: s.siteData }],
+            redoStack: [],
+            siteData: { ...s.siteData, theme: newTheme as any },
+            isDirty: true
+        })
+    },
+
+    updateAstNodeProps: (nodeId, propsType, props) => {
+        const s = get()
+        if (!s.siteData?.theme) return
+        
+        const updateNode = (node: any): any => {
+            if (node.id === nodeId) {
+                return { ...node, [propsType]: { ...node[propsType], ...props } }
+            }
+            if (node.children) {
+                return { ...node, children: node.children.map(updateNode) }
+            }
+            return node
+        }
+
+        const newTheme = {
+            ...s.siteData.theme,
+            pages: s.siteData.theme.pages?.map(p => ({
+                ...p,
+                sections: p.sections?.map(sec => ({
+                    ...sec,
+                    blockTree: sec.blockTree ? updateNode(sec.blockTree) : sec.blockTree
+                }))
+            }))
+        }
+
+        set({
+            undoStack: [...s.undoStack.slice(-19), { pages: s.pages, siteData: s.siteData }],
+            redoStack: [],
+            siteData: { ...s.siteData, theme: newTheme as any },
+            isDirty: true
+        })
+    },
+
+    deleteAstNode: (nodeId) => {
+        const s = get()
+        if (!s.siteData?.theme) return
+        
+        const deleteNode = (node: any): any => {
+            if (!node.children) return node
+            return {
+                ...node,
+                children: node.children.filter((c: any) => c.id !== nodeId).map(deleteNode)
+            }
+        }
+
+        const newTheme = {
+            ...s.siteData.theme,
+            pages: s.siteData.theme.pages?.map(p => ({
+                ...p,
+                sections: p.sections?.map(sec => ({
+                    ...sec,
+                    blockTree: sec.blockTree && sec.blockTree.id !== nodeId ? deleteNode(sec.blockTree) : (sec.blockTree?.id === nodeId ? null : sec.blockTree)
+                }))
+            }))
+        }
+
+        set({
+            undoStack: [...s.undoStack.slice(-19), { pages: s.pages, siteData: s.siteData }],
+            redoStack: [],
+            siteData: { ...s.siteData, theme: newTheme as any },
+            isDirty: true,
+            selectedSectionId: s.selectedSectionId === nodeId ? null : s.selectedSectionId
+        })
+    },
+
+    duplicateAstNode: (nodeId) => {
+        const s = get()
+        if (!s.siteData?.theme) return
+        
+        const generateNewIds = (node: any): any => {
+            const newId = `${node.type || 'Node'}-${Math.random().toString(36).substring(2, 9)}`
+            if (!node.children) return { ...node, id: newId }
+            return {
+                ...node,
+                id: newId,
+                children: node.children.map(generateNewIds)
+            }
+        }
+
+        const duplicateNode = (node: any): any => {
+            if (!node.children) return node
+            
+            const newChildren: any[] = []
+            node.children.forEach((child: any) => {
+                newChildren.push(duplicateNode(child))
+                if (child.id === nodeId) {
+                    newChildren.push(generateNewIds(child))
+                }
+            })
+            
+            return {
+                ...node,
+                children: newChildren
+            }
+        }
+
+        const newTheme = {
+            ...s.siteData.theme,
+            pages: s.siteData.theme.pages?.map(p => ({
+                ...p,
+                sections: p.sections?.map(sec => ({
+                    ...sec,
+                    // Eğer root silinmiyorsa, root'un aynısını kopyalayamayız çünkü section root'u tek. Sadece children kopyalanır.
+                    blockTree: sec.blockTree ? duplicateNode(sec.blockTree) : sec.blockTree
+                }))
+            }))
+        }
+
+        set({
+            undoStack: [...s.undoStack.slice(-19), { pages: s.pages, siteData: s.siteData }],
+            redoStack: [],
+            siteData: { ...s.siteData, theme: newTheme as any },
+            isDirty: true
+        })
+    },
+
+    addAstNode: (parentId, nodeType) => {
+        const s = get()
+        if (!s.siteData?.theme) return
+        
+        const createNewNode = (type: string): any => {
+            const id = `${type}-${Math.random().toString(36).substring(2, 9)}`
+            const baseNode = { id, type, props: {}, style: { padding: '16px' }, children: [] }
+            
+            if (type === 'Typography') {
+                return { ...baseNode, content: 'Yeni Metin', style: { ...baseNode.style, fontSize: '16px', color: '#333' } }
+            }
+            if (type === 'Button') {
+                return { ...baseNode, content: 'Yeni Buton', style: { ...baseNode.style, backgroundColor: '#3b82f6', color: '#fff', borderRadius: '8px', padding: '12px 24px', textAlign: 'center' } }
+            }
+            if (type === 'Image') {
+                return { ...baseNode, props: { src: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop', alt: 'Yeni Görsel' }, style: { ...baseNode.style, width: '100%', height: 'auto', borderRadius: '8px' } }
+            }
+            if (type === 'Box' || type === 'Flex' || type === 'Grid') {
+                return { ...baseNode, style: { ...baseNode.style, backgroundColor: '#f8fafc', minHeight: '50px', border: '1px dashed #cbd5e1' } }
+            }
+            return baseNode
+        }
+
+        const addNodeToParent = (node: any): any => {
+            if (node.id === parentId) {
+                return {
+                    ...node,
+                    children: [...(node.children || []), createNewNode(nodeType)]
+                }
+            }
+            if (!node.children) return node
+            return {
+                ...node,
+                children: node.children.map(addNodeToParent)
+            }
+        }
+
+        const newTheme = {
+            ...s.siteData.theme,
+            pages: s.siteData.theme.pages?.map(p => ({
+                ...p,
+                sections: p.sections?.map(sec => ({
+                    ...sec,
+                    blockTree: sec.blockTree ? addNodeToParent(sec.blockTree) : sec.blockTree
+                }))
+            }))
+        }
+
+        set({
+            undoStack: [...s.undoStack.slice(-19), { pages: s.pages, siteData: s.siteData }],
+            redoStack: [],
+            siteData: { ...s.siteData, theme: newTheme as any },
+            isDirty: true
+        })
+    },
+
     setSaving: (v) => set({ isSaving: v }),
     setSaveSuccess: (v) => set({ saveSuccess: v }),
     markDirty: () => set({ isDirty: true }),
+    clearDirty: () => set({ isDirty: false }),
     setLastSavedAt: (d) => set({ lastSavedAt: d }),
     setAutosaveStatus: (s) => set({ autosaveStatus: s }),
 

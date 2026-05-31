@@ -1,0 +1,20 @@
+/** Eczane Nöbetçi — clean medicinal duty pharmacy CSS variables */
+export const ECZANE_NOBETCI_CSS: Record<string, string> = {
+  '--color-bg': '#F8FAFB',
+  '--color-surface': '#FFFFFF',
+  '--color-surface-elevated': '#FFFFFF',
+  '--color-surface-muted': '#F0F4F8',
+  '--color-text': '#0F172A',
+  '--color-text-secondary': '#64748B',
+  '--color-text-muted': '#94A3B8',
+  '--color-text-on-accent': '#FFFFFF',
+  '--color-text-on-dark': '#F1F5F9',
+  '--color-accent': '#DC2626',
+  '--color-accent-hover': '#EF4444',
+  '--color-accent-active': '#B91C1C',
+  '--color-accent-light': '#FEF2F2',
+  '--color-border': '#E2E8F0',
+  '--color-border-subtle': '#F1F5F9',
+  '--font-heading': "'DM Sans', sans-serif",
+  '--font-body': "'Inter', system-ui, sans-serif",
+}

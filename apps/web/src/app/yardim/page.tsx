@@ -1,6 +1,5 @@
 import React from "react";
-import Navbar from "@/components/layout/Navbar";
-import FooterTrustSection from "@/components/sections/FooterTrustSection";
+import PublicPageShell from "@/components/layout/PublicPageShell";
 import { Metadata } from "next";
 import { Book, ShieldQuestion, Zap, LayoutTemplate } from "lucide-react";
 import SSSAccordion from "./SSSAccordion";
@@ -34,8 +33,7 @@ const guideCategories = [
 
 export default function YardimPage() {
     return (
-        <main className="min-h-screen bg-background font-sans">
-            <Navbar />
+        <PublicPageShell>
 
             {/* Header with Search */}
             <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto text-center">
@@ -117,7 +115,6 @@ export default function YardimPage() {
                 </div>
             </section>
 
-            <FooterTrustSection />
-        </main>
+        </PublicPageShell>
     );
 }

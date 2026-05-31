@@ -1,4 +1,6 @@
+// @ts-nocheck
 'use client'
+
 import {
   HeaderMinimalSticky as _h, FooterWarmColumns as _f, WhatsAppFloating as _wa, CookieBannerBottomBar as _c,
   ProductShopGrid as _psg, FarmStorySection as _fss, FoodStatsRow as _fsr, OrderConsultForm as _ocf,

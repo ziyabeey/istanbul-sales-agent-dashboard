@@ -1,0 +1,505 @@
+{
+  "sectorId": "asansor",
+  "seoSchemaType": "HomeAndConstructionBusiness",
+  "variants": [
+    {
+      "id": "asansor-bina",
+      "variantName": "bina",
+      "plan": "free",
+      "description": "Bina asansor bakim ve onarim servisi",
+      "designPhilosophy": "Sade, guvenilir, islevsel",
+      "isDark": false,
+      "colors": {
+        "bg": "#FFFFFF",
+        "surface": "#F5F5F5",
+        "text": "#1A1A1A",
+        "accent": "#2563EB"
+      },
+      "fonts": { "heading": "Inter", "body": "Inter" },
+      "business": {
+        "name": "Yildiz Asansor Bakim",
+        "ownerName": "Kemal Yildiz",
+        "sector": "Asansor",
+        "slogan": "Binanizin guvenli dikey yolculugu",
+        "phone": "0532 671 23 40",
+        "phoneClean": "905326712340",
+        "whatsapp": "905326712340",
+        "email": "info@yildizasansor.com.tr",
+        "address": "Caferaga Mah. Sakiz Sok. No:18, Kadikoy/Istanbul",
+        "city": "Istanbul",
+        "district": "Kadikoy",
+        "neighborhood": "Caferaga",
+        "coordinates": { "lat": 40.9865, "lng": 29.0260 },
+        "socialMedia": { "instagram": "https://instagram.com/yildizasansor" },
+        "photos": [],
+        "foundedYear": 2005,
+        "experience": "19 yil",
+        "customerCount": "1.200+",
+        "rating": 4.6,
+        "reviewCount": 340,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "08:00", "close": "18:00", "isOpen": true },
+          { "day": "Sali", "open": "08:00", "close": "18:00", "isOpen": true },
+          { "day": "Carsamba", "open": "08:00", "close": "18:00", "isOpen": true },
+          { "day": "Persembe", "open": "08:00", "close": "18:00", "isOpen": true },
+          { "day": "Cuma", "open": "08:00", "close": "18:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "09:00", "close": "14:00", "isOpen": true },
+          { "day": "Pazar", "open": "Kapali", "close": "Kapali", "isOpen": false }
+        ],
+        "services": [
+          { "id": "s1", "name": "Aylik Asansor Bakimi", "price": "2.500 TL", "duration": "2-3 saat", "description": "Periyodik bakim, yag degisimi, fren kontrolu ve genel sistem testi dahil kapsamli aylik bakim hizmeti." },
+          { "id": "s2", "name": "Asansor Ariza Onarimi", "price": "1.500 TL", "duration": "1-4 saat", "description": "Motor, kapi sistemi, kumanda panosu ve mekanik aksam arizalarinda hizli mudahale." },
+          { "id": "s3", "name": "Asansor Revizyonu", "price": "45.000 TL", "duration": "5-7 gun", "description": "Eski asansorlerin komple mekanik ve elektrik sistemlerinin yenilenmesi." },
+          { "id": "s4", "name": "Yillik Muayene Hazirligi", "price": "3.000 TL", "duration": "1 gun", "description": "Belediye muayenesi oncesi tum guvenlik ekipmanlarinin kontrolu ve raporlamasi." }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Guvenli Asansor, Huzurlu Bina",
+          "subtitle": "Kadikoy ve cevre ilcelerde 19 yildir asansor bakim ve onarim hizmeti sunuyoruz.",
+          "badge": "Yetkili Servis"
+        },
+        "about": {
+          "title": "Yildiz Asansor Hakkinda",
+          "description": "2005 yilindan bu yana Kadikoy bolgesinde asansor bakim ve onarim hizmeti vermekteyiz. 1.200'den fazla binaya duzenli bakim sagliyoruz. TSE ve ISO belgeli ekibimizle guvenliginiz bizim oncelimimizdir."
+        },
+        "services": { "title": "Hizmetlerimiz", "subtitle": "Profesyonel asansor bakim ve onarim cozumleri" },
+        "contact": { "title": "Iletisim", "subtitle": "Asansor bakim ve ariza icin bizi arayin" },
+        "faq": [
+          { "q": "Asansor bakimi ne siklikta yapilmali?", "a": "Yonetmeliklere gore ayda bir periyodik bakim zorunludur. Yogun kullanilan asansorlerde iki haftada bir bakim onerilir." },
+          { "q": "Ariza durumunda ne kadar surede geliyorsunuz?", "a": "Kadikoy ve yakin cevre ilcelerde 30-60 dakika icinde ekibimiz olay yerine ulasir." },
+          { "q": "Asansor muayenesi icin ne gerekli?", "a": "Yillik belediye muayenesi icin bakim sozlesmesi, sigorta ve teknik dosya gereklidir. Muayene oncesi hazirligi biz yapiyoruz." },
+          { "q": "Hangi marka asansorlere bakim yapiyorsunuz?", "a": "Otis, Schindler, ThyssenKrupp, Kone ve tum yerli markalara bakim ve onarim hizmeti veriyoruz." }
+        ],
+        "testimonials": [],
+        "team": []
+      }
+    },
+    {
+      "id": "asansor-engelli",
+      "variantName": "engelli",
+      "plan": "starter",
+      "description": "Engelli erisim asansoru ve rampa cozumleri",
+      "designPhilosophy": "Erisilebilir, sicak, insani",
+      "isDark": false,
+      "colors": {
+        "bg": "#F8FAFC",
+        "surface": "#EFF6FF",
+        "text": "#0F172A",
+        "accent": "#0EA5E9"
+      },
+      "fonts": { "heading": "Inter", "body": "Inter" },
+      "business": {
+        "name": "ErisimPlus Engelli Asansorleri",
+        "ownerName": "Ayse Demir",
+        "sector": "Asansor",
+        "slogan": "Herkes icin erisim, herkes icin ozgurluk",
+        "phone": "0532 671 23 41",
+        "phoneClean": "905326712341",
+        "whatsapp": "905326712341",
+        "email": "info@erisimplus.com.tr",
+        "address": "Huseyinaga Mah. Istiklal Cad. No:156 Kat:3, Beyoglu/Istanbul",
+        "city": "Istanbul",
+        "district": "Beyoglu",
+        "neighborhood": "Huseyinaga",
+        "coordinates": { "lat": 41.0345, "lng": 28.9780 },
+        "socialMedia": { "instagram": "https://instagram.com/erisimplus" },
+        "photos": [],
+        "foundedYear": 2012,
+        "experience": "12 yil",
+        "customerCount": "3.500+",
+        "rating": 4.8,
+        "reviewCount": 580,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "08:30", "close": "18:00", "isOpen": true },
+          { "day": "Sali", "open": "08:30", "close": "18:00", "isOpen": true },
+          { "day": "Carsamba", "open": "08:30", "close": "18:00", "isOpen": true },
+          { "day": "Persembe", "open": "08:30", "close": "18:00", "isOpen": true },
+          { "day": "Cuma", "open": "08:30", "close": "18:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "09:00", "close": "13:00", "isOpen": true },
+          { "day": "Pazar", "open": "Kapali", "close": "Kapali", "isOpen": false }
+        ],
+        "services": [
+          { "id": "s1", "name": "Engelli Platform Asansoru", "price": "85.000 TL", "duration": "3-5 gun", "description": "Merdiven bosluguna monte edilen platform tipli engelli asansorleri." },
+          { "id": "s2", "name": "Merdiven Asansoru (Chairlift)", "price": "65.000 TL", "duration": "1-2 gun", "description": "Merdiven korkuluguna monte ray sistemiyle calisan oturma tipli asansor." },
+          { "id": "s3", "name": "Ev Tipi Mini Asansor", "price": "180.000 TL", "duration": "7-10 gun", "description": "Villa ve mustakil evler icin ozel tasarim kucuk kabin asansorleri." },
+          { "id": "s4", "name": "Tekerlekli Sandalye Rampasi", "price": "15.000 TL", "duration": "1 gun", "description": "Bina giris ve merdiven boslularina paslanmaz celik rampa imalati." },
+          { "id": "s5", "name": "Platform Asansor Bakimi", "price": "1.800 TL", "duration": "2 saat", "description": "Mevcut engelli asansorlerinin periyodik bakim ve kontrol hizmeti." },
+          { "id": "s6", "name": "Erisim Danismanligi", "price": "2.500 TL", "duration": "Yarim gun", "description": "Bina ve isyerleri icin engelli erisim mevzuati danismanligi ve proje hazirlama." }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Engelsiz Yasam Icin Erisim Cozumleri",
+          "subtitle": "Platform asansorleri, merdiven asansorleri ve rampa sistemleriyle herkes icin erisim sagliyoruz.",
+          "badge": "Engelsiz Yasam"
+        },
+        "about": {
+          "title": "ErisimPlus Hakkinda",
+          "description": "2012'den bu yana engelli bireylerin hayatini kolaylastirmak icin calisiyoruz. Turkiye genelinde 3.500'den fazla erisim projesi tamamladik. Belediyeler, hastaneler, okullar ve konut projelerinde engelli asansoru ve rampa cozumleri sunuyoruz. TSE belgeli urunlerimiz ve uzman montaj ekibimizle guvenli erisim garantisi veriyoruz."
+        },
+        "services": { "title": "Erisim Cozumlerimiz", "subtitle": "Engelsiz yasam icin profesyonel cozumler" },
+        "contact": { "title": "Bize Ulasin", "subtitle": "Ucretsiz kesfif ve danismanlik icin hemen arayin" },
+        "faq": [
+          { "q": "Engelli asansoru icin belediye izni gerekli mi?", "a": "Evet, yapi ruhsati ve belediye izni gereklidir. Izin sureclerinde size yardimci oluyoruz." },
+          { "q": "Merdiven asansoru her merdivene uyar mi?", "a": "Duz, virajli ve spiral merdivenlere uygun farkli modeller mevcuttur. Ucretsiz kesfle en uygun cozumu belirliyoruz." },
+          { "q": "Kurulum ne kadar surer?", "a": "Merdiven asansoru 1-2 gun, platform asansoru 3-5 gun, mini asansor 7-10 gunde tamamlanir." },
+          { "q": "Garanti suresi ne kadar?", "a": "Tum urunlerimiz 2 yil garanti kapsamindadir. Uzatilmis garanti secenegi de mevcuttur." },
+          { "q": "Devlet destegi veya tesviki var mi?", "a": "Engelli vatandaslar icin KDV istisnasi uygulanir. Bazi belediyelerde hibe destegi de mevcuttur." },
+          { "q": "Apartman yonetimi izni gerekli mi?", "a": "Evet, kat maliklerinin oylama karari gerekir. Yonetim toplantisi surecinde teknik sunum yapiyoruz." }
+        ],
+        "testimonials": [
+          { "name": "Mehmet Kara", "district": "Sisli", "date": "2025-01", "rating": 5, "comment": "Annem icin merdiven asansoru taktirdik. Hayat kalitesi inanilmaz artti. Ekip cok ozenli calisti." },
+          { "name": "Fatma Ozturk", "district": "Besiktas", "date": "2025-02", "rating": 5, "comment": "Apartmanimiza platform asansoru yapildi. Engelli komsumuz artik rahatca cikip inebiliyor." },
+          { "name": "Ali Cetin", "district": "Kadikoy", "date": "2024-11", "rating": 4, "comment": "Villamamiza mini asansor kurdular. Iscilik cok temiz ama teslimat biraz gecikti." }
+        ],
+        "team": [
+          { "name": "Ayse Demir", "role": "Kurucu & Genel Mudur", "image": "", "bio": "Makine muhendisi. 15 yildir erisim teknolojileri alaninda calisiyor." },
+          { "name": "Burak Sahin", "role": "Teknik Mudur", "image": "", "bio": "Elektrik-elektronik muhendisi. Asansor montaj ve test sureclerini yonetiyor." }
+        ]
+      }
+    },
+    {
+      "id": "asansor-yuk",
+      "variantName": "yuk",
+      "plan": "growth",
+      "description": "Endustriyel yuk asansoru uretim ve montaji",
+      "designPhilosophy": "Guclu, endustriyel, profesyonel",
+      "isDark": false,
+      "colors": {
+        "bg": "#FFFBEB",
+        "surface": "#FEF3C7",
+        "text": "#1C1917",
+        "accent": "#D97706",
+        "textSecondary": "#78716C",
+        "border": "#E5E7EB"
+      },
+      "fonts": { "heading": "Poppins", "body": "Inter" },
+      "business": {
+        "name": "Atlas Endustriyel Asansor",
+        "ownerName": "Hasan Kocak",
+        "sector": "Asansor",
+        "slogan": "Endustrinin dikey gucu",
+        "phone": "0532 671 23 42",
+        "phoneClean": "905326712342",
+        "whatsapp": "905326712342",
+        "email": "info@atlasasansor.com.tr",
+        "address": "Mahmutbey Mah. Tasocagi Yolu Cad. No:88, Bagcilar/Istanbul",
+        "city": "Istanbul",
+        "district": "Bagcilar",
+        "neighborhood": "Mahmutbey",
+        "coordinates": { "lat": 41.0650, "lng": 28.8340 },
+        "socialMedia": { "instagram": "https://instagram.com/atlasasansor" },
+        "photos": [],
+        "foundedYear": 1998,
+        "experience": "26 yil",
+        "customerCount": "8.000+",
+        "rating": 4.7,
+        "reviewCount": 920,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "07:00", "close": "19:00", "isOpen": true },
+          { "day": "Sali", "open": "07:00", "close": "19:00", "isOpen": true },
+          { "day": "Carsamba", "open": "07:00", "close": "19:00", "isOpen": true },
+          { "day": "Persembe", "open": "07:00", "close": "19:00", "isOpen": true },
+          { "day": "Cuma", "open": "07:00", "close": "19:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "08:00", "close": "15:00", "isOpen": true },
+          { "day": "Pazar", "open": "Kapali", "close": "Kapali", "isOpen": false }
+        ],
+        "services": [
+          { "id": "s1", "name": "Yuk Asansoru Montaji", "price": "250.000 TL", "duration": "15-20 gun", "description": "500 kg - 5 ton kapasiteli endustriyel yuk asansoru kurulumu." },
+          { "id": "s2", "name": "Hidrolik Yuk Platformu", "price": "120.000 TL", "duration": "7-10 gun", "description": "Depo ve fabrikalar icin makas tipli hidrolik yuk kaldirma platformu." },
+          { "id": "s3", "name": "Servis Asansoru (Moncharge)", "price": "85.000 TL", "duration": "5-7 gun", "description": "Restoran, otel ve hastaneler icin kucuk yuk tasima asansoru." },
+          { "id": "s4", "name": "Yuk Asansoru Revizyonu", "price": "180.000 TL", "duration": "10-15 gun", "description": "Eski yuk asansorlerinin modernizasyonu ve kapasite arttirimi." },
+          { "id": "s5", "name": "Endustriyel Asansor Bakimi", "price": "4.500 TL", "duration": "3-4 saat", "description": "Yuk asansorleri icin ozel periyodik bakim ve yag analizi." },
+          { "id": "s6", "name": "Otopark Asansoru", "price": "350.000 TL", "duration": "20-30 gun", "description": "Arac tasima kapasiteli otopark asansoru tasarim ve montaji." },
+          { "id": "s7", "name": "Konveyor ve Tasima Sistemleri", "price": "75.000 TL", "duration": "5-10 gun", "description": "Fabrika ici yatay ve egimli malzeme tasima bant sistemleri." },
+          { "id": "s8", "name": "Forklift Platformu", "price": "95.000 TL", "duration": "5-7 gun", "description": "Forklift erisimi icin ozel tasarim yuk kaldirma platformlari." },
+          { "id": "s9", "name": "Soguk Hava Deposu Asansoru", "price": "200.000 TL", "duration": "10-15 gun", "description": "Soguk hava sartlarina dayanikli ozel izolasyonlu yuk asansoru." },
+          { "id": "s10", "name": "Acil Ariza Mudahale", "price": "3.500 TL", "duration": "2-6 saat", "description": "7/24 endustriyel asansor ariza mudahale ve onarim hizmeti." }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Endustriyel Yuk Asansoru Cozumleri",
+          "subtitle": "Fabrika, depo ve lojistik merkezleri icin 500 kg'dan 5 tona kadar yuk asansoru tasarim, uretim ve montaji.",
+          "badge": "ISO 9001 Sertifikali"
+        },
+        "about": {
+          "title": "Atlas Endustriyel Asansor Hakkinda",
+          "description": "1998'den bu yana Turkiye'nin onde gelen endustriyel asansor ureticisiyiz. Bagcilar'daki 2.000 m2 uretim tesisimizde yuk asansorleri, hidrolik platformlar ve ozel tasarim kaldirma sistemleri uretiyoruz. 8.000'den fazla endustriyel proje tamamladik. Otomotiv, gida, tekstil ve lojistik sektorlerinin guvenilir cozum ortagiyiz. ISO 9001 ve CE belgeli urunlerimizle Avrupa standartlarinda uretim yapiyoruz."
+        },
+        "services": { "title": "Endustriyel Cozumler", "subtitle": "Her sektore ozel yuk tasima ve kaldirma sistemleri" },
+        "contact": { "title": "Teklif Alin", "subtitle": "Projeniz icin ucretsiz kesfif ve fizibilite calismasi" },
+        "faq": [
+          { "q": "Yuk asansoru kapasiteleri nelerdir?", "a": "500 kg'dan 5 tona kadar cesitli kapasitelerde uretim yapiyoruz. Ozel taleplerde 10 tona kadar cozumler sunabiliyoruz." },
+          { "q": "Montaj suresi ne kadar?", "a": "Standart yuk asansoru 15-20 gun, hidrolik platform 7-10 gunde tamamlanir. Proje olcegine gore degisir." },
+          { "q": "Garanti kosullari nedir?", "a": "Tum urunlerimiz 3 yil garanti kapsamindadir. Yillik bakim sozlesmesi ile garanti 5 yila uzatilabilir." },
+          { "q": "Hangi sektorlere hizmet veriyorsunuz?", "a": "Otomotiv, gida, tekstil, lojistik, insaat, saglik ve perakende sektorlerinde uzmaniz." },
+          { "q": "Mevcut asansorumuzu modernize edebilir misiniz?", "a": "Evet, eski yuk asansorlerinin kumanda, motor, kabin ve guvenlik sistemlerini modernize ediyoruz." },
+          { "q": "Otopark asansoru icin alan gereksinimleri nelerdir?", "a": "Minimum 3x6 metre taban alani ve 3 metre tavan yuksekligi gereklidir. Ucretsiz kesfle detayli olcum yapiyoruz." },
+          { "q": "7/24 ariza servisi var mi?", "a": "Evet, bakim sozlesmeli musterilerimize 7/24 acil ariza mudahale hizmeti sunuyoruz." },
+          { "q": "Finansman imkani var mi?", "a": "Banka kredi destegi ve taksitlendirme secenekleriyle odeme kolayligi sagliyoruz." }
+        ],
+        "testimonials": [
+          { "name": "Ahmet Yilmaz", "district": "Bagcilar", "date": "2025-02", "rating": 5, "comment": "Fabrikamiza 3 tonluk yuk asansoru kurdular. 26 yillik tecrube kendini gosteriyor, cok profesyonel is cikardilar." },
+          { "name": "Serkan Demir", "district": "Ikitelli", "date": "2025-01", "rating": 5, "comment": "Lojistik depomuz icin hidrolik platform yaptirdik. Forklift ile yukleme artik cok kolay." },
+          { "name": "Leyla Arslan", "district": "Esenyurt", "date": "2024-12", "rating": 4, "comment": "Tekstil fabrikamiza moncharge sistemi kurdular. Temiz is ama montaj suresi planlanandan 3 gun uzun surdu." },
+          { "name": "Murat Kaya", "district": "Gungoren", "date": "2024-11", "rating": 5, "comment": "Soguk hava deposu asansorumuz 5 yildir sorunsuz calisiyor. Bakim ekibi cok duzenli geliyor." },
+          { "name": "Elif Sahin", "district": "Avcilar", "date": "2024-10", "rating": 5, "comment": "Otopark asansorumuz sayesinde 20 araclik ek kapasite kazandik. Yatirimin karsiligini 2 yilda cikardik." },
+          { "name": "Osman Yavuz", "district": "Tuzla", "date": "2024-09", "rating": 4, "comment": "Gida fabrikamiz icin paslanmaz celik kabinli asansor yaptirdik. Hijyen standartlarina tam uygun." }
+        ],
+        "team": [
+          { "name": "Hasan Kocak", "role": "Kurucu & Genel Mudur", "image": "", "bio": "Makine muhendisi. 30 yillik endustriyel asansor tecrubesi." },
+          { "name": "Emre Turan", "role": "Uretim Muduru", "image": "", "bio": "Endustri muhendisi. Uretim planlama ve kalite kontrol sorumlusu." },
+          { "name": "Zeynep Aksoy", "role": "Proje Muhendisi", "image": "", "bio": "Insaat muhendisi. Ozel tasarim projelerin teknik koordinasyonunu yapiyor." },
+          { "name": "Caner Dogan", "role": "Saha Montaj Sefi", "image": "", "bio": "20 yillik montaj tecrubesi. 2.000'den fazla kurulum tamamladi." }
+        ]
+      }
+    },
+    {
+      "id": "asansor-panoramik",
+      "variantName": "panoramik",
+      "plan": "pro",
+      "description": "Panoramik cam asansor tasarim ve montaji",
+      "designPhilosophy": "Estetik, luks, modern mimarlik",
+      "isDark": false,
+      "colors": {
+        "bg": "#FAF5FF",
+        "surface": "#F3E8FF",
+        "surfaceElevated": "#EDE2FE",
+        "text": "#1E1B2E",
+        "textSecondary": "#6B7280",
+        "accent": "#7C3AED",
+        "accentHover": "#6D28D9",
+        "border": "#E5E7EB"
+      },
+      "fonts": { "heading": "Playfair Display", "body": "Inter" },
+      "business": {
+        "name": "Vista Panoramik Asansor Sistemleri",
+        "ownerName": "Deniz Ozturk",
+        "sector": "Asansor",
+        "slogan": "Mimarinin yukselen sanat eseri",
+        "phone": "0532 671 23 43",
+        "phoneClean": "905326712343",
+        "whatsapp": "905326712343",
+        "email": "info@vistaasansor.com.tr",
+        "address": "Levent Mah. Kanyon AVM Yani No:7 Kat:2, Besiktas/Istanbul",
+        "city": "Istanbul",
+        "district": "Besiktas",
+        "neighborhood": "Levent",
+        "coordinates": { "lat": 41.0790, "lng": 29.0105 },
+        "socialMedia": { "instagram": "https://instagram.com/vistaasansor", "facebook": "https://facebook.com/vistaasansor" },
+        "photos": [],
+        "foundedYear": 2008,
+        "experience": "16 yil",
+        "customerCount": "2.500+",
+        "rating": 4.9,
+        "reviewCount": 680,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "09:00", "close": "18:30", "isOpen": true },
+          { "day": "Sali", "open": "09:00", "close": "18:30", "isOpen": true },
+          { "day": "Carsamba", "open": "09:00", "close": "18:30", "isOpen": true },
+          { "day": "Persembe", "open": "09:00", "close": "18:30", "isOpen": true },
+          { "day": "Cuma", "open": "09:00", "close": "18:30", "isOpen": true },
+          { "day": "Cumartesi", "open": "10:00", "close": "15:00", "isOpen": true },
+          { "day": "Pazar", "open": "Kapali", "close": "Kapali", "isOpen": false }
+        ],
+        "services": [
+          { "id": "s1", "name": "Panoramik Cam Asansor", "price": "450.000 TL", "duration": "25-35 gun", "description": "360 derece cam gorunumlu luks panoramik asansor tasarim ve montaji." },
+          { "id": "s2", "name": "Yari Panoramik Asansor", "price": "320.000 TL", "duration": "20-25 gun", "description": "Bir veya iki cephesi cam olan estetik gorunumlu asansor sistemi." },
+          { "id": "s3", "name": "Dis Cephe Panoramik Asansor", "price": "550.000 TL", "duration": "30-40 gun", "description": "Bina dis cephesine monte edilen cam gorunumlu asansor." },
+          { "id": "s4", "name": "AVM ve Otel Asansoru", "price": "380.000 TL", "duration": "20-30 gun", "description": "Ticari mekanlar icin yuksek kapasiteli estetik asansor sistemleri." },
+          { "id": "s5", "name": "Villa Panoramik Asansor", "price": "280.000 TL", "duration": "15-20 gun", "description": "Villa ve mustakil konutlar icin ozel tasarim cam asansor." },
+          { "id": "s6", "name": "Asansor Kabin Yenileme", "price": "85.000 TL", "duration": "5-7 gun", "description": "Mevcut asansor kabinlerinin modern cam ve paslanmaz celik ile yenilenmesi." },
+          { "id": "s7", "name": "LED Aydinlatma Sistemi", "price": "25.000 TL", "duration": "1-2 gun", "description": "Asansor kabini ve kuyu icin dekoratif LED aydinlatma tasarimi." },
+          { "id": "s8", "name": "Akilli Asansor Kumandasi", "price": "45.000 TL", "duration": "2-3 gun", "description": "Dokunmatik panel, yuz tanima ve mobil uygulama ile asansor kontrolu." },
+          { "id": "s9", "name": "Panoramik Asansor Bakimi", "price": "5.500 TL", "duration": "3-4 saat", "description": "Cam paneller, ray sistemi ve mekanik aksam icin ozel periyodik bakim." },
+          { "id": "s10", "name": "Mimari Danismanlik", "price": "15.000 TL", "duration": "3-5 gun", "description": "Bina projesine uygun asansor tipi, konum ve estetik secimi danismanligi." },
+          { "id": "s11", "name": "Cam Panel Degisimi", "price": "18.000 TL", "duration": "1 gun", "description": "Kirilmis veya eskimis panoramik cam panellerin degistirilmesi." },
+          { "id": "s12", "name": "Ses ve Titresim Yalitimi", "price": "35.000 TL", "duration": "2-3 gun", "description": "Asansor kuyu ve makine dairesi icin akustik yalitim uygulamasi." },
+          { "id": "s13", "name": "Enerji Verimliligi Denetimi", "price": "8.000 TL", "duration": "1 gun", "description": "Asansor enerji tuketim analizi ve verimlilik iyilestirme raporu." },
+          { "id": "s14", "name": "VIP Asansor Tasarimi", "price": "650.000 TL", "duration": "35-45 gun", "description": "Ozel malzeme, aydinlatma ve teknoloji ile kisisellestirilmis luks asansor." }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Panoramik Asansorle Mekana Deger Katin",
+          "subtitle": "Cam asansor tasarim, uretim ve montajinda Turkiye'nin lider markasi. AVM, otel, residence ve villalar icin ozel cozumler.",
+          "badge": "Premium Tasarim"
+        },
+        "about": {
+          "title": "Vista Panoramik Asansor Hakkinda",
+          "description": "2008'den bu yana mimari estetige deger katan panoramik asansor sistemleri tasarliyor ve uretiyoruz. Besiktas Levent'teki showroom ve tasarim ofisimizde, musterilerimizle birebir calisarak hayallerindeki asansoru gercege donusturuyoruz. 2.500'den fazla projede cam asansor, yari panoramik sistem ve dis cephe asansoru tamamladik. Hilton, Marriott, Zorlu Center gibi prestijli projelerde imzamiz var. Almanya ve Italya'dan ithal ettigimiz ozel temperli cam paneller, paslanmaz celik aksesuarlar ve akilli kumanda sistemleriyle sektorde fark yaratiyoruz."
+        },
+        "services": { "title": "Panoramik Cozumlerimiz", "subtitle": "Mimariye deger katan estetik asansor sistemleri" },
+        "contact": { "title": "Projenizi Konusalim", "subtitle": "Showroom ziyareti ve ucretsiz proje danismanligi icin randevu alin" },
+        "faq": [
+          { "q": "Panoramik asansor guvenli mi?", "a": "Temperli lamineli cam kullaniyoruz. 400 kg darbe direncine sahip camlarimiz kirilsa bile parcalanmaz." },
+          { "q": "Cam asansor ne kadar dayanikli?", "a": "Temperli cam panellerimiz 25+ yil omurludur. UV filtreli cam secenekleriyle renk solmasi onlenir." },
+          { "q": "Mevcut asansorumu panoramige cevirebilir miyim?", "a": "Bina statigi uygunsa mevcut asansor kuyusuna cam panel uygulamasi yapilabilir." },
+          { "q": "Enerji tuketimi normal asansorden fazla mi?", "a": "Hayir, LED aydinlatma ve rejeneratif surucu teknolojisiyle normal asansorlerle ayni enerji tuketim degerlerine sahibiz." },
+          { "q": "Dis cephe panoramik asansor her binaya yapilabilir mi?", "a": "Binanin statik hesaplari ve cephe yapisina bagli. Uzman ekibimiz ucretsiz on degerlendirme yapiyor." },
+          { "q": "Showroom ziyareti yapabilir miyim?", "a": "Levent showroom'umuzda 4 farkli panoramik modeli yerinde gorebilirsiniz." },
+          { "q": "Proje suresi ne kadar?", "a": "Tasarimdan montaja toplam 25-45 gun arasi. Proje buyuklugune ve ozel taleplere gore degisir." },
+          { "q": "Yurt disi proje yapiyor musunuz?", "a": "Evet, KKTC, Azerbaycan ve Gurcistan'da projelerimiz var." },
+          { "q": "Odeme kosullari nedir?", "a": "%30 siparis, %40 montaj baslangici, %30 teslim seklinde 3 taksit uyguluyoruz." },
+          { "q": "Bakim sozlesmesi zorunlu mu?", "a": "Garanti kapsaminda ilk 3 yil ucretsiz bakim dahildir. Sonrasinda yillik bakim sozlesmesi onerilir." }
+        ],
+        "testimonials": [
+          { "name": "Selim Aktas", "district": "Besiktas", "date": "2025-03", "rating": 5, "comment": "Levent'teki ofis binamiza dis cephe panoramik asansor yaptirdik. Bina degeri gozle gorulur sekilde artti." },
+          { "name": "Deniz Korkmaz", "district": "Sariyer", "date": "2025-02", "rating": 5, "comment": "Villamiza cam asansor kurdular. Manzara ve estetik muhtesem." },
+          { "name": "Cem Ucar", "district": "Kadikoy", "date": "2025-01", "rating": 5, "comment": "Butik otelimize panoramik asansor kurdular. Musterilerimizden surekli ovgu aliyoruz." },
+          { "name": "Neslihan Erdem", "district": "Atasehir", "date": "2024-12", "rating": 4, "comment": "AVM projemiz icin 4 adet panoramik asansor yaptirdik. Kalite cok iyi ama fiyatlar sektoor ortalamasinin uzerinde." },
+          { "name": "Burak Ilhan", "district": "Bakirkoy", "date": "2024-11", "rating": 5, "comment": "Plaza lobimize VIP asansor tasarladilar. LED aydinlatma ve dokunmatik panel sistemiyle cok modern oldu." },
+          { "name": "Gamze Tuna", "district": "Sisli", "date": "2024-10", "rating": 5, "comment": "Klinik binamiz icin yari panoramik asansor sectik. Hastalar ve personel cok memnun." },
+          { "name": "Tolga Bayrak", "district": "Uskudar", "date": "2024-09", "rating": 5, "comment": "3 katli isyerimize villa tipi cam asansor kurdular. Montaj ekibi cok profesyonel." },
+          { "name": "Aylin Kose", "district": "Beykoz", "date": "2024-08", "rating": 4, "comment": "Bogazici manzarali villamiza dis cephe asansoru yaptirdik. Gorunum muhtesem." }
+        ],
+        "team": [
+          { "name": "Deniz Ozturk", "role": "Kurucu & Basmimar", "image": "", "bio": "Mimarlik fakultesi mezunu. 20 yildir asansor estetigi ve mekan tasarimi uzerine calisiyor." },
+          { "name": "Onur Karaca", "role": "Teknik Direktor", "image": "", "bio": "Makine muhendisi. Panoramik asansor mekanik tasarim ve Ar-Ge lideri." },
+          { "name": "Selin Aydin", "role": "Ic Mimar", "image": "", "bio": "Kabin ic tasarimi, malzeme secimi ve aydinlatma planlama uzmani." },
+          { "name": "Fikret Demirel", "role": "Proje Koordinatoru", "image": "", "bio": "15 yillik saha tecrubesi. Montaj sureclerini koordine ediyor." },
+          { "name": "Burcu Yilmaz", "role": "Musteri Iliskileri Muduru", "image": "", "bio": "Satis ve satis sonrasi destek sureclerini yonetiyor." },
+          { "name": "Tarik Ozkan", "role": "Elektrik & Otomasyon Muhendisi", "image": "", "bio": "Akilli kumanda, IoT entegrasyonu ve enerji yonetim sistemleri uzmani." }
+        ]
+      }
+    },
+    {
+      "id": "asansor-lux",
+      "variantName": "lux",
+      "plan": "enterprise",
+      "description": "Premium asansor muhendislik grubu — gokdelen, hastane, AVM projeleri",
+      "designPhilosophy": "Kurumsal, prestijli, teknoloji odakli muhendislik",
+      "isDark": true,
+      "colors": {
+        "bg": "#0A0A0A",
+        "surface": "#111111",
+        "surfaceElevated": "#1A1A1A",
+        "surfaceMuted": "#0D0D0D",
+        "text": "#F0EDE8",
+        "textSecondary": "#9A9490",
+        "textMuted": "#555555",
+        "textOnAccent": "#000000",
+        "accent": "#C9A84C",
+        "accentHover": "#D4B85C",
+        "accentActive": "#B89A40",
+        "accentLight": "#1A1808",
+        "border": "#1F1F1F",
+        "borderSubtle": "#141414"
+      },
+      "fonts": { "heading": "Cormorant Garamond", "body": "Inter" },
+      "business": {
+        "name": "Vertex Tower Asansor Muhendislik",
+        "ownerName": "Dr. Baris Tekin",
+        "sector": "Asansor",
+        "slogan": "Yuksek katlarin muhendislik sanati",
+        "phone": "0532 671 23 44",
+        "phoneClean": "905326712344",
+        "whatsapp": "905326712344",
+        "email": "info@vertextower.com.tr",
+        "address": "Esentepe Mah. Buyukdere Cad. Astoria Towers No:127 Kat:18, Sisli/Istanbul",
+        "city": "Istanbul",
+        "district": "Sisli",
+        "neighborhood": "Esentepe",
+        "coordinates": { "lat": 41.0780, "lng": 29.0070 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/vertextower",
+          "linkedin": "https://linkedin.com/company/vertextower",
+          "youtube": "https://youtube.com/@vertextower"
+        },
+        "photos": [],
+        "foundedYear": 1992,
+        "experience": "32 yil",
+        "customerCount": "15.000+",
+        "rating": 4.9,
+        "reviewCount": 2200,
+        "workingHours": [
+          { "day": "Pazartesi", "open": "08:00", "close": "19:00", "isOpen": true },
+          { "day": "Sali", "open": "08:00", "close": "19:00", "isOpen": true },
+          { "day": "Carsamba", "open": "08:00", "close": "19:00", "isOpen": true },
+          { "day": "Persembe", "open": "08:00", "close": "19:00", "isOpen": true },
+          { "day": "Cuma", "open": "08:00", "close": "19:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "09:00", "close": "14:00", "isOpen": true },
+          { "day": "Pazar", "open": "Kapali", "close": "Kapali", "isOpen": false }
+        ],
+        "services": [
+          { "id": "s1", "name": "Gokdelen Asansor Sistemi", "price": "2.500.000 TL", "duration": "60-90 gun", "description": "50+ katli binalar icin yuksek hizli asansor grubu tasarim, uretim ve montaji." },
+          { "id": "s2", "name": "Cift Kabinli Asansor (Double Deck)", "price": "1.800.000 TL", "duration": "45-60 gun", "description": "Yuksek yogunluklu binalarda tasima kapasitesini ikiye katlayan cift katli kabin sistemi." },
+          { "id": "s3", "name": "Makine Dairesiz Asansor (MRL)", "price": "350.000 TL", "duration": "15-20 gun", "description": "Modern binalar icin makine dairesi gerektirmeyen kompakt asansor sistemi." },
+          { "id": "s4", "name": "Panoramik Gokdelen Asansoru", "price": "1.200.000 TL", "duration": "40-55 gun", "description": "Yuksek katli binalarda sehir manzarali panoramik cam asansor." },
+          { "id": "s5", "name": "Akilli Bina Asansor Entegrasyonu", "price": "180.000 TL", "duration": "10-15 gun", "description": "BMS, yangin alarmi, gecis kontrolu ve IoT entegrasyonlu asansor yonetim sistemi." },
+          { "id": "s6", "name": "Asansor Trafik Analizi", "price": "45.000 TL", "duration": "3-5 gun", "description": "Bina yolcu trafigi simulasyonu ve optimal asansor grubu hesaplama." },
+          { "id": "s7", "name": "Yangin Tahliye Asansoru", "price": "480.000 TL", "duration": "25-35 gun", "description": "EN 81-72 standartlarinda yangin tahliye oncelikli ozel asansor sistemi." },
+          { "id": "s8", "name": "Hastane Asansoru", "price": "420.000 TL", "duration": "20-30 gun", "description": "Sedye ve yatak tasima kapasiteli genis kabinli hastane asansoru." },
+          { "id": "s9", "name": "Luks Residence Asansoru", "price": "550.000 TL", "duration": "25-35 gun", "description": "Premium konut projeleri icin sessiz, hizli ve estetik asansor sistemleri." },
+          { "id": "s10", "name": "Asansor Modernizasyonu", "price": "280.000 TL", "duration": "15-25 gun", "description": "Eski asansor sistemlerinin modern teknoloji ve guvenlik standartlarina yukseltilmesi." },
+          { "id": "s11", "name": "Rejeneratif Surucu Sistemi", "price": "120.000 TL", "duration": "5-7 gun", "description": "Asansor frenleme enerjisini elektrige ceviren enerji geri kazanim sistemi." },
+          { "id": "s12", "name": "Deprem Guvenlik Paketi", "price": "65.000 TL", "duration": "3-5 gun", "description": "Sismik sensor, otomatik park ve acil iletisim dahil deprem guvenlik donanimi." },
+          { "id": "s13", "name": "VIP Ozel Tasarim Kabin", "price": "250.000 TL", "duration": "15-20 gun", "description": "Mermer, altin kaplama, kristal aydinlatma ile ozel tasarim luks kabin." },
+          { "id": "s14", "name": "Asansor Gruplama ve Dispatching", "price": "95.000 TL", "duration": "5-10 gun", "description": "Yapay zeka destekli asansor trafik yonetimi ve bekleme suresi optimizasyonu." },
+          { "id": "s15", "name": "7/24 Premium Bakim Sozlesmesi", "price": "120.000 TL/yil", "duration": "Yillik", "description": "Oncelikli mudahale, yedek parca garantisi ve uzaktan izleme dahil VIP bakim paketi." },
+          { "id": "s16", "name": "Uzaktan Izleme ve Teshis", "price": "35.000 TL", "duration": "2-3 gun", "description": "IoT sensorleri ile asansor performans ve ariza uzaktan takip sistemi." },
+          { "id": "s17", "name": "Asansor Kuyu Insaati", "price": "180.000 TL", "duration": "15-25 gun", "description": "Betonarme veya celik konstruksiyon asansor kuyu insaati ve statik hesap." },
+          { "id": "s18", "name": "Manyetik Levitasyon Asansor", "price": "3.500.000 TL", "duration": "90-120 gun", "description": "Kablosuz manyetik surucu teknolojisiyle gelecek nesil asansor sistemi." },
+          { "id": "s19", "name": "Asansor Simulator Egitimi", "price": "25.000 TL", "duration": "2 gun", "description": "Bina yonetimi ve teknik personel icin asansor acil durum ve bakim egitimi." },
+          { "id": "s20", "name": "Uluslararasi Proje Yonetimi", "price": "Projeye Ozel", "duration": "Projeye Gore", "description": "Ortadogu ve Orta Asya'da asansor projeleri icin anahtar teslim muhendislik hizmeti." }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Gokdelenlerin Muhendislik Gucu",
+          "subtitle": "32 yillik tecrube, 15.000+ proje, Turkiye ve bolgenin en buyuk asansor muhendislik grubu.",
+          "badge": "Turkiye'nin 1 Numarasi"
+        },
+        "about": {
+          "title": "Vertex Tower Muhendislik Hakkinda",
+          "description": "1992'de kurulan Vertex Tower, bugun Turkiye'nin en buyuk bagimsiz asansor muhendislik grubu olarak 32 yillik bir basari hikayesi yazmaktadir. Sisli Esentepe'deki merkez ofisimiz, Bagcilar'daki 5.000 m2 uretim tesisimiz ve 7 ildeki bolge mudurluklerimizle Turkiye genelinde hizmet veriyoruz. 15.000'den fazla projede imzamiz var: Istanbul'un en yuksek binalarindan Ankara'nin devlet hastanelerine, Izmir'in AVM'lerinden Dubai'nin residence projelerine kadar. Ar-Ge merkezimizde 12 muhendis, gelecek nesil manyetik levitasyon ve yapay zeka destekli trafik yonetimi teknolojileri uzerinde calismaktadir. ISO 9001, ISO 14001, OHSAS 18001 ve CE belgelerimizin yani sira, Turk Patent ofisinde tescilli 8 endustriyel tasarim ve 3 faydali model patentimiz bulunmaktadir. Turkiye Asansor Sanayicileri Dernegi (AYSAD) kurucu uyesi ve Avrupa Asansor Birligi (ELA) Turkiye temsilcisiyiz."
+        },
+        "services": { "title": "Muhendislik Cozumlerimiz", "subtitle": "Gokdelenden hastaneye, AVM'den luks konuta — anahtar teslim asansor muhendisligi" },
+        "contact": { "title": "Projenizi Degerlendirelim", "subtitle": "Muhendislik ekibimizle tanitim toplantisi icin bize ulasin" },
+        "faq": [
+          { "q": "Turkiye'nin en yuksek binasina asansor yapabilir misiniz?", "a": "Evet, 50+ katli binalarda 6 m/s hiza ulasan yuksek hizli asansor grubu tasarimi ve montaji yapiyoruz." },
+          { "q": "Cift kabinli (double deck) asansor nedir?", "a": "Ust uste iki kabin bulunan sistemdir. Tek kuyuda iki kat hizmet vererek yolcu tasima kapasitesini ikiye katlar." },
+          { "q": "Yapay zeka destekli asansor yonetimi nasil calisiyor?", "a": "Bina ici trafik verilerini analiz eden AI algoritmamiz, asansor cagrilarini onceden tahmin ederek bekleme surelerini %40 azaltir." },
+          { "q": "Deprem durumunda asansorler ne yapar?", "a": "Sismik sensor sistemi P-dalgasini algildiginda asansorleri en yakin kata park eder ve kapilarini acar." },
+          { "q": "Manyetik levitasyon asansor nedir?", "a": "Kablo yerine manyetik alan ile hareket eden kablosuz asansor teknolojisidir. Dikey ve yatay hareket edebilir." },
+          { "q": "Enerji geri kazanim sistemi ne kadar tasarruf saglar?", "a": "Rejeneratif surucu sistemi yillik enerji tuketiminde %30-40 tasarruf saglar." },
+          { "q": "Uzaktan izleme sistemi neler yapar?", "a": "IoT sensorleri ile motor sicakligi, titresim, kapi acilma suresi gibi 40+ parametreyi anlik izler." },
+          { "q": "Yangin tahliye asansoru neden gerekli?", "a": "Turkiye Yangin Yonetmeligi'ne gore belirli yukseklikteki binalarda zorunludur." },
+          { "q": "Yurt disi projeleriniz var mi?", "a": "Azerbaycan, Kazakistan, Turkmenistan, Irak, Katar ve Dubai'de tamamlanmis projelerimiz var." },
+          { "q": "Asansor trafik analizi neden onemli?", "a": "Yanlis asansor secimi bekleme surelerini arttirir. Simulasyon ile optimal asansor sayisi, hizi ve kapasitesini belirleriz." },
+          { "q": "Garanti ve servis kosullari nedir?", "a": "5 yil uretici garantisi, 10 yil yedek parca bulunabilirlik garantisi. Premium bakim sozlesmesiyle 7/24 mudahale." },
+          { "q": "Proje finansmani sagliyor musunuz?", "a": "Leasing, banka kredisi ve taksitlendirme secenekleri sunuyoruz." },
+          { "q": "Asansor kabini ozel tasarlanabiliyor mu?", "a": "Evet. Mermer, dogal tas, altin kaplama, kristal avize — VIP kabin tasarim studiomuzda birlikte tasarliyoruz." },
+          { "q": "ISO ve CE belgeleri neler?", "a": "ISO 9001, ISO 14001, OHSAS 18001, CE, EN 81-20, EN 81-50 belgelerimiz var." },
+          { "q": "Egitim hizmeti veriyor musunuz?", "a": "Bina yonetimi ve teknik personel icin asansor simulator egitimi ve acil durum tatbikati duzenliyoruz." }
+        ],
+        "testimonials": [
+          { "name": "Prof. Dr. Kemal Sunay", "district": "Sisli", "date": "2025-03", "rating": 5, "comment": "Levent'teki 52 katli ofis kulemize 8 adet yuksek hizli asansor grubu kurdular. Trafik analizi ve AI dispatching ile bekleme suremiz 25 saniyenin altinda." },
+          { "name": "Tuncay Gezer", "district": "Atasehir", "date": "2025-02", "rating": 5, "comment": "Atasehir'deki hastane projemize 12 asansor yaptirdik. Sedye, yangin tahliye ve servis — hepsi mukemmel calisiyor." },
+          { "name": "Sibel Konuk", "district": "Kadikoy", "date": "2025-01", "rating": 5, "comment": "Luks residence projemizde Vertex'in panoramik asansorleri satis fiyatlarimizi %15 artirdi." },
+          { "name": "Ibrahim Aslan", "district": "Bakirkoy", "date": "2024-12", "rating": 5, "comment": "AVM projemize 6 yuruyen merdiven ve 4 panoramik asansor kurdular. 3 yildir sifir ariza." },
+          { "name": "Dr. Zehra Akar", "district": "Besiktas", "date": "2024-11", "rating": 5, "comment": "Ozel hastanemiz icin deprem guvenlik paketli asansor sistemi taktirdik. Akreditasyonda tam puan aldik." },
+          { "name": "Cenk Bulut", "district": "Sariyer", "date": "2024-10", "rating": 4, "comment": "Bogazici villamiza dis cephe panoramik asansor yaptirdik. Gorunum muhtesem ama proje suresi planlanandan 2 hafta uzun surdu." },
+          { "name": "Meltem Erdal", "district": "Uskudar", "date": "2024-09", "rating": 5, "comment": "Butik otelimize VIP ozel tasarim kabin yaptirdik. Altin kaplama detaylar ve kristal aydinlatma — misafirlerimiz buyuleniyor." },
+          { "name": "Hakan Oz", "district": "Umraniye", "date": "2024-08", "rating": 5, "comment": "Lojistik merkezimize 4 adet 3 tonluk yuk asansoru kurdular. Rejeneratif surucu ile enerji faturamiz %35 dustu." },
+          { "name": "Nurcan Pala", "district": "Maltepe", "date": "2024-07", "rating": 5, "comment": "20 yillik eski asansorlerimizi modernize ettiler. Sessizlik, hiz ve guvenlik arasinda gece gunduz fark var." },
+          { "name": "Volkan Turan", "district": "Beylikduzu", "date": "2024-06", "rating": 5, "comment": "Toplu konut projemize 24 asansor sistemi yaptirdik. Zamaninda teslim, butceye uygun ve sifir punch." },
+          { "name": "Aysegul Kara", "district": "Bagcilar", "date": "2024-05", "rating": 4, "comment": "Fabrikamiza yuk asansoru ve personel asansoru birlikte kurdular. Teknik bilgi ve iletisim cok iyi." },
+          { "name": "Ersin Dogan", "district": "Kartal", "date": "2024-04", "rating": 5, "comment": "Universite kampusune 10 asansor sistemi tamamlandi. Ogrenci yogunluguna gore AI trafik yonetimi muhtesem calisiyor." }
+        ],
+        "team": [
+          { "name": "Dr. Baris Tekin", "role": "Kurucu & CEO", "image": "", "bio": "Makine muhendisligi doktoru. 35 yildir asansor sektorunde. AYSAD kurucu baskan yardimcisi." },
+          { "name": "Prof. Dr. Cem Ayhan", "role": "Ar-Ge Direktoru", "image": "", "bio": "ITU Makine Fakultesi ogretim uyesi. Manyetik levitasyon ve AI dispatching arastirmalari." },
+          { "name": "Seda Koraltan", "role": "Genel Mudur", "image": "", "bio": "MBA, 20 yillik yonetim tecrubesi. Operasyonlarin genel koordinasyonu." },
+          { "name": "Murat Basaran", "role": "Teknik Direktor", "image": "", "bio": "Elektrik-elektronik muhendisi. 25+ yil asansor kumanda ve otomasyon deneyimi." },
+          { "name": "Zeynep Tanriverdi", "role": "Proje Yonetimi Muduru", "image": "", "bio": "PMP sertifikali. Es zamanli 30+ projeyi koordine eden tecrubeli proje yoneticisi." },
+          { "name": "Alper Gungor", "role": "Uretim Muduru", "image": "", "bio": "Endustri muhendisi. Bagcilar fabrikasinda uretim hatti ve kalite yonetimi." },
+          { "name": "Cigdem Kosar", "role": "Uluslararasi Projeler Muduru", "image": "", "bio": "7 ulkede proje yonetmis. Ihracat ve uluslararasi ihale sureclerini yurutuyor." },
+          { "name": "Kerem Akyol", "role": "Dijital Donusum Muduru", "image": "", "bio": "Bilgisayar muhendisi. IoT, uzaktan izleme ve AI entegrasyon projelerini yonetiyor." }
+        ]
+      }
+    }
+  ]
+}

@@ -1,5 +1,7 @@
 import { BentoGrid, BentoCard } from '@/components/ui/BentoGrid'
 import Link from 'next/link'
+import Navbar from '@/components/layout/Navbar'
+import FooterTrustSection from '@/components/sections/FooterTrustSection'
 
 export const metadata = {
     title: 'Entegrasyonlar | kepenk.ai Sinerji Ekosistemi',
@@ -18,9 +20,10 @@ export default function EntegrasyonlarPage() {
     ]
 
     return (
-        <main className="min-h-screen bg-[#060b0e] pt-32 pb-24 text-foreground">
+        <main className="min-h-screen bg-[#060b0e] text-foreground">
+            <Navbar />
             {/* Hero Section */}
-            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-24">
+            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-24 pt-32">
                 <h1 className="text-4xl md:text-6xl font-syne font-extrabold mb-6">
                     Sınırları <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">Ortadan Kaldırın</span>
                 </h1>
@@ -54,6 +57,7 @@ export default function EntegrasyonlarPage() {
                 </div>
             </section>
 
+            <FooterTrustSection />
         </main>
     )
 }

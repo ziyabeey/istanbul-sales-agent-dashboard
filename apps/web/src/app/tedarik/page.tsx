@@ -2,8 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import Navbar from "@/components/layout/Navbar";
-import FooterTrustSection from "@/components/sections/FooterTrustSection";
+import PublicPageShell from "@/components/layout/PublicPageShell";
 import { Button } from "@/components/ui/Button";
 import Link from "next/link";
 import { Shield, BadgePercent, Truck, CheckCircle2, ChevronRight } from "lucide-react";
@@ -69,8 +68,7 @@ export default function TedarikPage() {
     const [seciliKategori, setSeciliKategori] = useState<string | null>(null);
 
     return (
-        <main className="min-h-screen bg-background font-sans">
-            <Navbar />
+        <PublicPageShell>
 
             {/* Hero */}
             <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
@@ -208,7 +206,6 @@ export default function TedarikPage() {
                 </div>
             </section>
 
-            <FooterTrustSection />
-        </main>
+        </PublicPageShell>
     );
 }

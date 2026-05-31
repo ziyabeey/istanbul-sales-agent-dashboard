@@ -1,6 +1,33 @@
 'use client'
 
+import { useState } from 'react';
+
 export default function AiTemsilcilerPage() {
+    const [loadingMarketing, setLoadingMarketing] = useState(false);
+    const [marketingResult, setMarketingResult] = useState<string | null>(null);
+
+    const runMarketingAgent = async () => {
+        setLoadingMarketing(true);
+        setMarketingResult(null);
+        try {
+            const res = await fetch('/api/agent/marketing', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ businessName: 'Yeni Müşteri', sector: 'Genel' })
+            });
+            const data = await res.json();
+            if (data.success) {
+                setMarketingResult(data.result);
+            } else {
+                setMarketingResult('Hata: ' + data.error);
+            }
+        } catch (e: any) {
+            setMarketingResult('Bir hata oluştu: ' + e.message);
+        } finally {
+            setLoadingMarketing(false);
+        }
+    };
+
     return (
         <div className="kpnk-main">
             <h1 style={{ fontSize: 22, fontWeight: 700, marginBottom: 4 }}>AI Temsilciler</h1>
@@ -25,7 +52,29 @@ export default function AiTemsilcilerPage() {
                         <li>✉️ E-posta kampanyaları</li>
                         <li>🎯 Ücretli reklamlar</li>
                     </ul>
-                    <button style={{ fontSize: 13, fontWeight: 700, color: '#fff', background: 'linear-gradient(135deg, #F5A623, #D35400)', border: 'none', padding: '10px 24px', borderRadius: 'var(--kpnk-pill-radius)', cursor: 'pointer', fontFamily: 'var(--kpnk-font)', alignSelf: 'flex-start' }}>Başla →</button>
+                    
+                    {marketingResult && (
+                        <div style={{ marginTop: 12, padding: 16, background: '#111', borderRadius: 8, border: '1px solid #333' }}>
+                            <div style={{ fontSize: 11, color: '#F5A623', marginBottom: 8, fontWeight: 600, letterSpacing: 1, textTransform: 'uppercase' }}>Üretilen İçerik</div>
+                            <div style={{ fontSize: 13, color: '#e5e5e5', lineHeight: 1.6, whiteSpace: 'pre-wrap' }}>
+                                {marketingResult}
+                            </div>
+                        </div>
+                    )}
+
+                    <button 
+                        onClick={runMarketingAgent}
+                        disabled={loadingMarketing}
+                        style={{ 
+                            fontSize: 13, fontWeight: 700, color: '#fff', 
+                            background: loadingMarketing ? '#333' : 'linear-gradient(135deg, #F5A623, #D35400)', 
+                            border: 'none', padding: '10px 24px', borderRadius: 'var(--kpnk-pill-radius)', 
+                            cursor: loadingMarketing ? 'not-allowed' : 'pointer', fontFamily: 'var(--kpnk-font)', alignSelf: 'flex-start',
+                            opacity: loadingMarketing ? 0.7 : 1
+                        }}
+                    >
+                        {loadingMarketing ? 'Üretiliyor...' : 'Metin Oluştur →'}
+                    </button>
                 </div>
 
                 {/* Omni - Task Runner */}
@@ -58,9 +107,10 @@ export default function AiTemsilcilerPage() {
                             </div>
                         ))}
                     </div>
-                    <button style={{ fontSize: 13, fontWeight: 700, color: '#fff', background: 'linear-gradient(135deg, #DC4620, #FF6B45)', border: 'none', padding: '10px 24px', borderRadius: 'var(--kpnk-pill-radius)', cursor: 'pointer', fontFamily: 'var(--kpnk-font)', alignSelf: 'flex-start' }}>Başla →</button>
+                    <button style={{ fontSize: 13, fontWeight: 700, color: '#fff', background: 'linear-gradient(135deg, #DC4620, #FF6B45)', border: 'none', padding: '10px 24px', borderRadius: 'var(--kpnk-pill-radius)', cursor: 'not-allowed', fontFamily: 'var(--kpnk-font)', alignSelf: 'flex-start', opacity: 0.6 }}>Yakında</button>
                 </div>
             </div>
         </div>
     )
 }
+

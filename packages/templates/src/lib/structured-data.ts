@@ -88,7 +88,7 @@ export function generateStructuredData(
         bestRating: 5,
       },
     }),
-    openingHoursSpecification: business.workingHours
+    openingHoursSpecification: (business.workingHours || [])
       .filter(h => h.open)
       .map(h => ({
         '@type': 'OpeningHoursSpecification',
@@ -97,6 +97,6 @@ export function generateStructuredData(
         closes: h.close,
       })),
     url: business.website,
-    sameAs: Object.values(business.socialMedia).filter(Boolean),
+    sameAs: Object.values(business.socialMedia || {}).filter(Boolean),
   }
 }

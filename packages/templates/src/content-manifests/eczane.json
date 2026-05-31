@@ -1,0 +1,1317 @@
+{
+  "sectorId": "eczane",
+  "seoSchemaType": "Pharmacy",
+  "variants": [
+    {
+      "id": "eczane-mahalle",
+      "variantName": "mahalle",
+      "plan": "free",
+      "description": "Mahalle eczanesi, guvenilir komsunuz",
+      "designPhilosophy": "Temiz, sade, erisilebilir",
+      "isDark": false,
+      "colors": {
+        "bg": "#FFFFFF",
+        "surface": "#F0F7F4",
+        "text": "#1A2E28",
+        "accent": "#2E8B57"
+      },
+      "fonts": { "heading": "Inter", "body": "Inter" },
+      "business": {
+        "name": "Hayat Eczanesi",
+        "ownerName": "Ecz. Fatma Yildiz",
+        "sector": "Eczane",
+        "slogan": "Sagliginiz icin her zaman yaninizda",
+        "phone": "0216 345 12 80",
+        "phoneClean": "902163451280",
+        "whatsapp": "905301234567",
+        "email": "info@hayateczanesi.com",
+        "address": "Acıbadem Mah. Trabzonlular Cad. No:18, Kadikoy/Istanbul",
+        "city": "Istanbul",
+        "district": "Kadikoy",
+        "mapEmbed": "",
+        "foundedYear": 2001,
+        "experience": "23 yil",
+        "employeeCount": 3,
+        "customerCount": "35.000+",
+        "rating": 4.7,
+        "reviewCount": 890,
+        "workingHours": [
+          { "day": "Pazartesi", "dayTr": "Pazartesi", "open": "08:30", "close": "20:00", "isOpen": true },
+          { "day": "Sali", "dayTr": "Sali", "open": "08:30", "close": "20:00", "isOpen": true },
+          { "day": "Carsamba", "dayTr": "Carsamba", "open": "08:30", "close": "20:00", "isOpen": true },
+          { "day": "Persembe", "dayTr": "Persembe", "open": "08:30", "close": "20:00", "isOpen": true },
+          { "day": "Cuma", "dayTr": "Cuma", "open": "08:30", "close": "20:00", "isOpen": true },
+          { "day": "Cumartesi", "dayTr": "Cumartesi", "open": "09:00", "close": "19:00", "isOpen": true },
+          { "day": "Pazar", "dayTr": "Pazar", "open": "10:00", "close": "17:00", "isOpen": true }
+        ],
+        "services": [
+          {
+            "id": "s1",
+            "name": "Receteli Ilac Temini",
+            "price": "",
+            "duration": "5 dk",
+            "description": "SGK anlasmali tum receteli ilaclarin hizli temini. E-recete sistemiyle aninda sorgulama ve stok kontrolu yapilir.",
+            "icon": "Pill"
+          },
+          {
+            "id": "s2",
+            "name": "Tansiyon Olcumu",
+            "price": "Ucretsiz",
+            "duration": "5 dk",
+            "description": "Dijital tansiyon aleti ile ucretsiz tansiyon olcumu. Sonuclariniz kayit altina alinir ve takip edilir.",
+            "icon": "Heart"
+          },
+          {
+            "id": "s3",
+            "name": "Seker Olcumu",
+            "price": "Ucretsiz",
+            "duration": "3 dk",
+            "description": "Parmak ucu kan sekeri olcumu ile diyabet takibinizi kolaylastiriyoruz. Duzenli olcum tavsiyeleri verilir.",
+            "icon": "Droplet"
+          },
+          {
+            "id": "s4",
+            "name": "Ilac Danismanligi",
+            "price": "Ucretsiz",
+            "duration": "10 dk",
+            "description": "Kullandiginiz ilaclar hakkinda detayli bilgilendirme. Ilac etkilesimleri, yan etkiler ve dogru kullanim konusunda rehberlik.",
+            "icon": "MessageCircle"
+          }
+        ],
+        "team": [],
+        "testimonials": [],
+        "gallery": []
+      },
+      "content": {
+        "hero": {
+          "title": "Sagliginiz Icin Her Zaman Yaninizda",
+          "subtitle": "23 yildir Acibadem'in guvenilir eczanesi. SGK anlasmali, genis ilac stoku ve uzman eczaci kadrosuyla hizmetinizdeyiz.",
+          "badge": "7/24 Nobetci Bilgisi",
+          "ctaText": "Hemen Ara",
+          "ctaLink": "tel:+902163451280"
+        },
+        "about": {
+          "title": "Hayat Eczanesi Hakkinda",
+          "description": "2001 yilinda Ecz. Fatma Yildiz tarafindan kurulan Hayat Eczanesi, Kadikoy Acibadem'de 23 yildir kesintisiz saglik hizmeti sunmaktadir. Mahalle eczanesi olarak her yasattan insana kapi acik, guler yuzlu ve bilgili bir kadroyla calisiyoruz. SGK ile anlasmali olan eczanemizde receteli ilaclarinizi hizlica temin edebilir, ucretsiz tansiyon ve seker olcumu yaptirabilirsiniz. Ilac danismanligi hizmetimizle kullandiginiz ilaclarin etkilesimleri hakkinda bilgi alabilirsiniz."
+        },
+        "services": {
+          "title": "Eczane Hizmetlerimiz",
+          "subtitle": "Sagliginiz icin ihtiyac duydugunuz tum eczane hizmetleri"
+        },
+        "contact": {
+          "title": "Bize Ulasin",
+          "subtitle": "Ilac danismanligi ve nobetci eczane bilgisi icin bizi arayin"
+        },
+        "faq": [
+          {
+            "q": "Nobetci misiniz?",
+            "a": "Nobetci eczane takvimimiz haftalik olarak guncellenir. Guncel nobetci bilgisi icin bizi arayin veya web sitemizi kontrol edin."
+          },
+          {
+            "q": "SGK anlasmali misiniz?",
+            "a": "Evet, tum SGK kurumlariyla anlasmamiz bulunmaktadir. E-recete sistemiyle islemleriniz hizlica tamamlanir."
+          },
+          {
+            "q": "Eve ilac teslimati yapiyor musunuz?",
+            "a": "Yakin cevreye ilac teslimati hizmetimiz mevcuttur. Detaylar icin bizi arayin."
+          },
+          {
+            "q": "Dermokozmetik urunleriniz var mi?",
+            "a": "Temel cilt bakim ve gunes koruma urunleri stoklarimizda mevcuttur."
+          }
+        ]
+      }
+    },
+    {
+      "id": "eczane-nobetci",
+      "variantName": "nobetci",
+      "plan": "starter",
+      "description": "24 saat acik nobetci eczane",
+      "designPhilosophy": "Guvenilir, profesyonel, erisilebilir",
+      "isDark": false,
+      "colors": {
+        "bg": "#FFFFFF",
+        "surface": "#EFF6FF",
+        "text": "#1E3A5F",
+        "accent": "#1D4ED8"
+      },
+      "fonts": { "heading": "Poppins", "body": "Inter" },
+      "business": {
+        "name": "Sifa Merkez Eczanesi",
+        "ownerName": "Ecz. Mehmet Kara",
+        "sector": "Eczane",
+        "slogan": "Gece gunduz sagliginiz icin nobetteyiz",
+        "phone": "0212 567 34 90",
+        "phoneClean": "902125673490",
+        "whatsapp": "905411234567",
+        "email": "info@sifamerkez.com",
+        "address": "Sinanpasa Mah. Ihlamurdere Cad. No:55, Besiktas/Istanbul",
+        "city": "Istanbul",
+        "district": "Besiktas",
+        "mapEmbed": "",
+        "foundedYear": 2008,
+        "experience": "18 yil",
+        "employeeCount": 6,
+        "customerCount": "52.000+",
+        "rating": 4.8,
+        "reviewCount": 1540,
+        "workingHours": [
+          { "day": "Pazartesi", "dayTr": "Pazartesi", "open": "00:00", "close": "23:59", "isOpen": true },
+          { "day": "Sali", "dayTr": "Sali", "open": "00:00", "close": "23:59", "isOpen": true },
+          { "day": "Carsamba", "dayTr": "Carsamba", "open": "00:00", "close": "23:59", "isOpen": true },
+          { "day": "Persembe", "dayTr": "Persembe", "open": "00:00", "close": "23:59", "isOpen": true },
+          { "day": "Cuma", "dayTr": "Cuma", "open": "00:00", "close": "23:59", "isOpen": true },
+          { "day": "Cumartesi", "dayTr": "Cumartesi", "open": "00:00", "close": "23:59", "isOpen": true },
+          { "day": "Pazar", "dayTr": "Pazar", "open": "00:00", "close": "23:59", "isOpen": true }
+        ],
+        "services": [
+          {
+            "id": "s1",
+            "name": "7/24 Receteli Ilac",
+            "price": "",
+            "duration": "5 dk",
+            "description": "Gece gunduz farketmez, receteli ilaclarinizi aninda temin edin. SGK anlasmali e-recete sistemimizle hizli islem.",
+            "icon": "Pill"
+          },
+          {
+            "id": "s2",
+            "name": "Acil Ilac Temini",
+            "price": "",
+            "duration": "10 dk",
+            "description": "Gece saatlerinde acil ilac ihtiyacinizi karsilariz. Stokta olmayan ilaclar icin hizli tedarik agiyla cozum uretiriz.",
+            "icon": "Zap"
+          },
+          {
+            "id": "s3",
+            "name": "Tansiyon & Seker Olcumu",
+            "price": "Ucretsiz",
+            "duration": "5 dk",
+            "description": "Profesyonel cihazlarla ucretsiz tansiyon ve kan sekeri olcumu. Sonuclariniz dijital kayit altinda takip edilir.",
+            "icon": "Heart"
+          },
+          {
+            "id": "s4",
+            "name": "Dermokozmetik Danismanligi",
+            "price": "Ucretsiz",
+            "duration": "15 dk",
+            "description": "Cilt tipinize uygun dermokozmetik urun seciminde uzman eczacimizdan kisisel danismanlik alin.",
+            "icon": "Sparkles"
+          },
+          {
+            "id": "s5",
+            "name": "Kisisel Ilac Hazirlama",
+            "price": "50-200 TL",
+            "duration": "30 dk",
+            "description": "Doktor recetesine ozel magistral ilac hazirlama hizmeti. Cilt kremleri, pomat ve ozel formulasyonlar.",
+            "icon": "FlaskConical"
+          },
+          {
+            "id": "s6",
+            "name": "Eve Ilac Teslimati",
+            "price": "Ucretsiz",
+            "duration": "45 dk",
+            "description": "Besiktas ve cevre ilcelere ucretsiz ilac teslimati. Telefonla siparis verin, kapiniza getirelim.",
+            "icon": "Truck"
+          }
+        ],
+        "team": [
+          {
+            "name": "Ecz. Mehmet Kara",
+            "title": "Kurucu Eczaci",
+            "description": "Istanbul Universitesi Eczacilik Fakultesi mezunu. 18 yildir Besiktas'ta hizmet veriyor. Klinik eczacilik uzmani.",
+            "image": ""
+          },
+          {
+            "name": "Ecz. Selin Dogan",
+            "title": "Sorumlu Eczaci",
+            "description": "Marmara Universitesi mezunu. Dermokozmetik ve fitofarmasi konularinda uzman.",
+            "image": ""
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Ahmet Y.",
+            "location": "Besiktas",
+            "date": "2025-11",
+            "rating": 5,
+            "comment": "Gece 3'te cocugumun atesini dusurememistik, aradik hemen yardimci oldular. Gercekten hayat kurtarici bir eczane."
+          },
+          {
+            "name": "Zeynep K.",
+            "location": "Ortakoy",
+            "date": "2025-10",
+            "rating": 5,
+            "comment": "Dermokozmetik konusunda Selin Hanim cok bilgili. Cilt bakim rutinimi tamamen degistirdi, mukemmel sonuclar aldim."
+          },
+          {
+            "name": "Ismail T.",
+            "location": "Levent",
+            "date": "2025-09",
+            "rating": 4,
+            "comment": "Eve teslimati cok pratik. Yasli annem icin ilaclarini duzenli getiriyorlar, cok memnunuz."
+          }
+        ],
+        "gallery": []
+      },
+      "content": {
+        "hero": {
+          "title": "Gece Gunduz Sagliginiz Icin Nobetteyiz",
+          "subtitle": "Besiktas'in 7/24 acik guvenilir eczanesi. Acil ilac temini, eve teslim ve uzman eczaci kadrosuyla her an yaninizda.",
+          "badge": "7/24 Acik",
+          "ctaText": "Simdi Ara",
+          "ctaLink": "tel:+902125673490"
+        },
+        "about": {
+          "title": "Sifa Merkez Eczanesi Hakkinda",
+          "description": "2008 yilinda Ecz. Mehmet Kara tarafindan kurulan Sifa Merkez Eczanesi, Istanbul Besiktas'ta 7/24 kesintisiz eczane hizmeti sunmaktadir. Gece nobetlerinde bile tam kadro calisan eczanemiz, acil ilac ihtiyaclarinizi aninda karsilar. SGK anlasmali sistemimizle e-recete islemleriniz dakikalar icinde tamamlanir. Dermokozmetik danismanligi, magistral ilac hazirlama ve eve ucretsiz ilac teslimati ile Besiktas ve cevre semtlerin vazgecilmez saglik noktasiyiz. 52.000'den fazla musterimizin guveniyle hizmet vermeye devam ediyoruz."
+        },
+        "services": {
+          "title": "Eczane Hizmetlerimiz",
+          "subtitle": "7/24 kapsamli saglik ve eczacilik hizmetleri"
+        },
+        "stats": {
+          "title": "Rakamlarla Sifa Merkez",
+          "subtitle": "18 yillik guven"
+        },
+        "contact": {
+          "title": "Bize Ulasin",
+          "subtitle": "Acil ilac ihtiyaciniz mi var? 7/24 bizi arayin"
+        },
+        "faq": [
+          {
+            "q": "7/24 acik misiniz?",
+            "a": "Evet, Sifa Merkez Eczanesi yilin her gunu 24 saat aciktir. Gece saatlerinde de tam hizmet veriyoruz."
+          },
+          {
+            "q": "Eve ilac teslimati hangi bolgelere yapiliyor?",
+            "a": "Besiktas, Sisli, Beyoglu, Sariyer ve Kagithane ilcelerine ucretsiz ilac teslimati yapiyoruz. Teslimat suresi ortalama 45 dakikadir."
+          },
+          {
+            "q": "Magistral ilac hazirlayabiliyor musunuz?",
+            "a": "Evet, doktor recetesine ozel magistral ilac hazirlama hizmetimiz vardir. Ozel formulasyonlu kremler, pomatlar ve solüsyonlar hazirliyoruz."
+          },
+          {
+            "q": "Dermokozmetik markalari hangileri?",
+            "a": "La Roche-Posay, Vichy, Avene, Bioderma, SVR, Eucerin gibi onde gelen dermokozmetik markalarinin tam yelpazesini bulabilirsiniz."
+          },
+          {
+            "q": "SGK anlasmali misiniz?",
+            "a": "Evet, tum SGK kurumlariyla anlasmamiz bulunmaktadir. E-recete ve Manuel recete islemleriniz hizlica yapilir."
+          },
+          {
+            "q": "Diyabet hastalari icin ozel hizmetiniz var mi?",
+            "a": "Evet, ucretsiz kan sekeri olcumu, diyabet egitimi ve ozel beslenme urunleri stoklarimizda mevcuttur."
+          }
+        ]
+      }
+    },
+    {
+      "id": "eczane-dermo",
+      "variantName": "dermo",
+      "plan": "growth",
+      "description": "Dermokozmetik odakli modern eczane",
+      "designPhilosophy": "Temiz, minimal, premium hissi",
+      "isDark": false,
+      "colors": {
+        "bg": "#FAFBFC",
+        "surface": "#F3E8F9",
+        "text": "#2D1B4E",
+        "accent": "#7C3AED"
+      },
+      "fonts": { "heading": "Raleway", "body": "Inter" },
+      "business": {
+        "name": "Pura Dermokozmetik Eczanesi",
+        "ownerName": "Ecz. Elif Sari",
+        "sector": "Eczane",
+        "slogan": "Cildinize bilimsel yaklasim",
+        "phone": "0212 234 78 90",
+        "phoneClean": "902122347890",
+        "whatsapp": "905521234567",
+        "email": "info@puraeczane.com",
+        "address": "Tesvikiye Mah. Abdi Ipekci Cad. No:26/B, Sisli/Istanbul",
+        "city": "Istanbul",
+        "district": "Sisli",
+        "mapEmbed": "",
+        "foundedYear": 2015,
+        "experience": "11 yil",
+        "employeeCount": 8,
+        "customerCount": "28.000+",
+        "rating": 4.9,
+        "reviewCount": 2100,
+        "workingHours": [
+          { "day": "Pazartesi", "dayTr": "Pazartesi", "open": "09:00", "close": "20:00", "isOpen": true },
+          { "day": "Sali", "dayTr": "Sali", "open": "09:00", "close": "20:00", "isOpen": true },
+          { "day": "Carsamba", "dayTr": "Carsamba", "open": "09:00", "close": "20:00", "isOpen": true },
+          { "day": "Persembe", "dayTr": "Persembe", "open": "09:00", "close": "20:00", "isOpen": true },
+          { "day": "Cuma", "dayTr": "Cuma", "open": "09:00", "close": "20:00", "isOpen": true },
+          { "day": "Cumartesi", "dayTr": "Cumartesi", "open": "10:00", "close": "19:00", "isOpen": true },
+          { "day": "Pazar", "dayTr": "Pazar", "open": "11:00", "close": "17:00", "isOpen": true }
+        ],
+        "services": [
+          {
+            "id": "s1",
+            "name": "Cilt Analizi",
+            "price": "Ucretsiz",
+            "duration": "20 dk",
+            "description": "Profesyonel cilt analiz cihazi ile cilt tipiniz, nem orani, yag dengesi ve pigmentasyon durumu detayli incelenir. Sonuclara gore kisisel bakim rutini olusturulur.",
+            "icon": "Search"
+          },
+          {
+            "id": "s2",
+            "name": "Dermokozmetik Danismanligi",
+            "price": "Ucretsiz",
+            "duration": "30 dk",
+            "description": "Cilt analiz sonuclarina gore uzman eczacimiz size ozel dermokozmetik urun programi olusturur. Sabah-aksam rutini, haftalik bakim ve mevsimsel onerileri kapsar.",
+            "icon": "Sparkles"
+          },
+          {
+            "id": "s3",
+            "name": "Sac ve Saç Derisi Analizi",
+            "price": "Ucretsiz",
+            "duration": "15 dk",
+            "description": "Triskopi cihazi ile sac teli ve sac derisi analizi. Dokulmе, kepek, yaglanma ve incelme sorunlarina ozel urun onerileri.",
+            "icon": "Scan"
+          },
+          {
+            "id": "s4",
+            "name": "Magistral Ilac Hazirlama",
+            "price": "80-350 TL",
+            "duration": "1 saat",
+            "description": "Dermatoloji recetelerine ozel magistral formulasyonlar. Krem, losyon, solüsyon ve sac bakim urunleri titizlikle hazirlanir.",
+            "icon": "FlaskConical"
+          },
+          {
+            "id": "s5",
+            "name": "Bebek & Cocuk Bakim Danismanligi",
+            "price": "Ucretsiz",
+            "duration": "20 dk",
+            "description": "Bebek ve cocuklara ozel cilt bakimi, pişik onleme, gunes koruma ve alerjik cilt sorunlarinda uzman danismanlik.",
+            "icon": "Baby"
+          },
+          {
+            "id": "s6",
+            "name": "Nutrikozmetik Danismanligi",
+            "price": "Ucretsiz",
+            "duration": "20 dk",
+            "description": "Guzelligi icten disa destekleyen takviye gida ve vitamin programi olusturma. Kolajen, biyotin, hyaluronik asit gibi urunlerde rehberlik.",
+            "icon": "Leaf"
+          },
+          {
+            "id": "s7",
+            "name": "Receteli Ilac Hizmeti",
+            "price": "",
+            "duration": "5 dk",
+            "description": "SGK anlasmali e-recete islemleri. Tum receteli ilaclariniz genis stogumuzda mevcuttur.",
+            "icon": "Pill"
+          },
+          {
+            "id": "s8",
+            "name": "Gunes Koruma Danismanligi",
+            "price": "Ucretsiz",
+            "duration": "15 dk",
+            "description": "Cilt tipinize ve yasam tarziniza uygun SPF secimi. Kimyasal ve mineral filtre farklari, uygulama teknikleri konusunda egitim.",
+            "icon": "Sun"
+          },
+          {
+            "id": "s9",
+            "name": "Anti-Aging Protokol Olusturma",
+            "price": "Ucretsiz",
+            "duration": "30 dk",
+            "description": "Yas, cilt tipi ve beklentilerinize gore kapsamli anti-aging bakim protokolu. Retinol, vitamin C, peptid ve AHA/BHA iceren urunlerle kisisel plan.",
+            "icon": "Clock"
+          },
+          {
+            "id": "s10",
+            "name": "Alerji Testi Destegi",
+            "price": "50 TL",
+            "duration": "30 dk",
+            "description": "Yeni urunlere karsi patch test uygulama. Hassas ciltler icin guvenli urun gecisi planlanir.",
+            "icon": "ShieldCheck"
+          }
+        ],
+        "team": [
+          {
+            "name": "Ecz. Elif Sari",
+            "title": "Kurucu & Bas Eczaci",
+            "description": "Hacettepe Universitesi Eczacilik Fakultesi mezunu. Dermokozmetik ve kozmetoloji yuksek lisansi. 11 yildir cilt sagligi alaninda uzmanlasmis.",
+            "image": ""
+          },
+          {
+            "name": "Ecz. Burcu Aydin",
+            "title": "Dermokozmetik Uzmani",
+            "description": "Marmara Universitesi mezunu. Fransa'da dermokozmetik egitimi almis. La Roche-Posay ve Vichy sertifikali danisман.",
+            "image": ""
+          },
+          {
+            "name": "Ecz. Canan Polat",
+            "title": "Klinik Eczaci",
+            "description": "Istanbul Universitesi mezunu. Onkoloji ve kronik hastalik yonetiminde uzman. Hasta ilac uyumu takibi.",
+            "image": ""
+          },
+          {
+            "name": "Dyt. Merve Ozkan",
+            "title": "Diyetisyen",
+            "description": "Nutrikozmetik ve saglikli beslenme danismani. Takviye gida ve vitamin programlari olusturuyor.",
+            "image": ""
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Ayse B.",
+            "location": "Nisantasi",
+            "date": "2025-12",
+            "rating": 5,
+            "comment": "Cilt analizi yaptilar ve tam ihtiyacim olan urunleri onerdiler. 3 ayda cildim inanilmaz duzelddi. Dermokozmetik konusunda en bilgili eczane."
+          },
+          {
+            "name": "Deniz A.",
+            "location": "Tesvikiye",
+            "date": "2025-11",
+            "rating": 5,
+            "comment": "Elif Hanim sac dokulmem icin harika bir program olusturdu. Triskopi ile analiz yapip neden dokuldugunu bile acikladi."
+          },
+          {
+            "name": "Selma K.",
+            "location": "Sisli",
+            "date": "2025-10",
+            "rating": 5,
+            "comment": "Anti-aging rutini icin geldim, cilt analizi sonrasi ozel bir protokol cikardilar. Retinol gecisini adim adim planlayip takip ettiler."
+          },
+          {
+            "name": "Hakan T.",
+            "location": "Macka",
+            "date": "2025-09",
+            "rating": 4,
+            "comment": "Magistral krem ihtiyacim vardi, hem hizli hem kaliteli hazirlаdilar. Dermatolojik receteler konusunda cok deneyimliler."
+          },
+          {
+            "name": "Lale M.",
+            "location": "Osmanbey",
+            "date": "2025-08",
+            "rating": 5,
+            "comment": "Bebegimin atopik dermatiti icin muhtesem destek aldik. Burcu Hanim Fransa'daki egitiminden edindigio bilgilerle cok fayda sagladi."
+          },
+          {
+            "name": "Nurgul S.",
+            "location": "Mecidiyekoy",
+            "date": "2025-07",
+            "rating": 5,
+            "comment": "Nutrikozmetik danismanliklariyla icten disa guzellik programi olusturdular. Kolajen ve biyotin takviyesiyle cildimdeki fark gozle gorulur."
+          }
+        ],
+        "gallery": []
+      },
+      "content": {
+        "hero": {
+          "title": "Cildinize Bilimsel Yaklasim",
+          "subtitle": "Istanbul'un onde gelen dermokozmetik eczanesi. Profesyonel cilt analizi, kisisel bakim protokolleri ve uzman kadromuzla guzelliginize bilimsel destek.",
+          "badge": "Ucretsiz Cilt Analizi",
+          "ctaText": "Randevu Alin",
+          "ctaLink": "tel:+902122347890"
+        },
+        "about": {
+          "title": "Pura Dermokozmetik Eczanesi",
+          "description": "2015 yilinda Ecz. Elif Sari tarafindan Tesvikiye'de kurulan Pura, Istanbul'un onde gelen dermokozmetik uzmanlik eczanesidir. Klasik eczane hizmetlerinin otesinde, bilimsel cilt analizi ve kisisel bakim protokolleriyle fark yaratiriz. Fransa egitimli dermokozmetik uzmanlarimiz, La Roche-Posay, Vichy, Avene, Bioderma ve daha bircok premium markanin tam urun yelpazesini sunar. Nutrikozmetik danismanligimizla guzellige icten disa butunsel yaklasim benimseriz. Magistral ilac laboratuvarimizda dermatolog recetelerine ozel formulasyonlar hazirlariz. 28.000'den fazla musterimiz bize cilt sagliklari icin guvenmektedir. Pura olarak amacimiz, her musteriye bilimsel verilere dayali, kisisellestirilmis ve surekli bir bakim yolculugu sunmaktir."
+        },
+        "services": {
+          "title": "Uzmanlik Hizmetlerimiz",
+          "subtitle": "Cildiniz icin bilime dayali cozumler"
+        },
+        "stats": {
+          "title": "Rakamlarla Pura",
+          "subtitle": "Bilimsel guzellik deneyimi"
+        },
+        "contact": {
+          "title": "Randevu & Iletisim",
+          "subtitle": "Ucretsiz cilt analizi icin randevu alin"
+        },
+        "faq": [
+          {
+            "q": "Cilt analizi ucretsiz mi?",
+            "a": "Evet, profesyonel cilt analiz cihazimizla yapilan detayli cilt analizi tamamen ucretsizdir. Randevu almanizi oneririz."
+          },
+          {
+            "q": "Hangi dermokozmetik markalar mevcut?",
+            "a": "La Roche-Posay, Vichy, Avene, Bioderma, SVR, Eucerin, CeraVe, Ducray, Klorane, Lierac, Nuxe ve daha bircoklari stoklarimizda mevcuttur."
+          },
+          {
+            "q": "Magistral ilac nasil hazirlaniyor?",
+            "a": "Dermatoloğunuzun recetesine gore ozel laboratuvarimizda hazirlanir. Genellikle 1 saat icinde teslim edilir. Krem, losyon, solüsyon ve sac bakim urunleri hazirlayabiliyoruz."
+          },
+          {
+            "q": "Nutrikozmetik danismanligi nedir?",
+            "a": "Cildinizi icten disa destekleyen takviye gida, vitamin ve mineral programi olusturma hizmetidir. Kolajen, biyotin, C vitamini, hyaluronik asit gibi urunlerde uzman yonlendirme yapariz."
+          },
+          {
+            "q": "Bebek ve cocuklar icin hizmet veriyor musunuz?",
+            "a": "Evet, atopik dermatit, pisik, hassas cilt gibi cocukluk doneminin tum cilt sorunlarinda danismanlik ve uygun urun onerileri sunuyoruz."
+          },
+          {
+            "q": "Online urun siparisi verebilir miyim?",
+            "a": "Su an icin online siparis sistemimiz aktif degildir ancak telefonla siparis verip Sisli bolgesi icin ucretsiz teslimat hizmetimizden yararlanabilirsiniz."
+          },
+          {
+            "q": "Anti-aging bakim ne zaman baslamali?",
+            "a": "Genel olarak 25 yas sonrasi koruyucu anti-aging bakima baslamanizi oneririz. Ancak cilt analizi sonucuna gore kisisel plan olusturulur."
+          },
+          {
+            "q": "Sac dokulmesi icin ne yapiyorsunuz?",
+            "a": "Triskopi cihazi ile sac ve sac derisi analizi yapilir. Sorunun kaynagina gore topikal urunler, takviye gida ve gerekirse dermatoloji yonlendirmesi saglariz."
+          }
+        ]
+      }
+    },
+    {
+      "id": "eczane-bitkisel",
+      "variantName": "bitkisel",
+      "plan": "pro",
+      "description": "Fitoterapi ve dogal urun odakli eczane",
+      "designPhilosophy": "Organik, dogal, huzur veren",
+      "isDark": false,
+      "colors": {
+        "bg": "#FEFDF8",
+        "surface": "#F0F5E9",
+        "text": "#2D3B2D",
+        "accent": "#4A7C59"
+      },
+      "fonts": { "heading": "Lora", "body": "Inter" },
+      "business": {
+        "name": "Doga Eczanesi & Fitoterapi Merkezi",
+        "ownerName": "Ecz. Dr. Aylin Cetin",
+        "sector": "Eczane",
+        "slogan": "Doganin sifasi, bilimin guvencesi",
+        "phone": "0216 412 56 78",
+        "phoneClean": "902164125678",
+        "whatsapp": "905341234567",
+        "email": "info@dogaeczanesi.com",
+        "address": "Altunizade Mah. Kisikli Cad. No:38, Uskudar/Istanbul",
+        "city": "Istanbul",
+        "district": "Uskudar",
+        "mapEmbed": "",
+        "foundedYear": 2010,
+        "experience": "16 yil",
+        "employeeCount": 10,
+        "customerCount": "42.000+",
+        "rating": 4.8,
+        "reviewCount": 3200,
+        "workingHours": [
+          { "day": "Pazartesi", "dayTr": "Pazartesi", "open": "08:30", "close": "20:30", "isOpen": true },
+          { "day": "Sali", "dayTr": "Sali", "open": "08:30", "close": "20:30", "isOpen": true },
+          { "day": "Carsamba", "dayTr": "Carsamba", "open": "08:30", "close": "20:30", "isOpen": true },
+          { "day": "Persembe", "dayTr": "Persembe", "open": "08:30", "close": "20:30", "isOpen": true },
+          { "day": "Cuma", "dayTr": "Cuma", "open": "08:30", "close": "20:30", "isOpen": true },
+          { "day": "Cumartesi", "dayTr": "Cumartesi", "open": "09:00", "close": "19:00", "isOpen": true },
+          { "day": "Pazar", "dayTr": "Pazar", "open": "10:00", "close": "17:00", "isOpen": true }
+        ],
+        "services": [
+          {
+            "id": "s1",
+            "name": "Fitoterapi Danismanligi",
+            "price": "150 TL",
+            "duration": "45 dk",
+            "description": "Saglik sorunlariniza yonelik bitkisel tedavi seceneklerini degerlendirelim. Bilimsel kanitlara dayali bitki onerileri, dozaj ayarlamalari ve ilac-bitki etkilesim kontrolu yapilir.",
+            "icon": "Leaf"
+          },
+          {
+            "id": "s2",
+            "name": "Aromaterapi Urun Secimi",
+            "price": "Ucretsiz",
+            "duration": "20 dk",
+            "description": "Saf ucucu yaglar, hidrosoller ve aromaterapi urunleri arasindan ihtiyaciniza uygun secim. Uyku, stres, bas agrisi gibi sorunlara ozel harmаnlar.",
+            "icon": "Flower"
+          },
+          {
+            "id": "s3",
+            "name": "Apiterapi Urunleri",
+            "price": "80-450 TL",
+            "duration": "15 dk",
+            "description": "Propolis, ari sutu, polen, ari ekmegio gibi api terapotik urunler. Sertifikali, organik kaynаklardan temin edilen yuksek kaliteli ari urunleri.",
+            "icon": "Hexagon"
+          },
+          {
+            "id": "s4",
+            "name": "Homeopatik Urun Danismanligi",
+            "price": "100 TL",
+            "duration": "30 dk",
+            "description": "Homeopatik ilac secimi ve kullanim rehberligi. Boiron, Lehning gibi markalardan genis urun yelpazesi.",
+            "icon": "Droplet"
+          },
+          {
+            "id": "s5",
+            "name": "Dogal Kozmetik Atolyesi",
+            "price": "250 TL",
+            "duration": "2 saat",
+            "description": "Ayda iki kez duzenlenen atölye calismalarinda kendinize ozel dogal cilt bakim urunleri hazirlayiniz. Tamamen dogal icerikler, parabensiz formulasyonlar.",
+            "icon": "Beaker"
+          },
+          {
+            "id": "s6",
+            "name": "Bitkisel Cay Harmanlari",
+            "price": "60-180 TL",
+            "duration": "15 dk",
+            "description": "Saglik sorunlariniza ozel bitkisel cay harmanlari hazirlariz. Sindirim, uyku, stres, bagisiklik guclendirme gibi amaclar icin kisisel tarifler.",
+            "icon": "Coffee"
+          },
+          {
+            "id": "s7",
+            "name": "Takviye Gida Danismanligi",
+            "price": "Ucretsiz",
+            "duration": "20 dk",
+            "description": "Vitamin, mineral ve takviye gida seciminde bilimsel rehberlik. Kan tahlili sonuclarina gore kisisel supplement programi olusturulur.",
+            "icon": "Pill"
+          },
+          {
+            "id": "s8",
+            "name": "Receteli Ilac Hizmeti",
+            "price": "",
+            "duration": "5 dk",
+            "description": "SGK anlasmali tum receteli ilac hizmetleri. E-recete sistemiyle hizli islem. Genis ilac stoku.",
+            "icon": "FileText"
+          },
+          {
+            "id": "s9",
+            "name": "Gebelik & Emzirme Danismanligi",
+            "price": "Ucretsiz",
+            "duration": "30 dk",
+            "description": "Hamileliginiz süresince guvenle kullanabileceginiz bitkisel ve dogal urunler konusunda rehberlik. Folik asit, demir, omega-3 programi.",
+            "icon": "Heart"
+          },
+          {
+            "id": "s10",
+            "name": "Detoks & Arinma Programi",
+            "price": "200 TL",
+            "duration": "30 dk",
+            "description": "Mevsim gecislerinde veya ozel donemler icin bitkisel detoks programi olusturma. Karaciger, bobrek ve sindirim sistemi destegi.",
+            "icon": "RefreshCcw"
+          },
+          {
+            "id": "s11",
+            "name": "Cilt Analizi & Dogal Bakim",
+            "price": "Ucretsiz",
+            "duration": "20 dk",
+            "description": "Cilt tipinize uygun dogal ve organik icerikli bakim urunleri secimi. Kimyasallardan arindirilmis, vegan ve cruelty-free urunler.",
+            "icon": "Scan"
+          },
+          {
+            "id": "s12",
+            "name": "Mantar & Parazit Doğal Cozumler",
+            "price": "120 TL",
+            "duration": "20 dk",
+            "description": "Bitkisel antifungal ve antiparaziter urunlerle destekleyici tedavi planlama. Cay agaci yagi, sarimsak ekstrakti, kekik yagi gibi dogal cozumler.",
+            "icon": "Shield"
+          },
+          {
+            "id": "s13",
+            "name": "Spor Beslenme Destegi",
+            "price": "Ucretsiz",
+            "duration": "20 dk",
+            "description": "Sporcular icin dogal protein, BCAA, kreatin ve enerji takviyeleri konusunda danismanlik. Doping icermeyen, guvenli urunler.",
+            "icon": "Dumbbell"
+          },
+          {
+            "id": "s14",
+            "name": "Cocuk Saglik Danismanligi",
+            "price": "Ucretsiz",
+            "duration": "20 dk",
+            "description": "Cocuklara uygun dogal vitamin, probiyotik ve bagisiklik destekleyici urunler. Yas grubuna gore dozaj rehberligi.",
+            "icon": "Baby"
+          }
+        ],
+        "team": [
+          {
+            "name": "Ecz. Dr. Aylin Cetin",
+            "title": "Kurucu & Fitoterapi Uzmani",
+            "description": "Ankara Universitesi Eczacilik mezunu, Farmakognozi doktorasi. 16 yillik fitoterapi deneyimi. Turkiye Fitoterapi Dernegi uyesi.",
+            "image": ""
+          },
+          {
+            "name": "Ecz. Ozge Korkmaz",
+            "title": "Aromaterapi Uzmani",
+            "description": "Anadolu Universitesi mezunu. Ingiltere'de aromaterapi sertifikasi. Ucucu yag harmanlama ve aromaterapi uygulamalarinda uzman.",
+            "image": ""
+          },
+          {
+            "name": "Ecz. Hakan Demirel",
+            "title": "Klinik Eczaci",
+            "description": "Marmara Universitesi mezunu. Ilac-bitki etkilesimleri konusunda uzman. Kronik hasta takibi ve ilac uyumu yonetimi.",
+            "image": ""
+          },
+          {
+            "name": "Ecz. Sevgi Yilmaz",
+            "title": "Homeopati Danismani",
+            "description": "Istanbul Universitesi mezunu. Homeopati ve Bach cicek terapisi sertifikali. 8 yillik danismanlik deneyimi.",
+            "image": ""
+          },
+          {
+            "name": "Dyt. Pinar Aksoy",
+            "title": "Diyetisyen",
+            "description": "Hacettepe Universitesi Beslenme ve Diyetetik bolumu mezunu. Fonksiyonel beslenme ve takviye gida uzmani.",
+            "image": ""
+          },
+          {
+            "name": "Zehra Koc",
+            "title": "Dogal Kozmetik Atolye Egitmeni",
+            "description": "Kimya bolumu mezunu. Dogal kozmetik formulasyonlari konusunda 6 yillik egitmenlik deneyimi.",
+            "image": ""
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Sibel D.",
+            "location": "Uskudar",
+            "date": "2025-12",
+            "rating": 5,
+            "comment": "Migren icin bitkisel cay harmanini hazirladilar, 2 aydir migren sikligi gozle gorulur azaldi. Aylin Hanim'in fitoterapi bilgisi inanilmaz."
+          },
+          {
+            "name": "Murat E.",
+            "location": "Atasehir",
+            "date": "2025-11",
+            "rating": 5,
+            "comment": "Propolis ve ari sutu urunleri harika kalitede. Cocuklarimin bagisiklik sistemi icin duzenli kullaniyoruz, kis hastaliklari ciddi olcude azaldi."
+          },
+          {
+            "name": "Gulsen A.",
+            "location": "Altunizade",
+            "date": "2025-10",
+            "rating": 5,
+            "comment": "Dogal kozmetik atolyesine katildim, kendi kremimi ve serumumu yaptim. Hem cok eglenceliydi hem de cildimdeki degisimi gorebiliyorum."
+          },
+          {
+            "name": "Ali F.",
+            "location": "Cengelkoy",
+            "date": "2025-09",
+            "rating": 4,
+            "comment": "Detoks programi gercekten ise yaradi. Mevsim gecisinde hep hastalanirdim, bu yil programi uyguladiktan sonra hic hastalanmadim."
+          },
+          {
+            "name": "Esra B.",
+            "location": "Kadikoy",
+            "date": "2025-08",
+            "rating": 5,
+            "comment": "Hamileligim süresince bitkisel urun konusunda cok destek aldim. Hangi bitkilerin guvenli oldugunu ayrintili acikladi Aylin Hanim."
+          },
+          {
+            "name": "Kerem O.",
+            "location": "Uskudar",
+            "date": "2025-07",
+            "rating": 5,
+            "comment": "Spor beslenme danismanligi aldim, dogal ve temiz takviyeler onerdiler. Doping riski olmadan performansimi artirabildim."
+          },
+          {
+            "name": "Fatma C.",
+            "location": "Beylerbeyi",
+            "date": "2025-06",
+            "rating": 4,
+            "comment": "Uyku sorunum icin lavanta ve pasiflora harmanini hazirladi Ozge Hanim. Cok rahatladim, uyku kalidem cok iyilesti."
+          },
+          {
+            "name": "Baris N.",
+            "location": "Kuzguncuk",
+            "date": "2025-05",
+            "rating": 5,
+            "comment": "Homeopatik urunler konusunda Sevgi Hanim cok bilgili. Bach cicek terapisi ile stres yonetimime buyuk katki sagladi."
+          }
+        ],
+        "gallery": []
+      },
+      "content": {
+        "hero": {
+          "title": "Doganin Sifasi, Bilimin Guvencesi",
+          "subtitle": "Istanbul'un en kapsamli fitoterapi ve dogal saglik merkezi. Bitkisel tedaviler, aromaterapi, apiterapi ve organik urunlerle sagliginiza dogal destek.",
+          "badge": "Fitoterapi Merkezi",
+          "ctaText": "Danismanlik Alin",
+          "ctaLink": "tel:+902164125678"
+        },
+        "about": {
+          "title": "Doga Eczanesi & Fitoterapi Merkezi",
+          "description": "2010 yilinda Ecz. Dr. Aylin Cetin tarafindan Uskudar Altunizade'de kurulan Doga Eczanesi, Turkiye'nin onde gelen fitoterapi odakli eczanelerinden biridir. Farmakognozi doktorasi bulunan kurucumuz, 16 yillik deneyimiyle bitkisel tedavilere bilimsel bir yaklasim getirmektedir. Eczanemiz klasik receteli ilac hizmetlerinin yanı sira, fitoterapi danismanligi, aromaterapi, homeopati, apiterapi ve nutrikozmetik gibi tamamlayici saglik hizmetleri sunar. Ayda iki kez duzenlenen dogal kozmetik atolyelerimizde musterilerimiz kendi cilt bakim urunlerini hazirlama firsati bulur. 42.000'den fazla musterimiz, Turkiye Fitoterapi Dernegi uyesi kadromuzun uzmanligina guvenmektedir. Her urunumuz bilimsel arastirmalarla desteklenir, her onerimiz kisisel saglik durumunuza gore ozellestirilir."
+        },
+        "services": {
+          "title": "Dogal Saglik Hizmetlerimiz",
+          "subtitle": "Fitoterapi, aromaterapi ve daha fazlasi"
+        },
+        "stats": {
+          "title": "Rakamlarla Doga Eczanesi",
+          "subtitle": "16 yillik dogal saglik deneyimi"
+        },
+        "contact": {
+          "title": "Danismanlik & Iletisim",
+          "subtitle": "Fitoterapi danismanligi icin randevu alin"
+        },
+        "faq": [
+          {
+            "q": "Fitoterapi danismanligi nasil isliyor?",
+            "a": "45 dakikalik seansimizda saglik gecmisiniz, mevcut ilaclariniz ve sikayetleriniz detayli olarak degerlendirilir. Bilimsel verilere dayali bitkisel tedavi onerisi ve ilac-bitki etkilesim kontrolu yapilir."
+          },
+          {
+            "q": "Bitkisel urunler ilaclarla birlikte kullanilabilir mi?",
+            "a": "Bu konuda cok dikkatli olunmalidir. Fitoterapi danismanligimizda ilac-bitki etkilesimlerini mutlaka kontrole diyoruz. Bazi bitkiler ilaclarin etkisini artirip azaltabilir."
+          },
+          {
+            "q": "Dogal kozmetik atolyesine nasil katilirim?",
+            "a": "Ayda iki kez, Cumartesi gunleri duzenlenmektedir. Telefonla veya WhatsApp'tan on kayit yaptirabilirsiniz. Kontenjan sinirli oldugundan erken kayit onerilir."
+          },
+          {
+            "q": "Organik sertifikali urunleriniz var mi?",
+            "a": "Evet, USDA Organic, Ecocert ve COSMOS sertifikali urunlerimiz mevcuttur. Tum bitkisel hammaddelerimiz kontrollü kaynaklardan temin edilir."
+          },
+          {
+            "q": "Gebelikte bitkisel urun kullanilabilir mi?",
+            "a": "Gebelikte pek cok bitkisel urun kontrendikedir. Uzman eczacimiz hamileliginiz boyunca guvenle kullanabileceginiz sinirli sayida bitki ve dozajlari hakkinda rehberlik eder."
+          },
+          {
+            "q": "Apiterapi nedir?",
+            "a": "Ari urunleriyle (propolis, ari sutu, polen, ari ekmegi, bal) yapilan destekleyici tedavi yontemidir. Bagisiklik guclendirme, enerji ve cilt sagligi icin kullanilir."
+          },
+          {
+            "q": "Eve teslim yapiyor musunuz?",
+            "a": "Uskudar, Kadikoy, Atasehir ve Ümraniye bolgelerine ucretsiz teslim yapiyoruz. Teslimat suresi genellikle 1-2 saat arasindadir."
+          },
+          {
+            "q": "Cocuklar icin bitkisel urun var mi?",
+            "a": "Evet, cocuklara uygun dozda bitkisel suruplar, probiyotikler ve vitamin takviyeleri mevcuttur. Yas grubuna gore ozel doz hesaplamasi yapilir."
+          },
+          {
+            "q": "Aromaterapi uygulamalari nelerdir?",
+            "a": "Saf ucucu yaglarla stres yonetimi, uyku duzenleme, bas agrisi ve kas gevsetme gibi alanlarda aroma difuzyon ve topikal uygulamalar sunuyoruz."
+          },
+          {
+            "q": "SGK ile calisiyor musunuz?",
+            "a": "Evet, tum SGK kurumlariyla anlasmamiz vardir. Receteli ilac islemleriniz e-recete sistemiyle hizlica tamamlanir."
+          }
+        ]
+      }
+    },
+    {
+      "id": "eczane-lux",
+      "variantName": "lux",
+      "plan": "enterprise",
+      "description": "Cok subeli premium eczane zinciri",
+      "designPhilosophy": "Luks, kurumsal, teknolojik",
+      "isDark": true,
+      "colors": {
+        "bg": "#0F1218",
+        "surface": "#1A1F2E",
+        "text": "#E8ECF1",
+        "accent": "#00BFA6"
+      },
+      "fonts": { "heading": "Montserrat", "body": "Inter" },
+      "business": {
+        "name": "Medica Premium Eczane Grubu",
+        "ownerName": "Ecz. Prof. Dr. Kemal Arslan",
+        "sector": "Eczane",
+        "slogan": "Saglikta premium standart",
+        "phone": "0212 789 00 00",
+        "phoneClean": "902127890000",
+        "whatsapp": "905001234567",
+        "email": "info@medicaeczane.com",
+        "address": "Etiler Mah. Nispetiye Cad. No:12, Sariyer/Istanbul",
+        "city": "Istanbul",
+        "district": "Sariyer",
+        "mapEmbed": "",
+        "foundedYear": 2005,
+        "experience": "21 yil",
+        "employeeCount": 45,
+        "customerCount": "150.000+",
+        "rating": 4.9,
+        "reviewCount": 8500,
+        "workingHours": [
+          { "day": "Pazartesi", "dayTr": "Pazartesi", "open": "08:00", "close": "22:00", "isOpen": true },
+          { "day": "Sali", "dayTr": "Sali", "open": "08:00", "close": "22:00", "isOpen": true },
+          { "day": "Carsamba", "dayTr": "Carsamba", "open": "08:00", "close": "22:00", "isOpen": true },
+          { "day": "Persembe", "dayTr": "Persembe", "open": "08:00", "close": "22:00", "isOpen": true },
+          { "day": "Cuma", "dayTr": "Cuma", "open": "08:00", "close": "22:00", "isOpen": true },
+          { "day": "Cumartesi", "dayTr": "Cumartesi", "open": "09:00", "close": "21:00", "isOpen": true },
+          { "day": "Pazar", "dayTr": "Pazar", "open": "10:00", "close": "20:00", "isOpen": true }
+        ],
+        "services": [
+          {
+            "id": "s1",
+            "name": "VIP Eczacilik Hizmeti",
+            "price": "500 TL/ay",
+            "duration": "Surekli",
+            "description": "Kisisel eczaciniz tum ilac yonetiminizi ustlenir. Reçete takibi, ilac etkilesim kontrolu, dozaj hatirlatmalari ve oncelikli ilac temini.",
+            "icon": "Crown"
+          },
+          {
+            "id": "s2",
+            "name": "Genomik Farmakoloji Danismanligi",
+            "price": "2.500 TL",
+            "duration": "1 saat",
+            "description": "DNA testinize dayali kisisellestirilmis ilac tedavisi planlamasi. Ilac metabolizmanizi belirleyerek en etkili ve en az yan etkili tedaviyi secin.",
+            "icon": "Dna"
+          },
+          {
+            "id": "s3",
+            "name": "Premium Dermokozmetik Lab",
+            "price": "Ucretsiz analiz",
+            "duration": "45 dk",
+            "description": "VISIA cilt analiz sistemi ile yuz haritalama, UV hasar tespiti, goezenеk analizi ve nem haritalama. La Prairie, Sisley, Chanel gibi premium markalarda uzman danismanlik.",
+            "icon": "Sparkles"
+          },
+          {
+            "id": "s4",
+            "name": "Klinik Beslenme & Nutrigenomik",
+            "price": "800 TL",
+            "duration": "1 saat",
+            "description": "Kan tahlili ve genetik yatkinlik analizine dayali kisisel beslenme ve supplement programi. Anti-aging, performans ve saglikli yaslanma protokolleri.",
+            "icon": "Apple"
+          },
+          {
+            "id": "s5",
+            "name": "IV Vitamin Terapisi",
+            "price": "1.200-3.500 TL",
+            "duration": "45 dk",
+            "description": "Doktor gozetiminde intravenoz vitamin ve mineral infuzyonu. Bagisiklik guclendirilmesi, enerji artirma, detoks ve cilt yenileme protokolleri.",
+            "icon": "Syringe"
+          },
+          {
+            "id": "s6",
+            "name": "Magistral Laboratuvar",
+            "price": "150-800 TL",
+            "duration": "2 saat",
+            "description": "GMP standartlarinda magistral ilac laboratuvari. Ozel formulasyonlar, biyouyumlu kapsul uretimi ve kisisel serum formulleri.",
+            "icon": "FlaskConical"
+          },
+          {
+            "id": "s7",
+            "name": "Kurumsal Saglik Programi",
+            "price": "Teklif bazli",
+            "duration": "Yillik",
+            "description": "Sirketler icin kapsamli saglik yonetimi. Calisan ilac takibi, ofis ici saglik taramalari, grip asi organizasyonu ve saglik seminerleri.",
+            "icon": "Building"
+          },
+          {
+            "id": "s8",
+            "name": "Evde Saglik Hizmetleri",
+            "price": "300 TL/ziyaret",
+            "duration": "1 saat",
+            "description": "Yasli veya kronik hasta bireylere evde eczaci ziyareti. Ilac duzenlemesi, tansiyon/seker kontrolu ve ilac uyum takibi.",
+            "icon": "Home"
+          },
+          {
+            "id": "s9",
+            "name": "Ozel Ithalat Ilac Temini",
+            "price": "Degisken",
+            "duration": "7-14 gun",
+            "description": "Turkiye'de bulunmayan ozel ilac ve saglik urunlerinin yurt disindan ithalatı. FDA/EMA onayli urunlerin yasal yollarla temini.",
+            "icon": "Globe"
+          },
+          {
+            "id": "s10",
+            "name": "Dijital Saglik Takibi",
+            "price": "150 TL/ay",
+            "duration": "Surekli",
+            "description": "Mobil uygulama uzerinden ilac hatirlatmalari, saglik verileri takibi ve eczaci ile anlik mesajlasma. Kronik hastalar icin uzaktan izlem.",
+            "icon": "Smartphone"
+          },
+          {
+            "id": "s11",
+            "name": "Anti-Aging & Longevity",
+            "price": "1.500 TL",
+            "duration": "1.5 saat",
+            "description": "Biyolojik yas testi, telomer analizi ve kisisel anti-aging protokolu. NAD+, resveratrol, CoQ10 gibi ileri yaslаnma karsiti supplement programi.",
+            "icon": "Clock"
+          },
+          {
+            "id": "s12",
+            "name": "Spor Eczaciligi",
+            "price": "400 TL",
+            "duration": "45 dk",
+            "description": "Profesyonel ve amator sporcular icin performans ve iyilesme protokolleri. WADA uyumlu, doping icermeyen supplement danismanligi.",
+            "icon": "Dumbbell"
+          },
+          {
+            "id": "s13",
+            "name": "Bebek & Anne Saglik Paketi",
+            "price": "350 TL",
+            "duration": "1 saat",
+            "description": "Hamilekten dogum sonrasina kapsamli anne-bebek saglik danismanligi. Emzirme destegi, bebek bakimi ve anne beslenmesi.",
+            "icon": "Baby"
+          },
+          {
+            "id": "s14",
+            "name": "Onkoloji Eczacilik Destegi",
+            "price": "Ucretsiz",
+            "duration": "45 dk",
+            "description": "Kanser tedavisi alan hastalara ozel ilac yonetimi. Kemoterapi yan etki yonetimi, beslenme destegi ve psikolojik destek yonlendirmesi.",
+            "icon": "HeartHandshake"
+          },
+          {
+            "id": "s15",
+            "name": "Medikal Estetik Urun Danismanligi",
+            "price": "Ucretsiz",
+            "duration": "30 dk",
+            "description": "Botoks, dolgu ve lazer sonrasi bakim urunleri konusunda uzman rehberlik. ZO Skin Health, SkinCeuticals gibi medikal cilt bakim markalarinda danismanlik.",
+            "icon": "Wand"
+          },
+          {
+            "id": "s16",
+            "name": "7/24 Nobetci Eczane Hatti",
+            "price": "Ucretsiz",
+            "duration": "Anlik",
+            "description": "Telefonla 7/24 eczaci danismanligi. Gece saatlerinde acil ilac bilgisi, dozaj sorgulama ve en yakin nobetci eczane yonlendirmesi.",
+            "icon": "Phone"
+          },
+          {
+            "id": "s17",
+            "name": "Saglik Check-up Koordinasyonu",
+            "price": "200 TL",
+            "duration": "Degisken",
+            "description": "Anlasmali hastanelerde check-up organizasyonu. Sonuclara gore supplement ve yasam tarzi onerileri.",
+            "icon": "ClipboardCheck"
+          },
+          {
+            "id": "s18",
+            "name": "Ozel Etiket Urun Gelistirme",
+            "price": "Teklif bazli",
+            "duration": "30-60 gun",
+            "description": "Klinik ve doktorlar icin ozel etiketli dermokozmetik ve supplement urun gelistirme. Formulasyon, test ve paketleme hizmeti.",
+            "icon": "Package"
+          },
+          {
+            "id": "s19",
+            "name": "Dijital Recete Yonetimi",
+            "price": "Ucretsiz",
+            "duration": "5 dk",
+            "description": "Tum SGK kurumlariyla anlasmali e-recete hizmeti. Medula sistemi ile aninda ilac sorgulama ve stok kontrolu.",
+            "icon": "FileText"
+          },
+          {
+            "id": "s20",
+            "name": "Saglik Seminerleri & Egitim",
+            "price": "Ucretsiz",
+            "duration": "2 saat",
+            "description": "Aylik acik saglik seminerleri: diyabet yonetimi, kalp sagligi, cilt bakimi, beslenme ve daha fazlasi. Alandan uzman konusmacılar.",
+            "icon": "GraduationCap"
+          }
+        ],
+        "team": [
+          {
+            "name": "Ecz. Prof. Dr. Kemal Arslan",
+            "title": "Kurucu & Yonetim Kurulu Baskani",
+            "description": "Istanbul Universitesi Eczacilik mezunu, klinik eczacilik profesoru. 21 yildir premium eczacilik sektorunde oncu. Turkiye Eczacilar Birligi danismani.",
+            "image": ""
+          },
+          {
+            "name": "Ecz. Dr. Simge Korkmaz",
+            "title": "Genel Mudur",
+            "description": "Hacettepe Universitesi mezunu, isletme MBA. 15 yillik saglik sektoru yonetim deneyimi. Eczane zincir operasyonlari uzmani.",
+            "image": ""
+          },
+          {
+            "name": "Ecz. Baris Yildirim",
+            "title": "Klinik Eczacilik Muduru",
+            "description": "Ankara Universitesi mezunu, klinik eczacilik doktorasi. Genomik farmakoloji ve kisisellestirilmis tip uzmani.",
+            "image": ""
+          },
+          {
+            "name": "Ecz. Derya Sahin",
+            "title": "Dermokozmetik Bolum Muduru",
+            "description": "Marmara Universitesi mezunu. Paris Descartes Universitesi'nde dermokozmetik master. La Prairie ve Sisley sertifikali uzman.",
+            "image": ""
+          },
+          {
+            "name": "Dr. Emre Ozturk",
+            "title": "Klinik Beslenme Uzmani",
+            "description": "Tip doktoru, beslenme ve metabolizma uzmani. Nutrigenomik ve fonksiyonel tip alaninda arastirmaci.",
+            "image": ""
+          },
+          {
+            "name": "Ecz. Nalan Kaya",
+            "title": "Magistral Lab Muduru",
+            "description": "Ege Universitesi mezunu, endüstriyel eczacilik yuksek lisansi. GMP standartlarinda magistral ilac formulasyonlari uzmanı.",
+            "image": ""
+          },
+          {
+            "name": "Ecz. Tolga Celik",
+            "title": "Kurumsal Saglik Koordinatoru",
+            "description": "Gazi Universitesi mezunu. 10 yildir kurumsal saglik programlari ve isyeri hekimligi koordinasyonu yonetiyor.",
+            "image": ""
+          },
+          {
+            "name": "Ecz. Melis Aksoy",
+            "title": "Dijital Saglik & IT Muduru",
+            "description": "Eczacilik ve bilgi teknolojileri cift diploma. Saglik uygulamasi gelistirme ve dijital hasta takip sistemleri uzmani.",
+            "image": ""
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Mehmet A.",
+            "location": "Etiler",
+            "date": "2026-01",
+            "rating": 5,
+            "comment": "VIP eczacilik hizmeti hayatimi degistirdi. Kisisel eczacim tum ilaclarimi takip ediyor, etkilesim kontrolu yapiyor. Kronik hastam icin buyuk rahatlama."
+          },
+          {
+            "name": "Ceyda K.",
+            "location": "Bebek",
+            "date": "2025-12",
+            "rating": 5,
+            "comment": "Genomik farmakoloji testi yaptirdim, hangi ilaclarin benim icin daha etkili oldugunu ogrendim. Yillardir denedigim ama isе yaramayan ilaclarin neden ise yaramadigini simdi anliyorum."
+          },
+          {
+            "name": "Ahmet R.",
+            "location": "Sariyer",
+            "date": "2025-11",
+            "rating": 5,
+            "comment": "IV vitamin terapisi ile enerji seviyem inanilmaz yukseldi. Doktor gozetiminde, steril ortamda, cok profesyonel bir deneyimdi."
+          },
+          {
+            "name": "Deniz P.",
+            "location": "Levent",
+            "date": "2025-10",
+            "rating": 5,
+            "comment": "Kurumsal saglik programi ile 200 calisanimizin ilac takibini ve saglik taramalarini Medica yonetiyor. Grip asi organizasyonu bile yaptilar."
+          },
+          {
+            "name": "Aysel M.",
+            "location": "Ulus",
+            "date": "2025-09",
+            "rating": 5,
+            "comment": "Annem icin evde eczaci ziyareti hizmeti aliyoruz. 85 yasinda, 7 farkli ilac kullaniyor, eczaci her hafta gelip kontrollerini yapiyor. Paha bicilmez."
+          },
+          {
+            "name": "Burak S.",
+            "location": "Tarabya",
+            "date": "2025-08",
+            "rating": 4,
+            "comment": "Anti-aging programi icin basвurdim. Biyolojik yas testim takvim yasindan 8 yas genç cikti ama iyilestirme alanlari belirledik. Cok bilimsel yaklasim."
+          },
+          {
+            "name": "Ipek T.",
+            "location": "Besiktas",
+            "date": "2025-07",
+            "rating": 5,
+            "comment": "Hamileligim boyunca Medica'nin anne-bebek programindan yararlandim. Her trimesterda ozel supplement programi hazirlandi. Emzirme doneminде de destek devam ediyor."
+          },
+          {
+            "name": "Can V.",
+            "location": "Maslak",
+            "date": "2025-06",
+            "rating": 5,
+            "comment": "Profesyonel sporcu olarak doping icermeyen supplement bulma konusunda cok zorlaniyordum. Medica'nin spor eczaciligi hizmeti tam ihtiyacim olan seydi."
+          },
+          {
+            "name": "Sevim L.",
+            "location": "Istinye",
+            "date": "2025-05",
+            "rating": 5,
+            "comment": "Yurt disinda sadece bulunan ilacimi Medica ithal etti. Yasal surecin her asamasinda bilgilendirildim. 10 gunde elimdeydi."
+          },
+          {
+            "name": "Omer H.",
+            "location": "Rumelihisari",
+            "date": "2025-04",
+            "rating": 5,
+            "comment": "Kanser tedavim sirasinda Medica onkoloji eczaciligi destegiyle yan etkileri cok daha iyi yonetebildim. Beslenme onerileri de cok ise yaradi."
+          },
+          {
+            "name": "Neslihan G.",
+            "location": "Ortakoy",
+            "date": "2025-03",
+            "rating": 4,
+            "comment": "VISIA cilt analizi cok detayliydi. UV hasarlari, goezenеk yapim, nem haritam cıkti. Buna gore SkinCeuticals protokolu olusturuldu."
+          },
+          {
+            "name": "Emre D.",
+            "location": "Arnavutkoy",
+            "date": "2025-02",
+            "rating": 5,
+            "comment": "Dijital saglik takip uygulamasi harika. Ilac saatlerimi hatirlatiyor, stok azalinca otomatik siparis veriyor. 21. yüzyil eczaciligi bu."
+          }
+        ],
+        "gallery": []
+      },
+      "content": {
+        "hero": {
+          "title": "Saglikta Premium Standart",
+          "subtitle": "Istanbul'un 6 subeli luks eczane zinciri. Genomik farmakoloji, IV vitamin terapisi, VIP eczacilik ve 45 kisilik uzman kadroyla sagliginizdа en iyisini sunuyoruz.",
+          "badge": "6 Sube — 21 Yil",
+          "ctaText": "VIP Randevu",
+          "ctaLink": "tel:+902127890000"
+        },
+        "about": {
+          "title": "Medica Premium Eczane Grubu",
+          "description": "2005 yilinda Ecz. Prof. Dr. Kemal Arslan tarafindan kurulan Medica, Istanbul'un premium eczacilik segmentinde oncu markаdir. Etiler merkezli 6 subemizle Sariyer, Besiktas, Sisli ve Kadikoy'de hizmet veriyoruz. Klasik eczane hizmetlerinin cok otesinde, Turkiye'de ilk genomik farmakoloji danismanligi sunan eczane grubuyuz. VISIA cilt analiz sistemi, GMP standartlarinda magistral laboratuvar, IV vitamin terapisi unitesi ve dijital saglik takip platformumuzla eczaciligi yeniden tanimliyoruz. 45 kisilik uzman kadromuzda klinik eczacilar, dermokozmetik uzmanlari, beslenme doktorlari ve saglik IT uzmanlari yer alir. 150.000'den fazla musterimizin guveniyle, Turkiye'nin en kapsamli eczane hizmet yelpazesini sunmaktan gurur duyuyoruz. Kurumsal saglik programlarimizla 50'den fazla sirketin calisan sagligi yonetimini ustleniyoruz. Vizyonumuz, teknolojiyi ve bilimi kullanarak her bireye kisisellestirilmis saglik cozumleri sunmaktir."
+        },
+        "services": {
+          "title": "Premium Eczacilik Hizmetleri",
+          "subtitle": "Turkiye'nin en kapsamli eczane hizmet yelpazesi"
+        },
+        "stats": {
+          "title": "Rakamlarla Medica",
+          "subtitle": "Saglikta 21 yillik premium standart"
+        },
+        "contact": {
+          "title": "VIP Iletisim",
+          "subtitle": "Premium saglik danismanligi icin bizi arayin"
+        },
+        "faq": [
+          {
+            "q": "VIP eczacilik hizmeti nasil calisiyor?",
+            "a": "Aylik abonelik sistemiyle kisisel bir eczaci size atanir. Tum ilaclarinizin takibi, etkilesim kontrolu, dozaj hatirlatmalari ve oncelikli ilac temini saglanir. Ayda bir yüz yüze danismanlik seansı dahildir."
+          },
+          {
+            "q": "Genomik farmakoloji testi ne ise yarar?",
+            "a": "DNA'nizdaki ilac metabolize edici enzimlerin genetik varyantlarini belirler. Bu sayede hangi ilaclarin sizin icin daha etkili, hangilerinin yan etki riski yuksek oldugu tespit edilir. Ozellikle psikiyatri, kardiyoloji ve onkoloji ilaclarinda cok degerlidir."
+          },
+          {
+            "q": "IV vitamin terapisi guvenli mi?",
+            "a": "Tum IV terapilerimiz doktor gozetiminde, steril ortamda uygulanir. Oncesinde kan tahlili yapilir, kontrendikasyonlar degerlendirilir. FDA onayli solüsyonlar kullanilir."
+          },
+          {
+            "q": "Kac subeniz var?",
+            "a": "Istanbul'da 6 subemiz vardir: Etiler (merkez), Bebek, Nisantasi, Levent, Bagdat Caddesi ve Kemerburgaz. Tum subelerimiz ayni premium standartlarda hizmet verir."
+          },
+          {
+            "q": "Kurumsal saglik programi neleri kapsiyor?",
+            "a": "Calisan ilac yonetimi, ofis ici saglik taramalari, grip asi organizasyonu, saglik seminerleri, diyetisyen danismanligi ve acil ilac temini. Calisan sayisina gore ozel fiyatlandirma yapilir."
+          },
+          {
+            "q": "Yurt disindan ilac ithalati yasal mi?",
+            "a": "Evet, Saglik Bakanligi'nin ozel izin proseduru ile Turkiye'de ruhsatli olmayan ilaclarin bireysel ithalati yasaldir. Medica bu sureci sizin adiniZa yonetir. Genellikle 7-14 gun surer."
+          },
+          {
+            "q": "Evde eczaci ziyareti hangi bolgeleri kapsiyor?",
+            "a": "Istanbul Avrupa Yakasi'nin tamaminda hizmet veriyoruz. Anadolu Yakasi icin Kadikoy ve Uskudar bolgeleri dahildir. Randevu ile planlаnir."
+          },
+          {
+            "q": "Anti-aging biyolojik yas testi nasil yapiliyor?",
+            "a": "Kan tahlili bazli biyomarker analizi, telomer uzunlugu testi ve oksidatif stres olcumleri yapilir. Sonuclara gore kisisellestirilmis anti-aging supplement ve yasam tarzi protokolu olusturulur."
+          },
+          {
+            "q": "Dijital saglik uygulamaniz var mi?",
+            "a": "Evet, Medica Health uygulamasiyla ilac hatirlatmalari, saglik verileri takibi, eczaci mesajlasma ve online randevu alabilirsiniz. iOS ve Android'de mevcut."
+          },
+          {
+            "q": "Ozel etiket urun gelistirme nasil isliyor?",
+            "a": "Klinik ve doktorlar icin ozel markalanmis dermokozmetik ve supplement urunler gelistiriyoruz. Formulasyon, stabilite testleri, uretim ve paketleme dahildir. Minimum siparis miktarlari vardir."
+          },
+          {
+            "q": "Saglik seminerleri ucretsiz mi?",
+            "a": "Evet, aylik acik saglik seminerlerimiz tum vatandaslara ucretsizdir. Diyabet, kalp sagligi, cilt bakimi, beslenme gibi konularda uzman konusmаcilar yer alir."
+          },
+          {
+            "q": "Hangi sigorta sirketleriyle calissiyorsunuz?",
+            "a": "SGK disinda Acibadem Sigorta, Axa, Allianz, Mapfre ve Groupama ozel saglik sigortalariyla anlasmamiz vardir. Provizyon islemleriniz aninda yapilir."
+          },
+          {
+            "q": "Onkoloji hastasi olarak ozel destek alabilir miyim?",
+            "a": "Kesinlikle. Onkoloji eczaciligi birimizmizde kemoterapi yan etki yonetimi, mukozit bakimi, beslenme destegi ve psikonkoloji yonlendirmesi sunuyoruz. Bu hizmet ucretsizdir."
+          },
+          {
+            "q": "Magistral ilac laboratuvari GMP sertifikali mi?",
+            "a": "Evet, laboratuvarimiz GMP (Iyi Uretim Uygulamalari) standartlarinda calisir. Steril ortam, kalite kontrol testleri ve stabilite takibi dahildir."
+          },
+          {
+            "q": "Sporcular icin WADA uyumlu takviye buluyor musunuz?",
+            "a": "Evet, Informed Sport ve NSF Certified for Sport sertifikali takviyeler stoklarimizda mevcuttur. Her urunun WADA yasakli madde listesiyle uyumu kontrol edilir."
+          }
+        ]
+      }
+    }
+  ]
+}

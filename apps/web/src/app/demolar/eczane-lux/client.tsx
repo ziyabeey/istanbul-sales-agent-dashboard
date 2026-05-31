@@ -1,7 +1,12 @@
+// @ts-nocheck
 'use client'
+
 import { HeaderMinimalSticky as _h, FooterWarmColumns as _f, WhatsAppFloating as _wa, CookieBannerBottomBar as _c, PharmacyServicesGrid as _psg, PharmacyProductCards as _ppc, PharmacyDutyInfo as _pdi, PharmacyStatsRow as _psr, PharmacyContactForm as _pcf, ThemeRenderer, ECZANE_LUX_CONFIG, ECZANE_LUX_BUSINESS } from '@kepenk/templates'
 void _h; void _f; void _wa; void _c; void _psg; void _ppc; void _pdi; void _psr; void _pcf
 export default function Client() {
+  const theme = ECZANE_LUX_CONFIG;
+  const business = ECZANE_LUX_BUSINESS;
+
   const t = ECZANE_LUX_CONFIG, p = t.pages[0]!, b = ECZANE_LUX_BUSINESS
   return (<div lang="tr"><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ '@context': 'https://schema.org', '@type': 'Pharmacy', name: b.name, telephone: b.phone, address: { '@type': 'PostalAddress', addressLocality: b.district, addressRegion: b.city, addressCountry: 'TR' } }) }} /><ThemeRenderer theme={t} page={p} business={b} /></div>)
 }

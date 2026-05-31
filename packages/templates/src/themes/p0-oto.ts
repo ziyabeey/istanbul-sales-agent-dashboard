@@ -46,8 +46,8 @@ export const OTO_THEMES: P0ThemeDef[] = [
     fonts: { heading: { family: 'IBM Plex Sans', weights: [500, 600, 700] }, body: { family: 'DM Sans', weights: [400, 500] } },
     cssOverrides: { '--color-accent': '#2563EB', '--color-accent-hover': '#1D4ED8', '--font-heading': "'IBM Plex Sans', sans-serif", '--font-body': "'DM Sans', sans-serif",
     },
-    homeSections: ['hero::fullscreen_kenburns', 'philosophy', 'services::editorial_zigzag', 'gallery::horizontal_snap', 'vehicle_brands::row', 'stats::dark_bar', 'testimonials::editorial_single', 'blog_preview', 'warranty_badge::row', 'booking::inline_calendar'],
-    pages: ['home', 'hizmetler', 'galeri', 'blog', 'iletisim'], sectorSections: ['vehicle_brands', 'warranty_badge', 'before_after'], animationLevel: 'gsap-allowed', demoBusinessKey: 'motor',
+    homeSections: ['hero::oto_bespoke_hero', 'services::oto_bespoke_services', 'about::oto_bespoke_about', 'contact::oto_bespoke_contact'],
+    pages: ['home'], sectorSections: ['vehicle_brands', 'warranty_badge', 'before_after'], animationLevel: 'gsap-allowed', demoBusinessKey: 'motor',
   },
   {
     id: 'oto-filo', name: 'Filo', sectorId: 'oto', plan: 'enterprise',

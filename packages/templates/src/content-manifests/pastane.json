@@ -1,0 +1,1474 @@
+{
+  "sectorId": "pastane",
+  "seoSchemaType": "Bakery",
+  "variants": [
+    {
+      "id": "pastane-simit",
+      "variantName": "simit",
+      "plan": "free",
+      "description": "Simitci ve unlu mamuller",
+      "designPhilosophy": "Sicak, samimi, geleneksel",
+      "isDark": false,
+      "colors": {
+        "bg": "#FFFFFF",
+        "surface": "#FFF7ED",
+        "text": "#1C1917",
+        "accent": "#EA580C"
+      },
+      "fonts": {
+        "heading": "Inter",
+        "body": "Inter"
+      },
+      "business": {
+        "name": "Ankara Simit Sarayi",
+        "ownerName": "Hayri Sahin",
+        "sector": "Pastane",
+        "slogan": "Firindan cikan sicacik lezzet",
+        "phone": "0532 800 22 00",
+        "phoneClean": "905328002200",
+        "whatsapp": "905328002200",
+        "email": "info@ankarasimit.com",
+        "address": "Osmanaga Mah. Bahariye Cad. No:58, Kadikoy/Istanbul",
+        "city": "Istanbul",
+        "district": "Kadikoy",
+        "neighborhood": "Osmanaga",
+        "coordinates": {
+          "lat": 40.9905,
+          "lng": 29.027
+        },
+        "socialMedia": {
+          "instagram": "https://instagram.com/ankarasimit"
+        },
+        "photos": [],
+        "foundedYear": 2012,
+        "experience": "12 yil",
+        "customerCount": "500.000+",
+        "rating": 4.5,
+        "reviewCount": 1200,
+        "workingHours": [
+          {
+            "day": "Pazartesi",
+            "open": "06:00",
+            "close": "22:00",
+            "isOpen": true
+          },
+          {
+            "day": "Sali",
+            "open": "06:00",
+            "close": "22:00",
+            "isOpen": true
+          },
+          {
+            "day": "Carsamba",
+            "open": "06:00",
+            "close": "22:00",
+            "isOpen": true
+          },
+          {
+            "day": "Persembe",
+            "open": "06:00",
+            "close": "22:00",
+            "isOpen": true
+          },
+          {
+            "day": "Cuma",
+            "open": "06:00",
+            "close": "22:00",
+            "isOpen": true
+          },
+          {
+            "day": "Cumartesi",
+            "open": "06:00",
+            "close": "23:00",
+            "isOpen": true
+          },
+          {
+            "day": "Pazar",
+            "open": "07:00",
+            "close": "22:00",
+            "isOpen": true
+          }
+        ],
+        "services": [
+          {
+            "id": "s1",
+            "name": "Taze Simit",
+            "price": "15 TL",
+            "duration": "Aninda",
+            "description": "Firindan yeni cikmis gevrek simit. Susam ve corekotlu secenekler."
+          },
+          {
+            "id": "s2",
+            "name": "Pogaca Cesitleri",
+            "price": "20 TL",
+            "duration": "Aninda",
+            "description": "Peynirli, zeytinli, patatesli ve kiymali pogaca."
+          },
+          {
+            "id": "s3",
+            "name": "Kahvalti Tabagi",
+            "price": "120 TL",
+            "duration": "10 dk",
+            "description": "Simit, peynir, zeytin, domates, salatalik ve cay dahil kahvalti seti."
+          },
+          {
+            "id": "s4",
+            "name": "Taze Sikma Portakal Suyu",
+            "price": "35 TL",
+            "duration": "Aninda",
+            "description": "Taze sikilmis dogal portakal suyu."
+          }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Firindan Sofraniza Sicacik Simit",
+          "subtitle": "12 yildir Kadikoy'de gunun her saati taze simit ve pogaca.",
+          "badge": "Gunluk Taze"
+        },
+        "about": {
+          "title": "Ankara Simit Sarayi Hakkinda",
+          "description": "2012'den bu yana Kadikoy Bahariye'de taze simit, pogaca ve kahvalti hizmeti veriyoruz. Gunluk 2.000'den fazla simit uretiyoruz. Dogal malzemeler ve geleneksel tariflerle calisiyoruz."
+        },
+        "services": {
+          "title": "Menuumuz",
+          "subtitle": "Taze firindan sicacik lezzetler"
+        },
+        "contact": {
+          "title": "Bizi Ziyaret Edin",
+          "subtitle": "Sabah 06:00'dan itibaren acigiz"
+        },
+        "faq": [
+          {
+            "q": "Simit ne zaman taze cikiyor?",
+            "a": "Sabah 06:00, oglen 12:00 ve aksam 17:00'de taze simit cikiyor."
+          },
+          {
+            "q": "Paket servis var mi?",
+            "a": "Evet, telefonla siparis ve paket servis hizmetimiz var."
+          },
+          {
+            "q": "Glutensiz secenek var mi?",
+            "a": "Su an icin glutensiz urunumuz bulunmamaktadir."
+          },
+          {
+            "q": "Toplu siparis alinir mi?",
+            "a": "Evet, toplanti ve organizasyonlar icin toplu simit ve pogaca siparisi aliyoruz."
+          }
+        ],
+        "testimonials": [],
+        "team": []
+      }
+    },
+    {
+      "id": "pastane-pasta",
+      "variantName": "pasta",
+      "plan": "starter",
+      "description": "Pasta ve pastane",
+      "designPhilosophy": "Renkli, tatli, davetkar",
+      "isDark": false,
+      "colors": {
+        "bg": "#FFF1F2",
+        "surface": "#FFE4E6",
+        "text": "#1C1917",
+        "accent": "#E11D48"
+      },
+      "fonts": {
+        "heading": "Inter",
+        "body": "Inter"
+      },
+      "business": {
+        "name": "Tatli Eller Pastanesi",
+        "ownerName": "Gulnur Ozkan",
+        "sector": "Pastane",
+        "slogan": "Her dilim bir mutluluk hikayesi",
+        "phone": "0532 800 22 01",
+        "phoneClean": "905328002201",
+        "whatsapp": "905328002201",
+        "email": "info@tatlielller.com.tr",
+        "address": "Acibadem Mah. Acibadem Cad. No:72, Uskudar/Istanbul",
+        "city": "Istanbul",
+        "district": "Uskudar",
+        "neighborhood": "Acibadem",
+        "coordinates": {
+          "lat": 41.005,
+          "lng": 29.039
+        },
+        "socialMedia": {
+          "instagram": "https://instagram.com/tatlieller"
+        },
+        "photos": [],
+        "foundedYear": 2008,
+        "experience": "16 yil",
+        "customerCount": "80.000+",
+        "rating": 4.8,
+        "reviewCount": 960,
+        "workingHours": [
+          {
+            "day": "Pazartesi",
+            "open": "08:00",
+            "close": "21:00",
+            "isOpen": true
+          },
+          {
+            "day": "Sali",
+            "open": "08:00",
+            "close": "21:00",
+            "isOpen": true
+          },
+          {
+            "day": "Carsamba",
+            "open": "08:00",
+            "close": "21:00",
+            "isOpen": true
+          },
+          {
+            "day": "Persembe",
+            "open": "08:00",
+            "close": "21:00",
+            "isOpen": true
+          },
+          {
+            "day": "Cuma",
+            "open": "08:00",
+            "close": "21:00",
+            "isOpen": true
+          },
+          {
+            "day": "Cumartesi",
+            "open": "08:00",
+            "close": "22:00",
+            "isOpen": true
+          },
+          {
+            "day": "Pazar",
+            "open": "09:00",
+            "close": "21:00",
+            "isOpen": true
+          }
+        ],
+        "services": [
+          {
+            "id": "s1",
+            "name": "Dogum Gunu Pastasi",
+            "price": "800 TL",
+            "duration": "1 gun onceden",
+            "description": "Ozel tasarim dogum gunu pastalari. Butik dekorasyon dahil."
+          },
+          {
+            "id": "s2",
+            "name": "Dugun/Nisan Pastasi",
+            "price": "2.500 TL",
+            "duration": "3 gun onceden",
+            "description": "Cok katli dugun ve nisan pastalari. Tasting randevusu ile."
+          },
+          {
+            "id": "s3",
+            "name": "Dilim Pasta",
+            "price": "120 TL",
+            "duration": "Aninda",
+            "description": "Tiramisu, cheesecake, brownie ve mevsim pastalari."
+          },
+          {
+            "id": "s4",
+            "name": "Kurabiye ve Bisküvi",
+            "price": "250 TL/kg",
+            "duration": "Aninda",
+            "description": "El yapimi kurabiye cesitleri. Ozel ambalajli hediye secenegi."
+          },
+          {
+            "id": "s5",
+            "name": "Kahvalti Pastasi",
+            "price": "180 TL",
+            "duration": "Aninda",
+            "description": "Taze meyve, peynir ve tereyagli kahvaltilik pasta."
+          },
+          {
+            "id": "s6",
+            "name": "Ozel Tasarim Pasta",
+            "price": "1.500 TL",
+            "duration": "3 gun onceden",
+            "description": "Tema ve konsept bazli ozel tasarim butik pastalar."
+          }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "El Yapimi Butik Pastalar",
+          "subtitle": "16 yildir Uskudar'da dogum gunu, dugun ve ozel gun pastalari yapiyoruz.",
+          "badge": "Butik Pastane"
+        },
+        "about": {
+          "title": "Tatli Eller Hakkinda",
+          "description": "2008'den bu yana Uskudar Acibadem'de butik pastane olarak hizmet veriyoruz. 80.000'den fazla pasta ve tatli hazirladik. Dogal malzeme, el isciligi ve ozel tasarim ile fark yaratiyoruz."
+        },
+        "services": {
+          "title": "Pasta Menuumuz",
+          "subtitle": "Her ozel gun icin el yapimi butik pastalar"
+        },
+        "contact": {
+          "title": "Siparis Verin",
+          "subtitle": "Ozel tasarim pastaniz icin bizi arayin"
+        },
+        "faq": [
+          {
+            "q": "Pasta ne kadar onceden siparis edilmeli?",
+            "a": "Standart pastalar 1 gun, ozel tasarim pastalar 3 gun onceden siparis edilmelidir."
+          },
+          {
+            "q": "Tasting randevusu var mi?",
+            "a": "Evet, dugun pastalari icin ucretsiz tasting randevusu veriyoruz."
+          },
+          {
+            "q": "Eve teslimat yapiyor musunuz?",
+            "a": "Evet, Istanbul Anadolu yakasi genelinde teslimat yapiyoruz."
+          },
+          {
+            "q": "Seker hastalarinia uygun pasta var mi?",
+            "a": "Evet, sekersiz ve dusuk kalorili pasta seceneklerimiz mevcuttur."
+          },
+          {
+            "q": "Fotografli pasta yapabiliyor musunuz?",
+            "a": "Evet, yenilebilir kagida baski ile fotografli pasta yapiyoruz."
+          },
+          {
+            "q": "En populer pastaniz hangisi?",
+            "a": "San Sebastian cheesecake ve cikolatali ganache pasta en cok tercih edilen urunlerimiz."
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Selin Ozturk",
+            "district": "Uskudar",
+            "date": "2025-02",
+            "rating": 5,
+            "comment": "Kizimin dogum gunu pastasi harikayydi. Hem gorsel hem tat olarak kusursuz."
+          },
+          {
+            "name": "Cem Aktas",
+            "district": "Kadikoy",
+            "date": "2025-01",
+            "rating": 5,
+            "comment": "Dugun pastamizi Tatli Eller yapti. Misafirlerimiz bayildi."
+          },
+          {
+            "name": "Elif Cetin",
+            "district": "Atasehir",
+            "date": "2024-11",
+            "rating": 4,
+            "comment": "Cheesecake muhtesem ama biraz pahali."
+          }
+        ],
+        "team": [
+          {
+            "name": "Gulnur Ozkan",
+            "role": "Kurucu & Pasta Sefi",
+            "image": "",
+            "bio": "Gastronomi mezunu. 20 yillik pasta ustasi."
+          },
+          {
+            "name": "Deniz Ayhan",
+            "role": "Pasta Dekoratoru",
+            "image": "",
+            "bio": "Butik pasta dekorasyon ve seker hamuru uzmani."
+          }
+        ]
+      }
+    },
+    {
+      "id": "pastane-tatli",
+      "variantName": "tatli",
+      "plan": "growth",
+      "description": "Turk tatlilari ve baklavaci",
+      "designPhilosophy": "Geleneksel, otantik, zengin",
+      "isDark": false,
+      "colors": {
+        "bg": "#FFFBEB",
+        "surface": "#FEF3C7",
+        "text": "#78350F",
+        "accent": "#B45309",
+        "textSecondary": "#92400E",
+        "border": "#FDE68A"
+      },
+      "fonts": {
+        "heading": "Poppins",
+        "body": "Inter"
+      },
+      "business": {
+        "name": "Gaziantep Baklava Ustasi",
+        "ownerName": "Mehmet Bayraktar",
+        "sector": "Pastane",
+        "slogan": "Antep'in efsane lezzeti Istanbul'da",
+        "phone": "0532 800 22 02",
+        "phoneClean": "905328002202",
+        "whatsapp": "905328002202",
+        "email": "info@gaziantepbaklava.com.tr",
+        "address": "Alemdar Mah. Divanyolu Cad. No:18, Fatih/Istanbul",
+        "city": "Istanbul",
+        "district": "Fatih",
+        "neighborhood": "Alemdar",
+        "coordinates": {
+          "lat": 41.0085,
+          "lng": 28.976
+        },
+        "socialMedia": {
+          "instagram": "https://instagram.com/gaziantepbaklava"
+        },
+        "photos": [],
+        "foundedYear": 1985,
+        "experience": "39 yil",
+        "customerCount": "2.000.000+",
+        "rating": 4.9,
+        "reviewCount": 3500,
+        "workingHours": [
+          {
+            "day": "Pazartesi",
+            "open": "07:00",
+            "close": "23:00",
+            "isOpen": true
+          },
+          {
+            "day": "Sali",
+            "open": "07:00",
+            "close": "23:00",
+            "isOpen": true
+          },
+          {
+            "day": "Carsamba",
+            "open": "07:00",
+            "close": "23:00",
+            "isOpen": true
+          },
+          {
+            "day": "Persembe",
+            "open": "07:00",
+            "close": "23:00",
+            "isOpen": true
+          },
+          {
+            "day": "Cuma",
+            "open": "07:00",
+            "close": "23:00",
+            "isOpen": true
+          },
+          {
+            "day": "Cumartesi",
+            "open": "07:00",
+            "close": "24:00",
+            "isOpen": true
+          },
+          {
+            "day": "Pazar",
+            "open": "08:00",
+            "close": "23:00",
+            "isOpen": true
+          }
+        ],
+        "services": [
+          {
+            "id": "s1",
+            "name": "Fistikli Baklava",
+            "price": "600 TL/kg",
+            "duration": "Aninda",
+            "description": "Antep fistigi ile 40 kat yufkadan yapilan geleneksel baklava."
+          },
+          {
+            "id": "s2",
+            "name": "Cevizli Baklava",
+            "price": "400 TL/kg",
+            "duration": "Aninda",
+            "description": "Yerli ceviz ile hazirlannan klasik baklava."
+          },
+          {
+            "id": "s3",
+            "name": "Burma Kadayif",
+            "price": "500 TL/kg",
+            "duration": "Aninda",
+            "description": "Fistikli burma kadayif. Tel tel kadayif hamuru."
+          },
+          {
+            "id": "s4",
+            "name": "Sutlu Nuriye",
+            "price": "350 TL/kg",
+            "duration": "Aninda",
+            "description": "Sutlu serbetle hazirlanan hafif baklava cesidi."
+          },
+          {
+            "id": "s5",
+            "name": "Kunefe",
+            "price": "150 TL/porsiyon",
+            "duration": "15 dk",
+            "description": "Hatay usulu sicak kunefe. Kaymak ve dondurma esliginde."
+          },
+          {
+            "id": "s6",
+            "name": "Fistik Ezmesi",
+            "price": "800 TL/kg",
+            "duration": "Aninda",
+            "description": "Saf Antep fistigi ezmesi. Katki maddesi iceermez."
+          },
+          {
+            "id": "s7",
+            "name": "Sobiyet",
+            "price": "550 TL/kg",
+            "duration": "Aninda",
+            "description": "Kaymakli ve fistikli sobiyet. Ozel gun lezzeti."
+          },
+          {
+            "id": "s8",
+            "name": "Havuc Dilimi Baklava",
+            "price": "500 TL/kg",
+            "duration": "Aninda",
+            "description": "Havuc dilimi seklinde kesilmis fistikli baklava."
+          },
+          {
+            "id": "s9",
+            "name": "Ozel Kutu Baklava (1 kg)",
+            "price": "700 TL",
+            "duration": "Hazir",
+            "description": "Hediye kutusu icinde karisik baklava cesitleri."
+          },
+          {
+            "id": "s10",
+            "name": "Yurt Disi Kargo Paketi",
+            "price": "1.200 TL/kg",
+            "duration": "3-5 gun",
+            "description": "Ozel vakumlu ambalajla yurt disina baklava gonderimi."
+          }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "39 Yillik Gaziantep Baklava Gelenegi",
+          "subtitle": "1985'ten bu yana Antep fistikli baklava, kadayif ve geleneksel Turk tatlilari.",
+          "badge": "3 Nesil Usta"
+        },
+        "about": {
+          "title": "Gaziantep Baklava Ustasi Hakkinda",
+          "description": "1985'te Gaziantep'te kurulan isletmemiz, 3 nesil baklava ustasi ailesidir. Istanbul Fatih'teki dukkanimizda gununluk taze uretim yapiyoruz. Antep'ten getirdigimiz fistik ve gercek tereyagiyla geleneksel tarifleri yasatiyoruz. 2.000.000'dan fazla musteri agirladik. Yurt ici ve yurt disi gonderim yapiyoruz."
+        },
+        "services": {
+          "title": "Tatli Menuumuz",
+          "subtitle": "Antep'in efsanevi lezzetleri"
+        },
+        "contact": {
+          "title": "Siparis ve Iletisim",
+          "subtitle": "Toplu siparis ve ozel gun baklava icin arayin"
+        },
+        "faq": [
+          {
+            "q": "Baklava ne kadar taze kaliyor?",
+            "a": "Oda sicakliginda 15 gun, buzdolabinda 30 gun taze kalir."
+          },
+          {
+            "q": "Fistik nereden geliyor?",
+            "a": "Gaziantep'in en kaliteli bahcelerinden dogrudan tedarik ediyoruz."
+          },
+          {
+            "q": "Yurt disina gonderim yapiyor musunuz?",
+            "a": "Evet, ozel vakumlu ambalajla Avrupa ve ABD'ye kargo yapiyoruz."
+          },
+          {
+            "q": "Toplu siparis indirimi var mi?",
+            "a": "5 kg uzersi siparislerde %10 indirim uygulanir."
+          },
+          {
+            "q": "Seker orani ayarlanabilir mi?",
+            "a": "Evet, az sekerli veya serbetsiz secenek mevcuttur."
+          },
+          {
+            "q": "Dugun ve nisan icin ozel paket var mi?",
+            "a": "Evet, ozel kutu ve ambalaj ile nikah sekeeri yerine baklava paketi haziirliyoruz."
+          },
+          {
+            "q": "Kunefe porsiyon buyuklugu ne kadar?",
+            "a": "Standart porsiyon 200 gram. Buyuk porsiyon 350 gram."
+          },
+          {
+            "q": "Vegana uygun tatli var mi?",
+            "a": "Sutlu Nuriye ve bazi kadayif cesitlerimiz vegandir."
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Ahmet Tekin",
+            "district": "Fatih",
+            "date": "2025-03",
+            "rating": 5,
+            "comment": "39 yildir ayni lezzet. Istanbul'un en iyi baklavasii."
+          },
+          {
+            "name": "Sule Ozcan",
+            "district": "Sisli",
+            "date": "2025-02",
+            "rating": 5,
+            "comment": "Dugun icin 50 kg baklava siparis ettik. Herkes bayildi."
+          },
+          {
+            "name": "Kemal Basak",
+            "district": "Kadikoy",
+            "date": "2025-01",
+            "rating": 5,
+            "comment": "Kunefe ic pisirmesi mukemmel. Hatay'da yedigimden farksiz."
+          },
+          {
+            "name": "Nihan Dogan",
+            "district": "Besiktas",
+            "date": "2024-12",
+            "rating": 4,
+            "comment": "Fistikli baklava harika ama fiyatlar her sene artiiyor."
+          },
+          {
+            "name": "Emre Sahin",
+            "district": "Atasehir",
+            "date": "2024-11",
+            "rating": 5,
+            "comment": "Almanya'ya kargo ile gonderdik. Vakum paket ile sapasaglam ulasti."
+          },
+          {
+            "name": "Derya Polat",
+            "district": "Uskudar",
+            "date": "2024-10",
+            "rating": 5,
+            "comment": "Fistik ezmesi muhteesem. Kahvaltida ekmege surerek yiyoruz."
+          }
+        ],
+        "team": [
+          {
+            "name": "Mehmet Bayraktar",
+            "role": "Kurucu & Bas Usta",
+            "image": "",
+            "bio": "3. nesil baklava ustasi. 45 yillik tecrube."
+          },
+          {
+            "name": "Ali Bayraktar",
+            "role": "Uretim Muduru",
+            "image": "",
+            "bio": "4. nesil. Gunluk uretim ve kalite kontrol."
+          },
+          {
+            "name": "Zeynep Polat",
+            "role": "Pazarlama Muduru",
+            "image": "",
+            "bio": "Online satis ve sosyal medya yonetimi."
+          },
+          {
+            "name": "Hasan Usta",
+            "role": "Kunefe Sefi",
+            "image": "",
+            "bio": "Hatay kokenli. 25 yillik kunefe ustasi."
+          }
+        ]
+      }
+    },
+    {
+      "id": "pastane-vegan",
+      "variantName": "vegan",
+      "plan": "pro",
+      "description": "Vegan ve glutensiz pastane",
+      "designPhilosophy": "Dogal, saglikli, cagdas",
+      "isDark": false,
+      "colors": {
+        "bg": "#F0FDF4",
+        "surface": "#DCFCE7",
+        "surfaceElevated": "#BBF7D0",
+        "text": "#14532D",
+        "textSecondary": "#166534",
+        "accent": "#16A34A",
+        "accentHover": "#15803D",
+        "border": "#86EFAC"
+      },
+      "fonts": {
+        "heading": "Playfair Display",
+        "body": "Inter"
+      },
+      "business": {
+        "name": "GreenBite Vegan Pastane",
+        "ownerName": "Ilknur Karaca",
+        "sector": "Pastane",
+        "slogan": "Tatli da saglikli olabilir",
+        "phone": "0532 800 22 03",
+        "phoneClean": "905328002203",
+        "whatsapp": "905328002203",
+        "email": "info@greenbite.com.tr",
+        "address": "Cihangir Mah. Akarsu Cad. No:22/A, Beyoglu/Istanbul",
+        "city": "Istanbul",
+        "district": "Beyoglu",
+        "neighborhood": "Cihangir",
+        "coordinates": {
+          "lat": 41.032,
+          "lng": 28.984
+        },
+        "socialMedia": {
+          "instagram": "https://instagram.com/greenbite"
+        },
+        "photos": [],
+        "foundedYear": 2019,
+        "experience": "5 yil",
+        "customerCount": "35.000+",
+        "rating": 4.8,
+        "reviewCount": 580,
+        "workingHours": [
+          {
+            "day": "Pazartesi",
+            "open": "09:00",
+            "close": "20:00",
+            "isOpen": true
+          },
+          {
+            "day": "Sali",
+            "open": "09:00",
+            "close": "20:00",
+            "isOpen": true
+          },
+          {
+            "day": "Carsamba",
+            "open": "09:00",
+            "close": "20:00",
+            "isOpen": true
+          },
+          {
+            "day": "Persembe",
+            "open": "09:00",
+            "close": "20:00",
+            "isOpen": true
+          },
+          {
+            "day": "Cuma",
+            "open": "09:00",
+            "close": "20:00",
+            "isOpen": true
+          },
+          {
+            "day": "Cumartesi",
+            "open": "09:00",
+            "close": "21:00",
+            "isOpen": true
+          },
+          {
+            "day": "Pazar",
+            "open": "10:00",
+            "close": "20:00",
+            "isOpen": true
+          }
+        ],
+        "services": [
+          {
+            "id": "s1",
+            "name": "Vegan Cikolata Pasta",
+            "price": "350 TL",
+            "duration": "Aninda",
+            "description": "Kakao, badem sutu ve hindistancevizi kremasiyla hazirlanan vegan pasta."
+          },
+          {
+            "id": "s2",
+            "name": "Glutensiz Cheesecake",
+            "price": "300 TL",
+            "duration": "Aninda",
+            "description": "Kaju bazli glutensiz ve vegaan cheesecake."
+          },
+          {
+            "id": "s3",
+            "name": "Raw Brownie",
+            "price": "80 TL/dilim",
+            "duration": "Aninda",
+            "description": "Firin kullanilmadan hazirlanan cig brownie. Hurma ve kakao bazli."
+          },
+          {
+            "id": "s4",
+            "name": "Vegan Cupcake",
+            "price": "60 TL",
+            "duration": "Aninda",
+            "description": "Bitki bazli kremayla suslenmis vegan cupcake cesitleri."
+          },
+          {
+            "id": "s5",
+            "name": "Protein Ball",
+            "price": "40 TL",
+            "duration": "Aninda",
+            "description": "Yulaf, fistik ezmesi ve cikolata kaplamali enerji toplari."
+          },
+          {
+            "id": "s6",
+            "name": "Vegan Dogum Gunu Pastasi",
+            "price": "600 TL",
+            "duration": "1 gun onceden",
+            "description": "Ozel tasarim vegan dogum gunu pastasi."
+          },
+          {
+            "id": "s7",
+            "name": "Glutensiz Ekmek",
+            "price": "80 TL",
+            "duration": "Aninda",
+            "description": "Pirinc unu ve karabugday ile hazirlanan glutensiz ekmek."
+          },
+          {
+            "id": "s8",
+            "name": "Acai Bowl",
+            "price": "120 TL",
+            "duration": "5 dk",
+            "description": "Acai puresi, granola, taze meyve ve chia tohumlu kasee."
+          },
+          {
+            "id": "s9",
+            "name": "Matcha Latte",
+            "price": "75 TL",
+            "duration": "3 dk",
+            "description": "Japonya'dan ithal matcha ile haziirlanan bitki sutlu latte."
+          },
+          {
+            "id": "s10",
+            "name": "Smoothie Bar",
+            "price": "90 TL",
+            "duration": "5 dk",
+            "description": "Taze meyve ve sebze bazli saglikli smoothie cesitleri."
+          },
+          {
+            "id": "s11",
+            "name": "Vegan Dugun Pastasi",
+            "price": "2.000 TL",
+            "duration": "3 gun onceden",
+            "description": "Cok katli ozel tasarim vegan dugun pastasi."
+          },
+          {
+            "id": "s12",
+            "name": "Hamur Isi Atolyesi",
+            "price": "500 TL/kisi",
+            "duration": "3 saat",
+            "description": "Vegan hamur isi ve pasta yapim atolyesi."
+          },
+          {
+            "id": "s13",
+            "name": "Aylik Abonelik Kutusu",
+            "price": "400 TL/ay",
+            "duration": "Aylik",
+            "description": "Her ay kapiniza 8 farkli vegan tatli."
+          },
+          {
+            "id": "s14",
+            "name": "Kurumsal Catering",
+            "price": "120 TL/kisi",
+            "duration": "1 gun onceden",
+            "description": "Firma toplanti ve etkinlikleri icin vegan tatli catering."
+          }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Vegan ve Glutensiz Lezzetler",
+          "subtitle": "Bitki bazli, saglikli ve lezzetli. Seker, sut, yumurta kullanmadan mutluluk.",
+          "badge": "%100 Bitki Bazli"
+        },
+        "about": {
+          "title": "GreenBite Hakkinda",
+          "description": "2019'da Cihangir'de acilan GreenBite, Istanbul'un ilk tamamen vegan pastanesidir. 35.000'den fazla musteri agirladik. Tum urunlerimiz sut, yumurta ve hayvansal urun iceermez. Glutensiz seceneklerimizle colyak hastalarina da uygun tatlilar sunuyoruz. Dogal tatlandiriclar, organik un ve yerel meyve kullaniyoruz."
+        },
+        "services": {
+          "title": "Vegan Menuumuz",
+          "subtitle": "Saglikli, lezzetli ve %100 bitki bazli"
+        },
+        "contact": {
+          "title": "Bize Ulasin",
+          "subtitle": "Siparis ve atolye kaydi icin arayin"
+        },
+        "faq": [
+          {
+            "q": "Tum urunler vegan mi?",
+            "a": "Evet, %100 bitki bazli. Sut, yumurta ve bal kullanmiyoruz."
+          },
+          {
+            "q": "Glutensiz secenekler var mi?",
+            "a": "Evet, menumuzun %60'i glutensizdir. Colyak hastalari icin uygun."
+          },
+          {
+            "q": "Alerjen bilgisi var mi?",
+            "a": "Tum urunlerimizde alerjen etiketi mevcuttur. Fistik, soya ve gluten bilgilendirmesi yapiyoruz."
+          },
+          {
+            "q": "Dogum gunu pastasi siparis edebilir miyim?",
+            "a": "Evet, 1 gun onceden siparis ile ozel tasarim vegan pasta yapiyoruz."
+          },
+          {
+            "q": "Atolye ne zaman var?",
+            "a": "Her cumartesi 14:00'te vegan pasta atolyesi duzenliyoruz. Online kayit gerekli."
+          },
+          {
+            "q": "Teslimat yapiyor musunuz?",
+            "a": "Evet, Istanbul genelinde soguk zincir teslimat yapiyoruz."
+          },
+          {
+            "q": "Urunlerde seker var mi?",
+            "a": "Hurma, agave ve akca agac surubu gibi dogal tatlandiriclar kullaniyoruz. Rafine seker yok."
+          },
+          {
+            "q": "Kurumsal catering yapiyor musunuz?",
+            "a": "Evet, firma toplantilari ve etkinlikler icin vegan tatli catering hizmeti veriyoruz."
+          },
+          {
+            "q": "Abonelik kutusu nasil calisiyor?",
+            "a": "Her ayin 1'inde 8 farkli tatli kapiniiza gelir. Iptal serbest."
+          },
+          {
+            "q": "Kahve cesitleriniz var mi?",
+            "a": "Evet, badem, yulaf ve soya sutlu kahve seceneklerimiz var."
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Selin Akar",
+            "district": "Cihangir",
+            "date": "2025-03",
+            "rating": 5,
+            "comment": "Istanbul'un en iyi vegan pastanesi. Raw brownie bagimlilik yapiyor."
+          },
+          {
+            "name": "Cem Ucar",
+            "district": "Kadikoy",
+            "date": "2025-02",
+            "rating": 5,
+            "comment": "Vegan cheesecake normal cheesecake'ten daha lezzetli. Inanilmaz."
+          },
+          {
+            "name": "Aylin Kose",
+            "district": "Besiktas",
+            "date": "2025-01",
+            "rating": 5,
+            "comment": "Colyak hastasiyim. Glutensiz secenekler icin minnetarim."
+          },
+          {
+            "name": "Burak Ozmen",
+            "district": "Sisli",
+            "date": "2024-12",
+            "rating": 4,
+            "comment": "Acai bowl cok guzel ama porsiyon biraz kucuk."
+          },
+          {
+            "name": "Nihan Demir",
+            "district": "Atasehir",
+            "date": "2024-11",
+            "rating": 5,
+            "comment": "Dogum gunu pastasi yaptirdik. Vegan olduguna kimse inanmadi, o kadar lezzetli."
+          },
+          {
+            "name": "Erkan Sahin",
+            "district": "Bakirkoy",
+            "date": "2024-10",
+            "rating": 5,
+            "comment": "Pasta atolyesine katildim. Hem eglenceli hem ogretici."
+          },
+          {
+            "name": "Zeynep Polat",
+            "district": "Uskudar",
+            "date": "2024-09",
+            "rating": 5,
+            "comment": "Abonelik kutusu harika. Her ay surpriz lezzetler."
+          },
+          {
+            "name": "Murat Cetin",
+            "district": "Beyoglu",
+            "date": "2024-08",
+            "rating": 4,
+            "comment": "Matcha latte muhteesem ama fiyatlar biraz yuksek."
+          }
+        ],
+        "team": [
+          {
+            "name": "Ilknur Karaca",
+            "role": "Kurucu & Bas Sef",
+            "image": "",
+            "bio": "Gastronomi mezunu. 10 yillik vegan mutfak tecrubesi."
+          },
+          {
+            "name": "Daniel Hart",
+            "role": "Pastry Sef",
+            "image": "",
+            "bio": "Londra Le Cordon Bleu mezunu. Vegan pasta uzmani."
+          },
+          {
+            "name": "Ceren Ozturk",
+            "role": "Beslenme Danismani",
+            "image": "",
+            "bio": "Diyetisyen. Alerjen ve besin degeri analizi."
+          },
+          {
+            "name": "Ece Aydin",
+            "role": "Atolye Koordinatoru",
+            "image": "",
+            "bio": "Vegan yasam ve yemek atolyeleri duzenliyor."
+          },
+          {
+            "name": "Bora Isik",
+            "role": "Tedarik ve Kalite",
+            "image": "",
+            "bio": "Organik malzeme tedariki ve kalite kontrol."
+          },
+          {
+            "name": "Sude Yilmaz",
+            "role": "Dijital Pazarlama",
+            "image": "",
+            "bio": "Sosyal medya ve online satis yonetimi."
+          }
+        ]
+      }
+    },
+    {
+      "id": "pastane-lux",
+      "variantName": "lux",
+      "plan": "enterprise",
+      "description": "Premium patisserie grubu",
+      "designPhilosophy": "Fransiz, elit, haute patisserie",
+      "isDark": true,
+      "colors": {
+        "bg": "#0A0A0A",
+        "surface": "#111111",
+        "surfaceElevated": "#1A1A1A",
+        "surfaceMuted": "#0D0D0D",
+        "text": "#F0EDE8",
+        "textSecondary": "#9A9490",
+        "textMuted": "#555555",
+        "textOnAccent": "#000000",
+        "accent": "#C9A84C",
+        "accentHover": "#D4B85C",
+        "accentActive": "#B89A40",
+        "accentLight": "#1A1808",
+        "border": "#1F1F1F",
+        "borderSubtle": "#141414"
+      },
+      "fonts": {
+        "heading": "Cormorant Garamond",
+        "body": "Inter"
+      },
+      "business": {
+        "name": "Maison Doree Haute Patisserie",
+        "ownerName": "Sef Ozan Karaca",
+        "sector": "Pastane",
+        "slogan": "Fransiz patisserie sanatinin Istanbul yorumu",
+        "phone": "0532 800 22 04",
+        "phoneClean": "905328002204",
+        "whatsapp": "905328002204",
+        "email": "info@maisondoree.com.tr",
+        "address": "Nisantasi Mah. Abdi Ipekci Cad. No:35, Sisli/Istanbul",
+        "city": "Istanbul",
+        "district": "Sisli",
+        "neighborhood": "Nisantasi",
+        "coordinates": {
+          "lat": 41.048,
+          "lng": 28.993
+        },
+        "socialMedia": {
+          "instagram": "https://instagram.com/maisondoree",
+          "youtube": "https://youtube.com/@maisondoree"
+        },
+        "photos": [],
+        "foundedYear": 2005,
+        "experience": "19 yil",
+        "customerCount": "500.000+",
+        "rating": 4.9,
+        "reviewCount": 2800,
+        "workingHours": [
+          {
+            "day": "Pazartesi",
+            "open": "08:00",
+            "close": "22:00",
+            "isOpen": true
+          },
+          {
+            "day": "Sali",
+            "open": "08:00",
+            "close": "22:00",
+            "isOpen": true
+          },
+          {
+            "day": "Carsamba",
+            "open": "08:00",
+            "close": "22:00",
+            "isOpen": true
+          },
+          {
+            "day": "Persembe",
+            "open": "08:00",
+            "close": "22:00",
+            "isOpen": true
+          },
+          {
+            "day": "Cuma",
+            "open": "08:00",
+            "close": "22:00",
+            "isOpen": true
+          },
+          {
+            "day": "Cumartesi",
+            "open": "08:00",
+            "close": "23:00",
+            "isOpen": true
+          },
+          {
+            "day": "Pazar",
+            "open": "09:00",
+            "close": "22:00",
+            "isOpen": true
+          }
+        ],
+        "services": [
+          {
+            "id": "s1",
+            "name": "Signature Eclair",
+            "price": "180 TL",
+            "duration": "Aninda",
+            "description": "Sef Ozan'in imza tarifi. Valrhona cikolata ve Madagascar vanilya."
+          },
+          {
+            "id": "s2",
+            "name": "Macaron Koleksiyonu",
+            "price": "60 TL/adet",
+            "duration": "Aninda",
+            "description": "12 farkli tat. Fransiz teknigiyle el yapimi macaron."
+          },
+          {
+            "id": "s3",
+            "name": "Mille-Feuille",
+            "price": "220 TL",
+            "duration": "Aninda",
+            "description": "1.024 kat tereyagli hamur ile klasik Fransiz mille-feuille."
+          },
+          {
+            "id": "s4",
+            "name": "Grand Cru Cikolata",
+            "price": "350 TL/kutu",
+            "duration": "Aninda",
+            "description": "Tek orijinli kakao ile el yapimi bonbon cikolata."
+          },
+          {
+            "id": "s5",
+            "name": "VIP Dugun Pastasi",
+            "price": "15.000 TL",
+            "duration": "1 hafta onceden",
+            "description": "5+ katli ozel tasarim haute couture dugun pastasi."
+          },
+          {
+            "id": "s6",
+            "name": "Patisserie Atolyesi",
+            "price": "1.500 TL/kisi",
+            "duration": "4 saat",
+            "description": "Sef Ozan ile macaron ve eclair yapim atolyesi."
+          },
+          {
+            "id": "s7",
+            "name": "Corporate Gift Box",
+            "price": "800 TL",
+            "duration": "1 gun",
+            "description": "Kurumsal hediye kutusu. Macaron, cikolata ve financier."
+          },
+          {
+            "id": "s8",
+            "name": "Brunch Patisserie",
+            "price": "450 TL/kisi",
+            "duration": "1 saat",
+            "description": "Croissant, pain au chocolat, taze meyve ve sampanya."
+          },
+          {
+            "id": "s9",
+            "name": "Tarte Tatin",
+            "price": "280 TL",
+            "duration": "Aninda",
+            "description": "Karamellie elma ile klasik Fransiz tart."
+          },
+          {
+            "id": "s10",
+            "name": "Paris-Brest",
+            "price": "250 TL",
+            "duration": "Aninda",
+            "description": "Findik praline kremali su hamuru halka pasta."
+          },
+          {
+            "id": "s11",
+            "name": "Ozel Gun Pasta Koleksiyonu",
+            "price": "2.500 TL",
+            "duration": "3 gun onceden",
+            "description": "Dogum gunu, yildonumu ve ozel gunler icin 6-8 kisilik premium pasta."
+          },
+          {
+            "id": "s12",
+            "name": "Croissant Aboneligi",
+            "price": "600 TL/ay",
+            "duration": "Aylik",
+            "description": "Her sabah kapiniza 2 adet taze Fransiz croissant."
+          },
+          {
+            "id": "s13",
+            "name": "Seasonal Collection",
+            "price": "Degisken",
+            "duration": "Mevsimsel",
+            "description": "Mevsime ozel sinirli sayida uretilen koleksiyon lezzetler."
+          },
+          {
+            "id": "s14",
+            "name": "Cikolata Tatma Deneyimi",
+            "price": "800 TL/kisi",
+            "duration": "2 saat",
+            "description": "Grand Cru cikolata degustasyonu ve kakao hikayesi."
+          },
+          {
+            "id": "s15",
+            "name": "Catering VIP",
+            "price": "500 TL/kisi",
+            "duration": "2 gun onceden",
+            "description": "Elit etkinlikler icin canli pastane istasyonu."
+          },
+          {
+            "id": "s16",
+            "name": "Online Masterclass",
+            "price": "750 TL",
+            "duration": "3 saat",
+            "description": "Online canli patisserie egitimi. Malzeme kiti eve gonderilir."
+          },
+          {
+            "id": "s17",
+            "name": "Hediye Karti",
+            "price": "500/1000/2500 TL",
+            "duration": "Aninda",
+            "description": "Maison Doree dijital hediye karti."
+          },
+          {
+            "id": "s18",
+            "name": "Engagement Party Paketi",
+            "price": "5.000 TL",
+            "duration": "1 hafta onceden",
+            "description": "Nisan icin 50 kisilik macaron kulesi, cikolata ve mini pasta."
+          },
+          {
+            "id": "s19",
+            "name": "Yat ve Villa Servisi",
+            "price": "Projeye Ozel",
+            "duration": "1 gun onceden",
+            "description": "Ozel mekanlaraa patisserie servisi. Sef dahil."
+          },
+          {
+            "id": "s20",
+            "name": "Yillik VIP Uyelik",
+            "price": "12.000 TL/yil",
+            "duration": "Yillik",
+            "description": "Oncelikli siparis, ozel indirim, ucretsiz teslimat ve sef ile ozel etkinlik."
+          }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Haute Patisserie Sanati",
+          "subtitle": "19 yillik Fransiz patisserie gelenegi, Istanbul'un kalbinde. Valrhona, Callebaut ve tek orijinli malzemelerle.",
+          "badge": "Istanbul'un En Iyi Pastanesi"
+        },
+        "about": {
+          "title": "Maison Doree Hakkinda",
+          "description": "2005'te kurulan Maison Doree, Istanbul'un en prestijli haute patisserie markasiidir. Kurucu Sef Ozan Karaca, Paris Le Cordon Bleu ve Valrhona Ecole du Grand Chocolat mezunudur. Nisantasi'ndaki 3 katli flagship magazamiz, Bebek ve Kanyon subelerimizle Istanbul'un en secici damak zevklerine hitap ediyoruz. 500.000'den fazla musteri agirladik. Fransa'dan ithal Valrhona cikolata, Isigny tereyagi ve Madagascar vanilya ile calisiyoruz. Turkiye Gastronomi Odulu, Time Out Istanbul En Iyi Pastane ve Conde Nast Traveler tarafindan onurlandirildik. 25 kisilik pastane ekibimiz, Paris, Tokyo ve New York'ta egitim almis seflerden olusmaktadir."
+        },
+        "services": {
+          "title": "Patisserie Koleksiyonumuz",
+          "subtitle": "Fransiz patisserie gelenegi ile Istanbul'un en rafine lezzetleri"
+        },
+        "contact": {
+          "title": "Randevu ve Siparis",
+          "subtitle": "VIP siparis ve ozel etkinlik icin bize ulasin"
+        },
+        "faq": [
+          {
+            "q": "En cok tercih edilen urun hangisi?",
+            "a": "Signature eclair ve macaron koleksiyonu en populer urunlerimiz."
+          },
+          {
+            "q": "Malzemeler nereden geliyor?",
+            "a": "Valrhona cikolata (Fransa), Isigny tereyagi (Normandiya), Madagascar vanilya ithal ediyoruz."
+          },
+          {
+            "q": "Dugun pastasi sipaarisi ne zaman vermeli?",
+            "a": "VIP dugun pastalari icin en az 2 hafta onceden randevu ve 1 hafta onceden siparis gereklidir."
+          },
+          {
+            "q": "Atolye nasil caliisiyor?",
+            "a": "4 saatlik atolyede Sef Ozan ile macaron veya eclair yapiyorsunuz. Malzeme ve onluk dahil."
+          },
+          {
+            "q": "Teslimat yapiyor musunuz?",
+            "a": "Evet, Istanbul genelinde soguk zincir teslimat. VIP uyelere ucretsiz."
+          },
+          {
+            "q": "Vegan veya glutensiz secenek var mi?",
+            "a": "Evet, vegan macaron ve glutensiz financier cesitlerimiz mevcuttur."
+          },
+          {
+            "q": "Kurumsal hediye hazirliyor musunuz?",
+            "a": "Evet, logolu ozel kutu ve ambalaj ile kurumsal hediye paketleri hazirliyoruz."
+          },
+          {
+            "q": "VIP uyelik avantajlari neler?",
+            "a": "%15 indirim, oncelikli siparis, ucretsiz teslimat, sef ile yillik 2 ozel etkinlik."
+          },
+          {
+            "q": "Croissant aboneligi nasil calisiyor?",
+            "a": "Her sabah 08:00'de kapiniza 2 taze croissant. Cumartesi ve pazar dahil."
+          },
+          {
+            "q": "Mevsimsel koleksiyon nedir?",
+            "a": "Her mevsim sinirli sayida uretilen ozel lezzetler. Instagram'dan duyuruyoruz."
+          },
+          {
+            "q": "Cikolata degustasyonu nedir?",
+            "a": "2 saatlik deneyimde 8 farkli orijinli kakaodan yapilmis cikolatayi tadiyorsunuz."
+          },
+          {
+            "q": "Yat servisi yapiyor musunuz?",
+            "a": "Evet, Bogazici yat turlari icin sef dahil patisserie servisi."
+          },
+          {
+            "q": "Online masterclass nasil katilabilirim?",
+            "a": "Web sitemizden kayit. Malzeme kiti teslimat ile gonderilir."
+          },
+          {
+            "q": "Franchise veriyor musunuz?",
+            "a": "Hayir, kalite kontrolu icin sadece kendi subelerimizle calisiyoruz."
+          },
+          {
+            "q": "Fiyat listesi nereden alabiliirim?",
+            "a": "Web sitemiz ve Instagram'da guncel fiyatlar mevcuttur. VIP musterilere ozel fiyat listesi gonderilir."
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Prof. Dr. Aylin Savas",
+            "district": "Nisantasi",
+            "date": "2025-03",
+            "rating": 5,
+            "comment": "Istanbul'un en iyi pastanesi tartismasiz Maison Doree. Signature eclair baaska hicbir yerde yok."
+          },
+          {
+            "name": "Kerem Atasoy",
+            "district": "Bebek",
+            "date": "2025-02",
+            "rating": 5,
+            "comment": "Dugun pastamizi yaptirdiik. 7 katli, ciceklerle suslu — misafirlerimiz bos birakamadi."
+          },
+          {
+            "name": "Defne Kocaman",
+            "district": "Etiler",
+            "date": "2025-01",
+            "rating": 5,
+            "comment": "Macaron koleksiyonu hediye ettim. Ambalaji bile sanat eseri."
+          },
+          {
+            "name": "Cenk Bulut",
+            "district": "Sariyer",
+            "date": "2024-12",
+            "rating": 5,
+            "comment": "Cikolata degustasyonu muhteesem bir deneyimdi. Kakao dunyasini kesfettim."
+          },
+          {
+            "name": "Selin Tuncel",
+            "district": "Kadikoy",
+            "date": "2024-11",
+            "rating": 5,
+            "comment": "Croissant aboneligi ile her sabah Paris'te uyaniyorum."
+          },
+          {
+            "name": "Bora Isik",
+            "district": "Besiktas",
+            "date": "2024-10",
+            "rating": 4,
+            "comment": "Her sey muhtesem ama fiyatlar cok yuksek. Kaliteye gorre normal ama herkes icin degil."
+          },
+          {
+            "name": "Ipek Dogan",
+            "district": "Atasehir",
+            "date": "2024-09",
+            "rating": 5,
+            "comment": "Patisserie atolyesine katildim. Sef Ozan inanilmaz bir ogretmen."
+          },
+          {
+            "name": "Serdar Ozkan",
+            "district": "Sisli",
+            "date": "2024-08",
+            "rating": 5,
+            "comment": "Kurumsal hediye kutusu hazirlattik. Musterilerimiz cok begendi."
+          },
+          {
+            "name": "Ayca Erdal",
+            "district": "Bakirkoy",
+            "date": "2024-07",
+            "rating": 5,
+            "comment": "Online masterclass ile evde macaron yapmaayi ogrendim. Kit mukemmel."
+          },
+          {
+            "name": "Volkan Ak",
+            "district": "Levent",
+            "date": "2024-06",
+            "rating": 5,
+            "comment": "VIP uyelik aldim. Oncelikli siparis ve ucretsiz teslimat buyuk avantaj."
+          },
+          {
+            "name": "Meltem Sahin",
+            "district": "Uskudar",
+            "date": "2024-05",
+            "rating": 5,
+            "comment": "Mille-feuille 1.024 kat hamur — her isirista patliiyor. Sanat."
+          },
+          {
+            "name": "Erhan Tekin",
+            "district": "Beyoglu",
+            "date": "2024-04",
+            "rating": 5,
+            "comment": "Engagement party paketi harikayydi. Macaron kulesi goruntusu muhtesemdi."
+          }
+        ],
+        "team": [
+          {
+            "name": "Sef Ozan Karaca",
+            "role": "Kurucu & Executive Pastry Chef",
+            "image": "",
+            "bio": "Le Cordon Bleu Paris mezunu. Valrhona Ecole du Grand Chocolat sertifikali. 25 yillik tecrube."
+          },
+          {
+            "name": "Chef Marie Dubois",
+            "role": "Head Pastry Chef",
+            "image": "",
+            "bio": "Parisli. 15 yillik Michelin yildizli restoran tecrubesi."
+          },
+          {
+            "name": "Asli Kaplan",
+            "role": "Creative Director",
+            "image": "",
+            "bio": "Pasta tasarimi, gorsel sunum ve marka estetigi."
+          },
+          {
+            "name": "Ugur Yildirim",
+            "role": "Operasyon Direktoru",
+            "image": "",
+            "bio": "3 subenin operasyon yonetimi."
+          },
+          {
+            "name": "Pelin Savas",
+            "role": "Kalite ve Tedarik Muduru",
+            "image": "",
+            "bio": "Fransa ve Belcika'dan premium malzeme tedariki."
+          },
+          {
+            "name": "Arda Kocak",
+            "role": "Cikolata Ustasi (Chocolatier)",
+            "image": "",
+            "bio": "Callebaut Academy mezunu. Bonbon ve truffle uzmani."
+          },
+          {
+            "name": "Nilgun Ercan",
+            "role": "VIP Musteri Iliskileri",
+            "image": "",
+            "bio": "Ozel gun planlamasi ve VIP uyelik yonetimi."
+          },
+          {
+            "name": "Deniz Acar",
+            "role": "Dijital Deneyim Muduru",
+            "image": "",
+            "bio": "Online masterclass, abonelik ve dijital satis."
+          }
+        ]
+      }
+    }
+  ]
+}

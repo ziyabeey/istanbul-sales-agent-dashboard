@@ -1,0 +1,1459 @@
+{
+  "sectorId": "kres",
+  "seoSchemaType": "ChildCare",
+  "variants": [
+    {
+      "id": "kres-oyun",
+      "variantName": "oyun",
+      "plan": "free",
+      "description": "Oyun odaklı kreş — sıcak renkler, davetkar tasarım",
+      "designPhilosophy": "Çocuk dostu, yumuşak köşeler, pastel vurgular",
+      "isDark": false,
+      "colors": {
+        "bg": "#FFFDF7",
+        "surface": "#FFF8ED",
+        "text": "#2D2A26",
+        "accent": "#FF8C42"
+      },
+      "fonts": {
+        "heading": "Inter",
+        "body": "Inter"
+      },
+      "business": {
+        "name": "Minik Adımlar Kreşi",
+        "sector": "kres",
+        "ownerName": "Ayşe Kaya",
+        "slogan": "Oyunla öğrenen, sevgiyle büyüyen çocuklar",
+        "phone": "0212 345 6701",
+        "phoneClean": "02123456701",
+        "email": "info@minikadimlar.com",
+        "address": "Caferağa Mah. Moda Cad. No:28, Kadıköy/İstanbul",
+        "city": "İstanbul",
+        "district": "Kadıköy",
+        "coordinates": {
+          "lat": 40.9868,
+          "lng": 29.0257
+        },
+        "socialMedia": {
+          "instagram": "minikadimlarkresi",
+          "facebook": "minikadimlarkresi"
+        },
+        "photos": [],
+        "foundedYear": 2018,
+        "experience": "6 yıl",
+        "customerCount": "800+",
+        "rating": 4.7,
+        "reviewCount": 180,
+        "workingHours": [
+          {
+            "day": "Pazartesi",
+            "open": "07:30",
+            "close": "18:30",
+            "isOpen": true
+          },
+          {
+            "day": "Salı",
+            "open": "07:30",
+            "close": "18:30",
+            "isOpen": true
+          },
+          {
+            "day": "Çarşamba",
+            "open": "07:30",
+            "close": "18:30",
+            "isOpen": true
+          },
+          {
+            "day": "Perşembe",
+            "open": "07:30",
+            "close": "18:30",
+            "isOpen": true
+          },
+          {
+            "day": "Cuma",
+            "open": "07:30",
+            "close": "18:30",
+            "isOpen": true
+          },
+          {
+            "day": "Cumartesi",
+            "open": "09:00",
+            "close": "14:00",
+            "isOpen": true
+          },
+          {
+            "day": "Pazar",
+            "open": "",
+            "close": "",
+            "isOpen": false
+          }
+        ],
+        "services": [
+          {
+            "id": "s1",
+            "name": "Tam Gün Kreş (0-3 Yaş)",
+            "price": "8.500 TL/ay",
+            "duration": "Tam gün",
+            "description": "Bebek grubu için güvenli, hijyenik ortamda tam gün bakım ve erken gelişim programı."
+          },
+          {
+            "id": "s2",
+            "name": "Yarım Gün Kreş (0-3 Yaş)",
+            "price": "5.500 TL/ay",
+            "duration": "Yarım gün",
+            "description": "Sabah veya öğleden sonra seçenekli yarım gün bakım programı."
+          },
+          {
+            "id": "s3",
+            "name": "Anaokulu (3-6 Yaş)",
+            "price": "9.000 TL/ay",
+            "duration": "Tam gün",
+            "description": "Okul öncesi eğitim müfredatı ile akademik ve sosyal gelişim programı."
+          },
+          {
+            "id": "s4",
+            "name": "Yaz Okulu",
+            "price": "7.000 TL/ay",
+            "duration": "Haziran-Ağustos",
+            "description": "Yaz aylarında eğlenceli aktiviteler, yüzme ve açık hava etkinlikleri."
+          }
+        ],
+        "team": [],
+        "testimonials": []
+      },
+      "content": {
+        "hero": {
+          "title": "Minik Adımlar, Büyük Hayaller",
+          "subtitle": "Çocuğunuz oyunla öğrensin, sevgiyle büyüsün. Kadıköy'ün en güvenilir kreşi.",
+          "badge": "6 Yıldır Hizmetinizde"
+        },
+        "about": {
+          "title": "Minik Adımlar Kreşi Hakkında",
+          "description": "2018 yılından bu yana Kadıköy Moda'da hizmet veren Minik Adımlar Kreşi, çocukların doğal merakını ve yaratıcılığını destekleyen bir eğitim anlayışı benimser. 200 metrekarelik güvenli alanımızda, uzman eğitimcilerimiz eşliğinde çocuklarınız hem eğlenir hem öğrenir."
+        },
+        "services": {
+          "title": "Eğitim Programlarımız",
+          "subtitle": "Her yaş grubuna özel, sevgiyle hazırlanmış programlar"
+        },
+        "contact": {
+          "title": "Kayıt ve Bilgi İçin",
+          "subtitle": "Kreşimizi ziyaret edin, eğitim ortamımızı yakından görün"
+        },
+        "faq": [
+          {
+            "question": "Kaç yaşından itibaren kayıt alıyorsunuz?",
+            "answer": "6 aylıktan itibaren bebek grubumuza kayıt alıyoruz. 3-6 yaş arası anaokulu programımız da mevcuttur."
+          },
+          {
+            "question": "Günlük menünüz nasıl hazırlanıyor?",
+            "answer": "Diyetisyen onaylı menümüz her gün taze olarak mutfağımızda hazırlanır. Alerjik durumlar için özel menü seçeneklerimiz vardır."
+          },
+          {
+            "question": "Güvenlik önlemleriniz nelerdir?",
+            "answer": "7/24 kamera sistemi, parmak izi ile giriş-çıkış, yangın alarm sistemi ve ilk yardım sertifikalı personelimiz mevcuttur."
+          },
+          {
+            "question": "Servis hizmetiniz var mı?",
+            "answer": "Kadıköy ilçesi sınırları içinde ücretsiz servis hizmetimiz bulunmaktadır."
+          }
+        ]
+      }
+    },
+    {
+      "id": "kres-montessori",
+      "variantName": "montessori",
+      "plan": "starter",
+      "description": "Montessori eğitim yaklaşımlı kreş — doğal tonlar, organize tasarım",
+      "designPhilosophy": "Düzenli, doğal malzeme hissi, Montessori felsefesi yansıtan minimalizm",
+      "isDark": false,
+      "colors": {
+        "bg": "#FEFCF8",
+        "surface": "#F5F0E8",
+        "text": "#3B3529",
+        "accent": "#7B8F6A",
+        "accentHover": "#6A7D5A"
+      },
+      "fonts": {
+        "heading": "Inter",
+        "body": "Inter"
+      },
+      "business": {
+        "name": "Doğa Montessori Kreşi",
+        "sector": "kres",
+        "ownerName": "Dr. Elif Demir",
+        "slogan": "Doğanın rehberliğinde, kendi hızında öğrenen çocuklar",
+        "phone": "0216 890 4523",
+        "phoneClean": "02168904523",
+        "email": "info@dogamontessori.com",
+        "address": "Ataşehir Bulvarı No:55 Kat:1, Ataşehir/İstanbul",
+        "city": "İstanbul",
+        "district": "Ataşehir",
+        "coordinates": {
+          "lat": 40.9923,
+          "lng": 29.1244
+        },
+        "socialMedia": {
+          "instagram": "dogamontessorikresi",
+          "facebook": "dogamontessori"
+        },
+        "photos": [],
+        "foundedYear": 2015,
+        "experience": "11 yıl",
+        "customerCount": "1.500+",
+        "rating": 4.9,
+        "reviewCount": 340,
+        "workingHours": [
+          {
+            "day": "Pazartesi",
+            "open": "07:30",
+            "close": "18:30",
+            "isOpen": true
+          },
+          {
+            "day": "Salı",
+            "open": "07:30",
+            "close": "18:30",
+            "isOpen": true
+          },
+          {
+            "day": "Çarşamba",
+            "open": "07:30",
+            "close": "18:30",
+            "isOpen": true
+          },
+          {
+            "day": "Perşembe",
+            "open": "07:30",
+            "close": "18:30",
+            "isOpen": true
+          },
+          {
+            "day": "Cuma",
+            "open": "07:30",
+            "close": "18:30",
+            "isOpen": true
+          },
+          {
+            "day": "Cumartesi",
+            "open": "09:00",
+            "close": "13:00",
+            "isOpen": true
+          },
+          {
+            "day": "Pazar",
+            "open": "",
+            "close": "",
+            "isOpen": false
+          }
+        ],
+        "services": [
+          {
+            "id": "s1",
+            "name": "Montessori Bebek Grubu (0-18 Ay)",
+            "price": "12.000 TL/ay",
+            "duration": "Tam gün",
+            "description": "Nido sınıfında duyusal keşif ve motor gelişim odaklı Montessori programı."
+          },
+          {
+            "id": "s2",
+            "name": "Montessori Yürüme Grubu (18-36 Ay)",
+            "price": "11.500 TL/ay",
+            "duration": "Tam gün",
+            "description": "Pratik yaşam becerileri ve dil gelişimi odaklı Montessori müfredatı."
+          },
+          {
+            "id": "s3",
+            "name": "Montessori Anaokulu (3-6 Yaş)",
+            "price": "13.000 TL/ay",
+            "duration": "Tam gün",
+            "description": "Okuma-yazma hazırlığı, matematik ve kozmik eğitim içeren kapsamlı Montessori programı."
+          },
+          {
+            "id": "s4",
+            "name": "Yarım Gün Montessori",
+            "price": "8.000 TL/ay",
+            "duration": "Yarım gün",
+            "description": "Sabah 07:30-12:30 arası yoğunlaştırılmış Montessori eğitim programı."
+          },
+          {
+            "id": "s5",
+            "name": "Montessori Atölyeleri",
+            "price": "2.500 TL/ay",
+            "duration": "Hafta sonu",
+            "description": "Cumartesi günleri sanat, müzik ve doğa atölyeleri."
+          },
+          {
+            "id": "s6",
+            "name": "Yaz Kampı",
+            "price": "9.500 TL/ay",
+            "duration": "Haziran-Ağustos",
+            "description": "Açık hava Montessori aktiviteleri, bahçe tarımı ve su oyunları."
+          }
+        ],
+        "team": [
+          {
+            "name": "Dr. Elif Demir",
+            "title": "Kurucu & Eğitim Direktörü",
+            "description": "AMI diplomalı Montessori eğitimci, çocuk gelişimi doktoru."
+          },
+          {
+            "name": "Zeynep Arslan",
+            "title": "Baş Eğitimci",
+            "description": "12 yıllık Montessori deneyimi, 0-3 yaş uzmanı."
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Burcu K.",
+            "district": "Ataşehir",
+            "date": "2025-11",
+            "rating": 5,
+            "comment": "Oğlum 2 yaşında başladı, 6 ayda inanılmaz gelişim gösterdi. Montessori yaklaşımı gerçekten fark yaratıyor."
+          },
+          {
+            "name": "Mehmet A.",
+            "district": "Ümraniye",
+            "date": "2025-09",
+            "rating": 5,
+            "comment": "Kızımız burada çok mutlu. Eğitimciler gerçekten işinin ehli, ortam muhteşem."
+          },
+          {
+            "name": "Seda T.",
+            "district": "Kadıköy",
+            "date": "2025-12",
+            "rating": 5,
+            "comment": "Servis dahil herşey çok profesyonel. Montessori materyalleri çok zengin."
+          }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Montessori ile Doğal Öğrenme",
+          "subtitle": "Her çocuk kendi hızında, kendi yolunda. AMI sertifikalı eğitimcilerle gerçek Montessori deneyimi.",
+          "badge": "AMI Sertifikalı"
+        },
+        "about": {
+          "title": "Doğa Montessori Hakkında",
+          "description": "2015 yılında Dr. Elif Demir tarafından kurulan Doğa Montessori Kreşi, İstanbul'un Anadolu yakasında gerçek Montessori eğitimi sunan öncü kuruluşlardan biridir. 400 metrekarelik özel tasarım alanımızda, AMI (Association Montessori Internationale) standartlarına uygun materyaller ve eğitim ortamı sunuyoruz. Her çocuğun bireysel gelişim hızına saygı duyan yaklaşımımız, bağımsız düşünebilen, özgüvenli bireyler yetiştirmeyi hedefler."
+        },
+        "services": {
+          "title": "Montessori Programlarımız",
+          "subtitle": "Her yaş grubuna özel, AMI standartlarında eğitim"
+        },
+        "contact": {
+          "title": "Kayıt ve Tanışma Turu",
+          "subtitle": "Kreşimizi ziyaret edin, Montessori ortamını deneyimleyin"
+        },
+        "faq": [
+          {
+            "question": "Montessori eğitimi nedir?",
+            "answer": "Dr. Maria Montessori tarafından geliştirilen, çocuğun doğal merakını ve bağımsızlığını destekleyen bir eğitim yaklaşımıdır. Çocuklar kendi seçtikleri aktivitelerle, kendi hızlarında öğrenirler."
+          },
+          {
+            "question": "Montessori materyalleriniz orijinal mi?",
+            "answer": "Evet, tüm materyallerimiz AMI onaylı üreticilerden temin edilmiştir. Sınıflarımız uluslararası Montessori standartlarına uygun olarak düzenlenmiştir."
+          },
+          {
+            "question": "Eğitimcilerinizin sertifikaları neler?",
+            "answer": "Tüm eğitimcilerimiz AMI veya AMS diplomalıdır. Ayrıca çocuk gelişimi ve psikolojisi alanında lisans derecesine sahiptirler."
+          },
+          {
+            "question": "Diğer kreşlerden farkınız nedir?",
+            "answer": "Geleneksel kreşlerden farklı olarak, çocuklar serbest çalışma dönemlerinde kendi aktivitelerini seçerler. Karma yaş grupları ile büyük çocuklar küçüklere rehberlik eder."
+          },
+          {
+            "question": "İlkokula geçişte sorun yaşanır mı?",
+            "answer": "Hayır, Montessori eğitimi alan çocuklar genellikle ilkokula daha hazır olurlar. Okuma-yazma ve matematik becerileri yaş ortalamasının üzerindedir."
+          },
+          {
+            "question": "Veli katılım programınız var mı?",
+            "answer": "Evet, aylık veli seminerleri, dönemlik gelişim raporları ve yılda iki kez veli-eğitimci konferansları düzenliyoruz."
+          }
+        ]
+      }
+    },
+    {
+      "id": "kres-doga",
+      "variantName": "doga",
+      "plan": "growth",
+      "description": "Doğa temalı kreş — yeşil tonlar, organik tasarım",
+      "designPhilosophy": "Doğa ile iç içe, sürdürülebilir, ekolojik bilinç",
+      "isDark": false,
+      "colors": {
+        "bg": "#F7FBF4",
+        "surface": "#EDF5E8",
+        "text": "#2A3225",
+        "accent": "#4CAF50",
+        "accentHover": "#388E3C",
+        "accentLight": "#E8F5E9",
+        "surfaceElevated": "#FFFFFF",
+        "textSecondary": "#5D6B56"
+      },
+      "fonts": {
+        "heading": "Poppins",
+        "body": "Inter"
+      },
+      "business": {
+        "name": "Yeşil Bahçe Kreş & Anaokulu",
+        "sector": "kres",
+        "ownerName": "Canan Yıldız",
+        "slogan": "Doğayla büyüyen, geleceği yeşerten çocuklar",
+        "phone": "0212 567 8901",
+        "phoneClean": "02125678901",
+        "email": "info@yesilbahcekresi.com",
+        "address": "Bahçeköy Mah. Orman Yolu Cad. No:15, Sarıyer/İstanbul",
+        "city": "İstanbul",
+        "district": "Sarıyer",
+        "coordinates": {
+          "lat": 41.1667,
+          "lng": 29.0167
+        },
+        "socialMedia": {
+          "instagram": "yesilbahcekresi",
+          "facebook": "yesilbahcekresi",
+          "youtube": "yesilbahcekresi"
+        },
+        "photos": [],
+        "foundedYear": 2012,
+        "experience": "14 yıl",
+        "customerCount": "3.200+",
+        "rating": 4.8,
+        "reviewCount": 620,
+        "workingHours": [
+          {
+            "day": "Pazartesi",
+            "open": "07:00",
+            "close": "19:00",
+            "isOpen": true
+          },
+          {
+            "day": "Salı",
+            "open": "07:00",
+            "close": "19:00",
+            "isOpen": true
+          },
+          {
+            "day": "Çarşamba",
+            "open": "07:00",
+            "close": "19:00",
+            "isOpen": true
+          },
+          {
+            "day": "Perşembe",
+            "open": "07:00",
+            "close": "19:00",
+            "isOpen": true
+          },
+          {
+            "day": "Cuma",
+            "open": "07:00",
+            "close": "19:00",
+            "isOpen": true
+          },
+          {
+            "day": "Cumartesi",
+            "open": "08:00",
+            "close": "15:00",
+            "isOpen": true
+          },
+          {
+            "day": "Pazar",
+            "open": "",
+            "close": "",
+            "isOpen": false
+          }
+        ],
+        "services": [
+          {
+            "id": "s1",
+            "name": "Orman Kreşi (2-4 Yaş)",
+            "price": "10.500 TL/ay",
+            "duration": "Tam gün",
+            "description": "Günün yarısı açık havada geçirilen, doğa temelli erken çocukluk programı."
+          },
+          {
+            "id": "s2",
+            "name": "Bahçe Anaokulu (4-6 Yaş)",
+            "price": "11.000 TL/ay",
+            "duration": "Tam gün",
+            "description": "Permakültür bahçeciliği, hayvan bakımı ve doğa bilimi entegre müfredat."
+          },
+          {
+            "id": "s3",
+            "name": "Bebek Grubu (6-24 Ay)",
+            "price": "9.500 TL/ay",
+            "duration": "Tam gün",
+            "description": "Doğal malzemelerle duyusal gelişim ve güvenli açık hava deneyimi."
+          },
+          {
+            "id": "s4",
+            "name": "Yarım Gün Doğa Programı",
+            "price": "7.000 TL/ay",
+            "duration": "Yarım gün",
+            "description": "Sabah 07:00-12:30 doğa keşif ve sanat aktiviteleri."
+          },
+          {
+            "id": "s5",
+            "name": "Hafta Sonu Doğa Atölyesi",
+            "price": "1.800 TL/ay",
+            "duration": "Cumartesi",
+            "description": "Aile katılımlı doğa yürüyüşleri, bitki dikimi ve outdoor aktiviteler."
+          },
+          {
+            "id": "s6",
+            "name": "Yaz Doğa Kampı",
+            "price": "8.500 TL/ay",
+            "duration": "Haziran-Ağustos",
+            "description": "Orman macerası, kamp becerileri, yüzme ve doğa sanatı."
+          },
+          {
+            "id": "s7",
+            "name": "İlkokula Hazırlık",
+            "price": "3.000 TL/ay",
+            "duration": "Akşam",
+            "description": "Okuma-yazma ve matematik hazırlığı, doğa temelli öğrenme yöntemiyle."
+          },
+          {
+            "id": "s8",
+            "name": "Drama ve Müzik",
+            "price": "2.200 TL/ay",
+            "duration": "Haftada 2 gün",
+            "description": "Yaratıcı drama, ritm ve müzik atölyesi."
+          },
+          {
+            "id": "s9",
+            "name": "Jimnastik ve Hareket",
+            "price": "2.000 TL/ay",
+            "duration": "Haftada 2 gün",
+            "description": "Çocuk jimnastiği, denge ve koordinasyon çalışmaları."
+          },
+          {
+            "id": "s10",
+            "name": "İngilizce Doğa Programı",
+            "price": "3.500 TL/ay",
+            "duration": "Haftada 3 gün",
+            "description": "Native speaker eğitmenle doğa temalı İngilizce programı."
+          }
+        ],
+        "team": [
+          {
+            "name": "Canan Yıldız",
+            "title": "Kurucu & Müdür",
+            "description": "Orman pedagojisi uzmanı, 20 yıllık eğitim deneyimi."
+          },
+          {
+            "name": "Barış Özkan",
+            "title": "Doğa Eğitmeni",
+            "description": "Çevre mühendisi, permakültür sertifikalı doğa eğitimcisi."
+          },
+          {
+            "name": "Merve Aydın",
+            "title": "Anaokulu Öğretmeni",
+            "description": "Okul öncesi eğitimi mezunu, Reggio Emilia yaklaşımı sertifikalı."
+          },
+          {
+            "name": "Kerem Şahin",
+            "title": "Hareket ve Spor Eğitmeni",
+            "description": "Beden eğitimi öğretmeni, çocuk jimnastiği uzmanı."
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Aslı M.",
+            "district": "Sarıyer",
+            "date": "2026-01",
+            "rating": 5,
+            "comment": "Çocuğum burada doğayı keşfetti. Her gün dışarıda vakit geçirmesi onu çok mutlu ediyor. Bahçedeki tavşanları beslemek en sevdiği aktivite."
+          },
+          {
+            "name": "Tolga B.",
+            "district": "Maslak",
+            "date": "2025-11",
+            "rating": 5,
+            "comment": "Şehir çocuğu olan kızımız burada toprakla, bitkilerle tanıştı. Evde bile sebze yetiştirmek istiyor artık."
+          },
+          {
+            "name": "Derya K.",
+            "district": "Beşiktaş",
+            "date": "2025-10",
+            "rating": 4,
+            "comment": "Orman kreşi konsepti harika. Biraz uzak ama servis var ve çocuk çok mutlu."
+          },
+          {
+            "name": "Emre S.",
+            "district": "Kağıthane",
+            "date": "2025-12",
+            "rating": 5,
+            "comment": "İki çocuğumu da buraya gönderiyorum. Doğa ile iç içe büyümeleri paha biçilmez."
+          },
+          {
+            "name": "Pınar A.",
+            "district": "Eyüpsultan",
+            "date": "2026-02",
+            "rating": 5,
+            "comment": "Eğitimciler gerçekten doğa tutkunu. Çocuklara bu sevgiyi aşılıyorlar."
+          },
+          {
+            "name": "Hakan D.",
+            "district": "Sarıyer",
+            "date": "2025-09",
+            "rating": 5,
+            "comment": "Bahçe anaokulu programı mükemmel. Oğlum bitkileri isimleriyle tanıyor artık."
+          }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Doğayla Büyüyen Çocuklar",
+          "subtitle": "Sarıyer'in kalbinde, 2.000 m² bahçeli alanda orman kreşi deneyimi. Çocuğunuz doğayı keşfetsin.",
+          "badge": "Orman Pedagojisi"
+        },
+        "about": {
+          "title": "Yeşil Bahçe Kreşi Hakkında",
+          "description": "2012 yılında Sarıyer Bahçeköy'de kurulan Yeşil Bahçe Kreşi, İstanbul'un en büyük açık alan kreşlerinden biridir. 2.000 metrekarelik doğal bahçemizde çocuklar günün yarısını açık havada geçirir. Permakültür bahçemiz, küçük çiftliğimiz ve orman patikalarımız ile çocuklar doğayı bizzat deneyimler. Eğitim felsefemiz, Skandinav orman pedagojisi ve Reggio Emilia yaklaşımını harmanlayarak çocukların doğal merakını besler. Sürdürülebilirlik ve ekolojik bilinç, müfredatımızın temel taşlarıdır."
+        },
+        "services": {
+          "title": "Doğa Programlarımız",
+          "subtitle": "Açık hava, orman macerası ve doğa bilimi ile zenginleştirilmiş eğitim"
+        },
+        "contact": {
+          "title": "Doğa Turuna Davetlisiniz",
+          "subtitle": "Bahçemizi ziyaret edin, çocuğunuz için en doğal ortamı keşfedin"
+        },
+        "faq": [
+          {
+            "question": "Yağmurlu havalarda ne yapılır?",
+            "answer": "Skandinav yaklaşımıyla 'kötü hava yoktur, kötü kıyafet vardır' felsefesini benimseriz. Yağmurluk ve çizmelerle hafif yağmurda dışarı çıkılır. Şiddetli yağmurda kapalı atölyelerimiz aktif olur."
+          },
+          {
+            "question": "Bahçede hangi hayvanlar var?",
+            "answer": "2 tavşan, 5 tavuk, balık havuzumuz ve böcek gözlem alanımız var. Çocuklar hayvan bakımına katılır."
+          },
+          {
+            "question": "Organik yemek yapıyor musunuz?",
+            "answer": "Evet, menümüzün %80'i organik sertifikalı ürünlerden hazırlanır. Bahçemizden toplanan sebzeler de menüye dahildir."
+          },
+          {
+            "question": "Servis güzergahları nereler?",
+            "answer": "Sarıyer, Maslak, Beşiktaş, Kağıthane ve Eyüpsultan bölgelerinde ücretsiz servis hizmetimiz var."
+          },
+          {
+            "question": "Kaç çocuk alıyorsunuz?",
+            "answer": "Toplam 60 çocuk kapasitemiz var. Sınıf başına 12 çocuk ve 2 eğitimci bulunur."
+          },
+          {
+            "question": "Açık hava güvenliği nasıl sağlanıyor?",
+            "answer": "Bahçe tamamen çitle çevrili, CCTV kamera ile izleniyor. Her açık hava aktivitesinde çocuk-eğitimci oranı 4:1'dir."
+          },
+          {
+            "question": "Alerjik çocuklar için önlem var mı?",
+            "answer": "Her çocuğun alerji kartı tutulur. Arıcılık bölgesi izole edilmiştir. Diyetisyen onaylı alternatif menü sunulur."
+          },
+          {
+            "question": "Eğitim yaklaşımınız tam olarak nedir?",
+            "answer": "Skandinav orman pedagojisi + Reggio Emilia yaklaşımının birleşimi. Çocuk merkezli, keşif odaklı, doğa temelli bir eğitim modelidir."
+          }
+        ]
+      }
+    },
+    {
+      "id": "kres-sanat",
+      "variantName": "sanat",
+      "plan": "pro",
+      "description": "Sanat odaklı kreş — yaratıcı renkler, dinamik tasarım",
+      "designPhilosophy": "Sanatsal, renkli ama sofistike, Reggio Emilia ilhamı",
+      "isDark": false,
+      "colors": {
+        "bg": "#FDFBF9",
+        "surface": "#F8F2EC",
+        "text": "#2E2520",
+        "accent": "#E8614D",
+        "accentHover": "#D4503E",
+        "accentLight": "#FDE8E4",
+        "surfaceElevated": "#FFFFFF",
+        "textSecondary": "#7A6B60",
+        "surfaceMuted": "#F0E8E0",
+        "textMuted": "#9B8E83"
+      },
+      "fonts": {
+        "heading": "Playfair Display",
+        "body": "Inter"
+      },
+      "business": {
+        "name": "Küçük Sanatçılar Atölyesi",
+        "sector": "kres",
+        "ownerName": "Selin Çelik",
+        "slogan": "Her çocuk bir sanatçıdır, biz sadece fırçayı veriyoruz",
+        "phone": "0212 678 1234",
+        "phoneClean": "02126781234",
+        "email": "info@kucuksanatcilar.com",
+        "address": "Nişantaşı Mah. Valikonağı Cad. No:78 Kat:1-2, Şişli/İstanbul",
+        "city": "İstanbul",
+        "district": "Şişli",
+        "coordinates": {
+          "lat": 41.0477,
+          "lng": 28.9903
+        },
+        "socialMedia": {
+          "instagram": "kucuksanatcilar",
+          "facebook": "kucuksanatcilaratolyesi",
+          "youtube": "kucuksanatcilar",
+          "twitter": "kucuksanatcilar"
+        },
+        "photos": [],
+        "foundedYear": 2010,
+        "experience": "16 yıl",
+        "customerCount": "5.000+",
+        "rating": 4.9,
+        "reviewCount": 890,
+        "workingHours": [
+          {
+            "day": "Pazartesi",
+            "open": "07:30",
+            "close": "19:00",
+            "isOpen": true
+          },
+          {
+            "day": "Salı",
+            "open": "07:30",
+            "close": "19:00",
+            "isOpen": true
+          },
+          {
+            "day": "Çarşamba",
+            "open": "07:30",
+            "close": "19:00",
+            "isOpen": true
+          },
+          {
+            "day": "Perşembe",
+            "open": "07:30",
+            "close": "19:00",
+            "isOpen": true
+          },
+          {
+            "day": "Cuma",
+            "open": "07:30",
+            "close": "19:00",
+            "isOpen": true
+          },
+          {
+            "day": "Cumartesi",
+            "open": "09:00",
+            "close": "16:00",
+            "isOpen": true
+          },
+          {
+            "day": "Pazar",
+            "open": "",
+            "close": "",
+            "isOpen": false
+          }
+        ],
+        "services": [
+          {
+            "id": "s1",
+            "name": "Sanat Kreşi (1-3 Yaş)",
+            "price": "14.000 TL/ay",
+            "duration": "Tam gün",
+            "description": "Duyusal sanat deneyimleri, parmak boyası, kil ve doğal malzemelerle yaratıcı keşif."
+          },
+          {
+            "id": "s2",
+            "name": "Yaratıcı Anaokulu (3-6 Yaş)",
+            "price": "15.500 TL/ay",
+            "duration": "Tam gün",
+            "description": "Görsel sanatlar, müzik, drama ve dans entegre Reggio Emilia müfredatı."
+          },
+          {
+            "id": "s3",
+            "name": "Yarım Gün Sanat Programı",
+            "price": "9.500 TL/ay",
+            "duration": "Yarım gün",
+            "description": "Sabah yoğunlaştırılmış sanat ve akademik program."
+          },
+          {
+            "id": "s4",
+            "name": "Resim Atölyesi (4-6 Yaş)",
+            "price": "3.000 TL/ay",
+            "duration": "Haftada 2 gün",
+            "description": "Suluboya, akrilik ve karışık teknik resim eğitimi."
+          },
+          {
+            "id": "s5",
+            "name": "Müzik ve Ritm (2-6 Yaş)",
+            "price": "2.500 TL/ay",
+            "duration": "Haftada 2 gün",
+            "description": "Orff yaklaşımıyla ritm, şarkı ve enstrüman tanıma."
+          },
+          {
+            "id": "s6",
+            "name": "Drama ve Tiyatro (4-6 Yaş)",
+            "price": "2.800 TL/ay",
+            "duration": "Haftada 2 gün",
+            "description": "Yaratıcı drama, kukla tiyatrosu ve sahne sanatları."
+          },
+          {
+            "id": "s7",
+            "name": "Seramik ve Heykel (3-6 Yaş)",
+            "price": "3.200 TL/ay",
+            "duration": "Haftada 1 gün",
+            "description": "Kil, seramik ve 3 boyutlu sanat çalışmaları."
+          },
+          {
+            "id": "s8",
+            "name": "Bale ve Modern Dans (3-6 Yaş)",
+            "price": "2.800 TL/ay",
+            "duration": "Haftada 2 gün",
+            "description": "Klasik bale temelleri ve çağdaş dans eğitimi."
+          },
+          {
+            "id": "s9",
+            "name": "Yaz Sanat Kampı",
+            "price": "12.000 TL/ay",
+            "duration": "Haziran-Ağustos",
+            "description": "Resim, heykel, tiyatro, müzik ve dans yoğunlaştırılmış yaz programı."
+          },
+          {
+            "id": "s10",
+            "name": "İngilizce Sanat Programı",
+            "price": "4.000 TL/ay",
+            "duration": "Haftada 3 gün",
+            "description": "Native speaker eğitmenle sanat temelli İngilizce programı."
+          },
+          {
+            "id": "s11",
+            "name": "Dijital Sanat (5-6 Yaş)",
+            "price": "2.500 TL/ay",
+            "duration": "Haftada 1 gün",
+            "description": "Tablet ile dijital çizim ve animasyon temelleri."
+          },
+          {
+            "id": "s12",
+            "name": "Fotoğrafçılık Atölyesi (5-6 Yaş)",
+            "price": "2.200 TL/ay",
+            "duration": "Haftada 1 gün",
+            "description": "Çocuk gözüyle fotoğraf çekimi ve görsel anlatım."
+          },
+          {
+            "id": "s13",
+            "name": "Hafta Sonu Aile Atölyesi",
+            "price": "800 TL/seans",
+            "duration": "Cumartesi",
+            "description": "Ebeveyn-çocuk birlikte sanat yapma deneyimi."
+          },
+          {
+            "id": "s14",
+            "name": "Doğum Günü Partisi",
+            "price": "5.000 TL",
+            "duration": "3 saat",
+            "description": "Sanat temalı doğum günü organizasyonu, atölye çalışması dahil."
+          }
+        ],
+        "team": [
+          {
+            "name": "Selin Çelik",
+            "title": "Kurucu & Sanat Direktörü",
+            "description": "Mimar Sinan GSF mezunu, 20 yıllık sanat eğitimi deneyimi."
+          },
+          {
+            "name": "Defne Koç",
+            "title": "Reggio Emilia Uzmanı",
+            "description": "İtalya'da Reggio Emilia eğitimi almış atelierista."
+          },
+          {
+            "name": "Can Polat",
+            "title": "Müzik Eğitmeni",
+            "description": "Konservatuar mezunu, Orff ve Kodaly sertifikalı müzik eğitimcisi."
+          },
+          {
+            "name": "İrem Balcı",
+            "title": "Drama Öğretmeni",
+            "description": "Tiyatro bölümü mezunu, yaratıcı drama uzmanı."
+          },
+          {
+            "name": "Naz Eren",
+            "title": "Bale Eğitmeni",
+            "description": "İstanbul Devlet Balesi eski dansçısı, pedagojik bale eğitimcisi."
+          },
+          {
+            "name": "Ahmet Tunç",
+            "title": "Seramik Sanatçısı",
+            "description": "Seramik sanatçısı, çocuklarla 10 yıllık atölye deneyimi."
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Nil Y.",
+            "district": "Nişantaşı",
+            "date": "2026-01",
+            "rating": 5,
+            "comment": "Kızım burada resim yapmaya bayılıyor. Sergi açtıklarında gözlerimiz doldu. Eğitimciler gerçekten sanatçı."
+          },
+          {
+            "name": "Volkan E.",
+            "district": "Beşiktaş",
+            "date": "2025-12",
+            "rating": 5,
+            "comment": "Oğlumun seramik çalışmaları inanılmaz. Evimiz küçük bir galeri oldu. Reggio yaklaşımı harika."
+          },
+          {
+            "name": "Gizem S.",
+            "district": "Şişli",
+            "date": "2025-10",
+            "rating": 5,
+            "comment": "Drama dersleri çocuğumun özgüvenini çok geliştirdi. Artık sahneye çıkmaktan korkmuyor."
+          },
+          {
+            "name": "Burak T.",
+            "district": "Levent",
+            "date": "2025-11",
+            "rating": 4,
+            "comment": "Fiyatlar biraz yüksek ama kalite karşılığını veriyor. Yıl sonu gösterisi muhteşemdi."
+          },
+          {
+            "name": "Zeynep K.",
+            "district": "Etiler",
+            "date": "2026-02",
+            "rating": 5,
+            "comment": "Müzik eğitmeni Can Bey harika. Çocuklar onu çok seviyor. Orff enstrümanlarıyla çok eğleniyorlar."
+          },
+          {
+            "name": "Murat Ö.",
+            "district": "Mecidiyeköy",
+            "date": "2025-09",
+            "rating": 5,
+            "comment": "İki çocuğumu da buraya gönderiyorum. Bale ve resim programları çok kaliteli."
+          },
+          {
+            "name": "Ayça D.",
+            "district": "Fulya",
+            "date": "2025-08",
+            "rating": 5,
+            "comment": "Hafta sonu aile atölyesine katıldık, harika bir deneyimdi. Çocukla birlikte sanat yapmak çok keyifli."
+          },
+          {
+            "name": "Serkan B.",
+            "district": "Nişantaşı",
+            "date": "2026-03",
+            "rating": 5,
+            "comment": "Dijital sanat atölyesi çok modern bir yaklaşım. Çocuklar geleceğe hazırlanıyor."
+          }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Küçük Sanatçılar, Büyük Eserler",
+          "subtitle": "Nişantaşı'nda Reggio Emilia ilhamıyla sanat odaklı kreş. Çocuğunuzun yaratıcılığını keşfedin.",
+          "badge": "Reggio Emilia Yaklaşımı"
+        },
+        "about": {
+          "title": "Küçük Sanatçılar Atölyesi Hakkında",
+          "description": "2010 yılında Mimar Sinan Güzel Sanatlar Fakültesi mezunu Selin Çelik tarafından kurulan Küçük Sanatçılar Atölyesi, İstanbul'un sanat odaklı ilk kreşidir. Reggio Emilia yaklaşımını benimseyerek her çocuğun '100 dili' olduğuna inanıyor ve bu dilleri sanat yoluyla ifade etmelerine olanak tanıyoruz. 600 metrekarelik mekanımızda resim atölyesi, seramik stüdyosu, müzik odası, drama salonu ve dans stüdyosu bulunmaktadır. 16 yıllık deneyimimizle 5.000'den fazla çocuğun yaratıcı yolculuğuna eşlik ettik."
+        },
+        "services": {
+          "title": "Sanat Programlarımız",
+          "subtitle": "Resim, müzik, drama, dans ve seramik — her çocuğa bir sanat dalı"
+        },
+        "contact": {
+          "title": "Atölyemizi Ziyaret Edin",
+          "subtitle": "Çocuğunuz için ücretsiz deneme dersi ayırtın"
+        },
+        "faq": [
+          {
+            "question": "Reggio Emilia yaklaşımı nedir?",
+            "answer": "İtalya'nın Reggio Emilia şehrinde geliştirilen, çocuğun 100 farklı ifade dilini tanıyan bir eğitim felsefesidir. Sanat, doğa, drama ve müzik bu dillerin araçlarıdır."
+          },
+          {
+            "question": "Çocuğumun sanat yeteneği yok gibi görünüyor, yine de katılabilir mi?",
+            "answer": "Kesinlikle! Bizim yaklaşımımız sonuç değil süreç odaklıdır. Her çocuğun kendine özgü ifade biçimi vardır."
+          },
+          {
+            "question": "Sanat malzemeleri güvenli mi?",
+            "answer": "Tüm malzemeler AP (Approved Product) sertifikalı, toksik olmayan ve çocuk güvenliğine uygun ürünlerdir."
+          },
+          {
+            "question": "Akademik eğitim de veriliyor mu?",
+            "answer": "Evet, okuma-yazma hazırlığı, matematik ve fen bilimleri sanat projeleri içine entegre edilmiştir. Çocuklar resim yaparken sayıyı, heykel yaparken geometriyi öğrenir."
+          },
+          {
+            "question": "Yıl sonu sergisi var mı?",
+            "answer": "Evet, her yıl Haziran ayında profesyonel bir galeri ortamında çocuk eserleri sergisi düzenliyoruz. Veliler ve sanatseverler davetlidir."
+          },
+          {
+            "question": "Deneme dersi ücretsiz mi?",
+            "answer": "İlk deneme günü tamamen ücretsizdir. Çocuğunuz bir gün boyunca programımıza katılır ve eğitimcilerimiz gözlem raporu sunar."
+          },
+          {
+            "question": "Hangi yaş grubuna hitap ediyorsunuz?",
+            "answer": "1-6 yaş arası çocuklara hizmet veriyoruz. Her yaş grubu için ayrı sınıf ve program mevcuttur."
+          },
+          {
+            "question": "Servis hizmetiniz var mı?",
+            "answer": "Şişli, Beşiktaş, Kağıthane ve Beyoğlu bölgelerinde ücretsiz servis hizmetimiz bulunmaktadır."
+          },
+          {
+            "question": "Eğitimcileriniz kimler?",
+            "answer": "Tüm eğitimcilerimiz güzel sanatlar, konservatuar veya eğitim fakültesi mezunudur. Ayrıca Reggio Emilia ve sanat terapisi sertifikalarına sahiptirler."
+          },
+          {
+            "question": "Doğum günü organizasyonu yapıyor musunuz?",
+            "answer": "Evet, sanat temalı doğum günü partileri düzenliyoruz. Seramik, resim veya drama atölyesi seçenekleriyle eğlenceli bir kutlama."
+          }
+        ]
+      }
+    },
+    {
+      "id": "kres-lux",
+      "variantName": "lux",
+      "plan": "enterprise",
+      "description": "Premium VIP kreş — lüks altın tonları, karanlık şık tasarım",
+      "designPhilosophy": "Ultra premium, exclusive, uluslararası standart",
+      "isDark": true,
+      "colors": {
+        "bg": "#0A0A0A",
+        "surface": "#1A1714",
+        "text": "#F5F0E8",
+        "accent": "#C9A84C",
+        "accentHover": "#D4B85C",
+        "accentActive": "#B8963C",
+        "accentLight": "#2A2418",
+        "surfaceElevated": "#252017",
+        "surfaceMuted": "#151210",
+        "textSecondary": "#BEB5A5",
+        "textMuted": "#8A8070",
+        "textOnAccent": "#0A0A0A",
+        "border": "#2A2520",
+        "borderSubtle": "#1F1B17"
+      },
+      "fonts": {
+        "heading": "Cormorant Garamond",
+        "body": "Inter"
+      },
+      "business": {
+        "name": "Little Legends Academy",
+        "sector": "kres",
+        "ownerName": "Prof. Dr. Aylin Sönmez",
+        "slogan": "İstanbul'un en seçkin ailelerinin tercihi — uluslararası standartlarda erken çocukluk eğitimi",
+        "phone": "0212 999 0001",
+        "phoneClean": "02129990001",
+        "email": "admissions@littlelegends.com.tr",
+        "address": "Etiler Mah. Nispetiye Cad. No:12, Beşiktaş/İstanbul",
+        "city": "İstanbul",
+        "district": "Beşiktaş",
+        "coordinates": {
+          "lat": 41.0812,
+          "lng": 29.0343
+        },
+        "socialMedia": {
+          "instagram": "littlelegendsistanbul",
+          "facebook": "littlelegendsacademy",
+          "youtube": "littlelegends",
+          "twitter": "littlelegendsist",
+          "linkedin": "little-legends-academy"
+        },
+        "photos": [],
+        "foundedYear": 2008,
+        "experience": "18 yıl",
+        "customerCount": "8.000+",
+        "rating": 5.0,
+        "reviewCount": 1450,
+        "workingHours": [
+          {
+            "day": "Pazartesi",
+            "open": "07:00",
+            "close": "19:30",
+            "isOpen": true
+          },
+          {
+            "day": "Salı",
+            "open": "07:00",
+            "close": "19:30",
+            "isOpen": true
+          },
+          {
+            "day": "Çarşamba",
+            "open": "07:00",
+            "close": "19:30",
+            "isOpen": true
+          },
+          {
+            "day": "Perşembe",
+            "open": "07:00",
+            "close": "19:30",
+            "isOpen": true
+          },
+          {
+            "day": "Cuma",
+            "open": "07:00",
+            "close": "19:30",
+            "isOpen": true
+          },
+          {
+            "day": "Cumartesi",
+            "open": "09:00",
+            "close": "17:00",
+            "isOpen": true
+          },
+          {
+            "day": "Pazar",
+            "open": "10:00",
+            "close": "14:00",
+            "isOpen": true
+          }
+        ],
+        "services": [
+          {
+            "id": "s1",
+            "name": "VIP Bebek Programı (3-18 Ay)",
+            "price": "28.000 TL/ay",
+            "duration": "Tam gün",
+            "description": "1:2 eğitimci-bebek oranı, kişiselleştirilmiş gelişim planı, günlük dijital rapor."
+          },
+          {
+            "id": "s2",
+            "name": "International Toddler (18-36 Ay)",
+            "price": "25.000 TL/ay",
+            "duration": "Tam gün",
+            "description": "%50 İngilizce, %50 Türkçe dual-language program. Cambridge Early Years müfredatı."
+          },
+          {
+            "id": "s3",
+            "name": "Cambridge Pre-School (3-5 Yaş)",
+            "price": "30.000 TL/ay",
+            "duration": "Tam gün",
+            "description": "Cambridge International Education Programme, STEM entegrasyonlu uluslararası anaokulu."
+          },
+          {
+            "id": "s4",
+            "name": "IB PYP Hazırlık (5-6 Yaş)",
+            "price": "32.000 TL/ay",
+            "duration": "Tam gün",
+            "description": "IB Primary Years Programme hazırlık, kolej giriş danışmanlığı dahil."
+          },
+          {
+            "id": "s5",
+            "name": "Executive Yarım Gün",
+            "price": "18.000 TL/ay",
+            "duration": "Yarım gün",
+            "description": "Sabah 07:00-13:00 yoğunlaştırılmış akademik program."
+          },
+          {
+            "id": "s6",
+            "name": "Piyano (Bireysel)",
+            "price": "6.000 TL/ay",
+            "duration": "Haftada 2 gün",
+            "description": "Suzuki metodu ile bireysel piyano eğitimi, konservatuar çıkışlı öğretmen."
+          },
+          {
+            "id": "s7",
+            "name": "Keman (Bireysel)",
+            "price": "6.000 TL/ay",
+            "duration": "Haftada 2 gün",
+            "description": "Suzuki metodu ile bireysel keman eğitimi."
+          },
+          {
+            "id": "s8",
+            "name": "Robotik ve Kodlama (4-6 Yaş)",
+            "price": "4.500 TL/ay",
+            "duration": "Haftada 2 gün",
+            "description": "LEGO Education, Cubetto ve ScratchJr ile STEM eğitimi."
+          },
+          {
+            "id": "s9",
+            "name": "Bale Akademi (3-6 Yaş)",
+            "price": "5.000 TL/ay",
+            "duration": "Haftada 3 gün",
+            "description": "RAD (Royal Academy of Dance) müfredatı, İngiliz bale geleneği."
+          },
+          {
+            "id": "s10",
+            "name": "Yüzme (2-6 Yaş)",
+            "price": "4.000 TL/ay",
+            "duration": "Haftada 2 gün",
+            "description": "32°C kapalı havuzda grup ve bireysel yüzme dersleri."
+          },
+          {
+            "id": "s11",
+            "name": "Fransızca (3-6 Yaş)",
+            "price": "5.500 TL/ay",
+            "duration": "Haftada 3 gün",
+            "description": "Native Fransız öğretmenle immersion programı."
+          },
+          {
+            "id": "s12",
+            "name": "Almanca (3-6 Yaş)",
+            "price": "5.500 TL/ay",
+            "duration": "Haftada 3 gün",
+            "description": "Native Alman öğretmenle dil edinimi programı."
+          },
+          {
+            "id": "s13",
+            "name": "Jimnastik Akademi",
+            "price": "3.500 TL/ay",
+            "duration": "Haftada 2 gün",
+            "description": "Artistik jimnastik temelleri, FIG standartlarında ekipman."
+          },
+          {
+            "id": "s14",
+            "name": "Chess Academy (4-6 Yaş)",
+            "price": "3.000 TL/ay",
+            "duration": "Haftada 2 gün",
+            "description": "FIDE antrenör eşliğinde satranç eğitimi."
+          },
+          {
+            "id": "s15",
+            "name": "Art Studio (3-6 Yaş)",
+            "price": "4.000 TL/ay",
+            "duration": "Haftada 2 gün",
+            "description": "Profesyonel sanatçı atölyesinde resim, heykel ve baskı teknikleri."
+          },
+          {
+            "id": "s16",
+            "name": "Equestrian Introduction (4-6 Yaş)",
+            "price": "8.000 TL/ay",
+            "duration": "Haftada 1 gün",
+            "description": "Partnered binicilik kulübünde temel at binme ve hayvan bakımı."
+          },
+          {
+            "id": "s17",
+            "name": "Yaz Akademisi",
+            "price": "22.000 TL/ay",
+            "duration": "Haziran-Ağustos",
+            "description": "Su sporları, tenis, sanat, STEM ve dil kampları. Haftalık tema değişimi."
+          },
+          {
+            "id": "s18",
+            "name": "Kış Tatil Programı",
+            "price": "15.000 TL/2 hafta",
+            "duration": "Aralık-Ocak",
+            "description": "Sömestr tatili özel programı, kayak gezisi dahil."
+          },
+          {
+            "id": "s19",
+            "name": "Cumartesi Akademi",
+            "price": "8.000 TL/ay",
+            "duration": "Cumartesi",
+            "description": "Tam gün zenginleştirilmiş hafta sonu programı."
+          },
+          {
+            "id": "s20",
+            "name": "Özel Ders (Tüm Branşlar)",
+            "price": "1.500 TL/seans",
+            "duration": "45 dakika",
+            "description": "Birebir akademik destek veya sanat/spor koçluğu."
+          }
+        ],
+        "team": [
+          {
+            "name": "Prof. Dr. Aylin Sönmez",
+            "title": "Kurucu & Genel Müdür",
+            "description": "Harvard Eğitim Fakültesi, erken çocukluk gelişimi profesörü, IB eğitim danışmanı."
+          },
+          {
+            "name": "Dr. James Wilson",
+            "title": "Akademik Direktör",
+            "description": "Cambridge Üniversitesi, uluslararası eğitim programları uzmanı, 25 yıl deneyim."
+          },
+          {
+            "name": "Yasemin Acar",
+            "title": "Bebek Programı Koordinatörü",
+            "description": "Çocuk gelişimi doktoru, Pikler yaklaşımı uzmanı."
+          },
+          {
+            "name": "Marie Dubois",
+            "title": "Fransızca Bölüm Başkanı",
+            "description": "Sorbonne mezunu, 15 yıl FLE (Français Langue Étrangère) deneyimi."
+          },
+          {
+            "name": "Michael Schmidt",
+            "title": "Almanca Bölüm Başkanı",
+            "description": "Goethe-Institut sertifikalı, DaF uzmanı."
+          },
+          {
+            "name": "Elif Kaplan",
+            "title": "STEM Koordinatörü",
+            "description": "MIT Media Lab araştırmacısı, çocuk teknoloji eğitimi uzmanı."
+          },
+          {
+            "name": "Anastasia Petrova",
+            "title": "Bale Direktörü",
+            "description": "Bolşoy Bale Akademisi mezunu, RAD sertifikalı."
+          },
+          {
+            "name": "GM Emre Kılıç",
+            "title": "Satranç Antrenörü",
+            "description": "FIDE Grand Master, Türkiye genç milli takım antrenörü."
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Leyla & Kerem H.",
+            "district": "Etiler",
+            "date": "2026-02",
+            "rating": 5,
+            "comment": "Oğlumuz 2 yaşında başladı, şimdi 5 yaşında akıcı İngilizce ve temel Fransızca konuşuyor. Cambridge müfredatı gerçekten fark yaratıyor."
+          },
+          {
+            "name": "Şule A.",
+            "district": "Ulus",
+            "date": "2026-01",
+            "rating": 5,
+            "comment": "Kızımız Robert Kolej'e kabul aldı. Hazırlık sürecinde Little Legends'ın IB programı çok değerli oldu."
+          },
+          {
+            "name": "Cem & Deniz B.",
+            "district": "Bebek",
+            "date": "2025-12",
+            "rating": 5,
+            "comment": "Üç çocuğumuzu da buraya gönderdik. Her biri farklı yeteneklerini keşfetti — biri piyanoda, biri robotikta parladı."
+          },
+          {
+            "name": "Dr. Fatma Y.",
+            "district": "Levent",
+            "date": "2025-11",
+            "rating": 5,
+            "comment": "Yoğun çalışma temposunda 07:00-19:30 saatleri hayat kurtarıcı. Dijital gelişim raporları çok profesyonel."
+          },
+          {
+            "name": "Mert K.",
+            "district": "Nişantaşı",
+            "date": "2025-10",
+            "rating": 5,
+            "comment": "Bale programı Bolşoy kalitesinde. Anastasia Hoca inanılmaz. Kızımız sahnede parlıyor."
+          },
+          {
+            "name": "Seda & Oğuz T.",
+            "district": "Sarıyer",
+            "date": "2025-09",
+            "rating": 5,
+            "comment": "Havuz, jimnastik, satranç... Her şey tek çatı altında. Lojistik açıdan aileler için mükemmel."
+          },
+          {
+            "name": "Ayşegül N.",
+            "district": "Etiler",
+            "date": "2026-03",
+            "rating": 5,
+            "comment": "Yaz akademisi harika. Çocuklar hem eğleniyor hem öğreniyor. Kayak gezisi büyük sürprizdi."
+          },
+          {
+            "name": "Barış & İdil M.",
+            "district": "Arnavutköy",
+            "date": "2025-08",
+            "rating": 5,
+            "comment": "STEM programı çocuğumuzu robot tasarımına yönlendirdi. 5 yaşında Cubetto ile harika projeler yapıyor."
+          },
+          {
+            "name": "Prof. Ali S.",
+            "district": "Bebek",
+            "date": "2025-07",
+            "rating": 5,
+            "comment": "Akademik kadro uluslararası düzeyde. Harvard ve Cambridge geçmişi olan bir yönetim ekibi bulmak kolay değil."
+          },
+          {
+            "name": "Gökçe D.",
+            "district": "Ulus",
+            "date": "2026-01",
+            "rating": 5,
+            "comment": "At binme programı çocuğumun hayvan sevgisini geliştirdi. Doğayla bağ kurması için harika bir fırsat."
+          },
+          {
+            "name": "Tolga & Melis A.",
+            "district": "Levent",
+            "date": "2025-06",
+            "rating": 4,
+            "comment": "Fiyatlar premium ama aldığınız eğitim ve hizmet karşılığını veriyor. Cumartesi akademisi çalışan aileler için ideal."
+          },
+          {
+            "name": "Zehra E.",
+            "district": "Etiler",
+            "date": "2025-05",
+            "rating": 5,
+            "comment": "Güvenlik konusunda çok titizler. Parmak izi ile giriş, 24 saat kamera, hemşire sürekli görevde."
+          }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Geleceğin Liderlerini Yetiştiriyoruz",
+          "subtitle": "Cambridge & IB müfredatı, dual-language program, 20+ zenginleştirilmiş aktivite. Etiler'de uluslararası standartlarda erken çocukluk akademisi.",
+          "badge": "Cambridge International School"
+        },
+        "about": {
+          "title": "Little Legends Academy",
+          "description": "2008 yılında Prof. Dr. Aylin Sönmez tarafından kurulan Little Legends Academy, Türkiye'nin ilk Cambridge International Early Years sertifikalı kreşidir. Etiler'deki 1.500 metrekarelik kampüsümüzde kapalı yüzme havuzu, jimnastik salonu, müzik stüdyoları, STEM laboratuvarı, bale salonu ve açık oyun alanları bulunmaktadır. Uluslararası kadromuz 8 farklı ülkeden gelen uzmanlardan oluşmaktadır. 18 yılda 8.000'den fazla çocuğun eğitimine katkıda bulunduk; mezunlarımız Türkiye ve dünya genelinde en prestijli özel okullara kabul almaktadır. IB PYP hazırlık programımız, Robert Kolej, Koç ve British International School gibi kurumların giriş süreçlerine hazırlık sağlar."
+        },
+        "services": {
+          "title": "Akademik Programlar & Aktiviteler",
+          "subtitle": "Cambridge müfredatı, 3 yabancı dil, 20+ zenginleştirilmiş aktivite"
+        },
+        "contact": {
+          "title": "Kampüs Turu & Kayıt",
+          "subtitle": "Özel randevu ile kampüsümüzü ziyaret edin, eğitim danışmanımızla görüşün"
+        },
+        "faq": [
+          {
+            "question": "Cambridge Early Years programı nedir?",
+            "answer": "Cambridge Assessment International Education tarafından akredite edilmiş, dünya genelinde 10.000+ okulda uygulanan uluslararası erken çocukluk müfredatıdır."
+          },
+          {
+            "question": "Hangi dillerde eğitim veriliyor?",
+            "answer": "Ana program %50 İngilizce, %50 Türkçe dual-language formatındadır. Ek olarak Fransızca ve Almanca immersion programları mevcuttur."
+          },
+          {
+            "question": "Kolej giriş danışmanlığı nasıl çalışıyor?",
+            "answer": "IB PYP hazırlık programımız kapsamında kolej giriş koçumuz, 5-6 yaş grubunda değerlendirme ve hazırlık sürecini yönetir."
+          },
+          {
+            "question": "Eğitimci-çocuk oranı nedir?",
+            "answer": "Bebek grubu 1:2, toddler 1:4, pre-school 1:6 oranındadır. Bu oran sektör standardının çok üzerindedir."
+          },
+          {
+            "question": "Yemek nasıl hazırlanıyor?",
+            "answer": "Yerinde şef ve diyetisyen gözetiminde, %100 organik malzemelerle günlük taze menü hazırlanır. Alerjik durumlar için bireysel plan oluşturulur."
+          },
+          {
+            "question": "Sağlık hizmetleriniz nelerdir?",
+            "answer": "Tam zamanlı hemşire, haftalık pediatrist viziti, diş kontrolü ve gelişim taramaları standart hizmetlerimizdir."
+          },
+          {
+            "question": "Kampüs güvenliği nasıl?",
+            "answer": "Biyometrik giriş, 7/24 CCTV, güvenlik görevlisi, yangın sistemi ve deprem tatbikatları düzenli yapılır."
+          },
+          {
+            "question": "Mezunlarınız hangi okullara gidiyor?",
+            "answer": "Mezunlarımızın %85'i Robert Kolej, Koç Özel, British International School, MEF veya Alman Lisesi gibi kurumlara kabul almaktadır."
+          },
+          {
+            "question": "Servis hizmetiniz var mı?",
+            "answer": "Mercedes Sprinter araçlarla Beşiktaş, Sarıyer, Şişli ve Kağıthane bölgelerinde VIP servis sunuyoruz."
+          },
+          {
+            "question": "Tatil programları neler?",
+            "answer": "Yaz Akademisi (Haziran-Ağustos), Kış Tatil Programı (kayak gezisi dahil) ve ara tatil aktiviteleri düzenlenmektedir."
+          },
+          {
+            "question": "Uzaktan eğitim seçeneğiniz var mı?",
+            "answer": "Pandemi gibi olağanüstü durumlarda tam donanımlı online eğitim altyapımız hazırdır. Zoom + Seesaw platformları kullanılır."
+          },
+          {
+            "question": "Ödeme planı sunuyor musunuz?",
+            "answer": "Yıllık peşin ödemede %10 indirim, 3 taksit ve 6 taksit seçenekleri mevcuttur. Kardeş indirimi %15'tir."
+          },
+          {
+            "question": "Giriş süreci nasıl işliyor?",
+            "answer": "Online başvuru → Kampüs turu → Çocuk değerlendirmesi (oyun bazlı) → Veli mülakatı → Kabul kararı. Süreç ortalama 2 hafta sürer."
+          },
+          {
+            "question": "Extra-curricular aktivitelerin ücreti dahil mi?",
+            "answer": "Temel program ücreti akademik müfredatı kapsar. Piyano, bale, yüzme gibi zenginleştirilmiş aktiviteler ayrı ücretlendirilir."
+          },
+          {
+            "question": "Hangi yaş grubunda başvuru alıyorsunuz?",
+            "answer": "3 aylıktan itibaren başvuru alıyoruz. Popüler yaş grupları için bekleme listesi oluşabilir, erken başvuru önerilir."
+          }
+        ]
+      }
+    }
+  ]
+}

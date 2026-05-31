@@ -1,0 +1,1332 @@
+{
+  "sectorId": "spor",
+  "seoSchemaType": "SportsActivityLocation",
+  "variants": [
+    {
+      "id": "spor-iron",
+      "variantName": "iron",
+      "plan": "free",
+      "description": "Mahalle spor salonu, sade ve guclu",
+      "designPhilosophy": "Endustriyel, guclu, minimal",
+      "isDark": false,
+      "colors": {
+        "bg": "#FFFFFF",
+        "surface": "#F2F2F0",
+        "text": "#1A1A1A",
+        "accent": "#DC2626"
+      },
+      "fonts": { "heading": "Inter", "body": "Inter" },
+      "business": {
+        "name": "Iron Gym Spor Salonu",
+        "ownerName": "Serkan Yilmaz",
+        "sector": "Spor",
+        "slogan": "Guc sende, biz yanindayiz",
+        "phone": "0216 340 56 78",
+        "phoneClean": "902163405678",
+        "whatsapp": "905341234567",
+        "email": "info@irongym.com.tr",
+        "address": "Bostanci Mah. Bagdat Cad. No:180/B, Kadikoy/Istanbul",
+        "city": "Istanbul",
+        "district": "Kadikoy",
+        "neighborhood": "Bostanci",
+        "coordinates": { "lat": 40.9618, "lng": 29.0927 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/irongymist"
+        },
+        "photos": [],
+        "foundedYear": 2017,
+        "experience": "9 yil",
+        "customerCount": "4.500+",
+        "rating": 4.7,
+        "reviewCount": 380,
+        "services": [
+          {
+            "id": "s1",
+            "name": "Aylik Uyelik",
+            "price": "900 TL/ay",
+            "duration": "Sinrsiz",
+            "description": "Tum ekipmanlara sinirsiz erisim. Kardio, agirlik ve fonksiyonel antrenman alanlarir. Soyunma odasi ve dus dahil."
+          },
+          {
+            "id": "s2",
+            "name": "Kisisel Antrenman (PT)",
+            "price": "500 TL/seans",
+            "duration": "60 dk",
+            "description": "Birebir kisisel antrenor esliginde hedef odakli calisma. Kilo verme, kas yapma veya genel fitness."
+          },
+          {
+            "id": "s3",
+            "name": "Grup Dersleri",
+            "price": "Uyelik dahilinde",
+            "duration": "45-60 dk",
+            "description": "Spinning, fonksiyonel antrenman, mat pilates dersleri. Hafta ici aksamlari ve hafta sonu sabahlar."
+          },
+          {
+            "id": "s4",
+            "name": "Yillik Uyelik",
+            "price": "8.500 TL/yil",
+            "duration": "12 ay",
+            "description": "12 aylik taahhutlu uyelik. Aylik uyeliAe gore %22 indirimli. Dondurma hakki: 30 gun."
+          }
+        ],
+        "workingHours": [
+          { "day": "Pazartesi", "open": "06:00", "close": "23:00", "isOpen": true },
+          { "day": "Sali", "open": "06:00", "close": "23:00", "isOpen": true },
+          { "day": "Carsamba", "open": "06:00", "close": "23:00", "isOpen": true },
+          { "day": "Persembe", "open": "06:00", "close": "23:00", "isOpen": true },
+          { "day": "Cuma", "open": "06:00", "close": "23:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Pazar", "open": "09:00", "close": "18:00", "isOpen": true }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Guc Sende Baslar",
+          "subtitle": "9 yildir Bostanci'da — agirlik, kardio, fonksiyonel antrenman. Sade, temiz, profesyonel spor salonu.",
+          "badge": "Kadikoy"
+        },
+        "about": {
+          "title": "Iron Gym Hakkinda",
+          "description": "2017 yilinda Bostanci'da kurulan Iron Gym, gercek antrenmana odaklanan bir spor salonudur. Luks dekorasyondansa kaliteli ekipmana yatirim yapiyoruz. 300 m2 alanda Hammer Strength, Life Fitness ve Rogue ekipmanlarıyla donatilmis salonumuzda rahat ve verimli antrenman yapabilirsiniz.\n\nKurucumuz Serkan Yilmaz, 15 yillik fitness deneyimi ve NASM sertifikasıyla kisisel antrenmanlik da vermektedir. Uyelerimizin %60'i 2 yildan fazla suredir bizimle calisiyor — bu da bizi memnun eden bir sadakat orani."
+        },
+        "services": {
+          "title": "Uyelik Secenekleri",
+          "subtitle": "Amacıniza uygun uyelik plani secin"
+        },
+        "contact": {
+          "title": "Ucretsiz Deneme",
+          "subtitle": "Ilk antrenmaniniz bizden — randevu alin, spor salonumuzu taniyin"
+        },
+        "faq": [
+          {
+            "q": "Deneme dersi var mi?",
+            "a": "Evet, ilk antrenmaniniz tamamen ucretsizdir. Randevu alarak gelmeniz yeterli, ekipman tanitimi ve kisaca spor gecmisinizi degerlendiriyoruz."
+          },
+          {
+            "q": "Uyelik dondurma hakki var mi?",
+            "a": "Yillik uyelikte 30 gun, 6 aylik uyelikte 15 gun dondurma hakkınız bulunmaktadir. Dondurma basvurusu online veya resepsiyonda yapilabilir."
+          },
+          {
+            "q": "Kardio ekipmaniniz nelerdir?",
+            "a": "Life Fitness kosu bandlari, eliptik bisikletler, kurek makineleri ve Assault Bike mevcuttur. Her ekipmanda kisisel ekran ve bluetooth baglanti."
+          },
+          {
+            "q": "Kisisel antrenor sart mi?",
+            "a": "Hayir, salon uyeigimizla bagimsiz antrenman yapabilirsiniz. Ancak hedeflerinize daha hizli ulasmak icin PT tavsiye ediyoruz."
+          }
+        ],
+        "testimonials": []
+      }
+    },
+    {
+      "id": "spor-studio",
+      "variantName": "studio",
+      "plan": "starter",
+      "description": "Butik fitness stüdyosu, kisisel hizmet",
+      "designPhilosophy": "Sicak, kisisel, motivasyonel",
+      "isDark": false,
+      "colors": {
+        "bg": "#FAF9F7",
+        "surface": "#F0EDE8",
+        "text": "#1C1917",
+        "accent": "#EA580C"
+      },
+      "fonts": { "heading": "Outfit", "body": "Inter" },
+      "business": {
+        "name": "FitStudio Butik Spor",
+        "ownerName": "Elif Dogan",
+        "sector": "Spor",
+        "slogan": "Kucuk grup, buyuk sonuclar",
+        "phone": "0212 280 44 55",
+        "phoneClean": "902122804455",
+        "whatsapp": "905441234567",
+        "email": "info@fitstudio.com.tr",
+        "address": "Cihangir Mah. Akarsu Cad. No:20/1, Beyoglu/Istanbul",
+        "city": "Istanbul",
+        "district": "Beyoglu",
+        "neighborhood": "Cihangir",
+        "coordinates": { "lat": 41.0318, "lng": 28.9836 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/fitstudioist",
+          "youtube": "https://youtube.com/@fitstudio"
+        },
+        "photos": [],
+        "foundedYear": 2019,
+        "experience": "7 yil",
+        "customerCount": "3.200+",
+        "rating": 4.9,
+        "reviewCount": 620,
+        "services": [
+          {
+            "id": "s1",
+            "name": "Reformer Pilates",
+            "price": "350 TL/ders",
+            "duration": "55 dk",
+            "description": "Kucuk grup (max 6 kisi) reformer pilates dersleri. Core guclendirme, esneklik ve postür düzeltme."
+          },
+          {
+            "id": "s2",
+            "name": "HIIT Fonksiyonel",
+            "price": "250 TL/ders",
+            "duration": "45 dk",
+            "description": "Yuksek yogunluklu aralikli antrenman. Kucuk gruplarla (max 10) kardio ve guc birlesimi."
+          },
+          {
+            "id": "s3",
+            "name": "Yoga",
+            "price": "300 TL/ders",
+            "duration": "60 dk",
+            "description": "Vinyasa, Hatha ve Yin yoga dersleri. Nefes calismasi, esneklik ve zihinsel denge."
+          },
+          {
+            "id": "s4",
+            "name": "1-1 Personal Training",
+            "price": "700 TL/seans",
+            "duration": "60 dk",
+            "description": "Birebir kisisel antrenman. Kisiye ozel program, beslenme rehberligi ve ilerleme takibi."
+          },
+          {
+            "id": "s5",
+            "name": "10'lu Ders Paketi",
+            "price": "2.800 TL",
+            "duration": "10 ders",
+            "description": "Herhangi bir grup dersinden 10 ders paketi. 3 ay gecerlilik suresi. %20 indirimli."
+          },
+          {
+            "id": "s6",
+            "name": "Aylik Sinirsiz Uyelik",
+            "price": "2.200 TL/ay",
+            "duration": "Sinirsiz",
+            "description": "Tum grup derslerine sinirsiz katilim. Rezervasyon onceligi ve ucretsiz beslenme danismanligi."
+          }
+        ],
+        "team": [
+          {
+            "name": "Elif Dogan",
+            "title": "Kurucu | Pilates & Yoga Egitmeni",
+            "bio": "ACE sertifkali fitness egitmeni. 7 yildir pilates ve yoga egitimi veriyor. 200 saat YTT Yoga sertifikasi.",
+            "photo": ""
+          },
+          {
+            "name": "Can Erturk",
+            "title": "HIIT & Fonksiyonel Antrenor",
+            "bio": "CrossFit Level 2, NASM-CPT. 5 yillik antrenorlik deneyimi. TRX ve kettlebell uzmani.",
+            "photo": ""
+          }
+        ],
+        "workingHours": [
+          { "day": "Pazartesi", "open": "07:00", "close": "21:00", "isOpen": true },
+          { "day": "Sali", "open": "07:00", "close": "21:00", "isOpen": true },
+          { "day": "Carsamba", "open": "07:00", "close": "21:00", "isOpen": true },
+          { "day": "Persembe", "open": "07:00", "close": "21:00", "isOpen": true },
+          { "day": "Cuma", "open": "07:00", "close": "21:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "09:00", "close": "16:00", "isOpen": true },
+          { "day": "Pazar", "open": "10:00", "close": "14:00", "isOpen": true }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Butik Spor Deneyimi",
+          "subtitle": "Cihangir'in kalbinde — reformer pilates, yoga, HIIT. Kucuk gruplar, kisisel ilgi, buyuk sonuclar.",
+          "badge": "Max 10 Kisi"
+        },
+        "about": {
+          "title": "FitStudio Hakkinda",
+          "description": "2019 yilinda Cihangir'de kurulan FitStudio, buyuk spor salonlarinin kalabaliginda kaybolmak istemeyen sporculur icin butik bir alternatif sunmaktadir. 120 m2 ferah alanda, maksimum 10 kisilik kucuk gruplarla calisiyor.\n\n6 reformer, yoga matlari, TRX, kettlebell ve fonksiyonel antrenman ekipmanlarımızla donatilmis studyomuzda, her uye kisisel ilgi ve profesyonel rehberlik alir.\n\nKurucumuz Elif Dogan'in pilates ve yoga alanindaki 7 yillik deneyimi ve Can Erturk'un HIIT uzmanligi ile siniflarimiz yuksek kalite ve motivasyonla dolu."
+        },
+        "services": {
+          "title": "Derslerimiz & Paketler",
+          "subtitle": "Pilates, yoga, HIIT ve kisisel antrenman secenekleri"
+        },
+        "stats": {
+          "title": "FitStudio Rakamlari",
+          "items": [
+            { "value": "3.200+", "label": "Uye" },
+            { "value": "7", "label": "Yil" },
+            { "value": "4.9", "label": "Google Puan" },
+            { "value": "6", "label": "Reformer" }
+          ]
+        },
+        "contact": {
+          "title": "Deneme Dersi",
+          "subtitle": "Ilk dersiniz ucretsiz — hemen randevu alin"
+        },
+        "faq": [
+          {
+            "q": "Deneme dersi nasil alirim?",
+            "a": "WhatsApp veya telefonla randevu alin. Ilk dersiniz (pilates, yoga veya HIIT secebilirsiniz) tamamen ucretsizdir."
+          },
+          {
+            "q": "Pilates icin deneyim gerekli mi?",
+            "a": "Hayir, baslangic seviyesinden ileri seviyeye kadar derslerimiz mevcuttur. Egitmenimiz seviyenize uygun modifikasyonlar sunacaktir."
+          },
+          {
+            "q": "Ders iptali nasil yapilir?",
+            "a": "Ders baslangicina 4 saat kala uygulamadan veya WhatsApp'tan iptal edebilirsiniz. 4 saat icerisindeki iptallerde ders hakki kullanilir."
+          },
+          {
+            "q": "Hamilelikte pilates yapabilir miyim?",
+            "a": "Evet, doktor onayiyla hamilelik pilatesi derslerimiz mevcuttur. Ozel modifikasyonlar ve guvenli hareketlerle destek sunuyoruz."
+          },
+          {
+            "q": "Aylik uyelikte taahhut var mi?",
+            "a": "Hayir, aylik uyelik taahhütsüzdür. Istediginiz zaman iptal edebilirsiniz. 10'lu paketlerde 3 ay gecerlilik suresi vardir."
+          },
+          {
+            "q": "Otopark var mi?",
+            "a": "Studyomuzun kendi otoparkı yoktur ancak cadde uzerinde ve yakin cevrde otopark alternatifleri mevcuttur."
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Ece B.",
+            "location": "Cihangir",
+            "date": "2025-11",
+            "rating": 5,
+            "text": "2 yildir FitStudio'ya geliyorum. Reformer pilates bel agrilarimi tamamen gecirdi. Elif Hanim harika bir egitmen."
+          },
+          {
+            "name": "Serkan O.",
+            "location": "Besiktas",
+            "date": "2025-09",
+            "rating": 5,
+            "text": "HIIT dersleri inanilmaz yogun ve etkili. Can Bey cok motive edici. 3 ayda 8 kilo verdim."
+          },
+          {
+            "name": "Zeynep U.",
+            "location": "Taksim",
+            "date": "2025-06",
+            "rating": 5,
+            "text": "Buyuk salonlardan nefret ediyordum. FitStudio'da herkes birbirini taniyor, ortam sicak ve samimi. Tavsiye ederim."
+          }
+        ]
+      }
+    },
+    {
+      "id": "spor-beast",
+      "variantName": "beast",
+      "plan": "growth",
+      "description": "CrossFit box ve fonksiyonel antrenman",
+      "designPhilosophy": "Agresif, enerjik, topluluk odakli",
+      "isDark": false,
+      "colors": {
+        "bg": "#FAFAFA",
+        "surface": "#F0F0F0",
+        "text": "#0F0F0F",
+        "accent": "#F59E0B"
+      },
+      "fonts": { "heading": "Bebas Neue", "body": "Inter" },
+      "business": {
+        "name": "Beast Mode CrossFit",
+        "ownerName": "Alp Kaya",
+        "sector": "Spor",
+        "slogan": "Sinirlarini as",
+        "phone": "0216 580 77 88",
+        "phoneClean": "902165807788",
+        "whatsapp": "905471234567",
+        "email": "info@beastmodecf.com",
+        "address": "Kozyatagi Mah. Bayar Cad. No:72/A, Kadikoy/Istanbul",
+        "city": "Istanbul",
+        "district": "Kadikoy",
+        "neighborhood": "Kozyatagi",
+        "coordinates": { "lat": 40.9750, "lng": 29.0780 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/beastmodecf",
+          "youtube": "https://youtube.com/@beastmodecf",
+          "tiktok": "https://tiktok.com/@beastmodecf"
+        },
+        "photos": [],
+        "foundedYear": 2016,
+        "experience": "10 yil",
+        "customerCount": "8.000+",
+        "rating": 4.9,
+        "reviewCount": 1400,
+        "services": [
+          {
+            "id": "s1",
+            "name": "CrossFit WOD Sinifi",
+            "price": "Uyelik dahilinde",
+            "duration": "60 dk",
+            "description": "Gunun antrenmanı (WOD): olimpik kaldiris, jimnastik ve metabolik kondisyon bilesenleri. Scaled ve RX secenekleri."
+          },
+          {
+            "id": "s2",
+            "name": "Olympic Lifting Sinifi",
+            "price": "Uyelik dahilinde",
+            "duration": "75 dk",
+            "description": "Snatch, Clean & Jerk teknigine odaklanan ozel sinif. Teknik gelistirme ve guc artisi."
+          },
+          {
+            "id": "s3",
+            "name": "Endurance Sinifi",
+            "price": "Uyelik dahilinde",
+            "duration": "45 dk",
+            "description": "Rowing, running, assault bike odakli kondisyon sinifi. Kardio dayanikliligi artirma."
+          },
+          {
+            "id": "s4",
+            "name": "Baslangic Kursu (Foundations)",
+            "price": "3.000 TL",
+            "duration": "6 seans x 60 dk",
+            "description": "CrossFit'e yeni baslayanlar icin zorunlu egitim kursu. Temel hareketler, guvenlik ve teknik."
+          },
+          {
+            "id": "s5",
+            "name": "1-1 Antrenorlik",
+            "price": "800 TL/seans",
+            "duration": "60 dk",
+            "description": "Birebir CrossFit antrenman. Teknik duzeltme, zaif nokta calismasi, musabaka hazirlik."
+          },
+          {
+            "id": "s6",
+            "name": "Aylik Sinirsiz Uyelik",
+            "price": "1.800 TL/ay",
+            "duration": "Sinirsiz",
+            "description": "Tum sinflara sinirsiz katilim. Open Gym erisimi. Topluluk etkinliklerine davet."
+          },
+          {
+            "id": "s7",
+            "name": "6 Aylik Uyelik",
+            "price": "9.000 TL",
+            "duration": "6 ay",
+            "description": "6 aylik taahhutlu uyelik. %17 indirimli. Ucretsiz Foundations kursu dahil."
+          },
+          {
+            "id": "s8",
+            "name": "Yillik Uyelik",
+            "price": "15.000 TL",
+            "duration": "12 ay",
+            "description": "Yillik taahhutlu uyelik. %30 indirimli. Foundations + 2 PT seans dahil. 30 gun dondurma."
+          },
+          {
+            "id": "s9",
+            "name": "Takim Antrenmanı",
+            "price": "2.500 TL/oturum",
+            "duration": "90 dk",
+            "description": "Sirket takimlari veya arkadas gruplari icin ozel CrossFit antrenmanl. Team building etkinligi."
+          },
+          {
+            "id": "s10",
+            "name": "Beslenme Danismanligi",
+            "price": "1.500 TL/ay",
+            "duration": "Aylik takip",
+            "description": "Diyetisyen esliginde bireysel beslenme programi. Makro takip, haftalik kontrol, yemek plani."
+          }
+        ],
+        "team": [
+          {
+            "name": "Alp Kaya",
+            "title": "Kurucu & Head Coach",
+            "bio": "CrossFit Level 3, USAW Level 2. 10 yillik CrossFit deneyimi. Turkiye CrossFit Open top 50.",
+            "photo": ""
+          },
+          {
+            "name": "Irem Celik",
+            "title": "Coach | Jimnastik Uzmani",
+            "bio": "CrossFit Level 2. Eski milli jimnastikci. Muscle-up, handstand ve jimnastik hareketlerinde uzmanlik.",
+            "photo": ""
+          },
+          {
+            "name": "Burak Ozturk",
+            "title": "Coach | Olympic Lifting",
+            "bio": "USAW Level 1, CrossFit Level 2. Halter gecmisli. Snatch ve Clean & Jerk teknik uzmani.",
+            "photo": ""
+          },
+          {
+            "name": "Dyt. Merve Arslan",
+            "title": "Beslenme Danismani",
+            "bio": "Hacettepe Universitesi Beslenme ve Diyetetik. Sporcu beslenmesi ve performans nutrisyonu uzmani.",
+            "photo": ""
+          }
+        ],
+        "workingHours": [
+          { "day": "Pazartesi", "open": "06:00", "close": "22:00", "isOpen": true },
+          { "day": "Sali", "open": "06:00", "close": "22:00", "isOpen": true },
+          { "day": "Carsamba", "open": "06:00", "close": "22:00", "isOpen": true },
+          { "day": "Persembe", "open": "06:00", "close": "22:00", "isOpen": true },
+          { "day": "Cuma", "open": "06:00", "close": "22:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "08:00", "close": "14:00", "isOpen": true },
+          { "day": "Pazar", "open": "09:00", "close": "13:00", "isOpen": true }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Sinirlarini As",
+          "subtitle": "CrossFit, Olympic Lifting, fonksiyonel antrenman — 500 m2 box'ta 8.000+ atlet. Topluluk ruhuyla guclen.",
+          "badge": "CrossFit Affiliate"
+        },
+        "about": {
+          "title": "Beast Mode Hakkinda",
+          "description": "2016 yilinda Kozyatagi'nda kurulan Beast Mode CrossFit, Istanbul'un en buyuk ve en aktif CrossFit box'larindan biridir. 500 m2 alanda Rogue Fitness ekipmanlar, 12 rig istasyonu, 6 platform ve olimpik kaldirisbolgesi ile donatilmis tesisimizde gunluk ortalama 15 sinif duzenliyoruz.\n\nKurucumuz Alp Kaya, CrossFit Level 3 sertifkasina sahip Turkiye'nin en deneyimli koçlarından biridir. 4 kisilik antrenor kadromuzla her seviyeden sporcuya — baslangictan yarismaciya — profesyonel rehberlik sunuyoruz.\n\nBeast Mode sadece bir spor salonu degil, bir topluluktur. Haftalik in-house musabakalar, yillik throwdown etkinlikleri ve sosyal bulusmalarla uyelerimiz arasinda guclu baglar kuruyor.\n\nBeslenme danismanımız Dyt. Merve Arslan ile sporcu beslenmesi, kilo yonetimi ve performans nutrisyonu konularinda profesyonel destek sunuyoruz."
+        },
+        "services": {
+          "title": "Siniflar & Uyelik",
+          "subtitle": "CrossFit WOD, Olympic Lifting, Endurance — her seviye icin"
+        },
+        "stats": {
+          "title": "Beast Mode Rakamlari",
+          "items": [
+            { "value": "8.000+", "label": "Atlet" },
+            { "value": "10", "label": "Yil" },
+            { "value": "4.9", "label": "Google Puan" },
+            { "value": "500 m2", "label": "Calisma Alani" }
+          ]
+        },
+        "gallery": {
+          "title": "Box'imiz & Toplulugumuz",
+          "subtitle": "Rogue ekipman, guclu topluluk, epik antrenmanlar"
+        },
+        "contact": {
+          "title": "Ucretsiz Tanitim Sinifi",
+          "subtitle": "CrossFit'i denemek icin ucretsiz tanitim sinifimiza katilin"
+        },
+        "faq": [
+          {
+            "q": "CrossFit baslangic icin uygun mu?",
+            "a": "Kesinlikle! Foundations kursumuz yeni baslayanlar icin tasarlanmistir. 6 seansta tum temel hareketleri ogrenir, guvenli bir sekilde siniflaraa katilmaya hazir hale gelirsiniz."
+          },
+          {
+            "q": "CrossFit sakatlanma riskli mi?",
+            "a": "Dogru teknik ve profesyonel rehberlik ile CrossFit diger sporllardan daha riskli degildir. Her harekette scaled (uyarlanmis) secenekler sunuyoruz."
+          },
+          {
+            "q": "Foundations kursu zorunlu mu?",
+            "a": "CrossFit deneyimi olmayan uyeler icin zorunludur. Onceki CrossFit deneyiminiz varsa degerlendirme sinifi ile dogrudan WOD'lara katiLabilirsiniz."
+          },
+          {
+            "q": "Sinif kapasitesi ne kadar?",
+            "a": "WOD siniflarimiz maksimum 20 kisi, Olympic Lifting siniflarimiz maksimum 12 kisidir. Kalite icin kapasite sinirlamasinına onem veriyoruz."
+          },
+          {
+            "q": "Open Gym nedir?",
+            "a": "Sinif saatleri disinda salonu bireysel antrenman icin kullanabilmenizdir. Uyelik dahilinde sinirsiz Open Gym erisiminiz vardir."
+          },
+          {
+            "q": "Musabaka hazirlik programiniz var mi?",
+            "a": "Evet, CrossFit Open, Throwdown ve diger musabakalar icin ozel hazirlik programimiz mevcuttur. 1-1 PT olarak da musabaka hazirlik çalismalari yapiyoruz."
+          },
+          {
+            "q": "Dus ve soyunma odasi var mi?",
+            "a": "Evet, erkek ve kadin ayrı soyunma odalari, sicak su dusları ve kilitli dolap sistemi mevcuttur."
+          },
+          {
+            "q": "Ucretsiz otopark var mi?",
+            "a": "Evet, binamizin altinda ucretsiz otopark mevcuttur. Bisiklet park yeri de vardir."
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Oguz Y.",
+            "location": "Kozyatagi",
+            "date": "2025-12",
+            "rating": 5,
+            "text": "3 yildir Beast Mode'dayim. CrossFit hayatimi degistirdi. Topluluk ruhu inanilmaz, herkes birbirini motive ediyor."
+          },
+          {
+            "name": "Burcu S.",
+            "location": "Atasehir",
+            "date": "2025-10",
+            "rating": 5,
+            "text": "Foundations kursundan sonra normal siniflara gecis cok rahat oldu. Alp Coach'in egitim kalitesi harika."
+          },
+          {
+            "name": "Arda T.",
+            "location": "Bostanci",
+            "date": "2025-08",
+            "rating": 5,
+            "text": "Olympic Lifting sinifinda snatch tekniginimi cok gelistirdim. Burak Coach gercek bir uzman."
+          },
+          {
+            "name": "Canan K.",
+            "location": "Maltepe",
+            "date": "2025-05",
+            "rating": 5,
+            "text": "Beslenme danismanligi ile birlikte 6 ayda 12 kilo verdim ve kas kuitlemi korurdum. Merve Hanim cok detayli takip ediyor."
+          },
+          {
+            "name": "Emre V.",
+            "location": "Kadikoy",
+            "date": "2025-03",
+            "rating": 4,
+            "text": "Ekipman kalitesi ve coachlarin bilgisi ust seviye. Tek olumsuz: aksam saatleri cok kalabalık olabiliyor."
+          },
+          {
+            "name": "Dilan E.",
+            "location": "Pendik",
+            "date": "2025-01",
+            "rating": 5,
+            "text": "Irem Coach ile jimnastik calismalarım gercekten fark yaratti. Ilk muscle-up'imi 4 ayda cikardim!"
+          }
+        ]
+      }
+    },
+    {
+      "id": "spor-elite",
+      "variantName": "elite",
+      "plan": "pro",
+      "description": "Premium spor merkezi, cok branslı",
+      "designPhilosophy": "Luks, premium, motivasyonel",
+      "isDark": false,
+      "colors": {
+        "bg": "#FAFAF8",
+        "surface": "#EDEBE6",
+        "text": "#1A1A1A",
+        "accent": "#7C3AED"
+      },
+      "fonts": { "heading": "Montserrat", "body": "Nunito Sans" },
+      "business": {
+        "name": "Elite Sports Club",
+        "ownerName": "Murat Arslan",
+        "sector": "Spor",
+        "slogan": "Premium yasam, premium spor",
+        "phone": "0212 350 99 00",
+        "phoneClean": "902123509900",
+        "whatsapp": "905521234567",
+        "email": "info@elitesportsclub.com.tr",
+        "address": "Bebek Mah. Cevdet Pasa Cad. No:88, Besiktas/Istanbul",
+        "city": "Istanbul",
+        "district": "Besiktas",
+        "neighborhood": "Bebek",
+        "coordinates": { "lat": 41.0762, "lng": 29.0433 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/elitesportsclubist",
+          "youtube": "https://youtube.com/@elitesportsclub",
+          "linkedin": "https://linkedin.com/company/elitesportsclub"
+        },
+        "photos": [],
+        "foundedYear": 2010,
+        "experience": "16 yil",
+        "customerCount": "15.000+",
+        "rating": 4.9,
+        "reviewCount": 2800,
+        "services": [
+          {
+            "id": "s1",
+            "name": "Fitness & Agirlik Salonu",
+            "price": "Uyelik dahilinde",
+            "duration": "Sinirsiz",
+            "description": "2.000 m2 fitness alani. Technogym, Hammer Strength ekipman. Cardio, free weights, fonksiyonel alan."
+          },
+          {
+            "id": "s2",
+            "name": "Yuzme Havuzu (Yari Olimpik)",
+            "price": "Uyelik dahilinde",
+            "duration": "Sinirsiz",
+            "description": "25m yari olimpik yuzme havuzu, cocuk havuzu. Yuzme dersleri ve aqua fitness siniflari."
+          },
+          {
+            "id": "s3",
+            "name": "Grup Dersleri (30+ Cesit)",
+            "price": "Uyelik dahilinde",
+            "duration": "45-60 dk",
+            "description": "Pilates, yoga, spinning, body pump, zumba, boxing, TRX, HIIT ve daha fazlasi."
+          },
+          {
+            "id": "s4",
+            "name": "SPA & Hamam",
+            "price": "Uyelik dahilinde",
+            "duration": "Sinirsiz",
+            "description": "Turk hamami, sauna, buhar odasi, sirt havuzu, dinlenme alani. Masaj hizmetleri ayri ucretlidir."
+          },
+          {
+            "id": "s5",
+            "name": "Tenis Kortu",
+            "price": "200 TL/saat",
+            "duration": "60 dk",
+            "description": "2 kapali ve 2 acik tenis kortu. Tenis dersleri ve turnuva organizasyonu."
+          },
+          {
+            "id": "s6",
+            "name": "Squash Kortu",
+            "price": "150 TL/saat",
+            "duration": "45 dk",
+            "description": "2 standart squash kortu. Baslangic dersleri ve kulup ici turnuva."
+          },
+          {
+            "id": "s7",
+            "name": "Kisisel Antrenman (PT)",
+            "price": "800 TL/seans",
+            "duration": "60 dk",
+            "description": "NASM, ACSM sertifkali antrenorlerle birebir calisma. Vucut analizi, beslenme rehberligi dahil."
+          },
+          {
+            "id": "s8",
+            "name": "Reformer Pilates Studio",
+            "price": "400 TL/ders",
+            "duration": "55 dk",
+            "description": "Ozel pilates studiomuzda 8 reformerle kucuk grup dersleri. Clinical pilates secenegi."
+          },
+          {
+            "id": "s9",
+            "name": "Yuzme Dersleri",
+            "price": "600 TL/ders",
+            "duration": "45 dk",
+            "description": "Cocuk ve yetiskin yuzme dersleri. Baslangictan ileri seviyeye. Kucuk gruplar (max 4)."
+          },
+          {
+            "id": "s10",
+            "name": "Kids Club",
+            "price": "Uyelik dahilinde",
+            "duration": "Degisken",
+            "description": "4-12 yas cocuklara ozel spor programlari: yuzme, jimnastik, dans, tenis."
+          },
+          {
+            "id": "s11",
+            "name": "Masaj & Wellness",
+            "price": "500 - 1.200 TL",
+            "duration": "30-90 dk",
+            "description": "Isvedisli, derin doku, aromaterapi, sicak tas masaji. SPA uyelerine ozel indirimler."
+          },
+          {
+            "id": "s12",
+            "name": "Beslenme & Diyetetik",
+            "price": "1.200 TL/ay",
+            "duration": "Aylik takip",
+            "description": "InBody vucut analizi, kisisel beslenme programi, haftalik kontrol ve destek."
+          },
+          {
+            "id": "s13",
+            "name": "Bireysel Uyelik",
+            "price": "4.500 TL/ay",
+            "duration": "Aylik",
+            "description": "Tum tesislere sinirsiz erisim. Grup dersleri, havuz, SPA, fitness dahil."
+          },
+          {
+            "id": "s14",
+            "name": "Aile Uyeligi",
+            "price": "7.500 TL/ay",
+            "duration": "Aylik",
+            "description": "2 yetiskin + 2 cocuk. Tum tesislere erisim. Kids Club ve aile etkinlikleri dahil."
+          }
+        ],
+        "team": [
+          {
+            "name": "Murat Arslan",
+            "title": "Kurucu & Genel Mudur",
+            "bio": "Beden Egitimi ve Spor Yuksekokulu, MBA. 16 yillik spor yonetimi deneyimi. IHRSA uyesi.",
+            "photo": ""
+          },
+          {
+            "name": "Seda Kocak",
+            "title": "Fitness Muduru",
+            "bio": "NASM-CPT, ACE-GFI. 12 yillik fitness egitmenliigi ve yonetim deneyimi.",
+            "photo": ""
+          },
+          {
+            "name": "Tolga Cinar",
+            "title": "Kidemli PT | Performans",
+            "bio": "CSCS, NASM-PES. Profesyonel sporcullar ve yonetici musterilerle calismada 10 yillik deneyim.",
+            "photo": ""
+          },
+          {
+            "name": "Ebru Ozkan",
+            "title": "Pilates & Yoga Studyo Muduru",
+            "bio": "STOTT Pilates, 500 Saat RYT. 14 yillik egitmenlik deneyimi. Clinical pilates uzmani.",
+            "photo": ""
+          },
+          {
+            "name": "Berkay Keskin",
+            "title": "Havuz & Yuzme Muduru",
+            "bio": "Eski milli yuzucu. Turkiye Yuzme Federasyonu antrenor lisansi. 8 yillik egitim deneyimi.",
+            "photo": ""
+          },
+          {
+            "name": "Dyt. Busra Aydın",
+            "title": "Beslenme Danismani",
+            "bio": "Istanbul Universitesi Beslenme ve Diyetetik. Sporcu beslenmesi ve vucut kompozisyonu uzmani.",
+            "photo": ""
+          }
+        ],
+        "workingHours": [
+          { "day": "Pazartesi", "open": "06:00", "close": "23:00", "isOpen": true },
+          { "day": "Sali", "open": "06:00", "close": "23:00", "isOpen": true },
+          { "day": "Carsamba", "open": "06:00", "close": "23:00", "isOpen": true },
+          { "day": "Persembe", "open": "06:00", "close": "23:00", "isOpen": true },
+          { "day": "Cuma", "open": "06:00", "close": "23:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "07:00", "close": "21:00", "isOpen": true },
+          { "day": "Pazar", "open": "08:00", "close": "20:00", "isOpen": true }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Premium Spor & Yasam Merkezi",
+          "subtitle": "Bebek'te — fitness, havuz, tenis, SPA, pilates, kids club. 5.000 m2'de 30+ ders cesidi. Premium yasamin adresi.",
+          "badge": "2.800+ Google Degerlendirme"
+        },
+        "about": {
+          "title": "Elite Sports Club",
+          "description": "2010 yilinda Bebek'te kurulan Elite Sports Club, Istanbul'un en prestijli spor ve yasam merkezlerinden biridir. 5.000 m2 kapali alanda fitness, yari olimpik havuz, tenis, squash, SPA, hamam, pilates studiosi ve kids club ile kapsamli bir spor deneyimi sunuyoruz.\n\nTechnogym ve Hammer Strength donanilmish fitness salonumuz, 30'dan fazla haftalik grup dersi ve kissisel antrenorlik hizmeti ile her seviyeden sporcuya cozum uretiyoruz. 15.000'den fazla uye, %70 yenileme orani ile memnuniyet seviyemizi kanitliyoruz.\n\nMurat Arslan'in 16 yillik spor yonetimi vizyonu ile, sadece spor yapmak degil, bir yasam tarzi sunmak hedefindeyiz. Sosyal etkinlikler, turnuvalar ve wellness programlari ile uyelerimize butunsel bir saglik deneyimi sunuyoruz."
+        },
+        "services": {
+          "title": "Tesisler & Hizmetler",
+          "subtitle": "30+ ders, 5 tesis, 1 adres — premium spor deneyimi"
+        },
+        "stats": {
+          "title": "Rakamlarla Elite",
+          "items": [
+            { "value": "15.000+", "label": "Uye" },
+            { "value": "5.000 m2", "label": "Tesis Alani" },
+            { "value": "30+", "label": "Ders Cesidi" },
+            { "value": "16", "label": "Yil" }
+          ]
+        },
+        "gallery": {
+          "title": "Tesislerimiz",
+          "subtitle": "Fitness, havuz, tenis, SPA, studio — premium mekanlar"
+        },
+        "process": {
+          "title": "Uyelik Sureciniz",
+          "steps": [
+            { "title": "Tur & Tanitim", "description": "Tesisimizi gezin, derslerimizi kesfeddin. Ucretsiz deneme dersi hakkinizi kullanin." },
+            { "title": "Uyelik Secimi", "description": "Bireysel, aile veya kurumsal uyelik seçeneklerinden size en uygununu belirleyin." },
+            { "title": "InBody Analiz", "description": "Vucut kompozisyonu analiziniz yapilir, hedeflerinize yonelik program olusturulur." },
+            { "title": "Aktif Yasam", "description": "30+ ders, havuz, SPA, tenis — premium spor yasaminiz baslar." }
+          ]
+        },
+        "contact": {
+          "title": "Ucretsiz Tesis Turu",
+          "subtitle": "Tesisimizi taniyin, deneme dersi alin — randevu olusturun"
+        },
+        "faq": [
+          {
+            "q": "Ucretsiz deneme var mi?",
+            "a": "Evet, ilk ziyaretinizde tesis turu ve 1 ucretsiz deneme dersi hakkiniz vardir. Fitness, havuz veya grup derslerinden birini secebilirsiniz."
+          },
+          {
+            "q": "Aile uyeligine kac cocuk dahil?",
+            "a": "Standart aile uyeligi 2 yetiskin + 2 cocuk (4-16 yas) icermektedir. Ek cocuk icin uyelik basina 1.000 TL/ay eklenir."
+          },
+          {
+            "q": "Havuz suyunuz nasil dezenfekte ediliyor?",
+            "a": "Tuz elektroliz sistemi ile klorsuz dezenfeksiyon uygulanmaktadir. Havuz suyu gunluk olarak test edilir ve pH dengesii korunur."
+          },
+          {
+            "q": "Otopark var mi?",
+            "a": "Evet, 50 araclik ucretsiz kapali otopark mevcuttur. Vale hizmeti hafta sonları aktiftir."
+          },
+          {
+            "q": "Kurumsal uyelik secenekleriniz nelerdir?",
+            "a": "10+ kisi icin kurumsal uyelik paketleri sunuyoruz. Ozel indirim oranlari, sirket icii wellness programlari ve turnuva organizasyonu dahildir."
+          },
+          {
+            "q": "Kafe veya restoran var mi?",
+            "a": "Evet, saglikli beslenme odakli kafemiz mevcuttur. Protein smoothie, salata, acai bowl ve saglikli atistirmaliklar sunuyoruz."
+          },
+          {
+            "q": "Uyelik dondurma hakki var mi?",
+            "a": "Yillik uyelikte 45 gun, 6 aylik uyelikte 21 gun dondurma hakkiniz vardir. Saglik raporu ile ek dondurma suresi taninaabilir."
+          },
+          {
+            "q": "Tenis dersi nasil alinir?",
+            "a": "Tenis antrenorumuzle 1-1 veya grup (max 4) dersleri mevcuttur. Kort rezervasyonu mobil uygulamamiz veya resepsiyondan yapilir."
+          },
+          {
+            "q": "Kids Club'a kac yasindan itibaren kabul ediyorsunuz?",
+            "a": "4-12 yas arasi cocuklar Kids Club programlarimiza katilabilir. Yuzme, jimnastik, dans ve tenis dersleri mevcuttur."
+          },
+          {
+            "q": "Masaj randevusu nasil alinir?",
+            "a": "Mobil uygulama, resepsiyon veya WhatsApp uzerinden masaj randevusu alabilirsiniz. Uyelere %20 masaj indirimi uygulanir."
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Ceyda A.",
+            "location": "Bebek",
+            "date": "2025-12",
+            "rating": 5,
+            "text": "5 yildir Elite uüyesiyim. Havuz, SPA, pilates — butun ailem burada spor yapiyor. Premium bir deneyim."
+          },
+          {
+            "name": "Kadir L.",
+            "location": "Etiler",
+            "date": "2025-10",
+            "rating": 5,
+            "text": "Tolga Coach ile 8 ayda hayatimi degistirdim. 15 kilo verdim, kas kitlesi kazandim. PT kalitesi cok yuksek."
+          },
+          {
+            "name": "Selin H.",
+            "location": "Arnavutkoy",
+            "date": "2025-08",
+            "rating": 5,
+            "text": "Cocuklarim yuzme derslerini cok seviyor. Berkay Bey harika bir egitmen, her ikisi de 6 ayda guvenli yuzucu olduu."
+          },
+          {
+            "name": "Murat K.",
+            "location": "Levent",
+            "date": "2025-06",
+            "rating": 5,
+            "text": "Tenis kortu ve squash kortu bir arada bulmak zor. Elite'de her ikisi de var. Hafta sonu turnuvalari cok eglenceli."
+          },
+          {
+            "name": "Nil D.",
+            "location": "Sariyer",
+            "date": "2025-04",
+            "rating": 4,
+            "text": "Tesis harika, ders cesitliligi cok iyi. Aylik fiyat biraz yuksek ama aldiyiniz hizmet Premium."
+          },
+          {
+            "name": "Ayhan G.",
+            "location": "Besiktas",
+            "date": "2025-02",
+            "rating": 5,
+            "text": "SPA bolumu mükemmel. Turk hamami ve sauna sonrasi sicak tas masaji — haftanin yorgunlugu gidiyor."
+          },
+          {
+            "name": "Burcin T.",
+            "location": "Ulus",
+            "date": "2024-12",
+            "rating": 5,
+            "text": "Reformer pilates studyosu cok kaliteli. Ebru Hanim gercekten uzman, bel fitigim var ve clinical pilates bana cok iyi geldi."
+          },
+          {
+            "name": "Emrah P.",
+            "location": "Ortakoy",
+            "date": "2024-10",
+            "rating": 5,
+            "text": "Sirketimiz icin kurumsal uyelik aldik. 25 calisanimiz aktif olarak kullaniyor, wellness programlari motivasyonu artirdi."
+          }
+        ]
+      }
+    },
+    {
+      "id": "spor-zen",
+      "variantName": "zen",
+      "plan": "enterprise",
+      "description": "Premium spor & wellness zinciri, koyu tema",
+      "designPhilosophy": "Koyu, luks, premium zincir",
+      "isDark": true,
+      "colors": {
+        "bg": "#0A0A10",
+        "surface": "#141420",
+        "text": "#E5E5E5",
+        "accent": "#8B5CF6"
+      },
+      "fonts": { "heading": "Montserrat", "body": "Inter" },
+      "business": {
+        "name": "ZenFit Premium Spor & Wellness",
+        "ownerName": "Cem Kocak",
+        "sector": "Spor",
+        "slogan": "Bedenin ve zihnin harmonisi",
+        "phone": "0850 555 00 11",
+        "phoneClean": "908505550011",
+        "whatsapp": "905531234567",
+        "email": "info@zenfit.com.tr",
+        "address": "Nisantasi Mah. Valikonagi Cad. No:125, Sisli/Istanbul",
+        "city": "Istanbul",
+        "district": "Sisli",
+        "neighborhood": "Nisantasi",
+        "coordinates": { "lat": 41.0511, "lng": 28.9905 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/zenfittr",
+          "youtube": "https://youtube.com/@zenfit",
+          "linkedin": "https://linkedin.com/company/zenfit",
+          "tiktok": "https://tiktok.com/@zenfit",
+          "facebook": "https://facebook.com/zenfit"
+        },
+        "photos": [],
+        "foundedYear": 2008,
+        "experience": "18 yil",
+        "customerCount": "65.000+",
+        "rating": 4.9,
+        "reviewCount": 9500,
+        "services": [
+          {
+            "id": "s1",
+            "name": "Premium Fitness",
+            "price": "Uyelik dahilinde",
+            "duration": "Sinirsiz",
+            "description": "3.000 m2 Technogym Artis donanilmis fitness alani. Kisisel ekran, Netflix, Spotify entegrasyonu."
+          },
+          {
+            "id": "s2",
+            "name": "Olimpik Yuzme Havuzu",
+            "price": "Uyelik dahilinde",
+            "duration": "Sinirsiz",
+            "description": "50m olimpik havuz, 25m antrenman havuzu, cocuk havuzu. Yuzme dersleri ve aqua spor siniflari."
+          },
+          {
+            "id": "s3",
+            "name": "50+ Grup Ders Cesidi",
+            "price": "Uyelik dahilinde",
+            "duration": "45-75 dk",
+            "description": "Les Mills, Pilates, Yoga, CrossFit, Boxing, Dance, Aqua, Cycling ve daha fazlasi."
+          },
+          {
+            "id": "s4",
+            "name": "Luxury SPA Village",
+            "price": "Uyelik dahilinde",
+            "duration": "Sinirsiz",
+            "description": "1.500 m2 SPA alani: Turk hamami, Fin saunasi, biosauna, buhar odasi, buz odasi, tuz odasi, dinlenme."
+          },
+          {
+            "id": "s5",
+            "name": "Tenis Akademisi",
+            "price": "Ders bazli",
+            "duration": "60 dk",
+            "description": "4 kapali, 4 acik tenis kortu. Profesyonel tenis egitmenleri. Cocuk ve yetiskin akademi programlari."
+          },
+          {
+            "id": "s6",
+            "name": "Martial Arts Dojo",
+            "price": "Uyelik dahilinde",
+            "duration": "60 dk",
+            "description": "Muay Thai, Brezilya Jiu-Jitsu, MMA, Kickboxing, Karate. Deneyimli dovus sanati egitmenleri."
+          },
+          {
+            "id": "s7",
+            "name": "Reformer Pilates Studio",
+            "price": "500 TL/ders",
+            "duration": "55 dk",
+            "description": "12 Balanced Body reformer. Kucuk grup ve 1-1 ozel dersler. Clinical pilates secenegi."
+          },
+          {
+            "id": "s8",
+            "name": "Yoga & Meditation Loft",
+            "price": "Uyelik dahilinde",
+            "duration": "60-90 dk",
+            "description": "Sicak yoga, Ashtanga, Vinyasa, Yin, Kundalini, meditasyon. Isıtmalı ozel studio."
+          },
+          {
+            "id": "s9",
+            "name": "PT & Performance Lab",
+            "price": "1.200 TL/seans",
+            "duration": "60 dk",
+            "description": "Kidemli PT'lerle birebir calisma. VO2 Max testi, InBody analiz, laktat esik testi."
+          },
+          {
+            "id": "s10",
+            "name": "Indoor Cycling Studio",
+            "price": "Uyelik dahilinde",
+            "duration": "45 dk",
+            "description": "30 bisikletli immersive cycling studio. LED aydinlatma, surround ses sistemi."
+          },
+          {
+            "id": "s11",
+            "name": "Kids & Teens Academy",
+            "price": "Uyelik dahilinde",
+            "duration": "Degisken",
+            "description": "3-16 yas: yuzme, jimnastik, tenis, dans, martial arts, kodlama. Yaz kampi programi."
+          },
+          {
+            "id": "s12",
+            "name": "Massaj & Wellness",
+            "price": "700 - 2.000 TL",
+            "duration": "30-120 dk",
+            "description": "10+ masaj cesidi. Aromaterapi, sicak tas, Bali, Thai, derin doku, hamile masaji."
+          },
+          {
+            "id": "s13",
+            "name": "Nutrition & Health Bar",
+            "price": "A la carte",
+            "duration": "Yerinde tuketim",
+            "description": "Cold-pressed juice, protein smoothie, acai bowl, avocado toast, makro dengeli yemek secenekleri."
+          },
+          {
+            "id": "s14",
+            "name": "Outdoor Trail Running",
+            "price": "Uyelik dahilinde",
+            "duration": "60-90 dk",
+            "description": "Haftalik organized trail running gruplari. Belgrad Ormani, Aydos Ormani parkurlari."
+          },
+          {
+            "id": "s15",
+            "name": "Corporate Wellness",
+            "price": "Paket bazli",
+            "duration": "Surekli",
+            "description": "Sirket wellness programlari: ofis yogasi, step challenge, nutrisyon workshop, saglik taramalari."
+          },
+          {
+            "id": "s16",
+            "name": "Sports Medicine Klinigi",
+            "price": "Muayene bazli",
+            "duration": "Randevulu",
+            "description": "Spor hekimligi, fizik tedavi, osteopati, akupunktur. Sakatlanma rehabilitasyonu ve performans optimizasyonu."
+          },
+          {
+            "id": "s17",
+            "name": "Premium Uyelik",
+            "price": "6.500 TL/ay",
+            "duration": "Aylik",
+            "description": "Tum tesisler, tum dersler, SPA, havuz, sinirsiz. Oncelikli rezervasyon, misafir hakki."
+          },
+          {
+            "id": "s18",
+            "name": "VIP Aile Uyeligi",
+            "price": "12.000 TL/ay",
+            "duration": "Aylik",
+            "description": "2 yetiskin + 3 cocuk. Tum tesisler. Kids Academy, tenis, yuzme dersleri dahil."
+          },
+          {
+            "id": "s19",
+            "name": "Platinum Uyelik (Cok Sube)",
+            "price": "9.000 TL/ay",
+            "duration": "Aylik",
+            "description": "5 subenin tamamina erisim. 2 misafir hakki/ay, PT indirimli, SPA indirimli."
+          },
+          {
+            "id": "s20",
+            "name": "Annual Elite Pass",
+            "price": "65.000 TL/yil",
+            "duration": "12 ay",
+            "description": "Yillik premium uyelik. Tum subeler, tum hizmetler, 12 ucretsiz PT, 60 gun dondurma."
+          }
+        ],
+        "team": [
+          {
+            "name": "Cem Kocak",
+            "title": "Kurucu & CEO",
+            "bio": "Bosphorus Universitesi MBA, IHRSA uyeligi. 18 yillik spor yonetimi deneyimi. Turkiye Fitness Sektoru Dernegi baskan yardimcisi.",
+            "photo": ""
+          },
+          {
+            "name": "Dr. Ayse Nur Topcu",
+            "title": "Saglik & Wellness Direktoru",
+            "bio": "Spor hekimi, fiziksel tip ve rehabilitasyon uzmani. 15 yillik sporcu sagligi deneyimi.",
+            "photo": ""
+          },
+          {
+            "name": "Emre Saglam",
+            "title": "Fitness & PT Direktoru",
+            "bio": "NSCA-CSCS, NASM Master Trainer. 12 yillik deneyim. Eski milli sporcu.",
+            "photo": ""
+          },
+          {
+            "name": "Gizem Yilmaz",
+            "title": "Grup Dersler Direktoru",
+            "bio": "Les Mills International Presenter. 10+ ders formatinda sertifkali. 14 yillik egitmenlik.",
+            "photo": ""
+          },
+          {
+            "name": "Hakan Erdil",
+            "title": "Aquatics Direktoru",
+            "bio": "Eski olimpik yuzucu. Turkiye Yuzme Federasyonu A kademe antrenor. 20 yillik deneyim.",
+            "photo": ""
+          },
+          {
+            "name": "Zeynep Turan",
+            "title": "SPA & Wellness Muduru",
+            "bio": "CIDESCO diplomali. 15 yillik spa yonetimi deneyimi. Holistic wellness uzmani.",
+            "photo": ""
+          },
+          {
+            "name": "Sensei Kenji Tanaka",
+            "title": "Martial Arts Basinstruktor",
+            "bio": "5. Dan Karate, Brezilya Jiu-Jitsu kahverengi kusak. 25 yillik dovuş sanati deneyimi.",
+            "photo": ""
+          },
+          {
+            "name": "Dyt. Prof. Dr. Selin Kaya",
+            "title": "Nutrisyon Direktoru",
+            "bio": "Hacettepe Universitesi Beslenme Proffesooru. Sporcu nutrisyonu, vucut kompozisyonu ve metabolik saglik uzmani.",
+            "photo": ""
+          }
+        ],
+        "workingHours": [
+          { "day": "Pazartesi", "open": "05:30", "close": "00:00", "isOpen": true },
+          { "day": "Sali", "open": "05:30", "close": "00:00", "isOpen": true },
+          { "day": "Carsamba", "open": "05:30", "close": "00:00", "isOpen": true },
+          { "day": "Persembe", "open": "05:30", "close": "00:00", "isOpen": true },
+          { "day": "Cuma", "open": "05:30", "close": "00:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "07:00", "close": "22:00", "isOpen": true },
+          { "day": "Pazar", "open": "08:00", "close": "21:00", "isOpen": true }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Bedenin ve Zihnin Harmonisi",
+          "subtitle": "18 yildir, 5 sube, 65.000+ uye. Fitness, olimpik havuz, SPA village, tenis, martial arts, sports medicine — premium yasamin merkezi.",
+          "badge": "5 Sube | 7/24"
+        },
+        "about": {
+          "title": "ZenFit Hakkinda",
+          "description": "2008 yilinda Nisantasi'nda kurulan ZenFit, bugun Istanbul'un 5 farkli lokasyonunda toplam 25.000 m2 tesis alaniyla Turkiye'nin en buyuk premium spor ve wellness zinciridir. 65.000'den fazla uye, 200+ calisanla her gun binlerce insanin yasam kalitesini yukseltiyoruz.\n\nHer subemizde Technogym Artis ve Skillmill donanilmis fitness alanlari, olimpik standartlarda yuzme havuzlari, SPA village, reformer pilates studyosu, yoga loft ve martial arts dojo bulunmaktadir. Haftalik 300'den fazla grup dersi ile 50+ farkli ders cesidi sunuyoruz.\n\nZenFit'in farkli, sadece fiziksel aktivite degil, butunsel saglik anlayisidir. Bunyemizdeki Sports Medicine Klinigi ile spor sakatlanmalari rehabilitasyonu, fizik tedavi ve performans testleri sunuyoruz. Nutrisyon direktomuz Prof. Dr. Selin Kaya liderligindeki beslenme ekibimiz, uyelerimize bilimsel temelli beslenme programlari hazirlıyor.\n\nISO 9001:2015 ve IHRSA uyeligi ile uluslararasi standartlarda hizmet veriyoruz. Yillik uye memnuniyet anketimizde %94 memnuniyet orani, sektorun en yuksek degerlerinden biridir.\n\nKurumsal wellness programlarimizla Turkiye'nin 50'den fazla buyuk sirketine hizmet veriyoruz. Ofis yogasi, saglik taramalari, beslenme atolyeleri ve step challenge gibi motivasyonel programlarla calisanlarin sagligina ve verimlilligine katki sagliyoruz."
+        },
+        "services": {
+          "title": "Tesisler & Hizmetler",
+          "subtitle": "20 farkli hizmet kategorisinde — premium spor, wellness ve saglik cozumleri"
+        },
+        "stats": {
+          "title": "Rakamlarla ZenFit",
+          "items": [
+            { "value": "65.000+", "label": "Uye" },
+            { "value": "5", "label": "Sube" },
+            { "value": "25.000 m2", "label": "Tesis" },
+            { "value": "200+", "label": "Calisam" }
+          ]
+        },
+        "gallery": {
+          "title": "Tesislerimiz",
+          "subtitle": "5 sube — Nisantasi, Etiler, Bağdat Cad., Maslak, Atasehir"
+        },
+        "process": {
+          "title": "ZenFit Deneyimi",
+          "steps": [
+            { "title": "VIP Tur", "description": "Size en yakin subede kisisel tesis turu ve deneme dersi." },
+            { "title": "Saglik Degerlendirme", "description": "InBody analiz, saglik gecmisi ve fitness seviye tespiti." },
+            { "title": "Kisisel Plan", "description": "Hedeflerinize yonelik antrenman, beslenme ve wellness plani olusturma." },
+            { "title": "Premium Yasam", "description": "5 sube, 50+ ders, havuz, SPA, sports medicine — ZenFit yasami baslar." }
+          ]
+        },
+        "contact": {
+          "title": "VIP Tanitim",
+          "subtitle": "Premium deneyimi kesfetmek icin VIP tur randevusu alin"
+        },
+        "cta": {
+          "title": "Platinum Uyelik Firsati",
+          "subtitle": "Simdi katilIn, ilk ay %50 indirimli. 5 sube, sinirsiz erisim, premium ayricalıklar.",
+          "buttonText": "Hemen Basvur",
+          "buttonUrl": "#contact"
+        },
+        "faq": [
+          {
+            "q": "ZenFit'in kac subesi var?",
+            "a": "Istanbul'da 5 subemiz vardir: Nisantasi (merkez), Etiler, Bagdat Caddesi, Maslak ve Atasehir. Platinum uyelikle tum subelere erisebilirsiniz."
+          },
+          {
+            "q": "Olimpik havuz hangi subelerde var?",
+            "a": "50m olimpik havuz Nisantasi ve Bagdat Caddesi subelerimizde, 25m antrenman havuzu tum subelermizde mevcuttur."
+          },
+          {
+            "q": "Sports Medicine Klinigi nasil calisyor?",
+            "a": "Spor hekimi, fizik tedavi uzmani ve osteopat kadromuzla randevulu hizmet veriyoruz. Uyelerimize %30 indirim uygulanir. SGK ve ozel sigorta gecerlidir."
+          },
+          {
+            "q": "Les Mills dersleri nelerdir?",
+            "a": "BodyPump, BodyCombat, BodyBalance, RPM, Sprint, GRIT, Les Mills Core ve Les Mills Barre derslerimiz mevcuttur. Lisansli egitmenlerle."
+          },
+          {
+            "q": "SPA Village ne iceriyor?",
+            "a": "1.500 m2 alanda Turk hamami, Fin saunasi, biosauna, buhar odasi, buz odasi, tuz odasi, jakuzi, sirt havuzu ve dinlenme alanları. 10+ masaj cesidi."
+          },
+          {
+            "q": "Cocuk programlari kac yasindan basliyor?",
+            "a": "Baby swim 6 aydan itibaren, Kids Academy 3 yasindan itibaren baslar. Yuzme, jimnastik, tenis, dans, martial arts ve kodlama dersleri mevcuttur."
+          },
+          {
+            "q": "Kurumsal wellness programlari neler iceriyor?",
+            "a": "Sirketlere ozel: kurumsal uyelik, ofis yogası, saglik taramalari, beslenme atolyeleri, step challenge, stres yonetimi workshop ve outdoor aktiviteler."
+          },
+          {
+            "q": "Vale ve otopark hizmeti var mi?",
+            "a": "Tum subelerimizde ucretsiz otopark mevcuttur. Nisantasi ve Etiler subelerimizde vale hizmeti sunulmaktadir."
+          },
+          {
+            "q": "Uyelik iptali nasil yapilir?",
+            "a": "Aylik uyelikler taahhütsüzdur ve ay sonunda iptal edilebilir. Yillik uyeliklerde erken iptal durumunda kalan surenin %50'si erken iptal ucreti uygulanır."
+          },
+          {
+            "q": "Martial arts deneyimi olmadan katilabilir miyim?",
+            "a": "Kesinlikle! Tum dovuus sanatlari siniflarimizda baslangic seviyesi mevcuttur. Sensei Kenji'nin ozel baslangic programi ile guvenle baslanabilir."
+          },
+          {
+            "q": "Hot yoga nedir? Guvenli mi?",
+            "a": "Sicak yoga, 36-40°C'ye isitilmis ozel studiooda yapilir. Esnekliigi artirir, toksin atilimini destekler. Kardiyovaskuler sorunlariniz varsa doktor onayı gerekir."
+          },
+          {
+            "q": "Trail running gruplari nerede kostuyor?",
+            "a": "Haftalik organizli kosularimiz Belgrad Ormani, Aydos Ormani ve Camlica Tepesi parkurlarinda yapilmaktadir. Her seviyeye uygun gruplar mevcuttur."
+          },
+          {
+            "q": "Yaz kampi programiniz var mi?",
+            "a": "Evet, Haziran-Agustos arası cocuk yaz kampi programimiz kapsamindaa günluk 3 saat spor aktivitesi, yuzme, sanat ve dogada eğitim programlari duzenliyoruz."
+          },
+          {
+            "q": "Uluslararasi uyelik gecerli mi?",
+            "a": "IHRSA Passport programi kapsaminda dunya genelindeki partner sporr merkezlerinee indirimli erisim hakkiniz vardir."
+          },
+          {
+            "q": "VO2 Max testi nedir?",
+            "a": "Maksimum oksijen tuketim kapasitesini olcen performans testidir. Performance Lab'da yapilir. Antrenman zonlarinizi ve kardiyovaskuler fitness seviyenizi belirler."
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Cem D.",
+            "location": "Nisantasi",
+            "date": "2025-12",
+            "rating": 5,
+            "text": "7 yildir ZenFit uyesiyim. Premium deneyim her zaman tutarlı — Nisantasi'ndan Bagdat Caddesi'ne hangi subeye gitsem ayni kalite."
+          },
+          {
+            "name": "Aylin B.",
+            "location": "Etiler",
+            "date": "2025-11",
+            "rating": 5,
+            "text": "SPA Village hayatimi degistirdi. Turk hamami, buz odasi, tuz odasi — stres tedavisi. Haftada 2 kez geliyorum."
+          },
+          {
+            "name": "Oliver W.",
+            "location": "London",
+            "date": "2025-10",
+            "rating": 5,
+            "text": "As an expat in Istanbul, ZenFit is the only gym that matches international standards. The Olympic pool, Les Mills classes and spa are world-class."
+          },
+          {
+            "name": "Deniz M.",
+            "location": "Maslak",
+            "date": "2025-09",
+            "rating": 5,
+            "text": "Sirketimizin kurumsal wellness programini ZenFit yonetiyor. 120 calisanimiz icin mükemmel bir partnerlik."
+          },
+          {
+            "name": "Buse E.",
+            "location": "Atasehir",
+            "date": "2025-07",
+            "rating": 5,
+            "text": "BJJ ve Muay Thai derslerini Sensei Kenji'den alıyorum. Hayranlık verici bir deneyim ve disiplin. Güvenlik ortamı mükemmel."
+          },
+          {
+            "name": "Tarik S.",
+            "location": "Levent",
+            "date": "2025-05",
+            "rating": 5,
+            "text": "VO2 Max testi ve laktat esik testi yaptirdim. Antrenman zonlarimi bilimsel olarak belirledik. Emre Coach'un programi sonuc odakli."
+          },
+          {
+            "name": "Maria L.",
+            "location": "Bebek",
+            "date": "2025-03",
+            "rating": 5,
+            "text": "Meine Kinder lieben das Summer Camp! Schwimmen, Tennis, Gymnastik — jeden Tag ein anderes Programm. ZenFit ist einfach top."
+          },
+          {
+            "name": "Hakan Y.",
+            "location": "Kadikoy",
+            "date": "2025-01",
+            "rating": 4,
+            "text": "Tesis kalitesi ve ders cesitliligi tartismasia Turkiye'nin en iyisi. Tek olumsuz: premium fiyatlar herkes icin uygun degil."
+          },
+          {
+            "name": "Pelin C.",
+            "location": "Sisli",
+            "date": "2024-11",
+            "rating": 5,
+            "text": "Hamilelik pilatesi ve baby swim programlari harika. Ebru Hanim'in rehberliginde rahat ve guvenli bir deneyim yasadim."
+          },
+          {
+            "name": "Cenk A.",
+            "location": "Besiktas",
+            "date": "2024-09",
+            "rating": 5,
+            "text": "Sports Medicine Klinigi'nde diz rehabilitasyonumu tamamladim. Dr. Ayse Nur Hanim ve ekibi cok profesyonel."
+          },
+          {
+            "name": "Lisa T.",
+            "location": "Arnavutkoy",
+            "date": "2024-07",
+            "rating": 5,
+            "text": "The immersive cycling studio with LED lighting and surround sound is an incredible experience. It's like spinning in a nightclub!"
+          },
+          {
+            "name": "Fatih K.",
+            "location": "Umraniye",
+            "date": "2024-05",
+            "rating": 5,
+            "text": "Trail running gruplariyla Belgrad Ormani'nda kosmak haftanin en guzel aktivitesi. Dogayla ic ice spor yapmanin keyfi baska."
+          }
+        ]
+      }
+    }
+  ]
+}

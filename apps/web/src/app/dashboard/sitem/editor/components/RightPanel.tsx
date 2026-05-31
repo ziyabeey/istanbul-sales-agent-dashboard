@@ -2,15 +2,30 @@
 
 import { useState, useCallback, useMemo, useRef } from 'react'
 import { useEditorStore } from '../store/editor-store'
-import { DEMOLAR } from '@/data/demoVitrinData'
+import { CATALOG_SECTORS, THEME_CATALOG_ARRAY } from '@kepenk/templates/src/registry/theme-catalog'
+import { loadTheme } from '@kepenk/templates/src/registry/config-loader'
+import { themeConfigToSiteData } from '@/utils/themeToSiteData'
 import { PREMIUM_TEMPLATES } from '../data/premiumTemplates'
 import SectionInspector from './panels/SectionInspector'
+import AstNodeInspector from './panels/AstNodeInspector'
 
 /** Convert Unsplash ID (like 'photo-xxx') or full URL to valid img src */
 function unsplashUrl(val?: string): string {
     if (!val) return ''
     if (val.startsWith('http')) return val
     return `https://images.unsplash.com/${val}?auto=format&fit=crop&w=800&q=80`
+}
+
+function findAstNode(node: any, id: string): any {
+    if (!node) return null
+    if (node.id === id) return node
+    if (node.children) {
+        for (const child of node.children) {
+            const found = findAstNode(child, id)
+            if (found) return found
+        }
+    }
+    return null
 }
 
 /**
@@ -32,6 +47,20 @@ export default function RightPanel() {
         const activePage = pages.find(p => p.id === activePageId)
         return activePage?.sections.find(s => s.instanceId === selectedSectionId) ?? null
     }, [selectedSectionId, pages, activePageId])
+
+    /* Derive selected AST node */
+    const selectedAstNode = useMemo(() => {
+        if (!selectedSectionId || !siteData?.theme) return null
+        for (const page of siteData.theme.pages || []) {
+            for (const sec of page.sections || []) {
+                if (sec.blockTree) {
+                    const found = findAstNode(sec.blockTree, selectedSectionId)
+                    if (found) return found
+                }
+            }
+        }
+        return null
+    }, [selectedSectionId, siteData?.theme])
 
     if (!rightPanelOpen || !siteData) return null
 
@@ -228,7 +257,7 @@ export default function RightPanel() {
                             <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
                             <path d="M18.5 2.5a2.12 2.12 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
                         </svg>
-                        {selectedSection ? `${selectedSection.icon} ${selectedSection.name}` : 'Site Düzenle'}
+                        {selectedAstNode ? `${selectedAstNode.type} Düzenle` : selectedSection ? `${selectedSection.icon} ${selectedSection.name}` : 'Site Düzenle'}
                     </span>
                     <button className="ke-rp-close" onClick={() => setRightPanelOpen(false)}>
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
@@ -236,7 +265,9 @@ export default function RightPanel() {
                 </div>
 
                 <div className="ke-rp-body">
-                    {selectedSection ? (
+                    {selectedAstNode ? (
+                        <AstNodeInspector node={selectedAstNode} />
+                    ) : selectedSection ? (
                         <SectionInspector section={selectedSection} />
                     ) : (
                         <>
@@ -484,23 +515,31 @@ function SectorSection() {
             <div style={{ display: 'flex', gap: 6, marginBottom: 10 }}>
                 <span className="ke-rp-info-badge green">
                     <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="20 6 9 17 4 12"/></svg>
-                    {DEMOLAR.find(d => d.id === siteData.sektorId)?.ad || 'Seçili'}
+                    {THEME_CATALOG_ARRAY.find(d => d.id === siteData.sektorId)?.sectorLabel || 'Seçili'}
                 </span>
                 <span className="ke-rp-info-badge blue">{siteData.paket}</span>
             </div>
             <div className="ke-rp-sector-grid">
-                {DEMOLAR.slice(0, 20).map(d => (
+                {CATALOG_SECTORS.map(s => (
                     <button
-                        key={d.id}
-                        className={`ke-rp-sector-chip${siteData.sektorId === d.id ? ' active' : ''}`}
-                        onClick={() => updateSiteData({
-                            sektorId: d.id, kategori: d.kategori,
-                            heroAlt: d.heroAlt, hizmetler: d.hizmetler,
-                            bg: d.bg, accent: d.accent, text: d.text,
-                            font: d.font, unsplash: d.unsplash,
-                        })}
+                        key={s.id}
+                        className={`ke-rp-sector-chip${THEME_CATALOG_ARRAY.find(d => d.id === siteData.sektorId)?.sectorLabel === s.label ? ' active' : ''}`}
+                        onClick={() => {
+                            const firstTheme = THEME_CATALOG_ARRAY.find(t => t.sectorLabel === s.label)
+                            if (firstTheme) {
+                                loadTheme(firstTheme.id).then(res => {
+                                    if (res) {
+                                        const initial = themeConfigToSiteData(res.config, res.business, {
+                                            isletmeAdi: firstTheme.sectorLabel + ' İşletmesi',
+                                            paket: siteData.paket,
+                                        })
+                                        useEditorStore.getState().setSiteData(initial)
+                                    }
+                                })
+                            }
+                        }}
                     >
-                        {d.ad}
+                        {s.label}
                     </button>
                 ))}
             </div>

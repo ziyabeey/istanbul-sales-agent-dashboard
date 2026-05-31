@@ -1,2 +1,3 @@
-import ClientComponent from './client';
-export default function Page() { return <ClientComponent />; }
+import ClientPage from './client'
+export const metadata = { title: 'Montessori Çocuk Evi Demo - Kepenk.ai' }
+export default function KresMontessoriPage() { return <ClientPage /> }

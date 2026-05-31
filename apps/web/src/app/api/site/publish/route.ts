@@ -33,7 +33,7 @@ export async function POST(request: Request) {
             )
         }
 
-        const { bloklar, temaId } = parsed.data
+        const { bloklar, temaId, siteData } = parsed.data
 
         // ── Firestore güncelle ──────────────────────────────────────────────
         const esnafRef = adminDb.collection('esnaflar').doc(esnafId)
@@ -50,6 +50,7 @@ export async function POST(request: Request) {
 
         if (bloklar) guncelleme.siteBloklar = bloklar
         if (temaId) guncelleme.temaId = temaId
+        if (siteData) guncelleme.siteData = siteData
 
         await esnafRef.update(guncelleme)
 

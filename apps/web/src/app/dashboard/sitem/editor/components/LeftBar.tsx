@@ -3,7 +3,7 @@
 import { useState, useMemo, useRef, useEffect, useCallback } from 'react'
 import { useEditorStore } from '../store/editor-store'
 import { SEKTORLER, type Sektor } from '@/data/sektorler'
-import { DEMOLAR } from '@/data/demoVitrinData'
+import { CATALOG_SECTORS, THEME_CATALOG_ARRAY } from '@kepenk/templates/src/registry/theme-catalog'
 import { MODULLER } from '@/data/moduller'
 import { SABLONLAR, type Sablon } from '@/data/sablonlar'
 import { PREMIUM_TEMPLATES } from '../data/premiumTemplates'
@@ -12,6 +12,7 @@ import ModuleContentEditor from './ModuleContentEditor'
 import FontExplorerPanel from './panels/FontExplorerPanel'
 import GlobalStylePanel from './panels/GlobalStylePanel'
 import MediaLibraryPanel from './panels/MediaLibraryPanel'
+import AstLayersPanel from './panels/AstLayersPanel'
 
 /* ── Module Live Preview (iframe mini-preview) ── */
 function ModulePreview({ modulId, accent = '#3b82f6', bg = '#0f172a', text = '#f8fafc' }: { modulId: string; accent?: string; bg?: string; text?: string }) {
@@ -402,6 +403,7 @@ const PAKET_MODUL_LIMITI: Record<string, number> = {
 }
 
 const LEFT_BAR_ITEMS = [
+    { id: 'layers', icon: (<svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="4" width="16" height="3" rx="1" stroke="currentColor" strokeWidth="1.5" /><rect x="3" y="10" width="16" height="3" rx="1" stroke="currentColor" strokeWidth="1.5" /><rect x="3" y="16" width="16" height="3" rx="1" stroke="currentColor" strokeWidth="1.5" /><circle cx="7" cy="5.5" r="1" fill="currentColor"/><circle cx="7" cy="11.5" r="1" fill="currentColor"/><circle cx="7" cy="17.5" r="1" fill="currentColor"/></svg>), label: 'Katmanlar' },
     { id: 'modules', icon: (<svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="3" width="7" height="7" rx="2" fill="currentColor" /><rect x="12" y="3" width="7" height="7" rx="2" fill="currentColor" opacity=".5" /><rect x="3" y="12" width="7" height="7" rx="2" fill="currentColor" opacity=".5" /><rect x="12" y="12" width="7" height="7" rx="2" fill="currentColor" opacity=".3" /></svg>), label: 'Modüller' },
     { id: 'templates', icon: (<svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="2" y="2" width="18" height="18" rx="3" stroke="currentColor" strokeWidth="1.5" /><rect x="2" y="2" width="18" height="7" rx="3" fill="currentColor" opacity=".3" /><rect x="5" y="12" width="5" height="5" rx="1" fill="currentColor" opacity=".5" /><rect x="12" y="12" width="5" height="5" rx="1" fill="currentColor" opacity=".3" /></svg>), label: 'Şablonlar' },
     { id: 'design', icon: (<svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="8" cy="7" r="4" fill="#3B82F6" /><circle cx="14" cy="7" r="4" fill="#F59E0B" /><circle cx="11" cy="13" r="4" fill="#10B981" /></svg>), label: 'Tasarım' },
@@ -524,6 +526,7 @@ export default function LeftBar() {
                             </button>
                         </div>
                         <div className="ke-lb-panel-body">
+                            {activeLeftPanel === 'layers' && <AstLayersPanel />}
                             {activeLeftPanel === 'modules' && <ModuleCatalog />}
                             {activeLeftPanel === 'templates' && <SablonlarPanel />}
                             {activeLeftPanel === 'design' && <DesignPanel />}
@@ -756,9 +759,9 @@ function ModuleCatalog() {
     // Find matching sector from SEKTORLER
     const sektor = useMemo(() => {
         if (!siteData) return null
-        const demo = DEMOLAR.find(d => d.id === siteData.sektorId)
-        if (!demo) return null
-        return SEKTORLER.find(s => s.ad.toLowerCase().includes(demo.ad.split(' ')[0].toLowerCase())) || null
+        const theme = THEME_CATALOG_ARRAY.find(d => d.id === siteData.sektorId)
+        if (!theme) return null
+        return SEKTORLER.find(s => s.ad.toLowerCase().includes(theme.sectorLabel.split(' ')[0].toLowerCase())) || null
     }, [siteData])
 
     const paket = siteData?.paket || 'STANDART'

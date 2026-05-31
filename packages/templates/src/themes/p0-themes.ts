@@ -12,7 +12,7 @@ export interface P0ThemeDef {
   id: string
   name: string
   sectorId: string
-  plan: 'free' | 'starter' | 'growth' | 'pro' | 'enterprise'
+  plan: 'free' | 'starter' | 'growth' | 'pro' | 'enterprise' | 'elite'
   description: string
   designPhilosophy: string
   isDark: boolean

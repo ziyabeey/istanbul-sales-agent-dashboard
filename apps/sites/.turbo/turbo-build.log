@@ -1,4 +1,5 @@
 
+
 > @kepenk/sites@0.1.0 build /Users/admin/Desktop/istanbul-sales-agent-dashboard/XinXia/apps/sites
 > next build
 
@@ -9,22 +10,16 @@
 
    Creating an optimized production build ...
  ✓ Compiled successfully
-   Linting and checking validity of types ...
-   Collecting page data ...
-   Generating static pages (0/3) ...
- ✓ Generating static pages (3/3)
-   Finalizing page optimization ...
-   Collecting build traces ...
+Failed to compile.
 
-Route (app)                              Size     First Load JS
-┌ ○ /_not-found                          980 B           106 kB
-└ ƒ /[domain]                            137 B           105 kB
-+ First Load JS shared by all            105 kB
-  ├ chunks/819-bdc000ddeeb9bea0.js       50.4 kB
-  ├ chunks/9d6802fb-345983399c7d2b5a.js  52.9 kB
-  └ other shared chunks (total)          1.88 kB
+../../packages/templates/src/registry/config-loader.ts:92:45
+Type error: 'config' is possibly 'undefined'.
 
-
-○  (Static)   prerendered as static content
-ƒ  (Dynamic)  server-rendered on demand
-
+[0m [90m 90 |[39m         [36mconst[39m merged [33m=[39m { [33m...[39mplanDefaults }[0m
+[0m [90m 91 |[39m         [90m// Per-theme cssVariables override plan defaults[39m[0m
+[0m[31m[1m>[22m[39m[90m 92 |[39m         [36mfor[39m ([36mconst[39m [k[33m,[39m v] [36mof[39m [33mObject[39m[33m.[39mentries(config[33m.[39mcssVariables)) {[0m
+[0m [90m    |[39m                                             [31m[1m^[22m[39m[0m
+[0m [90m 93 |[39m           merged[k] [33m=[39m v[0m
+[0m [90m 94 |[39m         }[0m
+[0m [90m 95 |[39m         config [33m=[39m { [33m...[39mconfig[33m,[39m cssVariables[33m:[39m merged }[0m
+ ELIFECYCLE  Command failed with exit code 1.

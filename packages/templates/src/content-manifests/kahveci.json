@@ -1,0 +1,1055 @@
+{
+  "sectorId": "kahveci",
+  "seoSchemaType": "CafeOrCoffeeShop",
+  "variants": [
+    {
+      "id": "kahveci-turk",
+      "variantName": "turk",
+      "plan": "free",
+      "description": "Geleneksel Turk kahvesi dukkani",
+      "designPhilosophy": "Sicak, geleneksel, samimi",
+      "isDark": false,
+      "colors": {
+        "bg": "#FFFFFF",
+        "surface": "#F5F0EB",
+        "text": "#2C1810",
+        "accent": "#6F4E37"
+      },
+      "fonts": { "heading": "Playfair Display", "body": "Inter" },
+      "business": {
+        "name": "Haci Baba Turk Kahvesi",
+        "ownerName": "Hasan Celik",
+        "sector": "Kahveci",
+        "slogan": "3 neslin kahve sirrı",
+        "phone": "0216 330 45 67",
+        "phoneClean": "902163304567",
+        "whatsapp": "905321234567",
+        "email": "info@hacibabakahvesi.com",
+        "address": "Moda Mah. Ferit Tek Sok. No:8, Kadikoy/Istanbul",
+        "city": "Istanbul",
+        "district": "Kadikoy",
+        "neighborhood": "Moda",
+        "coordinates": { "lat": 40.9838, "lng": 29.0248 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/hacibabakahvesi"
+        },
+        "photos": [],
+        "foundedYear": 1978,
+        "experience": "48 yil",
+        "customerCount": "Sayisiz",
+        "rating": 4.8,
+        "reviewCount": 920,
+        "services": [
+          {
+            "id": "s1",
+            "name": "Turk Kahvesi",
+            "price": "60 - 90 TL",
+            "duration": "Hazirlik 5 dk",
+            "description": "Ozel kavurma Turk kahvesi. Sade, az, orta, cok sekerli. Yaninda Turk lokumu ikram."
+          },
+          {
+            "id": "s2",
+            "name": "Dibek Kahvesi",
+            "price": "80 TL",
+            "duration": "Hazirlik 7 dk",
+            "description": "Tas dibekte ogutulmus geleneksel dibek kahvesi. Krema kivaminda yogun lezzet."
+          },
+          {
+            "id": "s3",
+            "name": "Menengiç Kahvesi",
+            "price": "70 TL",
+            "duration": "Hazirlik 5 dk",
+            "description": "Guneydogu Anadolu'nun geleneksel menengiç kahvesi. Sutle servis edilir."
+          },
+          {
+            "id": "s4",
+            "name": "Turk Kahvesi Seti (Hediye)",
+            "price": "350 - 800 TL",
+            "duration": "Paketleme",
+            "description": "Bakir cezve, 2 fincan ve 250g ozel kavurma kahveden olusan hediye seti."
+          }
+        ],
+        "workingHours": [
+          { "day": "Pazartesi", "open": "08:00", "close": "22:00", "isOpen": true },
+          { "day": "Sali", "open": "08:00", "close": "22:00", "isOpen": true },
+          { "day": "Carsamba", "open": "08:00", "close": "22:00", "isOpen": true },
+          { "day": "Persembe", "open": "08:00", "close": "22:00", "isOpen": true },
+          { "day": "Cuma", "open": "08:00", "close": "23:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "09:00", "close": "23:00", "isOpen": true },
+          { "day": "Pazar", "open": "09:00", "close": "22:00", "isOpen": true }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "3 Neslin Kahve Sirri",
+          "subtitle": "1978'den beri Moda'da — geleneksel Turk kahvesi, dibek, menengiç. Her fincan, yarim asirlik tecrube.",
+          "badge": "1978'den Beri"
+        },
+        "about": {
+          "title": "Haci Baba Hikayesi",
+          "description": "1978 yilinda dedem Haci Ibrahim Celik tarafindan acilan dukkanımız, bugun 3. nesil olarak ben Hasan Celik tarafindan isletilmektedir. Moda'nin en eski kahvehanelerinden biri olarak, yarim asirdan fazla suredir ayni titizlikle Turk kahvesi pisiryoruz.\n\nKahve cekirdeklerimizi Brezilya, Etiyopya ve Yemen'den ozel olarak tedarik ediyor, kendi kavurmamizi yapiyoruz. Her gun taze kavrulmus, tas degirmende ogutulmus kahve ile her fincani ozenle hazirliyoruz.\n\nDedelerimizden miras kalan bakir cezvelerimiz ve geleneksel pisirme yontemimizle, modern dunyanin ortasinda otantik Turk kahvesi deneyimi sunuyoruz."
+        },
+        "services": {
+          "title": "Menumuuz",
+          "subtitle": "Geleneksel Turk kahve cesitleri ve hediye setleri"
+        },
+        "contact": {
+          "title": "Bizi Ziyaret Edin",
+          "subtitle": "Moda sahilinde, kahvenizi yudumlayin"
+        },
+        "faq": [
+          {
+            "q": "Kahve cekirdekleriniz nereden geliyor?",
+            "a": "Brezilya Santos, Etiyopya Yirgacheffe ve Yemen Mocha cekirdeklerini kendi oranımızla harmanliyor ve gunluk taze kavurma yapiyoruz."
+          },
+          {
+            "q": "Paket kahve satisi yapiyor musunuz?",
+            "a": "Evet, 100g, 250g ve 500g paketlerde taze kavurma Turk kahvesi satisi yapiyoruz. Hediye setlerimiz de mevcuttur."
+          },
+          {
+            "q": "Oturma alaniniz var mi?",
+            "a": "Evet, ic mekanda 20 ve dis mekanda 15 kisilik oturma alanımız vardir. Moda sahil yuruyusune 2 dakika mesafedeyiz."
+          },
+          {
+            "q": "Fal bakiyor musunuz?",
+            "a": "Biz kahve hazirlariz, fali siz bakarsınız! Ama fal bakmak isterseniz, fincaniniizi beklemeniz icin guzel bir ortam sunuyoruz."
+          }
+        ],
+        "testimonials": []
+      }
+    },
+    {
+      "id": "kahveci-3nesil",
+      "variantName": "3nesil",
+      "plan": "starter",
+      "description": "Ucuncu dalga kahve dukkani",
+      "designPhilosophy": "Minimal, hipster, zanaatkar",
+      "isDark": false,
+      "colors": {
+        "bg": "#FAFAF7",
+        "surface": "#F0EDE5",
+        "text": "#1C1917",
+        "accent": "#92400E"
+      },
+      "fonts": { "heading": "DM Serif Display", "body": "DM Sans" },
+      "business": {
+        "name": "Filtre Lab | Specialty Coffee",
+        "ownerName": "Deniz Ozturk",
+        "sector": "Kahveci",
+        "slogan": "Her cekirdekte bir hikaye",
+        "phone": "0212 243 56 78",
+        "phoneClean": "902122435678",
+        "whatsapp": "905441234567",
+        "email": "hello@filtrelab.com",
+        "address": "Cukurcuma Mah. Turnacibasi Sok. No:14, Beyoglu/Istanbul",
+        "city": "Istanbul",
+        "district": "Beyoglu",
+        "neighborhood": "Cukurcuma",
+        "coordinates": { "lat": 41.0327, "lng": 28.9787 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/filtrelab",
+          "tiktok": "https://tiktok.com/@filtrelab"
+        },
+        "photos": [],
+        "foundedYear": 2019,
+        "experience": "7 yil",
+        "customerCount": "5.500+",
+        "rating": 4.9,
+        "reviewCount": 780,
+        "services": [
+          {
+            "id": "s1",
+            "name": "Pour Over (V60 / Chemex)",
+            "price": "100 - 140 TL",
+            "duration": "4-5 dk demleme",
+            "description": "Tek origin cekirdeklerle el demleme. V60, Chemex veya Kalita Wave secenekleri."
+          },
+          {
+            "id": "s2",
+            "name": "Espresso Bazli Icecekler",
+            "price": "80 - 130 TL",
+            "duration": "2-3 dk",
+            "description": "Flat white, cortado, latte, cappuccino. La Marzocco Linea ile hazirlanan ozel espresso."
+          },
+          {
+            "id": "s3",
+            "name": "Cold Brew & Iced Coffee",
+            "price": "90 - 120 TL",
+            "duration": "Hazir servis",
+            "description": "24 saat soguk demleme cold brew. Tonik cold brew, oat milk iced latte cesitleri."
+          },
+          {
+            "id": "s4",
+            "name": "Kahve Cekirdegi (Perakende)",
+            "price": "250 - 600 TL",
+            "duration": "250g paket",
+            "description": "Ozel kavurma tek origin cekirdekler. Etiyopya, Kenya, Kolombiya, Guatemala origini."
+          },
+          {
+            "id": "s5",
+            "name": "Kahve Egitimi (Cupping)",
+            "price": "500 TL/kisi",
+            "duration": "90 dk",
+            "description": "Kahve tadim atolyesi: origin farklari, kavurma profilleri, demleme teknikleri. Max 8 kisi."
+          },
+          {
+            "id": "s6",
+            "name": "Ev Demleme Seti",
+            "price": "800 - 2.500 TL",
+            "duration": "Paket",
+            "description": "V60, Hario skala, ogutuclu ve cekirdek dahil baslangiç seti. Hediye secenegidir."
+          }
+        ],
+        "team": [
+          {
+            "name": "Deniz Ozturk",
+            "title": "Kurucu | SCA Certified Q Grader",
+            "bio": "7 yildir specialty coffee sektorunde. SCA Q Grader sertifkali. Etiyopya ve Kolombiya'da origin gezileri.",
+            "photo": ""
+          },
+          {
+            "name": "Ece Aydın",
+            "title": "Head Barista",
+            "bio": "SCA Barista Skills Professional. Turkiye Barista Sampiyonasi yari finalisti.",
+            "photo": ""
+          }
+        ],
+        "workingHours": [
+          { "day": "Pazartesi", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Sali", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Carsamba", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Persembe", "open": "08:00", "close": "20:00", "isOpen": true },
+          { "day": "Cuma", "open": "08:00", "close": "21:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "09:00", "close": "21:00", "isOpen": true },
+          { "day": "Pazar", "open": "09:00", "close": "19:00", "isOpen": true }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Her Cekirdekte Bir Hikaye",
+          "subtitle": "Specialty coffee, tek origin kavurma, el demleme — Cukurcuma'da ucuncu dalga kahve deneyimi.",
+          "badge": "SCA Q Grader"
+        },
+        "about": {
+          "title": "Filtre Lab Hikayesi",
+          "description": "2019 yilinda Cukurcuma'nin tarihi dokusunda acilan Filtre Lab, Istanbul'un specialty coffee sahnesinin onemli duraklarindan biridir. SCA Q Grader sertifkali kurucumuz Deniz Ozturk, kahve cekirdeginin ciftlikten fincana yolculuguna tutkuyla yaklasir.\n\nCekirdeklerimizi dogrudan origin ulkelerinden — Etiyopya, Kenya, Kolombiya, Guatemala — tedarik ediyor, kendi micro-roastery'mizde kucuk partiler halinde kavruyoruz. Her kavurma profili, cekirdegi origin karakterini yansitacak sekilde ozenle belirlenir.\n\nLa Marzocco Linea espresso makinemiz ve Mahlkonig EK43 ogutucumuzle her fincanda tutarli kalite sunuyoruz."
+        },
+        "services": {
+          "title": "Menu & Deneyimler",
+          "subtitle": "Pour over'dan espresso'ya, cupping'den egitim atolyesine"
+        },
+        "stats": {
+          "title": "Filtre Lab Rakamlari",
+          "items": [
+            { "value": "5.500+", "label": "Mutlu Musteri" },
+            { "value": "7", "label": "Origin Ulke" },
+            { "value": "4.9", "label": "Google Puan" },
+            { "value": "Q", "label": "Grader Sertifka" }
+          ]
+        },
+        "contact": {
+          "title": "Bizi Ziyaret Edin",
+          "subtitle": "Cukurcuma'nin kalbinde — kahvenizi kesfet"
+        },
+        "faq": [
+          {
+            "q": "Specialty coffee nedir?",
+            "a": "SCA (Specialty Coffee Association) tarafindan 80+ puan alan kahvelere denir. Izlenebilir kaynak, dikkatli isleme ve ozenli kavurma ile uretilir. Her fincanda cekirdegi origin karakterini hissedersiniz."
+          },
+          {
+            "q": "Hangi demleme yontemlerini sunuyorsunuz?",
+            "a": "V60, Chemex, Kalita Wave, AeroPress ve sifon demleme seceneklerimiz mevcuttur. Baristamiz size en uygun yontemi onerr."
+          },
+          {
+            "q": "Cupping atolyesine katilmak icin ne yapmali?",
+            "a": "Instagram veya WhatsApp uzerinden rezervasyon yapabilirsiniz. Ayda 2 kez duzenliyoruz, max 8 kisi. Baslangic seviyesi icin kahve bilgisi gerekmez."
+          },
+          {
+            "q": "Vegan sut alternatifleri var mi?",
+            "a": "Evet, yulaf sutu (Oatly), badem sutu ve hindistan cevizi sutu seceneklerimiz mevcuttur. Ek ucret yoktur."
+          },
+          {
+            "q": "Online cekirdek siparisi verebilir miyim?",
+            "a": "Evet, web sitemiz uzerinden taze kavurma cekirdek siparisi verebilirsiniz. Kavurma gunu kargoluyoruz. Istanbul ici ayni gun teslimat."
+          },
+          {
+            "q": "Calismak icin uygun mu?",
+            "a": "Evet, WiFi, priz ve sessiz calisma ortami mevcuttur. Hafta ici ogle saatlerine kadar genellikle sakindir."
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Ozan K.",
+            "location": "Cihangir",
+            "date": "2025-11",
+            "rating": 5,
+            "text": "Istanbul'un en iyi pour over'i burada. Etiyopya Yirgacheffe V60 ile — meyve notaları inanilmaz. Deniz Bey cekirdek hakkinda cok bilgili."
+          },
+          {
+            "name": "Laura M.",
+            "location": "Berlin",
+            "date": "2025-09",
+            "rating": 5,
+            "text": "Best specialty coffee in Istanbul. The cupping experience was educational and fun. Highly recommend the Chemex Kenya Nyeri."
+          },
+          {
+            "name": "Beren Y.",
+            "location": "Besiktas",
+            "date": "2025-06",
+            "rating": 5,
+            "text": "Cupping atolyesine katildim, kahve dunyami degistirdi. Artik market kahvesi iceremiyorum! Ece Hanim harika anlatiyor."
+          }
+        ]
+      }
+    },
+    {
+      "id": "kahveci-kavurma",
+      "variantName": "kavurma",
+      "plan": "growth",
+      "description": "Micro roastery & kafe",
+      "designPhilosophy": "Endustriyel-sicak, zanaatkar, uretim",
+      "isDark": false,
+      "colors": {
+        "bg": "#FAF8F5",
+        "surface": "#EDE8E0",
+        "text": "#1A1612",
+        "accent": "#78350F"
+      },
+      "fonts": { "heading": "Bebas Neue", "body": "Source Sans Pro" },
+      "business": {
+        "name": "Kumru Kavurma | Artisan Coffee Roasters",
+        "ownerName": "Baris Kara",
+        "sector": "Kahveci",
+        "slogan": "Ciftlikten fincana, elimizden kavurmaya",
+        "phone": "0216 410 22 33",
+        "phoneClean": "902164102233",
+        "whatsapp": "905371234567",
+        "email": "merhaba@kumrukavurma.com",
+        "address": "Yeldeirmeni Mah. Karakolhane Cad. No:30, Kadikoy/Istanbul",
+        "city": "Istanbul",
+        "district": "Kadikoy",
+        "neighborhood": "Yeldeirmeni",
+        "coordinates": { "lat": 40.9913, "lng": 29.0197 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/kumrukavurma",
+          "youtube": "https://youtube.com/@kumrukavurma",
+          "tiktok": "https://tiktok.com/@kumrukavurma"
+        },
+        "photos": [],
+        "foundedYear": 2017,
+        "experience": "9 yil",
+        "customerCount": "12.000+",
+        "rating": 4.9,
+        "reviewCount": 1650,
+        "services": [
+          {
+            "id": "s1",
+            "name": "Filtre Kahve (Pour Over)",
+            "price": "110 - 160 TL",
+            "duration": "4-5 dk",
+            "description": "V60, Chemex, Kalita, AeroPress. Gunluk degisen tek origin secenekleri."
+          },
+          {
+            "id": "s2",
+            "name": "Espresso Menu",
+            "price": "90 - 140 TL",
+            "duration": "2-3 dk",
+            "description": "Espresso, americano, flat white, cortado, latte. Oat milk ve badem sutu secenekleri."
+          },
+          {
+            "id": "s3",
+            "name": "Signature Drinks",
+            "price": "120 - 180 TL",
+            "duration": "3-5 dk",
+            "description": "Kumru'ya ozel icecekler: lavanta latte, karamel cold brew, matcha espresso tonic."
+          },
+          {
+            "id": "s4",
+            "name": "Brunch Menu",
+            "price": "180 - 350 TL",
+            "duration": "15-20 dk",
+            "description": "Avokado toast, granola bowl, eggs benedict, pastirma kasarli tost. Hafta sonu brunch."
+          },
+          {
+            "id": "s5",
+            "name": "Cekirdek Abonelik",
+            "price": "450 - 900 TL/ay",
+            "duration": "Aylik teslimat",
+            "description": "Her ay kapiniza 2 farkli tek origin cekirdek. Kavurma notu ve demleme onerisi ile."
+          },
+          {
+            "id": "s6",
+            "name": "Kahve Egitim Programi",
+            "price": "800 TL/kisi",
+            "duration": "3 saat",
+            "description": "Kavurma atolyesi: kendi cekirdeklerinizi kavurun. Origin bilgisi, kavurma profili ve demleme."
+          },
+          {
+            "id": "s7",
+            "name": "Toptan Cekirdek",
+            "price": "Kg bazli",
+            "duration": "Teslimat",
+            "description": "Kafe ve restoranlara ozel kavurma cekirdek tedariği. Baristaa egitimi dahil."
+          },
+          {
+            "id": "s8",
+            "name": "Kurumsal Kahve Servisi",
+            "price": "Sozlesme bazli",
+            "duration": "Haftalik",
+            "description": "Ofisler icin taze kavurma cekirdek, ekipman ve barista hizmeti. Haftalik teslimat."
+          },
+          {
+            "id": "s9",
+            "name": "Ozel Etkinlik Kahve Bar",
+            "price": "5.000 TL'den baslayan",
+            "duration": "2-4 saat",
+            "description": "Dugun, lansman, konferans icin mobil kahve bar hizmeti. Barista + ekipman + cekirdek."
+          },
+          {
+            "id": "s10",
+            "name": "Ev Demleme Danismanligi",
+            "price": "400 TL",
+            "duration": "60 dk",
+            "description": "Evinize gelerek ekipman secimi, kurulumu ve demleme egitimi. Online danismanlik da mevcuttur."
+          }
+        ],
+        "team": [
+          {
+            "name": "Baris Kara",
+            "title": "Kurucu | Head Roaster",
+            "bio": "SCA Roasting Professional. 9 yildir kavurma yapyor. Etiyopya, Kolombiya, Guatemala, Costa Rica origin gezileri.",
+            "photo": ""
+          },
+          {
+            "name": "Zeynep Aktaş",
+            "title": "Head Barista | SCA Trainer",
+            "bio": "SCA Barista Skills Professional, Brewing Professional. Turkiye Barista Sampiyonasi finalisti.",
+            "photo": ""
+          },
+          {
+            "name": "Emre Dogan",
+            "title": "Kavurma Teknisyeni",
+            "bio": "Gida muhendisi. Kavurma profili gelistirme ve kalite kontrol sorumlusu.",
+            "photo": ""
+          },
+          {
+            "name": "Can Yilmaz",
+            "title": "Barista & Egitmen",
+            "bio": "3 yillik specialty coffee deneyimi. Latte art sampiyonasi katilimcisi.",
+            "photo": ""
+          }
+        ],
+        "workingHours": [
+          { "day": "Pazartesi", "open": "08:00", "close": "21:00", "isOpen": true },
+          { "day": "Sali", "open": "08:00", "close": "21:00", "isOpen": true },
+          { "day": "Carsamba", "open": "08:00", "close": "21:00", "isOpen": true },
+          { "day": "Persembe", "open": "08:00", "close": "21:00", "isOpen": true },
+          { "day": "Cuma", "open": "08:00", "close": "22:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "09:00", "close": "22:00", "isOpen": true },
+          { "day": "Pazar", "open": "09:00", "close": "20:00", "isOpen": true }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Ciftlikten Fincana",
+          "subtitle": "Kendi kavurmamiz, kendi baristalarimiz — Yeldegirmeni'nde artisan kahve deneyimi. 12.000+ kahve sever.",
+          "badge": "Micro Roastery"
+        },
+        "about": {
+          "title": "Kumru Kavurma Hikayesi",
+          "description": "2017 yilinda Yeldegirmeni'nde 30 m2'lik bir dukkanla baslayan Kumru, bugun 200 m2 kafe + kavurmahane ile Istanbul'un specialty coffee sahnesinde onemli bir yer edinmistir. Kurucumuz Baris Kara'nin kahve tutkusu, onu Etiyopya ciftliklerinden Guatemala daglarına goturdu.\n\nDukke Probat 12kg kavurma makinemizle haftalik 200kg+ cekirdek kavruyoruz. Her kavurma profili, cekirdegi terroirini yansitacak sekilde ozenle belirlenir. Kavurma sonrasi 48 saat dinlendirmeden raflarimiza koymuyoruz.\n\n40+ kafe ve restorana toptan cekirdek tedariği yapiyor, 500+ bireysel abone ile her ay kapilarina taze kavurma gonderiyoruz. Kahve egitim programlarimizla 2.000'den fazla kisiye kahve kulturu asladik.\n\nMobil kahve bar hizmetimizle dugunderden lansmanara ozel etkinliklere de kahve deneyimi tasiyoruz."
+        },
+        "services": {
+          "title": "Menu, Kavurma & Deneyimler",
+          "subtitle": "Filtre kahveden kavurma atolyesine, abonelikten kurumsal servise"
+        },
+        "stats": {
+          "title": "Kumru Rakamlari",
+          "items": [
+            { "value": "12.000+", "label": "Musteri" },
+            { "value": "40+", "label": "Toptan Musteri" },
+            { "value": "500+", "label": "Abone" },
+            { "value": "7", "label": "Origin Ulke" }
+          ]
+        },
+        "gallery": {
+          "title": "Kavurmahane & Kafe",
+          "subtitle": "Kavurma sihri, barista sanati, topluluk ruhu"
+        },
+        "contact": {
+          "title": "Ziyaret veya Siparis",
+          "subtitle": "Kafeye gelin, online siparis verin veya abonelik baslatin"
+        },
+        "faq": [
+          {
+            "q": "Cekirdek aboneligi nasil calisiyor?",
+            "a": "Her ay sectiğiniz plana gore 1 veya 2 paket taze kavurma cekirdek kapıniza gonder. Kavurma notu, origin bilgisi ve demleme onerisi dahildir. Istediginiz zaman iptal edebilirsiniz."
+          },
+          {
+            "q": "Toptan cekirdek tedariki yapiyor musunuz?",
+            "a": "Evet, kafe, restoran ve otellere toptan cekirdek tedariği yapiyoruz. Kafeninize ozel kavurma profili gelistirme ve barista egitimi dahildir."
+          },
+          {
+            "q": "Kavurma atolyesine katilmak icin kahve bilgisi gerekli mi?",
+            "a": "Hayir, atolyemiz her seviyeye uygundur. Temel kavurma bilgisinden kendi cekirdeklerinizi kavurmaya kadar uygulamalı egitim veriyoruz."
+          },
+          {
+            "q": "Mobil kahve bar nasil calisayor?",
+            "a": "Etkinliginize La Marzocco espresso makinesi, barista ve cekirdek ile geliyoruz. 50-500 kisi arasi etkinliklere hizmet veriyoruz."
+          },
+          {
+            "q": "Brunch menu ne zaman gecerli?",
+            "a": "Hafta sonu (Cumartesi-Pazar) 09:00-15:00 arasi brunch menumuz aktiftir. Hafta ici sabah kahvaltisi seceneklerimiz de mevcuttur."
+          },
+          {
+            "q": "Glutensiz ve vegan secenekler var mi?",
+            "a": "Evet, glutensiz ekmek, vegan pasta ve bitki bazlı sut alternatifleri (yulaf, badem, hindistan cevizi) mevcuttur."
+          },
+          {
+            "q": "Online siparis ile kargo ne zaman gelir?",
+            "a": "Istanbul ici ayni gun veya ertesi gun teslimat. Turkiye geneli 2-3 is gunu. Kavurma gunu kargoliyoruz."
+          },
+          {
+            "q": "Doga dostu paketleme kullaniyor musunuz?",
+            "a": "Evet, kompostlanabilir kahve paketleri, kagit pipet ve geri donusturulmus bardak kullaniyoruz. Cevresel surdurulebilirlik onceliklerimiz arasindadir."
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Selen T.",
+            "location": "Yeldegirmeni",
+            "date": "2025-12",
+            "rating": 5,
+            "text": "6 aydir cekirdek aboneligi aliyorum. Her ay farkli origin gelince cok heyecan verici. Kavurma kalitesi tutarli, her paket mukemmel."
+          },
+          {
+            "name": "Alex B.",
+            "location": "Moda",
+            "date": "2025-10",
+            "rating": 5,
+            "text": "The roasting workshop was an incredible experience. Baris is passionate and knowledgeable. I now roast my own beans at home!"
+          },
+          {
+            "name": "Arda S.",
+            "location": "Atasehir",
+            "date": "2025-08",
+            "rating": 5,
+            "text": "Kafemiz icin Kumru'dan cekirdek aliyoruz. Kalite tutarli, teslimat dakik, barista egitimi bonus. Musterilerimiz fark etti."
+          },
+          {
+            "name": "Nil O.",
+            "location": "Besiktas",
+            "date": "2025-05",
+            "rating": 5,
+            "text": "Dugumuzde mobil kahve bar hizmeti aldik. Konuklarimiz bayildi! Zeynep Hanim'in latte art gosterisi cok etkileyiciydi."
+          },
+          {
+            "name": "Emre K.",
+            "location": "Kadikoy",
+            "date": "2025-03",
+            "rating": 4,
+            "text": "En iyi V60 burada icilir. Etiyopya Guji hakikaten ciçek gibi. Tek olumsuz: hafta sonlari cok kalabalik, bekleme olabiliyor."
+          },
+          {
+            "name": "Melis A.",
+            "location": "Cihangir",
+            "date": "2025-01",
+            "rating": 5,
+            "text": "Lavanta latte signature drink'i hayatimin icecegi. Her hafta geliyorum. Ortam da cok guzel, calismaak icin ideal."
+          }
+        ]
+      }
+    },
+    {
+      "id": "kahveci-lux",
+      "variantName": "lux",
+      "plan": "pro",
+      "description": "Premium kahve deneyimi, luks ortam",
+      "designPhilosophy": "Luks, zarif, deneyim odakli",
+      "isDark": false,
+      "colors": {
+        "bg": "#FDFCFA",
+        "surface": "#F0EDE5",
+        "text": "#1A1814",
+        "accent": "#854D0E"
+      },
+      "fonts": { "heading": "Cormorant Garamond", "body": "Lato" },
+      "business": {
+        "name": "Maison du Cafe Istanbul",
+        "ownerName": "Selim Akkaya",
+        "sector": "Kahveci",
+        "slogan": "Kahvenin sanat hali",
+        "phone": "0212 260 33 44",
+        "phoneClean": "902122603344",
+        "whatsapp": "905481234567",
+        "email": "reservation@maisoncafe.ist",
+        "address": "Nisantasi Mah. Abdi Ipekci Cad. No:34, Sisli/Istanbul",
+        "city": "Istanbul",
+        "district": "Sisli",
+        "neighborhood": "Nisantasi",
+        "coordinates": { "lat": 41.0501, "lng": 28.9918 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/maisoncafeist",
+          "youtube": "https://youtube.com/@maisoncafe",
+          "pinterest": "https://pinterest.com/maisoncafeist"
+        },
+        "photos": [],
+        "foundedYear": 2015,
+        "experience": "11 yil",
+        "customerCount": "20.000+",
+        "rating": 4.9,
+        "reviewCount": 3200,
+        "services": [
+          {
+            "id": "s1",
+            "name": "Single Origin Tasting",
+            "price": "150 - 250 TL",
+            "duration": "Ozel sunum",
+            "description": "Sectiginiz tek origin kahve, ozel sunumla, origin hikayesi ve tasting note kartiyla."
+          },
+          {
+            "id": "s2",
+            "name": "Signature Coffee Cocktails",
+            "price": "180 - 280 TL",
+            "duration": "5-7 dk",
+            "description": "Kahve bazli kokteiller: espresso martini, coffee negroni, cold brew spritz."
+          },
+          {
+            "id": "s3",
+            "name": "Artisan Pastry & Patisserie",
+            "price": "120 - 300 TL",
+            "duration": "Servis",
+            "description": "Fransiz pastane sefi tarafindan hazirlanan kruvasan, eclair, tart, macaron."
+          },
+          {
+            "id": "s4",
+            "name": "Brunch Experience",
+            "price": "450 - 800 TL/kisi",
+            "duration": "Set menu",
+            "description": "Premium brunch: eggs royale, truffle scramble, smoked salmon, pastry basket, kahve."
+          },
+          {
+            "id": "s5",
+            "name": "Private Tasting Room",
+            "price": "2.500 TL (6 kisilik)",
+            "duration": "90 dk",
+            "description": "Ozel oda'da 6 kisiye kadar cupping deneyimi. 5 farkli origin, food pairing."
+          },
+          {
+            "id": "s6",
+            "name": "Kisisel Kavurma Profili",
+            "price": "500 TL/500g",
+            "duration": "1 hafta",
+            "description": "Damak tadınıza ozel kavurma profili gelistirme. Tadim sonrasi kisisel cekirdek uretimi."
+          },
+          {
+            "id": "s7",
+            "name": "Coffee Concierge",
+            "price": "Uyelik bazli",
+            "duration": "Surekli",
+            "description": "Aylik ozel kavurma, oncelikli masa, etkinlik daveti ve kisisel barista hizmeti."
+          },
+          {
+            "id": "s8",
+            "name": "Ozel Etkinlik & Lansman",
+            "price": "15.000 TL'den",
+            "duration": "3-5 saat",
+            "description": "Marka lansmanı, ozel davet veya kurumsal etkinlik icin mekanin tamami veya ozel odalarin kiralanmasi."
+          },
+          {
+            "id": "s9",
+            "name": "Coffee & Chocolate Pairing",
+            "price": "350 TL/kisi",
+            "duration": "60 dk",
+            "description": "3 farkli origin kahve ile 3 farkli cikolata eslesstirme deneyimi. Max 10 kisi."
+          },
+          {
+            "id": "s10",
+            "name": "Barista Masterclass",
+            "price": "1.200 TL/kisi",
+            "duration": "4 saat",
+            "description": "Profesyonel barista egitimi: espresso, latte art, pour over, sensory skills."
+          },
+          {
+            "id": "s11",
+            "name": "Premium Hediye Seti",
+            "price": "1.500 - 5.000 TL",
+            "duration": "Ozel paketleme",
+            "description": "El yapimi seramik fincan, ozel kavurma cekirdek, cikolata ve not kartiyla hediye seti."
+          },
+          {
+            "id": "s12",
+            "name": "Kurumsal Toplanti Paketi",
+            "price": "250 TL/kisi",
+            "duration": "2-4 saat",
+            "description": "Is toplantilari icin ozel oda, kahve servisi, pastry ve hafif yemek."
+          },
+          {
+            "id": "s13",
+            "name": "Latte Art Workshop",
+            "price": "600 TL/kisi",
+            "duration": "2 saat",
+            "description": "Latte art egitimi: kalp, yaprak, rozetta, tulip. Teknik ve pratik uygulamali."
+          },
+          {
+            "id": "s14",
+            "name": "Home Brewing Consultation",
+            "price": "800 TL",
+            "duration": "90 dk",
+            "description": "Evinize uygun ekipman onerisi, kurulum ve uygulamali demleme egitimi."
+          }
+        ],
+        "team": [
+          {
+            "name": "Selim Akkaya",
+            "title": "Kurucu | Coffee Director",
+            "bio": "SCA Q Grader, AST. 11 yillik specialty coffee deneyimi. Londra ve Melbourne'da egitim. 15 origin ulke deneyimi.",
+            "photo": ""
+          },
+          {
+            "name": "Chef Marie Dubois",
+            "title": "Pastry Chef",
+            "bio": "Le Cordon Bleu Paris mezunu. 12 yillik pastane deneyimi. Michelin yildizli restoranlarda calisma gecmisi.",
+            "photo": ""
+          },
+          {
+            "name": "Cem Onder",
+            "title": "Head Barista & Trainer",
+            "bio": "Turkiye Barista Sampiyonu (2022). World Barista Championship katilimcisi. SCA AST.",
+            "photo": ""
+          },
+          {
+            "name": "Eda Sari",
+            "title": "Roast Master",
+            "bio": "SCA Roasting Professional. Probat ve Loring kavurma makinelerinde uzmanlik. Green bean sourcing.",
+            "photo": ""
+          },
+          {
+            "name": "Bora Akin",
+            "title": "Bar Manager | Mixologist",
+            "bio": "8 yillik mixology deneyimi. Coffee cocktail gelistirme. Diageo World Class katilimcisi.",
+            "photo": ""
+          },
+          {
+            "name": "Sevgi Yilmaz",
+            "title": "Musteri Deneyimi Muduru",
+            "bio": "10 yillik luxury hospitality deneyimi. Four Seasons ve Raffles otellerinde calisma gecmisi.",
+            "photo": ""
+          }
+        ],
+        "workingHours": [
+          { "day": "Pazartesi", "open": "08:00", "close": "23:00", "isOpen": true },
+          { "day": "Sali", "open": "08:00", "close": "23:00", "isOpen": true },
+          { "day": "Carsamba", "open": "08:00", "close": "23:00", "isOpen": true },
+          { "day": "Persembe", "open": "08:00", "close": "23:00", "isOpen": true },
+          { "day": "Cuma", "open": "08:00", "close": "00:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "09:00", "close": "00:00", "isOpen": true },
+          { "day": "Pazar", "open": "09:00", "close": "22:00", "isOpen": true }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Kahvenin Sanat Hali",
+          "subtitle": "Nisantasi'nda — single origin tasting, artisan patisserie, coffee cocktails. Her fincan bir deneyim, her ziyaret bir anı.",
+          "badge": "Premium Coffee Experience"
+        },
+        "about": {
+          "title": "Maison du Cafe Hikayesi",
+          "description": "2015 yilinda Nisantasi'nda acilan Maison du Cafe, kahveyi bir icecekten oteye tasiyan bir deneyim mekanidir. Kurucumuz Selim Akkaya'nin Londra ve Melbourne'daki specialty coffee yolculugundan ilham alan konseptimiz, premium kahve deneyimini Fransiz patisserie sanati ve mixology ile bulusturur.\n\n350 m2 alanda — ana salon, tasting room, barista lab ve avlu — zarif bir ortamda hizmet veriyoruz. Her detayi ozenle tasarlanmis mekanımızda, kahve sadece icilmez, yasanir.\n\nSCA Q Grader Selim Akkaya, Turkiye Barista Sampiyonu Cem Onder ve Le Cordon Bleu mezunu Chef Marie Dubois'den olusan ekibimiz, her ziyareti unutulmaz kilmak icin calismaktadir.\n\nCoffee Concierge programimizla VIP uyelerimize kisisyel kavurma, oncelikli masa ve ozel etkinlik davetleri sunuyoruz. 20.000'den fazla mutlu musterimiz ve %85 tekrar ziyaret oranımız, deneyimimizin kalitesini kanitlıyor."
+        },
+        "services": {
+          "title": "Deneyimler & Menuler",
+          "subtitle": "Tasting'den masterclass'a, cocktail'den patisserie'ye — premium kahve dunyasi"
+        },
+        "stats": {
+          "title": "Maison du Cafe Rakamlari",
+          "items": [
+            { "value": "20.000+", "label": "Musteri" },
+            { "value": "11", "label": "Yil" },
+            { "value": "15", "label": "Origin Ulke" },
+            { "value": "3.200+", "label": "Google Yorum" }
+          ]
+        },
+        "gallery": {
+          "title": "Mekan & Deneyim",
+          "subtitle": "Nisantasi'nin en zarif kahve deneyimi"
+        },
+        "process": {
+          "title": "Maison Deneyimi",
+          "steps": [
+            { "title": "Hosgeldiniz", "description": "Concierge sizi karsilar, tercihleririnizi ogrenir ve size ozel oneri sunar." },
+            { "title": "Origin Secimi", "description": "Tasting note kartlariyla cekirdek secimi yaparsınız veya baristaya guvenirsiniz." },
+            { "title": "Ozel Sunum", "description": "Seciminiz ozel donanımla hazirlanir, origin hikayesiyle birlikte sunulur." },
+            { "title": "Pairing", "description": "Chef Marie'nin artisan pastry'leri veya Bora'nin coffee cocktail'leri ile eslestirme." }
+          ]
+        },
+        "contact": {
+          "title": "Rezervasyon",
+          "subtitle": "Premium deneyim icin masa veya ozel oda rezervasyonu alin"
+        },
+        "faq": [
+          {
+            "q": "Rezervasyon gerekli mi?",
+            "a": "Hafta sonu brunch ve ozel oda kullanimi icin oneden rezervasyon onerilir. Hafta ici walk-in kabul edilmektedir."
+          },
+          {
+            "q": "Coffee Concierge uyeligiine nasil katilabilirim?",
+            "a": "Aylik 1.500 TL uyelik ucreti ile katilabilirsiniz. Kisiksel kavurma, oncelikli masa, etkinlik davetleri ve %15 indirim avantaji."
+          },
+          {
+            "q": "Ozel etkinlik icin mekan kiralanabilir mi?",
+            "a": "Evet, ozel oda (max 12 kisi), tasting room (max 20 kisi) veya ana salon (max 80 kisi) kiralanabilir. Kurumsal toplanti, dogum gunu veya lansman icin."
+          },
+          {
+            "q": "Gluten free ve vegan pastry var mi?",
+            "a": "Evet, Chef Marie'nin glutensiz ve vegan pastry secenekleri mevcuttur. Menu'de isaretlenmi olan secenekleri gorabilirsiniz."
+          },
+          {
+            "q": "Alkol servisi var mi?",
+            "a": "Evet, coffee cocktail menumuz dahilinde alkollü icecekler sunulmaktadir. Espresso martini, coffee negroni, cold brew spritz en populer seceneklerimizdir."
+          },
+          {
+            "q": "Barista masterclass icin deneyim gerekli mi?",
+            "a": "Hayir, masterclass her seviyeye uygundur. Ev barista'sindan profesyonele kadar herkes katilabilir."
+          },
+          {
+            "q": "Online siparis verebilir miyim?",
+            "a": "Evet, ozel kavurma cekirdek, hediye setleri ve pastry siparisi web sitemiz uzerinden verilebilir. Istanbul ici ayni gun teslimat."
+          },
+          {
+            "q": "Otopark ve ulasim nasil?",
+            "a": "Abdi Ipekci Caddesi uzerindeyiz. City's Nisantasi otoparkı 50m mesafededir. Metro: Osmanbey istasyonu 300m."
+          },
+          {
+            "q": "Private tasting room nasil calisiyor?",
+            "a": "Max 6 kisilik ozel oda'da 5 farkli origin kahve tadimi, tasting note kesfii ve pastry pairing deneyimi. 90 dakika, onceden rezervasyon gerekli."
+          },
+          {
+            "q": "Cocuk dostu bir mekan mi?",
+            "a": "Genel olarak yetiskin odakli bir mekaniz, ancak cocuklu aileler de tabii ki hosgeldiniz. Cocuk menumuz ve yuksek sandalyelerimiz mevcuttur."
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Idil K.",
+            "location": "Nisantasi",
+            "date": "2025-12",
+            "rating": 5,
+            "text": "Private tasting room deneyimi unutulmazdi. 5 farkli origin, cikolata pairing — kahveyi bu kadar derin yasamamistim. Selim Bey bizzat sunumu yapti."
+          },
+          {
+            "name": "Marco P.",
+            "location": "Milan",
+            "date": "2025-10",
+            "rating": 5,
+            "text": "Coming from Italy, I'm very picky about coffee. Maison du Cafe surprised me. The espresso is excellent, and the pastries by Chef Marie are world-class."
+          },
+          {
+            "name": "Pinar H.",
+            "location": "Levent",
+            "date": "2025-08",
+            "rating": 5,
+            "text": "Espresso martini'leri icin geliyorum, pastry'ler icin kaliyorum. Bora Bey'in cocktail'leri baska yerde buluamayacaginiz kalitede."
+          },
+          {
+            "name": "Cengiz A.",
+            "location": "Etiler",
+            "date": "2025-06",
+            "rating": 5,
+            "text": "Sirketimizin lansmanini burada yaptik. Mekan, servis ve kahve kalitesi musterilerimizi cok etkiledi."
+          },
+          {
+            "name": "Selen M.",
+            "location": "Bebek",
+            "date": "2025-04",
+            "rating": 5,
+            "text": "Coffee Concierge uyeligi en iyi karar. Her ay kapima gelen ozel kavurma, oncelikli masa ve etkinlik davetleri — premium yasam."
+          },
+          {
+            "name": "Thomas J.",
+            "location": "London",
+            "date": "2025-02",
+            "rating": 5,
+            "text": "Barista masterclass with Cem was extraordinary. He's a world champion for a reason. I learned more in 4 hours than in months of practice."
+          },
+          {
+            "name": "Ebru T.",
+            "location": "Sisli",
+            "date": "2024-12",
+            "rating": 4,
+            "text": "Kalite tartismasis ama fiyatlar yuksek. Premium deneyim icin kabul edilebilir, ama gunluk kahve yeriniz olamaz. Ozel gunler icin mukemmel."
+          },
+          {
+            "name": "Kenan Y.",
+            "location": "Sariyer",
+            "date": "2024-10",
+            "rating": 5,
+            "text": "Hediye seti aldim, paketleme ve sunum muhtesem. El yapimi seramik fincan, ozel kavurma ve cikolata — etkileyici bir hediye oldu."
+          }
+        ]
+      }
+    },
+    {
+      "id": "kahveci-brunch",
+      "variantName": "brunch",
+      "plan": "enterprise",
+      "description": "Premium kafe zinciri, koyu tema",
+      "designPhilosophy": "Koyu, luks, zincir markasi",
+      "isDark": true,
+      "colors": {
+        "bg": "#0C0A08",
+        "surface": "#1A1612",
+        "text": "#E8E4DE",
+        "accent": "#D97706"
+      },
+      "fonts": { "heading": "Cormorant Garamond", "body": "Inter" },
+      "business": {
+        "name": "Brew Republic Coffee Co.",
+        "ownerName": "Arda Erdem",
+        "sector": "Kahveci",
+        "slogan": "Istanbul'un kahve cumhuriyeti",
+        "phone": "0850 222 27 39",
+        "phoneClean": "908502222739",
+        "whatsapp": "905551234567",
+        "email": "hello@brewrepublic.com.tr",
+        "address": "Bebek Mah. Cevdet Pasa Cad. No:52, Besiktas/Istanbul",
+        "city": "Istanbul",
+        "district": "Besiktas",
+        "neighborhood": "Bebek",
+        "coordinates": { "lat": 41.0765, "lng": 29.0440 },
+        "socialMedia": {
+          "instagram": "https://instagram.com/brewrepublic",
+          "youtube": "https://youtube.com/@brewrepublic",
+          "tiktok": "https://tiktok.com/@brewrepublic",
+          "linkedin": "https://linkedin.com/company/brewrepublic",
+          "facebook": "https://facebook.com/brewrepublic"
+        },
+        "photos": [],
+        "foundedYear": 2013,
+        "experience": "13 yil",
+        "customerCount": "500.000+",
+        "rating": 4.8,
+        "reviewCount": 18500,
+        "services": [
+          { "id": "s1", "name": "Specialty Espresso Bar", "price": "90 - 160 TL", "duration": "2-3 dk", "description": "La Marzocco KB90 ile hazirlanan espresso bazli icecekler. Ozel blend ve tek origin secenekleri." },
+          { "id": "s2", "name": "Pour Over Station", "price": "120 - 200 TL", "duration": "4-5 dk", "description": "V60, Chemex, Kalita. Gunluk degisen 3 farkli tek origin secenegi. Tasting note kartiyla sunum." },
+          { "id": "s3", "name": "Cold Brew & Iced Specialties", "price": "100 - 180 TL", "duration": "Hazir", "description": "Nitro cold brew, tonic espresso, iced matcha latte, cascara spritz." },
+          { "id": "s4", "name": "Coffee Cocktails & Mocktails", "price": "160 - 280 TL", "duration": "3-5 dk", "description": "Espresso martini, coffee old fashioned, cascara gin fizz. Zero-proof secenekler mevcut." },
+          { "id": "s5", "name": "All-Day Brunch", "price": "200 - 500 TL", "duration": "15-20 dk", "description": "Avocado toast, eggs benedict, shakshuka, acai bowl, French toast. 08:00-17:00." },
+          { "id": "s6", "name": "Pastry & Bakery", "price": "80 - 250 TL", "duration": "Servis", "description": "Gunluk taze kruvasan, pain au chocolat, cookie, banana bread, cheesecake." },
+          { "id": "s7", "name": "Lunch Menu", "price": "250 - 450 TL", "duration": "15-25 dk", "description": "Poke bowl, Caesar salad, club sandwich, pasta. Saglikli ve doyurucu secenekler." },
+          { "id": "s8", "name": "Cekirdek Abonelik (BR Club)", "price": "500 - 1.200 TL/ay", "duration": "Aylik", "description": "Aylik 2-4 paket ozel kavurma. Tum subelerde %10 indirim. Etkinlik onceligi." },
+          { "id": "s9", "name": "Barista Academy", "price": "2.500 - 8.000 TL", "duration": "1-5 gun", "description": "SCA modulleri: Introduction, Barista Skills, Brewing, Sensory, Roasting." },
+          { "id": "s10", "name": "Kavurmahane Turu", "price": "300 TL/kisi", "duration": "90 dk", "description": "Maslak kavurmahane ziyareti. Kavurma sureci, cupping ve hediye cekirdek paket." },
+          { "id": "s11", "name": "Toptan & B2B Tedarik", "price": "Sozlesme", "duration": "Surekli", "description": "Otel, restoran ve ofislere toptan cekirdek. Ekipman + barisata egitimi + kalite kontrol." },
+          { "id": "s12", "name": "Mobil Kahve Bar (Etkinlik)", "price": "8.000 TL'den", "duration": "3-6 saat", "description": "Marka etkinlikleri, konferanslar, dugunler icin mobil kahve bar. Customizable branding." },
+          { "id": "s13", "name": "Franchise Firsati", "price": "Basvuru", "duration": "Degerlendirme", "description": "Brew Republic franchise modeli ile kendi kafenizi acin. Egitim, tedarik ve marka destegi." },
+          { "id": "s14", "name": "Corporate Wellness Coffee", "price": "Paket bazli", "duration": "Haftalik", "description": "Ofislere ozel kahve istasyonu kurulumu. Cekirdek, ekipman, barisata egitimi." },
+          { "id": "s15", "name": "Ozel Etiket Cekirdek", "price": "Proje bazli", "duration": "4-6 hafta", "description": "Sirketinize ozel etiketli kahve cekirdegi uretimi. Logo, paket tasarimi, kavurma profili." },
+          { "id": "s16", "name": "Seasonal Menu R&D", "price": "Dahili", "duration": "Sezonluk", "description": "Her sezon degisen ozel menü: yaz (cold brew festivali), kis (chai latte, hot chocolate)." },
+          { "id": "s17", "name": "Surdurulebilirlik Programi", "price": "Dahili", "duration": "Surekli", "description": "Kompostlanabilir bardak, kahve telvesinden gubre, karbon notr teslimat." },
+          { "id": "s18", "name": "Merch & Lifestyle", "price": "150 - 800 TL", "duration": "Satis", "description": "Brew Republic markalı bardak, termos, tote bag, tshirt, poster." },
+          { "id": "s19", "name": "Kids Menu & Zone", "price": "100 - 200 TL", "duration": "Servis", "description": "Cocuklara ozel kafeinsilz icecekler, meyve suyu, cookie. Cocuk oyun alani." },
+          { "id": "s20", "name": "Co-Working Space", "price": "200 TL/gun", "duration": "09:00-18:00", "description": "Calisma alani: hizli WiFi, priz, monitor, toplantı odasi. Sinirsiz kahve dahil." }
+        ],
+        "team": [
+          { "name": "Arda Erdem", "title": "Kurucu & CEO", "bio": "Bosphorus Universitesi MBA. 13 yillik kahve sektoru deneyimi. SCA Board member. Forbes 30 Under 30 (2017).", "photo": "" },
+          { "name": "Irem Koc", "title": "COO & Co-Founder", "bio": "LSE Economics. 10 yillik perakende yonetimi. Operasyon, franchise ve buyume stratejisi.", "photo": "" },
+          { "name": "Onur Demir", "title": "Head of Coffee | Q Grader", "bio": "SCA Q Grader, AST. 12 yillik specialty coffee. 20+ origin ulke. Kavurma profili ve kalite kontrol.", "photo": "" },
+          { "name": "Chef Selin Arslan", "title": "Executive Chef", "bio": "Culinary Arts Institute. 8 yillik fine dining ve cafe mutfagi. Brunch ve pastry gelistirme.", "photo": "" },
+          { "name": "Berk Ozkan", "title": "Head Barista & Trainer", "bio": "Turkiye Latte Art Sampiyonu. World Latte Art Championship katilimcisi. SCA AST.", "photo": "" },
+          { "name": "Zeynep Tan", "title": "Brand & Marketing Director", "bio": "Mimar Sinan GSAB. 10 yillik marka yonetimi. Kahve sektoru pazarlama stratejisi.", "photo": "" },
+          { "name": "Mert Akin", "title": "Franchise & BD Director", "bio": "Koc Universitesi MBA. 8 yillik franchise gelistirme deneyimi. 12 sube acilis yonetimi.", "photo": "" },
+          { "name": "Dyt. Ceren Ozdemir", "title": "Menu & Nutrisyon Danismani", "bio": "Beslenme ve Diyetetik uzmani. Saglikli menu gelistirme, kalori hesaplama ve alerjen yonetimi.", "photo": "" }
+        ],
+        "workingHours": [
+          { "day": "Pazartesi", "open": "07:00", "close": "00:00", "isOpen": true },
+          { "day": "Sali", "open": "07:00", "close": "00:00", "isOpen": true },
+          { "day": "Carsamba", "open": "07:00", "close": "00:00", "isOpen": true },
+          { "day": "Persembe", "open": "07:00", "close": "00:00", "isOpen": true },
+          { "day": "Cuma", "open": "07:00", "close": "01:00", "isOpen": true },
+          { "day": "Cumartesi", "open": "08:00", "close": "01:00", "isOpen": true },
+          { "day": "Pazar", "open": "08:00", "close": "23:00", "isOpen": true }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Istanbul'un Kahve Cumhuriyeti",
+          "subtitle": "13 yil, 12 sube, 500.000+ musteri. Specialty coffee, artisan brunch, coffee cocktails — Brew Republic ile her gun bir festival.",
+          "badge": "12 Sube | Istanbul"
+        },
+        "about": {
+          "title": "Brew Republic Hikayesi",
+          "description": "2013 yilinda Bebek'te bir dukkanla baslayan Brew Republic, bugun 12 subesiyle Istanbul'un en buyuk bagimsiz specialty coffee zinciridir. Kurucumuz Arda Erdem'in Forbes 30 Under 30 listesine giren vizyonu, kahve kulturunu Turkiye'de demokratiklestirmeyi hedefliyordu.\n\nMaslak'taki 500 m2 kavurmahemizde Loring S35 Kestrel ile aylik 5 ton cekirdek kavruyoruz. 8 farkli origin ulkeden dogrudan tedarik ile izlenebilir ve surdurulebilir kahve zincirimizi yonetiyoruz.\n\n12 subemizde toplam 80 barista, 30 mutfak personeli ve 40 yonetici ile 200'den fazla kisilik ekibimizle Istanbul'un 7 ilcesinde hizmet veriyoruz. Her subemiz farkli bir konseptle tasarlanmis olsa da, kahve kalitesi ve hizmet standartlarimiz tutarlidir.\n\nBarista Academy araciligiyla SCA sertifkali egitim programlarimizla 3.000'den fazla barista yetistirdik. 100+ kafe ve restoransa toptan cekirdek tedariği yapiyor, 1.500+ bireysel aboneye her ay taze kavurma gonderyoruz.\n\nSurdurulebilirlik DNA'mızda: kompostlanabilir bardaklar, kahve telvesinden gubre, karbon notr teslimat ve sifir atik hedefi. 2025'te B Corp sertifkasi basvurumuzu yaptik."
+        },
+        "services": {
+          "title": "Deneyimler & Hizmetler",
+          "subtitle": "Kahveden brunch'a, egitimden franchise'a — kahve kültürünün tüm boyutlari"
+        },
+        "stats": {
+          "title": "Rakamlarla Brew Republic",
+          "items": [
+            { "value": "500.000+", "label": "Musteri" },
+            { "value": "12", "label": "Sube" },
+            { "value": "200+", "label": "Ekip" },
+            { "value": "5 ton/ay", "label": "Kavurma" }
+          ]
+        },
+        "gallery": {
+          "title": "Subelerimiz & Kavurmahane",
+          "subtitle": "12 farkli mekan, 1 tutarli kalite — Istanbul genelinde"
+        },
+        "process": {
+          "title": "Brew Republic Deneyimi",
+          "steps": [
+            { "title": "Hosgeldiniz", "description": "12 subemizden size en yakinini secin veya kesfetmek istediginiz lokasyona gelin." },
+            { "title": "Kesfet", "description": "Espresso, pour over, cold brew, brunch — menumuzden veya baristanizin onerisinden secim yapin." },
+            { "title": "Deneyimle", "description": "Her fincan, origin hikayesi ve tasting note ile sunulur. Pastry pairing onerisi alin." },
+            { "title": "Baglan", "description": "BR Club'a katilin, abonelik baslatin veya franchise firsatini kesfediin." }
+          ]
+        },
+        "contact": {
+          "title": "Iletisim & Lokasyonlar",
+          "subtitle": "12 subemizden size en yakin olani bulun"
+        },
+        "cta": {
+          "title": "BR Club'a Katilin",
+          "subtitle": "Aylik ozel kavurma, tum subelerde indirim, etkinlik onceligi ve daha fazlasi. Kahve tutkunlarinin kulübu.",
+          "buttonText": "Hemen Katil",
+          "buttonUrl": "#contact"
+        },
+        "faq": [
+          { "q": "Brew Republic'in kac subesi var?", "a": "Istanbul'da 12 subemiz vardir: Bebek, Nisantasi, Karakoy, Kadikoy, Bagdat Cad., Etiler, Maslak, Atasehir, Besiktas, Bakirkoy, Sariyer, Beyoglu." },
+          { "q": "BR Club uyeligii nedir?", "a": "Aylik abonelik ile ozel kavurma cekirdek, tum subelerde %10 indirim, etkinliklere oncelikli eriserim ve ozel BR Club urun serisi avantajlarindan yararlanirsiniz." },
+          { "q": "Franchise basvurusu nasil yapilir?", "a": "franchise.brewrepublic.com.tr adresinden online basvuru formu doldurabilirsiniz. Degerlendirme sureci 4-6 hafta surer. Franchise ucreti, egitim sureci ve destek paketleri hakkinda detayli bilgi paylasılair." },
+          { "q": "Toptan cekirdek tedariği yapıyor musunuz?", "a": "Evet, otel, restoran, kafe ve ofislere toptan cekirdek, ekipman ve barista egitimi dahil B2B hizmet sunuyoruz." },
+          { "q": "Co-working space nasil calisiyor?", "a": "Gunluk 200 TL'ye hizli WiFi, priz, monitor, toplanti odasi ve sinirsiz kahve dahil calisma alani kullanabilirsiniz. Aylik paketler de mevcuttur." },
+          { "q": "Surdurulebilirlik konusunda ne yapiyorsunuz?", "a": "Kompostlanabilir bardak ve kapak, kahve telvesinden gubre, karbon notr teslimat, geri donusum programi ve B Corp sertifikasi basvurusu. 2026 sifir atik hedefi." },
+          { "q": "Cocuk dostu mu?", "a": "Evet, cocuk menumuz, oyun alani ve yuksek sandalyelerimiz mevcuttur. Bebek, Etiler ve Bagdat Cad. subelerimizdda ozel cocuk alani vardir." },
+          { "q": "Ozel etiket cekirdek nasıl yaptiririm?", "a": "Sirketinize ozel logo ve paket tasarimli kahve cekirdegi uretiyoruz. Origin, kavurma profili ve paket boyutunu birlikte belirliiyoruz. Minimum 50 kg siparis." },
+          { "q": "Barista Academy'de hangi SCA modülleri var?", "a": "Introduction to Coffee, Barista Skills (Foundation-Intermediate-Professional), Brewing, Sensory Skills ve Roasting modüllerinde SCA sertifikalı egitim veriyoruz." },
+          { "q": "Kavurmahane ziyareti nasıl yapılir?", "a": "Maslak kavurmahanemizde haftalik turlar duzenliyoruz. Online rezervasyon ile katılabilirsiniz. Kavurma sureci anlatimi, cupping ve hediye cekirdek paket dahildir." },
+          { "q": "Gluten free ve vegan secenekler var mı?", "a": "Evet, tum subeleriimizde gluten free ekmek, vegan pasta ve bitki bazli sut alternatifleri (yulaf, badem, hindistan cevizi, soya) mevcuttur." },
+          { "q": "Odeme secenekleri nelerdir?", "a": "Kredi karti, banka karti, nakit, Apple Pay, Google Pay kabul ediyoruz. BR Club uyeleriine ek %10 indirim." },
+          { "q": "Mobil uygulamamız var mi?", "a": "Evet, iOS ve Android uygulamalarimiz uzerinden siparis, odeme, BR Club yonetimi ve sube bilgilerine erisebilirsiniz." },
+          { "q": "Yurt disina kargo yapiyor musunuz?", "a": "Evet, AB ulkeleri, Ingiltere ve ABD'ye cekirdek kargosu yapiyoruz. Kavurma gunu kargoluyoruz, 5-7 is gunu teslimat." },
+          { "q": "Etkinlik sponsorlugu yapiyor musunuz?", "a": "Evet, sanat, muzik, teknoloji ve spor etkinliklerinde kahve sponsorlugu yapiyoruz. Detaylar icin marketing@brewrepublic.com.tr adresine yazabilirsiniz." }
+        ],
+        "testimonials": [
+          { "name": "Cem T.", "location": "Bebek", "date": "2025-12", "rating": 5, "text": "BR Club uyesiyim, her ay gelen ozel kavurma cekirdek heyecan verici. Tum subelerde indirim ve etkinlik onceligi bonus." },
+          { "name": "Emily S.", "location": "New York", "date": "2025-11", "rating": 5, "text": "Best specialty coffee chain I've found in Istanbul. The Karakoy branch is my work-from-cafe spot. Great WiFi, amazing coffee, friendly baristas." },
+          { "name": "Aylin D.", "location": "Kadikoy", "date": "2025-09", "rating": 5, "text": "Kavurmahane turu muhtisemdi! Kavurma surecini izlemek, cupping yapmak ve eve kavurma hediye cekirdekle donmek — unutulmaz deneyim." },
+          { "name": "Baris M.", "location": "Maslak", "date": "2025-07", "rating": 5, "text": "Ofisimize kurumsal kahve servisi aldik. Taze cekirdek, La Marzocco ve barista egitimi. Calisanlarimiz cok memnun." },
+          { "name": "Seda K.", "location": "Nisantasi", "date": "2025-05", "rating": 5, "text": "Brunch menusu Istanbul'un en iyilerinden. Eggs benedict + flat white = mukemmel pazar sabahi." },
+          { "name": "Hans M.", "location": "Berlin", "date": "2025-03", "rating": 5, "text": "SCA Barista Skills Professional kursunu burada tamamladim. Berk'in egitim kalitesi olağanustu. Latte art teknikleri cok detayli." },
+          { "name": "Nil E.", "location": "Etiler", "date": "2025-01", "rating": 5, "text": "Cocuklarimla her hafta sonu geliyoruz. Cocuk alani, kafeinsilz icecekler ve cookie — cocuklar seviyor, biz kahvemizi keyifle iciyoruz." },
+          { "name": "Tolga B.", "location": "Atasehir", "date": "2024-11", "rating": 4, "text": "Co-working space kavrami cok iyi. Gunluk 200 TL'ye sinirsiz kahve + hizli WiFi + sessiz calisma ortami. Tek sikayet: priz sayisi artabilir." },
+          { "name": "Merve A.", "location": "Bakirkoy", "date": "2024-09", "rating": 5, "text": "Nitro cold brew bagimliligim burada basladi. Kremsi dokusuu ve yogun kahve tadı — baska yerde bu kaliteyi bulamadim." },
+          { "name": "Ozan D.", "location": "Besiktas", "date": "2024-07", "rating": 5, "text": "Restoranimiza toptan cekirdek aliyoruz. Onur Bey'in kavurma profili onerisi tam musterilerimize hitap ediyor. Kalite tutarli." },
+          { "name": "Lisa R.", "location": "Amsterdam", "date": "2024-05", "rating": 5, "text": "Ordered beans online to Amsterdam. Arrived in 6 days, freshly roasted. The Ethiopia Yirgacheffe is exceptional. Will order again." },
+          { "name": "Kaan S.", "location": "Sariyer", "date": "2024-03", "rating": 5, "text": "Franchise firsatini degerlendirdik, profesyonel surecti. Egitim, tedarik ve surekli destek — kendi kafemiz 8 ayda kar'a gecti." }
+        ]
+      }
+    }
+  ]
+}

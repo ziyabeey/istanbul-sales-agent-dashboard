@@ -1,0 +1,392 @@
+{
+  "sectorId": "foto",
+  "seoSchemaType": "Photographer",
+  "variants": [
+    {
+      "id": "foto-portre",
+      "variantName": "portre",
+      "plan": "free",
+      "description": "Portre ve aile fotografcisi",
+      "designPhilosophy": "Sicak, samimi, dogal",
+      "isDark": false,
+      "colors": { "bg": "#FFFFFF", "surface": "#FAF5F0", "text": "#2C1810", "accent": "#9B6B4A" },
+      "fonts": { "heading": "Playfair Display", "body": "Inter" },
+      "business": {
+        "name": "Isik Atölyesi Fotografcilik",
+        "ownerName": "Sema Arslan",
+        "sector": "Fotografci",
+        "slogan": "Anlarinizi isikla boyuyoruz",
+        "phone": "0532 890 12 34",
+        "phoneClean": "905328901234",
+        "whatsapp": "905328901234",
+        "email": "info@isikatolyesi.com",
+        "address": "Caddebostan Mah. Bagdat Cad. No:245/2, Kadikoy/Istanbul",
+        "city": "Istanbul", "district": "Kadikoy",
+        "mapEmbed": "", "foundedYear": 2012, "experience": "14 yil", "employeeCount": 2,
+        "customerCount": "5.000+", "rating": 4.8, "reviewCount": 720,
+        "workingHours": [
+          { "day": "Pazartesi", "dayTr": "Pazartesi", "open": "10:00", "close": "19:00", "isOpen": true },
+          { "day": "Sali", "dayTr": "Sali", "open": "10:00", "close": "19:00", "isOpen": true },
+          { "day": "Carsamba", "dayTr": "Carsamba", "open": "10:00", "close": "19:00", "isOpen": true },
+          { "day": "Persembe", "dayTr": "Persembe", "open": "10:00", "close": "19:00", "isOpen": true },
+          { "day": "Cuma", "dayTr": "Cuma", "open": "10:00", "close": "19:00", "isOpen": true },
+          { "day": "Cumartesi", "dayTr": "Cumartesi", "open": "10:00", "close": "18:00", "isOpen": true },
+          { "day": "Pazar", "dayTr": "Pazar", "open": "Randevu ile", "close": "", "isOpen": true }
+        ],
+        "services": [
+          { "id": "s1", "name": "Aile Fotograf Cekimi", "price": "1.500-3.000 TL", "duration": "1-2 saat", "description": "Studyo veya dis mekan aile fotograf cekimi. 50+ düzenlenmis foto, dijital teslim ve 5 adet baski dahil.", "icon": "Users" },
+          { "id": "s2", "name": "Portre Cekimi", "price": "800-2.000 TL", "duration": "1 saat", "description": "Profesyonel portre fotografi. Linkedin, CV, sosyal medya veya kisisel arslvniz icin. 30+ düzenlenmis foto.", "icon": "User" },
+          { "id": "s3", "name": "Bebek & Yenidogan", "price": "2.000-4.000 TL", "duration": "2-3 saat", "description": "Yenidogan (0-14 gun) ve bebek fotograf cekimi. Ozel setup, guvenli pozlar ve dogal isik teknikleri.", "icon": "Baby" },
+          { "id": "s4", "name": "Dogum Gunu Cekimi", "price": "1.000-2.500 TL", "duration": "1-2 saat", "description": "Cocuk dogum gunu partisi veya smash cake fotograf cekimi. Tema dekorasyon ve dijital teslim.", "icon": "Cake" }
+        ],
+        "team": [], "testimonials": [], "gallery": []
+      },
+      "content": {
+        "hero": { "title": "Anlarinizi Isikla Boyuyoruz", "subtitle": "Kadikoy'de 14 yildir aile, portre ve bebek fotograf cekimi. Dogal isik, sicak renkler ve samimi kareler.", "badge": "Ucretsiz On Gorusme", "ctaText": "Randevu Alin", "ctaLink": "tel:+905328901234" },
+        "about": { "title": "Isik Atölyesi Fotografcilik", "description": "2012 yilinda fotografci Sema Arslan tarafindan kurulan Isik Atölyesi, Kadikoy Caddebostan'da aile ve portre fotografciligi alaninda hizmet vermektedir. Dogal isik tercihi ve samimi yaklasimimizla 5.000'den fazla aileye özel anlarini olümsuzlestirmelerine yardimci olduk." },
+        "services": { "title": "Cekim Hizmetlerimiz", "subtitle": "Aile, portre ve bebek fotogаfciligi" },
+        "contact": { "title": "Randevu & Iletisim", "subtitle": "Ucretsiz on gorusme icin bizi arayin" },
+        "faq": [
+          { "q": "Cekim ne kadar suruyor?", "a": "Aile cekimleri 1-2 saat, portre 1 saat, yenidogan 2-3 saat surmektedir. Bebekler icin fazladan zaman ayirilir." },
+          { "q": "Dis mekan cekim yapiyor musunuz?", "a": "Evet, Moda Sahili, Fenerbahce Parki ve Caddebostan Sahili favori lokasyonlarimiz." },
+          { "q": "Fotograflar ne zaman teslim ediliyor?", "a": "Dijital fotograflar 2 hafta icinde teslim edilir. Baskili urunler 3-4 hafta." },
+          { "q": "Kaparo gerekli mi?", "a": "Evet, randevu onaylama icin %30 kaparo alinir." }
+        ]
+      }
+    },
+    {
+      "id": "foto-dugun",
+      "variantName": "dugun",
+      "plan": "starter",
+      "description": "Dugun ve ozel gun fotografcisi",
+      "designPhilosophy": "Romantik, zarif, dogal",
+      "isDark": false,
+      "colors": { "bg": "#FFFFFF", "surface": "#FDF2F8", "text": "#1F1F2E", "accent": "#BE185D" },
+      "fonts": { "heading": "Cormorant Garamond", "body": "Inter" },
+      "business": {
+        "name": "Alyans Dugun Fotografciligi",
+        "ownerName": "Can Yucel",
+        "sector": "Fotografci",
+        "slogan": "En guzel gununuzu sonsuza tasiyoruz",
+        "phone": "0212 567 89 01",
+        "phoneClean": "902125678901",
+        "whatsapp": "905451234567",
+        "email": "info@alyansfoto.com",
+        "address": "Nisantasi Mah. Valikonagi Cad. No:72/1, Sisli/Istanbul",
+        "city": "Istanbul", "district": "Sisli",
+        "mapEmbed": "", "foundedYear": 2009, "experience": "17 yil", "employeeCount": 4,
+        "customerCount": "3.500+", "rating": 4.9, "reviewCount": 1450,
+        "workingHours": [
+          { "day": "Pazartesi", "dayTr": "Pazartesi", "open": "10:00", "close": "19:00", "isOpen": true },
+          { "day": "Sali", "dayTr": "Sali", "open": "10:00", "close": "19:00", "isOpen": true },
+          { "day": "Carsamba", "dayTr": "Carsamba", "open": "10:00", "close": "19:00", "isOpen": true },
+          { "day": "Persembe", "dayTr": "Persembe", "open": "10:00", "close": "19:00", "isOpen": true },
+          { "day": "Cuma", "dayTr": "Cuma", "open": "10:00", "close": "19:00", "isOpen": true },
+          { "day": "Cumartesi", "dayTr": "Cumartesi", "open": "Cekim gunu", "close": "", "isOpen": true },
+          { "day": "Pazar", "dayTr": "Pazar", "open": "Cekim gunu", "close": "", "isOpen": true }
+        ],
+        "services": [
+          { "id": "s1", "name": "Dugun Fotograf Paketi", "price": "8.000-25.000 TL", "duration": "8-12 saat", "description": "Gelin hazirliktan son dansa kadar tam gun dugun fotografciligi. 500+ düzenlenmis foto, online galeri ve albüm.", "icon": "Heart" },
+          { "id": "s2", "name": "Dis Cekim (Save the Date)", "price": "3.000-6.000 TL", "duration": "2-3 saat", "description": "Nisan veya dugun oncesi romantik dis mekan cekimi. Istanbul'un en guzel lokasyonlarinda. 100+ düzenlenmis foto.", "icon": "Camera" },
+          { "id": "s3", "name": "Nisan Cekimi", "price": "3.000-5.000 TL", "duration": "3-4 saat", "description": "Nisan toreni fotografciligi. Aile gruplari, yuzuk takma ve eglence anlarinin kaydI.", "icon": "Ring" },
+          { "id": "s4", "name": "Dugun Video", "price": "6.000-18.000 TL", "duration": "8-12 saat", "description": "Sinematik dugun filmi. 4K cekim, drone goruntuleri, ozel muzik ve profesyonel kurgu. 5-15 dk film + highlight.", "icon": "Video" },
+          { "id": "s5", "name": "Albüm Tasarim & Baski", "price": "2.000-8.000 TL", "duration": "4-6 hafta", "description": "Premium dugun albümu. Derli foto baski, ozel kapak tasarimi, 30x40 veya 35x50 cm boyutlarda.", "icon": "BookOpen" },
+          { "id": "s6", "name": "Kina Gecesi", "price": "2.500-5.000 TL", "duration": "3-4 saat", "description": "Kina gecesi fotograf ve video kaydi. Ozel isik kurulumu ile gece cekimlerinde üstun kalite.", "icon": "Sparkles" }
+        ],
+        "team": [
+          { "name": "Can Yucel", "title": "Kurucu & Bas Fotografci", "description": "17 yillik dugun fotografi deneyimi. WPJA (Wedding Photojournalist Association) uyesi. 3.500+ dugun.", "image": "" },
+          { "name": "Esra Demir", "title": "Ikinci Fotografci", "description": "10 yillik deneyim. Detay cekimleri ve gelin hazirlık anlarinda uzman. Isik tasarimi.", "image": "" }
+        ],
+        "testimonials": [
+          { "name": "Gizem & Emre", "location": "Sisli", "date": "2025-10", "rating": 5, "comment": "Dugünümüzün her anini yakalаdilar. Gelin hazirliktan son dansa, hicbir an kacirmamişlar. Albumdeki fotograflar gorcekten sanat eseri." },
+          { "name": "Ayse & Burak", "location": "Besiktas", "date": "2025-08", "rating": 5, "comment": "Dis cekim icin Kuzguncuk'a gittik. Can Bey'in yon verme sekli cok dogal, yapay pozlar hic yok. Sonuclar hayal otesiydi." },
+          { "name": "Neslihan & Kerem", "location": "Kadikoy", "date": "2025-06", "rating": 5, "comment": "Sinematik dugun filmimiz hala izledigimizde aglariz. Drone goruntuleri ve müzik secimi muhtesom. Gercek bir film gibi." }
+        ],
+        "gallery": []
+      },
+      "content": {
+        "hero": { "title": "En Guzel Gununuzu Sonsuza Tasiyoruz", "subtitle": "17 yillik dugun fotografi deneyimi. Istanbul'un en guzel lokasyonlarinda romantik, dogal ve sinematik kareler.", "badge": "3.500+ Dugun", "ctaText": "Tarih Kontrol", "ctaLink": "tel:+902125678901" },
+        "about": { "title": "Alyans Dugun Fotografciligi", "description": "2009 yilinda Can Yucel tarafindan kurulan Alyans, Istanbul'da dugun ve ozel gun fotografciligi alaninda 17 yillik deneyime sahiptir. WPJA uyesi olarak foto-journalistik yaklasimla her dugunun benzersiz hikayesini anlatiyoruz. 3.500'den fazla dUgunde hizmet verdik. Sinematik video, drone cekim ve premium albüm hizmetlerimizle dugun gununuzun her ani olümsüzlesir." },
+        "services": { "title": "Dugun Hizmetlerimiz", "subtitle": "Fotograftan videoya, albümden drone'a" },
+        "stats": { "title": "Rakamlarla Alyans", "subtitle": "17 yillik dugun fotografciligi" },
+        "contact": { "title": "Tarih & Randevu", "subtitle": "Dugun tarihinizin müsaitligini kontrol edin" },
+        "faq": [
+          { "q": "Dugun fotograflari ne zaman teslim ediliyor?", "a": "Online galeri 3 hafta, düzenlenmis fotograflar 4-6 hafta, albüm 8-10 haftada teslim edilir." },
+          { "q": "Kac fotografci geliyor?", "a": "Standart paketlerde 1, premium paketlerde 2 fotografci gelir. Buyuk dugunlerde 3. fotografci eklenebilir." },
+          { "q": "Dis cekim lokasyonlari nereler?", "a": "Kuzguncuk, Balat, Bogaz sahili, Adalar, Miniaturk ve Belgrad Ormani favori lokasyonlarimiz." },
+          { "q": "Kaparo ve odeme nasil?", "a": "%30 kaparo ile tarih ayrilir. Kalan %70 dugun gunu odenir." },
+          { "q": "Drone cekim ücrete dahil mi?", "a": "Premium paketlerde dahildir. Standart paketlere ek ucretle eklenebilir." },
+          { "q": "Baska sehirlerde de cekim yapiyor musunuz?", "a": "Evet, yol ve konaklama masraflari karsilandugunda Turkiye genelinde ve yurt disinda cekim yapiyoruz." }
+        ]
+      }
+    },
+    {
+      "id": "foto-urun",
+      "variantName": "urun",
+      "plan": "growth",
+      "description": "Urun ve e-ticaret fotografcisi",
+      "designPhilosophy": "Temiz, minimal, profesyonel",
+      "isDark": false,
+      "colors": { "bg": "#FAFAFA", "surface": "#F5F5F5", "text": "#171717", "accent": "#171717" },
+      "fonts": { "heading": "Montserrat", "body": "Inter" },
+      "business": {
+        "name": "PixelShot Urun Fotografciligi",
+        "ownerName": "Berk Ozen",
+        "sector": "Fotografci",
+        "slogan": "Urunlerinizi satisa donusturun",
+        "phone": "0212 456 00 00",
+        "phoneClean": "902124560000",
+        "whatsapp": "905561234567",
+        "email": "info@pixelshot.com.tr",
+        "address": "Mecidiyekoy Mah. Buyukdere Cad. No:185/3, Sisli/Istanbul",
+        "city": "Istanbul", "district": "Sisli",
+        "mapEmbed": "", "foundedYear": 2016, "experience": "10 yil", "employeeCount": 8,
+        "customerCount": "2.200+", "rating": 4.9, "reviewCount": 890,
+        "workingHours": [
+          { "day": "Pazartesi", "dayTr": "Pazartesi", "open": "09:00", "close": "18:00", "isOpen": true },
+          { "day": "Sali", "dayTr": "Sali", "open": "09:00", "close": "18:00", "isOpen": true },
+          { "day": "Carsamba", "dayTr": "Carsamba", "open": "09:00", "close": "18:00", "isOpen": true },
+          { "day": "Persembe", "dayTr": "Persembe", "open": "09:00", "close": "18:00", "isOpen": true },
+          { "day": "Cuma", "dayTr": "Cuma", "open": "09:00", "close": "18:00", "isOpen": true },
+          { "day": "Cumartesi", "dayTr": "Cumartesi", "open": "10:00", "close": "15:00", "isOpen": true },
+          { "day": "Pazar", "dayTr": "Pazar", "open": "", "close": "", "isOpen": false }
+        ],
+        "services": [
+          { "id": "s1", "name": "E-Ticaret Urun Cekimi", "price": "50-150 TL/adet", "duration": "10 dk/adet", "description": "Beyaz zemin urun fotografi. Trendyol, Hepsiburada, Amazon standarlarinda. Toplu sipariste indirim.", "icon": "Package" },
+          { "id": "s2", "name": "Yasam Tarzi Cekimi", "price": "200-500 TL/adet", "duration": "20 dk/adet", "description": "Urunleriniz dogal ortamda, kullanim aninda. Sosyal medya ve reklam icin ideal. Set tasarimi dahil.", "icon": "Camera" },
+          { "id": "s3", "name": "Gida Fotografciligi", "price": "150-400 TL/adet", "duration": "20 dk/adet", "description": "Restoran menu, yemek kitabi ve gida e-ticaret icin profesyonel food photography. Styling dahil.", "icon": "UtensilsCrossed" },
+          { "id": "s4", "name": "360 Derece Urun Gorseli", "price": "300-800 TL/adet", "duration": "30 dk/adet", "description": "Donen urun gorseli. E-ticaret sitelerinde interaktif urun deneyimi. 36 veya 72 kare.", "icon": "RotateCcw" },
+          { "id": "s5", "name": "Manken & Moda Cekimi", "price": "5.000-15.000 TL/gun", "duration": "Tam gun", "description": "Giyim ve aksesuar icin mankenli cekim. Casting, styling, makyaj ve sac dahil. E-ticaret veya katalog.", "icon": "Shirt" },
+          { "id": "s6", "name": "Video Urun Tanitimi", "price": "3.000-10.000 TL", "duration": "Yarim-tam gun", "description": "Urun tanitim videosu. Stop-motion, unboxing, kullanim ve reklam formatlari. Sosyal medya optimizeli.", "icon": "Video" },
+          { "id": "s7", "name": "Amazon A+ Content", "price": "2.000-5.000 TL", "duration": "2-3 gun", "description": "Amazon Enhanced Brand Content icin profesyonel gorsel tasarim ve cekim. Infografik ve karsilastirma görselleri.", "icon": "Star" },
+          { "id": "s8", "name": "Katalog & Brosur", "price": "5.000-20.000 TL", "duration": "Projeye gore", "description": "Dijital ve basili katalog icin kapsamli urun cekim projesi. Layout tasarim ve baski koordinasyonu.", "icon": "BookOpen" },
+          { "id": "s9", "name": "Retush & Post-Produksiyon", "price": "20-80 TL/adet", "duration": "Degisken", "description": "Mevcut fotograflarinizin profesyonel retush ve renk duzeltmesi. Zemin degistirme, golge ekleme.", "icon": "Wand" },
+          { "id": "s10", "name": "Mucevher & Saat Makro", "price": "200-600 TL/adet", "duration": "30 dk/adet", "description": "Focus stacking teknigi ile ultra detayli mucevher ve saat fotografciligi. Yansima ve isik kontrolu.", "icon": "Diamond" }
+        ],
+        "team": [
+          { "name": "Berk Ozen", "title": "Kurucu & Creative Director", "description": "10 yillik urun fotografciligi. Eski Boyner e-ticaret foto ekibi. 100+ marka ile calisma deneyimi.", "image": "" },
+          { "name": "Zeynep Aydin", "title": "Fotografci & Retoucher", "description": "Gida ve yasam tarzi fotografciligi uzmani. 8 yillik deneyim. Capture One sertifikali.", "image": "" },
+          { "name": "Arda Celik", "title": "Video & 360 Uzman", "description": "Urun videosu, stop-motion ve 360 cekim uzmani. After Effects ve DaVinci Resolve.", "image": "" },
+          { "name": "Melisa Koc", "title": "Stylist & Set Tasarimcisi", "description": "Urun ve gida styling. Set tasarimi ve prop secimi. 6 yillik deneyim.", "image": "" }
+        ],
+        "testimonials": [
+          { "name": "Mavi Giyim", "location": "Istanbul", "date": "2025-12", "rating": 5, "comment": "Sezon koleksiyonu icin 500 urun cekimi yaptirdik. Trendyol standartlarinda, hizli ve kaliteli. Teslim suresi beklentimizin altinda." },
+          { "name": "Organik Mutfak", "location": "Besiktas", "date": "2025-10", "rating": 5, "comment": "Menu fotograflarimiz PixelShot sayesinde inanilmaz oldu. Gida styling'i harika, her yemek gercekten istah acici gorunuyor." },
+          { "name": "Saat Dunyasi", "location": "Nisantasi", "date": "2025-08", "rating": 5, "comment": "Saat makro cekimleri muhtesem. Focus stacking ile her detay gorunuyor. E-ticaret sitimizdeki donusum orani %35 artti." },
+          { "name": "NovaBeauty", "location": "Sisli", "date": "2025-06", "rating": 5, "comment": "Kozmetik serimizin tum cekim ve videolarini PixelShot yapti. Amazon A+ Content ile satislarimiz %50 yukseldi." },
+          { "name": "Ahsap Dukkan", "location": "Kadikoy", "date": "2025-04", "rating": 4, "comment": "Yasam tarzi cekimleri cok dogal gorunuyor. Sosyal medyada engagement %3'ten %7'ye cikti. Yatiriminizi hak ediyor." },
+          { "name": "BellaJewels", "location": "Beyoglu", "date": "2025-02", "rating": 5, "comment": "Mucevher cekim kalitesi inanilmaz. 360 derece gorseller web sitemize ayri bir boyut katti. Musteriler urunleri her acidan gorebiliyor." }
+        ],
+        "gallery": []
+      },
+      "content": {
+        "hero": { "title": "Urunlerinizi Satisa Donusturun", "subtitle": "E-ticaret, gida, mucevher ve moda urun fotografciligi. Profesyonel studyo, 8 kisilik uzman ekip ve hizli teslim.", "badge": "2.200+ Marka", "ctaText": "Teklif Alin", "ctaLink": "tel:+902124560000" },
+        "about": { "title": "PixelShot Urun Fotografciligi", "description": "2016 yilinda Berk Ozen tarafindan kurulan PixelShot, Istanbul'da urun ve e-ticaret fotografciligi alaninda oncu firmаdir. 200 m2 studyomuzda beyaz zemin, yasam tarzi, gida ve mucevher cekimleri yapiyoruz. Trendyol, Hepsiburada, Amazon ve Shopify standartlarinda urun gorselleri uretiyoruz. 2.200'den fazla marka ile calistik. Video, 360 derece gorsel ve retush hizmetlerimizle e-ticaret gorsel ihtiyaclarinizin tamami tek adreste." },
+        "services": { "title": "Urun Cekim Hizmetleri", "subtitle": "E-ticaretten kataloqa, videodan retush'a" },
+        "stats": { "title": "Rakamlarla PixelShot", "subtitle": "10 yillik urun fotografciligi" },
+        "contact": { "title": "Teklif & Iletisim", "subtitle": "Urun cekim projeniz icin teklif alin" },
+        "faq": [
+          { "q": "Minimum siparis adedi var mi?", "a": "E-ticaret beyaz zemin cekimleri icin minimum 20 adet. Diger hizmetlerde minimum yoktur." },
+          { "q": "Teslim suresi ne kadar?", "a": "Beyaz zemin: 3-5 is gunu, yasam tarzi: 5-7 is gunu, video: 7-10 is gunu. Toplu siparislerde ozel takvim olusturulur." },
+          { "q": "Urunleri bize mi getirmemiz gerekiyor?", "a": "Istanbul icinde ucretsiz kurye ile urunlerinizi alip teslim ediyoruz. Sehir disi kargo masrafi size aittir." },
+          { "q": "Trendyol standartinda cekim yapiyor musunuz?", "a": "Evet, tum e-ticaret platformlarinin (Trendyol, HB, Amazon, N11) gorsel standartlarina uygun cekim yapiyoruz." },
+          { "q": "Gida cekiminde styling dahil mi?", "a": "Evet, profesyonel gida stylist ekibimiz set tasarimi ve prop secimiyle birlikte hizmet verir." },
+          { "q": "Toplu siparis indirimi var mi?", "a": "Evet, 100+ urun cekimlerinde %15-30 arasi toplu siparis indirimi uyguluyoruz." },
+          { "q": "360 derece gorsel nasil kullaniliyor?", "a": "Web sitenize embed edilir, musteri fareyle surukleyerek urunu her acidan gorebilir. Donusum oranini artirir." },
+          { "q": "Video formatlari neler?", "a": "Instagram Reels, TikTok, YouTube Shorts ve web sitesi icin optimize formatlar uretiyoruz. 4K cekim, profesyonel kurgu." }
+        ]
+      }
+    },
+    {
+      "id": "foto-dogum",
+      "variantName": "dogum",
+      "plan": "pro",
+      "description": "Yenidogan ve hamilelik fotografi studyosu",
+      "designPhilosophy": "Yumusak, zarif, hassas",
+      "isDark": false,
+      "colors": { "bg": "#FFFBF7", "surface": "#FFF0E6", "text": "#3D2C1E", "accent": "#D4956A" },
+      "fonts": { "heading": "Cormorant Garamond", "body": "Inter" },
+      "business": {
+        "name": "Little Star Studio",
+        "ownerName": "Deniz Aksoy",
+        "sector": "Fotografci",
+        "slogan": "Hayatin en degerli baslangiclari",
+        "phone": "0216 456 78 90",
+        "phoneClean": "902164567890",
+        "whatsapp": "905391234567",
+        "email": "info@littlestarstudio.com",
+        "address": "Erenkoy Mah. Ethemefendi Cad. No:65/A, Kadikoy/Istanbul",
+        "city": "Istanbul", "district": "Kadikoy",
+        "mapEmbed": "", "foundedYear": 2014, "experience": "12 yil", "employeeCount": 6,
+        "customerCount": "8.000+", "rating": 4.9, "reviewCount": 3200,
+        "workingHours": [
+          { "day": "Pazartesi", "dayTr": "Pazartesi", "open": "10:00", "close": "18:00", "isOpen": true },
+          { "day": "Sali", "dayTr": "Sali", "open": "10:00", "close": "18:00", "isOpen": true },
+          { "day": "Carsamba", "dayTr": "Carsamba", "open": "10:00", "close": "18:00", "isOpen": true },
+          { "day": "Persembe", "dayTr": "Persembe", "open": "10:00", "close": "18:00", "isOpen": true },
+          { "day": "Cuma", "dayTr": "Cuma", "open": "10:00", "close": "18:00", "isOpen": true },
+          { "day": "Cumartesi", "dayTr": "Cumartesi", "open": "10:00", "close": "17:00", "isOpen": true },
+          { "day": "Pazar", "dayTr": "Pazar", "open": "", "close": "", "isOpen": false }
+        ],
+        "services": [
+          { "id": "s1", "name": "Yenidogan Cekimi (0-14 gun)", "price": "3.000-6.000 TL", "duration": "2-4 saat", "description": "Uyuyan bebek pozlari, aile kompozisyonlari ve detay kareleri. Ozel setup, guvenli proplar ve 25+ derece studyo sicakligi.", "icon": "Baby" },
+          { "id": "s2", "name": "Hamilelik Cekimi", "price": "2.000-4.000 TL", "duration": "1-2 saat", "description": "Gebeliğin 28-36. haftalarinda profesyonel hamilelik fotografi. Studyo veya dis mekan. Kumaş drapeler ve dogal isik.", "icon": "Heart" },
+          { "id": "s3", "name": "Sitter Cekimi (6-12 ay)", "price": "2.000-3.500 TL", "duration": "1-2 saat", "description": "Otuzabilem bebek cekimi. Tema dekorasyonlari, renkli setuplar ve dogal gülümsemeler.", "icon": "Smile" },
+          { "id": "s4", "name": "Smash Cake (1 yas)", "price": "2.500-4.000 TL", "duration": "1.5 saat", "description": "Ilk dogum gunu pasta patlatma cekimi. Tema dekorasyon, ozel pasta ve banyo sahnesi. Eglenceli ve renkli.", "icon": "Cake" },
+          { "id": "s5", "name": "Aile Cekimi", "price": "2.000-4.000 TL", "duration": "1-2 saat", "description": "Anne-baba-bebek ve kardes pozlari. Dogal, sicak ve samimi aile fotograflari.", "icon": "Users" },
+          { "id": "s6", "name": "Cinsiyet Belirleme Cekimi", "price": "1.500-3.000 TL", "duration": "1 saat", "description": "Gender reveal cekim organizasyonu. Balon patlatma, konfeti ve renkli duman efektli fotograflar.", "icon": "Sparkles" },
+          { "id": "s7", "name": "Bebek Gelisim Paketi", "price": "8.000-15.000 TL", "duration": "4 seans", "description": "Yenidogan + 3 ay + 6 ay + 1 yas olmak uzere 4 cekim seansi. Bebek gelisimini adim adim belgeleyin.", "icon": "TrendingUp" },
+          { "id": "s8", "name": "Dogum Hikayesi (Birth Story)", "price": "5.000-8.000 TL", "duration": "Degisken", "description": "Dogum aninin fotografla belgelenmesi. Hastaneya davet, dogum süreci ve ilk karsilasma anlarI.", "icon": "Camera" },
+          { "id": "s9", "name": "Premium Albüm & Baski", "price": "1.500-5.000 TL", "duration": "4-6 hafta", "description": "Fine art baski, ahsap kutu, kanvas tablo ve premium fotokitap. Ozel tasarim ve el yapimi secenekler.", "icon": "BookOpen" },
+          { "id": "s10", "name": "Vaftiz & Diş Bugdayi", "price": "2.000-4.000 TL", "duration": "2-3 saat", "description": "Vaftiz toreni, dis bugdayi kutlamasi ve ozel gun fotogafciligi. Mekan ve ev cekimi.", "icon": "Star" },
+          { "id": "s11", "name": "Ikiz & Coguol Dogum Cekimi", "price": "4.000-7.000 TL", "duration": "3-4 saat", "description": "Ikiz ve ucuz bebekler icin ozel yenidogan cekimi. Ekstra zaman, guvenli pozlar ve ozel proplar.", "icon": "Users" },
+          { "id": "s12", "name": "Evde Cekim (Lifestyle)", "price": "3.000-5.000 TL", "duration": "2-3 saat", "description": "Evinizde dogal ortamda aile ve bebek cekimi. Belgesel yaklasim, muhalebe ve dogal anlar.", "icon": "Home" },
+          { "id": "s13", "name": "Cocuk Portre (2-6 yas)", "price": "1.500-3.000 TL", "duration": "1 saat", "description": "Oyun temali, renkli ve eglenceli cocuk portre cekimleri. Karakter kostumleri ve fantezi setuplar.", "icon": "Palette" },
+          { "id": "s14", "name": "Fotograf Egitimi (Workshop)", "price": "3.000-5.000 TL/kisi", "duration": "Tam gun", "description": "Yenidogan fotografciligi workshop'u. Güvenlik, poz, isik ve retush egitimi. Fotografcilar icin.", "icon": "GraduationCap" }
+        ],
+        "team": [
+          { "name": "Deniz Aksoy", "title": "Kurucu & Bas Fotografci", "description": "12 yillik yenidogan fotografi uzmani. BANPAS (Baby and Newborn Photography Safety) sertifikali. 8.000+ bebek cekimi.", "image": "" },
+          { "name": "Selin Yilmaz", "title": "Yenidogan Fotografcisi", "description": "8 yillik deneyim. Ana Brandt workshop mezunu. Bebek guvenligi ve poz teknikleri uzmani.", "image": "" },
+          { "name": "Merve Dogan", "title": "Hamilelik & Aile Fotografcisi", "description": "6 yillik deneyim. Dis mekan ve studyo hamilelik cekimi. Dogal isik ve draperi teknikleri.", "image": "" },
+          { "name": "Busra Celik", "title": "Retoucher & Albüm Tasarimcisi", "description": "Fine art retush ve albüm tasarimi. Photoshop ve Lightroom uzmani. 5 yillik deneyim.", "image": "" },
+          { "name": "Elif Kaya", "title": "Studio Koordinatoru", "description": "Randevu yonetimi, set hazırlama ve aile iletisimi. Cekimlerin pürüzsüz ilerlemesini saglar.", "image": "" },
+          { "name": "Hande Arslan", "title": "Prop & Dekorasyon Uzmani", "description": "El yapimi proplar, tema dekorasyonlari ve bebek aksesuarlari tasarimi. Benzersiz setuplar yaratma.", "image": "" }
+        ],
+        "testimonials": [
+          { "name": "Ayca & Serkan", "location": "Kadikoy", "date": "2025-12", "rating": 5, "comment": "Bebegimizin yenidogan cekimi muhtesemdi. Studyo 25 derece, bebek hic aglamadI. Deniz Hanim'in elleri sihirli." },
+          { "name": "Ece D.", "location": "Atasehir", "date": "2025-11", "rating": 5, "comment": "Hamilelik cekim fotograflarImI her gordugumde mutlu oluyorum. Kumaslar, isik ve pozlar... Her sey kusursuzdu." },
+          { "name": "Zeynep & Mert", "location": "Maltepe", "date": "2025-10", "rating": 5, "comment": "Ikiz bebeklerimizin cekimi icin ekstra zaman ayirdilar. Guvenligi one aldi, hicbir pozda bebeklere risk almadi." },
+          { "name": "Banu K.", "location": "Uskudar", "date": "2025-09", "rating": 5, "comment": "Bebek gelisim paketi harika bir fikir. Yenidogan, 3 ay, 6 ay ve 1 yas... Degisimi gormek paha bicilmez." },
+          { "name": "Gokce A.", "location": "Fenerbahce", "date": "2025-08", "rating": 5, "comment": "Smash cake cekimi en eglenceli deneyimdi. Oglumuzu pasta ile bas basa biraktik, muhtesom kareler cikti." },
+          { "name": "Leyla S.", "location": "Erenkoy", "date": "2025-07", "rating": 4, "comment": "Dogum hikayesi cekimi icin hastaneye geldi Deniz Hanim. Dogumun her asamasini belgeledI. O anlar bir daha yasiаnmaz." },
+          { "name": "Canan T.", "location": "Bagdat Cad.", "date": "2025-06", "rating": 5, "comment": "Fine art baski ve ahsap kutu albüm seceneegi muhtesem. Gerçek bir sanat eseri olarak evimizde sergiliyo." },
+          { "name": "Pinar & Okan", "location": "Kadikoy", "date": "2025-04", "rating": 5, "comment": "Evde lifestyle cekimi tam bize goreydi. Dogal ortamda, yapay olmayan anlar. Belgesel gibi, cok degerli." }
+        ],
+        "gallery": []
+      },
+      "content": {
+        "hero": { "title": "Hayatin En Degerli Baslangiclari", "subtitle": "Istanbul'un onde gelen yenidogan ve hamilelik fotografi studyosu. BANPAS sertifikali, 8.000+ bebek, 12 yillik uzmanlik.", "badge": "Bebek Guvenligi Oncelikli", "ctaText": "Randevu Alin", "ctaLink": "tel:+902164567890" },
+        "about": { "title": "Little Star Studio", "description": "2014 yilinda Deniz Aksoy tarafindan kurulan Little Star Studio, Istanbul'da yenidogan ve aile fotografciligi alaninda uzman bir studyodur. BANPAS (Baby and Newborn Photography Safety) sertifikali kadromuzla 8.000'den fazla bebegin ilk fotograflarini cektik. 120 m2 studyomuz bebek guvenligi icin ozel tasarlanmistir: 25 derece sabit sicaklik, antibakteriyel ortam ve yumusak aydinlatma. Yenidogan, hamilelik, sitter, smash cake, aile ve dogum hikayesi cekimleriyle bebeginizin her onemli anini olümsüzlestiriyoruz. Bebek gelisim paketimizle dogumdan 1 yasina kadar tum sürecin gorsel belgelenmesini sagliyoruz." },
+        "services": { "title": "Studyo Hizmetlerimiz", "subtitle": "Yenidogandan 1 yasa, hamilelikten aile fotografina" },
+        "stats": { "title": "Rakamlarla Little Star", "subtitle": "12 yillik bebek fotografi uzmanligi" },
+        "contact": { "title": "Randevu & Iletisim", "subtitle": "Bebek cekimi icin hemen randevu alin" },
+        "faq": [
+          { "q": "Yenidogan cekimi icin ideal zaman ne?", "a": "Dogumdan sonraki 5-14 gun arasi idealdir. Bu donemde bebekler derin uyku donemindedir ve poz vermesi kolaydir." },
+          { "q": "Studyo sicakligi bebek icin guvenli mi?", "a": "Studyomuz sabit 25 derece sicaklikta tutulur. Bu sicaklik yenidoganlar icin ideal ve guvenlidir." },
+          { "q": "Hamilelik cekimi icin kac hafta ideal?", "a": "28-36 hafta arasi idealdir. Karnin belirgin ama anne hala rahat hareket edebiliyor." },
+          { "q": "Bebek gelisim paketi nasil calisiyor?", "a": "Yenidogan + 3 ay + 6 ay + 1 yas olmak uzere 4 seanstan olusur. Her seans ayri tema ile cekilir. Toplam indirimli fiyat." },
+          { "q": "Dogum hikayesi cekimi nasil oluyor?", "a": "Dogum basladiginda bizi arayin, hastaneye gelir ve tum sureci belgeleriz. On anlasmali hastanelerimiz vardir." },
+          { "q": "Proplar güvenli mi?", "a": "Tum proplarımız bebek guvenligi standartlarinda ve boya/kimyasal icermez. El yapimi, ozel tasarim." },
+          { "q": "Fotograflar ne zaman teslim ediliyor?", "a": "Online galeri 2 hafta, düzenlenmis fotograflar 3-4 hafta, baski ürünleri 4-6 haftada teslim edilir." },
+          { "q": "Kardeslerle birlikte cekim yapilabilir mi?", "a": "Evet, kardes ve aile pozlari tum paketlerimize dahildir. Buyuk kardesler icin ekstra eglenceli setup hazirlariz." },
+          { "q": "Workshop katilimi icin fotografi bilmem sart mi?", "a": "Temel fotograf bilgisi yeterlidir. Workshop'ta yenidogan güvenligi, poz, isik ve retush dersleri verilir." },
+          { "q": "Iptal ve erteleme politikaniz nedir?", "a": "48 saat onceden iptal/erteleme ucretsizdir. Yenidogan cekimlerinde dogum tarihi ertelendiginde otomatik olarak yeni tarih atanir." }
+        ]
+      }
+    },
+    {
+      "id": "foto-lux",
+      "variantName": "lux",
+      "plan": "enterprise",
+      "description": "Premium fotograf ve produksiyon studyosu",
+      "designPhilosophy": "Luks, sinematik, yaratici",
+      "isDark": true,
+      "colors": { "bg": "#0A0A0A", "surface": "#1A1A1A", "text": "#F0F0F0", "accent": "#E5A853" },
+      "fonts": { "heading": "Playfair Display", "body": "Inter" },
+      "business": {
+        "name": "LensHaus Creative Studio",
+        "ownerName": "Kaan Yilmaz",
+        "sector": "Fotografci",
+        "slogan": "Gorsel hikaye anlaticiliginda sinir tanimiyoruz",
+        "phone": "0212 900 12 34",
+        "phoneClean": "902129001234",
+        "whatsapp": "905001234567",
+        "email": "info@lenshaus.com",
+        "address": "Kurucsesme Mah. Muallim Naci Cad. No:54, Besiktas/Istanbul",
+        "city": "Istanbul", "district": "Besiktas",
+        "mapEmbed": "", "foundedYear": 2010, "experience": "16 yil", "employeeCount": 30,
+        "customerCount": "1.500+", "rating": 4.9, "reviewCount": 2200,
+        "workingHours": [
+          { "day": "Pazartesi", "dayTr": "Pazartesi", "open": "09:00", "close": "20:00", "isOpen": true },
+          { "day": "Sali", "dayTr": "Sali", "open": "09:00", "close": "20:00", "isOpen": true },
+          { "day": "Carsamba", "dayTr": "Carsamba", "open": "09:00", "close": "20:00", "isOpen": true },
+          { "day": "Persembe", "dayTr": "Persembe", "open": "09:00", "close": "20:00", "isOpen": true },
+          { "day": "Cuma", "dayTr": "Cuma", "open": "09:00", "close": "20:00", "isOpen": true },
+          { "day": "Cumartesi", "dayTr": "Cumartesi", "open": "10:00", "close": "18:00", "isOpen": true },
+          { "day": "Pazar", "dayTr": "Pazar", "open": "Proje bazli", "close": "", "isOpen": true }
+        ],
+        "services": [
+          { "id": "s1", "name": "Marka Gorsel Kimlik", "price": "20.000-100.000 TL", "duration": "2-4 hafta", "description": "Markaniz icin kapsamli gorsel kimlik olusturma. Mood board, art direction, cekim, retush ve dijital asset paketi.", "icon": "Palette" },
+          { "id": "s2", "name": "Reklam Kampanya Cekimi", "price": "30.000-200.000 TL", "duration": "1-5 gun", "description": "TV, dijital ve basili medya icin reklam fotografciligi. Casting, lokasyon, styling, cekim ve post-produksiyon.", "icon": "Megaphone" },
+          { "id": "s3", "name": "Sinematik Marka Filmi", "price": "50.000-300.000 TL", "duration": "1-4 hafta", "description": "Sinema kalitesinde marka tanitim filmi. Senaryo, yonetmenlik, 4K/6K cekim, renk duzeltme ve ses tasarimi.", "icon": "Film" },
+          { "id": "s4", "name": "E-Ticaret Premium", "price": "100-500 TL/adet", "duration": "Projeye gore", "description": "Luks marka e-ticaret gorselleri. Ghost mannequin, yaşam tarzi, flat-lay ve lookbook cekimleri. Premium retush.", "icon": "Package" },
+          { "id": "s5", "name": "Moda & Editorial", "price": "15.000-80.000 TL", "duration": "1-3 gun", "description": "Moda koleksiyonu, dergi editorial ve lookbook cekimi. Casting, styling, makyaj, sac ve lokasyon.", "icon": "Shirt" },
+          { "id": "s6", "name": "Mimarlik & Ic Mekan", "price": "5.000-30.000 TL", "duration": "1-3 gun", "description": "Otel, restoran, ofis ve konut ic mekan fotografciligi. Tilt-shift lens, HDR ve genis aci teknikler.", "icon": "Building" },
+          { "id": "s7", "name": "Gida & Icecek Premium", "price": "3.000-20.000 TL", "duration": "1-2 gun", "description": "Luks restoran, icecek markasi ve gida uretici icin premium food photography. Michelin kalitesinde sunum.", "icon": "UtensilsCrossed" },
+          { "id": "s8", "name": "Kurumsal Portre & Headshot", "price": "5.000-20.000 TL", "duration": "Yarim-tam gun", "description": "C-level yonetici, yonetim kurulu ve ekip fotograflari. Linkedin, web sitesi ve basın icin profesyonel portreler.", "icon": "Users" },
+          { "id": "s9", "name": "Drone & Hava Cekimi", "price": "5.000-25.000 TL", "duration": "Yarim-tam gun", "description": "Profesyonel drone fotografciligi ve videociligi. Gayrimenkul, insaat, etkinlik ve tanitim icin hava goruntuleri.", "icon": "Plane" },
+          { "id": "s10", "name": "CGI & 3D Gorsel Uretimi", "price": "5.000-50.000 TL", "duration": "1-4 hafta", "description": "Fotorealist 3D urun gorselleri. Fiziksel prototip olmadan urun fotografi. Ambalaj, reklam ve e-ticaret.", "icon": "Box" },
+          { "id": "s11", "name": "Sosyal Medya Icerik Uretimi", "price": "10.000-40.000 TL/ay", "duration": "Aylik", "description": "Instagram, TikTok ve LinkedIn icin aylik gorsel icerik uretimi. Strateji, cekim, kurgu ve paylasim takvimi.", "icon": "Instagram" },
+          { "id": "s12", "name": "Etkinlik & Lansman", "price": "8.000-40.000 TL", "duration": "1 gun", "description": "Urun lansmani, basin toplantisi, gala ve kurumsal etkinlik fotografciligi ve videociligi.", "icon": "PartyPopper" },
+          { "id": "s13", "name": "Studyo Kiralama", "price": "3.000-10.000 TL/gun", "duration": "Gunluk", "description": "500 m2 profesyonel studyo kiralama. Cyclorama wall, dogal isik alani, karartma bolumu ve mutfak seti.", "icon": "Home" },
+          { "id": "s14", "name": "Retush & Post-Produksiyon", "price": "50-300 TL/adet", "duration": "Degisken", "description": "High-end retush, compositing, renk duzeltme ve gorsel manipulasyon. Reklam ve editoryal kalitesinde.", "icon": "Wand" },
+          { "id": "s15", "name": "Animasyon & Motion Graphics", "price": "10.000-60.000 TL", "duration": "1-4 hafta", "description": "2D/3D animasyon, motion graphics, logo reveal ve explainer video. After Effects, Cinema 4D.", "icon": "Play" },
+          { "id": "s16", "name": "360 Sanal Tur", "price": "5.000-20.000 TL", "duration": "1-2 gun", "description": "Otel, restoran, AVM ve gayrimenkul icin profesyonel 360 derece sanal tur. Matterport kalitesinde.", "icon": "RotateCcw" },
+          { "id": "s17", "name": "Urun Ambalaj & Etiket Fotografi", "price": "3.000-15.000 TL", "duration": "1-2 gun", "description": "Ambalaj tasarimi icin urun fotografciligi. Raf gorseli, mockup ve dijital asset uretimi.", "icon": "Box" },
+          { "id": "s18", "name": "Art Direction & Konsept", "price": "10.000-50.000 TL", "duration": "1-2 hafta", "description": "Yaratici yon belirleme, mood board, konsept gelistirme ve gorsel strateji. Marka dili ve gorsel tutarlilik.", "icon": "Lightbulb" },
+          { "id": "s19", "name": "Podcast & Video Studio", "price": "5.000-15.000 TL/gun", "duration": "Gunluk", "description": "Profesyonel podcast ve video kayit studyosu. Ses yalitimi, 4K kamera, teleprompter ve canli yayin imkani.", "icon": "Mic" },
+          { "id": "s20", "name": "Egitim & Masterclass", "price": "5.000-15.000 TL/kisi", "duration": "2-3 gun", "description": "Ileri fotografcilik, isik tasarimi, retush ve sinematografi masterclass'lari. Profesyoneller ve markalar icin.", "icon": "GraduationCap" }
+        ],
+        "team": [
+          { "name": "Kaan Yilmaz", "title": "Kurucu & Creative Director", "description": "16 yillik fotografcilik ve reklam deneyimi. Cannes Lions finalist. Nike, Samsung, Turkish Airlines gibi global markalarda art direction.", "image": "" },
+          { "name": "Nil Erdogan", "title": "Fotografci & Art Director", "description": "Vogue, Elle ve Harper's Bazaar editorial cekimleri. Moda fotografciligi ve gorsel hikaye anlaticiligi uzmani.", "image": "" },
+          { "name": "Emre Sari", "title": "Sinematografi Direktoru", "description": "RED ve ARRI kamera operatoru. Reklam filmi ve marka filmi yonetmeni. 10+ yillik deneyim.", "image": "" },
+          { "name": "Selin Oztürk", "title": "Urun & E-Ticaret Muduru", "description": "Premium urun fotografciligi. Luks markalar, mucevher ve saat cekimleri uzmani.", "image": "" },
+          { "name": "Baris Dogan", "title": "CGI & 3D Gorsel Uretimi", "description": "Fotorealist 3D urun gorsel uretimi. Cinema 4D, Octane ve KeyShot uzmani.", "image": "" },
+          { "name": "Cansu Aksoy", "title": "Post-Produksiyon Muduru", "description": "High-end retush, compositing ve renk duzeltme. 8 kisilik retush ekibi yoneticisi.", "image": "" },
+          { "name": "Ozan Celik", "title": "Video & Motion Graphics", "description": "Animasyon, motion design ve video kurgu. After Effects, Premiere ve DaVinci Resolve.", "image": "" },
+          { "name": "Derya Kaya", "title": "Producer & Proje Yoneticisi", "description": "Buyuk olcekli cekim projeleri koordinasyonu. Casting, lokasyon, ekip ve butce yonetimi.", "image": "" }
+        ],
+        "testimonials": [
+          { "name": "Nike Turkey", "location": "Istanbul", "date": "2026-01", "rating": 5, "comment": "Sezon kampanyasinin tum gorsellerini LensHaus uretti. Art direction, cekim, retush ve dijital assetler. Global standartlarin uzerinde kalite." },
+          { "name": "Turkish Airlines", "location": "Istanbul", "date": "2025-12", "rating": 5, "comment": "Business Class lansman filmi icin muhtesem bir produksiyon. Sinematik kalite, zamaninda teslim ve sorunsuz surecti." },
+          { "name": "Vakko", "location": "Istanbul", "date": "2025-11", "rating": 5, "comment": "Sezon lookbook'u icin harika calıstik. Nil Hanim'in editorial gozü ve styling detaylari markamizi bir ust lige tasidi." },
+          { "name": "Hilton Istanbul", "location": "Besiktas", "date": "2025-10", "rating": 5, "comment": "Otelin tum mekan fotograflarini ve 360 sanal turu LensHaus cekti. Rezervasyon oranlarimiz %20 artti." },
+          { "name": "Samsung Turkiye", "location": "Istanbul", "date": "2025-09", "rating": 5, "comment": "Yeni telefon lansmaninin gorsel icerik paketini hazirladilar. CGI, product shot ve lifestyle hep bir arada, kusursuz." },
+          { "name": "Eataly Istanbul", "location": "Beyoglu", "date": "2025-08", "rating": 5, "comment": "Menu ve mekan fotograflari inanilmaz. Food styling kalitesi Michelin seviyesinde. Sosyal medya icerikleri de cok basarili." },
+          { "name": "Koton", "location": "Istanbul", "date": "2025-07", "rating": 5, "comment": "E-ticaret cekimi icin her sezon LensHaus ile calisiyoruz. 2.000+ urun, hizli teslim, tutarli kalite. Guvenilir partner." },
+          { "name": "ING Bank Turkiye", "location": "Istanbul", "date": "2025-06", "rating": 4, "comment": "Yeni marka gorsel kimligimizin fotograflarini cekti LensHaus. C-level portreleri ve ofis mekan cekimleri cok basarili." },
+          { "name": "Bvlgari Istanbul", "location": "Nisantasi", "date": "2025-05", "rating": 5, "comment": "Mucevher koleksiyonu cekimleri muhtesem. Isik kontrolu, makro detaylar ve kompozisyon... Gerçek sanat eseri." },
+          { "name": "Migros", "location": "Istanbul", "date": "2025-04", "rating": 5, "comment": "Yillik sosyal medya icerik uretim sozlesmemiz 3. yilinda. Her ay tutar kalite, yaratici icerikler ve zamaninda teslim." },
+          { "name": "Four Seasons Hotel", "location": "Sultanahmet", "date": "2025-03", "rating": 5, "comment": "Otel mekan fotograflari ve marka filmi projesi. Drone cekimleriyle Bogaz manzarasi breathtaking. Uluslararasi basinda yer aldi." },
+          { "name": "StartupGrind Istanbul", "location": "Levent", "date": "2025-02", "rating": 5, "comment": "Konferans fotografciligi ve etkinlik videosu. 500 kisilik etkinlikten hic bir ani kacirmamislar." }
+        ],
+        "gallery": []
+      },
+      "content": {
+        "hero": { "title": "Gorsel Hikaye Anlaticiliginda Sinir Tanimiyoruz", "subtitle": "Istanbul'un lider yaratici produksiyon studyosu. Marka gorseli, reklam filmi, e-ticaret, moda ve mimarlik fotografciligi. 30 kisilik uzman kadro, 500 m2 studyo.", "badge": "Global Markalar", "ctaText": "Proje Gorusmesi", "ctaLink": "tel:+902129001234" },
+        "about": { "title": "LensHaus Creative Studio", "description": "2010 yilinda Cannes Lions finalist fotografci Kaan Yilmaz tarafindan kurulan LensHaus, Istanbul'da yaratici produksiyon alaninda lider studyodur. Kurucsesme'deki 500 m2 studyomuzda marka gorsel kimliginden reklam kampanyasina, sinematik filmden e-ticaret celimine kadar genis bir hizmet yelpazesi sunuyoruz. Nike, Samsung, Turkish Airlines, Vakko ve Hilton gibi global markaların gorsel partneryiz. 30 kisilik ekibimizde fotografci, yonetmen, art director, CGI sanatcisi, retoucher ve prodüktör bulunur. Fotorealist 3D gorsel uretimi, animasyon ve 360 sanal tur gibi ileri teknoloji hizmetlerimizle geleneksel studyoculugun otesine geciyoruz." },
+        "services": { "title": "Yaratici Hizmetlerimiz", "subtitle": "Fotograftan filme, CGI'dan animasyona" },
+        "stats": { "title": "Rakamlarla LensHaus", "subtitle": "16 yillik yaratici produksiyon" },
+        "contact": { "title": "Proje Gorusmesi", "subtitle": "Yaratici projeniz icin bizi arayin" },
+        "faq": [
+          { "q": "Hangi markalarla calisiyorsunuz?", "a": "Nike, Samsung, Turkish Airlines, Vakko, Koton, Hilton, ING Bank gibi ulusal ve uluslararasi markalarla calisiyoruz." },
+          { "q": "Studyonuz ne buyuklukte?", "a": "500 m2, 3 ayri cekim alani: cyclorama wall (beyaz fonduk), dogal isik bolumu ve karartma studyosu. Mutfak seti de mevcut." },
+          { "q": "CGI gorsel nedir?", "a": "Bilgisayar ortaminda uretilen fotorealist urun gorselleri. Fiziksel prototip olmadan urun fotografi yapilabilir. Ambalaj degisiklikleri aninda uygulanir." },
+          { "q": "Marka filmi ne kadar surer?", "a": "Pre-produksiyon (1-2 hafta), cekim (1-3 gun) ve post-produksiyon (1-3 hafta). Toplam 3-6 hafta arasinda teslim." },
+          { "q": "Sosyal medya icerik uretimi nasil calisiyor?", "a": "Aylik strateji toplantisi, cekim gunu (ayda 1-2), kurgu ve paylasim takvimi. Instagram, TikTok ve LinkedIn formatlarinda icerik." },
+          { "q": "Studyo kiralama yapiyor musunuz?", "a": "Evet, studyomuzu gunluk veya yarim gunluk kiraya veriyoruz. Ekipman, asistan ve catering dahil paketler mevcuttur." },
+          { "q": "Drone cekim lisansiniz var mi?", "a": "Evet, SHGM onayli drone pilotlarimiz ve ticari ucus izinlerimiz mevcuttur." },
+          { "q": "Podcast studyosu kiralayabilir miyim?", "a": "Evet, ses yalitimli podcast studyomuz 4K kamera, teleprompter ve canli yayin altyapisi ile kiralanabilir." },
+          { "q": "E-ticaret cekimlerinde minimum adet var mi?", "a": "Premium segmentte minimum 50 urun, standart e-ticaret cekimlerinde minimum 100 urun." },
+          { "q": "Uluslararasi projelere acik misiniz?", "a": "Evet, Dubai, Londra ve Milano'da calisma deneyimimiz var. Yurt disi projelerde ekip ve ekipman lojistigini biz yonetiyoruz." },
+          { "q": "Masterclass kimlere yonelik?", "a": "Profesyonel fotografcilar, kreatif direktorler ve marka yoneticilerine yonelik ileri seviye egitimler. Isik, compositing, color grading." },
+          { "q": "Proje butcesi nasil belirleniyor?", "a": "Brief sonrasi detayli maliyet dokumanı hazirlariz. Cekim gunu, ekip, lokasyon, casting, post-produksiyon ve asset hakları ayri kalemlerdir." },
+          { "q": "Telif ve kullanim haklari nasil isliyor?", "a": "Standart paketlerde 1 yillik dijital kullanim hakki verilir. Genisletilmis kullanim (basili, TV, global) icin ayri lisans anlasmasi yapilir." },
+          { "q": "Motion graphics hangi formatlarda yapilir?", "a": "Instagram, YouTube, TV ve web banner formatlari. 2D ve 3D animasyon, logo reveal, explainer ve infographic video." },
+          { "q": "Referans portfolyonuzu gorebilir miyim?", "a": "Web sitemizdе secilmis çalismalar mevcuttur. Sektor veya hizmet bazli detayli portfolio gorusmede paylasılır." }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,1476 @@
+{
+  "sectorId": "kargo",
+  "seoSchemaType": "DeliveryService",
+  "variants": [
+    {
+      "id": "kargo-moto",
+      "variantName": "moto",
+      "plan": "free",
+      "description": "Moto kurye ve hizli teslimat",
+      "designPhilosophy": "Hizli, pratik, ekonomik",
+      "isDark": false,
+      "colors": {
+        "bg": "#FFFFFF",
+        "surface": "#F9FAFB",
+        "text": "#1F2937",
+        "accent": "#3B82F6"
+      },
+      "fonts": {
+        "heading": "Inter",
+        "body": "Inter"
+      },
+      "business": {
+        "name": "Jet Kurye Moto Teslimat",
+        "ownerName": "Ferhat Yilmaz",
+        "sector": "Kargo",
+        "slogan": "Dakikalar icinde kapinizda",
+        "phone": "0532 900 11 00",
+        "phoneClean": "905329001100",
+        "whatsapp": "905329001100",
+        "email": "info@jetkurye.com.tr",
+        "address": "Hasanpasa Mah. Uzuncair Cad. No:31, Kadikoy/Istanbul",
+        "city": "Istanbul",
+        "district": "Kadikoy",
+        "neighborhood": "Hasanpasa",
+        "coordinates": {
+          "lat": 40.987,
+          "lng": 29.031
+        },
+        "socialMedia": {
+          "instagram": "https://instagram.com/jetkurye"
+        },
+        "photos": [],
+        "foundedYear": 2018,
+        "experience": "6 yil",
+        "customerCount": "15.000+",
+        "rating": 4.5,
+        "reviewCount": 890,
+        "workingHours": [
+          {
+            "day": "Pazartesi",
+            "open": "08:00",
+            "close": "18:00",
+            "isOpen": true
+          },
+          {
+            "day": "Sali",
+            "open": "08:00",
+            "close": "18:00",
+            "isOpen": true
+          },
+          {
+            "day": "Carsamba",
+            "open": "08:00",
+            "close": "18:00",
+            "isOpen": true
+          },
+          {
+            "day": "Persembe",
+            "open": "08:00",
+            "close": "18:00",
+            "isOpen": true
+          },
+          {
+            "day": "Cuma",
+            "open": "08:00",
+            "close": "18:00",
+            "isOpen": true
+          },
+          {
+            "day": "Cumartesi",
+            "open": "09:00",
+            "close": "14:00",
+            "isOpen": true
+          },
+          {
+            "day": "Pazar",
+            "open": "Kapali",
+            "close": "Kapali",
+            "isOpen": false
+          }
+        ],
+        "services": [
+          {
+            "id": "s1",
+            "name": "Moto Kurye (Sehir Ici)",
+            "price": "60 TL",
+            "duration": "30-60 dk",
+            "description": "Istanbul Avrupa veya Anadolu yakasi ici moto kurye hizmeti."
+          },
+          {
+            "id": "s2",
+            "name": "Ekspres Teslimat",
+            "price": "100 TL",
+            "duration": "15-30 dk",
+            "description": "Acil evrak ve paket icin oncelikli hizli teslimat."
+          },
+          {
+            "id": "s3",
+            "name": "Kapida Odeme Tahsilati",
+            "price": "75 TL",
+            "duration": "1-2 saat",
+            "description": "Urun teslimatinda nakit veya POS ile odeme tahsilati."
+          },
+          {
+            "id": "s4",
+            "name": "Gunluk Kurye Aboneligi",
+            "price": "250 TL/gun",
+            "duration": "8 saat",
+            "description": "Firmaniz icin gun boyu tahsisli moto kurye hizmeti."
+          }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Hizli ve Guvenilir Moto Kurye",
+          "subtitle": "Istanbul ici moto kurye, ekspres teslimat ve kapida odeme hizmeti.",
+          "badge": "30 dk Teslimat"
+        },
+        "about": {
+          "title": "Jet Kurye Hakkinda",
+          "description": "2018'den bu yana Kadikoy merkezli moto kurye hizmeti veriyoruz. 15.000'den fazla teslimat tamamladik. Hiz, guvenilirlik ve musteri memnuniyeti oncelimimizdir."
+        },
+        "services": {
+          "title": "Hizmetlerimiz",
+          "subtitle": "Hizli teslimat cozumleri"
+        },
+        "contact": {
+          "title": "Iletisim",
+          "subtitle": "Hemen siparis verin"
+        },
+        "faq": [
+          {
+            "q": "Teslimat suresi ne kadar?",
+            "a": "Sehir ici standart teslimat 30-60 dakika, ekspres teslimat 15-30 dakikadir."
+          },
+          {
+            "q": "Yaka arasi teslimat yapiyor musunuz?",
+            "a": "Evet, Anadolu-Avrupa arasi teslimat ek ucretle yapilmaktadir."
+          },
+          {
+            "q": "Ne kadar agirliga kadar tasiyorsunuz?",
+            "a": "Moto kurye ile 10 kg'a kadar paket tasiyabiliyoruz."
+          },
+          {
+            "q": "Odeme nasil yapilir?",
+            "a": "Nakit, havale, kredi karti ve kurumsal fatura ile odeme kabul ediyoruz."
+          }
+        ],
+        "testimonials": [],
+        "team": []
+      }
+    },
+    {
+      "id": "kargo-dosya",
+      "variantName": "dosya",
+      "plan": "starter",
+      "description": "Evrak ve dosya kurye servisi",
+      "designPhilosophy": "Guvenilir, duzenli, kurumsal",
+      "isDark": false,
+      "colors": {
+        "bg": "#F8FAFC",
+        "surface": "#F1F5F9",
+        "text": "#0F172A",
+        "accent": "#0EA5E9"
+      },
+      "fonts": {
+        "heading": "Inter",
+        "body": "Inter"
+      },
+      "business": {
+        "name": "DocExpress Evrak Kurye",
+        "ownerName": "Selin Acar",
+        "sector": "Kargo",
+        "slogan": "Evraklariniz guvenle yerine ulasir",
+        "phone": "0532 900 11 01",
+        "phoneClean": "905329001101",
+        "whatsapp": "905329001101",
+        "email": "info@docexpress.com.tr",
+        "address": "Tesvikiye Mah. Abdi Ipekci Cad. No:85/A, Sisli/Istanbul",
+        "city": "Istanbul",
+        "district": "Sisli",
+        "neighborhood": "Tesvikiye",
+        "coordinates": {
+          "lat": 41.048,
+          "lng": 28.992
+        },
+        "socialMedia": {
+          "instagram": "https://instagram.com/docexpress"
+        },
+        "photos": [],
+        "foundedYear": 2015,
+        "experience": "9 yil",
+        "customerCount": "5.500+",
+        "rating": 4.7,
+        "reviewCount": 620,
+        "workingHours": [
+          {
+            "day": "Pazartesi",
+            "open": "08:00",
+            "close": "18:00",
+            "isOpen": true
+          },
+          {
+            "day": "Sali",
+            "open": "08:00",
+            "close": "18:00",
+            "isOpen": true
+          },
+          {
+            "day": "Carsamba",
+            "open": "08:00",
+            "close": "18:00",
+            "isOpen": true
+          },
+          {
+            "day": "Persembe",
+            "open": "08:00",
+            "close": "18:00",
+            "isOpen": true
+          },
+          {
+            "day": "Cuma",
+            "open": "08:00",
+            "close": "18:00",
+            "isOpen": true
+          },
+          {
+            "day": "Cumartesi",
+            "open": "09:00",
+            "close": "14:00",
+            "isOpen": true
+          },
+          {
+            "day": "Pazar",
+            "open": "Kapali",
+            "close": "Kapali",
+            "isOpen": false
+          }
+        ],
+        "services": [
+          {
+            "id": "s1",
+            "name": "Evrak Kurye (Sehir Ici)",
+            "price": "50 TL",
+            "duration": "1-2 saat",
+            "description": "Istanbul ici evrak ve dosya teslimat hizmeti."
+          },
+          {
+            "id": "s2",
+            "name": "Noterlik Islem Kuryesi",
+            "price": "120 TL",
+            "duration": "2-4 saat",
+            "description": "Noter, vergi dairesi ve resmi kurumlarda islem takibi."
+          },
+          {
+            "id": "s3",
+            "name": "Sozlesme Imza Kuryesi",
+            "price": "150 TL",
+            "duration": "2-3 saat",
+            "description": "Sozlesme goturup imzalatma ve iade teslimat hizmeti."
+          },
+          {
+            "id": "s4",
+            "name": "Kurumsal Kurye Aboneligi",
+            "price": "3.500 TL/ay",
+            "duration": "Aylik",
+            "description": "Firmalar icin aylik sabit ucretli kurye hizmeti."
+          },
+          {
+            "id": "s5",
+            "name": "Gizli Evrak Tasima",
+            "price": "200 TL",
+            "duration": "1-2 saat",
+            "description": "Gizlilik sozlesmeli ozel evrak tasima hizmeti."
+          },
+          {
+            "id": "s6",
+            "name": "Toplu Evrak Dagitimi",
+            "price": "25 TL/adet",
+            "duration": "1-3 gun",
+            "description": "Fatura, duyuru ve sirkuler dagitimi."
+          }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Profesyonel Evrak Kurye Hizmeti",
+          "subtitle": "Noter islemi, sozlesme imza, gizli evrak tasima ve kurumsal kurye cozumleri.",
+          "badge": "Guvenli Teslimat"
+        },
+        "about": {
+          "title": "DocExpress Hakkinda",
+          "description": "2015'ten bu yana Istanbul'un onde gelen kurumsal evrak kurye sirketiyiz. 5.500'den fazla firma ve avukatlik ofisine hizmet veriyoruz. Gizlilik sozlesmesi ile calisiyor, evraklarinizin guvenligini garanti ediyoruz."
+        },
+        "services": {
+          "title": "Evrak Kurye Hizmetleri",
+          "subtitle": "Kurumsal evrak ve dosya cozumleri"
+        },
+        "contact": {
+          "title": "Kurye Cagin",
+          "subtitle": "Aninda evrak kurye hizmeti icin arayin"
+        },
+        "faq": [
+          {
+            "q": "Gizli evrak tasima nasil yapiliyor?",
+            "a": "Kuryelerimiz gizlilik sozlesmesi imzalar. Evraklar muhurlü zarfla tasinir."
+          },
+          {
+            "q": "Noter islemlerinde de yardimci oluyor musunuz?",
+            "a": "Evet, noter islem takibi, vekaletname ve sozlesme islemlerini tamamliyoruz."
+          },
+          {
+            "q": "Kurumsal abonelik nasil calisiyor?",
+            "a": "Aylik sabit ucretle sinirsiz evrak kurye hizmeti. Fatura ile odeme."
+          },
+          {
+            "q": "Teslimat onay sisteminiz var mi?",
+            "a": "Evet, dijital imza ve fotorafli teslimat onayi sistememiz var."
+          },
+          {
+            "q": "Hafta sonu caliisiyor musunuz?",
+            "a": "Cumartesi yarim gun calisiyoruz. Acil durumlar icin 7/24 hizmet mevcuttur."
+          },
+          {
+            "q": "Yaka arasi teslimat var mi?",
+            "a": "Evet, Anadolu-Avrupa yakasi arasi evrak teslimat yapiyoruz."
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Av. Kerem Tas",
+            "district": "Sisli",
+            "date": "2025-02",
+            "rating": 5,
+            "comment": "Avukatlik ofisimizin tum evrak islerini DocExpress ile yapiyoruz. Guvenilir ve dakik."
+          },
+          {
+            "name": "Derya Sahin",
+            "district": "Levent",
+            "date": "2025-01",
+            "rating": 5,
+            "comment": "Kurumsal abonelik ile ayda 200'den fazla evrak gonderiyoruz. Memnunuz."
+          },
+          {
+            "name": "Osman Gokce",
+            "district": "Kadikoy",
+            "date": "2024-11",
+            "rating": 4,
+            "comment": "Noter islem kuryesi cok pratik. Bazen yogun saatlerde gecikme olabiliyor."
+          }
+        ],
+        "team": [
+          {
+            "name": "Selin Acar",
+            "role": "Kurucu & Genel Mudur",
+            "image": "",
+            "bio": "Lojistik yonetimi mezunu. 12 yillik kurye sektoru tecrubesi."
+          },
+          {
+            "name": "Tolga Berk",
+            "role": "Operasyon Muduru",
+            "image": "",
+            "bio": "40 kissilik kurye ekibinin koordinasyonunu yapiyor."
+          }
+        ]
+      }
+    },
+    {
+      "id": "kargo-market",
+      "variantName": "market",
+      "plan": "growth",
+      "description": "E-ticaret ve market teslimat",
+      "designPhilosophy": "Hizli, guvenilir, teknolojik",
+      "isDark": false,
+      "colors": {
+        "bg": "#ECFDF5",
+        "surface": "#D1FAE5",
+        "text": "#064E3B",
+        "accent": "#059669",
+        "textSecondary": "#6B7280",
+        "border": "#D1D5DB"
+      },
+      "fonts": {
+        "heading": "Poppins",
+        "body": "Inter"
+      },
+      "business": {
+        "name": "TesliBox E-Ticaret Kargo",
+        "ownerName": "Burak Ozen",
+        "sector": "Kargo",
+        "slogan": "E-ticaretin guvenilir kargo ortagi",
+        "phone": "0532 900 11 02",
+        "phoneClean": "905329001102",
+        "whatsapp": "905329001102",
+        "email": "info@teslibox.com.tr",
+        "address": "Icerenkoy Mah. Kayisdagi Cad. No:120, Atasehir/Istanbul",
+        "city": "Istanbul",
+        "district": "Atasehir",
+        "neighborhood": "Icerenkoy",
+        "coordinates": {
+          "lat": 40.978,
+          "lng": 29.099
+        },
+        "socialMedia": {
+          "instagram": "https://instagram.com/teslibox"
+        },
+        "photos": [],
+        "foundedYear": 2016,
+        "experience": "8 yil",
+        "customerCount": "25.000+",
+        "rating": 4.6,
+        "reviewCount": 1450,
+        "workingHours": [
+          {
+            "day": "Pazartesi",
+            "open": "07:00",
+            "close": "21:00",
+            "isOpen": true
+          },
+          {
+            "day": "Sali",
+            "open": "07:00",
+            "close": "21:00",
+            "isOpen": true
+          },
+          {
+            "day": "Carsamba",
+            "open": "07:00",
+            "close": "21:00",
+            "isOpen": true
+          },
+          {
+            "day": "Persembe",
+            "open": "07:00",
+            "close": "21:00",
+            "isOpen": true
+          },
+          {
+            "day": "Cuma",
+            "open": "07:00",
+            "close": "21:00",
+            "isOpen": true
+          },
+          {
+            "day": "Cumartesi",
+            "open": "08:00",
+            "close": "20:00",
+            "isOpen": true
+          },
+          {
+            "day": "Pazar",
+            "open": "09:00",
+            "close": "18:00",
+            "isOpen": true
+          }
+        ],
+        "services": [
+          {
+            "id": "s1",
+            "name": "Standart E-Ticaret Kargo",
+            "price": "35 TL",
+            "duration": "1-3 gun",
+            "description": "E-ticaret paketleri icin standart sehir ici kargo hizmeti."
+          },
+          {
+            "id": "s2",
+            "name": "Ayni Gun Teslimat",
+            "price": "75 TL",
+            "duration": "4-8 saat",
+            "description": "Saat 14:00'e kadar verilen siparislerin ayni gun teslimat."
+          },
+          {
+            "id": "s3",
+            "name": "Soguuk Zincir Kargo",
+            "price": "65 TL",
+            "duration": "2-4 saat",
+            "description": "Gida, eczane ve biyolojik materyaller icin soguk zincir teslimat."
+          },
+          {
+            "id": "s4",
+            "name": "Market Teslimat",
+            "price": "25 TL",
+            "duration": "1-2 saat",
+            "description": "Online market siparisi toplama ve eve teslimat."
+          },
+          {
+            "id": "s5",
+            "name": "Iade Toplama",
+            "price": "30 TL",
+            "duration": "1-2 gun",
+            "description": "E-ticaret iade paketlerinin musteriden toplanmasi."
+          },
+          {
+            "id": "s6",
+            "name": "Depo ve Stok Yonetimi",
+            "price": "2.000 TL/ay",
+            "duration": "Aylik",
+            "description": "E-ticaret urunleri icin depolama, paketleme ve gonderim hizmeti."
+          },
+          {
+            "id": "s7",
+            "name": "Toplu Gonderim",
+            "price": "20 TL/adet",
+            "duration": "1-2 gun",
+            "description": "Gunluk 50+ paket gonderimde ozel indirimli toplu kargo."
+          },
+          {
+            "id": "s8",
+            "name": "Kargo Takip Entegrasyonu",
+            "price": "500 TL/ay",
+            "duration": "Aylik",
+            "description": "E-ticaret sitenize entegre canli kargo takip sistemi."
+          },
+          {
+            "id": "s9",
+            "name": "Fotografli Teslimat Onayi",
+            "price": "+10 TL",
+            "duration": "Aninda",
+            "description": "Teslimat aninda fotograf ve dijital imza ile onay."
+          },
+          {
+            "id": "s10",
+            "name": "Paketleme Hizmeti",
+            "price": "15 TL/paket",
+            "duration": "Aninda",
+            "description": "Ozel kutu, balonlu naylon ve etiketleme dahil paketleme."
+          }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "E-Ticaret Kargo ve Teslimat",
+          "subtitle": "Ayni gun teslimat, soguk zincir, depo yonetimi ve entegre kargo takip sistemi.",
+          "badge": "25.000+ Teslimat/Ay"
+        },
+        "about": {
+          "title": "TesliBox Hakkinda",
+          "description": "2016'dan bu yana e-ticaret ve market teslimat sektorunde calisiyoruz. Atasehir'deki 1.200 m2 daagiitim merkezimizden Istanbul genelinde ayda 25.000'den fazla paket teslim ediyoruz. E-ticaret entegrasyonu, depo yonetimi ve soguk zincir lojistik ile fark yaratiyoruz."
+        },
+        "services": {
+          "title": "Kargo Cozumlerimiz",
+          "subtitle": "E-ticaret ve perakende icin kapsamli teslimat hizmetleri"
+        },
+        "contact": {
+          "title": "Basvurun",
+          "subtitle": "E-ticaret kargo cozumleri icin bizi arayin"
+        },
+        "faq": [
+          {
+            "q": "Ayni gun teslimat nasil calisiyor?",
+            "a": "Saat 14:00'e kadar verilen siparisler ayni gun teslim edilir."
+          },
+          {
+            "q": "E-ticaret entegrasyonu sagliyor musunuz?",
+            "a": "Trendyol, Hepsiburada, N11, Shopify ve WooCommerce ile entegrasyonumuz var."
+          },
+          {
+            "q": "Soguk zincir kargo nedir?",
+            "a": "Sicaklik kontrollü araclarimiizla gida, ilac ve biyolojik materyalleri tasiyoruz."
+          },
+          {
+            "q": "Depo hizmeti nasil calisiyor?",
+            "a": "Urunlerinizi depomuzda sakliyoruz, siparis geldiginde paketleyip gonderiyoruz."
+          },
+          {
+            "q": "Toplu gonderimde indirim var mi?",
+            "a": "Gunluk 50+ paket gonderimde %25-40 arasi indirim uygulanir."
+          },
+          {
+            "q": "Kargo takip sisteminiz var mi?",
+            "a": "Evet, canli GPS takibi ve SMS/email bildirim sistememiz var."
+          },
+          {
+            "q": "Iade toplama hizmeti var mi?",
+            "a": "Evet, e-ticaret iade paketlerini musteriden toplayip depounuza iade ediyoruz."
+          },
+          {
+            "q": "Istanbul disi gonderim yapiyor musunuz?",
+            "a": "Evet, anlassmali kargo firmalari ile Turkiye geneli gonderim yapiyoruz."
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Ezgi Korkmaz",
+            "district": "Atasehir",
+            "date": "2025-03",
+            "rating": 5,
+            "comment": "E-ticaret sitemizin tum kargosunu TesliBox yapiyor. Ayni gun teslimat musterilerimizi cok memnun ediyor."
+          },
+          {
+            "name": "Cem Akbas",
+            "district": "Kadikoy",
+            "date": "2025-02",
+            "rating": 5,
+            "comment": "Soguk zincir kargo ile gida siparislerimizi guvenle teslim ediyorlar."
+          },
+          {
+            "name": "Berna Turan",
+            "district": "Sisli",
+            "date": "2025-01",
+            "rating": 4,
+            "comment": "Depo hizmeti cok pratik ama hafta sonlari kapasite biraz dolabiliyor."
+          },
+          {
+            "name": "Kaan Erdem",
+            "district": "Umraniye",
+            "date": "2024-12",
+            "rating": 5,
+            "comment": "Trendyol entegrasyonu ile islerimiz cok kolaylasti. Her gun 100+ paket gonderiyoruz."
+          },
+          {
+            "name": "Pelin Aksoy",
+            "district": "Bakirkoy",
+            "date": "2024-11",
+            "rating": 5,
+            "comment": "Market teslimat hizmeti suuper. 1 saatte eve geliyor."
+          },
+          {
+            "name": "Serkan Dogan",
+            "district": "Maltepe",
+            "date": "2024-10",
+            "rating": 4,
+            "comment": "Kargo takip sistemi cok iyi. Musterilerimiz canli takip edebiliyor."
+          }
+        ],
+        "team": [
+          {
+            "name": "Burak Ozen",
+            "role": "Kurucu & CEO",
+            "image": "",
+            "bio": "Lojistik muhendisi. E-ticaret kargo sektorunde 10 yillik tecrube."
+          },
+          {
+            "name": "Ayse Polat",
+            "role": "Operasyon Muduru",
+            "image": "",
+            "bio": "80 kisilik dagitim ekibinin koordinasyonunu yapiyor."
+          },
+          {
+            "name": "Emre Kaya",
+            "role": "IT ve Entegrasyon Muduru",
+            "image": "",
+            "bio": "Kargo takip sistemi ve e-ticaret entegrasyonlari gelistiriyor."
+          },
+          {
+            "name": "Derya Ozturk",
+            "role": "Depo Muduru",
+            "image": "",
+            "bio": "1.200 m2 dagitim merkezi ve stok yonetimi sorumlusu."
+          }
+        ]
+      }
+    },
+    {
+      "id": "kargo-agir",
+      "variantName": "agir",
+      "plan": "pro",
+      "description": "Agir yuk ve ozel tasima",
+      "designPhilosophy": "Guclu, teknik, endustriyel",
+      "isDark": false,
+      "colors": {
+        "bg": "#FAF5FF",
+        "surface": "#F3E8FF",
+        "surfaceElevated": "#EDE2FE",
+        "text": "#1E1B2E",
+        "textSecondary": "#6B7280",
+        "accent": "#7C3AED",
+        "accentHover": "#6D28D9",
+        "border": "#E5E7EB"
+      },
+      "fonts": {
+        "heading": "Playfair Display",
+        "body": "Inter"
+      },
+      "business": {
+        "name": "TitanCargo Agir Yuk Tasimaciligi",
+        "ownerName": "Erhan Toprak",
+        "sector": "Kargo",
+        "slogan": "Agir yuklerin guvencesi",
+        "phone": "0532 900 11 03",
+        "phoneClean": "905329001103",
+        "whatsapp": "905329001103",
+        "email": "info@titancargo.com.tr",
+        "address": "Fatih Mah. E-5 Yan Yol No:155, Buyukcekmece/Istanbul",
+        "city": "Istanbul",
+        "district": "Buyukcekmece",
+        "neighborhood": "Fatih",
+        "coordinates": {
+          "lat": 41.02,
+          "lng": 28.58
+        },
+        "socialMedia": {
+          "instagram": "https://instagram.com/titancargo",
+          "linkedin": "https://linkedin.com/company/titancargo"
+        },
+        "photos": [],
+        "foundedYear": 2003,
+        "experience": "21 yil",
+        "customerCount": "6.000+",
+        "rating": 4.8,
+        "reviewCount": 850,
+        "workingHours": [
+          {
+            "day": "Pazartesi",
+            "open": "08:00",
+            "close": "18:00",
+            "isOpen": true
+          },
+          {
+            "day": "Sali",
+            "open": "08:00",
+            "close": "18:00",
+            "isOpen": true
+          },
+          {
+            "day": "Carsamba",
+            "open": "08:00",
+            "close": "18:00",
+            "isOpen": true
+          },
+          {
+            "day": "Persembe",
+            "open": "08:00",
+            "close": "18:00",
+            "isOpen": true
+          },
+          {
+            "day": "Cuma",
+            "open": "08:00",
+            "close": "18:00",
+            "isOpen": true
+          },
+          {
+            "day": "Cumartesi",
+            "open": "09:00",
+            "close": "14:00",
+            "isOpen": true
+          },
+          {
+            "day": "Pazar",
+            "open": "Kapali",
+            "close": "Kapali",
+            "isOpen": false
+          }
+        ],
+        "services": [
+          {
+            "id": "s1",
+            "name": "Agir Yuk Tasimaciligi",
+            "price": "Projeye Ozel",
+            "duration": "1-5 gun",
+            "description": "5 tondan 100 tona kadar agir yuk tasimaciligi."
+          },
+          {
+            "id": "s2",
+            "name": "Gabari Disi Tasima",
+            "price": "Projeye Ozel",
+            "duration": "1-7 gun",
+            "description": "Boyutlari standart olmayan buyuk parcalarin ozel izinli tasimasi."
+          },
+          {
+            "id": "s3",
+            "name": "Makine ve Ekipman Tasima",
+            "price": "5.000 TL",
+            "duration": "1-3 gun",
+            "description": "Fabrika makinesi, jenerator ve agir ekipman tasimaciligi."
+          },
+          {
+            "id": "s4",
+            "name": "Konteyner Tasima",
+            "price": "3.000 TL",
+            "duration": "1 gun",
+            "description": "Liman-fabrika arasi konteyner tasimaaciligi."
+          },
+          {
+            "id": "s5",
+            "name": "Insaat Malzemesi Nakliye",
+            "price": "2.500 TL",
+            "duration": "1 gun",
+            "description": "Demir, cimento, beton prefabrik ve insaat malzemesi tasima."
+          },
+          {
+            "id": "s6",
+            "name": "Vinc ve Forklift Hizmeti",
+            "price": "3.500 TL/gun",
+            "duration": "Gunluk",
+            "description": "Yukleme ve bosaltma icin vinc ve forklift kiralama."
+          },
+          {
+            "id": "s7",
+            "name": "Proje Kargo",
+            "price": "Projeye Ozel",
+            "duration": "Projeye Gore",
+            "description": "Enerji, madencilik ve altyapi projeleri icin ozel kargo planlama."
+          },
+          {
+            "id": "s8",
+            "name": "Ozel Izin ve Eskort",
+            "price": "2.000 TL",
+            "duration": "1 gun",
+            "description": "Gabari disi yukler icin karayollari izni ve eskort araci temini."
+          },
+          {
+            "id": "s9",
+            "name": "Depolama ve Antrepo",
+            "price": "50 TL/m2/ay",
+            "duration": "Aylik",
+            "description": "Acik ve kapali alan depolama. Gumruklu antrepo hizmeti."
+          },
+          {
+            "id": "s10",
+            "name": "Sabitleme ve Paketleme",
+            "price": "1.500 TL",
+            "duration": "2-4 saat",
+            "description": "Agir yuklerin arac uzerine guvenli sabitleme ve ozel paketleme."
+          },
+          {
+            "id": "s11",
+            "name": "Uluslararasi Agir Yuk",
+            "price": "Projeye Ozel",
+            "duration": "3-15 gun",
+            "description": "Sinir otesi agir yuk tasimaciligi. Gumruk islemleri dahil."
+          },
+          {
+            "id": "s12",
+            "name": "Rutin Filo Tasima",
+            "price": "Sozlesmeye Gore",
+            "duration": "Surekli",
+            "description": "Fabrikalar icin duzennli hammadde ve urun tasima sozlesmesi."
+          },
+          {
+            "id": "s13",
+            "name": "Tehlikeli Madde Tasima (ADR)",
+            "price": "Projeye Ozel",
+            "duration": "1-5 gun",
+            "description": "ADR sertifikali araclarla tehlikeli madde tasimaciligi."
+          },
+          {
+            "id": "s14",
+            "name": "Lojistik Danismanlik",
+            "price": "5.000 TL",
+            "duration": "1-3 gun",
+            "description": "Tasima rotasi optimizasyonu, maliyet analizi ve lojistik planlama."
+          }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Agir Yuk ve Proje Kargo",
+          "subtitle": "5 tondan 100 tona kadar agir yuk, gabari disi ve proje kargo tasimaciligi.",
+          "badge": "21 Yillik Tecrube"
+        },
+        "about": {
+          "title": "TitanCargo Hakkinda",
+          "description": "2003'ten bu yana agir yuk tasimaciligi sektorunde hizmet veriyoruz. 50 araclik filomuz, vinc ve forklift ekipmanlarimizla Turkiye genelinde ve uluslararasi agir yuk tasimaciligi yapiyoruz. 6.000'den fazla proje tamamladik. Enerji, madencilik, insaat ve endustriyel sektorlerin guvenilir lojistik ortaigiyiz."
+        },
+        "services": {
+          "title": "Agir Yuk Cozumleri",
+          "subtitle": "Her tonajda guvenli ve profesyonel tasimaacilik"
+        },
+        "contact": {
+          "title": "Proje Teklifi",
+          "subtitle": "Agir yuk tasima projeniz icin teklif alin"
+        },
+        "faq": [
+          {
+            "q": "Kac tona kadar tasima yapabiliyorsunuz?",
+            "a": "100 tona kadar agir yuk tasima kapasitemiz var."
+          },
+          {
+            "q": "Gabari disi tasima nasil yapilir?",
+            "a": "Karayollari ozel izni ve eskort araci ile gece tasimasi yapilir."
+          },
+          {
+            "q": "ADR sertifikali tasima yapiiyor musunuz?",
+            "a": "Evet, tehlikeli madde siniflandirmasina uygun ADR belgeli araclarla tasima yapiyoruz."
+          },
+          {
+            "q": "Vinc ve forklift kiralama var mi?",
+            "a": "Evet, 5 ton ile 200 ton arasi vinc ve 2-10 ton forklift kiralama hizmeti sunuyoruz."
+          },
+          {
+            "q": "Uluslararasi tasima yapiyor musunuz?",
+            "a": "Evet, Avrupa, Ortadogu ve Orta Asya'ya karayolu ile agir yuk tasimaciligi yapiyoruz."
+          },
+          {
+            "q": "Sigorta kapsaminda neler var?",
+            "a": "Tum yukler CMR sigortasi ile korunur. Ek all-risk sigorta secenegi mevcuttur."
+          },
+          {
+            "q": "Depolama imkani var mi?",
+            "a": "Buyukcekmece'de 5.000 m2 acik ve 2.000 m2 kapali depolama alanimiz var."
+          },
+          {
+            "q": "Tasima rotasi planlamasi yapiyor musunuz?",
+            "a": "Evet, GPS tabanli rota optimizasyonu ve maliyet analizi yapiyoruz."
+          },
+          {
+            "q": "Yuklemee ve bosaltma dahil mi?",
+            "a": "Vinc ve forklift ile yukleme/bosaltma ayri ucretlendirilir."
+          },
+          {
+            "q": "Odeme kosullari nedir?",
+            "a": "%50 avans, %50 tesliimde. Kurumsal musterilere 30 gun vade uygulanir."
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Taner Akkaya",
+            "district": "Tuzla",
+            "date": "2025-03",
+            "rating": 5,
+            "comment": "80 tonluk trafo tasima isi yaptirdik. Ekip cok profesyonel, sifir hasar."
+          },
+          {
+            "name": "Ismet Sarikaya",
+            "district": "Gebze",
+            "date": "2025-02",
+            "rating": 5,
+            "comment": "Fabrikamizin tum makine tasima islerini TitanCargo ile yapiyoruz. 10 yildir sorunsuz."
+          },
+          {
+            "name": "Selda Ozkan",
+            "district": "Hadimkoy",
+            "date": "2025-01",
+            "rating": 5,
+            "comment": "Enerji santrali projemiz icin 50 adet gabari disi parca tasidilar. Muhtesem organizasyon."
+          },
+          {
+            "name": "Vedat Konak",
+            "district": "Dilovasi",
+            "date": "2024-12",
+            "rating": 4,
+            "comment": "Konteyner tasima hizmetii kaliteli ama bazi gunlerde TIR bulma sureci uzayabiliyor."
+          },
+          {
+            "name": "Nurdan Aydin",
+            "district": "Esenyurt",
+            "date": "2024-11",
+            "rating": 5,
+            "comment": "Insaat projemiz icin 6 aylik tasima sozlesmesi yaptik. Her teslimat zamaninda."
+          },
+          {
+            "name": "Orhan Kaya",
+            "district": "Buyukcekmece",
+            "date": "2024-10",
+            "rating": 5,
+            "comment": "ADR sertifikali tasima cok onemli. Kimyasal yuklerimizi guvenle tasiyorlar."
+          },
+          {
+            "name": "Pinar Erdogan",
+            "district": "Ikitelli",
+            "date": "2024-09",
+            "rating": 5,
+            "comment": "Vinc ve forklift hizmeti ile fabrika tasindik. Tek elden halletmek buyuk avantaj."
+          },
+          {
+            "name": "Cengiz Uzun",
+            "district": "Avcilar",
+            "date": "2024-08",
+            "rating": 4,
+            "comment": "Uluslararasi tasima icin gumruk islemlerini de hallettiiler. Biraz gecikmeli ama basarili."
+          }
+        ],
+        "team": [
+          {
+            "name": "Erhan Toprak",
+            "role": "Kurucu & Genel Mudur",
+            "image": "",
+            "bio": "Lojistik yonetimi uzmani. 25 yillik agir yuk tasimaciligi tecrubesi."
+          },
+          {
+            "name": "Mustafa Demir",
+            "role": "Filo Muduru",
+            "image": "",
+            "bio": "50 araclik filonun bakim, onarim ve rota yonetimi."
+          },
+          {
+            "name": "Aylin Kara",
+            "role": "Proje Koordinatoru",
+            "image": "",
+            "bio": "Gabari disi ve ozel proje tasima planlamasi uzmani."
+          },
+          {
+            "name": "Hakan Savas",
+            "role": "Vinc Operasyon Sefi",
+            "image": "",
+            "bio": "20 yillik vinc operatoru. Agir yukleme ve bosaltma uzmani."
+          },
+          {
+            "name": "Zehra Bal",
+            "role": "Gumruk ve Dis Ticaret",
+            "image": "",
+            "bio": "Uluslararasi tasima gumruk islemleri ve belgelendirme."
+          },
+          {
+            "name": "Cem Ozturk",
+            "role": "ISGUM ve Kalite",
+            "image": "",
+            "bio": "A sinifi is guvenligi uzmani. ADR danismani."
+          }
+        ]
+      }
+    },
+    {
+      "id": "kargo-lux",
+      "variantName": "lux",
+      "plan": "enterprise",
+      "description": "Premium lojistik ve kargo grubu",
+      "designPhilosophy": "Kurumsal, teknolojik, global",
+      "isDark": true,
+      "colors": {
+        "bg": "#0A0A0A",
+        "surface": "#111111",
+        "surfaceElevated": "#1A1A1A",
+        "surfaceMuted": "#0D0D0D",
+        "text": "#F0EDE8",
+        "textSecondary": "#9A9490",
+        "textMuted": "#555555",
+        "textOnAccent": "#000000",
+        "accent": "#C9A84C",
+        "accentHover": "#D4B85C",
+        "accentActive": "#B89A40",
+        "accentLight": "#1A1808",
+        "border": "#1F1F1F",
+        "borderSubtle": "#141414"
+      },
+      "fonts": {
+        "heading": "Cormorant Garamond",
+        "body": "Inter"
+      },
+      "business": {
+        "name": "LogiPrime Lojistik ve Kargo Grubu",
+        "ownerName": "Dr. Cem Basaran",
+        "sector": "Kargo",
+        "slogan": "Lojistigin zirve noktasi",
+        "phone": "0532 900 11 04",
+        "phoneClean": "905329001104",
+        "whatsapp": "905329001104",
+        "email": "info@logiprime.com.tr",
+        "address": "Ayazaga Mah. Cendere Cad. No:109 Vadistanbul 2A Blok Kat:22, Sariyer/Istanbul",
+        "city": "Istanbul",
+        "district": "Sariyer",
+        "neighborhood": "Ayazaga",
+        "coordinates": {
+          "lat": 41.105,
+          "lng": 29.018
+        },
+        "socialMedia": {
+          "instagram": "https://instagram.com/logiprime",
+          "linkedin": "https://linkedin.com/company/logiprime",
+          "youtube": "https://youtube.com/@logiprime"
+        },
+        "photos": [],
+        "foundedYear": 1997,
+        "experience": "27 yil",
+        "customerCount": "50.000+",
+        "rating": 4.9,
+        "reviewCount": 3200,
+        "workingHours": [
+          {
+            "day": "Pazartesi",
+            "open": "00:00",
+            "close": "23:59",
+            "isOpen": true
+          },
+          {
+            "day": "Sali",
+            "open": "00:00",
+            "close": "23:59",
+            "isOpen": true
+          },
+          {
+            "day": "Carsamba",
+            "open": "00:00",
+            "close": "23:59",
+            "isOpen": true
+          },
+          {
+            "day": "Persembe",
+            "open": "00:00",
+            "close": "23:59",
+            "isOpen": true
+          },
+          {
+            "day": "Cuma",
+            "open": "00:00",
+            "close": "23:59",
+            "isOpen": true
+          },
+          {
+            "day": "Cumartesi",
+            "open": "00:00",
+            "close": "23:59",
+            "isOpen": true
+          },
+          {
+            "day": "Pazar",
+            "open": "00:00",
+            "close": "23:59",
+            "isOpen": true
+          }
+        ],
+        "services": [
+          {
+            "id": "s1",
+            "name": "Hava Kargo",
+            "price": "Projeye Ozel",
+            "duration": "1-3 gun",
+            "description": "Uluslararasi hava kargo ile hizli ve guvenli gonderim."
+          },
+          {
+            "id": "s2",
+            "name": "Deniz Kargo (FCL/LCL)",
+            "price": "Projeye Ozel",
+            "duration": "15-45 gun",
+            "description": "Tam konteyner veya parsiyel deniz yolu tasimaciligi."
+          },
+          {
+            "id": "s3",
+            "name": "Karayolu Uluslararasi",
+            "price": "Projeye Ozel",
+            "duration": "3-10 gun",
+            "description": "Avrupa, Ortadogu ve Orta Asya karayolu tasimaciligi."
+          },
+          {
+            "id": "s4",
+            "name": "Demiryolu Kargo",
+            "price": "Projeye Ozel",
+            "duration": "5-15 gun",
+            "description": "Cin-Turkiye Ipek Yolu demiryolu kargo hizmeti."
+          },
+          {
+            "id": "s5",
+            "name": "E-Ticaret Fulfillment",
+            "price": "Projeye Ozel",
+            "duration": "Ayni Gun",
+            "description": "Depolama, paketleme, etiketleme ve son mil teslimat."
+          },
+          {
+            "id": "s6",
+            "name": "Soguk Zincir Lojistik",
+            "price": "Projeye Ozel",
+            "duration": "1-5 gun",
+            "description": "Ilac, gida ve biyoteknoloji icin sicaklik kontrollu tasima."
+          },
+          {
+            "id": "s7",
+            "name": "Gumruk Musaavirligi",
+            "price": "Projeye Ozel",
+            "duration": "1-5 gun",
+            "description": "Ithalat, ihracat ve transit gumruk islemleri."
+          },
+          {
+            "id": "s8",
+            "name": "Depo ve 3PL Yonetimi",
+            "price": "Projeye Ozel",
+            "duration": "Aylik",
+            "description": "50.000 m2 depo alani ile ucuncu parti lojistik yonetimi."
+          },
+          {
+            "id": "s9",
+            "name": "Son Mil Teslimat",
+            "price": "25 TL",
+            "duration": "1-2 gun",
+            "description": "Sehir ici son mil teslimat. GPS takipli ve fotografli onay."
+          },
+          {
+            "id": "s10",
+            "name": "Proje Kargo ve Agir Yuk",
+            "price": "Projeye Ozel",
+            "duration": "Projeye Gore",
+            "description": "Enerji, madencilik ve insaat projeleri icin ozel kargo planlama."
+          },
+          {
+            "id": "s11",
+            "name": "Barkodlama ve Etiketleme",
+            "price": "5 TL/adet",
+            "duration": "Aninda",
+            "description": "Urun barkodlama, etiketleme ve paketleme hizmeti."
+          },
+          {
+            "id": "s12",
+            "name": "Kargo Sigorta",
+            "price": "Yuk Degerinin %0.3",
+            "duration": "Aninda",
+            "description": "All-risk kargo sigortasi ile tam koruma."
+          },
+          {
+            "id": "s13",
+            "name": "WMS (Depo Yonetim Sistemi)",
+            "price": "5.000 TL/ay",
+            "duration": "Aylik",
+            "description": "Bulut tabanli depo yonetim sistemi. Stok, siparis ve sevkiyat takibi."
+          },
+          {
+            "id": "s14",
+            "name": "TMS (Tasima Yonetim Sistemi)",
+            "price": "3.000 TL/ay",
+            "duration": "Aylik",
+            "description": "Rota optimizasyonu, arac takibi ve maliyet yonetimi."
+          },
+          {
+            "id": "s15",
+            "name": "Cross-Docking",
+            "price": "Projeye Ozel",
+            "duration": "Ayni Gun",
+            "description": "Aktarma merkezi ile dogrudan dagitim. Depolama gerektirmeden."
+          },
+          {
+            "id": "s16",
+            "name": "Ters Lojistik",
+            "price": "Projeye Ozel",
+            "duration": "1-5 gun",
+            "description": "Iade, geri donusum ve hurda yonetimi lojistigi."
+          },
+          {
+            "id": "s17",
+            "name": "Serbest Bolge Hizmeti",
+            "price": "Projeye Ozel",
+            "duration": "Aylik",
+            "description": "Serbest bolge depolama ve isleme hizmeti. Vergi avantajli."
+          },
+          {
+            "id": "s18",
+            "name": "Kurye ve Son Dakika",
+            "price": "150 TL",
+            "duration": "1-3 saat",
+            "description": "Acil gonderimler icin ozel kurye hizmeti."
+          },
+          {
+            "id": "s19",
+            "name": "Lojistik Danismanlik",
+            "price": "15.000 TL",
+            "duration": "5-10 gun",
+            "description": "Tedarik zinciri optimizasyonu, maliyet analizi ve lojistik strateji."
+          },
+          {
+            "id": "s20",
+            "name": "Dijital Donusum Paketi",
+            "price": "25.000 TL",
+            "duration": "15-30 gun",
+            "description": "WMS, TMS, e-ticaret entegrasyon ve IoT sensor kurulumu."
+          }
+        ]
+      },
+      "content": {
+        "hero": {
+          "title": "Global Lojistik ve Kargo Cozumleri",
+          "subtitle": "27 yillik tecrube, 50.000+ musteri. Hava, deniz, kara, demiryolu — multimodal lojistik grubu.",
+          "badge": "Turkiye'nin Lojistik Lideri"
+        },
+        "about": {
+          "title": "LogiPrime Hakkinda",
+          "description": "1997'de kurulan LogiPrime, bugun Turkiye'nin onde gelen entegre lojistik gruplarindan biridir. Sariyer'deki merkez ofisimiz, Istanbul, Ankara, Izmir, Mersin ve Trabzon'daki dagitim merkezlerimiz ve 50.000 m2 toplam depo alanimizla Turkiye genelinde ve 45 ulkede hizmet veriyoruz. 500'den fazla araclik filomuz, gumruk musaviirligi lisansimiz ve IATA akreditasyonumuzla hava, deniz, karayolu ve demiryolu tasimaciligi yapiyoruz. ISO 9001, ISO 14001, ISO 27001 ve AEO (Yetkilendirilmis Yukuumlu Statusu) belgelerimiz var. WMS ve TMS yazilimlarimizla dijital lojistik cozumleri de sunuyoruz. E-ticaret fulfillment, soguk zincir, proje kargo ve 3PL alanlarinda 50.000'den fazla musteriye hizmet veriyoruz."
+        },
+        "services": {
+          "title": "Lojistik Cozumlerimiz",
+          "subtitle": "Hava, deniz, kara, demir — global olcekte entegre lojistik"
+        },
+        "contact": {
+          "title": "Lojistik Cozumunuzu Planliiyalim",
+          "subtitle": "Uzman ekibimizle tanitim toplantisi icin bize ulasin"
+        },
+        "faq": [
+          {
+            "q": "Kac ulkeye gonderim yapiyorsunuz?",
+            "a": "45 ulkede dogrudan, 120+ ulkede partner agimizla hizmet veriyoruz."
+          },
+          {
+            "q": "Hava kargo ne kadar surede ulasir?",
+            "a": "Avrupa 1-2 gun, ABD 2-3 gun, Uzakdogu 3-5 gun."
+          },
+          {
+            "q": "Deniz kargo FCL ve LCL nedir?",
+            "a": "FCL: tam konteyner (20'/40'). LCL: parsiyel (konteyneri paylasmali) gonderim."
+          },
+          {
+            "q": "Cin'den demiryolu kargo yapiyor musunuz?",
+            "a": "Evet, Ipek Yolu hattindan Cin-Istanbul demiryolu kargo 18-22 gunde ulasir."
+          },
+          {
+            "q": "E-ticaret fulfillment nasil calisiyor?",
+            "a": "Urunlerinizi depomuzda saklar, siparis geldiginde paketler ve ayni gun gonderiiriz."
+          },
+          {
+            "q": "Soguk zincir icin hangi sicakliklar?",
+            "a": "+2/+8, -18/-25 ve -70 derece sicaklik kontrollu tasima kapasitemiz var."
+          },
+          {
+            "q": "Gumruk islemlerini yapiyor musunuz?",
+            "a": "Evet, A sinifi gumruk musavirligi lisansimizla ithalat, ihracat ve transit islemleri yapiyoruz."
+          },
+          {
+            "q": "AEO statusu ne anlama geliyor?",
+            "a": "Yetkilendirilmis Yukumlu Statusu: gumrukte oncelikli islem, azaltilmis kontrol ve hizli gecis."
+          },
+          {
+            "q": "WMS sisteminiz neleri takip ediyor?",
+            "a": "Stok seviyesi, siparis durumu, lot/seri no, raf konum, giris/cikis zamani ve 50+ parametre."
+          },
+          {
+            "q": "Kargo sigortasi zorunlu mu?",
+            "a": "Zorunlu degil ama siddetle onerilir. All-risk sigorta yuk degerinin %0.3'u kadardir."
+          },
+          {
+            "q": "Cross-docking nedir?",
+            "a": "Gelen yukun depolanmadan dogrudan dagitim araclarina aktarilmasidir. Zaman ve maliyet tasarrufu saglar."
+          },
+          {
+            "q": "Ters lojistik nedir?",
+            "a": "Iade urunlerin toplanmasi, degerlendirilmesi, geri donusumu veya imha edilmesi surecleridir."
+          },
+          {
+            "q": "Serbest bolge avantaji nedir?",
+            "a": "Gumruk vergisi odenmeden depolama, isleme ve yeniden ihracat imkani saglar."
+          },
+          {
+            "q": "Finansman secenekleri nelerdir?",
+            "a": "Kurumsal musterilere 30-60 gun vade, leasing ve proje bazli ozel odeme planlari sunuyoruz."
+          },
+          {
+            "q": "Referanslariniz kimler?",
+            "a": "Turkiye'nin Top 100 ihracatcisinin 35'i, global e-ticaret markalari ve cok uluslu uretim sirketleri."
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Dr. Ayhan Erdem",
+            "district": "Sisli",
+            "date": "2025-03",
+            "rating": 5,
+            "comment": "Ilac firmamizin tum soguk zincir lojistik islerini LogiPrime yapiyor. -70 derece kapasitesi Turkiye'de cok nadir."
+          },
+          {
+            "name": "Serkan Topcu",
+            "district": "Atasehir",
+            "date": "2025-02",
+            "rating": 5,
+            "comment": "E-ticaret fulfillment ile gunluk 5.000 paket gonderiyoruz. Sifir hata orani muhtesem."
+          },
+          {
+            "name": "Elif Korkmaz",
+            "district": "Levent",
+            "date": "2025-01",
+            "rating": 5,
+            "comment": "Cin'den demiryolu kargo ile hammadde getiriyoruz. Deniz kargoya gore 20 gun hizli."
+          },
+          {
+            "name": "Murat Sahin",
+            "district": "Gebze",
+            "date": "2024-12",
+            "rating": 5,
+            "comment": "50.000 m2 depo alaninda 3PL hizmeti aliyoruz. WMS sistemi muhtesem detaylii."
+          },
+          {
+            "name": "Canan Arslan",
+            "district": "Bakirkoy",
+            "date": "2024-11",
+            "rating": 4,
+            "comment": "Hava kargo hizli ve guvenilir. Sadece bazi sezonlarda fiyatlar yukseliyor."
+          },
+          {
+            "name": "Bulent Ozkan",
+            "district": "Tuzla",
+            "date": "2024-10",
+            "rating": 5,
+            "comment": "Proje kargo ile 200 tonluk ekipman tasidik. LogiPrime organizasyonu kusursuzdu."
+          },
+          {
+            "name": "Neslihan Aktas",
+            "district": "Sariyer",
+            "date": "2024-09",
+            "rating": 5,
+            "comment": "Gumruk musavirliigi ve AEO avantaji ile ithalat islemlermiz cok hizlandi."
+          },
+          {
+            "name": "Kerem Bayrak",
+            "district": "Kartal",
+            "date": "2024-08",
+            "rating": 5,
+            "comment": "Cross-docking ile dagitim suremiz yariya indi. Cok etkili."
+          },
+          {
+            "name": "Pelin Yavuz",
+            "district": "Kadikoy",
+            "date": "2024-07",
+            "rating": 5,
+            "comment": "Son mil teslimat hizmeti mukemmel. GPS takip ve fotografli onay sistemi guven veriyor."
+          },
+          {
+            "name": "Taner Demir",
+            "district": "Umraniye",
+            "date": "2024-06",
+            "rating": 5,
+            "comment": "Dijital donusum paketi ile lojistik sureclerimizi tamamen dijitallestirdik."
+          },
+          {
+            "name": "Sibel Ergun",
+            "district": "Besiktas",
+            "date": "2024-05",
+            "rating": 4,
+            "comment": "Deniz kargo LCL hizmeti kaliteli ama transit sureleri bazen 5-10 gun uzayabiliyor."
+          },
+          {
+            "name": "Ozan Tunc",
+            "district": "Beylikduzu",
+            "date": "2024-04",
+            "rating": 5,
+            "comment": "45 ulkeye ihracat yapiyoruz, tum lojistigi LogiPrime yonetiyor. Tam entegrasyon."
+          }
+        ],
+        "team": [
+          {
+            "name": "Dr. Cem Basaran",
+            "role": "Kurucu & CEO",
+            "image": "",
+            "bio": "Lojistik yonetimi doktoru. 30 yillik sektor tecrubesi. UTIKAD yonetim kurulu uyesi."
+          },
+          {
+            "name": "Seda Koraltan",
+            "role": "COO",
+            "image": "",
+            "bio": "MBA. 20 yillik operasyon yonetimi. 5 dagitim merkezinin koordinasyonu."
+          },
+          {
+            "name": "Ersin Akyol",
+            "role": "CTO",
+            "image": "",
+            "bio": "Bilgisayar muhendisi. WMS, TMS ve IoT platformlarinin mimaari."
+          },
+          {
+            "name": "Ayse Polat",
+            "role": "Gumruk ve Dis Ticaret Direktoru",
+            "image": "",
+            "bio": "A sinifi gumruk musaviri. AEO surec yoneticisi."
+          },
+          {
+            "name": "Murat Basaran",
+            "role": "Filo Yonetim Direktoru",
+            "image": "",
+            "bio": "500+ araclik filonun yonetimi, bakim ve rota optimizasyonu."
+          },
+          {
+            "name": "Nilgun Ercan",
+            "role": "E-Ticaret ve Fulfillment",
+            "image": "",
+            "bio": "E-ticaret lojistigi uzmani. Gunluk 50.000 paket operasyonu."
+          },
+          {
+            "name": "Arda Kocak",
+            "role": "Soguk Zincir Muduru",
+            "image": "",
+            "bio": "Gida muhendisi. GDP sertifikali soguk zincir operasyonu."
+          },
+          {
+            "name": "Deniz Acar",
+            "role": "Dijital Pazarlama",
+            "image": "",
+            "bio": "Marka iletisimi ve dijital kanal yonetimi."
+          }
+        ]
+      }
+    }
+  ]
+}
