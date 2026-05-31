@@ -2,20 +2,48 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useEsnaf } from '@/context/EsnafContext';
+import { isMvpTestReleaseEnabled } from '@/lib/mvpFeatureFlags';
 import SetupWizardBanner from './components/SetupWizardBanner';
 import {
-    Home, PenSquare, Globe, Bot, Users, Settings, MessageSquare,
+    Home, PenSquare, Globe, Bot, Users, Settings, MessageSquare, CalendarDays, FlaskConical,
     type LucideIcon,
 } from 'lucide-react';
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
     const { esnaf, loading } = useEsnaf();
+    const pathname = usePathname();
+    const isMvpTestRelease = isMvpTestReleaseEnabled();
 
     const userName = esnaf?.ad || esnaf?.isletmeAdi || 'Esnaf';
     const businessName = esnaf?.isletmeAdiTam || esnaf?.isletmeAdi || 'İşletmem';
     const packageId = esnaf?.paket?.toLowerCase() || 'temel';
     const siteUrl = esnaf?.subdomainUrl?.replace('https://', '') || esnaf?.slug ? `${esnaf?.slug}.kepenk.ai` : '';
+    const siteLink = isMvpTestRelease ? '/dashboard/sitem' : `https://${siteUrl}`;
+    const siteLinkTarget = isMvpTestRelease ? undefined : '_blank';
+    const mvpNavItems = [
+        { href: '/dashboard', icon: Home, label: 'Dashboard' },
+        { href: '/dashboard/konusmalar', icon: MessageSquare, label: 'Konuşmalar' },
+        { href: '/dashboard/musteriler', icon: Users, label: 'Müşteriler' },
+        { href: '/dashboard/randevular', icon: CalendarDays, label: 'Randevular' },
+        { href: '/dashboard/sitem', icon: Globe, label: 'Sitem' },
+        { href: '/test-demo/status', icon: FlaskConical, label: 'Demo Durum Paneli' },
+    ];
+    const desktopNavItems = isMvpTestRelease ? mvpNavItems : [
+        { href: '/dashboard', icon: Home, label: 'Kontrol Paneli' },
+        { href: '/dashboard/editor', icon: PenSquare, label: 'Site Editörü' },
+        { href: '/dashboard/domain', icon: Globe, label: 'Alan Adım' },
+        { href: '/dashboard/ajanlar', icon: Bot, label: 'Ajanlarım', badge: 3 },
+        { href: '/dashboard/crm', icon: Users, label: 'Müşteriler (CRM)' },
+        { href: '/dashboard/ayarlar', icon: Settings, label: 'Ayarlar' },
+    ];
+    const mobileNavItems = isMvpTestRelease ? mvpNavItems : [
+        { href: '/dashboard', icon: Home, label: 'Özet' },
+        { href: '/dashboard/editor', icon: PenSquare, label: 'Site' },
+        { href: '/dashboard/mesajlar', icon: MessageSquare, label: 'Mesajlar' },
+        { href: '/dashboard/ayarlar', icon: Settings, label: 'Ayarlar' },
+    ];
 
     if (loading) {
         return (
@@ -33,10 +61,15 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
             {/* Mobile-First Bottom Nav (Shown only on small screens) */}
             <nav aria-label="Mobil navigasyon" className="md:hidden fixed bottom-0 left-0 w-full h-16 bg-black/40 backdrop-blur-xl border-t border-white/10 z-50 flex items-center justify-around px-2 shadow-[0_-10px_40px_rgba(0,0,0,0.5)]">
-                <BottomNavItem href="/dashboard" icon={Home} label="Özet" active />
-                <BottomNavItem href="/dashboard/editor" icon={PenSquare} label="Site" />
-                <BottomNavItem href="/dashboard/mesajlar" icon={MessageSquare} label="Mesajlar" />
-                <BottomNavItem href="/dashboard/ayarlar" icon={Settings} label="Ayarlar" />
+                {mobileNavItems.map((item) => (
+                    <BottomNavItem
+                        key={item.href}
+                        href={item.href}
+                        icon={item.icon}
+                        label={item.label}
+                        active={isActivePath(pathname, item.href)}
+                    />
+                ))}
             </nav>
 
             {/* Desktop Sidebar (Hidden on mobile) */}
@@ -51,12 +84,16 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                     <p className="text-xs text-white/50 mt-1 font-medium">{businessName}</p>
                 </div>
                 <div className="flex-1 py-6 px-4 space-y-2">
-                    <SidebarItem href="/dashboard" icon={Home} label="Kontrol Paneli" active />
-                    <SidebarItem href="/dashboard/editor" icon={PenSquare} label="Site Editörü" />
-                    <SidebarItem href="/dashboard/domain" icon={Globe} label="Alan Adım" />
-                    <SidebarItem href="/dashboard/ajanlar" icon={Bot} label="Ajanlarım" badge={3} />
-                    <SidebarItem href="/dashboard/crm" icon={Users} label="Müşteriler (CRM)" />
-                    <SidebarItem href="/dashboard/ayarlar" icon={Settings} label="Ayarlar" />
+                    {desktopNavItems.map((item) => (
+                        <SidebarItem
+                            key={item.href}
+                            href={item.href}
+                            icon={item.icon}
+                            label={item.label}
+                            active={isActivePath(pathname, item.href)}
+                            badge={item.badge}
+                        />
+                    ))}
                 </div>
                 <div className="p-4 border-t border-white/10 relative overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-t from-indigo-500/5 to-transparent pointer-events-none" />
@@ -75,7 +112,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                     <h1 className="font-syne font-bold text-lg text-white drop-shadow-sm">Hoş Geldiniz, {userName}</h1>
                     <div className="flex items-center gap-4">
                         {siteUrl && (
-                            <Link href={`https://${siteUrl}`} target="_blank" className="text-sm text-white/60 hover:text-white transition-colors flex items-center gap-2 font-medium bg-white/5 hover:bg-white/10 px-3 py-1.5 rounded-full border border-white/10">
+                            <Link href={siteLink} target={siteLinkTarget} className="text-sm text-white/60 hover:text-white transition-colors flex items-center gap-2 font-medium bg-white/5 hover:bg-white/10 px-3 py-1.5 rounded-full border border-white/10">
                                 <span>Siteme Git</span> ↗
                             </Link>
                         )}
@@ -95,10 +132,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 }
 
 function BottomNavItem({ href, icon: Icon, label, active = false }: { href: string, icon: LucideIcon, label: string, active?: boolean }) {
+    const displayLabel = label === 'Demo Durum Paneli' ? 'Durum' : label;
+
     return (
-        <Link href={href} aria-current={active ? 'page' : undefined} aria-label={label} className={`flex flex-col items-center justify-center w-16 h-full gap-1 transition-all ${active ? 'text-indigo-300 scale-105' : 'text-white/40 hover:text-white/70'}`}>
+        <Link href={href} aria-current={active ? 'page' : undefined} aria-label={label} className={`flex min-w-0 flex-1 flex-col items-center justify-center h-full gap-1 transition-all ${active ? 'text-indigo-300 scale-105' : 'text-white/40 hover:text-white/70'}`}>
             <Icon className="w-5 h-5 drop-shadow-md" aria-hidden="true" />
-            <span className="text-xs font-medium">{label}</span>
+            <span className="text-[10px] font-medium leading-tight text-center">{displayLabel}</span>
         </Link>
     );
 }
@@ -115,4 +154,9 @@ function SidebarItem({ href, icon: Icon, label, active = false, badge }: { href:
             )}
         </Link>
     );
+}
+
+function isActivePath(pathname: string, href: string): boolean {
+    if (href === '/dashboard') return pathname === href;
+    return pathname === href || pathname.startsWith(`${href}/`);
 }

@@ -2,6 +2,7 @@
 
 import { useEffect, useState, Suspense } from 'react'
 import { useEsnaf } from '@/context/EsnafContext'
+import { isMvpTestReleaseEnabled } from '@/lib/mvpFeatureFlags'
 import { MetrikSkeleton } from '@/components/ui/MetrikSkeleton'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
@@ -31,7 +32,8 @@ interface Mesaj {
 function KonusmalarIcerik() {
     const { esnafId, loading } = useEsnaf()
     const searchParams = useSearchParams()
-    const aktifTab = searchParams.get('tab') === 'sesli' ? 'sesli' : 'mesajlar'
+    const isMvpTestRelease = isMvpTestReleaseEnabled()
+    const aktifTab = !isMvpTestRelease && searchParams.get('tab') === 'sesli' ? 'sesli' : 'mesajlar'
 
     const [konusmalar, setKonusmalar] = useState<Konusma[]>([])
     const [secilen, setSecilen] = useState<string | null>(null)
@@ -129,13 +131,20 @@ function KonusmalarIcerik() {
                             <MessageCircle className="w-3.5 h-3.5" />
                             Mesajlar
                         </Link>
-                        <Link
-                            href="/dashboard/konusmalar?tab=sesli"
-                            className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-syne font-bold transition-all ${aktifTab === 'sesli' ? 'bg-rust text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
-                        >
-                            <Phone className="w-3.5 h-3.5" />
-                            Sesli
-                        </Link>
+                        {isMvpTestRelease ? (
+                            <span className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-syne font-bold text-muted-foreground/50 cursor-not-allowed">
+                                <Phone className="w-3.5 h-3.5" />
+                                Sesli <span className="text-[9px] uppercase">Yakında</span>
+                            </span>
+                        ) : (
+                            <Link
+                                href="/dashboard/konusmalar?tab=sesli"
+                                className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-syne font-bold transition-all ${aktifTab === 'sesli' ? 'bg-rust text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
+                            >
+                                <Phone className="w-3.5 h-3.5" />
+                                Sesli
+                            </Link>
+                        )}
                     </div>
                 </div>
 

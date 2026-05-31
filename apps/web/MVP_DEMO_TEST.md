@@ -6,6 +6,8 @@ Bu rehber, Kepenk AI MVP demo akışını yerel ve oynanabilir şekilde doğrula
 
 Bu rehber sadece demo MVP akışı içindir. Production readiness, güvenlik denetimi ve gerçek entegrasyon testleri ayrı değerlendirilmelidir.
 
+MVP test release modunda non-MVP modüller bilinçli olarak gizlenir.
+
 ## Demo Başlatma
 
 Yerel geliştirme sunucusunu başlatın:

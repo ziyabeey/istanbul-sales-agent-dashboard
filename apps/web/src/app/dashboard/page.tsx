@@ -5,13 +5,15 @@ import { DashboardGridCard } from './components/DashboardGridCard'
 import { StatsCard } from './components/StatsCard'
 import { PACKAGES } from '@kepenk/config/packages'
 import { useEsnaf } from '@/context/EsnafContext'
+import { isMvpTestReleaseEnabled } from '@/lib/mvpFeatureFlags'
 import {
   Eye, MessageCircle, Package, TrendingUp,
-  Pencil, Bot, Globe, Sparkles, Target, BarChart3,
+  Pencil, Bot, Globe, Sparkles, Target, BarChart3, Users, CalendarDays, FlaskConical,
 } from 'lucide-react'
 
 export default function DashboardHomePage() {
   const { esnaf } = useEsnaf()
+  const isMvpTestRelease = isMvpTestReleaseEnabled()
 
   const packageId = (esnaf?.paket?.toLowerCase() || 'temel') as keyof typeof PACKAGES
   const pkg = PACKAGES[packageId] || PACKAGES['temel']
@@ -58,59 +60,98 @@ export default function DashboardHomePage() {
         </div>
       </div>
 
-      {/* Feature Grid based on Package Limits */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {isMvpTestRelease ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <DashboardGridCard
+            title="Konuşmalar"
+            description="Demo müşteri konuşmalarını ve mesaj geçmişini kontrol edin."
+            icon={MessageCircle}
+            href="/dashboard/konusmalar"
+          />
 
-        <DashboardGridCard
-          title="Website Editörü"
-          description="Sitenizin menüsünü, fotoğraflarını ve yazılarını güncelleyin."
-          icon={Pencil}
-          href="/dashboard/editor"
-        />
+          <DashboardGridCard
+            title="Müşteriler"
+            description="Demo müşteri listesini, etiketleri ve ziyaret özetlerini görün."
+            icon={Users}
+            href="/dashboard/musteriler"
+          />
 
-        <DashboardGridCard
-          title="WhatsApp Botu"
-          description="Asistanınızın konuşma tarzını ve menüsünü eğitin."
-          icon={Bot}
-          href="/dashboard/whatsapp"
-        />
+          <DashboardGridCard
+            title="Randevular"
+            description="Demo randevu takvimini ve simülasyon uyarılarını doğrulayın."
+            icon={CalendarDays}
+            href="/dashboard/randevular"
+          />
 
-        <DashboardGridCard
-          title="Domain (Alan Adı)"
-          description="Sitenize özel .com veya .com.tr alan adınızı bağlayın."
-          icon={Globe}
-          href="/dashboard/domain"
-          locked={!pkg.limits.hasPremiumDomain}
-          lockMessage="Büyüme paketi ve üzerinde aktiftir."
-        />
+          <DashboardGridCard
+            title="Web Sitem"
+            description="Demo berber için yerel, read-only site önizlemesini açın."
+            icon={Globe}
+            href="/dashboard/sitem"
+          />
 
-        <DashboardGridCard
-          title="AI Section Editör"
-          description="Yapay zekaya sitenizin tasarımını bölgesel olarak değiştirtin."
-          icon={Sparkles}
-          href="/dashboard/editor/ai"
-          locked={!pkg.limits.hasAiEditor}
-          lockMessage="Büyüme paketi ve üzerinde aktiftir."
-        />
+          <DashboardGridCard
+            title="Demo Durum Paneli"
+            description="Güvenli GET rotalarını ve demo seed uyumunu kontrol edin."
+            icon={FlaskConical}
+            href="/test-demo/status"
+          />
+        </div>
+      ) : (
+        /* Feature Grid based on Package Limits */
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-        <DashboardGridCard
-          title="Otonom Reklamlar"
-          description="Facebook ve Google reklamlarınızı yapay zeka yönetsin."
-          icon={Target}
-          href="/dashboard/reklamlar"
-          locked={packageId !== 'lider'}
-          lockMessage="Lider paketi gerektirir."
-        />
+          <DashboardGridCard
+            title="Website Editörü"
+            description="Sitenizin menüsünü, fotoğraflarını ve yazılarını güncelleyin."
+            icon={Pencil}
+            href="/dashboard/editor"
+          />
 
-        <DashboardGridCard
-          title="Detaylı SEO Raporu"
-          description="Google aramalarındaki sıranızı ve analizleri görün."
-          icon={BarChart3}
-          href="/dashboard/raporlar"
-          locked={!pkg.limits.advancedSeo}
-          lockMessage="Gelişmiş paketlerde aktiftir."
-        />
-      </div>
+          <DashboardGridCard
+            title="WhatsApp Botu"
+            description="Asistanınızın konuşma tarzını ve menüsünü eğitin."
+            icon={Bot}
+            href="/dashboard/whatsapp"
+          />
+
+          <DashboardGridCard
+            title="Domain (Alan Adı)"
+            description="Sitenize özel .com veya .com.tr alan adınızı bağlayın."
+            icon={Globe}
+            href="/dashboard/domain"
+            locked={!pkg.limits.hasPremiumDomain}
+            lockMessage="Büyüme paketi ve üzerinde aktiftir."
+          />
+
+          <DashboardGridCard
+            title="AI Section Editör"
+            description="Yapay zekaya sitenizin tasarımını bölgesel olarak değiştirtin."
+            icon={Sparkles}
+            href="/dashboard/editor/ai"
+            locked={!pkg.limits.hasAiEditor}
+            lockMessage="Büyüme paketi ve üzerinde aktiftir."
+          />
+
+          <DashboardGridCard
+            title="Otonom Reklamlar"
+            description="Facebook ve Google reklamlarınızı yapay zeka yönetsin."
+            icon={Target}
+            href="/dashboard/reklamlar"
+            locked={packageId !== 'lider'}
+            lockMessage="Lider paketi gerektirir."
+          />
+
+          <DashboardGridCard
+            title="Detaylı SEO Raporu"
+            description="Google aramalarındaki sıranızı ve analizleri görün."
+            icon={BarChart3}
+            href="/dashboard/raporlar"
+            locked={!pkg.limits.advancedSeo}
+            lockMessage="Gelişmiş paketlerde aktiftir."
+          />
+        </div>
+      )}
     </div>
   )
 }

@@ -2,9 +2,16 @@
 
 import React, { useState } from 'react'
 import Link from 'next/link'
+import { isMvpTestReleaseEnabled } from '@/lib/mvpFeatureFlags'
 import { useSetupProgress, type SetupGroup } from './useSetupProgress'
 
 export default function SetupWizardBanner() {
+    if (isMvpTestReleaseEnabled()) return null
+
+    return <SetupWizardBannerContent />
+}
+
+function SetupWizardBannerContent() {
     const { groups, progress, isComplete, remainingGroups, toggleTask, dismissed, dismissWizard, loading } = useSetupProgress()
     const [drawerOpen, setDrawerOpen] = useState(false)
 
