@@ -8,6 +8,10 @@ Bu rehber sadece demo MVP akışı içindir. Production readiness, güvenlik den
 
 MVP test release modunda non-MVP modüller bilinçli olarak gizlenir.
 
+MVP test release modunda non-MVP dashboard URL'leri `/dashboard`'a yönlendirilir.
+
+Demo/MVP test modunda WhatsApp dış linkleri ve konuşma SSE stream bağlantısı kapalıdır.
+
 ## Demo Başlatma
 
 Yerel geliştirme sunucusunu başlatın:

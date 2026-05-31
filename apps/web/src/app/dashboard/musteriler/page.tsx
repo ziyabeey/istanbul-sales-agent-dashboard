@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useEsnaf } from '@/context/EsnafContext'
+import { isMvpTestReleaseEnabled } from '@/lib/mvpFeatureFlags'
 
 interface Musteri {
     id: string
@@ -16,10 +17,13 @@ interface Musteri {
 
 export default function MusterilerPage() {
     const router = useRouter()
-    const { esnafId } = useEsnaf()
+    const { esnafId, isDemo } = useEsnaf()
+    const isMvpTestRelease = isMvpTestReleaseEnabled()
+    const whatsappDisabled = isDemo || isMvpTestRelease
     const [musteriler, setMusteriler] = useState<Musteri[]>([])
     const [loading, setLoading] = useState(true)
     const [filtre, setFiltre] = useState('hepsi')
+    const [zamanReferansi] = useState(() => Date.now())
 
     useEffect(() => {
         if (!esnafId) return
@@ -47,7 +51,7 @@ export default function MusterilerPage() {
 
     const formatZaman = (iso?: string | null) => {
         if (!iso) return 'Bilinmiyor'
-        const fark = Math.floor((Date.now() - new Date(iso).getTime()) / (1000 * 60 * 60 * 24))
+        const fark = Math.floor((zamanReferansi - new Date(iso).getTime()) / (1000 * 60 * 60 * 24))
         if (fark === 0) return 'Bugün'
         if (fark > 0) return `${fark} gün önce`
         return `${Math.abs(fark)} gün sonra`
@@ -136,12 +140,18 @@ export default function MusterilerPage() {
                                 </div>
                             </div>
 
-                            <button
-                                onClick={() => window.location.href = `https://wa.me/${m.telefon.replace('+', '')}`}
-                                className="ml-2 w-full mt-2 bg-rust/10 text-rust hover:bg-rust hover:text-foreground transition-colors border border-rust/20 rounded-lg py-2 text-xs font-bold font-syne"
-                            >
-                                Kişisel Mesaj Gönder
-                            </button>
+                            {whatsappDisabled ? (
+                                <div className="ml-2 w-full mt-2 rounded-lg border border-muted-foreground/20 bg-background/60 px-3 py-2 text-xs font-bold font-syne text-muted-foreground">
+                                    Demo modunda gerçek WhatsApp gönderimi kapalıdır.
+                                </div>
+                            ) : (
+                                <button
+                                    onClick={() => window.location.href = `https://wa.me/${m.telefon.replace('+', '')}`}
+                                    className="ml-2 w-full mt-2 bg-rust/10 text-rust hover:bg-rust hover:text-foreground transition-colors border border-rust/20 rounded-lg py-2 text-xs font-bold font-syne"
+                                >
+                                    Kişisel Mesaj Gönder
+                                </button>
+                            )}
                         </div>
                     ))}
                 </div>

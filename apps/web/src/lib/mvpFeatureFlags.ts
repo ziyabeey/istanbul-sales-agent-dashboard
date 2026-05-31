@@ -81,3 +81,15 @@ const MVP_TEST_RELEASE_FLAGS: MvpFeatureFlags = {
 export const MVP_FEATURE_FLAGS: MvpFeatureFlags = isMvpTestReleaseEnabled()
     ? MVP_TEST_RELEASE_FLAGS
     : DEFAULT_FEATURE_FLAGS
+
+export const MVP_ALLOWED_DASHBOARD_PATHS = [
+    '/dashboard',
+    '/dashboard/konusmalar',
+    '/dashboard/musteriler',
+    '/dashboard/randevular',
+    '/dashboard/sitem',
+] as const
+
+export function isMvpDashboardPathAllowed(pathname: string): boolean {
+    return MVP_ALLOWED_DASHBOARD_PATHS.includes(pathname as typeof MVP_ALLOWED_DASHBOARD_PATHS[number])
+}

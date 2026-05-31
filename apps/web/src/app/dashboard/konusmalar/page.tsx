@@ -30,7 +30,7 @@ interface Mesaj {
 }
 
 function KonusmalarIcerik() {
-    const { esnafId, loading } = useEsnaf()
+    const { esnafId, loading, isDemo } = useEsnaf()
     const searchParams = useSearchParams()
     const isMvpTestRelease = isMvpTestReleaseEnabled()
     const aktifTab = !isMvpTestRelease && searchParams.get('tab') === 'sesli' ? 'sesli' : 'mesajlar'
@@ -54,6 +54,7 @@ function KonusmalarIcerik() {
     // SSE: Gerçek zamanlı yeni mesaj dinleme
     useEffect(() => {
         if (!esnafId || aktifTab !== 'mesajlar') return
+        if (isDemo || isMvpTestRelease) return
 
         let es: EventSource | null = null
         try {
@@ -76,7 +77,7 @@ function KonusmalarIcerik() {
 
         return () => { es?.close() }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [esnafId, aktifTab, secilen])
+    }, [esnafId, aktifTab, secilen, isDemo, isMvpTestRelease])
 
     async function fetchSesliAramalar() {
         setSesliYukleniyor(true)

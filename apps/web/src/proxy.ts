@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { auth } from "@/auth";
+import { isMvpDashboardPathAllowed, isMvpTestReleaseEnabled } from '@/lib/mvpFeatureFlags'
 
 /**
  * Kepenk Unified Proxy (Next.js 16)
@@ -20,15 +21,23 @@ export default auth((req) => {
     // ═══ SUBDOMAIN ROUTING ═══
 
     const subdomain = extractSubdomain(hostname)
+    const blockedDashboardRedirect = redirectBlockedMvpDashboard(pathname, req.nextUrl)
+    if (blockedDashboardRedirect) return blockedDashboardRedirect
 
     // ── edit.kepenk.ai → Editor ──
     if (subdomain === 'edit') {
         if (pathname === '/' || pathname === '') {
-            url.pathname = '/dashboard/sitem/editor'
+            const targetPathname = '/dashboard/sitem/editor'
+            const blocked = redirectBlockedMvpDashboard(targetPathname, req.nextUrl)
+            if (blocked) return blocked
+            url.pathname = targetPathname
             return NextResponse.rewrite(url)
         }
         if (!pathname.startsWith('/dashboard/sitem/editor')) {
-            url.pathname = `/dashboard/sitem/editor${pathname}`
+            const targetPathname = `/dashboard/sitem/editor${pathname}`
+            const blocked = redirectBlockedMvpDashboard(targetPathname, req.nextUrl)
+            if (blocked) return blocked
+            url.pathname = targetPathname
             return NextResponse.rewrite(url)
         }
     }
@@ -36,11 +45,17 @@ export default auth((req) => {
     // ── app.kepenk.ai → Manage Dashboard (primary) ──
     if (subdomain === 'app') {
         if (pathname === '/' || pathname === '') {
-            url.pathname = '/dashboard/manage'
+            const targetPathname = '/dashboard/manage'
+            const blocked = redirectBlockedMvpDashboard(targetPathname, req.nextUrl)
+            if (blocked) return blocked
+            url.pathname = targetPathname
             return NextResponse.rewrite(url)
         }
         if (!pathname.startsWith('/dashboard')) {
-            url.pathname = `/dashboard${pathname}`
+            const targetPathname = `/dashboard${pathname}`
+            const blocked = redirectBlockedMvpDashboard(targetPathname, req.nextUrl)
+            if (blocked) return blocked
+            url.pathname = targetPathname
             return NextResponse.rewrite(url)
         }
     }
@@ -48,11 +63,17 @@ export default auth((req) => {
     // ── manage.kepenk.ai → Manage Dashboard ──
     if (subdomain === 'manage') {
         if (pathname === '/' || pathname === '') {
-            url.pathname = '/dashboard/manage'
+            const targetPathname = '/dashboard/manage'
+            const blocked = redirectBlockedMvpDashboard(targetPathname, req.nextUrl)
+            if (blocked) return blocked
+            url.pathname = targetPathname
             return NextResponse.rewrite(url)
         }
         if (!pathname.startsWith('/dashboard/manage')) {
-            url.pathname = `/dashboard/manage${pathname}`
+            const targetPathname = `/dashboard/manage${pathname}`
+            const blocked = redirectBlockedMvpDashboard(targetPathname, req.nextUrl)
+            if (blocked) return blocked
+            url.pathname = targetPathname
             return NextResponse.rewrite(url)
         }
     }
@@ -100,7 +121,7 @@ export default auth((req) => {
     // Giriş sayfasında zaten giriş yapmışsa dashboard'a yönlendir
     if (pathname.startsWith("/giris")) {
         if (isLoggedIn) {
-            return Response.redirect(new URL("/dashboard/manage", req.nextUrl))
+            return Response.redirect(new URL(isMvpTestReleaseEnabled() ? "/dashboard" : "/dashboard/manage", req.nextUrl))
         }
     }
 });
@@ -124,6 +145,18 @@ function extractSubdomain(hostname: string): string | null {
 /** Check if running in local development */
 function isLocalDev(hostname: string): boolean {
     return hostname.includes('localhost') || hostname.includes('127.0.0.1') || hostname.includes('0.0.0.0')
+}
+
+function redirectBlockedMvpDashboard(pathname: string, requestUrl: URL) {
+    if (
+        isMvpTestReleaseEnabled() &&
+        pathname.startsWith('/dashboard') &&
+        !isMvpDashboardPathAllowed(pathname)
+    ) {
+        return NextResponse.redirect(new URL('/dashboard', requestUrl))
+    }
+
+    return null
 }
 
 export const config = {
