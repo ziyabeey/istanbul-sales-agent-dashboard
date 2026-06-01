@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { adminDb, Timestamp } from '@/lib/firebaseAdmin'
-import { telegramGonder } from '@/lib/telegram'
+import { buildLocalPreviewPath, buildLocalSiteDataFromEsnaf } from '@/lib/site/localSiteData'
+import { oturumOlustur } from '@/lib/sessionManager'
 
 export async function POST(request: Request) {
     try {
@@ -39,8 +40,11 @@ export async function POST(request: Request) {
         const palet = paletBul(paletId)
         const secilenTema = TEMALAR.find(t => t.id === temaId) ?? null
 
-        // Firestore'a esnaf oluştur
-        const esnafRef = await adminDb.collection('esnaflar').add({
+        const esnafRef = adminDb.collection('esnaflar').doc()
+        const esnafId = esnafRef.id
+        const localPreviewUrl = buildLocalPreviewPath(esnafId)
+
+        const esnafData = {
             ad: adim1.ad || adim1.isletmeAdi.split(' ')[0],
             soyad: adim1.soyad || '',
             adSoyad: adim1.ad
@@ -82,29 +86,19 @@ export async function POST(request: Request) {
             kvkkOnay: true,
             kayitKanali: 'web',
             aktifWebModulleri: adim4?.aktifWebModulleri ?? [],
+        }
+
+        // Firestore'a esnaf oluştur ve ilk MVP için dış servissiz yerel site taslağını hazırla.
+        await esnafRef.set({
+            ...esnafData,
+            siteData: buildLocalSiteDataFromEsnaf(esnafData, esnafId),
+            localPreviewUrl,
+            siteDurumu: 'local-preview-ready',
         })
 
-        const esnafId = esnafRef.id
-
-        // Subdomain + Site üretimini arka planda oluştur
-        fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/site/uret`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ esnafId }),
-        }).catch(() => {})
-
-        // Telegram bildirimi (sessizce — hata olsa bile devam)
-        telegramGonder(
-            `🆕 <b>Yeni Kayıt!</b>\n` +
-            `İşletme: ${adim1.isletmeAdi}\n` +
-            `Sektör: ${adim1.sektor} / ${adim1.ilce || adim1.sehir}\n` +
-            `Paket: ${adim1.paket || 'TEMEL'}\n` +
-            `Tel: ${telefon}\n` +
-            `ID: <code>${esnafId}</code>`
-        ).catch(() => {})
-
-        return NextResponse.json({ esnafId })
-    } catch (error: any) {
+        const response = NextResponse.json({ esnafId, localPreviewUrl })
+        return oturumOlustur(esnafId, response)
+    } catch {
         // console.error('[ONBOARDING COMPLETE]', error)
         return NextResponse.json(
             { error: 'Kayıt sırasında hata oluştu' },

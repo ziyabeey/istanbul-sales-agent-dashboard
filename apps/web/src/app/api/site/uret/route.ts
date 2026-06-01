@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server'
 import { adminDb } from '@/lib/firebaseAdmin'
 import { createHttpTask } from '@/lib/cloudTasksClient'
+import { requireSessionEsnaf } from '@/lib/esnafOwnership'
+import { isSiteGenerationEnabled, siteFeatureDisabledResponse } from '@/lib/site/siteFeatureFlags'
 
 export const dynamic = 'force-dynamic'
 
@@ -10,6 +12,13 @@ export async function POST(request: Request) {
     if (!esnafId) {
         return NextResponse.json({ error: 'esnafId zorunlu' }, { status: 400 })
     }
+
+    if (!isSiteGenerationEnabled()) {
+        return siteFeatureDisabledResponse()
+    }
+
+    const ownership = await requireSessionEsnaf(request, esnafId)
+    if (!ownership.ok) return ownership.response
 
     // Esnaf var mı?
     const doc = await adminDb.collection('esnaflar').doc(esnafId).get()
@@ -36,7 +45,7 @@ export async function POST(request: Request) {
             mesaj: 'Site üretimi sıraya alındı',
             tahminiSure: '30-120 saniye',
         })
-    } catch (e: any) {
+    } catch {
         await doc.ref.update({ siteUretimDevamEdiyor: false })
         // console.error('[SİTE ÜRET KUYRUK]', e)
         return NextResponse.json({ error: 'Kuyruğa eklenemedi' }, { status: 500 })

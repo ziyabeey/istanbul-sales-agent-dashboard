@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { esnafSiteUret } from '@/utils/siteUreticisi'
+import { isSiteGenerationEnabled, siteFeatureDisabledResponse } from '@/lib/site/siteFeatureFlags'
 
 export const maxDuration = 300 // Vercel Pro/Cloud Run için 5 dakika timeout limiti
 
@@ -15,6 +16,10 @@ export async function POST(req: Request) {
         if (token !== beklenenToken) {
             // Yetkisiz erisim denemesi
             return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+        }
+
+        if (!isSiteGenerationEnabled()) {
+            return siteFeatureDisabledResponse()
         }
 
         const body = await req.json()
@@ -33,9 +38,10 @@ export async function POST(req: Request) {
         // Site uretimi basarili
         return NextResponse.json({ ok: true, url })
 
-    } catch (error: any) {
+    } catch (error: unknown) {
         // Kritik hata
         // Cloud Tasks'ın hata durumunda retry mekanizmasını tetiklemesi için 500 dönüyoruz
-        return NextResponse.json({ error: error.message }, { status: 500 })
+        const message = error instanceof Error ? error.message : 'Bilinmeyen hata'
+        return NextResponse.json({ error: message }, { status: 500 })
     }
 }

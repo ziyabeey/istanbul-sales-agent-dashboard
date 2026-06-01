@@ -23,6 +23,7 @@ import { adminDb, Timestamp } from '@/lib/firebaseAdmin'
 import { oturumDogrulaServer } from '@/lib/sessionManager'
 import { generatePageHtml, generateSitemap, generateRobots } from '@kepenk/publish-engine'
 import type { SiteManifest, PageDocument, MasterPageDocument, PageRef } from '@kepenk/site-schema'
+import { isSitePublishEnabled, siteFeatureDisabledResponse } from '@/lib/site/siteFeatureFlags'
 
 export async function POST(request: Request) {
     try {
@@ -30,6 +31,10 @@ export async function POST(request: Request) {
         const esnafId = await oturumDogrulaServer()
         if (!esnafId) {
             return NextResponse.json({ error: 'Yetkisiz erişim' }, { status: 401 })
+        }
+
+        if (!isSitePublishEnabled()) {
+            return siteFeatureDisabledResponse()
         }
 
         const body = await request.json()
@@ -84,7 +89,7 @@ export async function POST(request: Request) {
             updatedAt: new Date().toISOString(),
         }
 
-        const guncelleme: Record<string, any> = {
+        const guncelleme: Record<string, unknown> = {
             sonYayinTarihi: Timestamp.now(),
             sonGuncelleme: Timestamp.now(),
             yayinda: true,
@@ -149,9 +154,10 @@ export async function POST(request: Request) {
             temizlenenCache: temizlenenTaglar,
             url: subdomainUrl || (slug ? `https://${slug}.kepenk.ai` : ''),
         })
-    } catch (error: any) {
+    } catch (error: unknown) {
+        const message = error instanceof Error ? error.message : 'Bilinmeyen hata'
         return NextResponse.json(
-            { error: 'Yayınlama başarısız', detay: error.message },
+            { error: 'Yayınlama başarısız', detay: message },
             { status: 500 }
         )
     }

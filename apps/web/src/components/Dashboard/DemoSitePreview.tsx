@@ -23,13 +23,41 @@ type DemoSiteData = {
     }
 }
 
-export default function DemoSitePreview({ siteData }: { siteData: DemoSiteData }) {
+type DemoService = {
+    id?: string
+    ad?: string
+    sureDakika?: number
+    fiyat?: number
+}
+
+type DemoWorkingHour = {
+    gun?: string
+    saat?: string
+}
+
+export default function DemoSitePreview({
+    siteData,
+    services = [],
+    workingHours = [],
+}: {
+    siteData: DemoSiteData
+    services?: DemoService[]
+    workingHours?: DemoWorkingHour[]
+}) {
     const hizmetler = siteData.hizmetler || []
     const yorumlar = siteData.modulIcerik?.yorumlar || []
     const bg = siteData.bg || '#111111'
     const accent = siteData.accent || '#c9a227'
     const text = siteData.text || '#f8f5ef'
     const fontFamily = siteData.font || 'Inter'
+    const serviceCards = services.length > 0
+        ? services
+        : hizmetler.map((ad, index) => ({
+            id: ad,
+            ad,
+            sureDakika: index === 0 ? 35 : index === 1 ? 25 : 90,
+            fiyat: index === 0 ? 600 : index === 1 ? 450 : 2200,
+        }))
 
     return (
         <div
@@ -44,7 +72,7 @@ export default function DemoSitePreview({ siteData }: { siteData: DemoSiteData }
                     </div>
                     <a
                         href={siteData.telefon ? `tel:${siteData.telefon}` : undefined}
-                        className="rounded-full px-4 py-2 text-xs font-black"
+                        className="rounded-full px-4 py-2 text-xs font-black transition hover:opacity-90"
                         style={{ background: accent, color: bg }}
                     >
                         Ara
@@ -54,7 +82,7 @@ export default function DemoSitePreview({ siteData }: { siteData: DemoSiteData }
                 <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
                     <div>
                         <p className="mb-3 text-sm font-bold uppercase tracking-widest" style={{ color: accent }}>
-                            Randevulu erkek bakimi
+                            Randevulu erkek bakımı
                         </p>
                         <h1 className="text-4xl font-black leading-tight sm:text-5xl">
                             {siteData.heroBaslik || siteData.isletmeAdi}
@@ -64,10 +92,23 @@ export default function DemoSitePreview({ siteData }: { siteData: DemoSiteData }
                         </p>
                         <div className="mt-7 flex flex-wrap gap-3">
                             <span className="rounded-full border border-white/15 px-4 py-2 text-sm font-bold">
-                                {siteData.adres || 'Istanbul'}
+                                {siteData.adres || 'İstanbul'}
                             </span>
                             <span className="rounded-full border border-white/15 px-4 py-2 text-sm font-bold">
                                 {siteData.telefon}
+                            </span>
+                        </div>
+                        <div className="mt-7 flex flex-wrap gap-3">
+                            <button
+                                type="button"
+                                disabled
+                                className="rounded-full px-5 py-3 text-sm font-black opacity-95"
+                                style={{ background: accent, color: bg }}
+                            >
+                                WhatsApp&apos;tan Randevu Al
+                            </button>
+                            <span className="rounded-full border border-white/15 px-5 py-3 text-sm font-bold opacity-70">
+                                Demo önizleme: gönderim kapalı
                             </span>
                         </div>
                     </div>
@@ -77,15 +118,15 @@ export default function DemoSitePreview({ siteData }: { siteData: DemoSiteData }
                             <div className="flex h-full flex-col justify-between">
                                 <div>
                                     <div className="mb-4 h-2 w-20 rounded-full" style={{ background: accent }} />
-                                    <p className="text-sm font-bold opacity-70">Bugun musait saatler</p>
+                                    <p className="text-sm font-bold opacity-70">Bugün müsait saatler</p>
                                     <p className="mt-2 text-3xl font-black">16:00 / 18:30</p>
                                 </div>
                                 <div className="space-y-3">
-                                    {hizmetler.slice(0, 3).map((hizmet, index) => (
-                                        <div key={hizmet} className="flex items-center justify-between rounded-2xl bg-black/20 px-4 py-3">
-                                            <span className="text-sm font-bold">{hizmet}</span>
+                                    {serviceCards.slice(0, 3).map((hizmet) => (
+                                        <div key={hizmet.id || hizmet.ad} className="flex items-center justify-between rounded-2xl bg-black/20 px-4 py-3">
+                                            <span className="text-sm font-bold">{hizmet.ad}</span>
                                             <span className="text-xs font-black" style={{ color: accent }}>
-                                                {index === 0 ? '35 dk' : index === 1 ? '25 dk' : '90 dk'}
+                                                {hizmet.sureDakika} dk
                                             </span>
                                         </div>
                                     ))}
@@ -99,23 +140,56 @@ export default function DemoSitePreview({ siteData }: { siteData: DemoSiteData }
             <section className="border-y border-white/10 bg-white/[0.04] px-6 py-8 sm:px-10">
                 <h3 className="mb-5 text-xl font-black">Hizmetler</h3>
                 <div className="grid gap-3 sm:grid-cols-3">
-                    {hizmetler.map((hizmet) => (
-                        <div key={hizmet} className="rounded-2xl border border-white/10 bg-black/15 p-4">
-                            <p className="text-sm font-black">{hizmet}</p>
-                            <p className="mt-2 text-xs leading-5 opacity-65">Randevulu, zamaninda ve ozenli hizmet.</p>
+                    {serviceCards.map((hizmet) => (
+                        <div key={hizmet.id || hizmet.ad} className="rounded-2xl border border-white/10 bg-black/15 p-4">
+                            <p className="text-sm font-black">{hizmet.ad}</p>
+                            <div className="mt-3 flex items-center justify-between gap-3">
+                                <span className="text-xs font-bold opacity-65">{hizmet.sureDakika} dk</span>
+                                <span className="text-sm font-black" style={{ color: accent }}>
+                                    {hizmet.fiyat?.toLocaleString('tr-TR')} ₺
+                                </span>
+                            </div>
+                            <p className="mt-2 text-xs leading-5 opacity-65">Randevulu, zamanında ve özenli hizmet.</p>
                         </div>
                     ))}
                 </div>
             </section>
 
+            <section className="grid gap-4 border-b border-white/10 px-6 py-8 sm:px-10 lg:grid-cols-[0.9fr_1.1fr]">
+                <div className="rounded-2xl border border-white/10 bg-white/[0.06] p-5">
+                    <h3 className="text-xl font-black">Çalışma saatleri</h3>
+                    <div className="mt-4 space-y-3">
+                        {workingHours.map((item) => (
+                            <div key={item.gun} className="flex items-center justify-between rounded-xl bg-black/15 px-4 py-3 text-sm">
+                                <span className="font-bold opacity-70">{item.gun}</span>
+                                <span className="font-black">{item.saat}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                <div className="rounded-2xl border border-white/10 bg-black/15 p-5">
+                    <h3 className="text-xl font-black">Adres ve iletişim</h3>
+                    <p className="mt-3 text-sm leading-6 opacity-75">{siteData.adres}</p>
+                    <p className="mt-2 text-sm font-bold" style={{ color: accent }}>{siteData.telefon}</p>
+                    <button
+                        type="button"
+                        disabled
+                        className="mt-5 rounded-full border border-white/15 px-5 py-3 text-sm font-black opacity-70"
+                    >
+                        Haritada Görüntüle
+                    </button>
+                </div>
+            </section>
+
             {yorumlar.length > 0 && (
                 <section className="px-6 py-8 sm:px-10">
-                    <h3 className="mb-5 text-xl font-black">Musteri yorumlari</h3>
+                    <h3 className="mb-5 text-xl font-black">Müşteri yorumları</h3>
                     <div className="grid gap-4 sm:grid-cols-2">
                         {yorumlar.map((yorum) => (
                             <figure key={yorum.id || yorum.isim} className="rounded-2xl border border-white/10 bg-white/[0.06] p-5">
                                 <div className="mb-3 text-sm font-black" style={{ color: accent }}>
-                                    {'*'.repeat(yorum.puan || 5)}
+                                    {'★'.repeat(yorum.puan || 5)}
                                 </div>
                                 <blockquote className="text-sm leading-6 opacity-80">&quot;{yorum.metin}&quot;</blockquote>
                                 <figcaption className="mt-4 text-xs font-black opacity-60">{yorum.isim}</figcaption>

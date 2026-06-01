@@ -14,6 +14,7 @@ import { adminDb, Timestamp } from '@/lib/firebaseAdmin'
 import { oturumDogrulaServer } from '@/lib/sessionManager'
 import { versiyonKaydet } from '@/lib/siteVersiyonlari'
 import { zodGuard, siteGuncelleSema } from '@/lib/zodSemalar'
+import { isSitePublishEnabled, siteFeatureDisabledResponse } from '@/lib/site/siteFeatureFlags'
 
 export async function POST(request: Request) {
     try {
@@ -21,6 +22,10 @@ export async function POST(request: Request) {
         const esnafId = await oturumDogrulaServer()
         if (!esnafId) {
             return NextResponse.json({ error: 'Yetkisiz erişim' }, { status: 401 })
+        }
+
+        if (!isSitePublishEnabled()) {
+            return siteFeatureDisabledResponse()
         }
 
         // ── Zod validasyon ──────────────────────────────────────────────────
@@ -44,7 +49,7 @@ export async function POST(request: Request) {
         }
 
         const esnafData = esnafDoc.data()!
-        const guncelleme: Record<string, any> = {
+        const guncelleme: Record<string, unknown> = {
             sonYayinTarihi: Timestamp.now(),
         }
 
@@ -63,7 +68,7 @@ export async function POST(request: Request) {
                 esnafData.aktifModuller || [],
                 temaId || esnafData.temaId || 'toprak'
             )
-        } catch (err) {
+        } catch {
             // console.warn('[PUBLISH] Versiyon kaydetme hatası (devam ediliyor):', err)
         }
 
@@ -101,10 +106,11 @@ export async function POST(request: Request) {
             temizlenenCache: temizlenenTaglar,
             versiyonKaydedildi: true,
         })
-    } catch (error: any) {
+    } catch (error: unknown) {
         // console.error('[PUBLISH] Hata:', error.message)
+        const message = error instanceof Error ? error.message : 'Bilinmeyen hata'
         return NextResponse.json(
-            { error: 'Yayınlama başarısız', detay: error.message },
+            { error: 'Yayınlama başarısız', detay: message },
             { status: 500 }
         )
     }

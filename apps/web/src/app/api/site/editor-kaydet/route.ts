@@ -19,6 +19,11 @@ import { NextResponse } from 'next/server'
 import { revalidateTag } from 'next/cache'
 import { adminDb, Timestamp } from '@/lib/firebaseAdmin'
 import { oturumDogrulaServer } from '@/lib/sessionManager'
+import {
+    isSiteEditorPublishEnabled,
+    isSiteEditorSaveEnabled,
+    siteFeatureDisabledResponse,
+} from '@/lib/site/siteFeatureFlags'
 
 export async function POST(request: Request) {
     try {
@@ -30,6 +35,13 @@ export async function POST(request: Request) {
 
         const body = await request.json()
         const { siteJson, siteHtml, publish } = body
+        const isPublishRequest = publish === true
+
+        if (isPublishRequest) {
+            if (!isSiteEditorPublishEnabled()) return siteFeatureDisabledResponse()
+        } else if (!isSiteEditorSaveEnabled()) {
+            return siteFeatureDisabledResponse()
+        }
 
         if (!siteJson && !siteHtml) {
             return NextResponse.json({ error: 'siteJson veya siteHtml gerekli' }, { status: 400 })
@@ -43,7 +55,7 @@ export async function POST(request: Request) {
             return NextResponse.json({ error: 'Esnaf bulunamadı' }, { status: 404 })
         }
 
-        const guncelleme: Record<string, any> = {
+        const guncelleme: Record<string, unknown> = {
             sonGuncelleme: Timestamp.now(),
         }
 
@@ -64,7 +76,7 @@ export async function POST(request: Request) {
         }
 
         // If publishing, set publish date and bust cache
-        if (publish) {
+        if (isPublishRequest) {
             guncelleme.sonYayinTarihi = Timestamp.now()
             guncelleme.yayinda = true
         }
@@ -72,7 +84,7 @@ export async function POST(request: Request) {
         await esnafRef.update(guncelleme)
 
         // Cache bust if publishing
-        if (publish) {
+        if (isPublishRequest) {
             const esnafData = esnafDoc.data()!
             const subdomainUrl = esnafData.subdomainUrl as string | undefined
             const customDomain = esnafData.customDomain as string | undefined
@@ -94,12 +106,13 @@ export async function POST(request: Request) {
 
         return NextResponse.json({
             ok: true,
-            mesaj: publish ? 'Site başarıyla yayınlandı' : 'Taslak kaydedildi',
+            mesaj: isPublishRequest ? 'Site başarıyla yayınlandı' : 'Taslak kaydedildi',
         })
-    } catch (error: any) {
+    } catch (error: unknown) {
         // console.error('[EDITOR] Hata:', error.message)
+        const message = error instanceof Error ? error.message : 'Bilinmeyen hata'
         return NextResponse.json(
-            { error: 'Kaydetme başarısız', detay: error.message },
+            { error: 'Kaydetme başarısız', detay: message },
             { status: 500 }
         )
     }

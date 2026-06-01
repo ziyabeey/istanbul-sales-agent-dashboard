@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { adminDb, Timestamp } from '@/lib/firebaseAdmin'
 import { telegramGonder } from '@/lib/telegram'
+import { requireOwnedAppointment } from '@/lib/esnafOwnership'
 
 // ── PATCH /api/randevu/[id] — Randevu durumu güncelle ─────────────────────
 export async function PATCH(
@@ -19,13 +20,10 @@ export async function PATCH(
             )
         }
 
-        const randevuRef = adminDb.collection('randevular').doc(id)
-        const doc = await randevuRef.get()
-        if (!doc.exists) {
-            return NextResponse.json({ error: 'Randevu bulunamadı' }, { status: 404 })
-        }
+        const ownership = await requireOwnedAppointment(request, id)
+        if (!ownership.ok) return ownership.response
 
-        const randevu = doc.data()!
+        const { randevuRef, randevu } = ownership
         await randevuRef.update({
             durum,
             guncelleme: Timestamp.now(),
@@ -51,7 +49,7 @@ export async function PATCH(
                 randevu.esnafId,
                 `randevu_${durum}`
             )
-        } catch (e: any) {
+        } catch {
             // console.error('[RANDEVU] Müşteri WhatsApp bildirimi gönderilemedi:', e.message)
         }
 
@@ -75,7 +73,7 @@ export async function PATCH(
                         <p style="font-size:11px;color:#999;margin-top:40px">kepenk.ai — akıllı esnaf asistanı</p>
                     </div>`,
                 })
-            } catch (e: any) {
+            } catch {
                 // console.error('[RANDEVU] Onay emaili gönderilemedi:', e.message)
             }
         }
@@ -88,7 +86,7 @@ export async function PATCH(
         ).catch(() => {})
 
         return NextResponse.json({ ok: true, durum })
-    } catch (error: any) {
+    } catch {
         // console.error('[RANDEVU PATCH]', error)
         return NextResponse.json({ error: 'Güncelleme başarısız' }, { status: 500 })
     }
@@ -101,17 +99,13 @@ export async function DELETE(
 ) {
     try {
         const { id } = await params
-        const ref = adminDb.collection('randevular').doc(id)
-        const doc = await ref.get()
+        const ownership = await requireOwnedAppointment(request, id)
+        if (!ownership.ok) return ownership.response
 
-        if (!doc.exists) {
-            return NextResponse.json({ error: 'Randevu bulunamadı' }, { status: 404 })
-        }
-
-        await ref.delete()
+        await ownership.randevuRef.delete()
 
         return NextResponse.json({ ok: true, mesaj: 'Randevu silindi' })
-    } catch (error: any) {
+    } catch {
         // console.error('[RANDEVU DELETE]', error)
         return NextResponse.json({ error: 'Silme başarısız' }, { status: 500 })
     }

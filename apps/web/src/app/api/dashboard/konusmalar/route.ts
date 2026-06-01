@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import { adminDb } from '@/lib/firebaseAdmin'
 import { isDemoEsnafId, isDemoModeEnabled } from '@/lib/demoMode'
 import { demoBusiness } from '@/data/demoBusiness'
+import { requireSessionEsnaf } from '@/lib/esnafOwnership'
 
 export async function GET(req: Request) {
     const { searchParams } = new URL(req.url)
@@ -22,6 +23,9 @@ export async function GET(req: Request) {
             randevuVar: konusma.randevuVar,
         })))
     }
+
+    const ownership = await requireSessionEsnaf(req, esnafId)
+    if (!ownership.ok) return ownership.response
 
     try {
         // Son 200 mesaji getir

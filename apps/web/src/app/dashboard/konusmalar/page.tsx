@@ -4,9 +4,10 @@ import { useEffect, useState, Suspense } from 'react'
 import { useEsnaf } from '@/context/EsnafContext'
 import { isMvpTestReleaseEnabled } from '@/lib/mvpFeatureFlags'
 import { MetrikSkeleton } from '@/components/ui/MetrikSkeleton'
+import { demoBusiness } from '@/data/demoBusiness'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
-import { Phone, MessageCircle, Calendar } from 'lucide-react'
+import { Phone, MessageCircle, Calendar, CalendarCheck, Sparkles } from 'lucide-react'
 
 interface SesliArama {
     musteriNumara: string
@@ -17,6 +18,7 @@ interface SesliArama {
 
 interface Konusma {
     musteriNumara: string
+    musteriAd?: string
     sonMesaj: string
     sonZaman: string
     mesajSayisi: number
@@ -42,6 +44,18 @@ function KonusmalarIcerik() {
     const [mesajYukleniyor, setMesajYukleniyor] = useState(false)
     const [sesliAramalar, setSesliAramalar] = useState<SesliArama[]>([])
     const [sesliYukleniyor, setSesliYukleniyor] = useState(false)
+    const demoValueMode = isDemo || isMvpTestRelease
+    const secilenDemoKonusma = demoValueMode && secilen
+        ? demoBusiness.conversations.find((konusma) => konusma.musteriNumara === secilen)
+        : undefined
+    const demoOneriMetni = secilenDemoKonusma?.messages.find((mesaj) => mesaj.kimden === 'ai')?.mesaj
+        || demoBusiness.aiSuggestions[0]?.metin
+        || ''
+    const secilenDemoRandevu = demoValueMode && secilen
+        ? demoBusiness.appointments.find((randevu) =>
+            randevu.musteriTel === secilen || randevu.musteri_telefon === secilen
+        )
+        : undefined
 
     useEffect(() => {
         if (esnafId) {
@@ -246,20 +260,101 @@ function KonusmalarIcerik() {
                             {mesajYukleniyor ? (
                                 <MetrikSkeleton />
                             ) : (
-                                mesajlar.map((m, i) => (
-                                    <div
-                                        key={i}
-                                        className={`max-w-[80%] rounded-2xl px-4 py-2.5 ${m.kimden === 'musteri'
-                                                ? 'bg-warm/20 text-foreground mr-auto'
-                                                : 'bg-rust/20 text-foreground ml-auto'
-                                            }`}
-                                    >
-                                        <p className="text-sm leading-relaxed">{m.mesaj}</p>
-                                        <p className={`text-[10px] mt-1 ${m.kimden === 'musteri' ? 'text-muted-foreground/50' : 'text-rust/50'}`}>
-                                            {m.kimden === 'ai' ? 'AI' : 'Musteri'} — {m.zaman}
-                                        </p>
-                                    </div>
-                                ))
+                                <>
+                                    {mesajlar.map((m, i) => (
+                                        <div
+                                            key={i}
+                                            className={`max-w-[80%] rounded-2xl px-4 py-2.5 ${m.kimden === 'musteri'
+                                                    ? 'bg-warm/20 text-foreground mr-auto'
+                                                    : 'bg-rust/20 text-foreground ml-auto'
+                                                }`}
+                                        >
+                                            <p className="text-sm leading-relaxed">{m.mesaj}</p>
+                                            <p className={`text-[10px] mt-1 ${m.kimden === 'musteri' ? 'text-muted-foreground/50' : 'text-rust/50'}`}>
+                                                {m.kimden === 'ai' ? 'AI' : 'Musteri'} — {m.zaman}
+                                            </p>
+                                        </div>
+                                    ))}
+
+                                    {demoValueMode && demoOneriMetni && (
+                                        <div className="mt-5 rounded-2xl border border-indigo-400/25 bg-indigo-500/10 p-4">
+                                            <div className="mb-3 flex items-center justify-between gap-3">
+                                                <div className="flex items-center gap-2">
+                                                    <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-indigo-500/15 text-indigo-200">
+                                                        <Sparkles className="h-4 w-4" aria-hidden="true" />
+                                                    </span>
+                                                    <div>
+                                                        <h3 className="text-sm font-syne font-extrabold text-foreground">
+                                                            AI Cevap Önerisi
+                                                        </h3>
+                                                        <p className="text-xs font-bold text-indigo-200">Yüksek güven</p>
+                                                    </div>
+                                                </div>
+                                                <span className="rounded-full border border-indigo-300/20 bg-black/10 px-2 py-1 text-[10px] font-bold uppercase text-indigo-100/80">
+                                                    Read-only
+                                                </span>
+                                            </div>
+                                            <p className="rounded-xl border border-white/10 bg-background/60 p-3 text-sm leading-6 text-foreground">
+                                                {demoOneriMetni}
+                                            </p>
+                                            <div className="mt-3 grid gap-2 sm:grid-cols-3">
+                                                {['Cevabı Kullan', 'Düzenle', 'Randevuya Çevir'].map((label) => (
+                                                    <button
+                                                        key={label}
+                                                        type="button"
+                                                        disabled
+                                                        className="rounded-lg border border-indigo-300/20 bg-indigo-400/10 px-3 py-2 text-xs font-bold text-indigo-100/50"
+                                                    >
+                                                        {label}
+                                                    </button>
+                                                ))}
+                                            </div>
+                                            <p className="mt-3 text-xs font-medium text-indigo-100/70">
+                                                Demo modunda gerçek WhatsApp gönderimi yapılmaz.
+                                            </p>
+                                        </div>
+                                    )}
+
+                                    {demoValueMode && secilenDemoRandevu && (
+                                        <div className="rounded-2xl border border-emerald-400/25 bg-emerald-500/10 p-4">
+                                            <div className="mb-3 flex items-center gap-2">
+                                                <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-500/15 text-emerald-200">
+                                                    <CalendarCheck className="h-4 w-4" aria-hidden="true" />
+                                                </span>
+                                                <div>
+                                                    <h3 className="text-sm font-syne font-extrabold text-foreground">
+                                                        Randevuya Dönüştü
+                                                    </h3>
+                                                    <p className="text-xs text-emerald-200">Bu konuşmadan randevu oluştu</p>
+                                                </div>
+                                            </div>
+                                            <dl className="grid gap-2 rounded-xl border border-white/10 bg-background/60 p-3 text-sm sm:grid-cols-2">
+                                                <div>
+                                                    <dt className="text-[10px] font-bold uppercase text-muted-foreground">Müşteri</dt>
+                                                    <dd className="font-semibold text-foreground">{secilenDemoKonusma?.musteriAd || secilenDemoRandevu.musteriAd}</dd>
+                                                </div>
+                                                <div>
+                                                    <dt className="text-[10px] font-bold uppercase text-muted-foreground">Hizmet</dt>
+                                                    <dd className="font-semibold text-foreground">{secilenDemoRandevu.hizmet}</dd>
+                                                </div>
+                                                <div>
+                                                    <dt className="text-[10px] font-bold uppercase text-muted-foreground">Saat</dt>
+                                                    <dd className="font-semibold text-foreground">Bugün {secilenDemoRandevu.saat}</dd>
+                                                </div>
+                                                <div>
+                                                    <dt className="text-[10px] font-bold uppercase text-muted-foreground">Durum</dt>
+                                                    <dd className="font-semibold text-emerald-200">Takvimde görünüyor</dd>
+                                                </div>
+                                            </dl>
+                                            <Link
+                                                href="/dashboard/randevular"
+                                                className="mt-3 inline-flex items-center justify-center rounded-lg bg-emerald-500 px-3 py-2 text-xs font-bold text-white transition hover:bg-emerald-400"
+                                            >
+                                                Randevuyu Takvimde Gör
+                                            </Link>
+                                        </div>
+                                    )}
+                                </>
                             )}
                         </div>
 

@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import { adminDb } from '@/lib/firebaseAdmin'
 import { isDemoEsnafId, isDemoModeEnabled } from '@/lib/demoMode'
 import { demoBusiness } from '@/data/demoBusiness'
+import { requireSessionEsnaf } from '@/lib/esnafOwnership'
 
 export async function GET(req: Request) {
     try {
@@ -23,6 +24,9 @@ export async function GET(req: Request) {
                 sonrakiTahminiZiyaret: musteri.sonrakiTahminiZiyaret,
             })))
         }
+
+        const ownership = await requireSessionEsnaf(req, esnafId)
+        if (!ownership.ok) return ownership.response
 
         const profillerRef = await adminDb
             .collection('musteriProfiller')

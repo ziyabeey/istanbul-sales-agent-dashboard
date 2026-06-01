@@ -20,6 +20,7 @@ export default function MusterilerPage() {
     const { esnafId, isDemo } = useEsnaf()
     const isMvpTestRelease = isMvpTestReleaseEnabled()
     const whatsappDisabled = isDemo || isMvpTestRelease
+    const demoValueMode = isDemo || isMvpTestRelease
     const [musteriler, setMusteriler] = useState<Musteri[]>([])
     const [loading, setLoading] = useState(true)
     const [filtre, setFiltre] = useState('hepsi')
@@ -70,6 +71,18 @@ export default function MusterilerPage() {
                     {musteriler.length} Kişi
                 </div>
             </div>
+
+            {demoValueMode && !loading && (
+                <div className="rounded-xl border border-indigo-400/20 bg-indigo-500/10 p-4">
+                    <p className="text-xs font-bold uppercase tracking-wide text-indigo-300">AI müşteri hafızası</p>
+                    <p className="mt-1 text-sm font-semibold leading-6 text-foreground">
+                        AI, {musteriler.length} müşteriyi segmentledi: 1 sadık, 1 uyuyan, 1 yeni müşteri.
+                    </p>
+                    <p className="mt-2 text-xs leading-5 text-muted-foreground">
+                        Bu öneriler demo amaçlıdır; gerçek WhatsApp gönderimi kapalıdır.
+                    </p>
+                </div>
+            )}
 
             {/* Segment filtreleri */}
             <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide -mx-4 px-4">
@@ -140,6 +153,15 @@ export default function MusterilerPage() {
                                 </div>
                             </div>
 
+                            {demoValueMode && (
+                                <div className="ml-2 mt-2 rounded-lg border border-indigo-400/20 bg-indigo-500/10 px-3 py-2">
+                                    <p className="text-[10px] font-bold uppercase tracking-wide text-indigo-300">AI İçgörüsü</p>
+                                    <p className="mt-1 text-xs font-medium leading-5 text-foreground">
+                                        {aiMusteriOnerisi(m)}
+                                    </p>
+                                </div>
+                            )}
+
                             {whatsappDisabled ? (
                                 <div className="ml-2 w-full mt-2 rounded-lg border border-muted-foreground/20 bg-background/60 px-3 py-2 text-xs font-bold font-syne text-muted-foreground">
                                     Demo modunda gerçek WhatsApp gönderimi kapalıdır.
@@ -158,4 +180,20 @@ export default function MusterilerPage() {
             )}
         </div>
     )
+}
+
+function aiMusteriOnerisi(musteri: Musteri): string {
+    if (musteri.etiketler.includes('uyku') || musteri.etiketler.includes('kayip')) {
+        return 'Son ziyareti eski. Hafif indirimli bakım hatırlatması iyi çalışabilir.'
+    }
+
+    if (musteri.etiketler.includes('yeni')) {
+        return 'İlk randevudan sonra memnuniyet mesajı ve yorum isteme önerilir.'
+    }
+
+    if (musteri.etiketler.includes('sadik') || musteri.etiketler.includes('vip') || musteri.toplamRandevu >= 6) {
+        return 'Düzenli geliyor. Sakal bakım paketi veya VIP saat önerilebilir.'
+    }
+
+    return 'Bir sonraki tahmini ziyaret yaklaşırken kısa bir hatırlatma mesajı önerilir.'
 }

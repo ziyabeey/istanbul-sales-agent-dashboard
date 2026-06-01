@@ -1,11 +1,32 @@
 /**
  * sessionManager.test.ts — JWT Oluştur / Dogrula Testleri
  */
-import { describe, it, expect, beforeAll } from 'vitest'
+import { afterEach, beforeEach, describe, it, expect } from 'vitest'
+
+const TEST_SESSION_SECRET = 'test-secret-key-for-vitest-32char!'
+let originalNodeEnv: string | undefined
+let originalSessionSecret: string | undefined
 
 // SESSION_SECRET env var ayarla (test ortami)
-beforeAll(() => {
-    process.env.SESSION_SECRET = 'test-secret-key-for-vitest-32char!'
+beforeEach(() => {
+    originalNodeEnv = process.env.NODE_ENV
+    originalSessionSecret = process.env.SESSION_SECRET
+    process.env.NODE_ENV = 'test'
+    process.env.SESSION_SECRET = TEST_SESSION_SECRET
+})
+
+afterEach(() => {
+    if (originalNodeEnv === undefined) {
+        delete process.env.NODE_ENV
+    } else {
+        process.env.NODE_ENV = originalNodeEnv
+    }
+
+    if (originalSessionSecret === undefined) {
+        delete process.env.SESSION_SECRET
+    } else {
+        process.env.SESSION_SECRET = originalSessionSecret
+    }
 })
 
 import { jwtOlustur, jwtDogrula } from '@/lib/sessionManager'
@@ -57,7 +78,14 @@ describe('sessionManager — JWT', () => {
             process.env.SESSION_SECRET = 'different-secret-key-32-chars!!!'
             const result = await jwtDogrula(token)
             expect(result).toBeNull()
-            process.env.SESSION_SECRET = 'test-secret-key-for-vitest-32char!'
+            process.env.SESSION_SECRET = TEST_SESSION_SECRET
+        })
+
+        it('production ortaminda SESSION_SECRET yoksa token uretmemeli', async () => {
+            process.env.NODE_ENV = 'production'
+            delete process.env.SESSION_SECRET
+
+            await expect(jwtOlustur('esnaf-prod')).rejects.toThrow('SESSION_SECRET')
         })
     })
 

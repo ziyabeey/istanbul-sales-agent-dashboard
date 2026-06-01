@@ -66,7 +66,8 @@ Demo oturumu yoksa şu adres ile giriş yapın:
 7. `/dashboard/musteriler`
 8. `/dashboard/randevular`
 9. `/dashboard/sitem`
-10. `/test-demo/status` tekrar
+10. `/site-preview/demo-berber-01`
+11. `/test-demo/status` tekrar
 
 ## Beklenen Sonuçlar Tablosu
 
@@ -86,6 +87,7 @@ Demo oturumu yoksa şu adres ile giriş yapın:
 | `/dashboard/musteriler` | 3 demo müşteri, etiketler ve randevu bilgileri görünür. |
 | `/dashboard/randevular` | Demo randevular görünür. Demo uyarısı görünür. No-show ve bakiye tahsil gibi gerçek aksiyonlar kapalıdır. |
 | `/dashboard/sitem` | Yerel read-only site önizlemesi görünür. Demo modda dış `subdomainUrl` iframe'i kullanılmaz. Publish, editor-save ve Cloudflare akışları tetiklenmez. |
+| `/site-preview/demo-berber-01` | Dashboard chrome olmadan müşteri gözüyle yayınlanmış demo berber sitesi açılır. Cloudflare, Firestore write, publish veya editor-save çağrısı yapılmaz. |
 
 ## Demo Modda Bilerek Kapalı Olanlar
 
@@ -110,6 +112,134 @@ Demo oturumu yoksa şu adres ile giriş yapın:
 - `/api/site/publish`
 - Admin APIs
 - Twilio, Cloudflare, payment, cron, agent, kill-switch routes
+
+## Gerçek Lokal Site Preview Smoke
+
+Bu bölüm, demo seed yerine gerçek Firestore `esnaflar/{id}` kaydıyla çalışan ilk lokal site preview akışını doğrular.
+
+Sunucuyu gerçek preview smoke için demo modu kapalı başlatın:
+
+```bash
+WATCHPACK_POLLING=true \
+CHOKIDAR_USEPOLLING=true \
+NEXT_PUBLIC_KEPENK_MVP_TEST_RELEASE=true \
+KEPENK_DEMO_MODE=false \
+pnpm run dev:smoke
+```
+
+Direct onboarding isteği:
+
+```bash
+curl -i -c /tmp/kepenk-real.cookies \
+  -H "Content-Type: application/json" \
+  -X POST http://127.0.0.1:3000/api/onboarding/complete \
+  --data '{
+    "adim1": {
+      "ad": "Mert",
+      "soyad": "Kaya",
+      "isletmeAdi": "Kadıköy Gerçek Berber",
+      "sektor": "berber",
+      "sehir": "İstanbul",
+      "ilce": "Kadıköy",
+      "paket": "TEMEL"
+    },
+    "adim2": {
+      "gmbLink": "",
+      "instagramUsername": "kadikoygercekberber",
+      "instagramUrl": "https://instagram.com/kadikoygercekberber",
+      "facebookUrl": null
+    },
+    "adim3": {
+      "paletId": "siyah-altin",
+      "temaId": "modern-minimal"
+    },
+    "adim4": {
+      "aktifWebModulleri": ["hizmetler", "iletisim", "yorumlar"]
+    },
+    "adim5": {
+      "email": "mert@example.com",
+      "telefon": "05321112233",
+      "waNumarasi": "05321112233",
+      "telefonDogrulandi": true
+    },
+    "smsRizasi": false
+  }'
+```
+
+Beklenen onboarding cevabı:
+
+- HTTP `200`
+- `esnafId`
+- `localPreviewUrl: /site-preview/{esnafId}`
+- `Set-Cookie: kepenk_session`
+
+Cookie/session kontrolleri:
+
+```bash
+curl -i -b /tmp/kepenk-real.cookies \
+  http://127.0.0.1:3000/api/auth/me
+
+curl -s -b /tmp/kepenk-real.cookies \
+  http://127.0.0.1:3000/api/esnaf/{esnafId}
+```
+
+Beklenen Firestore/public alanları:
+
+- `siteData`
+- `siteData.isletmeAdi`
+- `siteData.heroBaslik`
+- `siteData.generatedBy: local-deterministic`
+- `localPreviewUrl`
+- `siteDurumu: local-preview-ready`
+- `subdomainUrl` Cloudflare yayını yapılmadıysa boş kalır.
+
+Public preview kontrolü:
+
+```bash
+curl -I http://127.0.0.1:3000/site-preview/{esnafId}
+```
+
+Beklenen:
+
+- `/site-preview/{esnafId}` HTTP `200` döner.
+- HTML işletme adını içerir.
+- Dashboard chrome görünmez.
+
+Dashboard kontrolü:
+
+```bash
+curl -I -b /tmp/kepenk-real.cookies \
+  http://127.0.0.1:3000/dashboard/sitem
+```
+
+Beklenen:
+
+- `/dashboard/sitem` HTTP `200` döner.
+- Tarayıcıda “Yerel Yayın Önizlemesini Aç” butonu görünür.
+- Link `/site-preview/{esnafId}` hedefine gider.
+
+Gerçek lokal site preview smoke sırasında çağrılmaması gerekenler:
+
+- `/api/site/uret`
+- `/api/site/guncelle`
+- `/api/site/editor-kaydet`
+- `/api/site/publish`
+- `/api/site/provision`
+- `/api/workers/site-ureticisi`
+- `/api/payment/**`
+- `/api/whatsapp/**`
+- `/api/cron/**`
+- `/api/ajan/**`
+- `/api/admin/**`
+- Cloudflare
+- Twilio/WhatsApp send
+- Telegram
+- `wa.me`
+
+Son görsel kontrol manuel yapılmalıdır:
+
+- `/dashboard/sitem`
+- `/site-preview/{esnafId}`
 
 ## Tarayıcıda Kontrol Edilecekler
 

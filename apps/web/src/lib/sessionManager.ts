@@ -13,9 +13,14 @@ import { NextRequest, NextResponse } from 'next/server'
 const COOKIE_ADI = 'kepenk_session'
 const JWT_SURE = '7d' // 7 gün geçerlilik
 const COOKIE_MAX_AGE = 7 * 24 * 60 * 60 // 7 gün (saniye)
+const DEV_SESSION_SECRET = 'kepenk-dev-secret-change-in-production-32ch'
 
 function getSecret(): Uint8Array {
-    const secret = process.env.SESSION_SECRET || 'kepenk-dev-secret-change-in-production-32ch'
+    const secret = process.env.SESSION_SECRET || DEV_SESSION_SECRET
+    if (process.env.NODE_ENV === 'production' && secret === DEV_SESSION_SECRET) {
+        throw new Error('SESSION_SECRET production ortamında zorunludur')
+    }
+
     return new TextEncoder().encode(secret)
 }
 

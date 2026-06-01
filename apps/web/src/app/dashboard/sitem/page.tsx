@@ -16,23 +16,16 @@ export default function SitemPage() {
     const [mesaj, setMesaj] = useState('')
     const router = useRouter()
     const demoSiteData = isDemo ? (esnaf?.siteData || demoBusiness.siteData) : null
+    const demoPublishedSitePath = '/site-preview/demo-berber-01'
+    const localPreviewUrl = !isDemo && esnafId
+        ? (typeof esnaf?.localPreviewUrl === 'string' && esnaf.localPreviewUrl)
+            || (esnaf?.siteData ? `/site-preview/${encodeURIComponent(esnafId)}` : null)
+        : null
+    const resolvedPreviewUrl = isDemo ? demoPublishedSitePath : (siteUrl || localPreviewUrl)
+    const hasLocalPreview = !isDemo && !siteUrl && Boolean(localPreviewUrl)
     const previewLabel = isDemo
         ? `${esnaf?.slug || demoBusiness.slug}.demo.local`
-        : siteUrl
-
-    const fetchEsnafData = async (id: string) => {
-        try {
-            const res = await fetch(`/api/esnaf/${id}`, { credentials: 'include' })
-            if (res.ok) {
-                const data = await res.json()
-                if (data.subdomainUrl) setSiteUrl(data.subdomainUrl)
-                if (data.sektor) setSektor(data.sektor)
-                if (data.paletId) setMevcutPaletId(data.paletId)
-            }
-        } catch (e) {
-            console.error('Esnaf data fetch error', e)
-        }
-    }
+        : resolvedPreviewUrl
 
     useEffect(() => {
         if (loading) return
@@ -44,7 +37,9 @@ export default function SitemPage() {
             return
         }
 
-        if (esnafId) fetchEsnafData(esnafId)
+        setSiteUrl(typeof esnaf?.subdomainUrl === 'string' && esnaf.subdomainUrl ? esnaf.subdomainUrl : null)
+        if (esnaf?.sektor) setSektor(esnaf.sektor)
+        if (esnaf?.paletId) setMevcutPaletId(esnaf.paletId)
     }, [esnaf, esnafId, isDemo, loading])
 
     async function handleYenidenUret() {
@@ -85,15 +80,15 @@ export default function SitemPage() {
         )
     }
 
-    if (!isDemo && !siteUrl) {
+    if (!isDemo && !resolvedPreviewUrl) {
         return (
             <div className="p-6 max-w-md mx-auto text-center mt-20">
                 <p className="text-5xl mb-4">⏳</p>
                 <h2 className="text-foreground font-syne font-bold text-2xl mb-2">
-                    Siteniz Hazırlanıyor
+                    Site hazırlanıyor
                 </h2>
                 <p className="text-muted-foreground text-sm leading-relaxed">
-                    Yapay zeka dükkanınız için özel içerikleri yazıyor ve bulut mimarisinde kodluyor. Bu işlem 1-2 dakika sürebilir. Hazır olduğunda WhatsApp&apos;ınıza anında bildirim gelecek.
+                    İşletme bilgilerinizden yerel önizleme oluşturulamadı.
                 </p>
             </div>
         )
@@ -113,34 +108,55 @@ export default function SitemPage() {
                         </p>
                         {isDemo ? (
                             <>
+                                <h2 className="text-foreground font-syne font-extrabold text-2xl mb-2">
+                                    Siten hazır
+                                </h2>
                                 <p className="text-foreground font-syne font-bold text-lg break-all block mb-4">
                                     {previewLabel}
                                 </p>
                                 <p className="text-muted-foreground text-sm leading-relaxed">
-                                    Demo modunda site onizlemesi yerel verilerle gosterilir; yayinlama ve uretim islemleri kapalidir.
+                                    Demo modunda site önizlemesi yerel verilerle gösterilir; yayınlama ve üretim işlemleri kapalıdır.
                                 </p>
-                            </>
-                        ) : (
-                            <>
-                                <a
-                                    href={siteUrl || '#'}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-foreground font-syne font-bold text-lg break-all hover:text-rust transition-colors block mb-4"
-                                >
-                                    {siteUrl?.replace('https://', '')}
-                                </a>
-                                <div className="flex flex-col gap-3">
+                                <div className="mt-5 flex flex-col gap-3">
                                     <a
-                                        href={siteUrl || '#'}
+                                        href={demoPublishedSitePath}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="w-full bg-rust hover:bg-rust-light transition-colors text-foreground text-sm font-bold py-3 rounded-xl text-center"
                                     >
-                                        Siteyi Aç ↗
+                                        Yayındaki Demo Siteyi Aç ↗
+                                    </a>
+                                    <p className="text-muted-foreground text-xs leading-relaxed">
+                                        Bu demo yayın linki dış servis çağırmadan yerel olarak gösterilir.
+                                    </p>
+                                </div>
+                            </>
+                        ) : (
+                            <>
+                                <a
+                                    href={resolvedPreviewUrl || '#'}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-foreground font-syne font-bold text-lg break-all hover:text-rust transition-colors block mb-4"
+                                >
+                                    {previewLabel?.replace('https://', '')}
+                                </a>
+                                {hasLocalPreview && (
+                                    <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+                                        Bu önizleme Cloudflare yayını değildir; gerçek verinizden yerel olarak oluşturulur.
+                                    </p>
+                                )}
+                                <div className="flex flex-col gap-3">
+                                    <a
+                                        href={resolvedPreviewUrl || '#'}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="w-full bg-rust hover:bg-rust-light transition-colors text-foreground text-sm font-bold py-3 rounded-xl text-center"
+                                    >
+                                        {hasLocalPreview ? 'Yerel Yayın Önizlemesini Aç ↗' : 'Siteyi Aç ↗'}
                                     </a>
                                     <button
-                                        onClick={() => siteUrl && navigator.clipboard.writeText(siteUrl)}
+                                        onClick={() => resolvedPreviewUrl && navigator.clipboard.writeText(resolvedPreviewUrl)}
                                         className="w-full px-4 py-3 bg-warm/50 hover:bg-warm border border-border-light/20 transition-colors text-muted-foreground font-bold text-sm rounded-xl"
                                     >
                                         Bağlantıyı Kopyala
@@ -149,6 +165,25 @@ export default function SitemPage() {
                             </>
                         )}
                     </div>
+
+                    {isDemo && (
+                        <div className="bg-white border border-border-light/30 rounded-3xl p-6 shadow-sm">
+                            <h3 className="text-foreground font-syne font-extrabold text-lg mb-4">Hazır Site Özeti</h3>
+                            <div className="space-y-3">
+                                {[
+                                    'Hizmetlerin ve fiyatların listelendi.',
+                                    'Müşteri yorumların vitrinde.',
+                                    'Telefon, adres ve çalışma saatlerin hazır.',
+                                    'Randevu çağrısı görünür; gerçek gönderim kapalı.',
+                                ].map((item) => (
+                                    <div key={item} className="flex items-start gap-3 rounded-xl bg-stone-50 px-3 py-2">
+                                        <span className="mt-0.5 h-2 w-2 rounded-full bg-rust" />
+                                        <p className="text-sm font-medium leading-5 text-muted-foreground">{item}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
 
                     {/* Güncelle */}
                     {!isDemo && (
@@ -187,7 +222,7 @@ export default function SitemPage() {
                             sektor={sektor}
                             onDegisti={() => {
                                 setMesaj('Siteniz güncelleniyor... 1-2 dakika içinde yenilenir.')
-                                fetchEsnafData(esnafId) // Yeni paleti ekrana yansıt
+                                if (esnaf?.paletId) setMevcutPaletId(esnaf.paletId)
                             }}
                         />
                     )}
@@ -299,10 +334,14 @@ export default function SitemPage() {
                             </div>
                         )}
                         {isDemo && demoSiteData ? (
-                            <DemoSitePreview siteData={demoSiteData} />
+                            <DemoSitePreview
+                                siteData={demoSiteData}
+                                services={esnaf?.services || demoBusiness.services}
+                                workingHours={esnaf?.workingHours || demoBusiness.workingHours}
+                            />
                         ) : (
                             <iframe
-                                src={siteUrl || undefined}
+                                src={resolvedPreviewUrl || undefined}
                                 className="w-full h-full border-0 absolute inset-0"
                                 title="Sitenizin Canlı Görünümü"
                             />

@@ -5,6 +5,8 @@ import { zodGuard, randevuOlusturSema } from '@/lib/zodSemalar'
 import { rateLimitCheck } from '@/lib/rateLimiter'
 import { isDemoEsnafId, isDemoModeEnabled } from '@/lib/demoMode'
 import { demoBusiness } from '@/data/demoBusiness'
+import { requireSessionEsnaf } from '@/lib/esnafOwnership'
+import { bookingDisabledResponse, isPublicBookingEnabled } from '@/lib/randevu/bookingFeatureFlags'
 
 // ── HTML Entity Escaping (XSS Koruması) ────────────────────────────────────
 function escapeHtml(str: string): string {
@@ -96,6 +98,10 @@ function operatorTelegramBildir(params: BildirimParams): void {
 
 // ── POST /api/randevu — Yeni randevu oluştur ───────────────────────────────
 export async function POST(request: Request) {
+    if (!isPublicBookingEnabled()) {
+        return bookingDisabledResponse()
+    }
+
     // ── Rate Limit ──
     const clientIp = request.headers.get('x-forwarded-for') || 'unknown'
     const rl = rateLimitCheck(`randevu:${clientIp}`, 'webhook')
@@ -199,6 +205,9 @@ export async function GET(request: Request) {
     if (isDemoModeEnabled() && isDemoEsnafId(esnafId)) {
         return NextResponse.json({ randevular: demoBusiness.appointments })
     }
+
+    const ownership = await requireSessionEsnaf(request, esnafId)
+    if (!ownership.ok) return ownership.response
 
     const snap = await adminDb
         .collection('randevular')
