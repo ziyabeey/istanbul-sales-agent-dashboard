@@ -553,6 +553,122 @@ No-go:
 - Public preview private/internal/payment/token field sizdirir.
 - Cloudflare, Twilio, Telegram, payment, cron, agent veya admin side-effect istemsiz calisir.
 
+## Final Smoke Status
+
+Final Smoke Status: **No-Go**
+
+Reason: Local environment blocker, not application behavior.
+
+Blocked by:
+
+- orphan Next process on `127.0.0.1:3000`
+- `.next/dev/lock`
+- missing controlled-launch env
+
+Code status:
+
+- commit `75da084`
+- working tree clean
+- `pnpm test` passed: 143 tests
+- repo-wide lint has existing debt
+
+Next action:
+
+- restart/kill orphan process
+- remove `.next/dev/lock` after process is stopped
+- load controlled smoke env
+- rerun final smoke
+
+Important notes:
+
+- Do not mark final smoke as passed.
+- The smoke remains No-Go until the environment blocker is removed and the full API/browser sequence passes.
+- `.env.controlled-smoke.local` must never be committed.
+
+### Environment Reset Steps
+
+```bash
+lsof -nP -iTCP:3000 -sTCP:LISTEN
+ps aux | grep node
+```
+
+If the stuck Node process remains:
+
+- Force Quit from Activity Monitor, or
+- restart the Mac.
+
+After the process is gone:
+
+```bash
+cd /Users/admin/Desktop/istanbul-sales-agent-dashboard/XinXia/apps/web
+rm -f .next/dev/lock
+```
+
+If needed:
+
+```bash
+rm -rf .next/dev
+```
+
+### Controlled Smoke Env
+
+Use a local-only env file:
+
+```bash
+cat > .env.controlled-smoke.local <<'EOF'
+ADMIN_SECRET_TOKEN=CHANGE_ME_ADMIN_SECRET
+SESSION_SECRET=CHANGE_ME_LONG_RANDOM_SESSION_SECRET
+
+FIREBASE_PROJECT_ID=CHANGE_ME
+FIREBASE_CLIENT_EMAIL=CHANGE_ME
+FIREBASE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nCHANGE_ME\n-----END PRIVATE KEY-----\n"
+
+NEXT_PUBLIC_APP_URL=http://127.0.0.1:3000
+
+NEXT_PUBLIC_KEPENK_MVP_TEST_RELEASE=true
+KEPENK_DEMO_MODE=false
+NEXT_PUBLIC_DEMO_MODE=false
+DEMO_MODE=false
+
+KEPENK_PUBLIC_BOOKING_ENABLED=false
+KEPENK_SITE_GENERATION_ENABLED=false
+KEPENK_SITE_PUBLISH_ENABLED=false
+KEPENK_SITE_EDITOR_SAVE_ENABLED=false
+KEPENK_SITE_EDITOR_PUBLISH_ENABLED=false
+EOF
+
+echo ".env.controlled-smoke.local" >> .git/info/exclude
+
+set -a
+source .env.controlled-smoke.local
+set +a
+```
+
+### Rerun Smoke
+
+```bash
+WATCHPACK_POLLING=true \
+CHOKIDAR_USEPOLLING=true \
+pnpm run dev:smoke
+```
+
+First checks:
+
+```bash
+curl -i http://127.0.0.1:3000/api/health
+
+curl -i http://127.0.0.1:3000/api/health/readiness
+
+curl -i -H "x-admin-token: $ADMIN_SECRET_TOKEN" \
+  http://127.0.0.1:3000/api/health/readiness
+```
+
+Expected:
+
+- `/api/health` -> `200`
+- `/api/health/readiness` without token -> `401`
+- `/api/health/readiness` with token -> `200`
+
 ## First Follow-Up
 
 Bir sonraki production hardening adimi:
