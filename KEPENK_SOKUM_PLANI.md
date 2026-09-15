@@ -2,7 +2,7 @@
 
 > **Durum:** Mevcut söküm çalışmalarının korunmuş ve repo ile doğrulanmaya başlayan anlık görüntüsü  
 > **Tarih:** 2026-09-15  
-> **Kapsam:** SÖKÜM 01–24  
+> **Kapsam:** SÖKÜM 01–25  
 > **Amaç:** Önce bulunan kararları kaybetmeden tek yerde toplamak. Gereksizleri temizleme, eksikleri tamamlama ve kod değişiklikleri sonraki doğrulama turlarında yapılacaktır.
 
 ## 0. Bu dosya ne değildir?
@@ -55,7 +55,8 @@ Eski söküm konuşmalarında birkaç numara başlığı zaman içinde kaymış 
 - **SÖKÜM 05–07** için karar kümeleri kurtarıldı ancak üç numaranın birebir başlık ayrımı kesin değil. Bu yüzden tek küme halinde tutuluyor ve sonraki doğrulamada ayrıştırılacak.
 - **SÖKÜM 13** kapsamı net, ayrıntılı nihai verdict kaydı kısmi.
 - **SÖKÜM 23** 2026-09-15 güncel `main` üzerinden yeniden doğrulandı ve kapatıldı.
-- **SÖKÜM 24** yeni açık frontier'dır.
+- **SÖKÜM 24** 2026-09-15 güncel `main` üzerinden doğrulandı ve kapatıldı.
+- **SÖKÜM 25** yeni açık frontier'dır.
 - Eski söküm notlarında geçen bazı dosya adları güncel `main` ile drift etmiş olabilir. Bundan sonra her verdict'te **tarihsel karar** ile **bugünkü repo kanıtı** ayrı tutulacaktır.
 
 ---
@@ -85,7 +86,8 @@ Eski söküm konuşmalarında birkaç numara başlığı zaman içinde kaymış 
 | 21 | Finance Core / Immutable Financial Event | Karar var | Immutable ledger tek mali gerçek |
 | 22 | Booking ↔ Finance Payment Policy | Karar var | Pure calculator + idempotent intents |
 | 23 | Kapora / Ön Ödeme / Kısmi Tahsilat / No-Show | Karar var | Booking policy/snapshot; Payment + Settlement + Refund ayrı authority |
-| 24 | Durable Jobs / Outbox / Webhook Inbox / Reconciliation | AÇIK | Sıradaki söküm frontier'ı |
+| 24 | Durable Jobs / Outbox / Webhook Inbox / Reconciliation | Karar var | Backup scheduler korunur; business durable execution çekirdeği inşa edilir |
+| 25 | Public Site Runtime / `apps/sites` / Publish Artifact Authority | AÇIK | Sıradaki söküm frontier'ı |
 
 ---
 
@@ -1678,50 +1680,568 @@ SÖKÜM 23 sonrası minimum acceptance seti:
 
 ---
 
-# 25. SÖKÜM 24: AÇIK FRONTIER
+# 25. SÖKÜM 24: Durable Jobs / Outbox / Webhook Inbox / Retry / Reconciliation
 
-## Durable Jobs / Outbox / Webhook Inbox / Retry / Reconciliation
+> **Durum:** 2026-09-15 güncel `main` üzerinden kapatıldı.  
+> **Verdict:** **KEEP infrastructure scheduler / REWRITE ad-hoc side effects / BUILD canonical durable execution core.**
 
-SÖKÜM 23 payment lifecycle'ının güvenli çalışması için sıradaki zorunlu katman budur.
+## 25.1 Güncel repo kanıtı
 
-### Güncel ilk sinyal
+SÖKÜM 24 boyunca repo yalnız isim bazlı değil, davranış bazlı da tarandı.
 
-- Root'ta `functions` var ancak güncel `functions/src` ağacında görünen scheduled iş `firestoreBackup.ts` ile sınırlı.
-- Paket listesinde açık bir `queue`, `worker` veya `payment` core paketi görünmüyor.
-- Önceki sökümlerde queue/outbox niyeti birçok domain'de tekrar ediyor ama tek durable execution authority henüz güncel repo üzerinden doğrulanmadı.
+### `functions` gerçekliği
 
-### SÖKÜM 24'te incelenecek
+Güncel `functions` dizininde yalnız:
 
-- queue/job authority
-- cron/scheduler authority
-- webhook inbox
-- outbox
-- retry semantics
-- at-least-once delivery
-- idempotency ownership
-- lock / lease
-- dead-letter queue
-- poison job behavior
-- backoff
-- job timeout
-- replay
-- provider callback dedupe
-- message delivery status jobs
-- payment reconciliation jobs
-- campaign scheduler
-- agent run durability
-- observability / trace correlation
-- recovery after process crash
+```text
+functions/
+  src/
+    scheduled/
+      firestoreBackup.ts
+```
+
+bulunuyor.
+
+`functions` kökünde bağımsız `package.json` yok. Root `firebase.json` functions emulator portunu tanımlıyor ancak ayrı bir functions source/deploy stanza taşımıyor.
+
+`firestoreBackup.ts` iki gerçek Firebase `onSchedule` işi içeriyor:
+
+- günlük Firestore export
+- aylık archive export
+
+Bu kod faydalı bir **infrastructure scheduler** örneğidir, fakat business job authority değildir.
+
+### Root runtime
+
+Root `package.json` script'leri:
+
+- build
+- dev
+- lint
+- clean
+- generate-configs
+
+ile sınırlı. Ayrı worker/consumer/job-runner başlangıç script'i görünmüyor.
+
+### CI/CD
+
+`.github/workflows/ci.yml` yalnız `pull_request` ve `push` event'leriyle çalışıyor. Test/build/lighthouse/staging deploy hattı var; business scheduler veya durable worker tanımı yok.
+
+### Kod taraması
+
+Güncel `main` üzerinde merkezi execution authority kanıtı olabilecek aşağıdaki izler aranıp bulunamadı veya authoritative bir runtime'a bağlanamadı:
+
+- `outbox`
+- `queue`
+- `worker`
+- `webhook`
+- `idempotency`
+- `reconcile`
+- `processedAt`
+- `retry`
+- `backoff`
+- `lease`
+- BullMQ
+- Google Cloud Tasks
+- Pub/Sub
+
+Önceki tarihsel söküm notlarında queue/webhook/scheduler isimleri geçmesi bugünkü `main` için çalışan bir authority kanıtı değildir.
+
+## 25.2 Ana karar
+
+Kepenk'in ödeme, mesajlaşma, campaign, agent ve provider entegrasyonları aynı **durable execution spine** üzerinden çalışmalı.
+
+Canonical akış:
+
+```text
+Domain Transaction
+    ├── Domain State
+    └── OutboxEvent
+             ↓
+       Durable Dispatcher
+             ↓
+           Job
+             ↓
+      Claim / Lease
+             ↓
+        JobAttempt
+             ↓
+ Provider / Capability
+             ↓
+   Verified Outcome
+             ↓
+Domain Result + Audit + Projection
+```
+
+Bu çekirdek ayrı domainlerin iş mantığını sahiplenmez. Onların güvenilir şekilde çalıştırılmasını sahiplenir.
+
+## 25.3 KEEP
+
+- `functions/src/scheduled/firestoreBackup.ts` içindeki gerçek günlük/aylık backup intent'i.
+- Firebase `onSchedule` primitive'i, yalnız uygun infrastructure/scheduler işlerinde.
+- Önceki domainlerde zaten tanımlanan explicit intent/event yaklaşımı.
+- Provider adapter'larının gerçek dış sistem çağrısı yapma rolü.
+- Verified outcome fikri.
+
+Backup scheduler Payment/Message/Agent queue yerine kullanılmayacak; kendi işi olan backup'ta kalacak.
+
+## 25.4 REWRITE
+
+Aşağıdaki desenler canonical durable path'e taşınmalı:
+
+- HTTP request içinde provider çağrısı yapıp sonucu tek seferde tamamlanmış saymak.
+- Callback/webhook içinde doğrudan çoklu domain mutation yapmak.
+- Agent veya automation'ın provider çağrısından sonra durable kanıt olmadan success yazması.
+- Campaign/message send'in process memory veya tek request ömrüne bağlı olması.
+- Retry'ın her domain tarafından ayrı uygulanması.
+- Cron'un domain business logic'ini doğrudan çağırması.
+- Reconciliation'ın manuel ve domain-spesifik script'lere bırakılması.
+
+## 25.5 BUILD: OutboxEvent
+
+Domain state değişikliği ile dış yan etki isteği aynı transaction sınırında kaydedilmeli.
+
+```text
+OutboxEvent {
+  id
+  businessId
+  aggregateType
+  aggregateId
+  aggregateRevision
+  eventType
+  payload
+  correlationId
+  idempotencyKey
+  createdAt
+  publishedAt?
+}
+```
+
+### Invariant
+
+**Domain state commit olduysa gerekli outbox event de commit olmuştur.**
+
+Şu durum yasak:
+
+```text
+DB commit başarılı
+↓
+process crash
+↓
+provider action sonsuza kadar kayıp
+```
+
+## 25.6 BUILD: Job + JobAttempt
+
+Önerilen minimum durable job:
+
+```text
+Job {
+  id
+  businessId
+  type
+  payloadRef
+  status: queued | running | succeeded | failed | dead | cancelled
+  priority
+  nextRunAt
+  attempts
+  maxAttempts
+  leaseOwner?
+  leaseUntil?
+  idempotencyKey
+  correlationId
+  createdAt
+  updatedAt
+}
+```
+
+Her fiziksel deneme ayrı kayda veya append-only attempt history'ye sahip olmalı:
+
+```text
+JobAttempt {
+  id
+  jobId
+  attemptNo
+  startedAt
+  finishedAt?
+  outcome
+  errorClass?
+  providerStatus?
+  retryAfter?
+  workerId
+}
+```
+
+Job mutable orchestration state olabilir. `JobAttempt` ve domain outcome geçmişi sessizce rewrite edilmemeli.
+
+## 25.7 Worker lease / crash recovery
+
+Bir job worker tarafından claim edildiğinde kalıcı lease almalı.
+
+Kurallar:
+
+1. Aynı anda iki worker aynı job'ı sahibi sanmamalı.
+2. Worker ölürse lease süresi bitince job yeniden claim edilebilmeli.
+3. Uzun iş heartbeat/lease extension kullanabilmeli.
+4. Lease süresi iş timeout'undan bağımsız açıkça tanımlanmalı.
+5. Worker ID ve attempt numarası audit'te kalmalı.
+
+Bu sayede process crash `running forever` üretmez.
+
+## 25.8 Retry sınıflandırması
+
+Her hata retry edilmemeli.
+
+### Retry edilebilir
+
+- network timeout
+- provider 429
+- provider 5xx
+- geçici DNS/transport hatası
+- geçici dependency unavailable
+
+### Genellikle permanent
+
+- schema/validation hatası
+- tenant/permission denial
+- invalid destination
+- provider 4xx business rejection
+- invalid signature
+- malformed payload
+
+Retry:
+
+```text
+exponential backoff + jitter
+```
+
+kullanmalı ve provider `Retry-After` veriyorsa saygı göstermeli.
+
+## 25.9 Dead-letter / poison job
+
+`maxAttempts` dolunca job sessizce kaybolmaz.
+
+```text
+failed attempts
+    ↓
+dead
+    ↓
+alert / inspection
+    ↓
+manual replay veya explicit discard
+```
+
+Replay eski attempt'leri silmez. Yeni attempt ve audit izi üretir.
+
+## 25.10 BUILD: Webhook Inbox
+
+Provider callback/webhook'ları business logic'e doğrudan girmemeli.
+
+Canonical ingress:
+
+```text
+Provider HTTP Request
+        ↓
+Raw Payload Capture
+        ↓
+Signature Verification
+        ↓
+WebhookInbox
+        ↓
+Dedupe
+        ↓
+Durable Job
+        ↓
+Idempotent Domain Handler
+        ↓
+Processed Outcome
+```
+
+Minimum model:
+
+```text
+WebhookInbox {
+  id
+  provider
+  providerAccountId?
+  businessId?
+  providerEventId?
+  payloadHash
+  eventType?
+  signatureVerified
+  receivedAt
+  status: received | queued | processed | rejected | dead
+  processedAt?
+  correlationId
+}
+```
+
+### Dedupe
+
+Tercih edilen unique scope:
+
+```text
+provider + providerAccountId + providerEventId
+```
+
+Provider event ID vermiyorsa stable payload hash + güvenli provider scope fallback olabilir.
+
+Invalid signature business job'a dönüşmez. Audit için metadata/hash tutulabilir ancak payload secrets/PII sınırsız loglanmaz.
+
+## 25.11 Exactly-once gerçeği
+
+Transport seviyesinde mutlak exactly-once varsayılmayacak.
+
+Kepenk'in hedefi:
+
+```text
+at-least-once execution
++
+idempotent business effects
+=
+effectively-once domain outcome
+```
+
+Örneğin aynı İyzico callback üç kez gelirse üç webhook receipt görülebilir ama:
+
+- tek Payment,
+- tek Settlement etkisi,
+- tek Ledger sonucu
+
+oluşmalıdır.
+
+## 25.12 Idempotency authority
+
+Idempotency domain içindeki dağınık `if exists` kontrolleri olmamalı.
+
+Önerilen kayıt:
+
+```text
+IdempotencyRecord {
+  scope
+  key
+  businessId
+  operation
+  status: processing | succeeded | failed
+  resultRef?
+  createdAt
+  completedAt?
+  expiresAt?
+}
+```
+
+Örnek key'ler:
+
+```text
+payment.capture:{provider}:{providerPaymentId}
+refund:{provider}:{providerRefundId}
+message.send:{conversationId}:{messageIntentId}
+finance.apply:{sourceEventId}:{intentType}
+agent.action:{runId}:{actionId}
+```
+
+TTL yalnız gerçekten tekrar gelmeyeceği güvenli pencereler için kullanılmalı. Finansal dedupe kanıtları körlemesine expire edilmemeli.
+
+## 25.13 Scheduler ile queue ayrımı
+
+Scheduler yalnız **ne zaman intent üretileceğini** belirler.
+
+```text
+Scheduler
+   ↓
+Creates Job / Domain Intent
+   ↓
+Durable Worker
+```
+
+Scheduler provider'a doğrudan mesaj/ödeme/agent aksiyonu göndermez.
+
+Böylece aynı iş:
+
+- schedule,
+- manual trigger,
+- webhook,
+- domain event
+
+kaynaklarından gelse bile tek execution path kullanır.
+
+## 25.14 Reconciliation first-class olmalı
+
+Reconciliation hata sonrası son çare değil, sistemin normal parçasıdır.
+
+İlk zorunlu reconcilers:
+
+### Payments
+
+```text
+Provider captures/refunds
+      ↕
+Payment / Refund
+      ↕
+Settlement
+      ↕
+Finance Ledger
+```
+
+### Messaging
+
+```text
+Message Intent
+      ↕
+Provider Message ID / Delivery Status
+      ↕
+Conversation Projection
+```
+
+### Campaign
+
+```text
+Eligible audience
+      ↕
+Created message jobs
+      ↕
+Provider outcomes
+      ↕
+Conversion events
+```
+
+### Agent actions
+
+```text
+Agent Action Intent
+      ↕
+Capability Invocation
+      ↕
+Verified Outcome
+      ↕
+Audit Event
+```
+
+Drift sessiz overwrite edilmez. `ReconciliationIncident` üretir.
+
+## 25.15 Observability
+
+Her zincirde en az şu kimlikler taşınmalı:
+
+- `businessId`
+- `correlationId`
+- `jobId`
+- `attemptId`
+- `sourceEventId`
+- provider reference
+
+Metric'ler:
+
+- queue depth
+- oldest queued age
+- running lease count
+- retry count
+- dead jobs
+- webhook lag
+- duplicate webhook rate
+- reconciliation drift count
+- provider latency / failure rate
+
+Log mesajı success gerçeği değildir. Success verified outcome ile belirlenir.
+
+## 25.16 Tenant / security sınırı
+
+- Job kendi `businessId`'sini taşır.
+- Worker payload'dan tenant authority uydurmaz.
+- Provider secret job payload'ına kopyalanmaz; server-side secret resolver kullanılır.
+- Raw webhook payload retention sınırlı ve redaction-aware olmalı.
+- Admin/manual replay authorization + audit gerektirir.
+- Client doğrudan `succeeded`, `processed`, `publishedAt`, `leaseOwner` gibi execution state yazamaz.
+
+## 25.17 DROP adayları
+
+Yeni spine devreye girdikten sonra aşağıdakiler kaldırılmalı veya compatibility adapter'a indirilmeli:
+
+- process-memory queue'ların durable authority sayılması
+- tek HTTP request ömrüne bağlı dış aksiyonlar
+- callback içinde doğrudan finansal truth mutasyonu
+- domain bazında kopyalanmış retry loop'ları
+- `console.log("success")` benzeri outcome authority'leri
+- cron'un doğrudan provider side effect üretmesi
+- duplicate callback'in sessizce ikinci business effect üretmesi
+- retry geçmişini overwrite etmek
+- sonsuza kadar `running` kalabilen jobs
+
+## 25.18 Kritik invariants
+
+1. Domain state + gerekli outbox event atomik oluşturulur.
+2. Delivery at-least-once kabul edilir; business effect idempotent olmalıdır.
+3. Provider webhook doğrulanmadan domain effect üretemez.
+4. Valid webhook durable inbox'a kaydolmadan işlenmiş sayılmaz.
+5. Aynı provider event tekrarları aynı domain effect'i üretemez.
+6. Job lease'i kaybolursa güvenli biçimde recover edilir.
+7. Permanent hata kontrolsüz retry edilmez.
+8. Dead job görünür ve replay edilebilir olur.
+9. Replay geçmişi silmez.
+10. Reconciliation drift'i history rewrite ile gizlemez.
+11. Client durable execution state'in authority'si değildir.
+12. Job success yalnız verified domain/provider outcome ile yazılır.
+
+## 25.19 Smoke/probe seti
+
+SÖKÜM 24 sonrası minimum acceptance:
+
+- DB commit sonrası worker crash → outbox event kaybolmaz
+- job claim sonrası worker crash → lease expiry sonrası tekrar alınır
+- iki worker aynı job'a yarışır → tek claim
+- provider timeout → retry
+- provider 429 + Retry-After → uygun gecikme
+- provider permanent 4xx → retry storm yok
+- max attempts → dead-letter
+- dead job manual replay → yeni attempt + audit
+- aynı webhook üç kez → tek domain effect
+- invalid webhook signature → effect yok
+- valid webhook persist sonrası process crash → sonra işlenir
+- aynı payment callback → tek Payment + tek Ledger effect
+- aynı message intent retry → duplicate mesaj yok veya provider idempotency ile tek logical result
+- payment reconciliation mismatch → incident
+- message delivery drift → incident
+- queue depth/oldest age observable
+- cross-tenant job payload → fail closed
+
+---
+
+# 26. SÖKÜM 25: AÇIK FRONTIER
+
+## Public Site Runtime / `apps/sites` / Publish Artifact Authority
+
+SÖKÜM 11'de `apps/sites` varlığı doğrulandı ancak authoritative renderer olup olmadığı açık bırakıldı. SÖKÜM 25 bu borcu kapatacak.
+
+### İncelenecek
+
+- `apps/sites/src` gerçek route/runtime ağacı
+- public hostname resolution
+- site/business data fetch path
+- theme registry ve component ownership
+- draft/preview/published ayrımı
+- published artifact gerçekten var mı, yoksa runtime canlı Firestore mu okuyor
+- business/site/theme revision pinning
+- custom domain / subdomain davranışı
+- cache/revalidation
+- tenant isolation
+- asset URL ve deploy artifact davranışı
+- editor/dashboard ile public runtime arasındaki bağımlılık
+- fallback davranışları
+- unknown hostname fail-closed davranışı
+- SEO metadata source
+- forms/booking/commerce bağlantıları
+- renderer determinism
+- publish rollback ihtimali
 
 **Bu başlık için nihai verdict henüz yazılmamalıdır.**
 
 ---
 
-# 26. Çapraz mimari kuralları
+# 27. Çapraz mimari kuralları
 
 Bütün sökümlerin ortak sonucu aşağıdaki kurallardır.
 
-## 26.1 Tek authority
+## 27.1 Tek authority
 
 Her domain'in tek authoritative çekirdeği olmalı:
 
@@ -1734,20 +2254,21 @@ Her domain'in tek authoritative çekirdeği olmalı:
 - Booking → Booking Core
 - Payment → Payment Core
 - Finance → Ledger
+- Durable execution → Outbox / Job / Webhook Inbox
 - Agent execution → Agent Runtime
 - Knowledge → RAG/Memory Core
 
 Compatibility route olabilir, compatibility **authority** olamaz.
 
-## 26.2 Typed contracts
+## 27.2 Typed contracts
 
 Domainler birbirine internal object spread ile değil açık sözleşmeyle bağlanmalı.
 
-## 26.3 Tenant boundary
+## 27.3 Tenant boundary
 
 Her read/write/action tenant/business kimliğiyle doğrulanmalı. Provider adapter veya agent runtime bu sınırı bypass edememeli.
 
-## 26.4 Idempotency
+## 27.4 Idempotency
 
 Özellikle şu işlemler idempotent olmalı:
 
@@ -1761,33 +2282,33 @@ Her read/write/action tenant/business kimliğiyle doğrulanmalı. Provider adapt
 - agent action
 - provider retry
 
-## 26.5 Durable queue / outbox
+## 27.5 Durable queue / outbox
 
 "Fonksiyon çağrıldı" ile "iş başarıyla gerçekleşti" aynı şey değildir. Dış sistem aksiyonları durable job/outbox + verified outcome üzerinden ilerlemeli.
 
-## 26.6 Audit
+## 27.6 Audit
 
 Kritik aksiyonlarda kim, hangi tenant için, hangi intent ile, hangi provider sonucu üzerine ne yaptı görülebilmeli.
 
-## 26.7 Money
+## 27.7 Money
 
 Para değerleri minor-unit üzerinden tutulmalı. Float finansal gerçek olmamalı.
 
-## 26.8 Consent / RBAC
+## 27.8 Consent / RBAC
 
 Marketing, CRM, messaging ve agent aksiyonlarında consent ile role/capability kontrolü merkezi olmalı.
 
-## 26.9 Provider abstraction
+## 27.9 Provider abstraction
 
 Twilio, İyzico, Meta, Google, Pinecone ve model provider'ları business logic'in içine dağılmamalı. Tek gateway/adapter kontratı olmalı.
 
-## 26.10 Verified outcome
+## 27.10 Verified outcome
 
 Agent, campaign, provider veya automation için "success" ancak doğrulanabilir outcome varsa success'tir.
 
 ---
 
-# 27. Birleşik smoke/probe listesi
+# 28. Birleşik smoke/probe listesi
 
 Sonraki temizlik ve yeniden bağlama turunda en az aşağıdaki uçtan uca problar çalıştırılmalı.
 
@@ -1846,6 +2367,14 @@ Sonraki temizlik ve yeniden bağlama turunda en az aşağıdaki uçtan uca probl
 - Booking/order client mutation finansal truth değiştiremez.
 - Money-unit conversion yalnız boundary'de yapılır.
 
+## Durable Execution
+
+- Domain commit sonrası outbox kaybolmaz.
+- Worker crash sonrası job recover olur.
+- Duplicate webhook duplicate business effect üretmez.
+- Retry/dead-letter/replay audit edilebilir.
+- Reconciliation drift görünür incident olur.
+
 ## Agent Runtime
 
 - Agent permission olmadan capability çağıramaz.
@@ -1863,7 +2392,7 @@ Sonraki temizlik ve yeniden bağlama turunda en az aşağıdaki uçtan uca probl
 
 ---
 
-# 28. Sonraki faz: Temizleme ve eksik tamamlama sırası
+# 29. Sonraki faz: Temizleme ve eksik tamamlama sırası
 
 Bu dosya yazıldıktan sonraki çalışma sırası:
 
@@ -1876,21 +2405,24 @@ Bu dosya yazıldıktan sonraki çalışma sırası:
 3. **Authority çakışmalarını kapatma**  
    Önce müşteri, business facts, billing, messaging, payment, finance ve agent runtime gibi çoklu gerçek kaynakları çözülür.
 
-4. **Dead/duplicate kod temizliği**  
+4. **Durable execution spine**  
+   Payment, messaging, campaign, reconciliation ve agent side effect'lerinden önce outbox/job/webhook-inbox/idempotency çekirdeği kurulur.
+
+5. **Dead/duplicate kod temizliği**  
    Ancak import/runtime kanıtından sonra silme yapılır.
 
-5. **Eksik çekirdeklerin inşası**  
-   Renderer, durable jobs/outbox, Payment Core, immutable ledger, capability bus gibi eksikler tamamlanır.
+6. **Eksik çekirdeklerin inşası**  
+   Renderer, Payment Core, immutable ledger, capability bus gibi eksikler tamamlanır.
 
-6. **Compatibility katmanları**  
+7. **Compatibility katmanları**  
    Eski route/UI bir anda kırılmadan yeni authority'lere yönlendirilir.
 
-7. **Smoke + integration + regression**  
+8. **Smoke + integration + regression**  
    Çapraz domain probları geçmeden eski authority tamamen kaldırılmaz.
 
 ---
 
-# 29. Bilinen plan borçları
+# 30. Bilinen plan borçları
 
 Aşağıdakiler bilinçli olarak açık bırakılmıştır:
 
@@ -1898,13 +2430,13 @@ Aşağıdakiler bilinçli olarak açık bırakılmıştır:
 - Eski SÖKÜM 12 numara çakışmasının kaynak konuşması tekrar doğrulanacak.
 - SÖKÜM 13 için exact file/verdict matrisi tamamlanacak.
 - SÖKÜM 21–22'deki tarihsel dosya referansları güncel `main` package/import graph ile yeniden eşlenecek.
-- SÖKÜM 24 tamamlanacak.
+- SÖKÜM 25 tamamlanacak.
 - Bu belgeye henüz otomatik dependency graph eklenmedi.
 - `KEEP / REWRITE / DROP / BUILD` eski bölümlerin çoğunda capability seviyesinde; sonraki turlarda dosya seviyesine indirilecek.
 
 ---
 
-# 30. Korunan ana fikir
+# 31. Korunan ana fikir
 
 Kepenk'in asıl değeri tek tek agent dosyaları, dashboard kartları veya route sayısı değil. Değer, işletmenin gerçeklerini bir kez tanımlayıp bütün sistemi aynı gerçek üzerinden çalıştırabilmesidir.
 
@@ -1916,6 +2448,8 @@ Business Facts
 Customer / Booking / Commerce
     ↓
 Canonical Events
+    ↓
+Durable Outbox / Job Spine
     ↓
 Messaging / Marketing / Payment / Finance / Analytics
     ↓
@@ -1948,4 +2482,4 @@ Bu iki omurga birbirinin kopyası değil, aynı işletme gerçeğinin iki farkl�
 
 ---
 
-**Şimdiki checkpoint:** SÖKÜM 01–23'ün kararları tek belgede. SÖKÜM 23 güncel repo kanıtıyla kapatıldı. SÖKÜM 24 `Durable Jobs / Outbox / Webhook Inbox / Reconciliation` açık frontier'dır.
+**Şimdiki checkpoint:** SÖKÜM 01–24'ün kararları tek belgede. SÖKÜM 24 güncel repo kanıtıyla kapatıldı. SÖKÜM 25 `Public Site Runtime / apps/sites / Publish Artifact Authority` açık frontier'dır.
