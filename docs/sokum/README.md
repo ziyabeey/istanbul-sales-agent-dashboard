@@ -10,7 +10,8 @@
 | 01-24 | Önceki söküm kararları | KAPALI / arşivlenmiş | `KEPENK_SOKUM_PLANI.md` |
 | 25 | Public Site Runtime / `apps/sites` / Publish Artifact Authority | KAPALI | `docs/sokum/25-public-site-runtime.md` |
 | 26 | Site Authoring / Draft -> Publish Command / Artifact Storage / Domain Binding Writer | KAPALI | `docs/sokum/26-site-authoring-publish-domain-writer.md` |
-| 27 | Media / Asset Storage / Upload / CDN / Immutable Asset Reference Authority | AÇIK | sıradaki doğrulama turu |
+| 27 | Media / Asset Storage / Upload / CDN / Immutable Asset Reference Authority | KAPALI | `docs/sokum/27-media-asset-authority.md` |
+| 28 | Public Interaction Runtime / Forms / Lead Capture / Action Capability Boundary | AÇIK | sıradaki doğrulama turu |
 
 ## Kanonik devam kuralı
 
@@ -20,18 +21,51 @@
 - Paralel ajan aynı frontier'ı kapatmışsa üzerine yazılmaz; güncel `main` yeniden okunup sonraki açık frontier'a geçilir.
 - `apps/randevu-server` bu söküm serisi nedeniyle değiştirilmez.
 
+## Kapanan son karar: SÖKÜM 27
+
+Media katmanında canonical storage authority olmadığı doğrulandı.
+
+Kanonik yön:
+
+```text
+Upload / Import / AI
+        ↓
+     Asset Core
+        ↓
+immutable blob + provenance
+        ↓
+AssetRecord / Variant
+        ↓
+canonical MediaRef
+        ↓
+SiteDraft
+        ↓
+Publish asset closure
+        ↓
+PublishedAssetSet
+        ↓
+PublishedSiteRevision
+        ↓
+CDN delivery
+```
+
+`blob:` URL, arbitrary external URL ve raw provider URL production asset authority olmayacaktır.
+
 ## Aktif frontier
 
-### SÖKÜM 27 - Media / Asset Storage / Upload / CDN / Immutable Asset Reference Authority
+### SÖKÜM 28 - Public Interaction Runtime / Forms / Lead Capture / Action Capability Boundary
 
 Öncelikli sorular:
 
-- Upload tenant ownership'i nasıl kuruluyor?
-- Asset URL/object key mutable mı?
-- `MediaRef` gerçekten immutable bir asset revision'a mı işaret ediyor?
-- Published site eski görsel revision'ını rollback sırasında yeniden okuyabiliyor mu?
-- External/Unsplash asset'leri publish artifact'e nasıl pinleniyor?
-- Asset silme veya overwrite published revision'ı bozabiliyor mu?
-- Content hash, dedupe, transform/CDN, orphan GC ve provenance authority nerede?
+- Public site contact/action component'leri hangi API'lere yazıyor?
+- Tenant/site/business identity request body'den mi geliyor, canonical DomainBinding/published revision'dan mı?
+- Lead/contact form Customer Core/CRM'e mi yazıyor, paralel koleksiyon mu oluşturuyor?
+- Booking CTA Booking authority'ye mi bağlı?
+- Commerce action'ları Commerce Core'a mı bağlı?
+- Public action endpoint'lerinde origin/CORS, abuse/rate limit, bot/spam ve idempotency nasıl çalışıyor?
+- Published component hangi capability'yi çağırabileceğini nasıl beyan ediyor?
+- Form/action schema published revision ile pinli mi?
+- Public action analytics/attribution/customer timeline'a nasıl bağlanıyor?
+- Public renderer process'inin hangi mutation capability'lerine gerçekten ihtiyacı var?
 
-SÖKÜM 27 için verdict henüz verilmemiştir.
+SÖKÜM 28 için verdict henüz verilmemiştir.
