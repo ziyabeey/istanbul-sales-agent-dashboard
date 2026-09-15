@@ -13,7 +13,8 @@
 | 27 | Media / Asset Storage / Upload / CDN / Immutable Asset Reference Authority | KAPALI | `docs/sokum/27-media-asset-authority.md` |
 | 28 | Public Interaction Runtime / Forms / Lead Capture / Action Capability Boundary | KAPALI | `docs/sokum/28-public-interaction-action-capability-boundary.md` |
 | 29 | Identity / Session / Tenant Context / API Guard / Service Trust Boundary | KAPALI | `docs/sokum/29-identity-session-tenant-service-trust.md` |
-| 30 | Secrets / Configuration / Provider Credentials / Encryption Key Rotation Authority | AÇIK | sıradaki doğrulama turu |
+| 30 | Secrets / Configuration / Provider Credentials / Encryption Key Rotation Authority | KAPALI | `docs/sokum/30-secrets-credential-authority-rotation.md` |
+| 31 | Observability / Audit / Logging / Metrics / Tracing / Operational Truth | AÇIK | sıradaki doğrulama turu |
 
 ## Kanonik devam kuralı
 
@@ -23,74 +24,78 @@
 - Paralel ajan aynı frontier'ı kapatmışsa üzerine yazılmaz; güncel `main` yeniden okunup sonraki açık frontier'a geçilir.
 - `apps/randevu-server` bu söküm serisi nedeniyle değiştirilmez.
 
-## Kapanan son karar: SÖKÜM 29
+## Kapanan son karar: SÖKÜM 30
 
-Identity ve service trust katmanında tek bir canonical trust graph olmadığı doğrulandı. Merchant JWT, NextAuth admin, raw admin token, impersonation JWT, cron secret, Cloud Task secret, GCP OIDC ve provider webhook doğrulamaları paralel authority'ler olarak yaşıyor.
+Credential ve secret katmanında tek bir canonical authority olmadığı doğrulandı. Platform provider key'leri, tenant OAuth grant'leri, signing/encryption key'leri, admin/service bearer'ları ve webhook secrets env/document sözleşmelerine dağılmış durumda.
 
-En kritik bulgular:
+En kritik kararlar:
 
-- `/api/onboarding/complete`, verified OTP proof olmadan tenant ve session oluşturabiliyor; client package ve aktif modül seçimlerini etkileyebiliyor.
-- onboarding SMS başarısızlığında sabit `123456` OTP fallback'i devreye giriyor.
-- dashboard proxy custom merchant session'ı doğrulamak yerine cookie varlığına bakıyor.
-- admin login cookie contract'ı ile proxy'nin admin cookie doğrulaması aynı değil.
-- `/api/cron/kuyruk-isleyici` auth olmadan privileged queue/AI/WhatsApp işleri çalıştırabiliyor.
-- `food-delivery` webhook secret/signature eksikken signature kontrolünü atlayabiliyor.
-- `iyzico-kapora` request body'deki ödeme başarısını provider verification olmadan state transition'a çevirebiliyor.
-- `domain/sec` ve `site/versiyonlar` gibi legacy route'lar tenant ID'yi request'ten authority olarak kabul edebiliyor.
+- `.env` canonical secret vault değildir; bootstrap/config/secret-reference katmanı olacaktır.
+- provider adapter'ları raw `process.env` okumak yerine Credential Resolver üzerinden scoped credential handle alacaktır.
+- tenant OAuth tokenları generic business record içinde yaşamayacak, ayrı `OAuthGrant` lifecycle'ına taşınacaktır.
+- persistent encrypted envelope `kid` taşıyacak ve versioned keyring ile decrypt/rotate edilecektir.
+- session signing key'leri de `kid` + active/previous keyring ile döndürülebilecektir.
+- `ADMIN_SECRET_TOKEN` ve `CRON_SECRET` universal production authority olmaktan çıkacaktır.
+- service-to-service trust kısa ömürlü OIDC/workload identity + audience ile kurulacaktır.
+- required webhook signing credential yoksa endpoint fail-closed olacaktır.
+- production mock/default/empty credential fallback'leri ve confidential `NEXT_PUBLIC_*` secret fallback'leri kaldırılacaktır.
+- sandbox/mock provider environment'a production'da sessiz fallback yasaktır.
 
 Canonical yön:
 
 ```text
-Credential
-   ↓
-Authentication Adapter
-   ↓
-Principal
-   ↓
-RequestContext Resolver
-   ↓
-Tenant / Membership / Delegation
-   ↓
-Capability Authorization
-   ↓
-Entitlement Check
-   ↓
-Domain Command / Query
-   ↓
-Audit + Outbox
+Actor / Service / Public Capability
+               ↓
+           TrustContext
+               ↓
+       Capability Definition
+               ↓
+     Credential Requirements
+               ↓
+       Credential Resolver
+          ↙           ↘
+platform credential   tenant OAuthGrant
+          ↓             ↓
+   CredentialVersion  encrypted envelope(kid)
+          ↘             ↙
+        Secret Store / KMS
+               ↓
+         Provider Adapter
+               ↓
+       External Provider
 ```
 
-Temel ayrım:
+En önemli invariant:
 
-```text
-Credential  -> kim olduğunu kanıtlar
-Membership  -> hangi tenant'ta yetkili olduğunu kanıtlar
-Capability  -> ne yapabileceğini belirler
-Entitlement -> tenant'ın özelliğe sahip olup olmadığını belirler
-RequestContext -> bunları domain katmanına tek sözleşme olarak taşır
-```
-
-GCP OIDC verifier intent'i, Firestore RBAC intent'i, fail-closed session secret yaklaşımı ve AES-256-GCM token encryption primitive'i korunacaktır. Production dev-login, fixed OTP fallback, cookie-presence authorization, auth'suz privileged workers ve unverified payment webhooks kaldırılacaktır.
+> Secret değerinin kendisi authority değildir. Credential owner + scope + caller + active version + capability policy birlikte authority oluşturur.
 
 ## Aktif frontier
 
-### SÖKÜM 30 - Secrets / Configuration / Provider Credentials / Encryption Key Rotation Authority
+### SÖKÜM 31 - Observability / Audit / Logging / Metrics / Tracing / Operational Truth
 
 Öncelikli sorular:
 
-- Environment secret'ları hangi dosyalarda default/fallback değerlerle kullanılıyor?
-- Hangi credentials platform-global, hangileri tenant/provider bağlantısına ait?
-- `TOKEN_ENCRYPTION_KEY` versioning ve rotation nasıl yapılacak?
-- OAuth refresh/access token'ları nerede ve hangi owner altında tutuluyor?
-- Encryption key id/version ciphertext ile birlikte saklanıyor mu?
-- Dual-read / dual-write rotation mümkün mü?
-- Secret Manager/KMS adapter mevcut mu?
-- Cloudflare, Google, Twilio, Netgsm, Meta ve Iyzico credentials nasıl ayrıştırılıyor?
-- Production readiness hangi security dependency'lerini gerçekten zorunlu tutuyor?
-- Secret leak/revoke sonrası blast radius nasıl sınırlandırılıyor?
-- Runtime config ile domain/business config nasıl ayrılıyor?
-- Provider credential last-used, expiry, refresh, revoke ve audit lifecycle'ı var mı?
+- Structured logging var mı, yoksa `console.*` adaları mı?
+- Request ID, correlation ID, command ID ve event ID zinciri var mı?
+- Public action -> domain command -> outbox -> worker -> provider tek trace altında izlenebiliyor mu?
+- Admin, impersonation, credential rotation ve tenant-sensitive mutation'lar immutable audit'e düşüyor mu?
+- Audit log ile debug/application log birbirinden ayrılmış mı?
+- Outbox/worker attempt, retry, DLQ ve dead-job görünürlüğü var mı?
+- Metrics, SLI/SLO ve error budget kavramları var mı?
+- Provider latency/error/rate-limit degradation alarm üretiyor mu?
+- PII, token ve credential redaction merkezi mi?
+- Liveness, readiness ve dependency health birbirinden ayrılmış mı?
+- Production incident sırasında hangi tenant/command/provider zincirinin etkilendiği bulunabiliyor mu?
+- Retention, tamper resistance ve audit export politikası var mı?
 
-SÖKÜM 30'un hedefi:
+SÖKÜM 31'in hedefi:
 
-> **Secret değerlerini kod/env fallback dünyasından çıkarıp versioned, rotatable, scoped ve auditable credential authority'ye bağlamak.**
+```text
+request / actor / tenant / command / event / worker / provider
+                         ↓
+                 tek correlation graph
+                         ↓
+        logs + metrics + traces + immutable audit
+```
+
+> **Önceki sökümlerde tanımlanan invariant'ların production'da gerçekten korunup korunmadığını kanıtlayacak operational truth katmanını kurmak.**
