@@ -11,7 +11,8 @@
 | 25 | Public Site Runtime / `apps/sites` / Publish Artifact Authority | KAPALI | `docs/sokum/25-public-site-runtime.md` |
 | 26 | Site Authoring / Draft -> Publish Command / Artifact Storage / Domain Binding Writer | KAPALI | `docs/sokum/26-site-authoring-publish-domain-writer.md` |
 | 27 | Media / Asset Storage / Upload / CDN / Immutable Asset Reference Authority | KAPALI | `docs/sokum/27-media-asset-authority.md` |
-| 28 | Public Interaction Runtime / Forms / Lead Capture / Action Capability Boundary | AÇIK | sıradaki doğrulama turu |
+| 28 | Public Interaction Runtime / Forms / Lead Capture / Action Capability Boundary | KAPALI | `docs/sokum/28-public-interaction-action-capability-boundary.md` |
+| 29 | Identity / Session / Tenant Context / API Guard / Service Trust Boundary | AÇIK | sıradaki doğrulama turu |
 
 ## Kanonik devam kuralı
 
@@ -21,51 +22,72 @@
 - Paralel ajan aynı frontier'ı kapatmışsa üzerine yazılmaz; güncel `main` yeniden okunup sonraki açık frontier'a geçilir.
 - `apps/randevu-server` bu söküm serisi nedeniyle değiştirilmez.
 
-## Kapanan son karar: SÖKÜM 27
+## Kapanan son karar: SÖKÜM 28
 
-Media katmanında canonical storage authority olmadığı doğrulandı.
+Public UI ile CRM / Booking / Commerce motorları arasında tek bir action authority olmadığı doğrulandı.
 
-Kanonik yön:
+En kritik invariant:
 
 ```text
-Upload / Import / AI
-        ↓
-     Asset Core
-        ↓
-immutable blob + provenance
-        ↓
-AssetRecord / Variant
-        ↓
-canonical MediaRef
-        ↓
-SiteDraft
-        ↓
-Publish asset closure
-        ↓
-PublishedAssetSet
-        ↓
-PublishedSiteRevision
-        ↓
-CDN delivery
+UI success
+   ==
+authoritative domain command committed
 ```
 
-`blob:` URL, arbitrary external URL ve raw provider URL production asset authority olmayacaktır.
+Canonical yön:
+
+```text
+PublishedSiteRevision
+        ↓
+PublicCapabilityManifest
+        ↓
+ThemeRenderer / Public Components
+        ↓
+  actionId + user input
+        ↓
+   Public Action Gateway
+        ↓
++----------------------------+
+| resolve host/revision      |
+| resolve tenant/action      |
+| entitlement               |
+| abuse control             |
+| schema validation         |
+| idempotency               |
+| correlation               |
++----------------------------+
+        ↓
+Domain Command Router
+   ↓          ↓          ↓
+ CRM       Booking    Commerce
+   ↓          ↓          ↓
+committed authoritative state
+        ↓
+Domain Event / Outbox
+        ↓
+Durable Execution
+```
+
+Browser `esnafId`, `shopId`, source attribution veya authoritative fiyat seçmeyecektir. Live form/randevu/sipariş component'leri server commit olmadan başarı gösteremeyecektir.
 
 ## Aktif frontier
 
-### SÖKÜM 28 - Public Interaction Runtime / Forms / Lead Capture / Action Capability Boundary
+### SÖKÜM 29 - Identity / Session / Tenant Context / API Guard / Service Trust Boundary
 
 Öncelikli sorular:
 
-- Public site contact/action component'leri hangi API'lere yazıyor?
-- Tenant/site/business identity request body'den mi geliyor, canonical DomainBinding/published revision'dan mı?
-- Lead/contact form Customer Core/CRM'e mi yazıyor, paralel koleksiyon mu oluşturuyor?
-- Booking CTA Booking authority'ye mi bağlı?
-- Commerce action'ları Commerce Core'a mı bağlı?
-- Public action endpoint'lerinde origin/CORS, abuse/rate limit, bot/spam ve idempotency nasıl çalışıyor?
-- Published component hangi capability'yi çağırabileceğini nasıl beyan ediyor?
-- Form/action schema published revision ile pinli mi?
-- Public action analytics/attribution/customer timeline'a nasıl bağlanıyor?
-- Public renderer process'inin hangi mutation capability'lerine gerçekten ihtiyacı var?
+- Auth identity tenant/business membership'e nasıl bağlanıyor?
+- Session authority nerede, stale/revoked session nasıl ele alınıyor?
+- `requireSessionEsnaf` ve benzeri ownership guard'lar hangi route'larda uygulanıyor, nerelerde bypass var?
+- `apiGuard` ve `requireAdminToken` gerçek trust modeli nedir?
+- Body/query/path içinden gelen tenant/business ID'leri hangi route'larda authority kabul ediliyor?
+- Role/permission ile package entitlement birbirinden ayrılmış mı?
+- Admin/support/impersonation yolları nasıl sınırlandırılmış?
+- Worker, cron, Cloud Tasks ve webhook çağrılarında service-to-service identity nasıl doğrulanıyor?
+- Static/shared secret veya admin token blast radius nedir?
+- Cross-tenant read/write fail-closed mu?
+- Secret/config authority ve rotation yüzeyi nerede?
 
-SÖKÜM 28 için verdict henüz verilmemiştir.
+SÖKÜM 29'un hedefi:
+
+> **Kimlik, tenant üyeliği, rol/izin ve service identity'yi tek bir fail-closed trust graph'a bağlamak.**
