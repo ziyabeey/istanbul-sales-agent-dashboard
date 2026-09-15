@@ -14,7 +14,8 @@
 | 28 | Public Interaction Runtime / Forms / Lead Capture / Action Capability Boundary | KAPALI | `docs/sokum/28-public-interaction-action-capability-boundary.md` |
 | 29 | Identity / Session / Tenant Context / API Guard / Service Trust Boundary | KAPALI | `docs/sokum/29-identity-session-tenant-service-trust.md` |
 | 30 | Secrets / Configuration / Provider Credentials / Encryption Key Rotation Authority | KAPALI | `docs/sokum/30-secrets-credential-authority-rotation.md` |
-| 31 | Observability / Audit / Logging / Metrics / Tracing / Operational Truth | AÇIK | sıradaki doğrulama turu |
+| 31 | Observability / Audit / Logging / Metrics / Tracing / Operational Truth | KAPALI | `docs/sokum/31-observability-audit-operational-truth.md` |
+| 32 | Data Lifecycle / Privacy / Consent / Retention / Export / Deletion Authority | AÇIK | sıradaki doğrulama turu |
 
 ## Kanonik devam kuralı
 
@@ -24,78 +25,105 @@
 - Paralel ajan aynı frontier'ı kapatmışsa üzerine yazılmaz; güncel `main` yeniden okunup sonraki açık frontier'a geçilir.
 - `apps/randevu-server` bu söküm serisi nedeniyle değiştirilmez.
 
-## Kapanan son karar: SÖKÜM 30
+## Kapanan son karar: SÖKÜM 31
 
-Credential ve secret katmanında tek bir canonical authority olmadığı doğrulandı. Platform provider key'leri, tenant OAuth grant'leri, signing/encryption key'leri, admin/service bearer'ları ve webhook secrets env/document sözleşmelerine dağılmış durumda.
+Observability parçalarının mevcut olduğu fakat tek bir operational truth authority oluşturmadığı doğrulandı.
 
-En kritik kararlar:
+Mevcut iyi tohumlar:
 
-- `.env` canonical secret vault değildir; bootstrap/config/secret-reference katmanı olacaktır.
-- provider adapter'ları raw `process.env` okumak yerine Credential Resolver üzerinden scoped credential handle alacaktır.
-- tenant OAuth tokenları generic business record içinde yaşamayacak, ayrı `OAuthGrant` lifecycle'ına taşınacaktır.
-- persistent encrypted envelope `kid` taşıyacak ve versioned keyring ile decrypt/rotate edilecektir.
-- session signing key'leri de `kid` + active/previous keyring ile döndürülebilecektir.
-- `ADMIN_SECRET_TOKEN` ve `CRON_SECRET` universal production authority olmaktan çıkacaktır.
-- service-to-service trust kısa ömürlü OIDC/workload identity + audience ile kurulacaktır.
-- required webhook signing credential yoksa endpoint fail-closed olacaktır.
-- production mock/default/empty credential fallback'leri ve confidential `NEXT_PUBLIC_*` secret fallback'leri kaldırılacaktır.
-- sandbox/mock provider environment'a production'da sessiz fallback yasaktır.
+- Sentry error/tracing,
+- liveness/readiness ayrımı,
+- provider/agent operational log intent'i,
+- Cloud Tasks managed retry,
+- Firestore queue race-control,
+- DLQ + operator alarm fikri.
 
 Canonical yön:
 
 ```text
-Actor / Service / Public Capability
-               ↓
-           TrustContext
-               ↓
-       Capability Definition
-               ↓
-     Credential Requirements
-               ↓
-       Credential Resolver
-          ↙           ↘
-platform credential   tenant OAuthGrant
-          ↓             ↓
-   CredentialVersion  encrypted envelope(kid)
-          ↘             ↙
-        Secret Store / KMS
-               ↓
-         Provider Adapter
-               ↓
-       External Provider
+Inbound Request
+      ↓
+RequestContext + TelemetryContext
+      ↓
+CommandEnvelope
+      ↓
+Domain Commit
+      ↓
+DomainEvent
+      ↓
+OutboxJob
+      ↓
+JobAttempt
+      ↓
+ProviderCall
+      ↓
+ProviderOutcome
 ```
+
+Aynı business causality bütün async sınırlar boyunca `correlationId`yi koruyacaktır.
+
+Yan authority'ler ayrıdır:
+
+```text
+Structured Logs
+Distributed Traces
+Operational Metrics
+Immutable Audit Ledger
+```
+
+En kritik kararlar:
+
+- debug/application log, merchant notification ve audit birbirinden ayrılacaktır.
+- `requestId`, `correlationId`, `commandId`, `eventId`, `jobId`, `attemptId` ve provider call kimlikleri explicit olacaktır.
+- retry attempt geçmişi overwrite edilmeyecek, her deneme ayrı record olacaktır.
+- security/compliance audit sample edilmeyecek ve normal CRUD ile değiştirilemeyecektir.
+- admin/impersonation, credential rotate/revoke, role changes, finance, publish/domain ve privacy actions audit-worthy olacaktır.
+- raw request body, worker payload, AI output, phone/email, token ve provider response default telemetry olmayacaktır.
+- Sentry/log/DLQ dahil bütün sink'ler ortak data-classification + recursive redaction policy kullanacaktır.
+- sensitive authenticated surfaces için session replay text/media masking güvenli default olacaktır.
+- operational metrics capability bazlı SLI/SLO ve provider degradation alerting'i besleyecektir.
+- liveness, core readiness ve capability readiness ayrı kavramlardır.
 
 En önemli invariant:
 
-> Secret değerinin kendisi authority değildir. Credential owner + scope + caller + active version + capability policy birlikte authority oluşturur.
+> Production doğruluğu yalnız final domain state ile değil, o state'e hangi actor/command/event/job/provider zinciriyle ulaşıldığını kanıtlayan causal evidence ile tamamlanır.
 
 ## Aktif frontier
 
-### SÖKÜM 31 - Observability / Audit / Logging / Metrics / Tracing / Operational Truth
+### SÖKÜM 32 - Data Lifecycle / Privacy / Consent / Retention / Export / Deletion Authority
 
 Öncelikli sorular:
 
-- Structured logging var mı, yoksa `console.*` adaları mı?
-- Request ID, correlation ID, command ID ve event ID zinciri var mı?
-- Public action -> domain command -> outbox -> worker -> provider tek trace altında izlenebiliyor mu?
-- Admin, impersonation, credential rotation ve tenant-sensitive mutation'lar immutable audit'e düşüyor mu?
-- Audit log ile debug/application log birbirinden ayrılmış mı?
-- Outbox/worker attempt, retry, DLQ ve dead-job görünürlüğü var mı?
-- Metrics, SLI/SLO ve error budget kavramları var mı?
-- Provider latency/error/rate-limit degradation alarm üretiyor mu?
-- PII, token ve credential redaction merkezi mi?
-- Liveness, readiness ve dependency health birbirinden ayrılmış mı?
-- Production incident sırasında hangi tenant/command/provider zincirinin etkilendiği bulunabiliyor mu?
-- Retention, tamper resistance ve audit export politikası var mı?
+- kişisel veri hangi canonical owner/resource altında tutuluyor?
+- consent yalnız UI checkbox mı, yoksa versioned legal/purpose event mi?
+- KVKK/GDPR aydınlatma ve izin kanıtı hangi policy version'a bağlı?
+- lead/customer/contact/booking/commerce verileri için retention sınıfları var mı?
+- tenant kapanınca soft-delete, hard-delete ve legal hold nasıl çalışıyor?
+- data subject deletion request CRM, booking, commerce, logs, DLQ, assets, integrations ve provider kopyalarına nasıl yayılıyor?
+- deletion idempotent ve resumable bir workflow mu?
+- anonymization, restriction ve deletion birbirinden ayrılmış mı?
+- data export canonical snapshot mı, yoksa raw collection dump mı?
+- audit integrity ile right-to-erasure nasıl birlikte korunuyor?
+- backup retention primary deletion'dan nasıl ayrılıyor?
+- AI prompt/output, embeddings/vector stores ve generated media lifecycle graph'a dahil mi?
+- consent withdrawal gelecekteki automation/provider actions'ı gerçekten durduruyor mu?
 
-SÖKÜM 31'in hedefi:
+SÖKÜM 32'nin hedefi:
 
 ```text
-request / actor / tenant / command / event / worker / provider
-                         ↓
-                 tek correlation graph
-                         ↓
-        logs + metrics + traces + immutable audit
+Data Classification
+       ↓
+Data Subject / Tenant Ownership
+       ↓
+Purpose + Consent / Legal Basis
+       ↓
+Retention Policy
+       ↓
+Export / Restrict / Anonymize / Delete
+       ↓
+Propagation Graph
+       ↓
+Verifiable Completion + Audit
 ```
 
-> **Önceki sökümlerde tanımlanan invariant'ların production'da gerçekten korunup korunmadığını kanıtlayacak operational truth katmanını kurmak.**
+> **Verinin yalnız nerede tutulduğunu değil, neden tutulduğunu, ne kadar yaşayacağını ve silme/export kararının bütün kopyalara nasıl güvenilir biçimde yayılacağını canonical authority'ye bağlamak.**
