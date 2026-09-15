@@ -15,7 +15,8 @@
 | 29 | Identity / Session / Tenant Context / API Guard / Service Trust Boundary | KAPALI | `docs/sokum/29-identity-session-tenant-service-trust.md` |
 | 30 | Secrets / Configuration / Provider Credentials / Encryption Key Rotation Authority | KAPALI | `docs/sokum/30-secrets-credential-authority-rotation.md` |
 | 31 | Observability / Audit / Logging / Metrics / Tracing / Operational Truth | KAPALI | `docs/sokum/31-observability-audit-operational-truth.md` |
-| 32 | Data Lifecycle / Privacy / Consent / Retention / Export / Deletion Authority | AÇIK | sıradaki doğrulama turu |
+| 32 | Data Lifecycle / Privacy / Consent / Retention / Export / Deletion Authority | KAPALI | `docs/sokum/32-data-lifecycle-privacy-consent-retention.md` |
+| 33 | External Integration Connection Lifecycle / OAuth Grants / Webhooks / Sync / Reconciliation | AÇIK | sıradaki doğrulama turu |
 
 ## Kanonik devam kuralı
 
@@ -24,106 +25,108 @@
 - Yeni tur başlamadan önce bu indeks ve en son kapalı söküm belgesi okunur.
 - Paralel ajan aynı frontier'ı kapatmışsa üzerine yazılmaz; güncel `main` yeniden okunup sonraki açık frontier'a geçilir.
 - `apps/randevu-server` bu söküm serisi nedeniyle değiştirilmez.
+- Gerçek production secret/token değerleri dokümana kopyalanmaz; yalnız secret adı, scope'u, lifecycle ve blast radius değerlendirilir.
 
-## Kapanan son karar: SÖKÜM 31
+## Kapanan son karar: SÖKÜM 32
 
-Observability parçalarının mevcut olduğu fakat tek bir operational truth authority oluşturmadığı doğrulandı.
+Privacy/KVKK niyeti mevcut olsa da canonical Data Lifecycle Authority olmadığı doğrulandı.
 
-Mevcut iyi tohumlar:
+En kritik bulgular:
 
-- Sentry error/tracing,
-- liveness/readiness ayrımı,
-- provider/agent operational log intent'i,
-- Cloud Tasks managed retry,
-- Firestore queue race-control,
-- DLQ + operator alarm fikri.
+- tenant purge akışları yalnız belirli collection/alanları kapsıyor; bütün veri grafiğini bilmiyor,
+- ayrı `data-purge` yolu gerçek deletion yerine simüle edilmiş başarı üretebiliyor,
+- admin tenant DELETE yalnız root `esnaflar/{id}` dokümanını silebiliyor,
+- consent UI checkbox ve metin düzeyinde bulunabiliyor ancak versioned purpose/evidence authority yok,
+- canonical subject-level customer erase/export workflow doğrulanmadı,
+- `musteriProfiller` telefon, özel gün, segment, harcama tahmini ve sonraki ziyaret tahmini gibi derived personal data taşıyor,
+- `esnafHafizalari` ve `musteriKonusmalar` gibi AI/conversation-derived veriler source lifecycle'a otomatik bağlanmıyor,
+- logs, DLQ, audit, Sentry/Telegram ve external provider kopyaları privacy propagation graph'ın doğal parçası değil,
+- canonical legal-hold ve restore sonrası erasure reconciliation authority doğrulanmadı.
 
 Canonical yön:
 
 ```text
-Inbound Request
-      ↓
-RequestContext + TelemetryContext
-      ↓
-CommandEnvelope
-      ↓
-Domain Commit
-      ↓
-DomainEvent
-      ↓
-OutboxJob
-      ↓
-JobAttempt
-      ↓
-ProviderCall
-      ↓
-ProviderOutcome
+              Data Inventory
+                    ↓
+             DataClassPolicy
+          ↙         ↓          ↘
+   Consent Core  Retention   Legal Hold
+          ↘         ↓          ↙
+             Lifecycle Core
+          ↙         ↓          ↘
+   ExportRequest  Erasure   Offboarding
+                      ↓
+                DeletionPlan
+                      ↓
+                DeletionTask[]
+                      ↓
+     +----------------------------------+
+     | Domain DB                        |
+     | CRM / Booking / Commerce         |
+     | Conversation / AI Derived Data   |
+     | Assets                           |
+     | Search / Vector / Analytics      |
+     | Logs / Audit / DLQ               |
+     | Cache / Jobs                     |
+     | External Providers               |
+     +----------------------------------+
+                      ↓
+                Reconciliation
+                      ↓
+             ErasureProof / Audit
 ```
 
-Aynı business causality bütün async sınırlar boyunca `correlationId`yi koruyacaktır.
-
-Yan authority'ler ayrıdır:
+En önemli ayrımlar:
 
 ```text
-Structured Logs
-Distributed Traces
-Operational Metrics
-Immutable Audit Ledger
+Consent withdrawal != ErasureRequest
+Subject erasure     != Tenant offboarding
+Root delete         != Completed purge
+Credential delete   != Provider grant revoke
+Source data delete  != Derived data delete
 ```
 
-En kritik kararlar:
-
-- debug/application log, merchant notification ve audit birbirinden ayrılacaktır.
-- `requestId`, `correlationId`, `commandId`, `eventId`, `jobId`, `attemptId` ve provider call kimlikleri explicit olacaktır.
-- retry attempt geçmişi overwrite edilmeyecek, her deneme ayrı record olacaktır.
-- security/compliance audit sample edilmeyecek ve normal CRUD ile değiştirilemeyecektir.
-- admin/impersonation, credential rotate/revoke, role changes, finance, publish/domain ve privacy actions audit-worthy olacaktır.
-- raw request body, worker payload, AI output, phone/email, token ve provider response default telemetry olmayacaktır.
-- Sentry/log/DLQ dahil bütün sink'ler ortak data-classification + recursive redaction policy kullanacaktır.
-- sensitive authenticated surfaces için session replay text/media masking güvenli default olacaktır.
-- operational metrics capability bazlı SLI/SLO ve provider degradation alerting'i besleyecektir.
-- liveness, core readiness ve capability readiness ayrı kavramlardır.
-
-En önemli invariant:
-
-> Production doğruluğu yalnız final domain state ile değil, o state'e hangi actor/command/event/job/provider zinciriyle ulaşıldığını kanıtlayan causal evidence ile tamamlanır.
+Privacy lifecycle durable ve idempotent olacaktır. Bir required deletion target başarısızsa request `COMPLETED` olamaz. Simulated/no-op purge production success üretemez. Immutable published artifact'lar erasable customer PII embed etmeyecektir.
 
 ## Aktif frontier
 
-### SÖKÜM 32 - Data Lifecycle / Privacy / Consent / Retention / Export / Deletion Authority
+### SÖKÜM 33 - External Integration Connection Lifecycle / OAuth Grants / Webhook Subscription / Sync & Reconciliation Authority
 
 Öncelikli sorular:
 
-- kişisel veri hangi canonical owner/resource altında tutuluyor?
-- consent yalnız UI checkbox mı, yoksa versioned legal/purpose event mi?
-- KVKK/GDPR aydınlatma ve izin kanıtı hangi policy version'a bağlı?
-- lead/customer/contact/booking/commerce verileri için retention sınıfları var mı?
-- tenant kapanınca soft-delete, hard-delete ve legal hold nasıl çalışıyor?
-- data subject deletion request CRM, booking, commerce, logs, DLQ, assets, integrations ve provider kopyalarına nasıl yayılıyor?
-- deletion idempotent ve resumable bir workflow mu?
-- anonymization, restriction ve deletion birbirinden ayrılmış mı?
-- data export canonical snapshot mı, yoksa raw collection dump mı?
-- audit integrity ile right-to-erasure nasıl birlikte korunuyor?
-- backup retention primary deletion'dan nasıl ayrılıyor?
-- AI prompt/output, embeddings/vector stores ve generated media lifecycle graph'a dahil mi?
-- consent withdrawal gelecekteki automation/provider actions'ı gerçekten durduruyor mu?
+- Bir tenant provider bağlantısı canonical olarak nasıl `CONNECTED` olur?
+- OAuth grant, stored credential ve provider resource mapping aynı connection'a nasıl bağlanır?
+- Aynı tenant/provider için birden fazla connection destekleniyor mu?
+- Token refresh/reconnect failure state machine'i var mı?
+- Webhook subscription create/rotate/delete lifecycle'ını kim yönetiyor?
+- Provider webhook hangi IntegrationConnection'a ve tenant'a server-side resolve ediliyor?
+- Kepenk -> provider ve provider -> Kepenk sync cursor/idempotency authority nerede?
+- External state drift nasıl detect/reconcile ediliyor?
+- Provider resource deletion/revocation ile local disconnect nasıl koordine ediliyor?
+- Tenant offboarding provider grants/subscriptions/resources tarafına nasıl yayılıyor?
+- Connection `DEGRADED`, `EXPIRED`, `REVOKED` veya `BROKEN` olduğunda domain feature fail-closed mu?
+- Provider rate limit/quota/backoff state'i connection lifecycle'a bağlı mı?
+- Credential rotation connection'ı kesmeden nasıl uygulanıyor?
+- Health/observability connection ve provider resource seviyesinde yeterli mi?
 
-SÖKÜM 32'nin hedefi:
+SÖKÜM 33'ün hedefi:
 
 ```text
-Data Classification
-       ↓
-Data Subject / Tenant Ownership
-       ↓
-Purpose + Consent / Legal Basis
-       ↓
-Retention Policy
-       ↓
-Export / Restrict / Anonymize / Delete
-       ↓
-Propagation Graph
-       ↓
-Verifiable Completion + Audit
+Tenant + Provider
+      ↓
+IntegrationConnection
+      ↓
+OAuth Grant / CredentialRef
+      ↓
+Provider Resource Bindings
+      ↓
+Webhook Subscriptions + Sync Cursors
+      ↓
+Inbound / Outbound Sync
+      ↓
+Reconciliation + Health
+      ↓
+Reconnect / Revoke / Disconnect / Offboarding
 ```
 
-> **Verinin yalnız nerede tutulduğunu değil, neden tutulduğunu, ne kadar yaşayacağını ve silme/export kararının bütün kopyalara nasıl güvenilir biçimde yayılacağını canonical authority'ye bağlamak.**
+> **Credential'dan daha üst seviye bir IntegrationConnection authority kurup provider bağlantısının bütün yaşam döngüsünü observable, reconnectable, revocable ve reconcilable hale getirmek.**
