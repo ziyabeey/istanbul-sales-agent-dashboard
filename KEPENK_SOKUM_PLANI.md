@@ -1,9 +1,9 @@
 # KEPENK Söküm Planı
 
-> **Durum:** Mevcut söküm çalışmalarının korunmuş anlık görüntüsü  
+> **Durum:** Mevcut söküm çalışmalarının korunmuş ve repo ile doğrulanmaya başlayan anlık görüntüsü  
 > **Tarih:** 2026-09-15  
-> **Kapsam:** SÖKÜM 01–23  
-> **Amaç:** Önce bulunan kararları kaybetmeden tek yerde toplamak. Gereksizleri temizleme, eksikleri tamamlama ve kod değişiklikleri sonraki turda yapılacaktır.
+> **Kapsam:** SÖKÜM 01–24  
+> **Amaç:** Önce bulunan kararları kaybetmeden tek yerde toplamak. Gereksizleri temizleme, eksikleri tamamlama ve kod değişiklikleri sonraki doğrulama turlarında yapılacaktır.
 
 ## 0. Bu dosya ne değildir?
 
@@ -54,7 +54,9 @@ Eski söküm konuşmalarında birkaç numara başlığı zaman içinde kaymış 
 - Daha eski bir ara özette AI/Business tarafındaki başka bir katman yanlışlıkla SÖKÜM 12 diye anılmış. Bu dosyada kabiliyet bazlı doğru yerleşim korunur ve numara çakışması borç olarak not edilir.
 - **SÖKÜM 05–07** için karar kümeleri kurtarıldı ancak üç numaranın birebir başlık ayrımı kesin değil. Bu yüzden tek küme halinde tutuluyor ve sonraki doğrulamada ayrıştırılacak.
 - **SÖKÜM 13** kapsamı net, ayrıntılı nihai verdict kaydı kısmi.
-- **SÖKÜM 23** açık frontier durumunda. Sonuç uydurulmadı.
+- **SÖKÜM 23** 2026-09-15 güncel `main` üzerinden yeniden doğrulandı ve kapatıldı.
+- **SÖKÜM 24** yeni açık frontier'dır.
+- Eski söküm notlarında geçen bazı dosya adları güncel `main` ile drift etmiş olabilir. Bundan sonra her verdict'te **tarihsel karar** ile **bugünkü repo kanıtı** ayrı tutulacaktır.
 
 ---
 
@@ -82,7 +84,8 @@ Eski söküm konuşmalarında birkaç numara başlığı zaman içinde kaymış 
 | 20 | Customer Core / CRM Authority | Karar var | CRM v2 authority, legacy compatibility shell |
 | 21 | Finance Core / Immutable Financial Event | Karar var | Immutable ledger tek mali gerçek |
 | 22 | Booking ↔ Finance Payment Policy | Karar var | Pure calculator + idempotent intents |
-| 23 | Kapora / Ön Ödeme / Kısmi Tahsilat / No-Show | AÇIK | Sıradaki söküm frontier'ı |
+| 23 | Kapora / Ön Ödeme / Kısmi Tahsilat / No-Show | Karar var | Booking policy/snapshot; Payment + Settlement + Refund ayrı authority |
+| 24 | Durable Jobs / Outbox / Webhook Inbox / Reconciliation | AÇIK | Sıradaki söküm frontier'ı |
 
 ---
 
@@ -477,9 +480,15 @@ Preview HTML / SSR HTML / Static Deploy Artifact
 - Dangerous HTML, inline event handler, function props ve kontrolsüz arbitrary style engellenmeli.
 - Draft/live renderer aynı yapıyı kullanmalı. Yalnız veri kaynağı ve asset base değişebilir.
 
-## Önemli düzeltme
+## Repo doğrulama düzeltmesi — 2026-09-15
 
-Önceki bazı varsayımlarda `apps/sites` gibi bir yol varmış gibi davranılmıştı. Canlı repoda bunun authoritative renderer olduğuna dair güvenilir kanıt yok. Bu nedenle renderer tarafı **BUILD / REWRITE** kabul edilmeli, mevcut olmayan bir modül kurtarılıyormuş gibi davranılmamalı.
+Güncel `main` üzerinde `apps/sites` **gerçekten vardır** ve kendi `src` dizini olan ayrı bir Next.js uygulamasıdır. Dolayısıyla önceki "mevcut olmayan modül" ifadesi güncel repo için yanlıştır.
+
+Bununla birlikte yalnız dizinin varlığı onun **authoritative renderer** olduğunu kanıtlamaz. Bu yüzden doğru karar:
+
+- `apps/sites` → **KEEP / VERIFY** adayı.
+- Renderer ownership, publish artifact ve preview/runtime bağı bir sonraki site-runtime doğrulamasında import/call graph ile kesinleştirilecek.
+- Yeni renderer inşa edilmeden önce mevcut `apps/sites/src` mutlaka sökülecek.
 
 ---
 
@@ -1063,6 +1072,10 @@ Gerekenler:
 - Agent'ın ledger kanıtı olmadan "ödendi" veya "başarılı" demesi.
 - Finansal gerçeğin CRM field'ında saklanması.
 
+### Güncel repo drift notu — 2026-09-15
+
+Bu bölümdeki eski dosya adlarının tamamı bugünkü `main` üzerinde doğrulanmış kabul edilmemelidir. Güncel repoda açıkça bulunan finansal paket `packages/accounting`'dir. Buradaki `Transaction` modeli `amount` ve `kdvAmount` için **kuruş** kullanır ve `booking` / `order` source link'lerini destekler; fakat kayıt `updatedAt` taşıyan mutable transaction modelidir. Bu nedenle tarihsel **immutable ledger** kararı hâlâ geçerlidir, ancak implementasyon sahipliği güncel paket ağacına göre yeniden kurulmalıdır.
+
 ---
 
 # 23. SÖKÜM 22: Booking ↔ Finance Payment Policy / Lifecycle
@@ -1182,42 +1195,533 @@ Tutarı `0` olan anlamsız finansal event üretilmemeli. Sıfır tutarlı busine
 
 ---
 
-# 24. SÖKÜM 23: AÇIK FRONTIER
+# 24. SÖKÜM 23: Kapora / Ön Ödeme / Kısmi Tahsilat / No-Show / İptal Ücreti / Kalan Bakiye
 
-## Kapora / Ön Ödeme / Kısmi Tahsilat / No-Show / İptal Ücreti / Kalan Bakiye
+> **Durum:** 2026-09-15 güncel `main` üzerinden kapatıldı.  
+> **Verdict:** **KEEP policy semantics / REWRITE embedded payment state / BUILD dedicated payment lifecycle.**
 
-Bu söküm henüz kapatılmış karar seti olarak arşivlenmedi.
+## 24.1 Güncel repo kanıtı
 
-Sonraki çalışma burada devam edecek.
+Bugünkü repoda finansal davranış düşündüğümüzden daha somut çıktı:
 
-İncelenecek minimum alanlar:
+### Booking tarafı
 
-- deposit authorization / capture
-- deposit amount source
-- percentage vs fixed deposit
+`packages/booking-schema/src/index.ts` içinde:
+
+- `ServicePricingSchema.deposit`
+  - `required`
+  - `amount`
+  - `type: fixed | percentage`
+  - `taksitEnabled`
+  - `fullPaymentAllowed`
+- `paymentTiming`
+  - `online_now`
+  - `online_later`
+  - `in_person`
+  - `deposit_now_rest_in_person`
+- `Booking.payment.status`
+  - `not_paid`
+  - `deposit_paid`
+  - `fully_paid`
+  - `refunded`
+  - `partially_refunded`
+- `depositAmount`
+- `depositPaidAt`
+- installment bilgileri
+- `transactionId`
+- `orderId`
+- cancellation altında:
+  - `refundStatus`
+  - `refundAmount`
+  - `cancellationFee`
+- `BookingPolicy.noShow.fee`
+- yüksek no-show sayısından sonra deposit zorunluluğu için `requireDepositAfterNoShows`
+
+Yani ürün fikri ve kullanıcı senaryosu **var**. Eksik olan şey bu alanların finansal otorite olarak güvenli ayrıştırılması.
+
+### Commerce tarafı
+
+`packages/ecom-schema/src/order.ts` içinde order doğrudan:
+
+- `paymentStatus`
+- `payment.paidAmount`
+- `payment.refundedAmount`
+- provider
+- transactionId
+
+taşıyor.
+
+### Accounting tarafı
+
+`packages/accounting/src/types/transaction.ts`:
+
+- `amount` → kuruş
+- `kdvAmount` → kuruş
+- `source: order | booking | ...`
+- `sourceOrderId`
+- `sourceBookingId`
+
+taşıyor.
+
+Ancak `Transaction` mutable `updatedAt` alanına sahip. Bu bir raporlama/accounting modeli olarak kullanılabilir, fakat immutable payment/ledger authority olamaz.
+
+### Firestore erişim yüzeyi
+
+`firestore.rules` güncel durumda:
+
+- `sites/{siteId}/bookings/{bookingId}` → editor dahil `canWrite` ile update edilebilir.
+- `sites/{siteId}/orders/{orderId}` → editor dahil `canWrite` ile update edilebilir.
+- `sites/{siteId}/transactions/{txId}` → owner/admin update edebilir.
+
+Bu önemli çünkü `Booking.payment` ve `Order.payment` içine finansal gerçek gömülmüş durumda. Böylece iş akışı belgesini düzenleme yetkisi olan bir kullanıcı teorik olarak payment/refund alanlarını da aynı belge mutasyonu içinde değiştirebilir.
+
+**Karar:** finansal truth bu belgelerin içinde authoritative tutulamaz.
+
+## 24.2 Money-unit drift
+
+Bugünkü repo üç farklı semantik sinyal veriyor:
+
+- Accounting açıkça **kuruş** diyor.
+- E-commerce checkout/installment alanlarında yorumlar **₺** semantiği kullanıyor.
+- Booking pricing/deposit alanlarında unit açık değil.
+
+Bu sessiz birim farkı ileride `1000` değerinin **10 TL mi, 1000 TL mi** olduğu sınıfında finansal hata üretir.
+
+### Kesin kural
+
+Bütün authoritative money alanları:
+
+```text
+MoneyMinor = integer
+currency = TRY
+```
+
+olmalı.
+
+UI/adapters TL ↔ kuruş dönüşümünü sınırda yapmalı. Domain içinde float TL financial truth olmayacak.
+
+## 24.3 KEEP
+
+Aşağıdaki ürün/domain fikirleri güçlü ve korunmalı:
+
+- fixed veya percentage deposit policy
+- `deposit_now_rest_in_person`
+- full payment allowed seçeneği
+- taksit intent'i
+- cancellation windows
+- cancellation fee intent'i
+- no-show fee intent'i
+- no-show sonrası deposit zorunluluğu
+- booking revision kavramı
+- order/provider reference intent'i
+- accounting'deki `sourceBookingId` / `sourceOrderId`
+- accounting'deki minor-unit yönü
+
+Bunlar silinmeyecek; doğru authority'lere taşınacak.
+
+## 24.4 REWRITE
+
+### A. `ServicePricing.deposit` → versioned policy snapshot
+
+Service üzerinde yaşayan mutable policy, booking oluşturulduğu anda snapshot edilmeli.
+
+Önerilen sözleşme:
+
+```text
+PaymentPolicySnapshot {
+  version
+  mode: pay_at_venue | deposit_required | prepaid | waived
+  grossAmountMinor
+  currency: TRY
+  deposit?: {
+    type: fixed | percentage
+    value
+    expectedAmountMinor
+    minAmountMinor?
+    maxAmountMinor?
+  }
+  cancellationPolicySnapshot
+  noShowPolicySnapshot
+}
+```
+
+Booking sonradan servis fiyatı/politikası değişince geçmiş randevunun finansal şartları değişmemeli.
+
+### B. `Booking.payment` authority olmaktan çıkarılacak
+
+Booking üzerinde payment alanı kalabilir ama yalnız **projection / summary** olmalı.
+
+Örneğin:
+
+```text
+paymentSummary {
+  state
+  paidMinor
+  refundedMinor
+  dueMinor
+  creditMinor
+  lastPaymentId?
+  projectionVersion
+}
+```
+
+Bu alan doğrudan kullanıcı mutasyonu ile finansal gerçek oluşturmaz.
+
+### C. `Order.payment` authority olmaktan çıkarılacak
+
+`paidAmount` ve `refundedAmount` mutable order state yerine Payment/Settlement/Refund çekirdeğinden projekte edilmeli.
+
+### D. Cancellation alanları ayrılacak
+
+Şu an cancellation içinde:
+
+- refundStatus
+- refundAmount
+- cancellationFee
+
+aynı business object üzerinde birlikte duruyor.
+
+Doğru ayrım:
+
+- Booking cancellation → **business fact**
+- refund eligibility → **policy decision**
+- refund request → **financial intent**
+- refund provider result → **payment fact**
+- refund ledger event → **financial fact**
+
+### E. No-show fee doğrudan balance mutation yapmayacak
+
+No-show:
+
+```text
+AppointmentNoShow
+      ↓
+Policy Evaluator
+      ↓
+NoShowFeeIntent / DepositForfeitIntent
+      ↓
+Payment / Receivable / Ledger
+```
+
+şeklinde ilerlemeli.
+
+## 24.5 BUILD
+
+Güncel paket ağacında ayrı, açık bir Payment Core görünmediği için aşağıdaki çekirdek **inşa edilmeli**.
+
+### 1. PaymentAttempt
+
+Provider sürecidir, para gerçeği değildir.
+
+```text
+PaymentAttempt {
+  id
+  businessId
+  provider
+  purpose
+  amountMinor
+  currency
+  status: created | pending | succeeded | failed | expired
+  providerReference?
+  idempotencyKey
+  createdAt
+  updatedAt
+}
+```
+
+### 2. Payment
+
+Yalnız doğrulanmış provider veya kontrollü manual-cash sonucu ile oluşan money fact.
+
+```text
+Payment {
+  id
+  businessId
+  amountMinor
+  currency
+  method
+  provider?
+  providerPaymentId?
+  capturedAt
+  sourceAttemptId?
+}
+```
+
+### 3. Settlement / PaymentApplication
+
+Payment'ın hangi obligation'a uygulandığını gösterir.
+
+```text
+Settlement {
+  id
+  paymentId
+  targetType: booking | order | invoice | receivable
+  targetId
+  amountMinor
+  kind: deposit | final | partial | fee | adjustment
+}
+```
+
+Bu nesne sayesinde:
+
 - partial payment
 - split payment
-- remaining balance
+- tek ödemeyi birden fazla borca dağıtma
+- bir booking'e birden fazla ödeme
+
+normal hale gelir.
+
+### 4. Refund
+
+Refund ayrı lifecycle'dır:
+
+```text
+requested
+  ↓
+processing
+  ↓
+succeeded | failed
+```
+
+`cancelled` olmak `refunded` olmak değildir.
+
+### 5. Fee / Forfeit / Adjustment
+
+Şunlar ayrı explicit financial intent/event olmalı:
+
 - cancellation fee
 - no-show fee
 - deposit forfeiture
-- refund eligibility
-- provider refund lifecycle
-- appointment revision impact
-- overpayment / customer credit
-- reconciliation
-- ledger intent dedupe
-- receipt / invoice relationship
+- manual adjustment
+- price-delta adjustment
+
+### 6. Balance Projection
+
+Kalan bakiye mutable bir sayı olarak source-of-truth tutulmayacak.
+
+Projection:
+
+```text
+obligation
+- applied settlements
++ charge adjustments
+- successful refunds reversal etkisi
+= due
+```
+
+Kurallar:
+
+- `due < 0` gösterilmez.
+- Fazla ödeme `customerCreditMinor` veya `refundableMinor` olarak ayrılır.
+- Refund edilen tutar captured/refundable tutarı aşamaz.
+
+### 7. Reconciliation
+
+En az şu üç dünya periyodik karşılaştırılmalı:
+
+```text
+Provider Captures / Refunds
+        ↕
+Payment + Refund Records
+        ↕
+Immutable Finance Ledger
+```
+
+Drift varsa sessizce overwrite edilmemeli, reconciliation incident üretilmeli.
+
+## 24.6 Kritik invariants
+
+Aşağıdaki kurallar DB/service seviyesinde enforce edilmeli:
+
+1. `PaymentAttempt != Payment`.
+2. Deposit ayrı para authority'si değil, payment application türüdür.
+3. `sum(Settlement.amountMinor)` bir payment'ın kullanılabilir captured tutarını aşamaz.
+4. `refundSucceededMinor <= capturedMinor - previouslyRefundedMinor`.
+5. Aynı provider event yalnız bir kez işlenir.
+6. Aynı source financial event yalnız bir ledger event üretir.
+7. Booking/order status payment truth yaratamaz.
+8. Payment status yalnız verified payment facts'ten projekte edilir.
+9. Tüm authoritative money integer minor-unit'tir.
+10. Historical payment/policy snapshot rewrite edilmez.
+
+## 24.7 Appointment revision sonrası fiyat değişimi
+
+Booking oluşturulduktan ve deposit ödendikten sonra servis fiyatı değişirse geçmiş snapshot yeniden hesaplanmamalı.
+
+Randevunun kendisinde fiyat değişikliği yapılıyorsa:
+
+```text
+Old Obligation
+     +
+PriceAdjustment
+     =
+New Obligation
+```
+
+şeklinde delta yaratılmalı.
+
+Geçmiş Payment ve Settlement kayıtları aynen kalır.
+
+## 24.8 Deposit forfeiture
+
+Kaporanın yanması, payment kaydını silmek veya status değiştirmek değildir.
+
+Doğru semantik:
+
+```text
+Deposit Payment
+      ↓
+Deposit Settlement
+      ↓
+NoShow / LateCancel
+      ↓
+Policy Decision
+      ↓
+DepositForfeitEvent
+```
+
+Bu event finans tarafında gelir/fee sınıflandırmasına projekte edilebilir.
+
+## 24.9 Receipt / invoice ilişkisi
+
+Receipt/invoice ödeme authority'si değildir.
+
+- Payment → money fact
+- Ledger → financial truth
+- Invoice/receipt → mali belge/projection
+
+Belge iptal edildi diye payment yok olmaz. Payment refund edildi diye eski belge sessizce overwrite edilmez; mevzuata uygun yeni/reversal document lifecycle gerekir.
+
+## 24.10 Firestore/RBAC kararı
+
+Payment, refund, settlement ve immutable finance event koleksiyonları client tarafından doğrudan write edilebilir olmamalı.
+
+Minimum kural:
+
+```text
+client: read projection if authorized
+client: create intent through controlled API/capability
+server: verify provider/policy
+server: write payment/refund/settlement/ledger
+```
+
+Booking editor'ü finansal truth editor'ü değildir.
+
+## 24.11 DROP adayları
+
+Aşağıdakiler yeni authority devreye girdikten sonra kaldırılmalı veya compatibility projection'a indirilmeli:
+
+- `Booking.payment.status`'un payment truth sayılması
+- `Booking.payment.transactionId`'nin tek başına ödeme kanıtı sayılması
+- `Order.payment.paidAmount` mutable SSOT
+- `Order.payment.refundedAmount` mutable SSOT
+- cancellation içindeki `refundStatus`'un provider refund truth sayılması
+- client'in booking/order belgesi üzerinden payment amount/status değiştirebilmesi
+- float/TL ile authoritative para saklama
+- no-show/cancel status değişiminin otomatik ve doğrulanmamış mali sonuç üretmesi
+
+## 24.12 Canonical akış
+
+```text
+Booking Created
+      ↓
+PaymentPolicySnapshot
+      ↓
+Financial Obligation
+      ↓
+PaymentAttempt
+      ↓ verified provider/manual outcome
+Payment
+      ↓
+Settlement / Application
+      ↓
+Immutable Finance Event
+      ↓
+Booking/Order Payment Projection
+```
+
+Cancellation/no-show yolu:
+
+```text
+Cancelled / NoShow
+      ↓
+Policy Evaluation
+      ↓
+RefundIntent / FeeIntent / ForfeitIntent
+      ↓
+Provider + Finance outcome
+      ↓
+Projection
+```
+
+## 24.13 Smoke/probe seti
+
+SÖKÜM 23 sonrası minimum acceptance seti:
+
+- fixed deposit
+- percentage deposit
+- full prepayment
+- deposit + venue remainder
+- iki parça partial payment
+- iki farklı payment method ile split payment
+- no-show + deposit retained
+- no-show + ek receivable fee
+- erken cancel + full refund
+- geç cancel + partial refund + fee
+- refund provider failure
+- duplicate provider webhook
+- duplicate finance intent
+- deposit sonrası appointment price revision
+- overpayment → credit/refundable amount
+- order payment + partial refund
+- provider/Payment/Ledger reconciliation drift
+
+---
+
+# 25. SÖKÜM 24: AÇIK FRONTIER
+
+## Durable Jobs / Outbox / Webhook Inbox / Retry / Reconciliation
+
+SÖKÜM 23 payment lifecycle'ının güvenli çalışması için sıradaki zorunlu katman budur.
+
+### Güncel ilk sinyal
+
+- Root'ta `functions` var ancak güncel `functions/src` ağacında görünen scheduled iş `firestoreBackup.ts` ile sınırlı.
+- Paket listesinde açık bir `queue`, `worker` veya `payment` core paketi görünmüyor.
+- Önceki sökümlerde queue/outbox niyeti birçok domain'de tekrar ediyor ama tek durable execution authority henüz güncel repo üzerinden doğrulanmadı.
+
+### SÖKÜM 24'te incelenecek
+
+- queue/job authority
+- cron/scheduler authority
+- webhook inbox
+- outbox
+- retry semantics
+- at-least-once delivery
+- idempotency ownership
+- lock / lease
+- dead-letter queue
+- poison job behavior
+- backoff
+- job timeout
+- replay
+- provider callback dedupe
+- message delivery status jobs
+- payment reconciliation jobs
+- campaign scheduler
+- agent run durability
+- observability / trace correlation
+- recovery after process crash
 
 **Bu başlık için nihai verdict henüz yazılmamalıdır.**
 
 ---
 
-# 25. Çapraz mimari kuralları
+# 26. Çapraz mimari kuralları
 
 Bütün sökümlerin ortak sonucu aşağıdaki kurallardır.
 
-## 25.1 Tek authority
+## 26.1 Tek authority
 
 Her domain'in tek authoritative çekirdeği olmalı:
 
@@ -1228,21 +1732,22 @@ Her domain'in tek authoritative çekirdeği olmalı:
 - Commerce → Commerce Core
 - Billing → Billing Core
 - Booking → Booking Core
+- Payment → Payment Core
 - Finance → Ledger
 - Agent execution → Agent Runtime
 - Knowledge → RAG/Memory Core
 
 Compatibility route olabilir, compatibility **authority** olamaz.
 
-## 25.2 Typed contracts
+## 26.2 Typed contracts
 
 Domainler birbirine internal object spread ile değil açık sözleşmeyle bağlanmalı.
 
-## 25.3 Tenant boundary
+## 26.3 Tenant boundary
 
 Her read/write/action tenant/business kimliğiyle doğrulanmalı. Provider adapter veya agent runtime bu sınırı bypass edememeli.
 
-## 25.4 Idempotency
+## 26.4 Idempotency
 
 Özellikle şu işlemler idempotent olmalı:
 
@@ -1256,33 +1761,33 @@ Her read/write/action tenant/business kimliğiyle doğrulanmalı. Provider adapt
 - agent action
 - provider retry
 
-## 25.5 Durable queue / outbox
+## 26.5 Durable queue / outbox
 
 "Fonksiyon çağrıldı" ile "iş başarıyla gerçekleşti" aynı şey değildir. Dış sistem aksiyonları durable job/outbox + verified outcome üzerinden ilerlemeli.
 
-## 25.6 Audit
+## 26.6 Audit
 
 Kritik aksiyonlarda kim, hangi tenant için, hangi intent ile, hangi provider sonucu üzerine ne yaptı görülebilmeli.
 
-## 25.7 Money
+## 26.7 Money
 
 Para değerleri minor-unit üzerinden tutulmalı. Float finansal gerçek olmamalı.
 
-## 25.8 Consent / RBAC
+## 26.8 Consent / RBAC
 
 Marketing, CRM, messaging ve agent aksiyonlarında consent ile role/capability kontrolü merkezi olmalı.
 
-## 25.9 Provider abstraction
+## 26.9 Provider abstraction
 
 Twilio, İyzico, Meta, Google, Pinecone ve model provider'ları business logic'in içine dağılmamalı. Tek gateway/adapter kontratı olmalı.
 
-## 25.10 Verified outcome
+## 26.10 Verified outcome
 
 Agent, campaign, provider veya automation için "success" ancak doğrulanabilir outcome varsa success'tir.
 
 ---
 
-# 26. Birleşik smoke/probe listesi
+# 27. Birleşik smoke/probe listesi
 
 Sonraki temizlik ve yeniden bağlama turunda en az aşağıdaki uçtan uca problar çalıştırılmalı.
 
@@ -1338,6 +1843,8 @@ Sonraki temizlik ve yeniden bağlama turunda en az aşağıdaki uçtan uca probl
 - Refund request ile actual refund ayrıdır.
 - No-show/cancellation policy ledger'a doğru intent üretir.
 - Duplicate callback ledger'ı şişirmez.
+- Booking/order client mutation finansal truth değiştiremez.
+- Money-unit conversion yalnız boundary'de yapılır.
 
 ## Agent Runtime
 
@@ -1356,7 +1863,7 @@ Sonraki temizlik ve yeniden bağlama turunda en az aşağıdaki uçtan uca probl
 
 ---
 
-# 27. Sonraki faz: Temizleme ve eksik tamamlama sırası
+# 28. Sonraki faz: Temizleme ve eksik tamamlama sırası
 
 Bu dosya yazıldıktan sonraki çalışma sırası:
 
@@ -1367,13 +1874,13 @@ Bu dosya yazıldıktan sonraki çalışma sırası:
    Dosya bazlı kesin tablo çıkarılır.
 
 3. **Authority çakışmalarını kapatma**  
-   Önce müşteri, business facts, billing, messaging, finance ve agent runtime gibi çoklu gerçek kaynakları çözülür.
+   Önce müşteri, business facts, billing, messaging, payment, finance ve agent runtime gibi çoklu gerçek kaynakları çözülür.
 
 4. **Dead/duplicate kod temizliği**  
    Ancak import/runtime kanıtından sonra silme yapılır.
 
 5. **Eksik çekirdeklerin inşası**  
-   Renderer, durable jobs/outbox, immutable ledger, capability bus gibi eksikler tamamlanır.
+   Renderer, durable jobs/outbox, Payment Core, immutable ledger, capability bus gibi eksikler tamamlanır.
 
 6. **Compatibility katmanları**  
    Eski route/UI bir anda kırılmadan yeni authority'lere yönlendirilir.
@@ -1383,20 +1890,21 @@ Bu dosya yazıldıktan sonraki çalışma sırası:
 
 ---
 
-# 28. Bilinen plan borçları
+# 29. Bilinen plan borçları
 
 Aşağıdakiler bilinçli olarak açık bırakılmıştır:
 
 - SÖKÜM 05–07'nin tek tek eski başlık numaraları yeniden eşlenecek.
 - Eski SÖKÜM 12 numara çakışmasının kaynak konuşması tekrar doğrulanacak.
 - SÖKÜM 13 için exact file/verdict matrisi tamamlanacak.
-- SÖKÜM 23 tamamlanacak.
+- SÖKÜM 21–22'deki tarihsel dosya referansları güncel `main` package/import graph ile yeniden eşlenecek.
+- SÖKÜM 24 tamamlanacak.
 - Bu belgeye henüz otomatik dependency graph eklenmedi.
-- `KEEP / REWRITE / DROP / BUILD` şu an capability seviyesinde; sonraki turda dosya seviyesine indirilecek.
+- `KEEP / REWRITE / DROP / BUILD` eski bölümlerin çoğunda capability seviyesinde; sonraki turlarda dosya seviyesine indirilecek.
 
 ---
 
-# 29. Korunan ana fikir
+# 30. Korunan ana fikir
 
 Kepenk'in asıl değeri tek tek agent dosyaları, dashboard kartları veya route sayısı değil. Değer, işletmenin gerçeklerini bir kez tanımlayıp bütün sistemi aynı gerçek üzerinden çalıştırabilmesidir.
 
@@ -1409,7 +1917,7 @@ Customer / Booking / Commerce
     ↓
 Canonical Events
     ↓
-Messaging / Marketing / Finance / Analytics
+Messaging / Marketing / Payment / Finance / Analytics
     ↓
 Agent Capability Bus
     ↓
@@ -1440,4 +1948,4 @@ Bu iki omurga birbirinin kopyası değil, aynı işletme gerçeğinin iki farkl�
 
 ---
 
-**Şimdiki checkpoint:** SÖKÜM 01–22'nin kurtarılan kararları tek belgede. SÖKÜM 23 açık. Bir sonraki tur gereksizleri güvenli biçimde işaretleyip gerçek runtime'a göre temizlemek ve eksik çekirdekleri tamamlamak olacaktır.
+**Şimdiki checkpoint:** SÖKÜM 01–23'ün kararları tek belgede. SÖKÜM 23 güncel repo kanıtıyla kapatıldı. SÖKÜM 24 `Durable Jobs / Outbox / Webhook Inbox / Reconciliation` açık frontier'dır.
