@@ -58,17 +58,21 @@ export interface AuditedAdminMutationInput {
   metadata?: Record<string, unknown>
 }
 
-function requestFields(request?: Request): { ip?: string; userAgent?: string; requestId?: string } {
-  if (!request) return {}
+function requestFields(request?: Request): { ip?: string; userAgent?: string; requestId: string } {
+  const requestId = request?.headers.get('x-request-id')?.trim() ||
+    request?.headers.get('x-correlation-id')?.trim() ||
+    crypto.randomUUID()
+
+  if (!request) return { requestId }
+
   const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
     request.headers.get('x-real-ip')?.trim() || undefined
   const userAgent = request.headers.get('user-agent') || undefined
-  const requestId = request.headers.get('x-request-id') ||
-    request.headers.get('x-correlation-id') || undefined
+
   return {
+    requestId,
     ...(ip ? { ip } : {}),
     ...(userAgent ? { userAgent } : {}),
-    ...(requestId ? { requestId } : {}),
   }
 }
 
