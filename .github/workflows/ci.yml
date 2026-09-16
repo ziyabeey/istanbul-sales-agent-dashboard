@@ -53,6 +53,17 @@ jobs:
           src/lib/apiGuard.ts
           src/lib/auth/businessSession.ts
           test/unit/requestGateConvergence.test.ts
+      - name: Lint P0-04 service and durable jobs
+        run: >-
+          pnpm --filter @kepenk/web exec eslint
+          src/lib/serviceAuth.ts
+          src/lib/jobs/durableJob.ts
+          src/lib/cloudTasksClient.ts
+          src/lib/islemKuyrugu.ts
+          src/lib/apiGuard.ts
+          src/app/api/cron/kuyruk-isleyici/route.ts
+          src/app/api/workers/site-ureticisi/route.ts
+          test/unit/servicePrincipalAndJobs.test.ts
       - name: Validate trust browser smoke script
         run: bash -n apps/web/test/e2e/trust-browser-smoke.sh
       - name: Typecheck P0 trust baseline artifacts
@@ -63,6 +74,8 @@ jobs:
         run: pnpm --filter @kepenk/web exec tsc -p test/tsconfig.p0-02-human-auth.json --noEmit
       - name: Typecheck P0-03 request gates
         run: pnpm --filter @kepenk/web exec tsc -p test/tsconfig.p0-03-request-gates.json --noEmit
+      - name: Typecheck P0-04 service and durable jobs
+        run: pnpm --filter @kepenk/web exec tsc -p test/tsconfig.p0-04-service-jobs.json --noEmit
       - name: Legacy full web typecheck baseline
         id: legacy-web-typecheck
         continue-on-error: true
