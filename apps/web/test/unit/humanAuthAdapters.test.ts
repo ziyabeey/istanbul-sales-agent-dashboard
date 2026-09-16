@@ -183,11 +183,12 @@ describe('canonical human auth issuance', () => {
 
 describe('canonical signed session locator', () => {
   it('signs only durable Session locator identity and verifies issuer/audience contract', async () => {
+    const tokenNow = new Date()
     const session: Session = {
       sessionId: 'ses_test',
       userId: 'usr_test',
-      issuedAt: NOW.toISOString(),
-      expiresAt: new Date(NOW.getTime() + 60_000).toISOString(),
+      issuedAt: tokenNow.toISOString(),
+      expiresAt: new Date(tokenNow.getTime() + 60_000).toISOString(),
       revokedAt: null,
       authMethod: 'phone_otp',
       sessionEpoch: 0,
