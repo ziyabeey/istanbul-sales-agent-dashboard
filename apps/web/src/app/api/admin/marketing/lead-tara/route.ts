@@ -53,10 +53,10 @@ export async function POST(request: Request) {
             ilce,
             sektor,
         })
-    } catch (e: any) {
+    } catch (error: unknown) {
         return NextResponse.json({
             ok: false,
-            error: e.message,
+            error: error instanceof Error ? error.message : 'Lead scan tetiklenemedi',
             uyari: 'Lead scan tetiklenemedi. CRON_SECRET .env.local\'a ekleyin.',
         }, { status: 500 })
     }

@@ -53,8 +53,7 @@ export async function POST(request: Request) {
                 }))
             )
             gonderilen += batch.length
-        } catch (e) {
-            // console.error('[EMAIL KAMPANYA] batch hata:', e)
+        } catch {
             hata += batch.length
         }
 

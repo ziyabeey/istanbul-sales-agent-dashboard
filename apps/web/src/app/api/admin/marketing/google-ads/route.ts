@@ -91,7 +91,7 @@ export async function PATCH(request: Request) {
     const { id, gunlukButce, durum } = await request.json()
     if (!id) return NextResponse.json({ error: 'id zorunlu' }, { status: 400 })
 
-    const guncelleme: Record<string, any> = {}
+    const guncelleme: FirebaseFirestore.UpdateData<FirebaseFirestore.DocumentData> = {}
     if (gunlukButce !== undefined) guncelleme.gunlukButce = Number(gunlukButce)
     if (durum !== undefined) guncelleme.durum = durum
 

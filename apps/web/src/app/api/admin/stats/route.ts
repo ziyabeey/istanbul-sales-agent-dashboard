@@ -20,10 +20,10 @@ export async function GET(request: Request) {
 
     try {
         const esnaflarSnap = await adminDb.collection('esnaflar').get()
-        const esnaflar = esnaflarSnap.docs.map((doc: any) => ({
+        const esnaflar = esnaflarSnap.docs.map((doc: FirebaseFirestore.QueryDocumentSnapshot) => ({
             id: doc.id,
             ...doc.data(),
-        })) as any[]
+        }))
 
         const aktifEsnaflar = esnaflar.filter(e => e.durum === 'aktif')
 
@@ -86,7 +86,10 @@ export async function GET(request: Request) {
                 notlar: e.notlar || '',
             })),
         })
-    } catch (error: any) {
-        return NextResponse.json({ error: error.message }, { status: 500 })
+    } catch (error: unknown) {
+        return NextResponse.json(
+            { error: error instanceof Error ? error.message : 'İstatistikler alınamadı' },
+            { status: 500 }
+        )
     }
 }

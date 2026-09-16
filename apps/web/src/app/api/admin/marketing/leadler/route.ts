@@ -63,7 +63,7 @@ export async function PATCH(request: Request) {
         return NextResponse.json({ error: 'Geçersiz durum' }, { status: 400 })
     }
 
-    const guncelleme: Record<string, any> = {
+    const guncelleme: FirebaseFirestore.UpdateData<FirebaseFirestore.DocumentData> = {
         durum,
         sonGuncellemeTarihi: Timestamp.now(),
     }
