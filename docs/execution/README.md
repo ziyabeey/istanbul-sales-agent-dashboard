@@ -11,8 +11,8 @@
 | Wave | Alan | Durum | Belge |
 |---|---|---|---|
 | W0 | Freeze / inventory / protected baselines | KAPALI / sentezde sabit | `docs/sentez/frontend-preservation-contract.md`, SENTEZ 2–4 |
-| W1 | Trust Spine | AÇIK | `docs/execution/w01-trust-spine.md` |
-| W2 | Tenant + Business + Commercial Spine | BEKLİYOR | — |
+| W1 | Trust Spine | KAPALI / planlandı | `docs/execution/w01-trust-spine.md` |
+| W2 | Tenant + Business + Commercial Spine | AÇIK | — |
 | W3 | Durable Execution + Credential + Integration | BEKLİYOR | — |
 | W4 | Site / Asset / Publish / Public Experience | BEKLİYOR | — |
 | W5 | Customer + Messaging + Support Foundation | BEKLİYOR | — |
@@ -42,21 +42,28 @@
 - `apps/randevu-server` kapsam dışıdır.
 - Hiçbir `DROP` etiketi tek başına delete yetkisi değildir.
 
-## Her task'ta zorunlu alanlar
+## W1 kapanış
 
-```text
-Task ID
-Exact path(s)
-Current role
-Disposition
-Canonical destination
-Prerequisites
-Migration action
-Acceptance / cutover gate
-Rollback note
-Frontend/public dependency check
-```
+Trust manifest exact path seviyesinde şunları ayırdı:
+
+- signed session/permission primitive'leri `PRESERVE/REWRITE`,
+- phone/Google login route'ları canonical User/Membership/Session'a `ADAPTER`,
+- onboarding fixed `123456`, production dev-login ve raw Admin secret `HARD-CUT`,
+- proxy cookie-existence trust ve parallel NextAuth/custom/admin session authority `REWRITE`,
+- admin impersonation contract seed'i `PRESERVE/PROMOTE`.
 
 ## Aktif frontier
 
-**W1 — Trust Spine exact manifest.**
+**W2 — Tenant + Business + Commercial Spine exact manifest.**
+
+W2 target:
+
+```text
+BusinessTenant
+BusinessProfile
+Subscription / Contract
+EntitlementGrant
+EffectiveCapabilitySet
+Quota / dependency policy
+Incident / maintenance policy
+```
