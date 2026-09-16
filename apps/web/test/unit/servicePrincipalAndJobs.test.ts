@@ -165,10 +165,11 @@ describe('P0-04 durable job policy', () => {
     expect(nextRetryAt(2, now).toISOString()).toBe('2026-09-16T07:00:10.000Z')
   })
 
-  it('treats an expired worker lease as recoverable', () => {
+  it('treats expired and legacy lease-less processing records as recoverable', () => {
     const lease = leaseExpiresAt(now, 60_000)
     expect(isLeaseExpired(lease, new Date('2026-09-16T07:00:59.000Z'))).toBe(false)
     expect(isLeaseExpired(lease, new Date('2026-09-16T07:01:00.000Z'))).toBe(true)
+    expect(isLeaseExpired(null, now)).toBe(true)
   })
 
   it('only attempts queued jobs whose retry window is open and budget remains', () => {
