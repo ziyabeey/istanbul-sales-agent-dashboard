@@ -20,8 +20,8 @@ function readSource(relativePath: string): string {
 }
 
 describe('Pilot-0 trust baseline characterization', () => {
-  it('pins the current principal/cookie vocabulary after P0-03', () => {
-    expect(TRUST_BASELINE_VERSION).toBe('p0-03@2026-09-16')
+  it('pins the current principal/cookie vocabulary after P0-04', () => {
+    expect(TRUST_BASELINE_VERSION).toBe('p0-04@2026-09-16')
     expect(CURRENT_TRUST_COOKIES).toEqual({
       businessSession: 'kepenk_session',
       adminSession: 'admin_token',
@@ -29,7 +29,8 @@ describe('Pilot-0 trust baseline characterization', () => {
     })
     expect(CURRENT_PRINCIPAL_SOURCES.dashboard[0]).toContain('durable Session -> User -> Membership')
     expect(CURRENT_PRINCIPAL_SOURCES.businessApi[0]).toContain('apiGuard requireUserSession')
-    expect(CURRENT_SHARED_SECRET_SURFACES.length).toBeGreaterThanOrEqual(6)
+    expect(CURRENT_PRINCIPAL_SOURCES.service[0]).toContain('signed ServicePrincipal')
+    expect(CURRENT_SHARED_SECRET_SURFACES.length).toBeGreaterThanOrEqual(5)
   })
 
   it('P0-03: one canonical business-session resolver owns dashboard and API identity', () => {
@@ -70,12 +71,13 @@ describe('Pilot-0 trust baseline characterization', () => {
     expect(source).toContain("subdomain === 'destek'")
   })
 
-  it('P0-03: canonical API guard exposes RequestContext and has no legacy OR fallback', () => {
+  it('P0-03/P0-04: API guard exposes canonical user and service principals without legacy user fallback', () => {
     const source = readSource('src/lib/apiGuard.ts')
 
     expect(source).toContain('requireUserSession?: boolean')
+    expect(source).toContain('requireServicePrincipal?: ServiceRequirement')
     expect(source).toContain('resolveCanonicalBusinessContextFromRequest(request)')
-    expect(source).toContain('return context ? { ok: true, context } : { ok: true }')
+    expect(source).toContain('verifyServiceRequest(request, options.requireServicePrincipal)')
     expect(source).not.toContain('jwtDogrula')
     expect(source).not.toContain('oturumDogrula')
   })
@@ -133,6 +135,43 @@ describe('Pilot-0 trust baseline characterization', () => {
     expect(KNOWN_TRUST_RISKS).not.toContain('logout_clears_cookie_without_server_session_revocation')
   })
 
+  it('P0-04: Cloud Tasks fails closed and carries signed scoped service identity', () => {
+    const source = readSource('src/lib/cloudTasksClient.ts')
+
+    expect(source).not.toContain('Executing payload synchronously instead (Fallback mode).')
+    expect(source).not.toContain('dev-secret-123')
+    expect(source).not.toContain('x-cloud-task-secret')
+    expect(source).toContain('insecure direct HTTP fallback is disabled')
+    expect(source).toContain('issueServiceToken({')
+    expect(source).toContain('Authorization: `Bearer ${serviceToken}`')
+    expect(KNOWN_TRUST_RISKS).not.toContain('cloud_tasks_missing_credentials_downgrades_to_direct_http')
+    expect(KNOWN_TRUST_RISKS).not.toContain('cloud_task_header_has_dev_secret_fallback')
+  })
+
+  it('P0-04: migrated workers require audience and scope before doing work', () => {
+    const queue = readSource('src/app/api/cron/kuyruk-isleyici/route.ts')
+    const site = readSource('src/app/api/workers/site-ureticisi/route.ts')
+
+    expect(queue).toContain('requireServicePrincipal: {')
+    expect(queue).toContain('SERVICE_AUDIENCES.queueProcessor')
+    expect(queue).toContain('SERVICE_SCOPES.queueProcess')
+    expect(queue).toContain('allowLegacyCronSecret: true')
+    expect(site).toContain('requireServicePrincipal: {')
+    expect(site).toContain('SERVICE_AUDIENCES.siteGenerator')
+    expect(site).toContain('SERVICE_SCOPES.siteGenerate')
+  })
+
+  it('P0-04: durable queue uses leases, bounded retry and idempotency keys', () => {
+    const source = readSource('src/lib/islemKuyrugu.ts')
+
+    expect(source).toContain('idempotencyKey')
+    expect(source).toContain('leaseToken')
+    expect(source).toContain('leaseUntil')
+    expect(source).toContain('nextRetryAt')
+    expect(source).toContain('suresiDolanLeaseKurtar')
+    expect(source).toContain('data.denemeSayisi >= data.maxDeneme')
+  })
+
   it('KNOWN-RISK: admin login, proxy and API still use incompatible trust authorities', () => {
     const login = readSource('src/app/api/admin/login/route.ts')
     const proxy = readSource('src/proxy.ts')
@@ -170,10 +209,11 @@ describe('Pilot-0 trust baseline characterization', () => {
     expect(source).toContain('await oturumOlustur(esnafId, response)')
   })
 
-  it('KNOWN-RISK: Cloud Tasks still downgrades to direct HTTP and a development secret fallback', () => {
-    const source = readSource('src/lib/cloudTasksClient.ts')
-    expect(source).toContain('Executing payload synchronously instead (Fallback mode).')
-    expect(source).toContain("process.env.CRON_SECRET || 'dev-secret-123'")
+  it('KNOWN-RISK: unmigrated cron routes still rely on the shared CRON_SECRET path', () => {
+    const source = readSource('src/lib/apiGuard.ts')
+    expect(source).toContain('requireCronSecret?: boolean')
+    expect(source).toContain("request.headers.get('x-cron-secret')")
+    expect(KNOWN_TRUST_RISKS).toContain('unmigrated_cron_routes_still_use_shared_cron_secret')
   })
 
   it('KNOWN-RISK: privacy cron endpoints still contain simulated completion counters', () => {
@@ -207,7 +247,9 @@ describe('Pilot-0 trust baseline characterization', () => {
     )
     expect(KNOWN_TRUST_RISKS).toContain('admin_login_proxy_api_use_incompatible_authorities')
     expect(KNOWN_TRUST_RISKS).toContain('admin_proxy_fails_open_when_secret_and_cookie_are_both_absent')
+    expect(KNOWN_TRUST_RISKS).toContain('unmigrated_cron_routes_still_use_shared_cron_secret')
     expect(KNOWN_TRUST_RISKS).toContain('privacy_crons_can_report_simulated_success')
     expect(KNOWN_TRUST_RISKS).not.toContain('dashboard_proxy_accepts_business_cookie_by_presence')
+    expect(KNOWN_TRUST_RISKS).not.toContain('cloud_tasks_missing_credentials_downgrades_to_direct_http')
   })
 })
