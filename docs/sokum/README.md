@@ -1,7 +1,7 @@
 # Kepenk Söküm - Canlı İndeks
 
 > **Tarih:** 2026-09-16  
-> **Durum:** **SÖKÜM 39 AÇIK - Supply / Procurement / Purchase Order / B2B Supplier Marketplace doğrulaması**  
+> **Durum:** **SÖKÜM 40 AÇIK - Support OS / Ticket / SLA / Knowledge Base / AI Assistance**  
 > **Amaç:** `KEPENK_SOKUM_PLANI.md` 01-24 tarihsel snapshot olarak, 25+ repo-doğrulanmış turlar ise `docs/sokum/` altında korunur. Bu dosya yalnız canlı frontier ve kısa handoff taşır.
 
 ## Güncel durum
@@ -23,70 +23,64 @@
 | 36 | Canonical Architecture Synthesis / Migration & Cleanup Sequence | KAPALI / CORE BASELINE | `docs/sokum/36-canonical-architecture-synthesis.md` |
 | 37 | Restaurant Operations / POS / Masa / Adisyon / KDS / Offline Sync | KAPALI | `docs/sokum/37-restaurant-operations-pos-kds-offline-sync.md` |
 | 38 | Marketplace / Job / Bid / Provider / Escrow / Credit Economy | KAPALI | `docs/sokum/38-marketplace-job-bid-provider-escrow-credit-economy.md` |
-| 39 | Supply / Procurement / Supplier / Purchase Order / Reorder / B2B Marketplace | AÇIK | sıradaki vertical doğrulaması |
+| 39 | Supply / Procurement / Supplier / PO / Reorder / B2B Marketplace | KAPALI | `docs/sokum/39-supply-procurement-supplier-marketplace.md` |
+| 40 | Support OS / Ticket / SLA / Knowledge Base / AI Assistance | AÇIK | aktif vertical doğrulaması |
 
 ## Kanonik devam kuralı
 
 - Yeni turda yalnız bu indeks + en son gerekli söküm belgesi + frontier kodu okunur.
-- `36-canonical-architecture-synthesis.md` core baseline'dır; vertical'lar bunu bozmak yerine first-class bounded context veya explicit extension olarak bağlanır.
-- Vertical/package triage tamamlanmadan hiçbir vertical package archive/delete adayı sayılmaz.
-- `apps/randevu-server` Kepenk söküm/migration kapsamı dışındadır ve değiştirilmez.
+- `36-canonical-architecture-synthesis.md` core baseline'dır; vertical'lar bunu bozmak yerine bounded context veya explicit extension olarak bağlanır.
+- Dedicated vertical triage tamamlanmadan hiçbir korunan vertical archive/delete adayı sayılmaz.
+- Her business fact için tek write authority vardır; legacy UI/local state authority değildir.
+- `apps/randevu-server` Kepenk kapsamı dışındadır ve değiştirilmez.
 - Production secret/token değerleri dokümana kopyalanmaz.
-- Paralel ajan current frontier'ı kapatmışsa overwrite edilmez; current main yeniden okunup ilk açık frontier'a geçilir.
+- Paralel ajan frontier'ı kapatmışsa overwrite edilmez; main yeniden okunup ilk açık frontier'a geçilir.
 
-## Kapanan son karar: SÖKÜM 38
+## Kapanan son karar: SÖKÜM 39
 
-Marketplace'in first-class bounded context olarak korunması gerektiği, ancak current main'de gerçek runtime authority'nin henüz kurulmadığı doğrulandı.
+Supply iki ayrı ürün sınırı içeriyor:
 
-### Current-main evidence
+```text
+Tenant-private Procurement Core
+  SupplierRelationship
+  SupplierCatalogItem
+  PurchaseOrder
+  GoodsReceipt
+  ReorderPolicy
+  SupplierPerformance projection
 
-- `packages/marketplace/src` yalnız `index.ts` ve `types/job.ts` + `types/bid.ts` taşıyor.
-- `dashboard/manage/pazaryeri` müşteri UX'i hard-coded `Demo Data` kullanıyor.
-- `dashboard/manage/pazaryeri/usta` provider UX'i hard-coded lead/bid/credit/auto-bid state'i kullanıyor.
-- package'taki ayırt edici Marketplace sembolleri için gerçek repository/service/API caller yüzeyi doğrulanmadı.
-- `CREDIT_PRICE_TRY = 5` iken `10 kredi` paketinin `price: 5000` olması, UI'da aynı paketin `₺50` gösterilmesiyle birlikte explicit TL/kuruş contract eksikliğini doğruluyor.
+Platform Supplier Marketplace (extension)
+  SellerProfile
+  Listing
+  MarketplaceOrder
+  CommissionPolicy
+```
+
+Current main'de domain contract'ları ve ciddi UX prototipleri var; gerçek repository/service/API write authority doğrulanmadı. `tedarik` ve `b2b-pazar` ekranları local hard-coded state kullanıyor.
 
 ### KEEP
 
-- Marketplace bounded context,
-- Job/Bid primitives,
-- customer + provider UX,
-- ProviderSnapshot,
-- credit economy iş modeli,
-- commission policy,
-- auto-bid,
-- AI job analysis,
-- dispute/reputation gereksinimi.
+- Procurement first-class capability,
+- supplier / PO / reorder domain dili,
+- minor-unit fiyat yaklaşımı,
+- supplier scoring ve payment-term tohumları,
+- mevcut Procurement + B2B UX emeği.
 
-### REWRITE / CONNECT
+### REWRITE / BUILD
 
-```text
-Customer -> MarketplaceJob -> Bid[] -> Award -> WorkLifecycle
-                                      |
-                                      +-> PaymentIntent / EscrowIntent -> Payment Core
-                                                                       -> Finance Ledger
-
-Marketplace Credit
- -> CreditAccount
- -> immutable CreditLedger
- -> reservation / spend / release / refund
-
-AutoBid
- -> Durable Jobs
- -> idempotent PlaceBid
-```
-
-Marketplace identity, payment transaction, earnings, settlement ve credential truth'larını kendi aggregate'ında tekrar kurmayacak.
+- supplier identity canonical party/tenant graph'ına,
+- PO lifecycle approval/ack/partial receipt/backorder/rejection semantiğine,
+- ayrı `GoodsReceipt` -> InventoryMovement köprüsüne,
+- payment terms -> Finance/AP projection'a,
+- reorder -> durable advisory/approval policy'ye,
+- supplier channels -> IntegrationConnection + Durable Jobs'a bağlanır.
 
 Ana invariant:
 
-> **Marketplace bugünkü haliyle çalışan bir pazar motoru değil, güçlü bir domain eskizidir. Eskiz korunacak; gerçek state/economy authority canonical core'a bağlı Marketplace Core olarak kurulacaktır.**
+> **Procurement purchasing workflow'u sahiplenir; stok truth'u Inventory'nin, ödeme/borç truth'u Payment/Finance'ın kalır. PO mal kabul değildir.**
 
-## Koruma altındaki henüz triage edilmemiş vertical/product paketleri
+## Koruma altındaki kalan vertical/product paketleri
 
-Dedicated caller/runtime triage tamamlanmadan aşağıdakiler archive/delete edilmeyecektir:
-
-- `packages/supply`
 - `packages/support`
 - `packages/voice`
 - `packages/studio`
@@ -95,47 +89,28 @@ Dedicated caller/runtime triage tamamlanmadan aşağıdakiler archive/delete edi
 - `packages/admin`
 - `packages/influencer`
 
-`admin` büyük ölçüde Control Plane'e konsolide olacak bir primitive paketi olabilir. `voice`/`seo` gibi paketler mevcut core'a extension olabilir. `supply` current-main ilk bakışında bağımsız procurement state/economy taşıdığı için sıradaki dedicated vertical frontier olarak açılmıştır.
+`restaurant`, `marketplace` ve `supply` dedicated teardown ile korunmuştur.
 
 ## Aktif frontier
 
-### SÖKÜM 39 - Supply / Procurement / Supplier / Purchase Order / Reorder / B2B Marketplace
+### SÖKÜM 40 - Support OS / Ticket / SLA / Knowledge Base / AI Assistance
 
-İlk current-main doğrulaması üç ayrı ürün yüzeyinin birbirine temas ettiğini gösterdi:
+İlk current-main kanıtı:
 
-1. `packages/supply/src/types/supply.ts`
-   - Supplier,
-   - SupplierProduct,
-   - PurchaseOrder + PO item/status,
-   - email / WhatsApp / portal / API integration method,
-   - payment terms,
-   - reorder point,
-   - supplier scoring.
-
-2. `packages/supply/src/types/marketplace.ts`
-   - PremiumSupplier,
-   - B2B MarketplaceProduct,
-   - verification level,
-   - supplier subscription/listing tier,
-   - marketplace commission rates.
-
-3. UI surfaces
-   - `dashboard/manage/tedarik`: stok uyarısı, ROP, supplier score, PO tracking,
-   - `dashboard/manage/b2b-pazar`: supplier/product discovery ve order modal,
-   - ikisi de current main'de hard-coded demo data ile çalışıyor.
+- `packages/support/src/types/ticket.ts`: ticket lifecycle, P1-P4 priority, assignment, messages, SLA, AI response metadata.
+- `packages/support/src/types/knowledgeBase.ts`: MDX article, chunk/embedding/RAG result, confidence thresholds.
+- `dashboard/manage/destek`: 14KB civarı ciddi destek UX'i ancak `DemoTicket[]` + local state kullanıyor.
+- `@kepenk/support` için gerçek runtime import/caller doğrulanmadı.
 
 Öncelikli sorular:
 
-1. Supplier canonical Business/Partner identity graph'ında ne olmalı, tenant'ın private vendor kaydı ile platform marketplace seller aynı entity mi?
-2. SupplierProduct hangi Product/Variant/Inventory authority'sine map edilmeli?
-3. PurchaseOrder lifecycle draft/sent/confirmed/shipped/delivered dışında partial receipt, backorder, rejection, return ve cancellation'ı nasıl taşımalı?
-4. Mal kabulü Inventory hareketini, PO kapanışını ve Accounts Payable/Finance event'ini nasıl üretmeli?
-5. Reorder Point hangi gerçek demand/stock history'sinden hesaplanmalı ve safety-stock policy kimin authority'si olmalı?
-6. Otomatik sipariş hangi approval threshold'larından sonra durable command olabilir?
-7. Email/WhatsApp/portal/API supplier integration'ları SÖKÜM 33 IntegrationConnection + SÖKÜM 24 Durable Jobs'a nasıl bağlanmalı?
-8. `net15/net30/net60/cod` payment terms Finance/AP truth'una nasıl bağlanmalı?
-9. Supplier scoring ve rating'in provenance'ı nedir, hard-coded projection olmaktan nasıl çıkar?
-10. Procurement ile premium B2B supplier marketplace tek bounded context'in iki yüzeyi mi, yoksa Supply Core + Supplier Marketplace extension olarak mı ayrılmalı?
-11. Listing tier entitlement ile marketplace seller monetization/commission sınırı nasıl kurulmalı?
-12. Package minor-unit fiyatları ile B2B UI'daki TL-benzeri raw fiyatların money contract'ı tutarlı mı?
-13. Gerçek repository/service/API/caller var mı, yoksa Marketplace 38 gibi package + demo UI contract adası mı?
+1. Support hangi state'i sahiplenir; Customer/Messaging/RAG sınırı nerede?
+2. SLA clock pause/resume, business hours, first-response ve resolution deadline nasıl durable olur?
+3. Assignment/escalation/reopen lifecycle canonical command/event olarak nasıl kurulur?
+4. Ticket message ile Messaging channel/thread arasındaki binding nedir?
+5. KB article lifecycle/version/publish authority Support'ta mı Content/RAG'de mi?
+6. AI suggestion, auto-send ve `aiResolved` hangi policy/approval sınırına tabi olmalı?
+7. AI hiçbir koşulda finans, hesap, güvenlik veya destructive action'ı yalnız confidence ile yapabilir mi?
+8. Real repository/service/API writer var mı, yoksa contract + demo UI adası mı?
+9. Support KPIs first response, resolution, breach, reopen, deflection ve human handoff olarak hangi verified events'ten türetilmeli?
+10. External helpdesk/email/WhatsApp girişleri IntegrationConnection + verified ingress üzerinden mi bağlanmalı?
