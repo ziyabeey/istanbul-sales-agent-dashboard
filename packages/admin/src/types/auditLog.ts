@@ -30,7 +30,7 @@ interface AdminActionBase {
     timestamp: string;
     ip?: string;
     userAgent?: string;
-    requestId?: string;
+    requestId: string;
     metadata?: Record<string, unknown>;
 }
 
