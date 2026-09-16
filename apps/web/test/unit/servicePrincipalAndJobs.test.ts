@@ -111,7 +111,7 @@ describe('P0-04 signed service principal', () => {
     })).toBeNull()
   })
 
-  it('allows the legacy cron secret only on an explicitly opted-in route', () => {
+  it('P0-08 rejects legacy CRON_SECRET headers on migrated service verification', () => {
     const request = new Request('https://kepenk.ai/api/cron/kuyruk-isleyici', {
       headers: { 'x-cron-secret': 'p0-04-legacy-cron-secret' },
     })
@@ -119,26 +119,16 @@ describe('P0-04 signed service principal', () => {
     expect(verifyServiceRequest(request, {
       audience: SERVICE_AUDIENCES.queueProcessor,
       scopes: [SERVICE_SCOPES.queueProcess],
-      allowLegacyCronSecret: false,
       now: issuedAt,
     })).toBeNull()
-
-    expect(verifyServiceRequest(request, {
-      audience: SERVICE_AUDIENCES.queueProcessor,
-      scopes: [SERVICE_SCOPES.queueProcess],
-      allowLegacyCronSecret: true,
-      now: issuedAt,
-    })?.authType).toBe('legacy_cron_secret')
   })
 
-  it('does not fail open when the legacy cron secret is missing', () => {
-    delete process.env.CRON_SECRET
+  it('does not fail open when no signed service bearer is presented', () => {
     const request = new Request('https://kepenk.ai/api/cron/kuyruk-isleyici')
 
     expect(verifyServiceRequest(request, {
       audience: SERVICE_AUDIENCES.queueProcessor,
       scopes: [SERVICE_SCOPES.queueProcess],
-      allowLegacyCronSecret: true,
       now: issuedAt,
     })).toBeNull()
   })
@@ -180,17 +170,24 @@ describe('P0-04 durable job policy', () => {
   })
 })
 
-describe('P0-04 Cloud Tasks hard cut', () => {
-  it('contains no direct HTTP fallback or development task secret', () => {
-    const source = fs.readFileSync(
+describe('P0-04/P0-08 Cloud Tasks hard cut', () => {
+  it('contains no direct HTTP fallback, development task secret or legacy service auth bridge', () => {
+    const cloudTasksSource = fs.readFileSync(
       path.resolve(process.cwd(), 'src/lib/cloudTasksClient.ts'),
       'utf8'
     )
+    const serviceAuthSource = fs.readFileSync(
+      path.resolve(process.cwd(), 'src/lib/serviceAuth.ts'),
+      'utf8'
+    )
 
-    expect(source).not.toContain('dev-secret-123')
-    expect(source).not.toContain('Executing payload synchronously')
-    expect(source).not.toContain('x-cloud-task-secret')
-    expect(source).toContain('insecure direct HTTP fallback is disabled')
-    expect(source).toContain('Authorization: `Bearer ${serviceToken}`')
+    expect(cloudTasksSource).not.toContain('dev-secret-123')
+    expect(cloudTasksSource).not.toContain('Executing payload synchronously')
+    expect(cloudTasksSource).not.toContain('x-cloud-task-secret')
+    expect(cloudTasksSource).toContain('insecure direct HTTP fallback is disabled')
+    expect(cloudTasksSource).toContain('Authorization: `Bearer ${serviceToken}`')
+    expect(serviceAuthSource).not.toContain('allowLegacyCronSecret')
+    expect(serviceAuthSource).not.toContain('legacy_cron_secret')
+    expect(serviceAuthSource).not.toContain('process.env.CRON_SECRET')
   })
 })
