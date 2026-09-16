@@ -18,8 +18,8 @@
 | W5 | Customer + Messaging + Support Foundation | KAPALI / planlandı | `docs/execution/w05-customer-messaging-support-foundation.md` |
 | W6 | Booking + Payment + Finance | KAPALI / planlandı | `docs/execution/w06-booking-payment-finance.md` |
 | W7 | Commerce + Inventory + Analytics + Marketing | KAPALI / planlandı | `docs/execution/w07-commerce-inventory-analytics-marketing.md` |
-| W8 | Agent Runtime + Knowledge | AÇIK | — |
-| W9 | Vertical Activation | BEKLİYOR | — |
+| W8 | Agent Runtime + Knowledge | KAPALI / planlandı | `docs/execution/w08-agent-runtime-knowledge.md` |
+| W9 | Vertical Activation | AÇIK | — |
 | W10 | Admin / Privacy / Offboarding convergence + final cleanup | BEKLİYOR | — |
 
 ## Disposition etiketleri
@@ -121,18 +121,29 @@
 - `/api/ads` gerçek dispatch olmadan success döndüren fake CAPI yolu `HARD-CUT`,
 - Campaign/Audience/Budget/Approval lifecycle provider activation/reconciliation ile ayrıştırıldı.
 
+## W8 kapanış
+
+- `AgentBase` max-hop/circuit/quota/DLQ lifecycle intent'i `PRESERVE`, durable `AgentRun/RunStep` authority altına taşındı,
+- process-local `AgentBus` ve ADK `InMemoryRunner` authority olmaktan çıkarıldı; W3 durable execution child-run/delegation omurgası oldu,
+- `agentRunner`, `lib/ai/agentOrchestrator`, `modelClient`, `modelRouter` içindeki paralel prompt/model/agent registry'leri tek `AgentDefinition + ModelPolicy + ModelGateway` altında birleştirildi,
+- `aiSecurity` PII/prompt-injection/cost guard seed'leri `PRESERVE/HARDEN`, prompt güvenliği capability authorization yerine geçmez,
+- caller-controlled `esnafId` generic agent execution, literal A2A bearer ve guard'sız ADK RPC `HARD-CUT`,
+- `tahsilatAjani`, marketing/reklam helper'ları ve kapora ADK modülü gibi direct domain/provider writers canonical W5/W6/W7 capability calls'a ayrıştırıldı,
+- production model/provider fallback çıktılarının fake success olması kapatıldı,
+- `kolektifZeka` anonymization/retrieval/evidence/confidence intent'i `PRESERVE`, Pinecone source truth olmaktan çıkarılıp KnowledgeSource/Chunk/EmbeddingRevision projection modeline taşındı,
+- `platform_insights` derived projection olarak sınıflandı,
+- `RetrievalEvidence`, `OutcomeVerification`, `FeedbackEvent` ve `EvaluationResult` canonical build requirement oldu.
+
 ## Aktif frontier
 
-**W8 — Agent Runtime + Knowledge exact manifest.**
+**W9 — Vertical Activation exact manifest.**
 
-W8 target:
+W9 target:
 
 ```text
-AgentDefinition / Capability Registry
-AgentRun / RunStep / ToolCall / Outcome Verification
-Policy + permission constrained command bus
-Model/provider gateway
-KnowledgeSource / Chunk / Embedding / Retrieval provenance
-Tenant-safe memory + RAG
-Feedback/evaluation loop
+Restaurant Operations / POS / KDS / offline-safe operations
+Marketplace / Job / Bid / Agreement / Escrow / Credit
+Procurement / Supplier / PO / Reorder
+Support full SLA / escalation / knowledge activation
+Future vertical seeds: Studio / Blog / SEO / Influencer
 ```
