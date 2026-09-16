@@ -1,245 +1,564 @@
 # SÖKÜM 37 - Restaurant Operations / POS / Masa / Adisyon / KDS / Offline Sync
 
 > **Tarih:** 2026-09-16  
-> **Durum:** AÇIK  
-> **Neden yeniden açıldı:** SÖKÜM 36 sonrasında yapılan file-level vertical audit, Restaurant tarafının yalnız ince bir package/type shell olmadığını; kendi operasyon state'i, offline-first modeli, KDS, masa/adisyon, QR sipariş ve split-payment semantiği olan bağımsız bir ürün domain'i olduğunu doğruladı.
+> **Durum:** KAPALI  
+> **Verdict:** **KEEP Restaurant OS as a first-class product bounded context; KEEP the table/adisyon/KDS/offline-sync/staff-KPI/menu-digitization/QR-order/split-bill product semantics; REWRITE public trust, payment truth, callback verification, operational state ownership and offline reconciliation behind canonical commands/events; CONNECT Restaurant Operations to Payment Core, Finance Ledger, Commerce Catalog, Public Action Gateway, IntegrationConnection and Durable Execution; BUILD the missing real-time staff notification, payment-timing policy and multi-branch managerless-operations control plane; DROP only demo/fake-success and duplicate authority paths after cutover.**
 
-## 1. İlk doğrulanan yüzey
+## 1. Neyi doğruladık?
 
-### Package contract
-
-`packages/restaurant` bugün şunları taşıyor:
-
-- offline order/product/category/table modeli,
-- kuruş bazlı money alanları,
-- Dexie store layout,
-- sync state ve conflict-resolution policy,
-- KDS order/item/timer semantiği,
-- QR/payment/cart sözleşmeleri,
-- waiter/kitchen/revenue KPI tipleri ve yardımcıları.
-
-Özellikle offline sync policy açıkça düşünülmüş:
+SÖKÜM 36 sonrasında yapılan file-level vertical audit, Restaurant tarafının yalnız ince bir package/type shell olmadığını doğruladı. Ürün emeği şu yüzeylere dağılmış durumda:
 
 ```text
-order status     -> server wins
-payment state    -> server wins
-items/note/tip   -> client wins
-```
+packages/restaurant
+  offline DB / Dexie contracts
+  sync conflict policy
+  KDS
+  QR + payment/cart
+  waiter/kitchen/revenue KPI
 
-Bu, Restaurant'ın basit bir Commerce ekranı değil, offline-first operasyon çekirdeği taslağı olduğunu gösterir.
+apps/web/src/lib/restoran
+  MasaTypes.ts
+  restaurant domain types
+  tax/utilities
+  B2B/procurement-adjacent types
 
-### Runtime / API
-
-Doğrulanan `apps/web` yüzeyleri:
-
-```text
-/api/restoran/
-  alman-odeme
-  alman-odeme-callback
+apps/web/src/app/api/restoran
   masa-olustur
   masa-siparis
-  menu-sihirbazi
-  parasut-tetikle
   siparis-olustur
+  alman-odeme
+  alman-odeme-callback
   split-odeme
+  menu-sihirbazi
   upsell-onerisi
+  parasut-tetikle
 
-/dashboard/manage/restoran/
+apps/web/src/app/dashboard/manage/restoran
   garson
-  mutfak
-  qr-siparis
-
-/lib/restoran/
-  MasaTypes.ts
-  b2bTipler.ts
-  tipler.ts
-  utils.ts
+  mutfak / KDS
+  QR siparis
 ```
 
-Garson ve mutfak ekranları bugün demo/local state kullanıyor olsa da ürün akışı nettir. Backend tarafında ise gerçek Firestore adisyon, kuruş bazlı tutar, KDV, masa siparişi, split-bill ve İyzico checkout kodu vardır.
+Ana sonuç:
 
-## 2. İlk verdict
+> Restaurant, generic Commerce ekranı değildir. Masa yaşam döngüsü, açık adisyon, mutfak, servis, personel görevi, offline POS ve operasyon KPI'ları nedeniyle ayrı bir **Restaurant Operations** bounded context'idir.
+
+---
+
+## 2. Kurtarılan Restaurant OS ürün vizyonu
+
+### 2.1 Garson çağırmadan masadan sipariş
+
+Bu fikir yalnız mock tasarım değildir.
+
+`masa-olustur` işletmenin masa sayısından masa kayıtları ve QR linkleri üretir. QR kartları basılabilir. `siparis-olustur` ve `masa-siparis` public müşteri akışından gelen siparişi gerçek `aktif_adisyonlar` state'ine yazmaktadır.
+
+`masa-siparis` ayrıca:
+
+- aynı masadaki birden fazla cihazı `deviceId` ile ayırır,
+- mevcut açık adisyona atomik item append yapar,
+- split-bill için item'ın hangi cihazdan geldiğini saklar,
+- kuruş bazlı fiyat/KDV state'i taşır.
+
+**Karar:** Self-ordering / multiplayer table cart **KEEP**.
+
+### 2.2 Sipariş anında ödeme
+
+`alman-odeme` gerçek İyzico checkout başlatma primitive'ine bağlanır. Dolayısıyla klasik "yemek bitti, garson hesap getirsin" zorunluluğunu kıran pay-first ürün yönü kodda vardır.
+
+**Karar:** `ON_ORDER` payment timing **KEEP**.
+
+### 2.3 Hazırlık başladığında ödeme
+
+Masa state machine'i açıkça:
+
+```text
+siparis_verildi
+ -> servis_acildi
+ -> mutfakta_hazirlaniyor
+ -> mutfak_hazir
+ -> teslim_edildi
+```
+
+transition'larını içeriyor.
+
+Ancak güncel audit'te `mutfakta_hazirlaniyor` transition'ına bağlı canonical bir ödeme başlatma/capture orchestration'ı doğrulanmadı.
+
+Bu nedenle ürün fikri kaybedilmeyecek ve explicit policy olarak **BUILD** edilecek:
+
+```text
+RestaurantPaymentTimingPolicy
+  = ON_ORDER
+  | ON_KITCHEN_START
+  | POSTPAID
+```
+
+Gelecekte gerekirse `ON_KITCHEN_ACCEPT` ayrı policy olabilir; fakat mevcut ürün hedefi en az yukarıdaki üç modu desteklemelidir.
+
+### 2.4 Split bill / Alman usulü hesap
+
+Item seçerek ödeme semantiği ve ürün UX'i vardır. Mevcut `split-odeme` doğrudan item'ları `odendi: true` yapıp lokal payment success yazabildiği için finansal authority olarak kullanılamaz.
+
+**KEEP:** item-level tender allocation / split-bill UX.  
+**REWRITE:** gerçek ödeme sonucu Payment Core + provider verification + Finance Ledger üzerinden gelir.
+
+---
+
+## 3. Masa yaşam döngüsü, düşündüğümüzden daha ileri
+
+`MasaTypes.ts` sekiz aşamalı explicit state machine taşıyor:
+
+```text
+bos
+ -> siparis_verildi
+ -> servis_acildi
+ -> mutfakta_hazirlaniyor
+ -> mutfak_hazir
+ -> teslim_edildi
+ -> hesap_odendi_kirli
+ -> temizleniyor
+ -> bos
+```
+
+Ayrıca:
+
+- kirli/temizleniyor durumda QR sipariş kilidi,
+- atanmış garson ID/adı,
+- aktif adisyon referansı,
+- son sipariş/durum/temizlik timestamps,
+- oturum ciro state'i,
+- state transition validation,
+- garsonun görmesi gereken bir sonraki aksiyon
+
+modellenmiş durumda.
+
+Özellikle ürün davranışı:
+
+```text
+siparis_verildi -> "Servis Aç"
+mutfak_hazir -> "Yemek Hazır, Masaya Teslim Et"
+hesap_odendi_kirli -> "Masayı Temizle ve Kapat"
+```
+
+şeklinde görev yönlendirme taşıyor.
+
+**Karar:** Table/DiningSession lifecycle **KEEP**, fakat canonical event/state authority olarak yeniden bağlanacak.
+
+---
+
+## 4. KDS + garson takibi + KPI gerçekten tasarlanmış
+
+`packages/restaurant` KDS katmanı:
+
+- kitchen order/item state,
+- elapsed/prep timers,
+- green/yellow/red urgency,
+- overdue detection,
+- geciken siparişi önceliklendirme
+
+primitive'leri taşıyor.
+
+KPI contract'ında ayrı ayrı:
+
+### Waiter KPI
+
+- teslim sayısı,
+- ortalama teslim süresi,
+- gecikme sayısı,
+- rating.
+
+### Kitchen KPI
+
+- ortalama hazırlama süresi,
+- geciken iş,
+- iptal,
+- peak/busy hour.
+
+### Revenue KPI
+
+- ciro,
+- bahşiş,
+- ortalama adisyon,
+- en çok satan ürünler.
+
+Bu nedenle "kim çalışıyor, nerede darboğaz var, servis mi mutfak mı yavaş" fikrinin veri modeli gerçek ve korunmaya değerdir.
+
+**Karar:** Waiter/Kitchen/Revenue KPI model **KEEP + HARDEN**.
+
+---
+
+## 5. Personel ve vardiya intent'i de kodda var
+
+`MasaTypes.ts` personel için:
+
+```text
+rol = garson | asci | patron | kasiyer
+durum = online | mola | offline
+telefon
+fcmToken
+aktif_masa_sayisi
+bugun_toplam_masa
+bugun_toplam_bahsis_kurus
+son_atama_sira
+vardiya_baslangic
+son_gorev_ani
+```
+
+alanlarını tanımlıyor.
+
+Bu önemli çünkü Restaurant OS'un yönetici yerine geçen kontrol döngüsünün tohumu burada:
+
+```text
+kim vardiyada?
+kim molada?
+kim kaç masa taşıyor?
+kim ne zaman son görev aldı?
+kim ne kadar hızlı teslim ediyor?
+mutfak ne kadar hızlı çıkarıyor?
+```
+
+### Garson atama yönü
+
+`atanan_garson_id` / `atanan_garson_adi` masa state'inde bulunuyor; personelde yük metriği ve round-robin tie-breaker için `son_atama_sira` var.
+
+Bu nedenle otomatik workload-aware waiter assignment ürün intent'i **KEEP/BUILD** olarak korunacaktır.
+
+---
+
+## 6. "Yemek hazır -> garsonun telefonuna bildirim" durumu
+
+Repo açıkça:
+
+- `mutfak_hazir` state'ini,
+- atanmış garson kimliğini,
+- `fcmToken` alanını,
+- "Yemek Hazır, Masaya Teslim Et" waiter action'ını
+
+modelliyor.
+
+Ancak güncel audit'te şu full production zinciri doğrulanmadı:
+
+```text
+KitchenReady event
+ -> assigned waiter resolve
+ -> FCM push send
+ -> waiter device receive
+ -> acknowledgement
+ -> delivered transition
+ -> delivery SLA/KPI projection
+```
+
+Dolayısıyla fikir **kaybolmuş değildir**, fakat mevcut repository'de sender/orchestrator'ın tamamı doğrulanmış değildir.
+
+### BUILD
+
+```text
+KitchenReady
+  -> WaiterTask created
+  -> Assignment policy
+  -> OperationalNotification
+  -> FCM / device push
+  -> ACK
+  -> Delivered
+  -> KPI projection
+```
+
+Push notification Messaging/Campaign marketing hattı değil, Restaurant'ın **operational notification** capability'sidir; provider adapter ortak messaging altyapısını kullanabilir.
+
+---
+
+## 7. Offline-first POS emeği kesinlikle korunacak
+
+`packages/restaurant` Dexie-oriented local model taşır:
+
+- order,
+- product,
+- category,
+- table,
+- payment status,
+- sync status,
+- timestamps,
+- waiter links.
+
+Para alanları kuruştur.
+
+Conflict policy explicit'tir:
+
+```text
+order status    -> server wins
+payment status  -> server wins
+payment id      -> server wins
+items           -> client wins
+customer note   -> client wins
+tip             -> client wins
+waiter/timers   -> server wins
+```
+
+Bu ürün yönü çok değerlidir, çünkü restoran internet kesilince durmamalıdır.
 
 ### KEEP
 
-Aşağıdaki ürün/domain emeği korunacaktır:
+- offline POS intent,
+- local replica,
+- conflict-category ayrımı,
+- pending/synced/conflict state.
 
-- masa / table kavramı,
-- dining session / açık adisyon fikri,
-- QR ordering UX ve semantiği,
-- ortak masa sepeti / multiplayer cart intent'i,
-- KDS ve kitchen-ticket lifecycle,
-- waiter ready/delivered lifecycle,
-- modifiers / notes,
-- split bill / tender allocation ürün fikri,
-- tip/bahşiş semantiği,
-- KDV hesaplama intent'i,
-- kuruş bazlı para yönü,
-- offline-first POS modeli,
-- explicit sync conflict policy,
-- kitchen/waiter KPI intent'i,
-- İyzico ve Paraşüt adapter intent'i.
+### REWRITE
 
-Bunlar generic Commerce içine eritilip kaybedilmeyecektir.
-
-### REWRITE / CONNECT
-
-Restaurant kendi finansal veya tenant authority'sini tekrar kurmayacak. Aşağıdaki sınırlar canonical core'a bağlanmalıdır:
-
-- tenant ve yetki -> `BusinessTenant` + `RequestContext`,
-- capability -> `EffectiveCapabilitySet`,
-- menu/product fiyat authority -> Commerce Catalog veya açık Restaurant Menu projection/policy,
-- ödeme -> Payment Core,
-- revenue/refund/tip/tax financial truth -> immutable Finance Ledger,
-- public QR action -> Public Action Gateway,
-- provider callbacks -> verified Payment/Integration ingress,
-- Paraşüt -> IntegrationConnection/provider adapter,
-- async işler -> Durable Jobs/Outbox/Event Inbox,
-- audit/telemetry -> platform spine.
-
-## 3. Şimdiden görülen kritik sınırlar
-
-### 3.1 Public caller fiyat authority olamaz
-
-`masa-siparis` request'i bugün `esnafId` ve `birimFiyatKurus` alabiliyor. Canonical modelde public QR client:
+Conflict yalnız field-name map ile çözülmeyecek. Canonical model:
 
 ```text
-signed/opaque table binding
-+ product/menu item id
-+ qty/modifier selection
+Restaurant command/event revision
+ -> local pending event
+ -> server acknowledgement
+ -> deterministic merge/reject
+ -> conflict record when required
 ```
 
-gönderir; tenant/table resolution ve authoritative price snapshot server-side yapılır.
+Payment state hiçbir zaman client-wins olamaz.
 
-### 3.2 Açık adisyon create yarışı
+---
 
-Bugünkü mantık:
+## 8. Menü onboarding + upsell + accounting otomasyonu
+
+Restaurant emeği POS ile sınırlı değil.
+
+### Menu Wizard
+
+`menu-sihirbazi` fiziksel/kağıt menü görselini Vision AI ile okuyup:
+
+- ürün,
+- fiyat,
+- kategori,
+- KDV tipi
+
+şeklinde dijital menü seed'ine dönüştürme intent'i taşır.
+
+**KEEP:** Restaurant onboarding acceleration / menu digitization.
+
+### Upsell
+
+`upsell-onerisi` sipariş bağlamından AI önerisi üretme yönü taşır.
+
+**KEEP:** recommendation intent.  
+**CONNECT:** Agent/Recommendation capability + gerçek conversion outcome/attribution.
+
+### Paraşüt
+
+`parasut-tetikle` accounting/e-fatura provider side-effect intent'i taşır.
+
+**KEEP_ADAPTER:** Paraşüt entegrasyon fikri.  
+**CONNECT:** Finance/Accounting event -> Outbox -> IntegrationConnection -> provider adapter.
+
+Restaurant route'u doğrudan accounting success truth'u üretmez.
+
+---
+
+## 9. Müdürsüz / az müdürlü operasyon için canonical hedef
+
+Mevcut kod güçlü bir başlangıç veriyor fakat ürün vizyonunun tam ekonomik değerini ortaya çıkarmak için şu bounded context genişletmesi gereklidir:
 
 ```text
-open check query
-  -> found: arrayUnion
-  -> not found: create
+RestaurantLocation / Branch
+  ├── Floor / Table
+  ├── Employee / Shift
+  ├── DiningSession / Check
+  ├── RestaurantOrder
+  ├── KitchenTicket
+  ├── WaiterTask
+  ├── OperationalNotification
+  └── OfflineReplica
 ```
 
-şeklindedir. `arrayUnion` update'i atomik olsa da `query -> no result -> create` bölümü iki eşzamanlı request'in iki ayrı açık adisyon üretmesini engelleyen canonical transaction/idempotency authority değildir.
+Operasyon event spine:
+
+```text
+OrderPlaced
+ -> PaymentAuthorized/Captured (policy'ye göre)
+ -> ServiceOpened
+ -> KitchenStarted
+ -> KitchenReady
+ -> WaiterTaskAssigned
+ -> WaiterNotified
+ -> Delivered
+ -> TableDirty
+ -> CleaningStarted
+ -> TableAvailable
+```
+
+### Managerless Operations Projection
+
+Bu eventlerden şunlar türetilir:
+
+- waiter workload,
+- waiter response/delivery SLA,
+- kitchen prep SLA,
+- order backlog,
+- overdue table/task,
+- table turn time,
+- cleaning turnaround,
+- cancellation/void rate,
+- revenue / tip / average check,
+- product throughput,
+- staff idle/bottleneck signals.
+
+### BUILD - multi-branch / roaming manager cockpit
+
+Güncel audit'te canonical çok-şubeli regional-manager hierarchy ve tek bir cross-branch operations cockpit doğrulanmadı.
+
+Bu ürün vizyonu kayda geçirildi:
+
+```text
+BusinessTenant
+  -> RestaurantLocation[]
+       -> Shift + Staff + Operations
+              ↓
+      BranchHealthProjection
+              ↓
+Regional / Roaming Manager Cockpit
+```
+
+Cockpit normal akışta insanın tek tek ekran izlemesini istemez. Yalnız exception üretir:
+
+- kitchen SLA bozuldu,
+- garson backlog yükseldi,
+- personel eksik / mola yükü anormal,
+- masa turn süresi bozuldu,
+- iptal/void anomalisi,
+- ödeme/provider problemi,
+- stok kritik,
+- cihaz/offline-sync sorunu.
 
 Hedef:
 
-```text
-DiningSession/Table identity
-       ↓
-OpenCheck unique reservation / transaction
-       ↓
-RestaurantOrder commandId
-```
+> Müdür rutin mikro-yönetim yapmaz; sistem normal operasyonu yönetir, insan yalnız istisna ve koçluk gerektiren şubeye gider.
 
-### 3.3 Split bill ödeme sonucu değildir
+---
 
-`split-odeme` bugün seçilen kalemleri doğrudan `odendi: true` yapıp `odemeler` altında `durum: basarili` yazabiliyor.
-
-Bu ürün UX'i korunur fakat finansal truth değildir.
-
-Hedef:
-
-```text
-Check
-  ↓
-TenderAllocation / selected items
-  ↓
-PaymentIntent
-  ↓
-Verified provider outcome
-  ↓
-Payment Core
-  ↓
-Finance Ledger
-  ↓
-Check payment projection
-```
-
-### 3.4 Restaurant İyzico callback ayrı payment authority olamaz
-
-`alman-odeme` gerçek İyzico checkout başlatma primitive'i taşıyor ve korunmalıdır.
-
-Ancak `alman-odeme-callback` request body'deki token/status/metadata üzerinden doğrudan paid restaurant state üretebiliyor. Canonical akış provider sonucunu Payment Core içinde doğrulayıp idempotent event üretmelidir.
-
-### 3.5 Demo UI != çöpe atılacak UX
-
-Garson, KDS ve QR ekranlarının bazıları demo/local state kullanıyor.
-
-Karar:
-
-> Demo data DROP adayıdır; ekranın ürün davranışı ve UX emeği değildir.
-
-UI'lar canonical restaurant read model/commands'a bağlanarak korunabilir.
-
-## 4. Hedef bounded context
+## 10. Canonical authority split
 
 ```text
 BusinessTenant
       ↓
 Restaurant Operations
-  ├── RestaurantLocation / Floor / Table
-  ├── DiningSession
+  ├── RestaurantLocation
+  ├── Table / DiningSession
   ├── Check / Adisyon
   ├── RestaurantOrder
   ├── KitchenTicket / KDS
-  ├── WaiterTask / Delivery
-  └── OfflineReplica / SyncCursor
+  ├── WaiterTask
+  ├── Employee / Shift
+  ├── OperationalNotification
+  └── OfflineReplica
           ↓
-+---------------------------------------+
-| Commerce Catalog / Menu snapshots     |
-| Payment Core / Tender allocations     |
-| Finance Ledger / tax / tip / revenue  |
-| Public Action Gateway / QR            |
-| IntegrationConnection / Paraşüt       |
-| Durable Jobs / Event Inbox            |
-+---------------------------------------+
++-------------------------------------------+
+| Commerce Catalog / menu price snapshots   |
+| Payment Core / tender + timing policy     |
+| Finance Ledger / tax/tip/revenue truth    |
+| Public Action Gateway / QR self-order     |
+| IntegrationConnection / Iyzico/Paraşüt    |
+| Durable Execution / notification/outbox   |
+| Audit + Telemetry / KPI projections       |
++-------------------------------------------+
 ```
 
-Restaurant Operations kendi operasyon state'inin sahibidir. Payment, Finance, Identity, Tenant ve Integration truth'larını kopyalamaz.
+Restaurant yalnız kendi operasyon state'inin authority'sidir.
 
-## 5. SÖKÜM 37'de cevaplanacak sorular
+Aşağıdakileri tekrar kurmaz:
 
-- `MasaTypes.ts`, `tipler.ts` ve `packages/restaurant` arasında kaç paralel schema var?
-- Masa/table ID ve dining-session ID canonical olarak nasıl üretilecek?
-- Aynı masada birden fazla cihaz/kişi sipariş verirken order/check revision nasıl korunacak?
-- Menü Commerce Catalog'un projection'ı mı, Restaurant'a özel ayrı aggregate mı?
-- Modifier, availability, kitchen routing ve course/station bilgisi nerede yaşayacak?
-- KDS state transition'ları hangileri ve kim değiştirebilir?
-- Garson teslim lifecycle'ı order'dan ayrı task mı olmalı?
-- Offline Dexie replica server state ile event/revision bazında nasıl reconcile olacak?
-- Conflict rules bütün alanlar için yeterli mi; hangi durumlarda manual resolution gerekir?
-- Split bill item-level mi, amount-level mi, ikisini de destekleyecek mi?
-- Tip/tax/refund/cancellation/void semantiği Payment ve Finance'e nasıl projekte edilecek?
-- QR table binding tahmin edilemez ve tenant-safe nasıl olacak?
-- İyzico callback doğrulaması ve replay protection nasıl merkezileşecek?
-- Paraşüt export/sync Restaurant mı yoksa Accounting/Integration authority üzerinden mi akacak?
-- Restaurant capability'leri hangi entitlement'larla açılacak?
-- Stock/supply consumption ile `packages/supply` arasında gerçek bir bağ var mı?
+- tenant identity,
+- commercial entitlement,
+- customer identity,
+- provider credential truth,
+- payment truth,
+- immutable finance truth.
 
-## 6. Diğer vertical paketlere etkisi
+---
 
-Bu tur aynı zamanda şu paketlerin de otomatik cleanup/drop adayı olmadığını teyit etti:
+## 11. KEEP / REWRITE / BUILD / DROP
 
-- `packages/marketplace`
-- `packages/supply`
-- `packages/support`
-- `packages/voice`
-- `packages/studio`
-- `packages/blog`
-- `packages/seo`
-- `packages/admin`
-- `packages/influencer`
+### KEEP
 
-Bunlar dedicated caller/runtime triage tamamlanmadan archive/delete edilmeyecektir.
+- `packages/restaurant` domain contracts,
+- offline-first / Dexie intent,
+- explicit conflict categories,
+- Masa lifecycle state machine,
+- table/QR provisioning,
+- QR self-ordering,
+- multiplayer table cart,
+- dining-session/adisyon concept,
+- KDS urgency/timer algorithms,
+- waiter delivery workflow,
+- personnel status/workload/shift metrics,
+- waiter/kitchen/revenue KPI contract,
+- item modifiers/notes,
+- split-bill/tender allocation UX,
+- tip and tax semantics,
+- kuruş money direction,
+- Iyzico checkout adapter intent,
+- Menu Wizard / Vision AI digitization,
+- AI upsell intent,
+- Paraşüt/accounting adapter intent,
+- garson/mutfak/QR dashboard UX.
 
-`admin` içindeki impersonation/feature-flag/audit primitive'leri mevcut Control Plane kararlarına map edilir. `seo`, `voice`, `blog` gibi paketler extension olabilir. Marketplace ve Supply gibi gerçek ürün state'i taşıyan paketler gerekirse Restaurant gibi bağımsız vertical teardown frontier'ı açabilir.
+### REWRITE / CONNECT
 
-## 7. Şimdilik değişmeyen kural
+- QR/table identity and authoritative price resolution,
+- open-check concurrency and idempotency,
+- Restaurant command/state authority,
+- verified payment callbacks,
+- split-bill payment truth,
+- financial projections,
+- offline revision/event reconciliation,
+- real KDS/waiter UIs instead of demo state,
+- accounting/provider side-effects through outbox/integration authority.
 
-- Hiçbir Restaurant dosyası bu tur nedeniyle silinmez.
-- `apps/randevu-server` kapsam dışıdır.
-- Restaurant'ın finansal state'i mevcut mutable alanlardan canonical Payment/Finance authority'ye taşınmadan cleanup yapılmaz.
+### BUILD
 
-> **SÖKÜM 37'nin amacı Restaurant emeğini koruyarak, gerçek Restaurant Operations bounded context'ini eski dağınık implementation'dan ayırmak ve yeni Kepenk'e güvenli biçimde taşımaktır.**
+- `RestaurantPaymentTimingPolicy` with `ON_ORDER | ON_KITCHEN_START | POSTPAID`,
+- durable Restaurant event stream/state transitions,
+- real `KitchenReady -> WaiterTask -> FCM push -> ACK -> Delivered` orchestration,
+- workload-aware waiter assignment,
+- Employee/Shift canonical authority,
+- RestaurantLocation/Branch hierarchy,
+- branch-health and exception engine,
+- multi-branch / roaming-manager cockpit,
+- canonical operational KPI projection.
+
+### DROP_AFTER_CUTOVER
+
+- demo order arrays as production truth,
+- client-local fake order success,
+- caller-controlled price/total as business truth,
+- local `durum: basarili` payment claims without verified provider result,
+- duplicate direct Firestore state mutations after Restaurant command authority exists.
+
+---
+
+## 12. SÖKÜM 37 final kararı
+
+Restaurant OS **kurtarılacaktır** ve generic Commerce içine eritilmeyecektir.
+
+Mevcut repo, ürünün şu ana parçalarının gerçekten düşünülüp kısmen implement edildiğini kanıtlıyor:
+
+```text
+QR SELF ORDER
++ TABLE / ADISYON
++ PAY-FIRST / SPLIT BILL
++ KDS
++ WAITER DELIVERY
++ OFFLINE POS
++ STAFF STATE
++ KPI
++ MENU DIGITIZATION
++ AI UPSELL
++ ACCOUNTING ADAPTER
+```
+
+Eksik olan ürün fikri değil, production-grade orchestration'dır.
+
+En önemli yeni invariant:
+
+> **Restaurant OS'un amacı ekran çoğaltmak değil; order, kitchen, waiter, table, payment ve staff event'lerini tek operasyon döngüsüne bağlayarak yöneticinin rutin mikro-yönetim yükünü otomasyona devretmektir.**
+
+Bu nedenle `packages/restaurant`, `apps/web/src/lib/restoran`, `/api/restoran/*` ve Restaurant dashboard yüzeyleri dedicated migration/cutover tamamlanmadan archive/delete edilemez.
