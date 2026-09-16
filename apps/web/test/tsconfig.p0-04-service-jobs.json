@@ -1,0 +1,22 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "incremental": false,
+    "types": ["node", "vitest/globals"]
+  },
+  "include": [
+    "../../../packages/security/src/servicePrincipal.ts",
+    "../src/lib/auth/jwtHmac.ts",
+    "../src/lib/serviceAuth.ts",
+    "../src/lib/jobs/durableJob.ts",
+    "../src/lib/cloudTasksClient.ts",
+    "../src/lib/islemKuyrugu.ts",
+    "../src/lib/apiGuard.ts",
+    "./unit/servicePrincipalAndJobs.test.ts"
+  ],
+  "exclude": [
+    "../node_modules",
+    "../.next"
+  ]
+}
