@@ -22,6 +22,8 @@ function readSource(relativePath: string): string {
 
 describe('Pilot-0 trust baseline characterization', () => {
   it('pins the current principal/cookie/credential vocabulary after P0-06', () => {
+    const sharedSecretIds = CURRENT_SHARED_SECRET_SURFACES.map((surface) => String(surface.id))
+
     expect(TRUST_BASELINE_VERSION).toBe('p0-06@2026-09-16')
     expect(CURRENT_TRUST_COOKIES).toEqual({
       businessSession: 'kepenk_session',
@@ -35,8 +37,8 @@ describe('Pilot-0 trust baseline characterization', () => {
     expect(CURRENT_CREDENTIAL_AUTHORITY.encryptionWrite).toContain('active kid')
     expect(CURRENT_SHARED_SECRET_SURFACES.find((surface) => surface.id === 'admin-login')?.secret)
       .toBe('ADMIN_LOGIN_SECRET')
-    expect(CURRENT_SHARED_SECRET_SURFACES.some((surface) => surface.id === 'admin-proxy')).toBe(false)
-    expect(CURRENT_SHARED_SECRET_SURFACES.some((surface) => surface.id === 'admin-api')).toBe(false)
+    expect(sharedSecretIds).not.toContain('admin-proxy')
+    expect(sharedSecretIds).not.toContain('admin-api')
   })
 
   it('P0-03: one canonical business-session resolver owns dashboard and API identity', () => {
