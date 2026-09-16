@@ -1,4 +1,4 @@
-export const TRUST_BASELINE_VERSION = 'p0-02@2026-09-16'
+export const TRUST_BASELINE_VERSION = 'p0-03@2026-09-16'
 
 export const CURRENT_TRUST_COOKIES = {
   businessSession: 'kepenk_session',
@@ -34,10 +34,12 @@ export const CURRENT_AUTH_RESPONSE_SHAPES = {
 } as const
 
 export const CURRENT_PRINCIPAL_SOURCES = {
-  dashboard: ['NextAuth req.auth', 'kepenk_session cookie presence'],
+  dashboard: [
+    'canonical kepenk_session locator -> durable Session -> User -> Membership -> RequestContext',
+  ],
   businessApi: [
-    'canonical kepenk_session locator -> durable Session -> Membership -> tenantId',
-    'cryptographically verified legacy esnafId JWT compatibility',
+    'apiGuard requireUserSession -> canonical Session -> User -> Membership -> RequestContext',
+    'unmigrated legacy API callers may still use cryptographically verified esnafId JWT compatibility adapter',
   ],
   adminProxy: ['admin_token cookie == ADMIN_SECRET_TOKEN', 'fails open if both cookie and secret are absent'],
   adminApi: ['x-admin-token == ADMIN_SECRET_TOKEN'],
@@ -86,12 +88,11 @@ export const CURRENT_SHARED_SECRET_SURFACES = [
 ] as const
 
 /**
- * Characterization facts that remain unresolved after P0-02. Later Pilot-0
+ * Characterization facts that remain unresolved after P0-03. Later Pilot-0
  * PRs intentionally flip/remove these entries as hard-cuts land.
  */
 export const KNOWN_TRUST_RISKS = [
-  'dashboard_proxy_accepts_business_cookie_by_presence',
-  'legacy_human_jwt_has_no_durable_revocation_until_request_gate_retirement',
+  'unmigrated_business_api_callers_can_still_use_legacy_esnafId_jwt_compatibility',
   'admin_login_proxy_api_use_incompatible_authorities',
   'admin_proxy_fails_open_when_secret_and_cookie_are_both_absent',
   'onboarding_sms_failure_enables_fixed_123456_code',
