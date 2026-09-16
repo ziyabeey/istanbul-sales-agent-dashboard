@@ -16,3 +16,16 @@ export { estimateCost, TOKEN_BUDGETS } from './tokenTracker'
 export type { TokenUsage, TokenUsageSummary } from './tokenTracker'
 
 export { SECURITY_HEADERS, SENTRY_REDACT_FIELDS } from './headers'
+
+export {
+  SERVICE_AUDIENCES,
+  SERVICE_SCOPES,
+  ServicePrincipalAuthTypeSchema,
+  ServicePrincipalSchema,
+  TaskInvocationSchema,
+} from './servicePrincipal'
+export type {
+  ServicePrincipal,
+  ServicePrincipalAuthType,
+  TaskInvocation,
+} from './servicePrincipal'

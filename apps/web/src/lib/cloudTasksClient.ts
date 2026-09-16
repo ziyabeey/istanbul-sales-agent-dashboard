@@ -1,56 +1,104 @@
-import { CloudTasksClient } from '@google-cloud/tasks'
+import { CloudTasksClient, protos } from '@google-cloud/tasks'
+import { issueServiceToken, SERVICE_AUDIENCES, SERVICE_SCOPES } from './serviceAuth'
 
-// In a real production environment, you should initialize this with your service account
-// and configure project, location and queue variables properly via env.
 const credentials = {
     client_email: process.env.FIREBASE_CLIENT_EMAIL,
     private_key: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
     project_id: process.env.FIREBASE_PROJECT_ID,
 }
 
-// Sadece credentiallar tamamen sağlandığında instance oluştur
-// Aksi takdirde build fail olmaması için null bırak
 const client = (credentials.client_email && credentials.private_key && credentials.project_id)
     ? new CloudTasksClient({ credentials, projectId: credentials.project_id })
     : null
 
+export interface CloudTaskAuthOptions {
+    subject?: string
+    audience?: string
+    scopes?: string[]
+    tokenTtlSeconds?: number
+}
+
+function resolveTaskBaseUrl(): string {
+    const raw = process.env.INTERNAL_APP_URL || process.env.NEXT_PUBLIC_APP_URL
+    if (!raw) {
+        throw new Error('INTERNAL_APP_URL or NEXT_PUBLIC_APP_URL is required for Cloud Tasks')
+    }
+
+    const parsed = new URL(raw)
+    if (process.env.NODE_ENV === 'production' && parsed.protocol !== 'https:') {
+        throw new Error('Cloud Tasks production target must use HTTPS')
+    }
+
+    return parsed.origin
+}
+
+function defaultTaskAuth(urlPath: string): Required<Pick<CloudTaskAuthOptions, 'audience' | 'scopes'>> {
+    if (urlPath === '/api/workers/site-ureticisi') {
+        return {
+            audience: SERVICE_AUDIENCES.siteGenerator,
+            scopes: [SERVICE_SCOPES.siteGenerate],
+        }
+    }
+
+    if (urlPath === '/api/cron/kuyruk-isleyici') {
+        return {
+            audience: SERVICE_AUDIENCES.queueProcessor,
+            scopes: [SERVICE_SCOPES.queueProcess],
+        }
+    }
+
+    return {
+        audience: `kepenk.ai:${urlPath}`,
+        scopes: [SERVICE_SCOPES.taskInvoke],
+    }
+}
+
 export async function createHttpTask(
     queueId: string,
     urlPath: string,
-    payload: Record<string, any>,
-    scheduleInSeconds: number = 0
+    payload: Record<string, unknown>,
+    scheduleInSeconds: number = 0,
+    authOptions: CloudTaskAuthOptions = {}
 ) {
     if (!client) {
-        console.warn('[CLOUD TASKS] Client credentials missing. Executing payload synchronously instead (Fallback mode).')
-        const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'
-        
-        // Geliştirme ortamı için asenkron fetch fallback (gerçek promise beklemeden arka plana at)
-        fetch(`${baseUrl}${urlPath}`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-        }).catch(err => console.error('[CLOUD TASKS FALLBACK ERROR]', err))
+        throw new Error('Cloud Tasks credentials are required; insecure direct HTTP fallback is disabled')
+    }
 
-        return { fallback: true }
+    if (!urlPath.startsWith('/')) {
+        throw new Error('Cloud Tasks urlPath must start with /')
+    }
+    if (!Number.isFinite(scheduleInSeconds) || scheduleInSeconds < 0) {
+        throw new Error('scheduleInSeconds must be a non-negative number')
     }
 
     const projectId = process.env.FIREBASE_PROJECT_ID!
     const location = process.env.GCP_LOCATION || 'europe-west1'
-    
-    // Construct the fully qualified queue name.
     const parent = client.queuePath(projectId, location, queueId)
 
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'
+    const baseUrl = resolveTaskBaseUrl()
     const fullUrl = `${baseUrl}${urlPath}`
+    const defaults = defaultTaskAuth(urlPath)
+    const subject = authOptions.subject || 'cloud-tasks'
+    const audience = authOptions.audience || defaults.audience
+    const scopes = authOptions.scopes || defaults.scopes
 
-    const task: any = {
+    const scheduledFor = new Date(Date.now() + scheduleInSeconds * 1000)
+    const tokenNotBefore = new Date(Math.max(Date.now(), scheduledFor.getTime() - 30_000))
+    const serviceToken = issueServiceToken({
+        subject,
+        audience,
+        scopes,
+        ttlSeconds: authOptions.tokenTtlSeconds,
+        notBefore: tokenNotBefore,
+    })
+
+    const task: protos.google.cloud.tasks.v2.ITask = {
         httpRequest: {
-            httpMethod: 'POST',
+            httpMethod: protos.google.cloud.tasks.v2.HttpMethod.POST,
             url: fullUrl,
             headers: {
                 'Content-Type': 'application/json',
-                // Internal API Gateway koruması için secret token ekliyoruz
-                'x-cloud-task-secret': process.env.CRON_SECRET || 'dev-secret-123'
+                Authorization: `Bearer ${serviceToken}`,
             },
             body: Buffer.from(JSON.stringify(payload)).toString('base64'),
         },
@@ -58,16 +106,10 @@ export async function createHttpTask(
 
     if (scheduleInSeconds > 0) {
         task.scheduleTime = {
-            seconds: scheduleInSeconds + Date.now() / 1000,
+            seconds: Math.floor(Date.now() / 1000) + Math.floor(scheduleInSeconds),
         }
     }
 
-    try {
-        const [response] = await client.createTask({ parent, task })
-        console.log(`[CLOUD TASKS] Created task ${response.name} for ${fullUrl}`)
-        return response
-    } catch (error) {
-        console.error('[CLOUD TASKS] Error creating task:', error)
-        throw error
-    }
+    const [response] = await client.createTask({ parent, task })
+    return response
 }

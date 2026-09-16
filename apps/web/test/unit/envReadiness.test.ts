@@ -12,6 +12,8 @@ const TRACKED_ENV = [
     'FIREBASE_CLIENT_EMAIL',
     'FIREBASE_PRIVATE_KEY',
     'NEXT_PUBLIC_APP_URL',
+    'INTERNAL_APP_URL',
+    'SERVICE_AUTH_SECRET',
     'ADMIN_SECRET_TOKEN',
     'KEPENK_DEMO_MODE',
     'NEXT_PUBLIC_DEMO_MODE',
@@ -44,6 +46,11 @@ function setProductionRequiredEnv() {
     process.env.FIREBASE_PROJECT_ID = 'kepenk-prod'
     process.env.FIREBASE_CLIENT_EMAIL = 'firebase@example.com'
     process.env.FIREBASE_PRIVATE_KEY = 'private-key-value'
+}
+
+function setSiteGenerationTransportEnv() {
+    process.env.SERVICE_AUTH_SECRET = 'service-auth-secret-value-0123456789abcdef'
+    process.env.INTERNAL_APP_URL = 'https://internal.kepenk.ai'
 }
 
 function snapshot(value: unknown): string {
@@ -114,17 +121,16 @@ describe('envReadiness', () => {
         expect(readiness.siteGeneration.enabled).toBe(true)
         expect(readiness.siteGeneration.ready).toBe(false)
         expect(readiness.siteGeneration.missingRequired).toEqual([
-            'CRON_SECRET',
-            'NEXT_PUBLIC_APP_URL',
+            'SERVICE_AUTH_SECRET',
+            'INTERNAL_APP_URL_OR_NEXT_PUBLIC_APP_URL',
             'GEMINI_API_KEY_OR_GOOGLE_API_KEY',
         ])
     })
 
-    it('generation flag acikken GEMINI_API_KEY ai gereksinimini karsilar', () => {
+    it('generation flag acikken GEMINI_API_KEY ve internal service transport gereksinimleri karsilar', () => {
         process.env.KEPENK_SITE_GENERATION_ENABLED = 'true'
         setProductionRequiredEnv()
-        process.env.CRON_SECRET = 'cron-secret'
-        process.env.NEXT_PUBLIC_APP_URL = 'https://kepenk.ai'
+        setSiteGenerationTransportEnv()
         process.env.GEMINI_API_KEY = 'gemini-secret-value'
 
         const readiness = getFeatureEnvReadiness()
@@ -133,10 +139,10 @@ describe('envReadiness', () => {
         expect(readiness.siteGeneration.missingRequired).toEqual([])
     })
 
-    it('generation flag acikken GOOGLE_API_KEY ai gereksinimini karsilar', () => {
+    it('generation flag acikken GOOGLE_API_KEY ve public app origin gereksinimleri karsilar', () => {
         process.env.KEPENK_SITE_GENERATION_ENABLED = 'true'
         setProductionRequiredEnv()
-        process.env.CRON_SECRET = 'cron-secret'
+        process.env.SERVICE_AUTH_SECRET = 'service-auth-secret-value-0123456789abcdef'
         process.env.NEXT_PUBLIC_APP_URL = 'https://kepenk.ai'
         process.env.GOOGLE_API_KEY = 'google-secret-value'
 
@@ -144,6 +150,16 @@ describe('envReadiness', () => {
 
         expect(readiness.siteGeneration.ready).toBe(true)
         expect(readiness.siteGeneration.missingRequired).toEqual([])
+    })
+
+    it('generation readiness CRON_SECRET istemez', () => {
+        process.env.KEPENK_SITE_GENERATION_ENABLED = 'true'
+        setProductionRequiredEnv()
+        setSiteGenerationTransportEnv()
+        process.env.GEMINI_API_KEY = 'gemini-secret-value'
+        delete process.env.CRON_SECRET
+
+        expect(getFeatureEnvReadiness().siteGeneration.ready).toBe(true)
     })
 
     it('production demo mode true ise problem olarak raporlar ama degeri sizdirmaz', () => {
@@ -162,6 +178,7 @@ describe('envReadiness', () => {
         process.env.NODE_ENV = 'production'
         setProductionRequiredEnv()
         process.env.NEXT_PUBLIC_APP_URL = 'https://kepenk.ai'
+        process.env.SERVICE_AUTH_SECRET = 'service-auth-secret-value-0123456789abcdef'
         process.env.ADMIN_SECRET_TOKEN = 'admin-secret-value'
         process.env.KEPENK_SITE_PUBLISH_ENABLED = 'true'
         process.env.CF_ACCOUNT_ID = 'cf-account-secret'
@@ -174,6 +191,7 @@ describe('envReadiness', () => {
 
         expect(serialized).not.toContain('super-secret-session-value')
         expect(serialized).not.toContain('private-key-value')
+        expect(serialized).not.toContain('service-auth-secret-value')
         expect(serialized).not.toContain('admin-secret-value')
         expect(serialized).not.toContain('cf-account-secret')
     })

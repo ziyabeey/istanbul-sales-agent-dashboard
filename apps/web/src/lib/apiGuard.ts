@@ -1,16 +1,19 @@
 import { NextResponse } from 'next/server'
 import type { RequestContext } from '../../../../packages/auth/src/types/canonical'
+import type { ServicePrincipal } from '../../../../packages/security/src/servicePrincipal'
 import { resolveCanonicalBusinessContextFromRequest } from './auth/businessSession'
+import { verifyServiceRequest, type ServiceRequirement } from './serviceAuth'
 
 type GuardOptions = {
     requireUserSession?: boolean
+    requireServicePrincipal?: ServiceRequirement
     requireCronSecret?: boolean
     requireAdminToken?: boolean
     requireADKBearer?: boolean
 }
 
 type GuardResult =
-    | { ok: true; context?: RequestContext }
+    | { ok: true; context?: RequestContext; servicePrincipal?: ServicePrincipal }
     | { ok: false; response: NextResponse }
 
 export async function apiGuard(
@@ -18,6 +21,7 @@ export async function apiGuard(
     options: GuardOptions = {}
 ): Promise<GuardResult> {
     let context: RequestContext | undefined
+    let servicePrincipal: ServicePrincipal | undefined
 
     if (options.requireUserSession) {
         const resolved = await resolveCanonicalBusinessContextFromRequest(request)
@@ -30,13 +34,25 @@ export async function apiGuard(
         context = resolved
     }
 
+    if (options.requireServicePrincipal) {
+        const resolved = verifyServiceRequest(request, options.requireServicePrincipal)
+        if (!resolved) {
+            return {
+                ok: false,
+                response: NextResponse.json({ error: 'Unauthorized' }, { status: 401 }),
+            }
+        }
+        servicePrincipal = resolved
+    }
+
     if (options.requireCronSecret) {
-        // Cloud Scheduler header. ServicePrincipal cutover belongs to P0-04.
+        // Legacy compatibility only. New worker/task routes should use
+        // requireServicePrincipal and opt into this secret only route-by-route.
         const secret =
             request.headers.get('x-cron-secret') ||
             request.headers.get('authorization')?.replace('Bearer ', '')
 
-        if (secret !== process.env.CRON_SECRET) {
+        if (!process.env.CRON_SECRET || secret !== process.env.CRON_SECRET) {
             console.warn('[apiGuard] Cron secret geçersiz')
             return {
                 ok: false,
@@ -66,5 +82,9 @@ export async function apiGuard(
         }
     }
 
-    return context ? { ok: true, context } : { ok: true }
+    return {
+        ok: true,
+        ...(context ? { context } : {}),
+        ...(servicePrincipal ? { servicePrincipal } : {}),
+    }
 }
