@@ -1,4 +1,4 @@
-# Kepenk Migration - Cleanup Manifest v1.1
+# Kepenk Migration - Cleanup Manifest v1.2
 
 > **Tarih:** 2026-09-16  
 > **Kaynak:** SÖKÜM 25-37 + `docs/sokum/36-canonical-architecture-synthesis.md`  
@@ -140,36 +140,61 @@ Agent Request
 
 # 9. P2 - Protected product verticals
 
-Bu grup artık **"thin package"** olarak değerlendirilmez. Package klasör boyutu ürünün gerçek runtime kapsamını temsil etmeyebilir. Dedicated triage tamamlanmadan hiçbir aşağıdaki paket archive/drop edilmeyecektir.
+Package klasör boyutu ürünün gerçek runtime kapsamını temsil etmeyebilir. Dedicated triage tamamlanmadan hiçbir korunan vertical archive/drop edilmeyecektir.
 
 | Product / package | Status | Şimdiden doğrulanan değer |
 |---|---|---|
-| `packages/restaurant` + Restaurant web/lib/API | **PROTECTED_VERTICAL / SÖKÜM 37 AKTİF** | Offline-first POS, Dexie schema, table/adisyon, KDS, waiter, QR ordering, split bill, tip/KDV, sync conflict rules, İyzico/Paraşüt intent. |
-| `packages/marketplace` | **PROTECTED_VERTICAL / TRIAGE PENDING** | Job, AI analysis, bid, provider snapshot, credit economy, escrow, commission; `manage/pazaryeri` UI + usta flow var. |
-| `packages/supply` | **PROTECTED_VERTICAL / TRIAGE PENDING** | Supplier, product, PO, reorder point, supplier scoring, premium supplier marketplace; `manage/tedarik` UI var. |
-| `packages/support` | **PROTECTED_VERTICAL / TRIAGE PENDING** | Ticket/SLA + knowledge-base/RAG contracts; `manage/destek` UI var. |
-| `packages/blog` | **PROTECTED_VERTICAL / TRIAGE PENDING** | Blog generation, autopilot, token budget, SEO score; `manage/blog` ve `manage/blog-motoru` UIs var. |
-| `packages/studio` | **PROTECTED_VERTICAL / TRIAGE PENDING** | Design templates, canvas/export contracts, agency/portfolio; `manage/icerik-studyo` + editor var. |
-| `packages/voice` | **PROTECTED_VERTICAL / TRIAGE PENDING** | VoiceCommand/VoiceIntent, Deepgram config, sector keyterms; Agent/Messaging'e extension adayı. |
+| `packages/restaurant` + Restaurant web/lib/API | **KEEP FIRST-CLASS VERTICAL / SÖKÜM 37 KAPALI** | Restaurant OS: table/dining-session/adisyon, QR self-order, multiplayer cart, KDS, waiter lifecycle, offline-first POS, staff state/workload/shift, KPI, split-bill, tip/KDV, Menu Vision AI, upsell, İyzico/Paraşüt intent. |
+| `packages/marketplace` | **PROTECTED_VERTICAL / SÖKÜM 38 AÇIK** | Job, AI analysis, bid, provider snapshot, credit economy, escrow, commission; `manage/pazaryeri` UI + usta flow. |
+| `packages/supply` | **PROTECTED_VERTICAL / TRIAGE PENDING** | Supplier, product, PO, reorder point, supplier scoring, premium supplier marketplace; `manage/tedarik` UI. |
+| `packages/support` | **PROTECTED_VERTICAL / TRIAGE PENDING** | Ticket/SLA + knowledge-base/RAG contracts; `manage/destek` UI. |
+| `packages/blog` | **PROTECTED_VERTICAL / TRIAGE PENDING** | Blog generation, autopilot, token budget, SEO score; `manage/blog` ve `manage/blog-motoru` UIs. |
+| `packages/studio` | **PROTECTED_VERTICAL / TRIAGE PENDING** | Design templates, canvas/export contracts, agency/portfolio; `manage/icerik-studyo` + editor. |
+| `packages/voice` | **PROTECTED_VERTICAL / TRIAGE PENDING** | VoiceCommand/VoiceIntent, Deepgram config, sector keyterms; Agent/Messaging/Restaurant extension adayı. |
 | `packages/seo` | **PROTECTED_VERTICAL / TRIAGE PENDING** | LocalBusiness JSON-LD, `llms.txt`, AI mention tracking; Publish/Marketing/Analytics extension adayı. |
 | `packages/admin` | **KEEP / CONSOLIDATE CONTROL PLANE** | Impersonation, feature flags, audit contracts; SÖKÜM 29/31/35 authority'lerine bağlanır. |
 | `packages/influencer` | **PROTECTED_VERTICAL / TRIAGE PENDING** | Dedicated caller/runtime audit tamamlanmadan cleanup yok. |
 
-## Restaurant özel kuralı
+## Restaurant OS koruma kuralı
 
-Restaurant emeği generic Commerce içine eritilmez.
-
-Hedef bounded context:
+Restaurant generic Commerce içine eritilmez.
 
 ```text
 Restaurant Operations
-  Table / Floor
-  DiningSession
+  RestaurantLocation / Branch
+  Table / DiningSession
   Check / Adisyon
   RestaurantOrder
   KitchenTicket / KDS
   WaiterTask
+  Employee / Shift
+  OperationalNotification
   OfflineReplica / Sync
+```
+
+KEEP edilen ürün yönleri:
+
+```text
+QR self-order
+ON_ORDER payment
+split bill / tip / tax
+KDS + waiter delivery
+staff workload / shift / KPI
+offline POS
+menu digitization
+AI upsell
+accounting adapter
+```
+
+BUILD edilmesi gereken tamamlayıcı yönler:
+
+```text
+PaymentTimingPolicy = ON_ORDER | ON_KITCHEN_START | POSTPAID
+KitchenReady -> WaiterTask -> FCM push -> ACK -> Delivered
+workload-aware waiter assignment
+RestaurantLocation + BranchHealthProjection
+regional / roaming-manager exception cockpit
+canonical operational KPI projection
 ```
 
 Restaurant şu core authority'leri tekrar yaratamaz:
@@ -184,7 +209,7 @@ Provider integrations  -> IntegrationConnection
 Async execution        -> Durable Execution
 ```
 
-Demo UI data cleanup adayı olabilir; Restaurant UX ve domain semantics cleanup adayı değildir.
+Demo UI data cleanup adayı olabilir; Restaurant UX, domain semantics ve operational model cleanup adayı değildir.
 
 ## Diğer vertical'lar için karar kuralı
 
@@ -231,7 +256,7 @@ Cleanup dosya silerek değil şu sözleşmelerle başlar:
 4. `CommandId/EventId/Revision`
 5. `AuditContext/TelemetryContext`
 
-Restaurant ve diğer vertical'lar bu ortak omurgayı kullanır, kendilerine özel operasyon state'ini ise bounded context içinde korur.
+Restaurant ve diğer vertical'lar bu ortak omurgayı kullanır, kendilerine özel operasyon state'ini bounded context içinde korur.
 
 ---
 
