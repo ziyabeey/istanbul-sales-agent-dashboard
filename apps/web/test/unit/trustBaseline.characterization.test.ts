@@ -306,10 +306,22 @@ describe('Pilot-0 trust baseline characterization', () => {
 
   it('P0-08: raw admin secret header cannot authorize business API access', () => {
     const source = readSource('src/app/api/esnaf/[id]/route.ts')
+    const ownership = readSource('src/lib/esnafOwnership.ts')
+
     expect(source).not.toContain("request.headers.get('x-admin-token')")
     expect(source).not.toContain('process.env.ADMIN_SECRET_TOKEN')
     expect(source).toContain('getBoundActiveImpersonationFromRequest(request)')
     expect(source).toContain('await oturumDogrulaServer()')
+
+    // Shared ownership guard behind dashboard/site/randevu business routes.
+    expect(ownership).not.toContain("request.headers.get('x-admin-token')")
+    expect(ownership).not.toContain('process.env.ADMIN_SECRET_TOKEN')
+    expect(ownership).toContain('getBoundActiveImpersonationFromRequest(request)')
+    expect(ownership).toContain('await oturumDogrulaServer()')
+    expect(ownership).toContain("{ error: 'Impersonation hedefi dışında erişim yasak' }, { status: 403 }")
+    expect(
+      CURRENT_PRINCIPAL_SOURCES.businessApi.some((source) => source.includes('esnafOwnership'))
+    ).toBe(true)
   })
 
   it('KNOWN-RISK: unmigrated cron routes still rely on the shared CRON_SECRET path', () => {

@@ -28,6 +28,7 @@ export const CURRENT_PRINCIPAL_SOURCES = {
   businessApi: [
     'apiGuard requireUserSession -> canonical Session -> User -> Membership -> RequestContext',
     'unmigrated legacy API callers may still use cryptographically verified esnafId JWT compatibility adapter',
+    'esnafOwnership requireSessionEsnaf / requireOwnedAppointment -> canonical business session, or bound audited ImpersonationSession for exactly its target; raw x-admin-token is never authority',
   ],
   adminProxy: [
     'admin_session cookie presence is UX-only; admin API performs authoritative validation',
