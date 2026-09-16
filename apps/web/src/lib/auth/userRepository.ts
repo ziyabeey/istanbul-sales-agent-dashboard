@@ -34,10 +34,27 @@ export class FirestoreUserRepository implements UserRepository {
       throw new Error('Session epoch must be a non-negative integer')
     }
 
-    await this.db.collection(AUTH_COLLECTIONS.users).doc(userId).update({
-      sessionEpoch: nextEpoch,
-      revision: nextEpoch,
-      updatedAt,
+    const parsedUpdatedAt = new Date(updatedAt)
+    if (Number.isNaN(parsedUpdatedAt.getTime())) {
+      throw new Error('updatedAt must be a valid date-time')
+    }
+
+    const ref = this.db.collection(AUTH_COLLECTIONS.users).doc(userId)
+
+    await this.db.runTransaction(async (transaction) => {
+      const snapshot = await transaction.get(ref)
+      if (!snapshot.exists) throw new Error(`Canonical user not found: ${userId}`)
+
+      const user = UserSchema.parse(snapshot.data())
+      if (nextEpoch <= user.sessionEpoch) {
+        throw new Error('Session epoch must increase monotonically')
+      }
+
+      transaction.update(ref, {
+        sessionEpoch: nextEpoch,
+        revision: user.revision + 1,
+        updatedAt: parsedUpdatedAt.toISOString(),
+      })
     })
   }
 }
