@@ -1,0 +1,24 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "incremental": false,
+    "baseUrl": "..",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "types": ["node", "vitest/globals", "next/types/global"]
+  },
+  "include": [
+    "../../../packages/security/src/servicePrincipal.ts",
+    "../src/lib/core/*.ts",
+    "../src/app/api/cron/core-backfill/route.ts",
+    "../src/app/api/admin/core/parity/route.ts",
+    "./unit/coreBackfill.test.ts",
+    "./unit/coreBackfillRoutes.test.ts"
+  ],
+  "exclude": [
+    "../node_modules",
+    "../.next"
+  ]
+}

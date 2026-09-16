@@ -119,6 +119,16 @@ jobs:
           test/unit/coreIdentityAdapter.test.ts
           test/unit/coreAuthRoutes.test.ts
           test/unit/coreAuthFlow.test.ts
+      - name: Lint KC-03 backfill, aliases and parity
+        run: >-
+          pnpm --filter @kepenk/web exec eslint
+          src/lib/core/backfill.ts
+          src/lib/core/backfillSource.ts
+          src/lib/core/slug.ts
+          src/app/api/cron/core-backfill/route.ts
+          src/app/api/admin/core/parity/route.ts
+          test/unit/coreBackfill.test.ts
+          test/unit/coreBackfillRoutes.test.ts
       - name: Validate trust browser smoke script
         run: bash -n apps/web/test/e2e/trust-browser-smoke.sh
       - name: Typecheck P0 trust baseline artifacts
@@ -139,6 +149,8 @@ jobs:
         run: pnpm --filter @kepenk/web exec tsc -p test/tsconfig.p0-07-admin-audit.json --noEmit
       - name: Typecheck KC-02 Core BFF and identity adapter
         run: pnpm --filter @kepenk/web exec tsc -p test/tsconfig.kc-02-core-bff.json --noEmit
+      - name: Typecheck KC-03 backfill, aliases and parity
+        run: pnpm --filter @kepenk/web exec tsc -p test/tsconfig.kc-03-backfill.json --noEmit
       - name: Legacy full web typecheck baseline
         id: legacy-web-typecheck
         continue-on-error: true
