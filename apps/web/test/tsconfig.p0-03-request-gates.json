@@ -1,0 +1,26 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "incremental": false,
+    "types": ["node", "vitest/globals"]
+  },
+  "include": [
+    "../../../packages/auth/src/types/canonical.ts",
+    "../../../packages/auth/src/types/roles.ts",
+    "../src/lib/auth/**/*.ts",
+    "../src/lib/sessionManager.ts",
+    "../src/lib/apiGuard.ts",
+    "../src/proxy.ts",
+    "./fixtures/trust-baseline.ts",
+    "./unit/canonicalAuthCore.test.ts",
+    "./unit/humanAuthAdapters.test.ts",
+    "./unit/jwtHmac.test.ts",
+    "./unit/requestGateConvergence.test.ts",
+    "./unit/trustBaseline.characterization.test.ts"
+  ],
+  "exclude": [
+    "../node_modules",
+    "../.next"
+  ]
+}
