@@ -82,12 +82,39 @@ describe('ImpersonationSession', () => {
         expect(await validateImpersonationSessionToken(active.token, repository, new Date(now.getTime() + 2000))).toBeNull()
     })
 
-    it('blocks restricted actions while impersonation is active', async () => {
-        const repository = new MemoryRepository()
+    it('blocks restricted actions only for impersonation bound to the active AdminSession', async () => {
+        const impersonationRepository = new MemoryRepository()
+        const adminSessionRepository = new MemoryAdminRepository()
         const now = new Date('2026-09-16T10:00:00.000Z')
-        const { token } = await issueImpersonationSession({ adminId: 'admin-1', subjectId: 'esnaf-1', subjectLabel: 'Salon', reason: 'support case' }, repository, now)
-        const request = new Request('https://kepenk.ai/api/admin/kota', { headers: { cookie: `${IMPERSONATE_COOKIE}=${token}` } })
-        await expect(assertNoActiveImpersonationForRestrictedAction(request, repository, now)).rejects.toBeInstanceOf(ImpersonationRestrictedActionError)
+        const admin = await issueAdminSession(adminSessionRepository, now)
+        const { token } = await issueImpersonationSession({
+            adminId: admin.session.principalId,
+            subjectId: 'esnaf-1',
+            subjectLabel: 'Salon',
+            reason: 'support case',
+        }, impersonationRepository, now)
+        const request = new Request('https://kepenk.ai/api/admin/kota', {
+            headers: {
+                cookie: `${ADMIN_SESSION_COOKIE}=${admin.token}; ${IMPERSONATE_COOKIE}=${token}`,
+            },
+        })
+
+        await expect(assertNoActiveImpersonationForRestrictedAction(
+            request,
+            impersonationRepository,
+            now,
+            adminSessionRepository
+        )).rejects.toBeInstanceOf(ImpersonationRestrictedActionError)
+
+        const orphanedImpersonation = new Request('https://kepenk.ai/api/admin/kota', {
+            headers: { cookie: `${IMPERSONATE_COOKIE}=${token}` },
+        })
+        await expect(assertNoActiveImpersonationForRestrictedAction(
+            orphanedImpersonation,
+            impersonationRepository,
+            now,
+            adminSessionRepository
+        )).resolves.toBeUndefined()
     })
 
     it('requires a still-valid AdminSession for acting-as authority', async () => {
