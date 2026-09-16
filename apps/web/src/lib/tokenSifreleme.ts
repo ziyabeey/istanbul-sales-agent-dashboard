@@ -32,6 +32,7 @@ const ENVELOPE_ALGORITHM = 'A256GCM' as const
 const IV_LENGTH = 16
 const TAG_LENGTH = 16
 const ENVELOPE_PREFIX = 'kcred.v1.'
+export const CREDENTIAL_ENVELOPE_PREFIX = ENVELOPE_PREFIX
 const LEGACY_BOOTSTRAP_KID = 'legacy-bootstrap'
 
 type KeyringEntry = {
