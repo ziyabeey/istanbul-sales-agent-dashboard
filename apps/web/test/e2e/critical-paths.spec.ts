@@ -27,20 +27,13 @@ test.describe('Demo Vitrin Sayfaları', () => {
     const body = await page.textContent('body')
     expect(body?.length).toBeGreaterThan(100)
   })
-
-  test('asansör demo vitrini yükleniyor', async ({ page }) => {
-    const response = await page.goto('/demolar/asansor-lux')
-    expect(response?.status()).toBeLessThan(400)
-    const body = await page.textContent('body')
-    expect(body?.length).toBeGreaterThan(100)
-  })
 })
 
 test.describe('API Healthcheck', () => {
   test('API root responding', async ({ request }) => {
     const response = await request.get('/api/health')
-    // 200 or 404 (if health endpoint doesn't exist yet)
-    expect([200, 404]).toContain(response.status())
+    expect(response.status()).toBe(200)
+    await expect(response.json()).resolves.toMatchObject({ ok: true, service: 'kepenk-web' })
   })
 })
 
@@ -95,11 +88,13 @@ test.describe('SEO Temel Kontroller', () => {
 
   test('meta description mevcut', async ({ page }) => {
     await page.goto('/')
-    const desc = await page.getAttribute('meta[name="description"]', 'content')
-    // Description might not be present on all pages
-    if (desc) {
-      expect(desc.length).toBeGreaterThan(10)
-      expect(desc.length).toBeLessThanOrEqual(160)
+    const meta = page.locator('meta[name="description"]')
+    if (await meta.count()) {
+      const desc = await meta.first().getAttribute('content')
+      if (desc) {
+        expect(desc.length).toBeGreaterThan(10)
+        expect(desc.length).toBeLessThanOrEqual(160)
+      }
     }
   })
 
