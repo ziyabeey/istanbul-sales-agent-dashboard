@@ -65,6 +65,15 @@ jobs:
           src/app/api/cron/kuyruk-isleyici/route.ts
           src/app/api/workers/site-ureticisi/route.ts
           test/unit/servicePrincipalAndJobs.test.ts
+      - name: Lint P0-05 credential authority
+        run: >-
+          pnpm --filter @kepenk/web exec eslint
+          src/lib/tokenSifreleme.ts
+          'src/lib/credentials/**/*.ts'
+          src/lib/twilioClient.ts
+          src/lib/googleBusinessClient.ts
+          src/lib/metaGraphClient.ts
+          test/unit/credentialEnvelope.test.ts
       - name: Validate trust browser smoke script
         run: bash -n apps/web/test/e2e/trust-browser-smoke.sh
       - name: Typecheck P0 trust baseline artifacts
@@ -77,6 +86,8 @@ jobs:
         run: pnpm --filter @kepenk/web exec tsc -p test/tsconfig.p0-03-request-gates.json --noEmit
       - name: Typecheck P0-04 service and durable jobs
         run: pnpm --filter @kepenk/web exec tsc -p test/tsconfig.p0-04-service-jobs.json --noEmit
+      - name: Typecheck P0-05 credential authority
+        run: pnpm --filter @kepenk/web exec tsc -p test/tsconfig.p0-05-credentials.json --noEmit
       - name: Legacy full web typecheck baseline
         id: legacy-web-typecheck
         continue-on-error: true
