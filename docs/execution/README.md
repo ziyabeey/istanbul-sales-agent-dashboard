@@ -1,7 +1,7 @@
 # Kepenk v2 — Exact Execution Manifest
 
 > **Tarih:** 2026-09-16  
-> **Durum:** **IMPLEMENTATION-READY PLAN — W0–W10 + Pilot Cutover tamam, production implementation başlamadı**  
+> **Durum:** **IMPLEMENTATION-READY PLAN — W0–W10 + Pilot Cutover + Pilot-0/1 PR packaging tamam, production implementation başlamadı**  
 > **Kaynak:** SÖKÜM 01–41 + SENTEZ 01–05  
 > **Amaç:** Canonical mimariyi exact file/route/package task'larına ve güvenli cutover paketlerine dönüştürmek.  
 > **Kural:** Bu klasör kod implementasyonu yapmaz; hangi dosyanın hangi wave'de ne olacağını, hangi acceptance gate ile kapanacağını ve hangi sırada cutover edileceğini sabitler.
@@ -37,6 +37,16 @@ Vertical Activation
          ↓
 Final Legacy Retirement
 ```
+
+PR-level packaging:
+
+| Pilot | Durum | Belge |
+|---|---|---|
+| Pilot-0 Trust Bootstrap | KAPALI / PR-planlandı | `docs/execution/pilot-0-trust-bootstrap-pr-plan.md` |
+| Pilot-1 First Canonical Tenant | KAPALI / PR-planlandı | `docs/execution/pilot-1-first-canonical-tenant-pr-plan.md` |
+| Pilot-2 Golden Flow | AKTİF FRONTIER | henüz PR-planlanmadı |
+| Pilot-3 Public Site + Messaging | BEKLİYOR | — |
+| Pilot-4 Commerce + Analytics + Agent | BEKLİYOR | — |
 
 Cutover stratejisi:
 
@@ -191,7 +201,7 @@ Bidirectional dual-authority migration yasaktır.
 
 ## Execution planning kapanış kararı
 
-`W0 → W10` planlama zinciri tamamlandı. **W11 açılmaz.** Pilot cutover packaging de tamamlandı. Bu klasör artık implementation sırasında değişikliklerin hangi authority'ye, hangi acceptance gate'e, hangi cutover paketine ve hangi retirement şartına göre yapılacağını belirleyen baseline'dır.
+`W0 → W10` planlama zinciri tamamlandı. **W11 açılmaz.** Pilot cutover packaging tamamlandı ve PR-level implementation packaging Pilot-0 ile Pilot-1 için kapatıldı. Bu klasör artık implementation sırasında değişikliklerin hangi authority'ye, hangi acceptance gate'e, hangi cutover paketine ve hangi retirement şartına göre yapılacağını belirleyen baseline'dır.
 
 ### Implementation entry gate
 
@@ -216,6 +226,8 @@ canary telemetry
 - SENTEZ: kapalı
 - W0–W10 execution planning: kapalı
 - Pilot cutover packaging: kapalı
+- Pilot-0 PR packaging: kapalı (`pilot-0-trust-bootstrap-pr-plan.md`)
+- Pilot-1 PR packaging: kapalı (`pilot-1-first-canonical-tenant-pr-plan.md`)
+- Aktif planning frontier: **Pilot-2 Golden Flow PR packaging**
 - Production implementation: **başlamadı**
 - Application code: bu planlama fazında **değiştirilmedi**
-- Bir sonraki adım: yalnız explicit implementation yetkisi verildiğinde Pilot-0 task'larını implementation ticket/branch birimlerine bölmek
