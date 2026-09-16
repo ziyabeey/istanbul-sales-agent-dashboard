@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import { adminDb } from '@/lib/firebaseAdmin'
 import { telegramGonder } from '@/lib/telegram'
 import { paketSenaryosuCalistir } from '@/utils/paketSenaryosu'
+import { recordVerifiedIyzicoPayment } from '@/lib/core/billingHook'
 
 export const dynamic = 'force-dynamic'
 
@@ -84,6 +85,17 @@ export async function POST(request: Request) {
                         const esnaf = esnafDoc.data()!
 
                         const esnafPaket = esnaf.paket || 'TEMEL'
+
+                        // KC-04: the server-verified payment becomes one idempotent Core
+                        // ChangeSubscription command (durable outbox first). Fire-and-forget:
+                        // Firestore stays authoritative until KC-05 cutover and the legacy
+                        // package scenario below must not depend on Core availability.
+                        void recordVerifiedIyzicoPayment({
+                            paymentId: result.paymentId || '',
+                            conversationId: convId,
+                            esnafId,
+                            paket: esnafPaket,
+                        }).catch(() => { /* recorded by the outbox job on the next run */ })
 
                         // Paket senaryosunu AWAIT ile çağır — hata olursa Firestore'a kaydet
                         try {
