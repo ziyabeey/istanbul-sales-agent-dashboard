@@ -1,4 +1,4 @@
-export const TRUST_BASELINE_VERSION = 'p0-03@2026-09-16'
+export const TRUST_BASELINE_VERSION = 'p0-04@2026-09-16'
 
 export const CURRENT_TRUST_COOKIES = {
   businessSession: 'kepenk_session',
@@ -43,7 +43,11 @@ export const CURRENT_PRINCIPAL_SOURCES = {
   ],
   adminProxy: ['admin_token cookie == ADMIN_SECRET_TOKEN', 'fails open if both cookie and secret are absent'],
   adminApi: ['x-admin-token == ADMIN_SECRET_TOKEN'],
-  cron: ['x-cron-secret or Authorization bearer == CRON_SECRET'],
+  service: [
+    'signed ServicePrincipal bearer -> audience + subject + scope verification',
+    'selected worker routes may explicitly accept CRON_SECRET compatibility until P0-08',
+  ],
+  cron: ['legacy requireCronSecret remains for unmigrated cron routes'],
   adk: ['Authorization bearer == ADK_BEARER_TOKEN'],
   impersonation: ['kepenk_impersonate JWT -> adminId + esnafId'],
 } as const
@@ -71,7 +75,7 @@ export const CURRENT_SHARED_SECRET_SURFACES = [
     id: 'cron-api',
     path: 'src/lib/apiGuard.ts',
     secret: 'CRON_SECRET',
-    purpose: 'cron/service authorization',
+    purpose: 'legacy cron compatibility for routes not yet migrated',
   },
   {
     id: 'adk-api',
@@ -79,16 +83,10 @@ export const CURRENT_SHARED_SECRET_SURFACES = [
     secret: 'ADK_BEARER_TOKEN',
     purpose: 'ADK service authorization',
   },
-  {
-    id: 'cloud-task',
-    path: 'src/lib/cloudTasksClient.ts',
-    secret: 'CRON_SECRET || dev-secret-123',
-    purpose: 'task-to-worker authorization',
-  },
 ] as const
 
 /**
- * Characterization facts that remain unresolved after P0-03. Later Pilot-0
+ * Characterization facts that remain unresolved after P0-04. Later Pilot-0
  * PRs intentionally flip/remove these entries as hard-cuts land.
  */
 export const KNOWN_TRUST_RISKS = [
@@ -97,7 +95,6 @@ export const KNOWN_TRUST_RISKS = [
   'admin_proxy_fails_open_when_secret_and_cookie_are_both_absent',
   'onboarding_sms_failure_enables_fixed_123456_code',
   'dev_login_has_hardcoded_admin_secret_fallback',
-  'cloud_tasks_missing_credentials_downgrades_to_direct_http',
-  'cloud_task_header_has_dev_secret_fallback',
+  'unmigrated_cron_routes_still_use_shared_cron_secret',
   'privacy_crons_can_report_simulated_success',
 ] as const
