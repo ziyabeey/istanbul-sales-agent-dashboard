@@ -1,9 +1,13 @@
 import { NextResponse } from 'next/server'
 import { adminDb } from '@/lib/firebaseAdmin'
 import { oturumDogrulaServer } from '@/lib/sessionManager'
+import {
+    getBoundActiveImpersonationFromRequest,
+    readImpersonationSessionToken,
+} from '@/lib/impersonation'
 
 type EsnafOwnershipResult =
-    | { ok: true; esnafId: string; isAdmin: boolean }
+    | { ok: true; esnafId: string; isAdmin: boolean; actingAdminId?: string }
     | { ok: false; response: NextResponse }
 
 type OwnedAppointmentResult =
@@ -11,11 +15,49 @@ type OwnedAppointmentResult =
         ok: true
         esnafId: string
         isAdmin: boolean
+        actingAdminId?: string
         randevuId: string
         randevuRef: FirebaseFirestore.DocumentReference
         randevu: FirebaseFirestore.DocumentData
     }
     | { ok: false; response: NextResponse }
+
+type ImpersonationAuthority =
+    | { present: false }
+    | { present: true; ok: true; adminId: string; targetId: string }
+    | { present: true; ok: false; response: NextResponse }
+
+/**
+ * P0-08 hard cut: a raw `x-admin-token` / ADMIN_SECRET_TOKEN header is never
+ * business authority. Admin access to tenant-owned resources requires a
+ * durable, admin-bound, audited impersonation session (P0-07). Without one,
+ * only the canonical business session counts.
+ */
+async function resolveImpersonationAuthority(request: Request): Promise<ImpersonationAuthority> {
+    if (!readImpersonationSessionToken(request)) return { present: false }
+
+    try {
+        const session = await getBoundActiveImpersonationFromRequest(request)
+        if (!session) {
+            return {
+                present: true,
+                ok: false,
+                response: NextResponse.json({ error: 'Impersonation authority geçersiz' }, { status: 401 }),
+            }
+        }
+        return { present: true, ok: true, adminId: session.adminId, targetId: session.subject.id }
+    } catch {
+        return {
+            present: true,
+            ok: false,
+            response: NextResponse.json({ error: 'Impersonation authority unavailable' }, { status: 503 }),
+        }
+    }
+}
+
+function impersonationTargetMismatch(): NextResponse {
+    return NextResponse.json({ error: 'Impersonation hedefi dışında erişim yasak' }, { status: 403 })
+}
 
 export async function requireSessionEsnaf(
     request: Request,
@@ -30,10 +72,13 @@ export async function requireSessionEsnaf(
         }
     }
 
-    const adminSecret = process.env.ADMIN_SECRET_TOKEN
-    const adminToken = request.headers.get('x-admin-token')
-    if (adminSecret && adminToken === adminSecret) {
-        return { ok: true, esnafId: hedefEsnafId, isAdmin: true }
+    const impersonation = await resolveImpersonationAuthority(request)
+    if (impersonation.present) {
+        if (!impersonation.ok) return { ok: false, response: impersonation.response }
+        if (impersonation.targetId !== hedefEsnafId) {
+            return { ok: false, response: impersonationTargetMismatch() }
+        }
+        return { ok: true, esnafId: hedefEsnafId, isAdmin: true, actingAdminId: impersonation.adminId }
     }
 
     const sessionEsnafId = await oturumDogrulaServer()
@@ -79,10 +124,21 @@ export async function requireOwnedAppointment(
     const randevu = doc.data() ?? {}
     const esnafId = typeof randevu.esnafId === 'string' ? randevu.esnafId : ''
 
-    const adminSecret = process.env.ADMIN_SECRET_TOKEN
-    const adminToken = request.headers.get('x-admin-token')
-    if (adminSecret && adminToken === adminSecret) {
-        return { ok: true, esnafId, isAdmin: true, randevuId, randevuRef, randevu }
+    const impersonation = await resolveImpersonationAuthority(request)
+    if (impersonation.present) {
+        if (!impersonation.ok) return { ok: false, response: impersonation.response }
+        if (!esnafId || impersonation.targetId !== esnafId) {
+            return { ok: false, response: impersonationTargetMismatch() }
+        }
+        return {
+            ok: true,
+            esnafId,
+            isAdmin: true,
+            actingAdminId: impersonation.adminId,
+            randevuId,
+            randevuRef,
+            randevu,
+        }
     }
 
     const sessionEsnafId = await oturumDogrulaServer()
