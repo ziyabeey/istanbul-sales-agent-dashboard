@@ -1,12 +1,13 @@
 # KC-00 Kepenk Authority Inventory
 
-**Status:** static repository inventory complete  
+**Status:** Kepenk static repository lane complete; cross-repo KC-00 acceptance remains open only for hosted numeric evidence  
 **Snapshot date:** 2026-09-16  
-**Scope:** Kepenk repository authority surfaces only. Hosted/runtime facts are explicitly separated and must not be inferred from source code.
+**Authority contract:** Randevu `docs/plan/k04-platform-core-contract.md` on `main@7320a9265b6bfdba05300868058b8ec6c69c5177`  
+**Scope:** Kepenk repository authority surfaces. Hosted/runtime facts are explicitly separated and must not be inferred from source code.
 
 ## Purpose
 
-KC-00 establishes what Kepenk treats as authoritative today before the platform authority is converged with Randevu. It is intentionally descriptive. It does not create a new tenant, identity, booking, billing, or credential authority.
+This inventory is Kepenk-side evidence for the already-binding K04 platform-core contract. It describes what Kepenk treats as authoritative today and identifies the migration seams required by K04. It does not create a competing topology, tenant, identity, booking, billing, or credential authority.
 
 ## Executive finding
 
@@ -19,50 +20,51 @@ KC-00 establishes what Kepenk treats as authoritative today before the platform 
 7. Admin authentication is still a separate NextAuth Credentials path backed by Firestore `admin_users`. Pilot-0 AdminPrincipal/AdminSession convergence remains required.
 8. Root `firestore.rules` contains a Firebase Auth custom-claims `sites/*` authorization model, but static repository evidence does not establish whether that model is presently deployed or used by active browser clients.
 9. The static repository therefore does **not** show the specific condition that would force Kepenk to preserve Firebase as the canonical human/tenant authority: an important live population combined with structural client-side Firestore-rules dependence. Hosted evidence is still required before destructive cutover.
+10. K04 already freezes the target authority: existing Randevu Supabase/Postgres owns User/Business/Membership and new Core commercial state; Randevu/Postgres owns booking/salon domains; Firestore is projection/legacy only; Firebase Auth is an identity adapter only.
 
 ## Authority surface inventory
 
-| Surface | Current repository authority | Current tenant/subject key | Main evidence / entry points | KC target | Required action |
+| Surface | Current repository authority | Current tenant/subject key | Main evidence / entry points | K04 target | Required action |
 | --- | --- | --- | --- | --- | --- |
 | Admin authentication | NextAuth Credentials + Firestore `admin_users` | admin identity | `apps/web/src/auth.ts` | Pilot-0 AdminPrincipal/AdminSession | Converge in P0-06/P0-07; keep operator authority separate from business membership |
 | Human user identity | Firestore `auth_users`, `auth_identities` | canonical user/identity ids inside Pilot-0 model | `apps/web/src/lib/auth/*Repository.ts`, `apps/web/src/lib/auth/firestore.ts` | Supabase Auth + Postgres platform identity | Preserve domain interfaces and RequestContext semantics; replace Firestore persistence authority |
-| Human membership | Firestore `auth_memberships` | tenant id + user id | `membershipRepository.ts`, `businessSession.ts` | Postgres `businesses` + memberships | Make active membership the canonical business authorization source |
-| Human sessions | Firestore `auth_sessions` + signed locator cookie | session id | `sessionRepository.ts`, `sessionManager.ts` | Host-local session backed by canonical platform identity/membership | Preserve opaque/signed session boundary; move durable authority to Core |
-| OTP compatibility | Firestore `otp_sessions` | phone/session identifiers | `sessionManager.ts` | Canonical identity/auth orchestration | Migrate as an identity implementation concern, not tenant authority |
-| Business/tenant root | Firestore `esnaflar/{esnafId}` | legacy `esnafId` | `firebaseAdmin.ts`, API routes | Postgres `businesses.id` UUID + business profile | Introduce deterministic alias mapping; stop treating `esnafId` as platform primary key |
+| Human membership | Firestore `auth_memberships` | tenant id + user id | `membershipRepository.ts`, `businessSession.ts` | `public.businesses` + `public.memberships` | Make active membership the canonical business authorization source |
+| Human sessions | Firestore `auth_sessions` + signed locator cookie | session id | `sessionRepository.ts`, `sessionManager.ts` | host-local session backed by canonical platform identity/membership | Preserve opaque/signed session boundary; move durable authority to Core |
+| OTP compatibility | Firestore `otp_sessions` | phone/session identifiers | `sessionManager.ts` | canonical identity/auth orchestration | Migrate as an identity implementation concern, not tenant authority |
+| Business/tenant root | Firestore `esnaflar/{esnafId}` | legacy `esnafId` | `firebaseAdmin.ts`, API routes | `public.businesses.id` UUID + profile | Introduce deterministic alias mapping; stop treating `esnafId` as platform primary key |
 | Legacy tenant authorization | Session `esnafId` + Firestore document ownership | `esnafId` | `esnafOwnership.ts` | canonical `business_id` from active membership / RequestContext | Compatibility-only during migration; remove as write authority at cutover |
 | Booking | Firestore `randevular` | `esnafId` | `apps/web/src/app/api/randevu/**` | Randevu/Postgres Booking Core using canonical `business_id` | Convert Kepenk API into adapter/proxy or remove it; prohibit new Firestore booking writes |
-| Booking policy/types | `@kepenk/booking-schema` TypeScript package | types only | `packages/booking-schema` | Policy vocabulary only | Reuse concepts where useful; no database ownership or parallel state machine |
+| Booking policy/types | `@kepenk/booking-schema` TypeScript package | types only | `packages/booking-schema` | policy vocabulary only | Reuse concepts where useful; no database ownership or parallel state machine |
 | Usage / daily quota | Firestore `kota_kullanim/{esnafId_date}` | `esnafId` + date | `firebaseAdmin.ts` | Core Usage/Quota keyed by canonical `business_id` | Backfill/reconcile and move authoritative mutation to Postgres |
 | Credits | Firestore `esnaflar/{id}/kredi/{YYYY-MM}` | `esnafId` + month | `firebaseAdmin.ts` | Core Commercial/Usage model | Replace embedded Firestore ledger/counter with explicit canonical records |
-| Subscription / entitlement | No clean canonical repository model established by static evidence | n/a | repository inventory | Core Subscription/Entitlement/Capability | Define in KC/P1 before product cutover; do not infer current paid state from code |
-| Business stats / operations | Firestore root + `esnaflar/{id}/islemler` | `esnafId` | `firebaseAdmin.ts` | Split by domain; canonical business id everywhere | Classify projection vs canonical domain state before migration |
-| Provider credentials | Pilot-0 CredentialRef/envelope/resolver contract, currently env + encrypted Firestore implementation | logical credential ref | P0-05 credential modules | Platform credential plane | Preserve logical contract; physical storage may migrate independently of consumers |
-| Browser data access | Kepenk HTTP APIs; no Firebase client SDK dependency found in web package | session / API context | `apps/web/package.json`, `EsnafContext.tsx` | API/adapter boundary over Core | Preserve. Do not introduce direct browser database authority during migration |
+| Subscription / entitlement | No clean canonical repository model established by static evidence | n/a | repository inventory | K04 `core.*` commercial model | Create in KC-01 on the Randevu migration chain; do not infer current paid state from code |
+| Business stats / operations | Firestore root + `esnaflar/{id}/islemler` | `esnafId` | `firebaseAdmin.ts` | split by domain; canonical business id everywhere | Classify projection vs canonical domain state before migration |
+| Provider credentials | Pilot-0 CredentialRef/envelope/resolver contract, currently env + encrypted Firestore implementation | logical credential ref | P0-05 credential modules | platform credential plane | Preserve logical contract; physical storage may migrate independently of consumers |
+| Browser data access | Kepenk HTTP APIs; no Firebase client SDK dependency found in web package | session / API context | `apps/web/package.json`, `EsnafContext.tsx` | API/BFF boundary over Core | Preserve. Do not introduce direct browser database authority during migration |
 | Firebase Rules `sites/*` | Ruleset expects Firebase Auth custom claim `sites` | Firebase auth claims | `firestore.rules`, `firebase.json` | legacy/deployed-client question | Verify hosted deployment and active callers before deleting or weakening rules |
 
 ## Human auth finding
 
 Pilot-0 already created the right **shape** for server-side human authorization: a signed/opaque session locator resolves a durable Session, User, and Membership into a RequestContext. Canonical code rejects noncanonical session forms where canonical context is required.
 
-The migration consequence is important: KC should not rewrite this contract merely because its repositories are currently Firestore-backed. The seam to replace is persistence and identity authority. The target repository implementation resolves the same concepts from Supabase Auth/Postgres, while temporary legacy `esnafId` JWT handling remains an explicitly bounded compatibility path.
+KC should not rewrite this contract merely because its repositories are currently Firestore-backed. The seam to replace is persistence and identity authority. KC-02 will resolve the same concepts from Supabase Auth/Postgres while temporary legacy `esnafId` handling remains an explicitly bounded compatibility path.
 
 ## Tenant finding
 
-`esnafId` is currently both an identifier and an authorization join key across legacy Kepenk surfaces. It must not be reused as the new platform primary key.
+`esnafId` is currently both an identifier and an authorization join key across legacy Kepenk surfaces. It must not be reused as the platform primary key.
 
-The canonical tenant key is:
+K04 fixes the canonical tenant key as:
 
 ```text
-businesses.id : UUID
+public.businesses.id : UUID
 ```
 
-Legacy identifiers are external aliases, for example:
+Legacy identifiers become external aliases under Core, conceptually:
 
 ```text
-tenant_aliases
-- business_id UUID -> businesses.id
-- provider TEXT     # e.g. legacy-kepenk-firestore
+core.tenant_aliases
+- business_id UUID -> public.businesses.id
+- provider TEXT     # legacy-kepenk-firestore
 - external_id TEXT  # legacy esnafId
 - UNIQUE(provider, external_id)
 ```
@@ -84,7 +86,7 @@ Therefore the repository does **not** establish a structural current-browser dep
 
 Kepenk's current `/api/randevu` surface directly operates Firestore `randevular`, including creation/read flows and ownership checks through `esnafId`. That is a real second booking authority relative to the Randevu repository.
 
-KC freezes the direction now:
+K04 fixes the direction:
 
 ```text
 Canonical Booking Core = Randevu/Postgres
@@ -102,39 +104,74 @@ The repository does not contain a clean canonical SaaS commercial model. What ex
 - monthly credits: `esnaflar/{id}/kredi/{YYYY-MM}`
 - business statistics/operation records under the same tenant root
 
-KC/P1 must separate these concerns into explicit Postgres records keyed by `business_id`. Subscription, Entitlement, Capability, Usage, and Quota must become intentional platform concepts rather than additional fields on `esnaflar`.
+KC must separate these concerns into explicit Postgres records keyed by `business_id`. Subscription, Entitlement, Capability, Usage, and Quota become intentional platform concepts rather than additional fields on `esnaflar`.
 
 Randevu salon-side adisyon/tahsilat is a separate operational-money domain and must not be conflated with Kepenk SaaS subscription billing.
 
+## Launch product decision for KC-01
+
+The current launch scope is intentionally **one package**, not three artificial tiers. KC-01 therefore must not manufacture plan variants merely to satisfy a seed-count convention.
+
+### Plan key
+
+```text
+kepenk_standard
+```
+
+- Monthly versus annual purchase is a **billing interval/term**, not a different entitlement plan.
+- The initial three-month tester access is a **trial period/status**, not a separate plan.
+- Pricing values do not live in application code or schema defaults. K04's product-price rule remains intact.
+
+### Initial entitlement keys
+
+```text
+booking
+ai_booking_assistant
+messaging_credits
+```
+
+`messaging_credits` is the bounded/monthly consumable surface; the concrete launch allowance belongs to product/commercial configuration rather than a hard-coded authorization branch.
+
+Additional product capabilities get new entitlement keys only when a real product boundary exists. Missing entitlements fail closed.
+
+### Slug policy
+
+- canonical public business slug follows the existing Randevu slugify/reserved-name policy;
+- conflicts fail closed and are reported for explicit resolution;
+- migration does not silently rename an existing business;
+- legacy Kepenk slug/domain values may be preserved as aliases/projections but do not become a second canonical tenant identifier.
+
+This closes the KC-00 **product-decision** portion. Hosted numeric evidence remains the only open KC-00 acceptance lane.
+
 ## Credential authority finding
 
-P0-05 remains valid under the KC topology. `CredentialRef`, versioned encrypted envelopes, resolver contracts, key rotation/revocation behavior, and provider-handle consumption are platform concerns independent of which database owns Business/Membership.
+P0-05 remains valid under the K04 topology. `CredentialRef`, versioned encrypted envelopes, resolver contracts, key rotation/revocation behavior, and provider-handle consumption are platform concerns independent of which database owns Business/Membership.
 
 KC therefore preserves the logical credential contract. Moving encrypted credential records away from Firestore, if desired later, is a storage migration behind the resolver and not a reason to reintroduce provider secrets into tenant documents or browser-visible configuration.
 
-## Hosted evidence still required
+## Hosted numeric evidence still required
 
-The following facts cannot be established safely from this repository snapshot and must be measured from deployed systems before any destructive hard cut:
+The following facts cannot be established safely from this repository snapshot and must be measured from deployed systems before cross-repo KC-00 is acceptance-complete:
 
 1. Firestore document counts for `esnaflar`, `randevular`, `auth_*`, `otp_sessions`, `kota_kullanim`, credential collections, and relevant subcollections.
-2. Active Firebase Auth user counts and whether any currently active product depends on Firebase-issued browser identity.
+2. Active Firebase Auth user counts and sign-in method distribution.
 3. Real production tenant/user population, if any, versus staging/test fixtures.
 4. Deployed Firestore rules version/hash and whether `sites/*` is still a live authorization surface.
-5. Read/write volume by Firestore collection and by Kepenk API route.
+5. Read/write volume by Firestore collection and by Kepenk API route where observable.
 6. External or legacy callers still presenting `esnafId` JWT/session forms.
 7. Any active browser/client application that talks directly to Firestore outside this repository's current web dependency graph.
 8. Deployed Cloud Functions or other workers that mutate these collections and are not captured by the web application path.
 9. Existing real SaaS subscription/payment/entitlement records, if any.
 10. Runtime consumers of `/api/randevu` that require a compatibility window during booking cutover.
 
-Absence from source code is not evidence that these hosted populations are zero.
+Absence from source code is not evidence that these hosted populations are zero. If hosted access is unavailable, the receipt must say so and KC-01 writer-token opening remains a coordinator decision rather than silently assuming zero.
 
-## Hard cuts carried into KC-01
+## K04 invariants carried into KC implementation
 
-KC-01 must freeze all of the following:
+KC implementation must preserve all of the following:
 
 1. Supabase/Postgres is the canonical platform authority for User, Business, Membership, and Commercial state.
-2. `businesses.id` UUID is the platform tenant key.
+2. `public.businesses.id` UUID is the platform tenant key.
 3. Existing Kepenk `esnafId` values become aliases, not canonical identifiers.
 4. The Pilot-0 RequestContext/session/membership contract is preserved while its persistence authority moves behind repositories/adapters.
 5. Randevu/Postgres is the only Booking Core write authority.
@@ -143,11 +180,11 @@ KC-01 must freeze all of the following:
 8. ServicePrincipal is machine identity only and cannot confer business membership.
 9. AdminPrincipal/AdminSession is operator authority and cannot silently become business membership.
 10. P0-05 CredentialRef/resolver/envelope remains the provider-credential contract.
-11. SaaS billing may execute in Kepenk services, but authoritative Subscription/Entitlement/Quota changes must be narrow, idempotent Core commands keyed by canonical `business_id`.
+11. SaaS billing may execute in Kepenk services, but authoritative Subscription/Entitlement/Quota changes use narrow, idempotent Core commands keyed by canonical `business_id`.
 12. No new dual-authority surface may be introduced during migration.
 
-## KC-00 exit criteria
+## KC-00 lane exit
 
-KC-00 static inventory is complete when this document is merged to `main` and its claims remain bounded to repository evidence.
+The **Kepenk static repository lane** is complete when this document is merged to `main` and its claims remain bounded to repository evidence.
 
-Hosted evidence is required before destructive data/auth/booking hard cuts. It does not block KC-01 topology freeze unless it reveals a contradictory condition, especially a material live Firebase browser population with structural Firestore-rules dependence.
+Cross-repo **KC-00 acceptance is not declared complete by this document alone**. K04 and the Randevu KC migration plan require the hosted numeric inventory to be attached to the coordination receipt, or an explicit coordinator waiver/risk decision, before KC-01 receives the migration writer token.
