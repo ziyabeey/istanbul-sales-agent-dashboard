@@ -6,6 +6,7 @@
  */
 
 import { createHash, randomUUID } from 'node:crypto'
+import type { DocumentData, QueryDocumentSnapshot, Transaction } from 'firebase-admin/firestore'
 import { adminDb } from '@/lib/firebaseAdmin'
 import {
     DEFAULT_JOB_LEASE_MS,
@@ -82,7 +83,7 @@ function asDate(value: unknown): Date | null {
     return Number.isNaN(parsed.getTime()) ? null : parsed
 }
 
-function normalizedJob(id: string, raw: Record<string, any>): KuyrukIslemi {
+function normalizedJob(id: string, raw: DocumentData): KuyrukIslemi {
     const createdAt = asDate(raw.olusturma) ?? new Date(0)
     return {
         ...raw,
@@ -112,10 +113,6 @@ function deterministicJobId(tip: IslemTipi, idempotencyKey: string): string {
     return `job_${digest}`
 }
 
-/**
- * Kuyruğa yeni iş ekler. idempotencyKey verilirse aynı logical event ikinci
- * kez ayrı bir job oluşturmaz.
- */
 export async function kuyruğaEkle(
     islem: YeniKuyrukIslemi,
     options: KuyrukEkleOptions = {}
@@ -154,7 +151,7 @@ export async function kuyruğaEkle(
         return ref.id
     }
 
-    await adminDb.runTransaction(async (tx: any) => {
+    await adminDb.runTransaction(async (tx: Transaction) => {
         const snapshot = await tx.get(ref)
         if (snapshot.exists) return
         tx.create(ref, document)
@@ -163,7 +160,6 @@ export async function kuyruğaEkle(
     return ref.id
 }
 
-/** FIFO read of jobs whose retry window has opened. */
 export async function kuyruktanAl(limit = 5): Promise<{ id: string; data: KuyrukIslemi }[]> {
     const now = new Date()
     const snap = await adminDb
@@ -174,7 +170,10 @@ export async function kuyruktanAl(limit = 5): Promise<{ id: string; data: Kuyruk
         .get()
 
     return snap.docs
-        .map((doc: any) => ({ id: doc.id, data: normalizedJob(doc.id, doc.data()) }))
+        .map((doc: QueryDocumentSnapshot<DocumentData>) => ({
+            id: doc.id,
+            data: normalizedJob(doc.id, doc.data()),
+        }))
         .filter(({ data }: { data: KuyrukIslemi }) => canAttemptJob(
             data.durum,
             data.nextAttemptAt,
@@ -185,7 +184,6 @@ export async function kuyruktanAl(limit = 5): Promise<{ id: string; data: Kuyruk
         .slice(0, limit)
 }
 
-/** Atomically claim a job and receive the lease token required for completion. */
 export async function islemClaimEt(
     islemId: string,
     leaseMs: number = DEFAULT_JOB_LEASE_MS
@@ -193,7 +191,7 @@ export async function islemClaimEt(
     const ref = adminDb.collection('islem_kuyrugu').doc(islemId)
     const now = new Date()
 
-    return adminDb.runTransaction(async (tx: any) => {
+    return adminDb.runTransaction(async (tx: Transaction) => {
         const doc = await tx.get(ref)
         if (!doc.exists) return null
 
@@ -218,7 +216,6 @@ export async function islemClaimEt(
     })
 }
 
-/** Legacy boolean adapter. New workers should keep the lease token. */
 export async function islemBaslat(islemId: string): Promise<boolean> {
     return Boolean(await islemClaimEt(islemId))
 }
@@ -231,7 +228,7 @@ export async function islemHeartbeat(
     const ref = adminDb.collection('islem_kuyrugu').doc(islemId)
     const now = new Date()
 
-    return adminDb.runTransaction(async (tx: any) => {
+    return adminDb.runTransaction(async (tx: Transaction) => {
         const doc = await tx.get(ref)
         if (!doc.exists) return false
         const data = normalizedJob(doc.id, doc.data())
@@ -254,7 +251,7 @@ export async function islemTamamla(
     const ref = adminDb.collection('islem_kuyrugu').doc(islemId)
     const now = new Date()
 
-    await adminDb.runTransaction(async (tx: any) => {
+    await adminDb.runTransaction(async (tx: Transaction) => {
         const doc = await tx.get(ref)
         if (!doc.exists) throw new Error('İşlem bulunamadı')
         const data = normalizedJob(doc.id, doc.data())
@@ -285,7 +282,7 @@ export async function islemHata(
     const ref = adminDb.collection('islem_kuyrugu').doc(islemId)
     const now = new Date()
 
-    await adminDb.runTransaction(async (tx: any) => {
+    await adminDb.runTransaction(async (tx: Transaction) => {
         const doc = await tx.get(ref)
         if (!doc.exists) throw new Error('İşlem bulunamadı')
         const data = normalizedJob(doc.id, doc.data())
@@ -320,7 +317,6 @@ export async function islemHata(
     })
 }
 
-/** Requeue jobs abandoned by a crashed worker after their lease expires. */
 export async function suresiDolanLeaseKurtar(limit = 25): Promise<number> {
     const now = new Date()
     const snap = await adminDb
@@ -330,11 +326,11 @@ export async function suresiDolanLeaseKurtar(limit = 25): Promise<number> {
         .get()
 
     let recovered = 0
-    for (const snapshot of snap.docs) {
+    for (const snapshot of snap.docs as QueryDocumentSnapshot<DocumentData>[]) {
         const current = normalizedJob(snapshot.id, snapshot.data())
         if (!isLeaseExpired(current.leaseUntil, now)) continue
 
-        const didRecover = await adminDb.runTransaction(async (tx: any) => {
+        const didRecover = await adminDb.runTransaction(async (tx: Transaction) => {
             const fresh = await tx.get(snapshot.ref)
             if (!fresh.exists) return false
             const data = normalizedJob(fresh.id, fresh.data())
