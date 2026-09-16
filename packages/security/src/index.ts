@@ -29,3 +29,27 @@ export type {
   ServicePrincipalAuthType,
   TaskInvocation,
 } from './servicePrincipal'
+
+export {
+  CredentialDefinitionSchema,
+  CredentialRefSchema,
+  CredentialStatusSchema,
+  CredentialStorageKindSchema,
+  CredentialVersionMetadataSchema,
+  CredentialVersionStatusSchema,
+  EncryptedCredentialVersionSchema,
+  EncryptionEnvelopeV1Schema,
+  assertResolvedCredentialFields,
+} from './credentials'
+export type {
+  CredentialDefinition,
+  CredentialRef,
+  CredentialResolver,
+  CredentialStatus,
+  CredentialStorageKind,
+  CredentialVersionMetadata,
+  CredentialVersionStatus,
+  EncryptedCredentialVersion,
+  EncryptionEnvelopeV1,
+  ResolvedCredential,
+} from './credentials'

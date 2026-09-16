@@ -1,3 +1,5 @@
+import type { ResolvedCredential } from '../../../../packages/security/src/credentials'
+import { assertResolvedCredentialFields } from '../../../../packages/security/src/credentials'
 import { adminDb } from './firebaseAdmin'
 
 /**
@@ -8,7 +10,7 @@ import { adminDb } from './firebaseAdmin'
 export interface GoogleReview {
     reviewId: string
     reviewer: { displayName: string }
-    starRating: string // "ONE", "TWO", "THREE", "FOUR", "FIVE"
+    starRating: string
     comment?: string
     createTime: string
     updateTime: string
@@ -18,76 +20,104 @@ export interface GoogleReview {
     }
 }
 
+interface GoogleBusinessCredentialValues {
+    accessToken: string
+    accountId: string
+    locationId: string
+}
+
+function fromResolvedCredential(credential: ResolvedCredential): GoogleBusinessCredentialValues {
+    const checked = assertResolvedCredentialFields(
+        credential,
+        ['accessToken', 'accountId', 'locationId']
+    )
+    return {
+        accessToken: checked.values.accessToken,
+        accountId: checked.values.accountId,
+        locationId: checked.values.locationId,
+    }
+}
+
 /**
- * Esnafın Google API Token bilgilerini alarak okunmamış/yanıtlanmamış Google yorumlarını getirir.
+ * Compatibility source only. Full tenant IntegrationConnection migration is W3.
+ * New callers should resolve a CredentialRef outside this provider adapter and
+ * pass the resulting credential handle.
  */
-export async function okunmamisYorumlariGetir(esnafId: string): Promise<GoogleReview[]> {
+async function legacyCredentialForTenant(esnafId: string): Promise<GoogleBusinessCredentialValues | null> {
+    const esnafDoc = await adminDb.collection('esnaflar').doc(esnafId).get()
+    const esnaf = esnafDoc.data()
+    if (!esnaf?.googleAccessToken || !esnaf?.googleAccountId || !esnaf?.googleLocationId) {
+        return null
+    }
+    return {
+        accessToken: esnaf.googleAccessToken,
+        accountId: esnaf.googleAccountId,
+        locationId: esnaf.googleLocationId,
+    }
+}
+
+async function credentialValues(
+    esnafId: string,
+    credential?: ResolvedCredential
+): Promise<GoogleBusinessCredentialValues | null> {
+    return credential ? fromResolvedCredential(credential) : legacyCredentialForTenant(esnafId)
+}
+
+export async function okunmamisYorumlariGetir(
+    esnafId: string,
+    credential?: ResolvedCredential
+): Promise<GoogleReview[]> {
     try {
-        const esnafDoc = await adminDb.collection('esnaflar').doc(esnafId).get()
-        const esnaf = esnafDoc.data()
+        const resolved = await credentialValues(esnafId, credential)
+        if (!resolved) return []
 
-        if (!esnaf || !esnaf.googleAccessToken || !esnaf.googleLocationId) {
-            return [] // Kimlik doğrulaması yoksa atla
-        }
-
-        const ACCESS_TOKEN = esnaf.googleAccessToken
-        const LOCATION_ID = esnaf.googleLocationId // "locations/12345678" formatında bekliyoruz.
-
-        const url = `https://mybusiness.googleapis.com/v4/accounts/${esnaf.googleAccountId}/${LOCATION_ID}/reviews`
-
+        const url = `https://mybusiness.googleapis.com/v4/accounts/${resolved.accountId}/${resolved.locationId}/reviews`
         const response = await fetch(url, {
-            headers: { 'Authorization': `Bearer ${ACCESS_TOKEN}` }
+            headers: { Authorization: `Bearer ${resolved.accessToken}` },
         })
 
         if (!response.ok) {
-            console.error('[GoogleBusiness] Yorumlar çekilemedi', await response.json())
+            console.error('[GoogleBusiness] Yorumlar çekilemedi', response.status)
             return []
         }
 
         const data = await response.json()
         const tumYorumlar: GoogleReview[] = data.reviews || []
-
-        // Yalnızca esnafın (veya botun) BİZZAT YANITLAMADIĞI (reviewReply'i olmayan) yorumları getir
-        return tumYorumlar.filter(r => !r.reviewReply)
-    } catch (e: any) {
-        console.error('[GoogleBusiness API Hata - Getir]', e.message)
+        return tumYorumlar.filter((review) => !review.reviewReply)
+    } catch (error: unknown) {
+        console.error(
+            '[GoogleBusiness API Hata - Getir]',
+            error instanceof Error ? error.message : 'Bilinmeyen hata'
+        )
         return []
     }
 }
 
-/**
- * Belirli bir yoruma Google API üzerinden açık/public yanıt yazar.
- */
 export async function yorumaCevapYaz(
     esnafId: string,
-    reviewId: string, // Tam yol: "accounts/{accountId}/locations/{locationId}/reviews/{reviewId}"
-    yanitMetni: string
+    reviewId: string,
+    yanitMetni: string,
+    credential?: ResolvedCredential
 ): Promise<boolean> {
     try {
-        const esnafDoc = await adminDb.collection('esnaflar').doc(esnafId).get()
-        const esnaf = esnafDoc.data()
-
-        if (!esnaf || !esnaf.googleAccessToken) return false
-
-        const ACCESS_TOKEN = esnaf.googleAccessToken
+        const resolved = await credentialValues(esnafId, credential)
+        if (!resolved) return false
 
         const url = `https://mybusiness.googleapis.com/v4/${reviewId}/reply`
-
         const response = await fetch(url, {
             method: 'PUT',
             headers: {
-                'Authorization': `Bearer ${ACCESS_TOKEN}`,
-                'Content-Type': 'application/json'
+                Authorization: `Bearer ${resolved.accessToken}`,
+                'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ comment: yanitMetni })
+            body: JSON.stringify({ comment: yanitMetni }),
         })
 
         if (!response.ok) {
-            console.error('[GoogleBusiness] Yanıt yazılamadı', await response.json())
+            console.error('[GoogleBusiness] Yanıt yazılamadı', response.status)
             throw new Error('Google Maps Yorum Yanıtlama Başarısız')
         }
 
-        // Başarılı log
         await adminDb.collection('agent_logs').add({
             ajan: 'sentiment_guardian_google',
             esnafId,
@@ -101,9 +131,11 @@ export async function yorumaCevapYaz(
         })
 
         return true
-
-    } catch (e: any) {
-        console.error('[GoogleBusiness API Hata - Yanıtla]', e.message)
+    } catch (error: unknown) {
+        console.error(
+            '[GoogleBusiness API Hata - Yanıtla]',
+            error instanceof Error ? error.message : 'Bilinmeyen hata'
+        )
         return false
     }
 }

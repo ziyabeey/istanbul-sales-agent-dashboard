@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url'
 
 import {
   CURRENT_AUTH_RESPONSE_SHAPES,
+  CURRENT_CREDENTIAL_AUTHORITY,
   CURRENT_PRINCIPAL_SOURCES,
   CURRENT_SHARED_SECRET_SURFACES,
   CURRENT_TRUST_COOKIES,
@@ -20,8 +21,8 @@ function readSource(relativePath: string): string {
 }
 
 describe('Pilot-0 trust baseline characterization', () => {
-  it('pins the current principal/cookie vocabulary after P0-04', () => {
-    expect(TRUST_BASELINE_VERSION).toBe('p0-04@2026-09-16')
+  it('pins the current principal/cookie/credential vocabulary after P0-05', () => {
+    expect(TRUST_BASELINE_VERSION).toBe('p0-05@2026-09-16')
     expect(CURRENT_TRUST_COOKIES).toEqual({
       businessSession: 'kepenk_session',
       adminSession: 'admin_token',
@@ -30,6 +31,7 @@ describe('Pilot-0 trust baseline characterization', () => {
     expect(CURRENT_PRINCIPAL_SOURCES.dashboard[0]).toContain('durable Session -> User -> Membership')
     expect(CURRENT_PRINCIPAL_SOURCES.businessApi[0]).toContain('apiGuard requireUserSession')
     expect(CURRENT_PRINCIPAL_SOURCES.service[0]).toContain('signed ServicePrincipal')
+    expect(CURRENT_CREDENTIAL_AUTHORITY.encryptionWrite).toContain('active kid')
     expect(CURRENT_SHARED_SECRET_SURFACES.length).toBeGreaterThanOrEqual(5)
   })
 
@@ -172,6 +174,47 @@ describe('Pilot-0 trust baseline characterization', () => {
     expect(source).toContain('data.denemeSayisi >= data.maxDeneme')
   })
 
+  it('P0-05: credential writes are versioned, kid-bound and never return the legacy format', () => {
+    const encryption = readSource('src/lib/tokenSifreleme.ts')
+
+    expect(encryption).toContain("const ENVELOPE_PREFIX = 'kcred.v1.'")
+    expect(encryption).toContain('kid,')
+    expect(encryption).toContain("alg: ENVELOPE_ALGORITHM")
+    expect(encryption).toContain('cipher.setAAD(aadFor(kid))')
+    expect(encryption).toContain('return encodeEnvelope({')
+    expect(encryption).toContain('decryptLegacyCiphertext')
+  })
+
+  it('P0-05: confidential platform resolver never points at NEXT_PUBLIC env', () => {
+    const resolver = readSource('src/lib/credentials/credentialResolver.ts')
+    const unsplash = readSource('src/lib/unsplashService.ts')
+
+    expect(resolver).toContain("envName.startsWith('NEXT_PUBLIC_')")
+    expect(resolver).not.toContain("accessKey: 'NEXT_PUBLIC_UNSPLASH_ACCESS_KEY'")
+    expect(unsplash).not.toContain('NEXT_PUBLIC_UNSPLASH_ACCESS_KEY')
+    expect(unsplash).toContain('process.env.UNSPLASH_ACCESS_KEY')
+  })
+
+  it('P0-05: provider adapters expose credential handles without forcing storage authority', () => {
+    const google = readSource('src/lib/googleBusinessClient.ts')
+    const meta = readSource('src/lib/metaGraphClient.ts')
+    const twilio = readSource('src/lib/twilioClient.ts')
+
+    expect(google).toContain('credential?: ResolvedCredential')
+    expect(meta).toContain('credential?: ResolvedCredential')
+    expect(twilio).toContain('PLATFORM_CREDENTIAL_REFS.twilio')
+    expect(twilio).not.toContain('process.env.TWILIO_AUTH_TOKEN')
+  })
+
+  it('KNOWN-RISK: tenant provider tokens remain on legacy tenant root until W3', () => {
+    const google = readSource('src/lib/googleBusinessClient.ts')
+    const meta = readSource('src/lib/metaGraphClient.ts')
+
+    expect(google).toContain('esnaf?.googleAccessToken')
+    expect(meta).toContain('esnaf?.instagramAccessToken')
+    expect(KNOWN_TRUST_RISKS).toContain('legacy_tenant_provider_tokens_still_live_on_esnaflar_root_until_w3')
+  })
+
   it('KNOWN-RISK: admin login, proxy and API still use incompatible trust authorities', () => {
     const login = readSource('src/app/api/admin/login/route.ts')
     const proxy = readSource('src/proxy.ts')
@@ -232,19 +275,14 @@ describe('Pilot-0 trust baseline characterization', () => {
       requiredKeys: ['esnafId'],
     })
     expect(CURRENT_AUTH_RESPONSE_SHAPES.authMeAuthenticated.requiredKeys).toEqual([
-      'esnafId',
-      'ad',
-      'paket',
-      'sektor',
-      'durum',
+      'esnafId', 'ad', 'paket', 'sektor', 'durum',
     ])
     expect(CURRENT_AUTH_RESPONSE_SHAPES.logoutSuccess.body).toEqual({ ok: true })
   })
 
   it('keeps only unresolved trust risks in the register', () => {
-    expect(KNOWN_TRUST_RISKS).toContain(
-      'unmigrated_business_api_callers_can_still_use_legacy_esnafId_jwt_compatibility'
-    )
+    expect(KNOWN_TRUST_RISKS).toContain('unmigrated_business_api_callers_can_still_use_legacy_esnafId_jwt_compatibility')
+    expect(KNOWN_TRUST_RISKS).toContain('legacy_tenant_provider_tokens_still_live_on_esnaflar_root_until_w3')
     expect(KNOWN_TRUST_RISKS).toContain('admin_login_proxy_api_use_incompatible_authorities')
     expect(KNOWN_TRUST_RISKS).toContain('admin_proxy_fails_open_when_secret_and_cookie_are_both_absent')
     expect(KNOWN_TRUST_RISKS).toContain('unmigrated_cron_routes_still_use_shared_cron_secret')
