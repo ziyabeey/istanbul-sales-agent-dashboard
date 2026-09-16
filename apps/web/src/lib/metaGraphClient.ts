@@ -1,54 +1,76 @@
+import type { ResolvedCredential } from '../../../../packages/security/src/credentials'
+import { assertResolvedCredentialFields } from '../../../../packages/security/src/credentials'
 import { adminDb } from './firebaseAdmin'
 
+interface InstagramCredentialValues {
+    accessToken: string
+    accountId: string
+}
+
+function fromResolvedCredential(credential: ResolvedCredential): InstagramCredentialValues {
+    const checked = assertResolvedCredentialFields(credential, ['accessToken', 'accountId'])
+    return {
+        accessToken: checked.values.accessToken,
+        accountId: checked.values.accountId,
+    }
+}
+
+/** Compatibility source only. Full tenant IntegrationConnection migration is W3. */
+async function legacyCredentialForTenant(esnafId: string): Promise<InstagramCredentialValues | null> {
+    const esnafDoc = await adminDb.collection('esnaflar').doc(esnafId).get()
+    const esnaf = esnafDoc.data()
+    if (!esnaf?.instagramAccessToken || !esnaf?.instagramAccountId) return null
+    return {
+        accessToken: esnaf.instagramAccessToken,
+        accountId: esnaf.instagramAccountId,
+    }
+}
+
+async function credentialValues(
+    esnafId: string,
+    credential?: ResolvedCredential
+): Promise<InstagramCredentialValues | null> {
+    return credential ? fromResolvedCredential(credential) : legacyCredentialForTenant(esnafId)
+}
+
 /**
- * Meta Graph API üzerinden Instagram Direkt Mesaj (DM) gönderme kütüphanesi.
- * Her esnafın kendi IG_ACCESS_TOKEN'i Firestore üzerinde tutulacak.
+ * Meta Graph API üzerinden Instagram DM gönderir.
+ * New callers may pass a resolved credential handle. Legacy tenant-root token
+ * loading remains only as a compatibility source until W3 cutover.
  */
 export async function instagramDmGonder(
     instagramUserId: string,
     mesaj: string,
-    esnafId: string
+    esnafId: string,
+    credential?: ResolvedCredential
 ): Promise<boolean> {
     try {
-        // Esnafın Meta kimlik doğrulama bilgilerini (Token) getir
-        const esnafDoc = await adminDb.collection('esnaflar').doc(esnafId).get()
-        const esnaf = esnafDoc.data()
-
-        if (!esnaf || !esnaf.instagramAccessToken || !esnaf.instagramAccountId) {
-            console.error(`[MetaGraph] Esnaf (${esnafId}) için geçerli Instagram Token bulunamadı.`)
+        const resolved = await credentialValues(esnafId, credential)
+        if (!resolved) {
+            console.error(`[MetaGraph] Esnaf (${esnafId}) için geçerli Instagram credential bulunamadı.`)
             return false
         }
 
-        const IG_ACCESS_TOKEN = esnaf.instagramAccessToken
-        const IG_ACCOUNT_ID = esnaf.instagramAccountId
-
         const body = {
-            recipient: {
-                id: instagramUserId
-            },
-            message: {
-                text: mesaj
-            }
+            recipient: { id: instagramUserId },
+            message: { text: mesaj },
         }
 
-        // Meta Graph API - Mesaj Gönderme Endpoiti
-        const response = await fetch(`https://graph.facebook.com/v19.0/${IG_ACCOUNT_ID}/messages`, {
+        const response = await fetch(`https://graph.facebook.com/v19.0/${resolved.accountId}/messages`, {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${IG_ACCESS_TOKEN}`,
-                'Content-Type': 'application/json'
+                Authorization: `Bearer ${resolved.accessToken}`,
+                'Content-Type': 'application/json',
             },
-            body: JSON.stringify(body)
+            body: JSON.stringify(body),
         })
 
         const result = await response.json()
-
         if (!response.ok) {
-            console.error('[MetaGraph API Hata]', result)
+            console.error('[MetaGraph API Hata]', response.status)
             throw new Error(result.error?.message || 'Instagram DM gönderilemedi.')
         }
 
-        // WhatsApp ve Cron haricinde OmniChannel tabanlı loglama
         await adminDb.collection('agent_logs').add({
             ajan: 'instagram_dm_bot',
             esnafId,
@@ -62,20 +84,20 @@ export async function instagramDmGonder(
         })
 
         return true
-    } catch (error: any) {
-        // DM Başarısız Logu
+    } catch (error: unknown) {
+        const message = error instanceof Error ? error.message : 'Bilinmeyen Meta Graph hatası'
         await adminDb.collection('agent_logs').add({
             ajan: 'instagram_dm_bot',
-            esnafId: esnafId,
+            esnafId,
             tip: 'ig_hata',
             input: { instagramUserId },
             output: null,
             basari: false,
-            hata: error.message,
+            hata: message,
             zaman: new Date(),
             kanal: 'instagram',
         })
-        console.error('[IG DM HATA]', error)
+        console.error('[IG DM HATA]', message)
         return false
     }
 }
