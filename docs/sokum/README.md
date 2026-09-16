@@ -1,7 +1,8 @@
 # Kepenk Söküm - Canlı İndeks
 
 > **Tarih:** 2026-09-16  
-> **Durum:** **SÖKÜM 40 AÇIK - Support OS / Ticket / SLA / Knowledge Base / AI Assistance**  
+> **Durum:** **SÖKÜM 41 KAPALI - Admin / Super Admin / Platform Control Plane**  
+> **Aktif frontier:** Yeni domain açılmadı. Önce final inventory sweep / kapsam bütünlüğü kontrolü yapılacak.  
 > **Amaç:** `KEPENK_SOKUM_PLANI.md` 01-24 tarihsel snapshot olarak, 25+ repo-doğrulanmış turlar ise `docs/sokum/` altında korunur. Bu dosya yalnız canlı frontier ve kısa handoff taşır.
 
 ## Güncel durum
@@ -24,7 +25,8 @@
 | 37 | Restaurant Operations / POS / Masa / Adisyon / KDS / Offline Sync | KAPALI | `docs/sokum/37-restaurant-operations-pos-kds-offline-sync.md` |
 | 38 | Marketplace / Job / Bid / Provider / Escrow / Credit Economy | KAPALI | `docs/sokum/38-marketplace-job-bid-provider-escrow-credit-economy.md` |
 | 39 | Supply / Procurement / Supplier / PO / Reorder / B2B Marketplace | KAPALI | `docs/sokum/39-supply-procurement-supplier-marketplace.md` |
-| 40 | Support OS / Ticket / SLA / Knowledge Base / AI Assistance | AÇIK | aktif vertical doğrulaması |
+| 40 | Support OS / Ticket / SLA / Knowledge Base / AI Assistance | KAPALI | `docs/sokum/40-support-ticket-sla-knowledge-ai.md` |
+| 41 | Admin / Super Admin / Platform Control Plane | KAPALI | `docs/sokum/41-admin-platform-control-plane.md` |
 
 ## Kanonik devam kuralı
 
@@ -35,82 +37,77 @@
 - `apps/randevu-server` Kepenk kapsamı dışındadır ve değiştirilmez.
 - Production secret/token değerleri dokümana kopyalanmaz.
 - Paralel ajan frontier'ı kapatmışsa overwrite edilmez; main yeniden okunup ilk açık frontier'a geçilir.
+- `SÖKÜM 42` yalnız final inventory sweep gerçek, daha önce ele alınmamış bir domain kanıtlarsa açılır.
 
-## Kapanan son karar: SÖKÜM 39
+## Kapanan son karar: SÖKÜM 41
 
-Supply iki ayrı ürün sınırı içeriyor:
+Admin current main'de gerçek yüksek-yetkili platform operasyonları içerir:
+
+- tenant/esnaf create/update/delete,
+- package/kota/suspend/reactivate,
+- impersonation,
+- Twilio number provisioning,
+- agent telemetry,
+- global maintenance/kill-switch intent,
+- platform finance/infra/marketing read/control yüzeyleri.
+
+Fakat current auth modeli parçalı ve güvenilir değildir:
 
 ```text
-Tenant-private Procurement Core
-  SupplierRelationship
-  SupplierCatalogItem
-  PurchaseOrder
-  GoodsReceipt
-  ReorderPolicy
-  SupplierPerformance projection
-
-Platform Supplier Marketplace (extension)
-  SellerProfile
-  Listing
-  MarketplaceOrder
-  CommissionPolicy
+/api/admin/login -> HMAC process-local session cookie
+proxy.ts          -> cookie == raw ADMIN_SECRET_TOKEN
+/api/admin/*      -> x-admin-token == raw ADMIN_SECRET_TOKEN
+admin UI          -> client bundle hard-coded header token
 ```
 
-Current main'de domain contract'ları ve ciddi UX prototipleri var; gerçek repository/service/API write authority doğrulanmadı. `tedarik` ve `b2b-pazar` ekranları local hard-coded state kullanıyor.
+Bu dört parça tek admin session authority oluşturmuyor.
 
 ### KEEP
 
-- Procurement first-class capability,
-- supplier / PO / reorder domain dili,
-- minor-unit fiyat yaklaşımı,
-- supplier scoring ve payment-term tohumları,
-- mevcut Procurement + B2B UX emeği.
+- ayrı Platform Admin / Operations ürünü,
+- mevcut operator UX seed'leri,
+- `packages/admin` immutable audit vocabulary,
+- reason + dual-identity impersonation contract'ı,
+- deterministic feature rollout evaluator,
+- emergency control intent'i.
 
 ### REWRITE / BUILD
 
-- supplier identity canonical party/tenant graph'ına,
-- PO lifecycle approval/ack/partial receipt/backorder/rejection semantiğine,
-- ayrı `GoodsReceipt` -> InventoryMovement köprüsüne,
-- payment terms -> Finance/AP projection'a,
-- reorder -> durable advisory/approval policy'ye,
-- supplier channels -> IntegrationConnection + Durable Jobs'a bağlanır.
+- verified Admin Principal + revocable session,
+- least-privilege role/capability enforcement,
+- MFA/step-up ve kritik aksiyon approval politikası,
+- append-only `AdminActionEvent`,
+- safe impersonation,
+- cross-domain Admin Command Gateway,
+- provider provisioning/reconciliation,
+- real Observability/Billing projections.
+
+### DROP AFTER CUTOVER
+
+- shared raw secret human auth,
+- browser bundle'da admin token,
+- process-local admin session Map,
+- root tenant doc hard-delete,
+- raw package/module field mutation,
+- Telegram'ı audit truth saymak,
+- mock infra/finance verisini operational truth saymak.
 
 Ana invariant:
 
-> **Procurement purchasing workflow'u sahiplenir; stok truth'u Inventory'nin, ödeme/borç truth'u Payment/Finance'ın kalır. PO mal kabul değildir.**
+> **Admin paneli platformdaki her collection'ın universal writer'ı değildir. Doğrulanmış operatörün policy-guarded canonical domain komutlarını çalıştırdığı ve her sonucu append-only audit ile izlediği control plane'dir.**
 
-## Koruma altındaki kalan vertical/product paketleri
+## Final inventory sweep - numarasız kontrol turu
 
-- `packages/support`
-- `packages/voice`
-- `packages/studio`
-- `packages/blog`
-- `packages/seo`
-- `packages/admin`
-- `packages/influencer`
+Şimdilik yeni domain açılmıyor.
 
-`restaurant`, `marketplace` ve `supply` dedicated teardown ile korunmuştur.
+Kontrol sırası:
 
-## Aktif frontier
+1. `KEPENK_SOKUM_PLANI.md` 01-24 ile `docs/sokum/25-41` çapraz kontrol edilir.
+2. Eski indeks notlarında kalan `packages/voice`, `packages/studio`, `packages/blog`, `packages/seo`, `packages/influencer` paketlerinin önceki sökümlerde gerçekten kapsanıp kapsanmadığı doğrulanır.
+3. Daha önce kapsanan capability için yeni söküm numarası açılmaz.
+4. Gerçek açık domain yoksa teardown fazı kapatılır.
+5. Sonraki faz canonical architecture + migration + cleanup backlog sentezidir.
 
-### SÖKÜM 40 - Support OS / Ticket / SLA / Knowledge Base / AI Assistance
+### Önemli
 
-İlk current-main kanıtı:
-
-- `packages/support/src/types/ticket.ts`: ticket lifecycle, P1-P4 priority, assignment, messages, SLA, AI response metadata.
-- `packages/support/src/types/knowledgeBase.ts`: MDX article, chunk/embedding/RAG result, confidence thresholds.
-- `dashboard/manage/destek`: 14KB civarı ciddi destek UX'i ancak `DemoTicket[]` + local state kullanıyor.
-- `@kepenk/support` için gerçek runtime import/caller doğrulanmadı.
-
-Öncelikli sorular:
-
-1. Support hangi state'i sahiplenir; Customer/Messaging/RAG sınırı nerede?
-2. SLA clock pause/resume, business hours, first-response ve resolution deadline nasıl durable olur?
-3. Assignment/escalation/reopen lifecycle canonical command/event olarak nasıl kurulur?
-4. Ticket message ile Messaging channel/thread arasındaki binding nedir?
-5. KB article lifecycle/version/publish authority Support'ta mı Content/RAG'de mi?
-6. AI suggestion, auto-send ve `aiResolved` hangi policy/approval sınırına tabi olmalı?
-7. AI hiçbir koşulda finans, hesap, güvenlik veya destructive action'ı yalnız confidence ile yapabilir mi?
-8. Real repository/service/API writer var mı, yoksa contract + demo UI adası mı?
-9. Support KPIs first response, resolution, breach, reopen, deflection ve human handoff olarak hangi verified events'ten türetilmeli?
-10. External helpdesk/email/WhatsApp girişleri IntegrationConnection + verified ingress üzerinden mi bağlanmalı?
+Bu sweep yeni implementation işi değildir. Kod yazılmaz; yalnız kapsam boşluğu ve duplicate frontier aranır.
