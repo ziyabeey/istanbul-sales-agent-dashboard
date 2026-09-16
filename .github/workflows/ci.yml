@@ -231,7 +231,7 @@ jobs:
       - name: Install Playwright Chromium
         run: pnpm --filter @kepenk/web exec playwright install --with-deps chromium
       - name: Run Playwright critical paths
-        run: pnpm --filter @kepenk/web exec playwright test test/e2e/critical-paths.spec.ts --workers=1
+        run: pnpm --filter @kepenk/web exec playwright test test/e2e/critical-paths.spec.ts --config=playwright.ci.config.ts --workers=1
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
