@@ -21,10 +21,10 @@ function readSource(relativePath: string): string {
 }
 
 describe('Pilot-0 trust baseline characterization', () => {
-  it('pins the current principal/cookie/credential vocabulary after P0-06', () => {
+  it('pins the current principal/cookie/credential vocabulary after P0-07', () => {
     const sharedSecretIds = CURRENT_SHARED_SECRET_SURFACES.map((surface) => String(surface.id))
 
-    expect(TRUST_BASELINE_VERSION).toBe('p0-06@2026-09-16')
+    expect(TRUST_BASELINE_VERSION).toBe('p0-07@2026-09-16')
     expect(CURRENT_TRUST_COOKIES).toEqual({
       businessSession: 'kepenk_session',
       adminSession: 'admin_session',
@@ -33,6 +33,8 @@ describe('Pilot-0 trust baseline characterization', () => {
     expect(CURRENT_PRINCIPAL_SOURCES.dashboard[0]).toContain('durable Session -> User -> Membership')
     expect(CURRENT_PRINCIPAL_SOURCES.businessApi[0]).toContain('apiGuard requireUserSession')
     expect(CURRENT_PRINCIPAL_SOURCES.adminApi[0]).toContain('durable Firestore AdminSession')
+    expect(CURRENT_PRINCIPAL_SOURCES.impersonation[0]).toContain('durable Firestore ImpersonationSession')
+    expect(CURRENT_PRINCIPAL_SOURCES.impersonation[0]).toContain('active bound AdminSession')
     expect(CURRENT_PRINCIPAL_SOURCES.service[0]).toContain('signed ServicePrincipal')
     expect(CURRENT_CREDENTIAL_AUTHORITY.encryptionWrite).toContain('active kid')
     expect(CURRENT_SHARED_SECRET_SURFACES.find((surface) => surface.id === 'admin-login')?.secret)
@@ -253,6 +255,26 @@ describe('Pilot-0 trust baseline characterization', () => {
     expect(KNOWN_TRUST_RISKS).not.toContain(
       'admin_proxy_fails_open_when_secret_and_cookie_are_both_absent'
     )
+  })
+
+  it('P0-07: impersonation is durable, admin-bound, audited and permanently indicated', () => {
+    const impersonation = readSource('src/lib/impersonation.ts')
+    const route = readSource('src/app/api/admin/impersonate/route.ts')
+    const audit = readSource('src/lib/security/auditLogger.ts')
+    const banner = readSource('src/app/dashboard/components/ImpersonationBanner.tsx')
+
+    expect(impersonation).toContain("const IMPERSONATION_COLLECTION = 'auth_impersonation_sessions'")
+    expect(impersonation).toContain('export const IMPERSONATION_TTL_SECONDS = 60 * 60')
+    expect(impersonation).toContain('getBoundActiveImpersonationFromRequest')
+    expect(impersonation).toContain('validateAdminSessionToken(adminToken)')
+    expect(impersonation).not.toContain('kepenk-fallback-secret-change-in-prod')
+    expect(route).toContain("if (!reason) return NextResponse.json({ error: 'reason zorunlu' }")
+    expect(route).toContain("action: 'IMPERSONATION_STARTED'")
+    expect(route).toContain("action: 'IMPERSONATION_ENDED'")
+    expect(audit).toContain('await strictWrite(requested, writer)')
+    expect(audit).toContain('requestId: string')
+    expect(banner).toContain('Admin impersonation aktif')
+    expect(banner).toContain("fetch('/api/admin/impersonate'")
   })
 
   it('KNOWN-RISK: onboarding SMS failure still enables fixed 123456 verification code', () => {
