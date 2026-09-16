@@ -129,6 +129,16 @@ jobs:
           src/app/api/admin/core/parity/route.ts
           test/unit/coreBackfill.test.ts
           test/unit/coreBackfillRoutes.test.ts
+      - name: Lint KC-04 billing command path
+        run: >-
+          pnpm --filter @kepenk/web exec eslint
+          src/lib/core/billing.ts
+          src/lib/core/billingStore.ts
+          src/lib/core/billingHook.ts
+          src/app/api/cron/core-billing-outbox/route.ts
+          test/unit/coreBilling.test.ts
+          test/unit/coreBillingHook.test.ts
+          test/unit/coreBillingRoutes.test.ts
       - name: Validate trust browser smoke script
         run: bash -n apps/web/test/e2e/trust-browser-smoke.sh
       - name: Typecheck P0 trust baseline artifacts
@@ -151,6 +161,8 @@ jobs:
         run: pnpm --filter @kepenk/web exec tsc -p test/tsconfig.kc-02-core-bff.json --noEmit
       - name: Typecheck KC-03 backfill, aliases and parity
         run: pnpm --filter @kepenk/web exec tsc -p test/tsconfig.kc-03-backfill.json --noEmit
+      - name: Typecheck KC-04 billing command path
+        run: pnpm --filter @kepenk/web exec tsc -p test/tsconfig.kc-04-billing.json --noEmit
       - name: Legacy full web typecheck baseline
         id: legacy-web-typecheck
         continue-on-error: true
