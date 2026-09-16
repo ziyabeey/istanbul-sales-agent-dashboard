@@ -7,6 +7,7 @@ import {
   issueServiceToken,
   verifyServiceRequest,
   verifyServiceToken,
+  type ServiceRequirement,
 } from '@/lib/serviceAuth'
 import {
   MAX_RETRY_BACKOFF_MS,
@@ -189,5 +190,23 @@ describe('P0-04/P0-08 Cloud Tasks hard cut', () => {
     expect(serviceAuthSource).not.toContain('allowLegacyCronSecret')
     expect(serviceAuthSource).not.toContain('legacy_cron_secret')
     expect(serviceAuthSource).not.toContain('process.env.CRON_SECRET')
+  })
+})
+
+describe('P0-08 ServiceRequirement type surface', () => {
+  it('no longer accepts a legacy CRON_SECRET compatibility option, even for migrated worker routes', () => {
+    const requirement: ServiceRequirement = {
+      audience: SERVICE_AUDIENCES.queueProcessor,
+      scopes: [SERVICE_SCOPES.queueProcess],
+      allowedSubjects: ['cloud-tasks', 'cloud-scheduler'],
+      // @ts-expect-error P0-08 removed allowLegacyCronSecret from ServiceRequirement
+      allowLegacyCronSecret: true,
+    }
+    const request = new Request('http://localhost/api/cron/kuyruk-isleyici', {
+      method: 'POST',
+      headers: { 'x-cron-secret': process.env.CRON_SECRET ?? '' },
+    })
+
+    expect(verifyServiceRequest(request, requirement)).toBeNull()
   })
 })
