@@ -3,7 +3,8 @@
  *
  * New human logins use a canonical signed session locator whose authority is
  * resolved from durable Session -> User -> Membership state. Legacy esnafId
- * JWTs remain cryptographically readable only until P0-03 request-gate cutover.
+ * JWTs remain cryptographically readable only for explicitly unmigrated API
+ * callers until their final hard-cut; dashboard routing no longer accepts them.
  *
  * OTP storage remains here temporarily and is independent from Session truth.
  */
