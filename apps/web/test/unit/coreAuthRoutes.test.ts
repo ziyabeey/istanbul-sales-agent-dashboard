@@ -3,7 +3,8 @@ import { InMemoryCoreAuthFlowConsumptionStore } from '@/lib/core/authFlow'
 import { InMemoryCoreBffSessionRepository, issueCoreBffSession } from '@/lib/core/bffSession'
 import type { SupabaseSession } from '@/lib/core/supabaseAuth'
 import { CORE_BFF_CSRF_COOKIE, CORE_BFF_CSRF_HEADER, CORE_BFF_SESSION_COOKIE } from '@/lib/core/config'
-import { CoreAuthError } from '@/lib/core/errors'
+import { CoreAuthError, CorePlatformError } from '@/lib/core/errors'
+import type { VerifiedFirebaseIdentity } from '@/lib/core/firebaseIdentity'
 import { getCoreRuntime } from '@/lib/core/deps'
 import type { CoreRuntime } from '@/lib/core/deps'
 import type { SupabaseClaims } from '@/lib/core/jwtVerifier'
@@ -16,6 +17,7 @@ import { POST as parolaKurtar } from '@/app/api/core/auth/parola-kurtar/route'
 import { POST as parolaGiris } from '@/app/api/core/auth/parola-giris/route'
 import { GET as kurtarma } from '@/app/api/core/auth/kurtarma/route'
 import { POST as parolaGuncelle } from '@/app/api/core/auth/parola-guncelle/route'
+import { POST as firebaseBagla } from '@/app/api/core/auth/firebase-bagla/route'
 
 // Real Response objects so cookie headers can be asserted.
 vi.mock('next/server', () => {
@@ -45,7 +47,8 @@ vi.mock('next/server', () => {
 })
 
 vi.mock('@/lib/core/deps', () => ({ getCoreRuntime: vi.fn() }))
-vi.mock('@/lib/core/identityAdapter', () => ({
+vi.mock('@/lib/core/identityAdapter', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/lib/core/identityAdapter')>()),
   linkLegacyPhoneIdentity: vi.fn(async () => 'linked'),
 }))
 vi.mock('@/lib/auth/legacyAccountResolver', () => ({
@@ -58,6 +61,12 @@ const ORIGIN = { origin: 'https://app.kepenk.ai' }
 
 function claims(overrides: Partial<SupabaseClaims> = {}): SupabaseClaims {
   return { sub: USER, aud: 'authenticated', iss: 'https://core.example.test/auth/v1', exp: 9999999999, amr: [{ method: 'otp' }], ...overrides }
+}
+
+const NOW_SECONDS = Math.floor(Date.UTC(2026, 8, 16, 12, 0, 0) / 1000)
+
+function firebaseIdentity(overrides: Partial<VerifiedFirebaseIdentity> = {}): VerifiedFirebaseIdentity {
+  return { uid: 'fb-uid-0001', email: 'owner@example.test', emailVerified: true, signInProvider: 'password', authTime: NOW_SECONDS - 30, ...overrides }
 }
 
 function makeRuntime() {
@@ -77,7 +86,9 @@ function makeRuntime() {
       requestPasswordRecovery: vi.fn(async () => undefined),
     },
     verifier: { verify: vi.fn(async () => claims()) },
+    firebaseIdentity: { verifyIdToken: vi.fn(async () => firebaseIdentity()) },
     client: {
+      applyCommand: vi.fn(async () => ({ linked: true })),
       listMemberships: vi.fn(async () => [{ id: '6b000000-0000-4000-8000-000000000001', business_id: BIZ, role: 'owner', active: true }]),
       getBusinessPlatformSnapshot: vi.fn(async () => ({
         business_id: BIZ,
@@ -280,6 +291,76 @@ describe('parola-kurtar', () => {
     expect(known.status).toBe(200)
     expect(runtime.auth.requestPasswordRecovery).toHaveBeenLastCalledWith('owner@example.test', expect.stringMatching(/^https:\/\/app\.kepenk\.ai\/api\/core\/auth\/kurtarma\?state=/))
     expect((await parolaKurtar(json('https://app.kepenk.ai/api/core/auth/parola-kurtar', { email: 'not-an-email' }, ORIGIN))).status).toBe(400)
+  })
+})
+
+describe('firebase-bagla (verified firebase:<uid> -> user_id alias, Issue #10 migration decision)', () => {
+  const URL = 'https://app.kepenk.ai/api/core/auth/firebase-bagla'
+  const idToken = 'firebase.id.token.0123456789abcdef'
+
+  it('needs a standard session, CSRF and same origin, then links the server-verified uid without forwarding the token', async () => {
+    const { cookie, csrf } = await loggedIn()
+    const noSession = await firebaseBagla(json(URL, { idToken }, ORIGIN))
+    expect(noSession.status).toBe(403)
+    const crossSite = await firebaseBagla(json(URL, { idToken }, { cookie, ...csrf, origin: 'https://evil.example' }))
+    expect(crossSite.status).toBe(403)
+    expect(await crossSite.json()).toEqual({ error: 'ORIGIN_REJECTED' })
+    const noCsrf = await firebaseBagla(json(URL, { idToken }, { cookie, ...ORIGIN }))
+    expect(noCsrf.status).toBe(403)
+    expect(await noCsrf.json()).toEqual({ error: 'CSRF_REJECTED' })
+    expect(runtime.firebaseIdentity.verifyIdToken).not.toHaveBeenCalled()
+    expect(runtime.client.applyCommand).not.toHaveBeenCalled()
+
+    const ok = await firebaseBagla(json(URL, { idToken }, { cookie, ...csrf, ...ORIGIN }))
+    expect(ok.status).toBe(200)
+    expect(await ok.json()).toEqual({ provider: 'firebase', identityAlias: 'linked', userId: USER })
+    expect(runtime.firebaseIdentity.verifyIdToken).toHaveBeenCalledWith(idToken)
+    const [command] = runtime.client.applyCommand.mock.calls[0] as unknown as [{ idempotencyKey: string; command: string; payload: Record<string, unknown> }]
+    expect(command.command).toBe('LinkIdentityAlias')
+    expect(command.payload).toEqual({ provider: 'firebase', external_subject: 'fb-uid-0001', user_id: USER })
+    expect(command.idempotencyKey).toMatch(/^kc02-identity-[0-9a-f]{48}$/)
+    expect(JSON.stringify(command)).not.toContain(idToken)
+
+    const replay = await firebaseBagla(json(URL, { idToken }, { cookie, ...csrf, ...ORIGIN }))
+    expect(replay.status).toBe(200)
+    const keys = (runtime.client.applyCommand.mock.calls as unknown as Array<[{ idempotencyKey: string }]>).map((c) => c[0].idempotencyKey)
+    expect(keys[0]).toBe(keys[1])
+  })
+
+  it('refuses invalid/revoked tokens, anonymous or custom sign-ins, stale logins, recovery sessions and alias conflicts without guessing', async () => {
+    const { cookie, csrf } = await loggedIn()
+    const headers = { cookie, ...csrf, ...ORIGIN }
+
+    const short = await firebaseBagla(json(URL, { idToken: 'x' }, headers))
+    expect(short.status).toBe(400)
+    runtime.firebaseIdentity.verifyIdToken.mockRejectedValueOnce(new Error('auth/id-token-revoked'))
+    const revoked = await firebaseBagla(json(URL, { idToken }, headers))
+    expect(revoked.status).toBe(401)
+    expect(await revoked.json()).toEqual({ error: 'FIREBASE_TOKEN_INVALID' })
+    runtime.firebaseIdentity.verifyIdToken.mockResolvedValueOnce(firebaseIdentity({ signInProvider: 'anonymous' }))
+    const anonymous = await firebaseBagla(json(URL, { idToken }, headers))
+    expect(anonymous.status).toBe(403)
+    expect(await anonymous.json()).toEqual({ error: 'FIREBASE_IDENTITY_UNLINKABLE', reason: 'UNVERIFIED_SIGN_IN_PROVIDER' })
+    runtime.firebaseIdentity.verifyIdToken.mockResolvedValueOnce(firebaseIdentity({ authTime: NOW_SECONDS - 3600 }))
+    const stale = await firebaseBagla(json(URL, { idToken }, headers))
+    expect(stale.status).toBe(403)
+    expect(await stale.json()).toEqual({ error: 'FIREBASE_IDENTITY_UNLINKABLE', reason: 'STALE_FIREBASE_LOGIN' })
+    expect(runtime.client.applyCommand).not.toHaveBeenCalled()
+
+    runtime.client.applyCommand.mockRejectedValueOnce(new CorePlatformError('IDENTITY_ALIAS_CONFLICT'))
+    const conflict = await firebaseBagla(json(URL, { idToken }, headers))
+    expect(conflict.status).toBe(409)
+    expect(await conflict.json()).toEqual({ error: 'IDENTITY_ALIAS_CONFLICT' })
+    runtime.client.applyCommand.mockRejectedValueOnce(new CorePlatformError('CORE_UNAVAILABLE'))
+    const outage = await firebaseBagla(json(URL, { idToken }, headers))
+    expect(outage.status).toBe(503)
+
+    runtime.verifier.verify.mockResolvedValue(claims({ amr: [{ method: 'recovery' }] }))
+    const recovery = await loggedIn('recovery.token.0123456789')
+    const blocked = await firebaseBagla(json(URL, { idToken }, { cookie: recovery.cookie, ...recovery.csrf, ...ORIGIN }))
+    expect(blocked.status).toBe(403)
+    expect(await blocked.json()).toEqual({ error: 'RECOVERY_REQUIRED' })
+    expect(runtime.client.applyCommand).toHaveBeenCalledTimes(2)
   })
 })
 

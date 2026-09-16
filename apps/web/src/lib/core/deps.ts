@@ -1,3 +1,4 @@
+import { getAuth } from 'firebase-admin/auth'
 import type { Firestore } from 'firebase-admin/firestore'
 import { adminDb } from '../firebaseAdmin'
 import { EnvCredentialResolver } from '../credentials/credentialResolver'
@@ -6,6 +7,7 @@ import type { CoreBffSessionRecord, CoreBffSessionRepository } from './bffSessio
 import { CORE_CREDENTIAL_REFS, coreIssuer, coreJwksUrl, readCoreConnectionConfig, type CoreConnectionConfig } from './config'
 import { CorePlatformClient } from './coreClient'
 import { CorePlatformError } from './errors'
+import type { FirebaseIdentityVerifier, VerifiedFirebaseIdentity } from './firebaseIdentity'
 import { SupabaseJwtVerifier } from './jwtVerifier'
 import type { CoreContextDeps } from './requestContext'
 import { SupabaseAuthClient } from './supabaseAuth'
@@ -49,9 +51,28 @@ export class FirestoreCoreAuthFlowConsumptionStore implements CoreAuthFlowConsum
   }
 }
 
+/**
+ * Server-side Firebase ID token verification for the verified `firebase:<uid>`
+ * alias (Issue #10 migration decision). `checkRevoked=true` costs one Firebase
+ * Auth read and refuses tokens of a revoked or disabled account.
+ */
+export class FirebaseAdminIdentityVerifier implements FirebaseIdentityVerifier {
+  async verifyIdToken(idToken: string): Promise<VerifiedFirebaseIdentity> {
+    const decoded = await getAuth().verifyIdToken(idToken, true)
+    return {
+      uid: decoded.uid,
+      email: typeof decoded.email === 'string' ? decoded.email : null,
+      emailVerified: decoded.email_verified === true,
+      signInProvider: typeof decoded.firebase?.sign_in_provider === 'string' ? decoded.firebase.sign_in_provider : null,
+      authTime: typeof decoded.auth_time === 'number' ? decoded.auth_time : null,
+    }
+  }
+}
+
 export interface CoreRuntime extends CoreContextDeps {
   config: CoreConnectionConfig
   flows: CoreAuthFlowConsumptionStore
+  firebaseIdentity: FirebaseIdentityVerifier
 }
 
 let cached: CoreRuntime | null = null
@@ -92,6 +113,7 @@ export function getCoreRuntime(): CoreRuntime | null {
     }),
     sessions: new FirestoreCoreBffSessionRepository(adminDb),
     flows: new FirestoreCoreAuthFlowConsumptionStore(adminDb),
+    firebaseIdentity: new FirebaseAdminIdentityVerifier(),
   }
   return cached
 }
