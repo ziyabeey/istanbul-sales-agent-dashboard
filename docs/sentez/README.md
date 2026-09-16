@@ -3,15 +3,15 @@
 > **Tarih:** 2026-09-16  
 > **Domain sökümü:** KAPALI — SÖKÜM 01–41  
 > **Aktif faz:** Söküm Sonrası Mimari Sentez / Kurtarma Planı  
-> **Aktif frontier:** **SENTEZ 2 — Duplicate Authority & Legacy Writer Registry**
+> **Aktif frontier:** **SENTEZ 3 — Dependency / Migration Graph**
 
 ## Fazlar
 
 | No | Alan | Durum | Belge |
 |---|---|---|---|
 | 1 | Canonical Capability Map | KAPALI | `docs/sentez/01-canonical-capability-map.md` |
-| 2 | Duplicate Authority & Legacy Writer Registry | AÇIK | — |
-| 3 | Dependency / Migration Graph | BEKLİYOR | — |
+| 2 | Duplicate Authority & Legacy Writer Registry | KAPALI | `docs/sentez/02-duplicate-authority-legacy-writer-registry.md` |
+| 3 | Dependency / Migration Graph | AÇIK | — |
 | 4 | Cleanup Backlog + Cutover Gates | BEKLİYOR | — |
 | 5 | Kepenk v2 Portable Core / Vertical Packaging | BEKLİYOR | — |
 
@@ -38,18 +38,49 @@ Ana invariant:
 
 > **Her business gerçeğinin tek write authority'si vardır. UI, provider adapter, AI agent, admin paneli, public site ve vertical product başka authority'nin gerçeğini doğrudan mutate etmez.**
 
-## SENTEZ 2 kapsamı
+## SENTEZ 2 kararı
 
-SENTEZ 2 yalnız legacy write yollarını sınıflandırır:
+Legacy authority'ler aşağıdaki migration kümelerine ayrıldı:
 
 ```text
-legacy writer
- -> sahip olduğunu sandığı business fact
- -> gerçek canonical authority
- -> risk
- -> compatibility ihtiyacı
- -> cutover gate
+A. Identity / Admin Trust
+B. Tenant / Subscription / Entitlement
+C. Site / Asset / Public Action
+D. Customer / Messaging
+E. Integration / Durable Execution / Credentials
+F. Payment / Finance
+G. Agent / Audit / Telemetry / Privacy
+H. Vertical Products
 ```
+
+Cutover tipleri:
+
+- **Type A — Security hard cut**: insecure compatibility tutulmaz.
+- **Type B — Strangler adapter**: legacy caller canonical command'a yönlendirilir.
+- **Type C — Projection migration**: eski alan read projection olarak geçici yaşar.
+- **Type D — Greenfield authority**: demo/contract seed'den gerçek runtime inşa edilir; demo state migrate edilmez.
+
+En yüksek riskli writer sınıfları:
+
+- raw/shared admin secret ve parçalı admin session,
+- direct tenant/package/kota/hard-delete mutation,
+- tenant-root credential/provider state,
+- unsigned session/email authorization,
+- provider callback'in domain state'ini payment success olarak mutate etmesi,
+- mutable finance/balance state,
+- Booking/Order/Restaurant içine gömülü payment authority,
+- simulated/no-op privacy purge.
+
+## SENTEZ 3 kapsamı
+
+SENTEZ 3 sekiz migration kümesini gerçek dependency wave'lerine dönüştürür:
+
+1. prerequisite authority'leri belirle,
+2. parallel ilerleyebilecek blokları ayır,
+3. compatibility/projection dönemlerini tanımla,
+4. provider/payment/finance cutover sırasını kesinleştir,
+5. vertical pack activation gate'lerini çıkar,
+6. big-bang yerine strangler migration graph üret.
 
 Kod değişikliği yapılmaz.
 
