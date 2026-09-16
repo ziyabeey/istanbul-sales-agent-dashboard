@@ -1,6 +1,6 @@
 # Kepenk Söküm - Canlı İndeks
 
-> **Tarih:** 2026-09-15  
+> **Tarih:** 2026-09-16  
 > **Amaç:** `KEPENK_SOKUM_PLANI.md` korunmuş geniş snapshot olarak kalırken, güncel doğrulama turlarının canlı frontier'ını burada tutmak.
 
 ## Güncel durum
@@ -16,7 +16,8 @@
 | 30 | Secrets / Configuration / Provider Credentials / Encryption Key Rotation Authority | KAPALI | `docs/sokum/30-secrets-credential-authority-rotation.md` |
 | 31 | Observability / Audit / Logging / Metrics / Tracing / Operational Truth | KAPALI | `docs/sokum/31-observability-audit-operational-truth.md` |
 | 32 | Data Lifecycle / Privacy / Consent / Retention / Export / Deletion Authority | KAPALI | `docs/sokum/32-data-lifecycle-privacy-consent-retention.md` |
-| 33 | External Integration Connection Lifecycle / OAuth Grants / Webhooks / Sync / Reconciliation | AÇIK | sıradaki doğrulama turu |
+| 33 | External Integration Connection Lifecycle / OAuth Grants / Webhooks / Sync / Reconciliation | KAPALI | `docs/sokum/33-integration-connection-lifecycle.md` |
+| 34 | Tenant / Business Lifecycle / Onboarding / Provisioning / Suspension / Offboarding Authority | AÇIK | sıradaki doğrulama turu |
 
 ## Kanonik devam kuralı
 
@@ -27,106 +28,120 @@
 - `apps/randevu-server` bu söküm serisi nedeniyle değiştirilmez.
 - Gerçek production secret/token değerleri dokümana kopyalanmaz; yalnız secret adı, scope'u, lifecycle ve blast radius değerlendirilir.
 
-## Kapanan son karar: SÖKÜM 32
+## Kapanan son karar: SÖKÜM 33
 
-Privacy/KVKK niyeti mevcut olsa da canonical Data Lifecycle Authority olmadığı doğrulandı.
+Provider entegrasyonlarının mevcut olduğu fakat tenant-provider ilişkisinin kendisi için canonical lifecycle authority bulunmadığı doğrulandı.
 
 En kritik bulgular:
 
-- tenant purge akışları yalnız belirli collection/alanları kapsıyor; bütün veri grafiğini bilmiyor,
-- ayrı `data-purge` yolu gerçek deletion yerine simüle edilmiş başarı üretebiliyor,
-- admin tenant DELETE yalnız root `esnaflar/{id}` dokümanını silebiliyor,
-- consent UI checkbox ve metin düzeyinde bulunabiliyor ancak versioned purpose/evidence authority yok,
-- canonical subject-level customer erase/export workflow doğrulanmadı,
-- `musteriProfiller` telefon, özel gün, segment, harcama tahmini ve sonraki ziyaret tahmini gibi derived personal data taşıyor,
-- `esnafHafizalari` ve `musteriKonusmalar` gibi AI/conversation-derived veriler source lifecycle'a otomatik bağlanmıyor,
-- logs, DLQ, audit, Sentry/Telegram ve external provider kopyaları privacy propagation graph'ın doğal parçası değil,
-- canonical legal-hold ve restore sonrası erasure reconciliation authority doğrulanmadı.
+- Google OAuth callback encrypted tokenları `esnaflar/{id}/integrations/google_gmb` altına yazarken Google runtime client'ı root `googleAccessToken/googleAccountId/googleLocationId` alanlarını okuyor.
+- Instagram için iki ayrı webhook authority farklı tenant-binding alanları (`instagramAccountId` / `instagramUserId`) ve farklı verify-token isimleri kullanıyor.
+- Instagram outbound credential ownership tenant root tokenı ile global env tokenı arasında parçalı.
+- WhatsApp için iki ayrı inbound authority var; bir yol sender/customer telefonundan tenant çözmeye çalışırken diğer yol destination Twilio numarasını kullanıyor.
+- İncelenen provider POST webhook yollarında ortak ve zorunlu signature verification ingress guard doğrulanmadı.
+- Webhook idempotency provider bazında ad hoc; canonical durable provider-event inbox yok.
+- Twilio provisioning provider resource'u doğrudan tenant root'a bağlıyor; explicit resource lifecycle/health/release authority yok.
+- Token varlığı, provider resource doğrulaması, connection health, webhook subscription, sync cursor, reconnect/revoke/disconnect ve offboarding tek aggregate altında birleşmiyor.
 
 Canonical yön:
 
 ```text
-              Data Inventory
-                    ↓
-             DataClassPolicy
-          ↙         ↓          ↘
-   Consent Core  Retention   Legal Hold
-          ↘         ↓          ↙
-             Lifecycle Core
-          ↙         ↓          ↘
-   ExportRequest  Erasure   Offboarding
-                      ↓
-                DeletionPlan
-                      ↓
-                DeletionTask[]
-                      ↓
-     +----------------------------------+
-     | Domain DB                        |
-     | CRM / Booking / Commerce         |
-     | Conversation / AI Derived Data   |
-     | Assets                           |
-     | Search / Vector / Analytics      |
-     | Logs / Audit / DLQ               |
-     | Cache / Jobs                     |
-     | External Providers               |
-     +----------------------------------+
-                      ↓
-                Reconciliation
-                      ↓
-             ErasureProof / Audit
+Tenant
+  ↓
+IntegrationConnection
+  ├── CredentialRef
+  ├── ProviderResourceBinding[]
+  ├── WebhookSubscription[]
+  ├── SyncCursor[]
+  └── Health / Reconciliation
+           ↓
+   Provider Adapters
 ```
 
-En önemli ayrımlar:
+State family:
 
 ```text
-Consent withdrawal != ErasureRequest
-Subject erasure     != Tenant offboarding
-Root delete         != Completed purge
-Credential delete   != Provider grant revoke
-Source data delete  != Derived data delete
+PENDING_AUTH
+  ↓
+CONNECTED
+  ├─→ DEGRADED
+  ├─→ EXPIRED / REAUTH_REQUIRED
+  ├─→ REVOKING → REVOKED
+  └─→ DISCONNECTING → DISCONNECTED
 ```
 
-Privacy lifecycle durable ve idempotent olacaktır. Bir required deletion target başarısızsa request `COMPLETED` olamaz. Simulated/no-op purge production success üretemez. Immutable published artifact'lar erasable customer PII embed etmeyecektir.
+Provider ingress için zorunlu sıra:
+
+```text
+verify signature
+      ↓
+resolve ProviderResourceBinding
+      ↓
+resolve IntegrationConnection + tenant
+      ↓
+dedupe providerEventId
+      ↓
+durable IntegrationEventInbox commit
+      ↓
+ACK provider
+      ↓
+async processing / retry / DLQ
+```
+
+En önemli invariant:
+
+> Bir provider action veya inbound event ancak verified, tenant-bound ve lifecycle-aware bir `IntegrationConnection` üzerinden domain'e girebilir.
 
 ## Aktif frontier
 
-### SÖKÜM 33 - External Integration Connection Lifecycle / OAuth Grants / Webhook Subscription / Sync & Reconciliation Authority
+### SÖKÜM 34 - Tenant / Business Lifecycle / Onboarding / Provisioning / Suspension / Offboarding Authority
+
+SÖKÜM 29 tenant identity/trust boundary'yi, SÖKÜM 32 data deletion/offboarding propagation'ını, SÖKÜM 33 external provider connection lifecycle'ını kapattı. Açık kalan üst seviye soru tenant'ın kendisinin yaşam döngüsüdür.
 
 Öncelikli sorular:
 
-- Bir tenant provider bağlantısı canonical olarak nasıl `CONNECTED` olur?
-- OAuth grant, stored credential ve provider resource mapping aynı connection'a nasıl bağlanır?
-- Aynı tenant/provider için birden fazla connection destekleniyor mu?
-- Token refresh/reconnect failure state machine'i var mı?
-- Webhook subscription create/rotate/delete lifecycle'ını kim yönetiyor?
-- Provider webhook hangi IntegrationConnection'a ve tenant'a server-side resolve ediliyor?
-- Kepenk -> provider ve provider -> Kepenk sync cursor/idempotency authority nerede?
-- External state drift nasıl detect/reconcile ediliyor?
-- Provider resource deletion/revocation ile local disconnect nasıl koordine ediliyor?
-- Tenant offboarding provider grants/subscriptions/resources tarafına nasıl yayılıyor?
-- Connection `DEGRADED`, `EXPIRED`, `REVOKED` veya `BROKEN` olduğunda domain feature fail-closed mu?
-- Provider rate limit/quota/backoff state'i connection lifecycle'a bağlı mı?
-- Credential rotation connection'ı kesmeden nasıl uygulanıyor?
-- Health/observability connection ve provider resource seviyesinde yeterli mi?
+- Yeni işletme/tenant hangi canonical command ile yaratılıyor?
+- `esnafId`, business identity ve tenant authority tek aggregate mi?
+- Onboarding yalnız form/progress state mi, yoksa resumable provisioning workflow mu?
+- Tenant ne zaman `ACTIVE` kabul ediliyor?
+- Site, package/entitlement, integration, domain, messaging ve diğer provider resource provisioning hangi orchestrator'a bağlı?
+- Partial onboarding/provisioning failure nasıl resume/rollback ediliyor?
+- Aynı create/provision command retry edilirse duplicate tenant veya resource oluşuyor mu?
+- `ACTIVE`, `SUSPENDED`, `CLOSING`, `DELETING`, `DELETED` gibi tenant state'leri var mı?
+- Suspension public runtime, background jobs, outbound messaging, provider actions ve login üzerinde fail-closed uygulanıyor mu?
+- Billing/package downgrade tenant state'inden mi, entitlement state'inden mi yönetiliyor?
+- Tenant kapanışı önce capability/resource freeze mi yapıyor, sonra SÖKÜM 32 deletion ve SÖKÜM 33 provider revoke akışlarını mı çağırıyor?
+- DomainBinding, media assets, jobs, integrations ve external resources tenant ownership graph'ında explicit mi?
+- Offboarding tamamlandı denebilmesi için hangi reconciliation/proof gerekiyor?
+- Tenant restore/reopen destekleniyorsa silme ve provider revoke state'leriyle nasıl çakışmıyor?
+- Admin/operator tenant lifecycle action'ları audit ve optimistic concurrency altında mı?
 
-SÖKÜM 33'ün hedefi:
+SÖKÜM 34'ün hedefi:
 
 ```text
-Tenant + Provider
-      ↓
-IntegrationConnection
-      ↓
-OAuth Grant / CredentialRef
-      ↓
-Provider Resource Bindings
-      ↓
-Webhook Subscriptions + Sync Cursors
-      ↓
-Inbound / Outbound Sync
-      ↓
-Reconciliation + Health
-      ↓
-Reconnect / Revoke / Disconnect / Offboarding
+CreateBusinessCommand
+        ↓
+Tenant / Business Aggregate
+        ↓
+Onboarding Workflow
+        ↓
+Provisioning Plan
+   ↙      ↓       ↘
+Site   Entitlements  External Resources
+        ↓
+ACTIVE
+  ↓          ↓
+SUSPENDED   CLOSING
+                ↓
+       Freeze New Actions
+                ↓
+   Provider / Resource Offboarding
+                ↓
+       Data Lifecycle / Erasure
+                ↓
+       Reconciliation Proof
+                ↓
+             CLOSED
 ```
 
-> **Credential'dan daha üst seviye bir IntegrationConnection authority kurup provider bağlantısının bütün yaşam döngüsünü observable, reconnectable, revocable ve reconcilable hale getirmek.**
+> **Tenant'ın yalnız bir `esnaflar/{id}` dokümanı değil, yaratılmasından kapanışına kadar bütün capability ve resource lifecycle'ını yöneten canonical aggregate olup olmadığını doğrulamak.**
