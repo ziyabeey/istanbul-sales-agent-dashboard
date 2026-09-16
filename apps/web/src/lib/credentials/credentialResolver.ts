@@ -71,7 +71,7 @@ const ENV_CREDENTIALS: Readonly<Record<string, EnvCredentialDefinition>> = {
     fields: {
       accountSid: 'TWILIO_ACCOUNT_SID',
       authToken: 'TWILIO_AUTH_TOKEN',
-      fromNumber: 'TWILIO_WHATSAPP_NUMARASI',
+      fromNumber: 'TWILIO_WHATSAPP_FROM',
     },
   },
   [PLATFORM_CREDENTIAL_REFS.iyzico.credentialId]: {
