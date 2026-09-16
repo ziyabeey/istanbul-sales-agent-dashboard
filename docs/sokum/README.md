@@ -1,8 +1,8 @@
 # Kepenk Söküm - Canlı İndeks
 
 > **Tarih:** 2026-09-16  
-> **Durum:** **KEŞİF / SÖKÜM FAZI TAMAMLANDI**  
-> **Amaç:** `KEPENK_SOKUM_PLANI.md` korunmuş geniş snapshot olarak kalırken, repo ile doğrulanmış söküm kararlarını ve final mimari baseline'ı burada indekslemek.
+> **Durum:** **SÖKÜM 37 AÇIK - Restaurant Operations vertical doğrulaması**  
+> **Amaç:** `KEPENK_SOKUM_PLANI.md` 01-24 tarihsel snapshot olarak, 25+ repo-doğrulanmış turlar ise `docs/sokum/` altında korunur. Bu dosya yalnız canlı frontier ve kısa handoff taşır.
 
 ## Güncel durum
 
@@ -20,26 +20,25 @@
 | 33 | External Integration Connection Lifecycle | KAPALI | `docs/sokum/33-integration-connection-lifecycle.md` |
 | 34 | Tenant / Business Lifecycle / Onboarding / Provisioning / Offboarding | KAPALI | `docs/sokum/34-tenant-business-lifecycle.md` |
 | 35 | Entitlement / Capability / Module / Feature Flag Runtime Authority | KAPALI | `docs/sokum/35-entitlement-capability-runtime-authority.md` |
-| 36 | Canonical Architecture Synthesis / KEEP-REWRITE-DROP / Migration & Cleanup Sequence | KAPALI | `docs/sokum/36-canonical-architecture-synthesis.md` |
+| 36 | Canonical Architecture Synthesis / Migration & Cleanup Sequence | KAPALI / BASELINE | `docs/sokum/36-canonical-architecture-synthesis.md` |
+| 37 | Restaurant Operations / POS / Masa / Adisyon / KDS / Offline Sync | AÇIK | `docs/sokum/37-restaurant-operations-pos-kds-offline-sync.md` |
 
 ## Kanonik devam kuralı
 
-- `KEPENK_SOKUM_PLANI.md` 01-24 geniş tarihsel snapshot olarak korunur.
-- 25-36 doğrulanmış belgeler `docs/sokum/` altında ayrı tutulur.
-- Yeni çalışma başlamadan önce normalde yalnız bu indeks + `36-canonical-architecture-synthesis.md` okunur; ayrıntı gerektiğinde ilgili eski söküm belgesi açılır.
-- Yeni bir `SÖKÜM 37` otomatik açılmaz. Ancak file-level incelemede mevcut canonical authority haritasına map edilemeyen gerçek ve bağımsız bir domain bulunursa yeni söküm frontier'ı açılabilir.
-- `apps/randevu-server` bu Kepenk söküm/migration çalışmasının kapsamı dışındadır ve değiştirilmez.
+- Yeni turda yalnız bu indeks + en son gerekli söküm belgesi + frontier kodu okunur.
+- `36-canonical-architecture-synthesis.md` ana core baseline'dır; yeni vertical'lar bunu bozmak yerine extension/bounded-context olarak bağlanır.
+- Yeni bir söküm yalnız file-level audit mevcut authority map'e sığmayan gerçek bağımsız ürün/domain bulursa açılır.
+- Vertical/package triage tamamlanmadan hiçbir vertical package archive/delete adayı sayılmaz.
+- `apps/randevu-server` Kepenk söküm/migration kapsamı dışındadır ve değiştirilmez.
 - Production secret/token değerleri dokümana kopyalanmaz.
 
-## Kapanan son karar: SÖKÜM 36
+## SÖKÜM 36 baseline
 
-01-35 arasındaki domain ve cross-cutting kararlar tek uygulanabilir mimari baseline'da birleştirildi.
+Ana invariant:
 
-Ana sonuç:
+> **Bir business gerçeğinin tek write authority'si olacak; diğer gösterimler projection, adapter veya read model olacaktır. Big-bang rewrite yapılmayacaktır.**
 
-> **Bir business gerçeğinin tek write authority'si olacak; diğer bütün gösterimler projection, adapter veya read model olarak kalacak. Big-bang rewrite yapılmayacak.**
-
-Final bounded-context grupları:
+Core map:
 
 ```text
 CONTROL PLANE
@@ -67,38 +66,7 @@ IntegrationConnection
 Provider Adapters
 ```
 
-KEEP yönü:
-
-- `apps/sites` public shell,
-- `apps/web` ürün/dashboard/editor UX,
-- `site-schema`, `renderer`, `publish-engine`, `templates`,
-- Cloudflare/provider adapters,
-- CRM v2 primitive'leri,
-- booking/e-commerce schema ve policy semantics,
-- accounting minor-unit/source-link yönü,
-- agent kernel/config/factory/result-verifier seed'leri,
-- RAG/feedback/collective-learning algoritmik intent'i,
-- Cloud Tasks/retry/DLQ, AES-GCM, Sentry/readiness ve consent UI primitive'leri.
-
-REWRITE/BUILD yönü:
-
-- BusinessTenant lifecycle,
-- User/Membership/Session/RequestContext,
-- Subscription/Entitlement/EffectiveCapabilitySet,
-- Asset Core,
-- immutable PublishedSiteRevision + active pointer,
-- DomainBinding,
-- Public Action Gateway,
-- IntegrationConnection,
-- canonical Durable Job/Outbox/Event Inbox,
-- Payment Core,
-- immutable Finance Ledger,
-- Audit Ledger + TelemetryContext,
-- Consent/Retention/Export/Erasure/Legal Hold lifecycle,
-- single Agent Runtime / Capability Bus / Model Gateway,
-- canonical analytics/revenue/attribution spine.
-
-Migration stratejisi:
+Migration kuralı:
 
 ```text
 canonical authority
@@ -118,14 +86,92 @@ delete
 
 Financial, identity/security, tenant lifecycle, consent/privacy, entitlement, active publish ve provider credential lifecycle alanlarında bidirectional dual-write yasaktır.
 
-## Sıradaki faz
+## Neden SÖKÜM 37 yeniden açıldı?
 
-Keşif/söküm tamamlandı. Bundan sonraki çalışma yeni domain aramak değil:
+SÖKÜM 36 sonrasında yapılan vertical/package audit, `packages/restaurant` klasörünün boyutuna bakmanın Restaurant ürününü temsil etmediğini gösterdi.
 
-1. **exact file-level cleanup manifest**,
-2. **canonical contract/spec dosyaları**,
-3. **migration wave task breakdown**,
-4. **implementation + review sırası**,
-5. ardından kontrollü cleanup ve yeni Kepenk implementasyonu.
+Doğrulanan yüzeyler:
 
-Bu fazda da önce deprecate/observe/adapter/cutover yapılacak; dosya silme en son gelecektir.
+```text
+packages/restaurant
+  offline DB / Dexie contracts
+  sync conflict policy
+  KDS
+  QR + payment/cart
+  KPI
+
+apps/web/src/lib/restoran
+  MasaTypes
+  restaurant domain types
+  B2B types
+  tax/utilities
+
+apps/web/src/app/api/restoran
+  masa/adisyon
+  QR/order
+  split bill
+  Iyzico flow
+  Paraşüt
+  menu/upsell
+
+apps/web/src/app/dashboard/manage/restoran
+  garson
+  mutfak/KDS
+  QR sipariş
+```
+
+Bu, Restaurant'ın yalnız generic Commerce ekranı olmadığını kanıtladı.
+
+### İlk yön
+
+```text
+BusinessTenant
+      ↓
+Restaurant Operations
+  ├── Table / Floor
+  ├── DiningSession
+  ├── Check / Adisyon
+  ├── RestaurantOrder
+  ├── KitchenTicket / KDS
+  ├── WaiterTask
+  └── OfflineReplica / Sync
+          ↓
+Commerce Catalog
+Payment Core
+Finance Ledger
+Public Action Gateway
+IntegrationConnection
+Durable Execution
+```
+
+Restaurant kendi operasyon state'inin authority'si olabilir; Payment, Finance, Identity, Tenant ve Integration truth'larını tekrar kuramaz.
+
+## Koruma altındaki diğer vertical/product paketleri
+
+Dedicated caller/runtime triage tamamlanmadan aşağıdakiler archive/delete edilmeyecektir:
+
+- `packages/marketplace`
+- `packages/supply`
+- `packages/support`
+- `packages/voice`
+- `packages/studio`
+- `packages/blog`
+- `packages/seo`
+- `packages/admin`
+- `packages/influencer`
+
+İlk audit bunların bazılarının gerçek UI/runtime ve business contract taşıdığını gösterdi. Gerekirse Restaurant gibi ayrı teardown açılır; aksi durumda mevcut core bounded context'lere extension olarak bağlanırlar.
+
+## Aktif frontier
+
+### SÖKÜM 37 - Restaurant Operations / POS / Masa / Adisyon / KDS / Offline Sync
+
+Öncelik:
+
+1. paralel restaurant schema/authority'leri eşleştir,
+2. table/dining-session/check/order/KDS ownership'ini ayır,
+3. offline sync/revision/idempotency modelini doğrula,
+4. public QR tenant/table/price trust boundary'sini kapat,
+5. split-bill ve Iyzico akışını Payment Core + Finance Ledger'a bağla,
+6. demo UI state'ini ürün UX'inden ayır,
+7. Restaurant için KEEP / REWRITE / DROP / BUILD verdict'ini kapat.
