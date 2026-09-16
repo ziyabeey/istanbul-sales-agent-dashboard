@@ -16,7 +16,8 @@
     "../src/app/api/auth/cikis/route.ts",
     "../src/app/api/auth/me/route.ts",
     "./unit/canonicalAuthCore.test.ts",
-    "./unit/humanAuthAdapters.test.ts"
+    "./unit/humanAuthAdapters.test.ts",
+    "./unit/jwtHmac.test.ts"
   ],
   "exclude": [
     "../node_modules",
