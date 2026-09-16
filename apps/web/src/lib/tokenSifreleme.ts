@@ -121,8 +121,9 @@ function activeKid(): string {
 }
 
 function activeEncryptionKey(): { kid: string; key: Buffer } {
+    const ring = configuredKeyring()
     const kid = activeKid()
-    const entry = configuredKeyring()[kid]
+    const entry = ring[kid]
     if (!entry) throw new Error(`[TOKEN_SIFRELEME] Aktif credential key bulunamadı: ${kid}`)
     if (entry.status !== 'active') {
         throw new Error(`[TOKEN_SIFRELEME] Yazma key'i active olmalıdır: ${kid}`)
@@ -257,5 +258,3 @@ export function credentialRotationGerekli(ciphertext: string): boolean {
 export function credentialAktifKid(): string {
     return activeKid()
 }
-
-export { ENVELOPE_PREFIX as CREDENTIAL_ENVELOPE_PREFIX }
