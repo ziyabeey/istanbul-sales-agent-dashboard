@@ -10,6 +10,7 @@ import {
     AdminAuditPersistenceError,
     runAuditedAdminMutation,
 } from '@/lib/security/auditLogger'
+import { assertLegacyCommercialWriteAllowed, CoreCanaryWriteBlockedError } from '@/lib/core/canary'
 
 const IZIN_VERILEN_ALANLAR = [
     'durum', 'paket', 'aktifModuller', 'aktifWebModulleri',
@@ -17,6 +18,12 @@ const IZIN_VERILEN_ALANLAR = [
 ]
 
 function mutationError(error: unknown): NextResponse {
+    if (error instanceof CoreCanaryWriteBlockedError) {
+        return NextResponse.json(
+            { error: error.code, fields: error.fields, hint: 'Canary tenant: use /api/admin/core/entitlement or a Core subscription command' },
+            { status: 409 }
+        )
+    }
     if (error instanceof ImpersonationRestrictedActionError) {
         return NextResponse.json({ error: error.message }, { status: 403 })
     }
@@ -43,6 +50,8 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
         if (Object.keys(guncellemeler).length <= 1) {
             return NextResponse.json({ error: 'Güncellenecek alan bulunamadı' }, { status: 400 })
         }
+        // KC-05 canary: paket/durum/aktifModuller are Core-owned; raw patches are refused.
+        assertLegacyCommercialWriteAllowed(id, guncellemeler)
 
         const docRef = adminDb.collection('esnaflar').doc(id)
         const oncekiDoc = await docRef.get()

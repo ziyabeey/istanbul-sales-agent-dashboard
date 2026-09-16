@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server'
 import { adminDb, Timestamp } from '@/lib/firebaseAdmin'
 import { buildLocalPreviewPath, buildLocalSiteDataFromEsnaf } from '@/lib/site/localSiteData'
 import { oturumOlustur } from '@/lib/sessionManager'
+import { getCoreRuntime } from '@/lib/core/deps'
+import { provisionCoreForNewTenant, type OnboardingCoreOutcome } from '@/lib/core/onboardingCore'
 
 export async function POST(request: Request) {
     try {
@@ -96,7 +98,26 @@ export async function POST(request: Request) {
             siteDurumu: 'local-preview-ready',
         })
 
-        const response = NextResponse.json({ esnafId, localPreviewUrl })
+        // KC-05: onboarding writes the canonical Core when the request carries a
+        // Core BFF session (ProvisionBusiness + tester trial, idempotent per esnafId).
+        // Without a Core session the legacy path continues and KC-03 backfill
+        // links the tenant later. A Core failure is recorded, never hidden.
+        let core: OnboardingCoreOutcome = { status: 'disabled' }
+        const runtime = getCoreRuntime()
+        if (runtime) {
+            core = await provisionCoreForNewTenant({
+                request,
+                deps: runtime,
+                db: adminDb,
+                esnafId,
+                name: adim1.isletmeAdi,
+            }).catch((): OnboardingCoreOutcome => ({ status: 'failed', step: 'provision', code: 'UNEXPECTED' }))
+            if (core.status === 'failed') {
+                await esnafRef.update({ coreOnboarding: { status: 'deferred', step: core.step, error: core.code } }).catch(() => {})
+            }
+        }
+
+        const response = NextResponse.json({ esnafId, localPreviewUrl, core: core.status, ...(core.status === 'provisioned' ? { businessId: core.businessId } : {}) })
         return oturumOlustur(esnafId, response)
     } catch {
         // console.error('[ONBOARDING COMPLETE]', error)

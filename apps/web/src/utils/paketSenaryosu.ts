@@ -6,6 +6,7 @@ import { createHttpTask } from '@/lib/cloudTasksClient'
 import { haftaIcerikUret } from './icerikUreticisi'
 import { esnafModulleri } from '@/data/moduller'
 import { PAKET_FIYATLARI_AYLIK } from '@/data/paketler'
+import { stripLegacyCommercialFields } from '@/lib/core/canary'
 
 export async function paketSenaryosuCalistir(
   esnafId: string,
@@ -18,7 +19,10 @@ export async function paketSenaryosuCalistir(
   const esnaf = doc.data()!
 
   // ── 1. HERKESE ORTAK: Firestore güncelle ──────────────────────────────────
-  await docRef.update({
+  // KC-05 canary: `durum` / `paket` / `aktifModuller` are Core-owned for canary
+  // tenants and only arrive through the projection; the legacy root write is
+  // reduced to the non-commercial fields.
+  const ortakGuncelleme = stripLegacyCommercialFields(esnafId, {
     durum:   'aktif',
     paket,
     odemeId,
@@ -26,12 +30,16 @@ export async function paketSenaryosuCalistir(
       new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)
     ),
   })
+  await docRef.update(ortakGuncelleme.patch)
 
   // ── 2. PAKET BAZLI MODÜLLER ────────────────────────────────────────────────
   const aktifModuller = esnafModulleri(esnaf.sektor, paket)
-  await docRef.update({
+  const modulGuncelleme = stripLegacyCommercialFields(esnafId, {
     aktifModuller: aktifModuller.map(m => m.id),
   })
+  if (Object.keys(modulGuncelleme.patch).length > 0) {
+    await docRef.update(modulGuncelleme.patch)
+  }
 
   // ── 2.5. VAPI SESLI ASISTAN (BUYUME+) ────────────────────────────────────
   if (['BUYUME', 'PREMIUM', 'PREMIUMPLUS'].includes(paket)) {
