@@ -1,7 +1,7 @@
 # Kepenk v2 — Exact Execution Manifest
 
 > **Tarih:** 2026-09-16  
-> **Durum:** PLANLAMA AKTİF — implementation başlamadı  
+> **Durum:** **PLANLAMA KAPALI — W0–W10 tamam, implementation başlamadı**  
 > **Kaynak:** SÖKÜM 01–41 + SENTEZ 01–05  
 > **Amaç:** Canonical mimariyi exact file/route/package task'larına dönüştürmek.  
 > **Kural:** Bu klasör kod implementasyonu yapmaz; hangi dosyanın hangi wave'de ne olacağını ve hangi acceptance gate ile kapanacağını sabitler.
@@ -19,8 +19,8 @@
 | W6 | Booking + Payment + Finance | KAPALI / planlandı | `docs/execution/w06-booking-payment-finance.md` |
 | W7 | Commerce + Inventory + Analytics + Marketing | KAPALI / planlandı | `docs/execution/w07-commerce-inventory-analytics-marketing.md` |
 | W8 | Agent Runtime + Knowledge | KAPALI / planlandı | `docs/execution/w08-agent-runtime-knowledge.md` |
-| W9 | Vertical Activation | AÇIK | — |
-| W10 | Admin / Privacy / Offboarding convergence + final cleanup | BEKLİYOR | — |
+| W9 | Vertical Activation | KAPALI / planlandı | `docs/execution/w09-vertical-activation.md` |
+| W10 | Admin / Privacy / Offboarding convergence + final cleanup | KAPALI / planlandı | `docs/execution/w10-admin-privacy-offboarding-final-cleanup.md` |
 
 ## Disposition etiketleri
 
@@ -134,16 +134,47 @@
 - `platform_insights` derived projection olarak sınıflandı,
 - `RetrievalEvidence`, `OutcomeVerification`, `FeedbackEvent` ve `EvaluationResult` canonical build requirement oldu.
 
-## Aktif frontier
+## W9 kapanış
 
-**W9 — Vertical Activation exact manifest.**
+- Restaurant gerçek runtime/UX nedeniyle `MIGRATE + ACTIVATE`; masa/session/check, KDS, waiter task, offline replication, payment timing ve branch KPI akışları W1–W8 core'lara bağlandı,
+- Support W5 foundation üstünde state machine, durable SLA, assignment/escalation, Messaging bridge, W8 Knowledge ve risk-tiered AI policy ile tamamlandı,
+- Marketplace current contract/demo seed'lerinden Job/Bid/Award/Work, credit ledger ve W6 escrow/payment bridge ile gerçek runtime'a planlandı,
+- Procurement current contract/demo seed'lerinden Vendor/SupplierRelationship, Requisition/PO, GoodsReceipt, Inventory movement ve AP bridge ile gerçek runtime'a planlandı,
+- private procurement ile platform B2B supplier marketplace ayrı ürün/authority olarak tutuldu,
+- Voice/Studio/Blog/SEO/Influencer yeni bounded context yapılmadı; mevcut core'lara adapter/extension/future vertical seed olarak sınıflandı.
 
-W9 target:
+## W10 kapanış
+
+- Admin shared-secret/process-local session modeli canonical AdminPrincipal/AdminSession/Capability policy'ye `REWRITE`,
+- Admin generic Firestore PATCH/DELETE yerine cross-domain `AdminCommand Gateway` kullanan control plane olarak sabitlendi,
+- append-only `AdminActionEvent`, reason/case, step-up/approval, break-glass ve <=1h dual-identity impersonation planlandı,
+- FeatureFlag, Entitlement ve OperationalPolicy/KillSwitch authority'leri kesin ayrıldı,
+- DataClassPolicy registry ile W1–W9 tüm data sınıfları, derived data ve external sink'ler lifecycle inventory'ye bağlandı,
+- versioned Consent, Retention, LegalHold, ExportRequest, ErasureRequest, LifecycleTask ve PurgeProof authority'leri planlandı,
+- iki fake privacy cron production success yolu `HARD-CUT`; gerçek `kvkk-purge` lifecycle seed'i Data Inventory driven orchestrator'a `REWIRE`,
+- root tenant DELETE `HARD-CUT`; canonical OffboardingRun access revoke → retention → purge plan → verified purge → tombstone akışına bağlandı,
+- final P0/P1/P2 legacy retirement matrix ve universal deletion gates sabitlendi,
+- protected frontend/core/extension deny-list final cleanup'a taşındı.
+
+## Execution planning kapanış kararı
+
+`W0 → W10` planlama zinciri tamamlandı. **W11 açılmaz.** Bu klasör artık implementation sırasında değişikliklerin hangi authority'ye, hangi acceptance gate'e ve hangi retirement şartına göre yapılacağını belirleyen execution baseline'dır.
+
+### Sonraki frontier
+
+**Implementation Readiness / Pilot Cutover Packaging**
+
+Bu faz da production kodu yazmadan önce yalnız şunları çıkarır:
 
 ```text
-Restaurant Operations / POS / KDS / offline-safe operations
-Marketplace / Job / Bid / Agreement / Escrow / Credit
-Procurement / Supplier / PO / Reorder
-Support full SLA / escalation / knowledge activation
-Future vertical seeds: Studio / Blog / SEO / Influencer
+Pilot-0 / Trust bootstrap
+Pilot-1 / first canonical tenant
+Pilot-2 / first customer + booking + payment flow
+Pilot-3 / public site + messaging flow
+Pilot-4 / commerce/analytics/agent flow
+Legacy hard-cut checkpoints
+Rollback / recovery checkpoints
+Acceptance evidence pack
 ```
+
+Amaç yeni mimari tasarlamak değil, mevcut W1–W10 task'larını küçük ve geri alınabilir uygulama paketlerine bölmektir.
