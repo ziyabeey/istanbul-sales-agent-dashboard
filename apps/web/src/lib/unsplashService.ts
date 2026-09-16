@@ -434,7 +434,7 @@ let _instance: UnsplashService | null = null
 
 export function getUnsplashService(): UnsplashService {
     if (!_instance) {
-        const accessKey = process.env.UNSPLASH_ACCESS_KEY || process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY || ''
+        const accessKey = process.env.UNSPLASH_ACCESS_KEY || ''
         if (!accessKey) {
             console.warn('[Unsplash] No UNSPLASH_ACCESS_KEY found — using fallback mode')
         }
