@@ -17,8 +17,8 @@
 | W4 | Site / Asset / Publish / Public Experience | KAPALI / planlandı | `docs/execution/w04-site-asset-publish-public-experience.md` |
 | W5 | Customer + Messaging + Support Foundation | KAPALI / planlandı | `docs/execution/w05-customer-messaging-support-foundation.md` |
 | W6 | Booking + Payment + Finance | KAPALI / planlandı | `docs/execution/w06-booking-payment-finance.md` |
-| W7 | Commerce + Inventory + Analytics + Marketing | AÇIK | — |
-| W8 | Agent Runtime + Knowledge | BEKLİYOR | — |
+| W7 | Commerce + Inventory + Analytics + Marketing | KAPALI / planlandı | `docs/execution/w07-commerce-inventory-analytics-marketing.md` |
+| W8 | Agent Runtime + Knowledge | AÇIK | — |
 | W9 | Vertical Activation | BEKLİYOR | — |
 | W10 | Admin / Privacy / Offboarding convergence + final cleanup | BEKLİYOR | — |
 
@@ -107,18 +107,32 @@
 - finance `bilanco` booked appointment price yerine canonical financial projections'a `REWIRE`,
 - subscription cancellation Payment'tan W2 commercial command'a ayrıldı.
 
+## W7 kapanış
+
+- `ecom-schema` Product/Variant/Cart/Order semantics `PRESERVE`; money minor-unit ve payment projection sınırı normalize edildi,
+- `magazaDB.ts` transactional know-how `PRESERVE`, caller-price ve generic writer authority canonical Commerce commands'a `REWRITE`,
+- InventoryItem/Reservation/Adjustment authority `BUILD`; immediate stock decrement reserve/commit/release lifecycle'a taşındı,
+- bulk inventory UX `PRESERVE`, direct quantity mutation reason/idempotency/audit taşıyan adjustment command'a `REWIRE`,
+- storefront/public catalog current UX korunup W4 public binding/projection'a bağlandı,
+- AnalyticsEvent/ConversionEvent spine `BUILD`; revenue/ROAS yalnız W6 financial truth'tan türetilir,
+- simulated funnel/churn/self-reported ciro financial truth olmaktan çıkarıldı,
+- `packages/marketing` CAPI/audience/budget contracts ve CMO hard-budget guard `PRESERVE/PROMOTE`,
+- Meta provider adapter `PRESERVE/HARDEN`, Google mock-active/fake provider ID yolları `HARD-CUT`,
+- `/api/ads` gerçek dispatch olmadan success döndüren fake CAPI yolu `HARD-CUT`,
+- Campaign/Audience/Budget/Approval lifecycle provider activation/reconciliation ile ayrıştırıldı.
+
 ## Aktif frontier
 
-**W7 — Commerce + Inventory + Analytics + Marketing exact manifest.**
+**W8 — Agent Runtime + Knowledge exact manifest.**
 
-W7 target:
+W8 target:
 
 ```text
-Product / Variant / InventoryItem
-Order lifecycle + immutable price/promotion/shipping snapshots
-Stock reservation/commit/release
-Canonical analytics/conversion event spine
-Revenue attribution from W6 financial truth
-Campaign/Journey + budget/approval policy
-Meta/Google provider activation through W3
+AgentDefinition / Capability Registry
+AgentRun / RunStep / ToolCall / Outcome Verification
+Policy + permission constrained command bus
+Model/provider gateway
+KnowledgeSource / Chunk / Embedding / Retrieval provenance
+Tenant-safe memory + RAG
+Feedback/evaluation loop
 ```
