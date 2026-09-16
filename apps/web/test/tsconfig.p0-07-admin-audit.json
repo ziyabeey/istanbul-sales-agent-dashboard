@@ -3,6 +3,11 @@
   "compilerOptions": {
     "noEmit": true,
     "incremental": false,
+    "baseUrl": "..",
+    "paths": {
+      "@/*": ["src/*"],
+      "zod": ["../../packages/admin/node_modules/zod"]
+    },
     "types": ["node", "vitest/globals", "next/types/global"]
   },
   "include": [
