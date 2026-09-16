@@ -4,7 +4,7 @@ import { CORE_BFF_CSRF_COOKIE, CORE_BFF_CSRF_HEADER, CORE_BFF_SESSION_COOKIE } f
 import type { CoreMembership, CorePlatformClient } from '@/lib/core/coreClient'
 import { CoreAuthError, CorePlatformError } from '@/lib/core/errors'
 import type { SupabaseClaims, SupabaseJwtVerifier } from '@/lib/core/jwtVerifier'
-import { requireCoreContext, resolveCoreRequestContext, type CoreContextDeps } from '@/lib/core/requestContext'
+import { hasContextEntitlement, requireCoreContext, resolveCoreRequestContext, type CoreContextDeps } from '@/lib/core/requestContext'
 import type { SupabaseAuthClient, SupabaseSession } from '@/lib/core/supabaseAuth'
 
 const USER = '11000000-0000-4000-8000-000000000001'
@@ -32,8 +32,21 @@ function membership(businessId: string, role: CoreMembership['role'] = 'owner'):
   return { id: `6b000000-0000-4000-8000-00000000000${businessId.slice(-1)}`, business_id: businessId, role, active: true }
 }
 
+function snapshotFor(businessId: string) {
+  return {
+    business_id: businessId,
+    subscription: { plan_key: 'kepenk_standard', status: 'active' as const, current_period_start: null, current_period_end: null, version: 1 },
+    entitlements: [
+      { entitlement_key: 'booking', granted: true, limit_value: null, valid_until: null },
+      { entitlement_key: 'ai_booking_assistant', granted: true, limit_value: null, valid_until: '2026-09-16T11:00:00Z' },
+      { entitlement_key: 'custom_domain', granted: false, limit_value: null, valid_until: null },
+    ],
+  }
+}
+
 function makeDeps(overrides: {
   memberships?: CoreMembership[] | Error
+  snapshot?: Error
   verify?: (token: string) => Promise<SupabaseClaims>
   refresh?: (refreshToken: string) => Promise<SupabaseSession>
 } = {}) {
@@ -44,14 +57,18 @@ function makeDeps(overrides: {
     if (overrides.memberships instanceof Error) throw overrides.memberships
     return overrides.memberships ?? [membership(BIZ_A)]
   })
+  const getBusinessPlatformSnapshot = vi.fn(async (_token: string, businessId: string) => {
+    if (overrides.snapshot) throw overrides.snapshot
+    return snapshotFor(businessId)
+  })
   const deps: CoreContextDeps = {
     sessions,
     auth: { refreshSession } as unknown as SupabaseAuthClient,
     verifier: { verify } as unknown as SupabaseJwtVerifier,
-    client: { listMemberships } as unknown as CorePlatformClient,
+    client: { listMemberships, getBusinessPlatformSnapshot } as unknown as CorePlatformClient,
     now: () => NOW,
   }
-  return { deps, sessions, verify, refreshSession, listMemberships }
+  return { deps, sessions, verify, refreshSession, listMemberships, getBusinessPlatformSnapshot }
 }
 
 async function requestWithSession(sessions: InMemoryCoreBffSessionRepository, accessToken = 'access-token-1', options: { expiresIn?: number; method?: string; csrf?: boolean; selected?: string } = {}) {
@@ -94,8 +111,30 @@ describe('resolveCoreRequestContext', () => {
     expect(result.context.businessId).toBe(BIZ_A)
     expect(result.context.role).toBe('owner')
     expect(result.context.recovery).toBe(false)
+    // Entitlements: granted and unexpired only, from the KC-01 snapshot with the user's JWT.
+    expect(result.context.entitlements).toEqual(['booking'])
+    expect(result.context.subscription?.plan_key).toBe('kepenk_standard')
+    expect(hasContextEntitlement(result.context, 'booking')).toBe(true)
+    expect(hasContextEntitlement(result.context, 'custom_domain')).toBe(false)
+    expect(hasContextEntitlement(result.context, 'ai_booking_assistant')).toBe(false)
     expect(verify).toHaveBeenCalledWith('access-token-1')
     expect(refreshSession).not.toHaveBeenCalled()
+  })
+
+  it('fails closed when the entitlement snapshot cannot be read', async () => {
+    const down = makeDeps({ snapshot: new CorePlatformError('CORE_UNAVAILABLE') })
+    const request = await requestWithSession(down.sessions)
+    expect(await resolveCoreRequestContext(request.request, down.deps)).toEqual({ ok: false, reason: 'CORE_UNAVAILABLE' })
+
+    const denied = makeDeps({ snapshot: new CorePlatformError('BUSINESS_ACCESS_DENIED') })
+    const deniedRequest = await requestWithSession(denied.sessions)
+    expect(await resolveCoreRequestContext(deniedRequest.request, denied.deps)).toEqual({ ok: false, reason: 'SESSION_EXPIRED' })
+
+    const none = makeDeps({ memberships: [] })
+    const noneRequest = await requestWithSession(none.sessions)
+    const result = await resolveCoreRequestContext(noneRequest.request, none.deps)
+    expect(result.ok && result.context.entitlements).toEqual([])
+    expect(none.getBusinessPlatformSnapshot).not.toHaveBeenCalled()
   })
 
   it('only honours a stored business selection that is still an active membership', async () => {
@@ -194,6 +233,14 @@ describe('requireCoreContext', () => {
     const needsBusiness = await requestWithSession(sessions, 'access-token-c', { method: 'POST' })
     const missingBusiness = await requireCoreContext(needsBusiness.request, deps, { requireBusiness: true })
     expect(!missingBusiness.ok && missingBusiness.response.status).toBe(403)
+
+    const entitled = makeDeps()
+    const granted = await requestWithSession(entitled.sessions, 'access-token-e', { method: 'POST' })
+    expect((await requireCoreContext(granted.request, entitled.deps, { requireEntitlement: 'booking' })).ok).toBe(true)
+    const revoked = await requestWithSession(entitled.sessions, 'access-token-f', { method: 'POST' })
+    const denied = await requireCoreContext(revoked.request, entitled.deps, { requireEntitlement: 'custom_domain' })
+    expect(!denied.ok && denied.response.status).toBe(403)
+    expect(!denied.ok && (await denied.response.json())).toMatchObject({ error: 'ENTITLEMENT_REQUIRED' })
 
     const recoveryDeps = makeDeps({ verify: async (token) => claimsFor(token, { amr: [{ method: 'recovery' }] }) })
     const recovery = await requestWithSession(recoveryDeps.sessions, 'access-token-r')
