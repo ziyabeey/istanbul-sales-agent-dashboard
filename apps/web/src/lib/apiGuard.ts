@@ -1,21 +1,37 @@
 import { NextResponse } from 'next/server'
+import type { RequestContext } from '../../../../packages/auth/src/types/canonical'
+import { resolveCanonicalBusinessContextFromRequest } from './auth/businessSession'
 
 type GuardOptions = {
+    requireUserSession?: boolean
     requireCronSecret?: boolean
     requireAdminToken?: boolean
     requireADKBearer?: boolean
 }
 
 type GuardResult =
-    | { ok: true }
+    | { ok: true; context?: RequestContext }
     | { ok: false; response: NextResponse }
 
 export async function apiGuard(
     request: Request,
     options: GuardOptions = {}
 ): Promise<GuardResult> {
+    let context: RequestContext | undefined
+
+    if (options.requireUserSession) {
+        const resolved = await resolveCanonicalBusinessContextFromRequest(request)
+        if (!resolved) {
+            return {
+                ok: false,
+                response: NextResponse.json({ error: 'Unauthorized' }, { status: 401 }),
+            }
+        }
+        context = resolved
+    }
+
     if (options.requireCronSecret) {
-        // Cloud Scheduler header
+        // Cloud Scheduler header. ServicePrincipal cutover belongs to P0-04.
         const secret =
             request.headers.get('x-cron-secret') ||
             request.headers.get('authorization')?.replace('Bearer ', '')
@@ -30,6 +46,7 @@ export async function apiGuard(
     }
 
     if (options.requireAdminToken) {
+        // AdminPrincipal/AdminSession convergence belongs to P0-06.
         const token = request.headers.get('x-admin-token')
         if (token !== process.env.ADMIN_SECRET_TOKEN) {
             return {
@@ -49,5 +66,5 @@ export async function apiGuard(
         }
     }
 
-    return { ok: true }
+    return context ? { ok: true, context } : { ok: true }
 }

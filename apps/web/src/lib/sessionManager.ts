@@ -3,7 +3,8 @@
  *
  * New human logins use a canonical signed session locator whose authority is
  * resolved from durable Session -> User -> Membership state. Legacy esnafId
- * JWTs remain cryptographically readable only until P0-03 request-gate cutover.
+ * JWTs remain cryptographically readable only for explicitly unmigrated API
+ * callers until their final hard-cut; dashboard routing no longer accepts them.
  *
  * OTP storage remains here temporarily and is independent from Session truth.
  */
@@ -13,22 +14,17 @@ import { NextRequest, NextResponse } from 'next/server'
 import type { RequestContext, Session } from '../../../../packages/auth/src/types/canonical'
 import { adminDb } from './firebaseAdmin'
 import {
-    FirestoreMembershipRepository,
-    FirestoreSessionRepository,
-    FirestoreUserRepository,
-    MembershipResolver,
-    RequestContextBuilder,
-    SessionVerifier,
-} from './auth'
+    BUSINESS_SESSION_COOKIE,
+    resolveCanonicalBusinessContext,
+} from './auth/businessSession'
 import { signHs256Jwt, verifyHs256Jwt } from './auth/jwtHmac'
 import {
     isCanonicalSessionTokenCandidate,
     issueCanonicalSessionToken,
-    verifyCanonicalSessionToken,
 } from './auth/sessionToken'
 import { getSessionSecret } from './auth/sessionSecret'
 
-const COOKIE_ADI = 'kepenk_session'
+const COOKIE_ADI = BUSINESS_SESSION_COOKIE
 const COOKIE_MAX_AGE = 7 * 24 * 60 * 60 // 7 gün (saniye)
 const SESSION_ISSUER = 'kepenk.ai'
 
@@ -44,39 +40,19 @@ function setSessionCookie(response: NextResponse, token: string): NextResponse {
     return response
 }
 
-function canonicalContextBuilder(): RequestContextBuilder {
-    const sessions = new FirestoreSessionRepository()
-    const users = new FirestoreUserRepository()
-    const memberships = new FirestoreMembershipRepository()
-
-    return new RequestContextBuilder(
-        new SessionVerifier(sessions, users),
-        new MembershipResolver(memberships)
-    )
-}
-
 /**
- * Canonical token resolution is fail-closed. A token marked canonical never
- * falls back to the legacy esnafId JWT parser if durable authority rejects it.
+ * Compatibility export for P0-02 callers. The canonical implementation lives
+ * under lib/auth so proxy and API guards share exactly the same authority.
  */
 export async function canonicalRequestContextDogrula(
     token: string
 ): Promise<RequestContext | null> {
-    if (!isCanonicalSessionTokenCandidate(token)) return null
-
-    const claims = await verifyCanonicalSessionToken(token)
-    if (!claims) return null
-
-    const result = await canonicalContextBuilder().build(claims.sessionId)
-    if (!result.ok) return null
-    if (result.context.userId !== claims.userId) return null
-
-    return result.context
+    return resolveCanonicalBusinessContext(token)
 }
 
 // ── Legacy JWT Oluştur ───────────────────────────────────────────────────────
-// P0-02 new human logins must not use this. Demo/dev/onboarding compatibility
-// callers remain until their owning Pilot-0 hard-cut.
+// New human logins must not use this. Demo/dev/onboarding compatibility callers
+// remain only until their owning Pilot-0 hard-cut.
 export async function jwtOlustur(esnafId: string): Promise<string> {
     const now = Math.floor(Date.now() / 1000)
     return signHs256Jwt({
@@ -114,7 +90,7 @@ export async function canonicalOturumOlustur(
 
 async function tenantIdFromSessionToken(token: string): Promise<string | null> {
     if (isCanonicalSessionTokenCandidate(token)) {
-        const context = await canonicalRequestContextDogrula(token)
+        const context = await resolveCanonicalBusinessContext(token)
         return context?.tenantId ?? null
     }
 

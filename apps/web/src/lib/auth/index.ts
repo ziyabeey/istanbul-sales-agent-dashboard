@@ -52,3 +52,10 @@ export {
   verifyCanonicalSessionToken,
   type CanonicalSessionTokenClaims,
 } from './sessionToken'
+
+export {
+  BUSINESS_SESSION_COOKIE,
+  readBusinessSessionToken,
+  resolveCanonicalBusinessContext,
+  resolveCanonicalBusinessContextFromRequest,
+} from './businessSession'

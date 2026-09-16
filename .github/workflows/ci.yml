@@ -46,6 +46,13 @@ jobs:
           src/app/api/auth/me/route.ts
           test/unit/humanAuthAdapters.test.ts
           test/unit/jwtHmac.test.ts
+      - name: Lint P0-03 request gates
+        run: >-
+          pnpm --filter @kepenk/web exec eslint
+          src/proxy.ts
+          src/lib/apiGuard.ts
+          src/lib/auth/businessSession.ts
+          test/unit/requestGateConvergence.test.ts
       - name: Validate trust browser smoke script
         run: bash -n apps/web/test/e2e/trust-browser-smoke.sh
       - name: Typecheck P0 trust baseline artifacts
@@ -54,6 +61,8 @@ jobs:
         run: pnpm --filter @kepenk/web exec tsc -p test/tsconfig.p0-01-auth-core.json --noEmit
       - name: Typecheck P0-02 human auth adapters
         run: pnpm --filter @kepenk/web exec tsc -p test/tsconfig.p0-02-human-auth.json --noEmit
+      - name: Typecheck P0-03 request gates
+        run: pnpm --filter @kepenk/web exec tsc -p test/tsconfig.p0-03-request-gates.json --noEmit
       - name: Legacy full web typecheck baseline
         id: legacy-web-typecheck
         continue-on-error: true

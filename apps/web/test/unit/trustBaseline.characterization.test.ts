@@ -20,36 +20,82 @@ function readSource(relativePath: string): string {
 }
 
 describe('Pilot-0 trust baseline characterization', () => {
-  it('pins the current principal/cookie vocabulary after P0-02', () => {
-    expect(TRUST_BASELINE_VERSION).toBe('p0-02@2026-09-16')
+  it('pins the current principal/cookie vocabulary after P0-03', () => {
+    expect(TRUST_BASELINE_VERSION).toBe('p0-03@2026-09-16')
     expect(CURRENT_TRUST_COOKIES).toEqual({
       businessSession: 'kepenk_session',
       adminSession: 'admin_token',
       impersonation: 'kepenk_impersonate',
     })
-    expect(CURRENT_PRINCIPAL_SOURCES.dashboard).toContain('kepenk_session cookie presence')
-    expect(CURRENT_PRINCIPAL_SOURCES.businessApi[0]).toContain('durable Session -> Membership')
+    expect(CURRENT_PRINCIPAL_SOURCES.dashboard[0]).toContain('durable Session -> User -> Membership')
+    expect(CURRENT_PRINCIPAL_SOURCES.businessApi[0]).toContain('apiGuard requireUserSession')
     expect(CURRENT_SHARED_SECRET_SURFACES.length).toBeGreaterThanOrEqual(6)
   })
 
-  it('P0-02: canonical human session authority resolves through durable Membership', () => {
+  it('P0-03: one canonical business-session resolver owns dashboard and API identity', () => {
+    const authority = readSource('src/lib/auth/businessSession.ts')
+    const proxy = readSource('src/proxy.ts')
+    const guard = readSource('src/lib/apiGuard.ts')
+    const session = readSource('src/lib/sessionManager.ts')
+
+    expect(authority).toContain('new SessionVerifier(sessions, users)')
+    expect(authority).toContain('new MembershipResolver(memberships)')
+    expect(authority).toContain('resolveCanonicalBusinessContext')
+    expect(proxy).toContain('resolveCanonicalBusinessContext')
+    expect(guard).toContain('resolveCanonicalBusinessContextFromRequest')
+    expect(session).toContain('resolveCanonicalBusinessContext')
+  })
+
+  it('P0-03: dashboard never treats cookie presence or NextAuth admin session as business login', () => {
+    const source = readSource('src/proxy.ts')
+
+    expect(source).not.toContain("!!req.cookies.get('kepenk_session')?.value")
+    expect(source).not.toContain('!!req.auth')
+    expect(source).not.toContain('import { auth } from')
+    expect(source).toContain('if (dashboardTarget && !businessContext)')
+    expect(KNOWN_TRUST_RISKS).not.toContain('dashboard_proxy_accepts_business_cookie_by_presence')
+  })
+
+  it('P0-03: business subdomain target is authorized before rewrite', () => {
+    const source = readSource('src/proxy.ts')
+    const guardIndex = source.indexOf('if (dashboardTarget && !businessContext)')
+    const rewriteIndex = source.indexOf('return NextResponse.rewrite(url)')
+
+    expect(guardIndex).toBeGreaterThan(-1)
+    expect(rewriteIndex).toBeGreaterThan(-1)
+    expect(guardIndex).toBeLessThan(rewriteIndex)
+    expect(source).toContain("subdomain === 'edit'")
+    expect(source).toContain("subdomain === 'app'")
+    expect(source).toContain("subdomain === 'manage'")
+    expect(source).toContain("subdomain === 'destek'")
+  })
+
+  it('P0-03: canonical API guard exposes RequestContext and has no legacy OR fallback', () => {
+    const source = readSource('src/lib/apiGuard.ts')
+
+    expect(source).toContain('requireUserSession?: boolean')
+    expect(source).toContain('resolveCanonicalBusinessContextFromRequest(request)')
+    expect(source).toContain('return context ? { ok: true, context } : { ok: true }')
+    expect(source).not.toContain('jwtDogrula')
+    expect(source).not.toContain('oturumDogrula')
+  })
+
+  it('P0-02 compatibility: canonical human session authority still resolves through durable Membership', () => {
     const source = readSource('src/lib/sessionManager.ts')
-    expect(source).toContain("const COOKIE_ADI = 'kepenk_session'")
+    expect(source).toContain('const COOKIE_ADI = BUSINESS_SESSION_COOKIE')
     expect(source).toContain('canonicalRequestContextDogrula')
-    expect(source).toContain('new SessionVerifier(sessions, users)')
-    expect(source).toContain('new MembershipResolver(memberships)')
+    expect(source).toContain('resolveCanonicalBusinessContext(token)')
     expect(source).toContain('return context?.tenantId ?? null')
     expect(source).toContain('canonicalOturumOlustur')
   })
 
-  it('KNOWN-RISK: cryptographically verified legacy esnafId JWT compatibility remains temporary', () => {
+  it('KNOWN-RISK: unmigrated API callers may still use verified legacy esnafId JWT compatibility', () => {
     const source = readSource('src/lib/sessionManager.ts')
     expect(source).toContain('return signHs256Jwt({')
     expect(source).toContain('verifyHs256Jwt(token, getSessionSecret()')
     expect(source).toContain('return { esnafId: payload.esnafId }')
-    expect(source).not.toContain("from 'jose'")
     expect(KNOWN_TRUST_RISKS).toContain(
-      'legacy_human_jwt_has_no_durable_revocation_until_request_gate_retirement'
+      'unmigrated_business_api_callers_can_still_use_legacy_esnafId_jwt_compatibility'
     )
   })
 
@@ -85,20 +131,6 @@ describe('Pilot-0 trust baseline characterization', () => {
     expect(logout).toContain('await oturumSil(response)')
     expect(session).toContain("response.cookies.set(COOKIE_ADI, '',")
     expect(KNOWN_TRUST_RISKS).not.toContain('logout_clears_cookie_without_server_session_revocation')
-  })
-
-  it('KNOWN-RISK: dashboard proxy still treats kepenk_session cookie presence as logged in', () => {
-    const source = readSource('src/proxy.ts')
-    expect(source).toContain("!!req.cookies.get('kepenk_session')?.value")
-    expect(source).toContain('if (pathname.startsWith("/dashboard"))')
-  })
-
-  it('records edit/app/manage/destek subdomain routing as a protected baseline', () => {
-    const source = readSource('src/proxy.ts')
-    expect(source).toContain("subdomain === 'edit'")
-    expect(source).toContain("subdomain === 'app'")
-    expect(source).toContain("subdomain === 'manage'")
-    expect(source).toContain("subdomain === 'destek'")
   })
 
   it('KNOWN-RISK: admin login, proxy and API still use incompatible trust authorities', () => {
@@ -170,10 +202,12 @@ describe('Pilot-0 trust baseline characterization', () => {
   })
 
   it('keeps only unresolved trust risks in the register', () => {
-    expect(KNOWN_TRUST_RISKS).toContain('dashboard_proxy_accepts_business_cookie_by_presence')
+    expect(KNOWN_TRUST_RISKS).toContain(
+      'unmigrated_business_api_callers_can_still_use_legacy_esnafId_jwt_compatibility'
+    )
     expect(KNOWN_TRUST_RISKS).toContain('admin_login_proxy_api_use_incompatible_authorities')
     expect(KNOWN_TRUST_RISKS).toContain('admin_proxy_fails_open_when_secret_and_cookie_are_both_absent')
     expect(KNOWN_TRUST_RISKS).toContain('privacy_crons_can_report_simulated_success')
-    expect(KNOWN_TRUST_RISKS).not.toContain('logout_clears_cookie_without_server_session_revocation')
+    expect(KNOWN_TRUST_RISKS).not.toContain('dashboard_proxy_accepts_business_cookie_by_presence')
   })
 })
