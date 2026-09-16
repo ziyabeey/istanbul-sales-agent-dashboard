@@ -1,9 +1,9 @@
 # Kepenk Söküm - Canlı İndeks
 
 > **Tarih:** 2026-09-16  
-> **Durum:** **SÖKÜM 41 KAPALI - Admin / Super Admin / Platform Control Plane**  
-> **Aktif frontier:** Yeni domain açılmadı. Önce final inventory sweep / kapsam bütünlüğü kontrolü yapılacak.  
-> **Amaç:** `KEPENK_SOKUM_PLANI.md` 01-24 tarihsel snapshot olarak, 25+ repo-doğrulanmış turlar ise `docs/sokum/` altında korunur. Bu dosya yalnız canlı frontier ve kısa handoff taşır.
+> **Durum:** **DOMAIN SÖKÜMÜ KAPALI - son numaralı tur SÖKÜM 41**  
+> **Aktif frontier:** Söküm Sonrası Mimari Sentez / Kurtarma Planı. Yeni domain avı yok.  
+> **Final sweep:** `docs/sokum/final-inventory-sweep.md`
 
 ## Güncel durum
 
@@ -27,31 +27,25 @@
 | 39 | Supply / Procurement / Supplier / PO / Reorder / B2B Marketplace | KAPALI | `docs/sokum/39-supply-procurement-supplier-marketplace.md` |
 | 40 | Support OS / Ticket / SLA / Knowledge Base / AI Assistance | KAPALI | `docs/sokum/40-support-ticket-sla-knowledge-ai.md` |
 | 41 | Admin / Super Admin / Platform Control Plane | KAPALI | `docs/sokum/41-admin-platform-control-plane.md` |
+| Final | Inventory / kapsam bütünlüğü kontrolü | KAPALI | `docs/sokum/final-inventory-sweep.md` |
 
-## Kanonik devam kuralı
+## Final inventory sonucu
 
-- Yeni turda yalnız bu indeks + en son gerekli söküm belgesi + frontier kodu okunur.
-- `36-canonical-architecture-synthesis.md` core baseline'dır; vertical'lar bunu bozmak yerine bounded context veya explicit extension olarak bağlanır.
-- Dedicated vertical triage tamamlanmadan hiçbir korunan vertical archive/delete adayı sayılmaz.
-- Her business fact için tek write authority vardır; legacy UI/local state authority değildir.
-- `apps/randevu-server` Kepenk kapsamı dışındadır ve değiştirilmez.
-- Production secret/token değerleri dokümana kopyalanmaz.
-- Paralel ajan frontier'ı kapatmışsa overwrite edilmez; main yeniden okunup ilk açık frontier'a geçilir.
-- `SÖKÜM 42` yalnız final inventory sweep gerçek, daha önce ele alınmamış bir domain kanıtlarsa açılır.
+SÖKÜM 41 sonrasında koruma notlarında kalan package'lar yeniden kontrol edildi:
 
-## Kapanan son karar: SÖKÜM 41
+- `packages/voice` -> ayrı domain değil; multimodal command adapter seed'i.
+- `packages/studio` -> Site/Media/CMO + Marketplace extension contract'ları.
+- `packages/blog` -> Site Authoring/Publish + CMO content extension seed'i.
+- `packages/seo` -> Public Projection + Integration + Growth optimization seed'i.
+- `packages/influencer` -> Campaign + Marketplace + Finance + Support future vertical seed'i.
 
-Admin current main'de gerçek yüksek-yetkili platform operasyonları içerir:
+Beş package'ın manifest/source yapısında kendi durable repository/service/worker/route authority'si doğrulanmadı. Influencer'daki ek `pricing` utility'si de stateless fiyat öneri hesabıdır; business writer değildir.
 
-- tenant/esnaf create/update/delete,
-- package/kota/suspend/reactivate,
-- impersonation,
-- Twilio number provisioning,
-- agent telemetry,
-- global maintenance/kill-switch intent,
-- platform finance/infra/marketing read/control yüzeyleri.
+**Karar:** current main'de daha önce ele alınmamış yeni bir canlı write-authority domain bulunmadı. Bu nedenle `SÖKÜM 42` açılmadı.
 
-Fakat current auth modeli parçalı ve güvenilir değildir:
+## SÖKÜM 41 kapanış özeti
+
+Admin current main'de gerçek yüksek-yetkili platform operasyonları içerir; fakat auth/session modeli parçalıdır:
 
 ```text
 /api/admin/login -> HMAC process-local session cookie
@@ -60,54 +54,43 @@ proxy.ts          -> cookie == raw ADMIN_SECRET_TOKEN
 admin UI          -> client bundle hard-coded header token
 ```
 
-Bu dört parça tek admin session authority oluşturmuyor.
+Taşınacak esas primitive:
 
-### KEEP
-
-- ayrı Platform Admin / Operations ürünü,
-- mevcut operator UX seed'leri,
-- `packages/admin` immutable audit vocabulary,
-- reason + dual-identity impersonation contract'ı,
-- deterministic feature rollout evaluator,
-- emergency control intent'i.
-
-### REWRITE / BUILD
-
-- verified Admin Principal + revocable session,
-- least-privilege role/capability enforcement,
-- MFA/step-up ve kritik aksiyon approval politikası,
-- append-only `AdminActionEvent`,
-- safe impersonation,
-- cross-domain Admin Command Gateway,
-- provider provisioning/reconciliation,
-- real Observability/Billing projections.
-
-### DROP AFTER CUTOVER
-
-- shared raw secret human auth,
-- browser bundle'da admin token,
-- process-local admin session Map,
-- root tenant doc hard-delete,
-- raw package/module field mutation,
-- Telegram'ı audit truth saymak,
-- mock infra/finance verisini operational truth saymak.
+```text
+Verified operator
+ + least privilege
+ + explicit reason
+ + optional approval / step-up
+ + canonical domain command
+ + append-only audit
+ + safe impersonation
+ + observable outcome
+```
 
 Ana invariant:
 
 > **Admin paneli platformdaki her collection'ın universal writer'ı değildir. Doğrulanmış operatörün policy-guarded canonical domain komutlarını çalıştırdığı ve her sonucu append-only audit ile izlediği control plane'dir.**
 
-## Final inventory sweep - numarasız kontrol turu
+## Kanonik devam kuralı
 
-Şimdilik yeni domain açılmıyor.
+- `KEPENK_SOKUM_PLANI.md` 01-24 tarihsel snapshot'tır.
+- `docs/sokum/25-41` repo-doğrulanmış sonraki turlardır.
+- `36-canonical-architecture-synthesis.md` core baseline'dır.
+- Her business fact için tek write authority vardır; legacy UI/local state authority değildir.
+- Korunan contract package'lar sırf runtime'a bağlı değiller diye otomatik archive/delete adayı değildir.
+- `apps/randevu-server` Kepenk kapsamı dışındadır ve değiştirilmez.
+- Production secret/token değerleri dokümana kopyalanmaz.
+- Yeni `SÖKÜM 42` ancak ileride somut, current-main'de canlı ve 01-41 tarafından kapsanmayan bir write authority kanıtlanırsa açılabilir.
 
-Kontrol sırası:
+## Sıradaki faz
 
-1. `KEPENK_SOKUM_PLANI.md` 01-24 ile `docs/sokum/25-41` çapraz kontrol edilir.
-2. Eski indeks notlarında kalan `packages/voice`, `packages/studio`, `packages/blog`, `packages/seo`, `packages/influencer` paketlerinin önceki sökümlerde gerçekten kapsanıp kapsanmadığı doğrulanır.
-3. Daha önce kapsanan capability için yeni söküm numarası açılmaz.
-4. Gerçek açık domain yoksa teardown fazı kapatılır.
-5. Sonraki faz canonical architecture + migration + cleanup backlog sentezidir.
+Domain sökümü bitti. Sonraki çalışma **Söküm Sonrası Mimari Sentez / Kurtarma Planı**dır:
 
-### Önemli
+1. 01-41 kararlarını tek canonical bounded-context haritasında birleştir.
+2. KEEP / ADAPT / REWRITE / DROP matrisini çıkar.
+3. Duplicate authorities ve legacy writer'ları listele.
+4. Dependency/migration sırasını çıkar.
+5. Cleanup backlog'unu risk + bağımlılık bazında sırala.
+6. Kepenk v2'ye taşınacak minimum capability setini sabitle.
 
-Bu sweep yeni implementation işi değildir. Kod yazılmaz; yalnız kapsam boşluğu ve duplicate frontier aranır.
+Bu faz da implementation değildir; önce neyi taşıyacağımızı ve hangi sırada taşıyacağımızı kesinleştirir.
