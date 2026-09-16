@@ -104,9 +104,15 @@ function normalizedJob(id: string, raw: DocumentData): KuyrukIslemi {
     } as KuyrukIslemi
 }
 
-function deterministicJobId(tip: IslemTipi, idempotencyKey: string): string {
+function deterministicJobId(
+    tip: IslemTipi,
+    tenantScope: string | null,
+    idempotencyKey: string
+): string {
     const digest = createHash('sha256')
         .update(tip)
+        .update('\0')
+        .update(tenantScope || 'unscoped')
         .update('\0')
         .update(idempotencyKey)
         .digest('hex')
@@ -126,7 +132,7 @@ export async function kuyruğaEkle(
     const idempotencyKey = options.idempotencyKey?.trim() || null
     const collection = adminDb.collection('islem_kuyrugu')
     const ref = idempotencyKey
-        ? collection.doc(deterministicJobId(islem.tip, idempotencyKey))
+        ? collection.doc(deterministicJobId(islem.tip, islem.esnafId, idempotencyKey))
         : collection.doc()
 
     const document: KuyrukIslemi = {
