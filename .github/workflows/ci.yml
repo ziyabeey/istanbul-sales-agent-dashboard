@@ -118,6 +118,7 @@ jobs:
           test/unit/coreRequestContext.test.ts
           test/unit/coreIdentityAdapter.test.ts
           test/unit/coreAuthRoutes.test.ts
+          test/unit/coreAuthFlow.test.ts
       - name: Validate trust browser smoke script
         run: bash -n apps/web/test/e2e/trust-browser-smoke.sh
       - name: Typecheck P0 trust baseline artifacts

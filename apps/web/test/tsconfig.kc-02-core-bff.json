@@ -18,7 +18,8 @@
     "./unit/coreBffSession.test.ts",
     "./unit/coreRequestContext.test.ts",
     "./unit/coreIdentityAdapter.test.ts",
-    "./unit/coreAuthRoutes.test.ts"
+    "./unit/coreAuthRoutes.test.ts",
+    "./unit/coreAuthFlow.test.ts"
   ],
   "exclude": [
     "../node_modules",

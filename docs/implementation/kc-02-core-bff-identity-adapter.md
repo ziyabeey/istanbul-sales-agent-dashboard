@@ -25,25 +25,27 @@ Supabase access/refresh token'ları yalnız `core_bff_sessions` kaydında, AES-2
 
 Oturumsuz giriş/kurtarma POST'ları (`otp-gonder`, `otp-dogrula`, `parola-giris`, `parola-kurtar`) `requireSameOrigin` ile cross-site ve Origin'siz isteklerde 403 döner; Supabase'e hiç ulaşılmaz. Oturumlu mutasyonlar ek olarak double-submit CSRF ister.
 
-### Parola kurtarma tamamlama (tarayıcı token görmeden)
+### Parola kurtarma tamamlama (tarayıcı token görmeden, tarayıcıya bağlı)
 
-1. `POST /api/core/auth/parola-kurtar {email}` → GoTrue `recover` (adres varlığı sızdırılmaz).
-2. Supabase recovery e-posta şablonu `{{ .TokenHash }}` ile **`/api/core/auth/kurtarma?token_hash=…`** adresine yönlendirir (implicit `#access_token` fragment'i kullanılmaz).
-3. `GET kurtarma` → sunucu `verify {type: recovery, token_hash}` ile oturumu alır, `amr` recovery değilse reddeder, recovery-sınıfı BFF oturumu kurar, `/parola-yenile` sayfasına 303 yönlendirir.
-4. `POST /api/core/auth/parola-guncelle {parola}` (CSRF; recovery oturumunun kullanabildiği **tek** yüzey) → `PUT /auth/v1/user` → BFF oturumu revoke + remote logout + cookie temizliği.
+Randevu F10-01 `yzt_auth_flows` sözleşmesinin Kepenk karşılığı (`src/lib/core/authFlow.ts`):
+
+1. `POST /api/core/auth/parola-kurtar {email}` → `beginAuthFlow('recovery', sha256(email))`: `state` (24 byte) + e-posta bağlama hash'i + 10 dk TTL, HMAC(SESSION_SECRET) imzalı **`kepenk_core_flows`** cookie'sine yazılır (HttpOnly, host-only, SameSite=Lax, Path=`/api/core/auth`, en fazla 4 akış). GoTrue `recover?redirect_to=https://app.kepenk.ai/api/core/auth/kurtarma?state=<state>` (adres varlığı sızdırılmaz; bilinmeyen adreste akış bırakılmaz).
+2. Supabase recovery e-posta şablonu `{{ .RedirectTo }}&token_hash={{ .TokenHash }}` üretir (implicit `#access_token` fragment'i kullanılmaz; `redirect_to` allow-list'te olmalı).
+3. `GET kurtarma?state=…&token_hash=…` → akış cookie'sinde `state` **bulunmalı** (aynı tarayıcı), akış hemen tüketilir (tekrar → geçersiz), sunucu `verify {type: recovery, token_hash}` ile oturumu alır, `amr` recovery değilse veya oturumun e-postası akışın hash'iyle eşleşmiyorsa (hesap karışıklığı) reddeder, recovery-sınıfı BFF oturumu kurar, `/parola-yenile` sayfasına 303 yönlendirir. Farklı tarayıcıdaki link → cookie yok → geçersiz, oturum yok.
+4. `POST /api/core/auth/parola-guncelle {parola}` (CSRF) **yalnız recovery oturumu**: standart oturum `RECOVERY_SESSION_REQUIRED` 403. `PUT /auth/v1/user` → BFF oturumu revoke + remote logout + cookie temizliği.
 5. Kullanıcı `parola-giris` ile standart oturum açar.
 
-Recovery oturumu `me` dışında hiçbir route'a giremez (`requireCoreContext` varsayılan olarak `RECOVERY_REQUIRED` 403).
+Recovery oturumu `me` ve `parola-guncelle` dışında hiçbir route'a giremez (`requireCoreContext` varsayılan olarak `RECOVERY_REQUIRED` 403).
 
 ### Kimlik adaptörü ve alias sözleşmesi
 
 Oturum üretim noktasında `LinkIdentityAlias(provider=legacy-kepenk-phone, external_subject=<rakam-only telefon>, user_id)` komutu çalışır; idempotent anahtar `kc02-identity-<sha256(provider, subject, user_id)>`. Yetki vermez, girişi engellemez; conflict/outage yalnız raporlanır. **Legacy tenant dokümanına yazım yoktur**; esnaf → business gölge alanları KC-03'ün işidir (KC-03 sahibi `core_resolve_identity_aliases` ile Core'dan çözer).
 
-Neden `firebase uid` değil: Kepenk işletme kullanıcılarının Firebase Auth hesabı yoktur; Pilot-0 kimlikleri Firestore `auth_identities` içinde `provider: phone`, `subject: normalize edilmiş telefon` olarak yaşar (KC-00 statik envanteri). Planın `LinkIdentityAlias(firebase, uid → user_id)` ifadesi Kepenk tarafı okunamadan yazılmıştır. KC-00 hosted receipt'i gerçek bir Firebase Auth popülasyonu gösterirse aynı komutla ikinci bir `firebase` alias'ı eklenir; bu kararı DANIŞMA 3 KC planı metninde sabitler.
+Neden geçici olarak `firebase uid` değil: KC-00 statik envanteri Firebase client bağımlılığı bulamadı ve Pilot-0 kimliklerini Firestore `auth_identities` içinde `provider: phone`, `subject: normalize edilmiş telefon` olarak modelledi; **hosted Firebase Auth popülasyonu Issue #10 receipt'i gelene kadar UNKNOWN'dır** ve koddan çıkarılamaz. Bu yüzden telefon alias'ı geçici bir uyumluluk alias'ıdır, canonical taşıma modu değildir. Receipt gerçek bir Firebase Auth popülasyonu gösterirse aynı komutla ikinci bir `firebase` alias'ı eklenir; kararı DANIŞMA 3 KC planı metninde sabitler.
 
 ### Modüller (`apps/web/src/lib/core/`)
 
-`config.ts`, `coreClient.ts`, `supabaseAuth.ts` (+ `verifyRecoveryTokenHash`, `updatePassword`), `jwtVerifier.ts`, `bffSession.ts`, `requestContext.ts`, `identityAdapter.ts`, `deps.ts`, `routeHelpers.ts` (+ `requireSameOrigin`).
+`config.ts`, `coreClient.ts`, `supabaseAuth.ts` (+ `verifyRecoveryTokenHash`, `updatePassword`, `recover?redirect_to`), `jwtVerifier.ts`, `bffSession.ts`, `authFlow.ts` (tarayıcıya bağlı tek kullanımlık akışlar), `requestContext.ts`, `identityAdapter.ts`, `deps.ts`, `routeHelpers.ts` (+ `requireSameOrigin`).
 
 ### Route'lar (`/api/core/auth/*`)
 
@@ -51,13 +53,13 @@ Neden `firebase uid` değil: Kepenk işletme kullanıcılarının Firebase Auth 
 
 ## Kanıt
 
-- `coreClient`, `coreJwtVerifier` (imza/exp/iss/aud/kid rotasyonu/HS256), `coreBffSession` (şifreleme, revoke, CSRF+Origin negatifleri), `coreRequestContext` (entitlement türetme + fail-closed snapshot, membership pasifleştirme sonraki istekte etkili, refresh rotasyonu, recovery engeli, `requireEntitlement`), `coreIdentityAdapter` (idempotent anahtar, conflict/outage, legacy yazım yok), `coreAuthRoutes` (cross-site/Origin'siz POST 403 × 4 route, 404 gate, token sızmaz, cookie öznitelikleri, kurtarma → parola-guncelle → parola-giris zinciri, replay/CSRF).
+- `coreClient`, `coreJwtVerifier` (imza/exp/iss/aud/kid rotasyonu/HS256), `coreBffSession` (şifreleme, revoke, CSRF+Origin negatifleri), `coreRequestContext` (entitlement türetme + fail-closed snapshot, membership pasifleştirme sonraki istekte etkili, refresh rotasyonu, recovery engeli, `requireEntitlement`), `coreIdentityAdapter` (idempotent anahtar, conflict/outage, legacy yazım yok), `coreAuthFlow` (imza/tamper/expiry/limit), `coreAuthRoutes` (cross-site/Origin'siz POST 403 × 4 route, 404 gate, token sızmaz, cookie öznitelikleri, parola-kurtar → kurtarma → parola-guncelle → parola-giris zinciri: farklı tarayıcı/yanlış state/replay/hesap uyuşmazlığı/non-recovery/expired negatifleri, standart oturumla parola-guncelle 403, replay/CSRF).
 - `trustBaseline.characterization.test.ts`: KC-02 kaynak düzeyi değişmezleri; `CURRENT_PRINCIPAL_SOURCES.coreBff`.
 - CI: `Lint KC-02 ...` + `Typecheck KC-02 ...` (`test/tsconfig.kc-02-core-bff.json`). `zod` artık `@kepenk/web` bağımlılığı (P0-08'deki düzeltme bu branch'e cherry-pick edildi; CI'daki "Cannot find module 'zod'" nedeni).
 
 ## Açık / hosted-only
 
-- Supabase URL/anon key, ServicePrincipal secret (`core.register_service_principal`), JWKS açık mı (değilse `SUPABASE_JWT_SECRET`), Supabase phone provider (Twilio), recovery e-posta şablonunun `token_hash` + `kurtarma` adresine ayarlanması.
+- Supabase URL/anon key, ServicePrincipal secret (`core.register_service_principal`), JWKS açık mı (değilse `SUPABASE_JWT_SECRET`), Supabase phone provider (Twilio), recovery e-posta şablonunun `{{ .RedirectTo }}&token_hash={{ .TokenHash }}` üretmesi ve `https://app.kepenk.ai/api/core/auth/kurtarma*` redirect allow-list'i.
 - "Alias'lı kullanıcı aynı `user_id` ile Randevu'ya da girer" kabulü ve cookie host scope / cross-site / recovery / membership deactivation / multi-membership / logout-replay tarayıcı kabulü hosted/staging kanıtı ister.
 - Build çıktısında secret grep receipt'i (`NEXT_PUBLIC_*` yok) release adımında alınır.
 - `/parola-yenile` sayfası (UI) bu PR'da yok; API sözleşmesi hazır.

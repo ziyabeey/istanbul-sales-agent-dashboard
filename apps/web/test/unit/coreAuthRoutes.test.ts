@@ -1,5 +1,7 @@
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
+import { InMemoryCoreAuthFlowConsumptionStore } from '@/lib/core/authFlow'
 import { InMemoryCoreBffSessionRepository, issueCoreBffSession } from '@/lib/core/bffSession'
+import type { SupabaseSession } from '@/lib/core/supabaseAuth'
 import { CORE_BFF_CSRF_COOKIE, CORE_BFF_CSRF_HEADER, CORE_BFF_SESSION_COOKIE } from '@/lib/core/config'
 import { CoreAuthError } from '@/lib/core/errors'
 import { getCoreRuntime } from '@/lib/core/deps'
@@ -63,11 +65,12 @@ function makeRuntime() {
   const runtime = {
     config: { supabaseUrl: 'https://core.example.test', anonKey: 'anon', principalName: 'kepenk-web' },
     sessions,
+    flows: new InMemoryCoreAuthFlowConsumptionStore(),
     auth: {
       sendPhoneOtp: vi.fn(async () => undefined),
-      verifyPhoneOtp: vi.fn(async () => ({ access_token: 'access.token.0123456789', refresh_token: 'refresh-token', expires_in: 3600, user: { id: USER, phone: '+905551234567' } })),
-      verifyRecoveryTokenHash: vi.fn(async () => ({ access_token: 'recovery.token.0123456789', refresh_token: 'recovery-refresh', expires_in: 3600, user: { id: USER } })),
-      signInWithPassword: vi.fn(async () => ({ access_token: 'pw.token.0123456789', refresh_token: 'pw-refresh', expires_in: 3600, user: { id: USER } })),
+      verifyPhoneOtp: vi.fn(async (): Promise<SupabaseSession> => ({ access_token: 'access.token.0123456789', refresh_token: 'refresh-token', expires_in: 3600, user: { id: USER, phone: '+905551234567' } })),
+      verifyRecoveryTokenHash: vi.fn(async (): Promise<SupabaseSession> => ({ access_token: 'recovery.token.0123456789', refresh_token: 'recovery-refresh', expires_in: 3600, user: { id: USER } })),
+      signInWithPassword: vi.fn(async (): Promise<SupabaseSession> => ({ access_token: 'pw.token.0123456789', refresh_token: 'pw-refresh', expires_in: 3600, user: { id: USER } })),
       updatePassword: vi.fn(async () => undefined),
       refreshSession: vi.fn(),
       signOut: vi.fn(async () => true),
@@ -275,39 +278,99 @@ describe('parola-kurtar', () => {
     expect(unknown.status).toBe(200)
     const known = await parolaKurtar(json('https://app.kepenk.ai/api/core/auth/parola-kurtar', { email: 'Owner@Example.test ' }, ORIGIN))
     expect(known.status).toBe(200)
-    expect(runtime.auth.requestPasswordRecovery).toHaveBeenLastCalledWith('owner@example.test')
+    expect(runtime.auth.requestPasswordRecovery).toHaveBeenLastCalledWith('owner@example.test', expect.stringMatching(/^https:\/\/app\.kepenk\.ai\/api\/core\/auth\/kurtarma\?state=/))
     expect((await parolaKurtar(json('https://app.kepenk.ai/api/core/auth/parola-kurtar', { email: 'not-an-email' }, ORIGIN))).status).toBe(400)
   })
 })
 
-describe('recovery completion (kurtarma -> parola-guncelle -> parola-giris)', () => {
-  it('exchanges the e-mail token hash server-side into a recovery-class BFF session and redirects without tokens', async () => {
-    runtime.verifier.verify.mockResolvedValue(claims({ amr: [{ method: 'recovery' }] }))
-    const response = await kurtarma(new Request('https://app.kepenk.ai/api/core/auth/kurtarma?token_hash=pkce_0123456789abcdef0123456789abcdef'))
-    expect(response.status).toBe(303)
-    expect(response.headers.get('location')).toBe('https://app.kepenk.ai/parola-yenile')
-    expect(runtime.auth.verifyRecoveryTokenHash).toHaveBeenCalledWith('pkce_0123456789abcdef0123456789abcdef')
-    const session = setCookies(response).find((c) => c.startsWith(`${CORE_BFF_SESSION_COOKIE}=`))
-    expect(session).toMatch(/HttpOnly/)
-    expect(session).not.toMatch(/recovery\.token/)
+describe('recovery completion (parola-kurtar -> kurtarma -> parola-guncelle -> parola-giris)', () => {
+  async function startRecovery(email = 'owner@example.test') {
+    const response = await parolaKurtar(json('https://app.kepenk.ai/api/core/auth/parola-kurtar', { email }, ORIGIN))
+    expect(response.status).toBe(200)
+    const flowCookie = setCookies(response).find((c) => c.startsWith('kepenk_core_flows='))!
+    expect(flowCookie).toMatch(/HttpOnly/)
+    expect(flowCookie).toMatch(/SameSite=lax/)
+    expect(flowCookie).toMatch(/Path=\/api\/core\/auth/)
+    expect(flowCookie).not.toMatch(/Domain=/)
+    const [, redirectTo] = runtime.auth.requestPasswordRecovery.mock.calls.at(-1) as unknown as [string, string]
+    const state = new URL(redirectTo).searchParams.get('state')!
+    expect(redirectTo.startsWith('https://app.kepenk.ai/api/core/auth/kurtarma?state=')).toBe(true)
+    return { cookie: flowCookie.split(';')[0], state }
+  }
+
+  function recoveryLink(state: string, tokenHash = 'pkce_0123456789abcdef0123456789abcdef', cookie?: string) {
+    return new Request(`https://app.kepenk.ai/api/core/auth/kurtarma?state=${encodeURIComponent(state)}&token_hash=${tokenHash}`, {
+      headers: cookie ? { cookie } : {},
+    })
+  }
+
+  it('binds the e-mail link to the browser that started the flow and consumes the flow on first use', async () => {
+    runtime.verifier.verify.mockResolvedValue(claims({ amr: [{ method: 'recovery' }], email: 'owner@example.test' }))
+    runtime.auth.verifyRecoveryTokenHash.mockResolvedValue({ access_token: 'recovery.token.0123456789', refresh_token: 'recovery-refresh', expires_in: 3600, user: { id: USER, email: 'owner@example.test' } })
+    const { cookie, state } = await startRecovery()
+
+    // Cross-browser: same link, no flow cookie -> rejected, no session.
+    const foreign = await kurtarma(recoveryLink(state))
+    expect(foreign.headers.get('location')).toBe('https://app.kepenk.ai/parola-yenile?durum=invalid')
+    expect(runtime.sessions.records.size).toBe(0)
+    expect(runtime.auth.verifyRecoveryTokenHash).not.toHaveBeenCalled()
+
+    // Wrong state in the right browser -> rejected.
+    const wrongState = await kurtarma(recoveryLink('A'.repeat(32), undefined, cookie))
+    expect(wrongState.headers.get('location')).toBe('https://app.kepenk.ai/parola-yenile?durum=invalid')
+
+    // Same browser, correct state -> recovery session, flow consumed, tokens stay server-side.
+    const ok = await kurtarma(recoveryLink(state, undefined, cookie))
+    expect(ok.status).toBe(303)
+    expect(ok.headers.get('location')).toBe('https://app.kepenk.ai/parola-yenile')
+    const cookies = setCookies(ok)
+    expect(cookies.find((c) => c.startsWith(`${CORE_BFF_SESSION_COOKIE}=`))).toMatch(/HttpOnly/)
+    expect(cookies.join('\n')).not.toContain('recovery.token')
+    expect(cookies.find((c) => c.startsWith('kepenk_core_flows='))).toMatch(/kepenk_core_flows=;|Max-Age=0/)
     expect(runtime.sessions.records.size).toBe(1)
 
-    const invalid = await kurtarma(new Request('https://app.kepenk.ai/api/core/auth/kurtarma?token_hash=x'))
-    expect(invalid.headers.get('location')).toBe('https://app.kepenk.ai/parola-yenile?durum=invalid')
-    runtime.auth.verifyRecoveryTokenHash.mockRejectedValueOnce(new CoreAuthError('OTP_INVALID', { status: 403 }))
-    const expired = await kurtarma(new Request('https://app.kepenk.ai/api/core/auth/kurtarma?token_hash=pkce_0123456789abcdef0123456789abcdef'))
-    expect(expired.headers.get('location')).toBe('https://app.kepenk.ai/parola-yenile?durum=invalid')
+    // Replay with the stale original cookie value (the browser would already have dropped the flow):
+    // the server-side one-time record rejects it before any token exchange, no second session.
+    const replay = await kurtarma(recoveryLink(state, undefined, cookie))
+    expect(replay.headers.get('location')).toBe('https://app.kepenk.ai/parola-yenile?durum=invalid')
     expect(runtime.sessions.records.size).toBe(1)
+    expect(runtime.auth.verifyRecoveryTokenHash).toHaveBeenCalledTimes(1)
   })
 
-  it('does not accept a non-recovery session from the recovery link', async () => {
-    runtime.verifier.verify.mockResolvedValue(claims())
-    const response = await kurtarma(new Request('https://app.kepenk.ai/api/core/auth/kurtarma?token_hash=pkce_0123456789abcdef0123456789abcdef'))
-    expect(response.headers.get('location')).toBe('https://app.kepenk.ai/parola-yenile?durum=invalid')
+  it('rejects a recovery session for a different account, a non-recovery session and an expired token', async () => {
+    runtime.auth.verifyRecoveryTokenHash.mockResolvedValue({ access_token: 'recovery.token.0123456789', refresh_token: 'recovery-refresh', expires_in: 3600, user: { id: USER, email: 'someone-else@example.test' } })
+    runtime.verifier.verify.mockResolvedValue(claims({ amr: [{ method: 'recovery' }], email: 'someone-else@example.test' }))
+    const mismatch = await startRecovery('owner@example.test')
+    expect((await kurtarma(recoveryLink(mismatch.state, undefined, mismatch.cookie))).headers.get('location')).toBe('https://app.kepenk.ai/parola-yenile?durum=invalid')
+    expect(runtime.sessions.records.size).toBe(0)
+
+    runtime.auth.verifyRecoveryTokenHash.mockResolvedValue({ access_token: 'access.token.0123456789', refresh_token: 'r', expires_in: 3600, user: { id: USER, email: 'owner@example.test' } })
+    runtime.verifier.verify.mockResolvedValue(claims({ email: 'owner@example.test' }))
+    const standard = await startRecovery('owner@example.test')
+    expect((await kurtarma(recoveryLink(standard.state, undefined, standard.cookie))).headers.get('location')).toBe('https://app.kepenk.ai/parola-yenile?durum=invalid')
+    expect(runtime.sessions.records.size).toBe(0)
+
+    runtime.auth.verifyRecoveryTokenHash.mockRejectedValueOnce(new CoreAuthError('OTP_INVALID', { status: 403 }))
+    const expired = await startRecovery('owner@example.test')
+    expect((await kurtarma(recoveryLink(expired.state, undefined, expired.cookie))).headers.get('location')).toBe('https://app.kepenk.ai/parola-yenile?durum=invalid')
     expect(runtime.sessions.records.size).toBe(0)
   })
 
-  it('lets a recovery session update the password with CSRF, then revokes it; other routes stay closed', async () => {
+  it('does not leave a usable flow behind for an unknown address', async () => {
+    runtime.auth.requestPasswordRecovery.mockRejectedValueOnce(new CoreAuthError('CREDENTIALS_INVALID', { status: 400 }))
+    const response = await parolaKurtar(json('https://app.kepenk.ai/api/core/auth/parola-kurtar', { email: 'nobody@example.test' }, ORIGIN))
+    expect(response.status).toBe(200)
+    const flowCookie = setCookies(response).find((c) => c.startsWith('kepenk_core_flows='))
+    expect(flowCookie).toMatch(/kepenk_core_flows=;|Max-Age=0/)
+  })
+
+  it('only a recovery session may update the password; it is revoked afterwards and replays fail', async () => {
+    const standard = await loggedIn()
+    const standardAttempt = await parolaGuncelle(json('https://app.kepenk.ai/api/core/auth/parola-guncelle', { parola: 'correct-horse-battery' }, { cookie: standard.cookie, ...standard.csrf }))
+    expect(standardAttempt.status).toBe(403)
+    expect(await standardAttempt.json()).toEqual({ error: 'RECOVERY_SESSION_REQUIRED' })
+    expect(runtime.auth.updatePassword).not.toHaveBeenCalled()
+
     runtime.verifier.verify.mockResolvedValue(claims({ amr: [{ method: 'recovery' }] }))
     const { issued, cookie, csrf } = await loggedIn('recovery.token.0123456789')
 
