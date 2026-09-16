@@ -42,6 +42,7 @@ Koruma: KC-01 `ProvisionBusiness` aynı alias için mevcut business'ı döndür�
 
 ## Açık
 
-- Gerçek esnaf sayısı ve `coreUserId` kapsamı (KC-00 hosted receipt + KC-02 canlı girişler) — backfill boyutunu belirler.
+- **Hosted gerçek (Issue #10 receipt, DANIŞMA 3 kabul, 2026-09-16):** `esnaflar` 7; `telefonTemiz` 5 (tekrar yok), `slug` 0, `subdomain` 1, `businessId` 0. Backfill boyutu: en fazla 5 tenant telefon alias'ı ile sahibine bağlanabilir ve bu yalnız sahip KC-02 üzerinden doğrulanmış OTP girişi yaptıktan sonra olur; telefonu olmayan 2 tenant yapı gereği `deferred_no_owner` kalır (business yaratılmaz, `core_migration_reports`'ta listelenir). 6 slug `ad`/`isletmeAdi`'den türetilir. Ürün kararı: sahipsiz 2 tenant'ın niteliği (bayat onboarding kaydı mı, manuel sahip atanacak gerçek işletme mi).
+- `firebase:<uid>` alias'ı (KC-02 `firebase-bagla`, migration kararı) owner çözümünde **kullanılmaz**: receipt tenant tarafında Firebase uid alanı göstermedi (`sites` claim 0), telefon dışı bir eşleme tahmin edilmez. Firebase kimliği olan tek kullanıcı KC-02 ile kendi Core hesabına bağlandığında, o kullanıcının telefon alias'ı üzerinden tenant çözümü değişmeden çalışır.
 - Trial/abonelik durumu bu adımda **yazılmaz** (mevcut ödeme durumu koddan çıkarılmaz); KC-04 doğrulanmış ödeme olayı, KC-05 onboarding trial'ı ile gelir.
 - DOMAIN-01 rezerve ad listesi kesinleşince `CORE_RESERVED_SLUGS` ona bağlanır.
