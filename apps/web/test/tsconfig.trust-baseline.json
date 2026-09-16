@@ -6,8 +6,7 @@
   },
   "include": [
     "fixtures/trust-baseline.ts",
-    "unit/trustBaseline.characterization.test.ts",
-    "e2e/trust-baseline.spec.ts"
+    "unit/trustBaseline.characterization.test.ts"
   ],
   "exclude": [
     "../node_modules",
