@@ -38,3 +38,17 @@ export {
   type RequestContextFailureReason,
   type RequestContextResult,
 } from './requestContextBuilder'
+
+export {
+  issueCanonicalHumanSession,
+  type HumanAuthRepositories,
+  type IssueHumanSessionInput,
+  type IssuedHumanSession,
+} from './humanAuthService'
+
+export {
+  isCanonicalSessionTokenCandidate,
+  issueCanonicalSessionToken,
+  verifyCanonicalSessionToken,
+  type CanonicalSessionTokenClaims,
+} from './sessionToken'
