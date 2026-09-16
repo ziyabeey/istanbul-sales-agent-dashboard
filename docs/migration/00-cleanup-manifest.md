@@ -1,344 +1,130 @@
-# Kepenk Migration - Cleanup Manifest v1
+# Kepenk Migration - Cleanup Manifest v1.1
 
 > **Tarih:** 2026-09-16  
-> **Kaynak:** `docs/sokum/36-canonical-architecture-synthesis.md` + SÖKÜM 25-35 repo doğrulamaları  
+> **Kaynak:** SÖKÜM 25-37 + `docs/sokum/36-canonical-architecture-synthesis.md`  
 > **Durum:** AKTİF ENVANTER  
-> **Kural:** Bu belge **delete emri değildir**. Önce replacement/cutover, sonra caller telemetry, en son archive/delete.
+> **Kural:** Bu belge delete emri değildir. Önce replacement/cutover, sonra caller telemetry, en son archive/delete.
 
 ## 0. Disposition etiketleri
 
 - **KEEP**: mevcut parça hedef mimaride doğrudan değerlidir.
 - **KEEP_ADAPTER**: provider/compatibility adapter olarak tutulur, business authority olamaz.
 - **REWRITE_IN_PLACE**: route/library adı kalabilir fakat authority contract'ı değişir.
-- **COMPAT_SHELL**: geçici olarak legacy caller'ları canonical authority'ye taşır.
-- **DEPRECATE**: canonical replacement sonrası write kapatılacak.
+- **COMPAT_SHELL**: legacy caller'ları geçici olarak canonical authority'ye taşır.
+- **DEPRECATE**: canonical replacement sonrası write kapatılır.
 - **ARCHIVE_WHEN_ZERO_CALLERS**: telemetry ile caller sıfırlandıktan sonra arşivlenir.
 - **DROP_AFTER_CUTOVER**: canonical replacement + rollback gate sonrası silinebilir.
-- **DEV_ONLY**: production trust graph'ından çıkarılır, gerekiyorsa yalnız local/test ortamında kalır.
+- **DEV_ONLY**: production trust graph'ından çıkarılır.
+- **PROTECTED_VERTICAL**: bağımsız ürün/domain değeri taşıyan yüzey; dedicated triage tamamlanmadan archive/delete yasaktır.
 
 ---
 
-# 1. Korunacak omurga - erken temizlenmeyecek
+# 1. Korunacak omurga
 
 | Path / alan | Disposition | Not |
 |---|---|---|
-| `apps/sites` | KEEP | Public shell korunur; data source DomainBinding -> active publish -> artifact olur. |
-| `apps/web` | KEEP | Product/dashboard/editor shell korunur; rewrite route/domain boundary seviyesinde yapılır. |
-| `packages/site-schema` | KEEP | Canonical site contract için güçlü primitive. |
+| `apps/sites` | KEEP | Public shell; hedef data source DomainBinding -> active publish -> artifact. |
+| `apps/web` | KEEP | Product/dashboard/editor shell; rewrite route/domain boundary seviyesinde. |
+| `packages/site-schema` | KEEP | Canonical site contract seed'i. |
 | `packages/renderer` | KEEP | Typed registry/render primitive. |
 | `packages/publish-engine` | KEEP | PublishCommand altında harden edilecek artifact generator. |
-| `packages/templates` | KEEP | Theme/template renderer değeri korunur. |
-| `packages/cloudflare` | KEEP_ADAPTER | Domain authority değil; DomainBinding provisioning adapter'ı. |
-| `packages/booking-schema` | KEEP | Booking policy semantics korunur; embedded payment authority projection'a iner. |
-| `packages/ecom-schema` | KEEP | Commerce model yönü korunur; payment truth dışarı alınır. |
+| `packages/templates` | KEEP | Theme/template renderer. |
+| `packages/cloudflare` | KEEP_ADAPTER | Domain authority değil, provider adapter. |
+| `packages/booking-schema` | KEEP | Booking policy semantics; embedded payment state projection'a iner. |
+| `packages/ecom-schema` | KEEP | Commerce model yönü; payment truth dışarı alınır. |
 | `packages/accounting` | KEEP + REWRITE AUTHORITY | Minor-unit/source links korunur; immutable Finance Ledger canonical olur. |
 | CRM v2 service/repository/identity/activity/RFM/Segment DSL | KEEP | Customer Core seed'i. |
 | AES-GCM token encryption primitive | KEEP | Credential Authority altında. |
-| Cloud Tasks/retry/DLQ primitive'leri | KEEP | Durable Execution altında. |
-| Sentry/readiness primitive'leri | KEEP | Telemetry altında. |
-
-Bu parçalar cleanup'ın ilk dalgasında silinmeyecek veya isim uğruna yeniden yazılmayacaktır.
+| Cloud Tasks/retry/DLQ primitives | KEEP | Durable Execution altında. |
+| Sentry/readiness primitives | KEEP | Telemetry altında. |
 
 ---
 
-# 2. P0 - Trust / Tenant / Capability authority temizliği
+# 2. P0 - Trust / Tenant / Capability
 
-## `apps/web/src/app/api/auth/dev-login/route.ts`
+| Path / alan | Disposition | Replacement / kural |
+|---|---|---|
+| `api/auth/dev-login` | DEV_ONLY | Production path kapatılır. |
+| `api/auth/demo-login` | DEV_ONLY | Isolated demo context dışında tenant/session authority yaratamaz. |
+| `lib/sessionManager.ts` | KEEP + REWRITE_IN_PLACE | User/Membership/Tenant/SessionEpoch/lifecycle checks. |
+| `api/onboarding/complete` | REWRITE_IN_PLACE / COMPAT_SHELL | CreateBusinessCommand -> BusinessTenant -> OnboardingRun -> ProvisioningRun. |
+| `api/onboarding/submit` | REWRITE_IN_PLACE | AI preview success tenant/provisioning success değildir. |
+| `api/esnaf/setup-progress` | DROP_AFTER_CUTOVER | Persisted OnboardingRun read model. |
+| `api/admin/esnaf/[id]` | REWRITE_IN_PLACE / COMPAT_SHELL | Raw durum/paket/module/provider/delete mutation canonical commands'a ayrılır. |
+| `api/esnaf/sync-moduller` | REWRITE_IN_PLACE | Client preference != entitlement. |
+| `lib/mvpFeatureFlags.ts` | KEEP | Release/environment flags, commercial entitlement değil. |
 
-**Disposition:** DEV_ONLY -> DROP production path.
+---
 
-Replacement gate:
-- User/Membership/Session/RequestContext production auth graph,
-- test/dev environment guard,
-- production route unreachable.
+# 3. P0 - Site / Publish / Domain
 
-## `apps/web/src/app/api/auth/demo-login/route.ts`
+| Path / alan | Disposition | Replacement / kural |
+|---|---|---|
+| `api/site/editor-kaydet` | DEPRECATE -> COMPAT_SHELL -> DROP_AFTER_CUTOVER | Canonical Draft Save. |
+| `api/site/publish` | DEPRECATE -> DROP_AFTER_CUTOVER | Canonical PublishCommand. |
+| `api/site/v2/save` | REWRITE_IN_PLACE | Schema/hash/revision/server authority. |
+| `api/site/v2/publish` | REWRITE_IN_PLACE | Artifact store, hash verify, transaction, active pointer, idempotency. |
+| `api/site/versiyonlar` + `lib/siteVersiyonlari.ts` | COMPAT_SHELL / DEPRECATE | Immutable PublishedSiteRevision. |
+| `api/domain/sec` | REWRITE_IN_PLACE / COMPAT_SHELL | RequestContext + capability + DomainBinding + durable job. |
+| `api/domain/register` | DEPRECATE -> DROP_AFTER_CUTOVER | Duplicate domain writer. |
+| Cloudflare registrar/pages/DNS clients | KEEP_ADAPTER | DomainBinding provider adapters. |
 
-**Disposition:** DEV_ONLY / demo surface.
+---
 
-Demo identity production tenant/session authority yaratamaz. Demo gerekiyorsa explicit isolated demo tenant/context kullanır.
+# 4. P0 - Integration / Webhook
 
-## `apps/web/src/lib/sessionManager.ts`
+- Google OAuth flow: **KEEP flow + REWRITE connection context**.
+- Google provider clients: **KEEP_ADAPTER / CONSOLIDATE**, tenant-root credential lookup kalkar.
+- Instagram duplicate webhook routes: **CONSOLIDATE**, canonical verified ingress sonrası duplicate route drop.
+- Meta client: **KEEP_ADAPTER**, credential resolution IntegrationConnection üzerinden.
+- WhatsApp/Twilio duplicate inbound routes: **CONSOLIDATE**, signature verification + provider-resource-bound tenant resolve + durable inbox.
+- Twilio provisioning: **KEEP_ADAPTER + REWRITE resource lifecycle**.
 
-**Disposition:** KEEP primitive + REWRITE_IN_PLACE.
-
-Korunacak:
-- HttpOnly JWT intent,
-- fail-closed production secret davranışı.
-
-Eklenecek:
-- userId/membershipId/tenantId,
-- sessionEpoch/lifecycle checks,
-- suspension/revocation propagation.
-
-## `apps/web/src/app/api/onboarding/complete/route.ts`
-
-**Disposition:** REWRITE_IN_PLACE / COMPAT_SHELL.
-
-Bugünkü raw root creation yerine:
+Canonical provider ingress:
 
 ```text
-CreateBusinessCommand
-  -> BusinessTenant
-  -> OnboardingRun
-  -> ProvisioningRun
-```
-
-Session ancak canonical tenant/session authority üzerinden açılır.
-
-## `apps/web/src/app/api/onboarding/submit/route.ts`
-
-**Disposition:** REWRITE_IN_PLACE veya UI-preview-only olarak daralt.
-
-AI preview success tenant creation/provisioning success anlamına gelmeyecek.
-
-## `apps/web/src/app/api/esnaf/setup-progress/route.ts`
-
-**Disposition:** DROP_AFTER_CUTOVER.
-
-Sebep:
-- in-memory state,
-- hard-coded `demo-esnaf`,
-- production onboarding truth olamaz.
-
-Replacement: persisted `OnboardingRun` read model.
-
-## `apps/web/src/app/api/admin/esnaf/[id]/route.ts`
-
-**Disposition:** REWRITE_IN_PLACE -> COMPAT_SHELL.
-
-Raw:
-- `durum`,
-- `paket`,
-- module/settings,
-- provider resource,
-- root DELETE
-
-mutation'ları ayrı canonical commands'a ayrılır.
-
-DELETE tenant offboarding completion sayılmaz.
-
-## `apps/web/src/app/api/esnaf/sync-moduller/route.ts`
-
-**Disposition:** REWRITE_IN_PLACE.
-
-Client yalnız feature preference gönderebilir. Effective capability server-side entitlement intersection ile hesaplanır.
-
-## `apps/web/src/lib/mvpFeatureFlags.ts`
-
-**Disposition:** KEEP.
-
-Ancak yalnız release/environment flag authority. Commercial entitlement değildir.
-
----
-
-# 3. P0 - Site / publish / domain duplicate authority
-
-## `apps/web/src/app/api/site/editor-kaydet/route.ts`
-
-**Disposition:** DEPRECATE -> COMPAT_SHELL -> DROP_AFTER_CUTOVER.
-
-Sebep: draft save ile published mutable state'in karışabilmesi.
-
-Replacement: canonical Draft Save Command.
-
-## `apps/web/src/app/api/site/publish/route.ts`
-
-**Disposition:** DEPRECATE -> DROP_AFTER_CUTOVER.
-
-Replacement: canonical PublishCommand.
-
-## `apps/web/src/app/api/site/v2/save/route.ts`
-
-**Disposition:** REWRITE_IN_PLACE.
-
-En uygun canonical Draft Save seed'lerinden biri. Schema/hash/revision/server authority eklenecek.
-
-## `apps/web/src/app/api/site/v2/publish/route.ts`
-
-**Disposition:** REWRITE_IN_PLACE.
-
-En uygun canonical PublishCommand seed'i. Artifact store, hash verification, transaction/active pointer/idempotency ile tamamlanır.
-
-## `apps/web/src/app/api/site/versiyonlar/route.ts`
-## `apps/web/src/lib/siteVersiyonlari.ts`
-
-**Disposition:** COMPAT_SHELL / DEPRECATE.
-
-Replacement: immutable `PublishedSiteRevision` history + pointer rollback.
-
-## `apps/web/src/app/api/domain/sec/route.ts`
-
-**Disposition:** REWRITE_IN_PLACE / COMPAT_SHELL.
-
-Body tenant authority, package-string authorization ve fire-and-forget provisioning kalkar.
-
-Replacement:
-- RequestContext,
-- `domain.gift.claim` capability decision,
-- DomainBinding command,
-- durable provisioning job.
-
-## `apps/web/src/app/api/domain/register/route.ts`
-
-**Disposition:** DEPRECATE -> DROP_AFTER_CUTOVER.
-
-Sebep: ikinci domain writer authority.
-
-## `apps/web/src/lib/cloudflareRegistrar.ts`
-## `apps/web/src/lib/cloudflarePagesClient.ts`
-## `packages/cloudflare/*`
-
-**Disposition:** KEEP_ADAPTER, sonra konsolide provider contract.
-
-Provider state DomainBinding truth değildir.
-
----
-
-# 4. P0 - Integration / webhook duplicate authority
-
-## Google OAuth
-
-### `apps/web/src/app/api/auth/google/init/route.ts`
-**Disposition:** KEEP flow + REWRITE connection context.
-
-### `apps/web/src/app/api/auth/google/callback/route.ts`
-**Disposition:** REWRITE_IN_PLACE.
-
-Token material generic tenant root/business fields yerine Credential Authority + `IntegrationConnection` ile bağlanır.
-
-### `apps/web/src/lib/googleBusinessClient.ts`
-### `apps/web/src/lib/gmbClient.ts`
-**Disposition:** KEEP_ADAPTER / CONSOLIDATE.
-
-Runtime credential lookup doğrudan tenant root field'larından yapılmayacak.
-
-## Instagram
-
-### `apps/web/src/app/api/instagram/webhook/route.ts`
-### `apps/web/src/app/api/instagram/dm-webhook/route.ts`
-
-**Disposition:** CONSOLIDATE; biri canonical ingress olduktan sonra diğeri DROP_AFTER_CUTOVER.
-
-Canonical ingress:
-
-```text
-signature verify
- -> resource binding
- -> IntegrationConnection
+verify signature
+ -> ProviderResourceBinding
+ -> IntegrationConnection + tenant
  -> provider event dedupe
- -> durable inbox
+ -> durable Event Inbox
  -> ACK
+ -> async process / retry / DLQ
 ```
 
-### `apps/web/src/lib/metaGraphClient.ts`
+---
 
-**Disposition:** KEEP_ADAPTER + REWRITE credential resolution.
+# 5. P0 - Privacy / Data Lifecycle
 
-Tenant-root access token authority kalkar.
+`kvkk-purge`, `data-purge`, `kvkk` cron/orchestration yolları canonical Data Lifecycle Orchestrator arkasına alınır. Duplicate orchestration paths deprecate edilir.
 
-## WhatsApp / Twilio
-
-### `apps/web/src/app/api/whatsapp/route.ts`
-### `apps/web/src/app/api/wa/musteri-mesaji/route.ts`
-
-**Disposition:** CONSOLIDATE; canonical destination/provider-resource-bound webhook seçilir, diğeri compatibility sonrası drop.
-
-Zorunlu:
-- Twilio signature verification,
-- destination resource -> tenant resolve,
-- provider MessageSid/event idempotency,
-- durable inbox.
-
-### `apps/web/src/lib/twilioProvisioning.ts`
-
-**Disposition:** KEEP_ADAPTER + REWRITE resource lifecycle.
-
-`twilioNumarasi` root-field truth yerine ProviderResourceBinding.
+Production success yalnız required deletion targets tamamlandığında üretilebilir. Root-document-only ve simulated/no-op purge completion yasaktır.
 
 ---
 
-# 5. P0 - Privacy / lifecycle fake completion paths
+# 6. P1 - CRM / Customer
 
-## `apps/web/src/app/api/cron/kvkk-purge/route.ts`
-## `apps/web/src/app/api/cron/data-purge/route.ts`
-## `apps/web/src/app/api/cron/kvkk/route.ts`
+- `/api/musteriler` legacy family: **COMPAT_SHELL -> ARCHIVE_WHEN_ZERO_CALLERS**.
+- `/api/customers` + CRM v2: **KEEP / HARDEN**.
+- Mongo + Firestore dual customer authority: **DROP_AFTER_CUTOVER**.
 
-**Disposition:** REWRITE behind Data Lifecycle Orchestrator; duplicate orchestration paths DEPRECATE.
-
-Production success yalnız required targets tamamlandıktan sonra üretilebilir.
-
-Root-document-only veya simulated/no-op purge completion yasak.
+Migration yönü canonical Customer write -> temporary one-way legacy projection. Bidirectional equal authority yok.
 
 ---
 
-# 6. P1 - CRM / Customer compatibility
+# 7. P1 - Payment / Finance
 
-## `/api/musteriler` legacy family
+- Booking payment fields: **REWRITE AS PROJECTION**.
+- Order payment fields: **REWRITE AS PROJECTION**.
+- `packages/accounting`: **KEEP semantics + REWRITE authority**.
 
-**Disposition:** COMPAT_SHELL -> ARCHIVE_WHEN_ZERO_CALLERS.
-
-Canonical backend CRM v2 Customer Core olur.
-
-## `/api/customers` + CRM v2 services
-
-**Disposition:** KEEP / HARDEN.
-
-Gerekenler:
-- tek identity resolver,
-- merge revision correctness,
-- one activity authority,
-- consent linkage,
-- tenant-safe validation.
-
-## Legacy Mongo + Firestore dual authority
-
-**Disposition:** DROP_AFTER_CUTOVER.
-
-Migration kuralı: canonical Customer write -> temporary legacy projection. Bidirectional equal authority yok.
+Authoritative source Payment Core + immutable Finance Ledger olur. Financial migration'da bidirectional dual-write yasaktır.
 
 ---
 
-# 7. P1 - Payment / finance embedded truth
+# 8. P1 - Agent / AI
 
-## Booking payment fields
-
-**Disposition:** REWRITE AS PROJECTION.
-
-Authoritative source Payment Core + Finance Ledger.
-
-## Order payment fields
-
-**Disposition:** REWRITE AS PROJECTION.
-
-Authoritative source Payment Core + Finance Ledger.
-
-## `packages/accounting`
-
-**Disposition:** KEEP semantics, REWRITE authority.
-
-- minor-unit direction korunur,
-- booking/order source linkage korunur,
-- mutable Transaction financial truth olmaktan çıkar,
-- immutable ledger + read projections kurulur.
-
-Financial migration'da bidirectional dual-write kesinlikle yapılmaz.
-
----
-
-# 8. P1 - Agent / AI duplicate runtime cleanup
-
-Verified historical/runtime cluster:
-
-- kernel/config/factory/orchestrator,
-- `agentRunner` family,
-- parallel runtime/model selector/provider paths.
-
-**Disposition:** KEEP strongest kernel/config/factory/result-verifier primitives; DEPRECATE duplicate partial runtimes after current import/caller graph is revalidated.
-
-Bu grup için dosya silmeden önce ayrıca exact import graph çıkarılacaktır; eski isimler repo drift etmiş olabilir.
-
-Canonical target:
+Kernel/config/factory/result-verifier primitive'leri korunur. Duplicate partial runners/model selectors import/caller graph doğrulandıktan sonra deprecate edilir.
 
 ```text
 Agent Request
@@ -352,35 +138,70 @@ Agent Request
 
 ---
 
-# 9. P2 - Thin / vertical package triage
+# 9. P2 - Protected product verticals
 
-Şimdilik core authority yapılmayacak gruplar:
+Bu grup artık **"thin package"** olarak değerlendirilmez. Package klasör boyutu ürünün gerçek runtime kapsamını temsil etmeyebilir. Dedicated triage tamamlanmadan hiçbir aşağıdaki paket archive/drop edilmeyecektir.
 
-- `packages/restaurant`
-- `packages/marketplace`
-- `packages/supply`
-- `packages/support`
-- `packages/blog`
-- `packages/admin`
-- `packages/voice`
-- `packages/influencer`
-- `packages/studio`
+| Product / package | Status | Şimdiden doğrulanan değer |
+|---|---|---|
+| `packages/restaurant` + Restaurant web/lib/API | **PROTECTED_VERTICAL / SÖKÜM 37 AKTİF** | Offline-first POS, Dexie schema, table/adisyon, KDS, waiter, QR ordering, split bill, tip/KDV, sync conflict rules, İyzico/Paraşüt intent. |
+| `packages/marketplace` | **PROTECTED_VERTICAL / TRIAGE PENDING** | Job, AI analysis, bid, provider snapshot, credit economy, escrow, commission; `manage/pazaryeri` UI + usta flow var. |
+| `packages/supply` | **PROTECTED_VERTICAL / TRIAGE PENDING** | Supplier, product, PO, reorder point, supplier scoring, premium supplier marketplace; `manage/tedarik` UI var. |
+| `packages/support` | **PROTECTED_VERTICAL / TRIAGE PENDING** | Ticket/SLA + knowledge-base/RAG contracts; `manage/destek` UI var. |
+| `packages/blog` | **PROTECTED_VERTICAL / TRIAGE PENDING** | Blog generation, autopilot, token budget, SEO score; `manage/blog` ve `manage/blog-motoru` UIs var. |
+| `packages/studio` | **PROTECTED_VERTICAL / TRIAGE PENDING** | Design templates, canvas/export contracts, agency/portfolio; `manage/icerik-studyo` + editor var. |
+| `packages/voice` | **PROTECTED_VERTICAL / TRIAGE PENDING** | VoiceCommand/VoiceIntent, Deepgram config, sector keyterms; Agent/Messaging'e extension adayı. |
+| `packages/seo` | **PROTECTED_VERTICAL / TRIAGE PENDING** | LocalBusiness JSON-LD, `llms.txt`, AI mention tracking; Publish/Marketing/Analytics extension adayı. |
+| `packages/admin` | **KEEP / CONSOLIDATE CONTROL PLANE** | Impersonation, feature flags, audit contracts; SÖKÜM 29/31/35 authority'lerine bağlanır. |
+| `packages/influencer` | **PROTECTED_VERTICAL / TRIAGE PENDING** | Dedicated caller/runtime audit tamamlanmadan cleanup yok. |
 
-**Disposition:** VERIFY_CALLERS -> KEEP/DEFER/ARCHIVE.
+## Restaurant özel kuralı
 
-İlk incelemede bu paketlerin bir bölümü küçük index/types kabuklarıdır. Yalnız package adı nedeniyle ayrı core domain yaratılmayacak.
+Restaurant emeği generic Commerce içine eritilmez.
 
-Kural:
-- caller + gerçek business logic varsa canonical core'a bağla,
-- yalnız type shell ise future vertical olarak defer,
-- caller yoksa archive/drop adayı,
-- Customer/Payment/Finance/Identity/Capability gibi core authority'leri vertical içinde tekrar tanımlamasına izin verme.
+Hedef bounded context:
+
+```text
+Restaurant Operations
+  Table / Floor
+  DiningSession
+  Check / Adisyon
+  RestaurantOrder
+  KitchenTicket / KDS
+  WaiterTask
+  OfflineReplica / Sync
+```
+
+Restaurant şu core authority'leri tekrar yaratamaz:
+
+```text
+Tenant / Identity      -> Control Plane
+Menu price authority   -> canonical catalog/policy snapshot
+Payment truth          -> Payment Core
+Revenue/refund/tip/tax -> Finance Ledger
+Public QR trust        -> Public Action Gateway
+Provider integrations  -> IntegrationConnection
+Async execution        -> Durable Execution
+```
+
+Demo UI data cleanup adayı olabilir; Restaurant UX ve domain semantics cleanup adayı değildir.
+
+## Diğer vertical'lar için karar kuralı
+
+```text
+real independent state/lifecycle + runtime
+    -> dedicated bounded-context teardown
+
+existing core'a doğal extension
+    -> KEEP extension + connect canonical authority
+
+pure dead shell + zero callers
+    -> ancak telemetry/caller proof sonrası archive candidate
+```
 
 ---
 
 # 10. Cleanup uygulama sırası
-
-Bu manifestte hiçbir file bugün silinmez.
 
 Her aday için zorunlu sıra:
 
@@ -396,23 +217,27 @@ Her aday için zorunlu sıra:
 9. Delete
 ```
 
-## İlk gerçek implementation wave'i
+Protected vertical'larda 8-9. adımlar dedicated teardown verdict'i olmadan uygulanmaz.
 
-Cleanup'a dosya silerek değil şu sözleşmelerle başlanmalıdır:
+---
+
+# 11. İlk implementation foundation
+
+Cleanup dosya silerek değil şu sözleşmelerle başlar:
 
 1. `RequestContext`
 2. `BusinessTenant`
 3. `EffectiveCapabilitySet`
-4. `CommandId/EventId/Revision` ortak kuralları
+4. `CommandId/EventId/Revision`
 5. `AuditContext/TelemetryContext`
 
-Bunlar olmadan legacy route'ları güvenli biçimde compatibility shell'e indirmek mümkün değildir.
+Restaurant ve diğer vertical'lar bu ortak omurgayı kullanır, kendilerine özel operasyon state'ini ise bounded context içinde korur.
 
 ---
 
-# 11. Bu manifestin sonraki işi
+# 12. Manifest v2 metadata
 
-v2 manifestte her satıra şu metadata eklenecek:
+Her path için zamanla şu alanlar tamamlanacaktır:
 
 ```text
 path
@@ -426,4 +251,4 @@ rollback path
 owner
 ```
 
-İlk derin dosya/caller turu P0 grubundan başlayacak; `apps/randevu-server` kapsam dışı kalacaktır.
+`apps/randevu-server` kapsam dışıdır.
