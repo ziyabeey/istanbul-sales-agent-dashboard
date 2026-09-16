@@ -1,0 +1,27 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "incremental": false,
+    "baseUrl": "..",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "types": ["node", "vitest/globals", "next/types/global"]
+  },
+  "include": [
+    "../src/lib/core/*.ts",
+    "../src/lib/credentials/credentialResolver.ts",
+    "../src/app/api/core/auth/**/route.ts",
+    "./unit/coreClient.test.ts",
+    "./unit/coreJwtVerifier.test.ts",
+    "./unit/coreBffSession.test.ts",
+    "./unit/coreRequestContext.test.ts",
+    "./unit/coreIdentityAdapter.test.ts",
+    "./unit/coreAuthRoutes.test.ts"
+  ],
+  "exclude": [
+    "../node_modules",
+    "../.next"
+  ]
+}

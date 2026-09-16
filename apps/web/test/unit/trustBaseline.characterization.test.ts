@@ -290,6 +290,28 @@ describe('Pilot-0 trust baseline characterization', () => {
     expect(source).toContain('await oturumOlustur(esnafId, response)')
   })
 
+  it('KC-02: Core BFF keeps tokens server-side, cookies host-only and JWT verification mandatory', () => {
+    const bff = readSource('src/lib/core/bffSession.ts')
+    const context = readSource('src/lib/core/requestContext.ts')
+    const otp = readSource('src/app/api/core/auth/otp-dogrula/route.ts')
+    const config = readSource('src/lib/core/config.ts')
+
+    expect(bff).toContain('httpOnly: true')
+    expect(bff).not.toMatch(/\bdomain:/)
+    expect(bff).toContain("sameSite: 'strict'")
+    expect(bff).toContain("createCipheriv('aes-256-gcm'")
+    expect(context).toContain('deps.verifier.verify(')
+    expect(context).toContain('deps.client.listMemberships(')
+    expect(context).toContain("if (fresh.claims.sub !== record.userId) return { ok: false, reason: 'SESSION_REVOKED' }")
+    expect(otp).toContain('runtime.verifier.verify(session.access_token)')
+    expect(otp).not.toContain('access_token:')
+    expect(otp).not.toContain('refresh_token:')
+    expect(config).not.toMatch(/env\.NEXT_PUBLIC_|process\.env\.NEXT_PUBLIC_/)
+    expect(config).toContain("storageKind: 'env'")
+    expect(CURRENT_PRINCIPAL_SOURCES.coreBff[0]).toContain('verified Supabase access JWT')
+    expect(CURRENT_PRINCIPAL_SOURCES.coreBff[0]).toContain('browser never sees tokens')
+  })
+
   it('KNOWN-RISK: unmigrated cron routes still rely on the shared CRON_SECRET path', () => {
     const source = readSource('src/lib/apiGuard.ts')
     expect(source).toContain('requireCronSecret?: boolean')
