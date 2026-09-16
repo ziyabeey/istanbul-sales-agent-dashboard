@@ -12,12 +12,13 @@ Her canlı `esnaflar/{esnafId}` için:
 | --- | --- |
 | `durum = silindi` | atlanır |
 | `coreBusinessId` var | zaten bağlı (0 komut) |
-| owner Core'da yok | **bekletilir** — sahipsiz business yaratılmaz |
+| owner Core'da yok | **bekletilir** — sahipsiz business yaratılmaz; Firestore `coreUserId` gölgesi tek başına sahip saymaz (`deferredShadowOnly`) |
+| Firestore `coreUserId` ≠ Core'un çözdüğü owner | **fail-closed** — `ownerShadowMismatch` raporlanır, komut yok |
 | ad < 2 veya > 120 karakter | `invalid_name` raporlanır |
 | slug türetilemez / rezerve | `slug_invalid` / `slug_reserved` raporlanır |
 | hazır | `ProvisionBusiness` — idempotency key `kc03-provision-<sha256(esnafId)>`, payload `{owner_user_id, name, slug, timezone, tenant_alias{legacy-kepenk-firestore, esnafId}}` |
 
-Owner çözümü Core'dan okunur, Kepenk tarafı yazımdan değil: KC-02 girişte `legacy-kepenk-phone:<telefon> → user_id` alias'ını bağlar; backfill her sayfa için `core_resolve_identity_aliases` (100'lük batch) ile `telefonTemiz`'i Core kullanıcısına çevirir. Çözülen `coreUserId` yalnız başarılı provisioning ile birlikte gölge alan olarak yazılır (PR #18 blocker 4).
+Owner çözümü **her çalıştırmada** Core'dan okunur, Kepenk tarafı yazımdan değil: KC-02 girişte `legacy-kepenk-phone:<telefon> → user_id` alias'ını bağlar; backfill her sayfa için `core_resolve_identity_aliases` (100'lük batch) ile `telefonTemiz`'i Core kullanıcısına çevirir (`OwnerResolution`: `core` / `shadow_only` / `shadow_mismatch` / `none`). Firestore'daki `coreUserId` yalnız **ipucu**dur: Core doğrulamadan asla `ProvisionBusiness.owner_user_id` olmaz (R1 KC-03 blocker 2); Core'un cevabıyla çelişen gölge fail-closed drift'tir. Çözülen `coreUserId` yalnız başarılı provisioning ile birlikte gölge alan olarak yazılır (PR #18 blocker 4).
 
 Slug: mevcut `subdomain`/`slug` canonical ise korunur, değilse Randevu `slugify` portu (`src/lib/core/slug.ts`) ile addan türetilir. Rezerve ad listesi DOMAIN-01 kesinleşene kadar geçici ve dardır. `BUSINESS_SLUG_TAKEN` → **fail-closed, rapor**, sessiz rename yok.
 
@@ -27,7 +28,7 @@ Koruma: KC-01 `ProvisionBusiness` aynı alias için mevcut business'ı döndür�
 
 ## Shadow parity
 
-`runTenantParityCheck`: bağlı esnaflar için `core_resolve_tenant_aliases` (100'lük batch) ile `coreBusinessId` karşılaştırılır; `coreUserId` + telefon olanlar için `core_resolve_identity_aliases(legacy-kepenk-phone)` ile owner eşlemesi doğrulanır. Rapor: `aliasMatch / aliasMissing / aliasMismatch / ownerAlias*` ve `zeroDrift`. **`zeroDrift = true` olmadan KC-05 açılmaz.** Raporlar `core_migration_reports/{latest-backfill|latest-parity}`.
+`runTenantParityCheck`: bağlı esnaflar için `core_resolve_tenant_aliases` (100'lük batch) ile `coreBusinessId` karşılaştırılır; `coreUserId` + telefon olanlar için `core_resolve_identity_aliases(legacy-kepenk-phone)` ile owner eşlemesi doğrulanır. Rapor: `aliasMatch / aliasMissing / aliasMismatch / ownerAlias*`, `exhausted`, `truncated` ve `zeroDrift`. **`zeroDrift` tam cutover değişmezidir (R1 KC-03 blocker 1):** tarama exhaustive olmalı (`maxTenants` kesmesi → `truncated`, asla zero drift), canlı tenant'lar arasında `unlinked = 0` ve `deferredNoOwner = 0` olmalı, alias/owner missing ve mismatch listeleri boş olmalı. **`zeroDrift = true` olmadan KC-05 açılmaz.** Raporlar `core_migration_reports/{latest-backfill|latest-parity}`.
 
 ## Yüzeyler
 

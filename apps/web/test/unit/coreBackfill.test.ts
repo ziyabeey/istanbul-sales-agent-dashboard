@@ -42,7 +42,8 @@ function fakeClient(overrides: Partial<Record<'applyCommand' | 'resolveTenantAli
     tenant_alias_linked: true,
   }))
   const resolveTenantAliases = vi.fn(async () => [])
-  const resolveIdentityAliases = vi.fn(async () => [])
+  // Default: Core knows every phone subject as OWNER; tests override for foreign/unknown cases.
+  const resolveIdentityAliases = vi.fn(async (_provider: string, subjects: string[]) => subjects.map((subject) => ({ external_subject: subject, user_id: OWNER })))
   const client = { applyCommand, resolveTenantAliases, resolveIdentityAliases, ...overrides } as unknown as CorePlatformClient
   return { client, applyCommand, resolveTenantAliases, resolveIdentityAliases }
 }
@@ -59,13 +60,18 @@ describe('slug policy', () => {
 })
 
 describe('planTenantBackfill', () => {
-  it('classifies deleted, linked, ownerless, invalid and ready tenants', () => {
+  const core = { kind: 'core' as const, userId: OWNER }
+
+  it('classifies deleted, linked, ownerless, invalid and ready tenants; the coreUserId shadow alone never makes a tenant ready', () => {
     expect(planTenantBackfill({ id: 'a', durum: 'silindi', coreUserId: OWNER })).toEqual({ kind: 'deleted' })
     expect(planTenantBackfill({ id: 'b', coreBusinessId: BIZ, coreUserId: OWNER })).toEqual({ kind: 'already_linked', businessId: BIZ })
-    expect(planTenantBackfill({ id: 'c', isletmeAdiTam: 'Berber' })).toEqual({ kind: 'deferred_no_owner' })
-    expect(planTenantBackfill({ id: 'd', coreUserId: OWNER, ad: 'x' })).toEqual({ kind: 'invalid_name' })
-    expect(planTenantBackfill({ id: 'e', coreUserId: OWNER, isletmeAdiTam: 'Admin' })).toEqual({ kind: 'slug_reserved', candidate: 'admin' })
-    expect(planTenantBackfill({ id: 'f', coreUserId: OWNER, isletmeAdiTam: 'Kepenk Berber', subdomain: 'kepenk-berber-eski' })).toEqual({
+    expect(planTenantBackfill({ id: 'c', isletmeAdiTam: 'Berber' })).toEqual({ kind: 'deferred_no_owner', shadowOnly: false })
+    expect(planTenantBackfill({ id: 'c2', coreUserId: OWNER, isletmeAdiTam: 'Berber' })).toEqual({ kind: 'deferred_no_owner', shadowOnly: true })
+    expect(planTenantBackfill({ id: 'c3', coreUserId: OWNER, isletmeAdiTam: 'Berber', ownerResolution: { kind: 'shadow_only', shadowUserId: OWNER } })).toEqual({ kind: 'deferred_no_owner', shadowOnly: true })
+    expect(planTenantBackfill({ id: 'c4', coreUserId: OTHER, isletmeAdiTam: 'Berber', ownerResolution: { kind: 'shadow_mismatch', shadowUserId: OTHER, coreUserId: OWNER } })).toEqual({ kind: 'owner_shadow_mismatch', shadowUserId: OTHER, coreUserId: OWNER })
+    expect(planTenantBackfill({ id: 'd', ad: 'x', ownerResolution: core })).toEqual({ kind: 'invalid_name' })
+    expect(planTenantBackfill({ id: 'e', isletmeAdiTam: 'Admin', ownerResolution: core })).toEqual({ kind: 'slug_reserved', candidate: 'admin' })
+    expect(planTenantBackfill({ id: 'f', coreUserId: OWNER, isletmeAdiTam: 'Kepenk Berber', subdomain: 'kepenk-berber-eski', ownerResolution: core })).toEqual({
       kind: 'ready',
       ownerUserId: OWNER,
       name: 'Kepenk Berber',
@@ -93,9 +99,34 @@ describe('runTenantBackfill', () => {
     expect(source.patches.has('esnaf-2')).toBe(false)
   })
 
+  it('never trusts the Firestore coreUserId shadow as owner authority: mismatch fails closed, unconfirmed shadow defers, zero provisioning', async () => {
+    const source = new MemorySource([
+      { id: 'esnaf-foreign', coreUserId: OTHER, telefonTemiz: '905551110001', isletmeAdiTam: 'Yabanci Golge' },
+      { id: 'esnaf-stale', coreUserId: OTHER, isletmeAdiTam: 'Telefonsuz Golge' },
+      { id: 'esnaf-unknown', coreUserId: OWNER, telefonTemiz: '905559990009', isletmeAdiTam: 'Core Bilmiyor' },
+      { id: 'esnaf-confirmed', coreUserId: OWNER, telefonTemiz: '905551110002', isletmeAdiTam: 'Dogrulanan' },
+    ])
+    const resolveIdentityAliases = vi.fn(async () => [
+      { external_subject: '905551110001', user_id: OWNER },
+      { external_subject: '905551110002', user_id: OWNER },
+    ])
+    const { client, applyCommand } = fakeClient({ resolveIdentityAliases })
+
+    const report = await runTenantBackfill({ source, client, now: NOW })
+    expect(report.ownerShadowMismatch).toEqual([{ esnafId: 'esnaf-foreign', shadowUserId: OTHER, coreUserId: OWNER }])
+    expect(report).toMatchObject({ provisioned: 1, deferredNoOwner: 2, deferredShadowOnly: 2 })
+    expect(applyCommand).toHaveBeenCalledTimes(1)
+    const [input] = applyCommand.mock.calls[0] as unknown as [{ payload: { owner_user_id: string; tenant_alias: { external_id: string } } }]
+    expect(input.payload.owner_user_id).toBe(OWNER)
+    expect(input.payload.tenant_alias.external_id).toBe('esnaf-confirmed')
+    expect(source.patches.has('esnaf-foreign')).toBe(false)
+    expect(source.patches.has('esnaf-stale')).toBe(false)
+    expect(source.patches.has('esnaf-unknown')).toBe(false)
+  })
+
   it('provisions ready tenants once with a deterministic key and records the shadow business id', async () => {
     const source = new MemorySource([
-      { id: 'esnaf-1', coreUserId: OWNER, isletmeAdiTam: 'Kepenk Berber' },
+      { id: 'esnaf-1', telefonTemiz: '905551234567', isletmeAdiTam: 'Kepenk Berber' },
       { id: 'esnaf-2', isletmeAdiTam: 'Sahipsiz' },
       { id: 'esnaf-3', durum: 'silindi' },
     ])
@@ -125,8 +156,8 @@ describe('runTenantBackfill', () => {
 
   it('counts a Core-side replay as linked without creating anything, and never binds a foreign business', async () => {
     const source = new MemorySource([
-      { id: 'esnaf-1-replay', coreUserId: OWNER, isletmeAdiTam: 'Tekrar' },
-      { id: 'esnaf-2-hijack', coreUserId: OTHER, isletmeAdiTam: 'Hijack' },
+      { id: 'esnaf-1-replay', telefonTemiz: '905551234501', isletmeAdiTam: 'Tekrar' },
+      { id: 'esnaf-2-hijack', telefonTemiz: '905551234502', isletmeAdiTam: 'Hijack' },
     ])
     const applyCommand = vi
       .fn()
@@ -142,9 +173,9 @@ describe('runTenantBackfill', () => {
 
   it('reports slug conflicts without renaming or retrying, and keeps other errors per tenant', async () => {
     const source = new MemorySource([
-      { id: 'esnaf-1-conflict', coreUserId: OWNER, isletmeAdiTam: 'Taken Name' },
-      { id: 'esnaf-2-outage', coreUserId: OWNER, isletmeAdiTam: 'Outage' },
-      { id: 'esnaf-3-ok', coreUserId: OWNER, isletmeAdiTam: 'Fine' },
+      { id: 'esnaf-1-conflict', telefonTemiz: '905551234511', isletmeAdiTam: 'Taken Name' },
+      { id: 'esnaf-2-outage', telefonTemiz: '905551234512', isletmeAdiTam: 'Outage' },
+      { id: 'esnaf-3-ok', telefonTemiz: '905551234513', isletmeAdiTam: 'Fine' },
     ])
     const applyCommand = vi
       .fn()
@@ -164,7 +195,7 @@ describe('runTenantBackfill', () => {
   })
 
   it('dry runs plan without issuing commands and pages through the collection with a cursor', async () => {
-    const docs = Array.from({ length: 5 }, (_, i) => ({ id: `esnaf-${i}`, coreUserId: OWNER, isletmeAdiTam: `Dukkan ${i}` }))
+    const docs = Array.from({ length: 5 }, (_, i) => ({ id: `esnaf-${i}`, telefonTemiz: `90555123460${i}`, isletmeAdiTam: `Dukkan ${i}` }))
     const source = new MemorySource(docs)
     const { client, applyCommand } = fakeClient()
 
@@ -180,25 +211,47 @@ describe('runTenantBackfill', () => {
 })
 
 describe('runTenantParityCheck', () => {
-  it('reports zero drift only when every shadow field matches Core', async () => {
+  it('reports zero drift only for an exhaustive scan where every live tenant is linked and every shadow matches Core', async () => {
     const source = new MemorySource([
+      { id: 'esnaf-1', coreUserId: OWNER, coreBusinessId: BIZ, telefonTemiz: '905551234567' },
+      { id: 'esnaf-2', coreUserId: OWNER, coreBusinessId: '5b000000-0000-4000-8000-000000000002', telefonTemiz: '905551234568' },
+      { id: 'esnaf-4', durum: 'silindi', coreBusinessId: BIZ },
+    ])
+    const resolveTenantAliases = vi.fn(async () => [
+      { external_id: 'esnaf-1', business_id: BIZ, slug: 'kepenk-berber' },
+      { external_id: 'esnaf-2', business_id: '5b000000-0000-4000-8000-000000000002', slug: 'ikinci' },
+    ])
+    const { client, resolveIdentityAliases } = fakeClient({ resolveTenantAliases })
+
+    const report = await runTenantParityCheck({ source, client, now: NOW })
+    expect(report).toMatchObject({ scanned: 3, linked: 2, unlinked: 0, deferredNoOwner: 0, aliasMatch: 2, ownerAliasMatch: 2, exhausted: true, truncated: false, zeroDrift: true })
+    expect(resolveTenantAliases).toHaveBeenCalledWith('legacy-kepenk-firestore', ['esnaf-1', 'esnaf-2'])
+    expect(resolveIdentityAliases).toHaveBeenCalledWith('legacy-kepenk-phone', ['905551234567', '905551234568'])
+    expect(source.reports.at(-1)?.kind).toBe('parity')
+  })
+
+  it('is never zero drift while live tenants are unlinked or deferred, and never when the scan was truncated', async () => {
+    const unlinked = new MemorySource([
       { id: 'esnaf-1', coreUserId: OWNER, coreBusinessId: BIZ, telefonTemiz: '905551234567' },
       { id: 'esnaf-2', coreUserId: OWNER, telefonTemiz: '905551234568' },
       { id: 'esnaf-3' },
-      { id: 'esnaf-4', durum: 'silindi', coreBusinessId: BIZ },
     ])
     const resolveTenantAliases = vi.fn(async () => [{ external_id: 'esnaf-1', business_id: BIZ, slug: 'kepenk-berber' }])
-    const resolveIdentityAliases = vi.fn(async () => [
-      { external_subject: '905551234567', user_id: OWNER },
-      { external_subject: '905551234568', user_id: OWNER },
-    ])
-    const { client } = fakeClient({ resolveTenantAliases, resolveIdentityAliases })
+    const { client } = fakeClient({ resolveTenantAliases })
+    const partial = await runTenantParityCheck({ source: unlinked, client, now: NOW })
+    expect(partial).toMatchObject({ scanned: 3, linked: 1, unlinked: 2, deferredNoOwner: 1, aliasMatch: 1, exhausted: true, truncated: false, zeroDrift: false })
 
-    const report = await runTenantParityCheck({ source, client, now: NOW })
-    expect(report).toMatchObject({ scanned: 4, linked: 1, unlinked: 2, deferredNoOwner: 1, aliasMatch: 1, ownerAliasMatch: 2, zeroDrift: true })
-    expect(resolveTenantAliases).toHaveBeenCalledWith('legacy-kepenk-firestore', ['esnaf-1'])
-    expect(resolveIdentityAliases).toHaveBeenCalledWith('legacy-kepenk-phone', ['905551234567', '905551234568'])
-    expect(source.reports.at(-1)?.kind).toBe('parity')
+    const shadowOnly = new MemorySource([{ id: 'esnaf-1', coreUserId: OWNER, isletmeAdiTam: 'Golge' }])
+    const shadowReport = await runTenantParityCheck({ source: shadowOnly, client, now: NOW })
+    expect(shadowReport).toMatchObject({ unlinked: 1, deferredNoOwner: 1, zeroDrift: false })
+
+    const many = new MemorySource(Array.from({ length: 4 }, (_, i) => ({ id: `esnaf-${i}`, coreUserId: OWNER, coreBusinessId: BIZ, telefonTemiz: `90555123470${i}` })))
+    const allAliases = vi.fn(async (_provider: string, ids: string[]) => ids.map((id) => ({ external_id: id, business_id: BIZ, slug: id })))
+    const { client: fullClient } = fakeClient({ resolveTenantAliases: allAliases })
+    const truncated = await runTenantParityCheck({ source: many, client: fullClient, pageSize: 2, maxTenants: 2, now: NOW })
+    expect(truncated).toMatchObject({ scanned: 2, truncated: true, exhausted: false, zeroDrift: false })
+    const complete = await runTenantParityCheck({ source: many, client: fullClient, pageSize: 2, now: NOW })
+    expect(complete).toMatchObject({ scanned: 4, truncated: false, exhausted: true, unlinked: 0, zeroDrift: true })
   })
 
   it('surfaces missing and mismatching aliases as drift', async () => {

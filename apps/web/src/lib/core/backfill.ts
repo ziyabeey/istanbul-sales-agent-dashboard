@@ -13,8 +13,12 @@ import { decideBusinessSlug } from './slug'
  * KC-03: esnaf -> business backfill, alias linking and shadow parity.
  *
  * Firestore `esnaflar/{esnafId}` stays authoritative for Kepenk data during
- * this step. For every legacy tenant whose owner already exists in Core
- * (`coreUserId`, written by the KC-02 identity adapter) the job issues one
+ * this step. The owner of every legacy tenant is derived from Core on each
+ * run (legacy phone -> `legacy-kepenk-phone` identity alias -> user_id); the
+ * Firestore `coreUserId` shadow is only a hint and is never used as owner
+ * authority (R1 KC-03 blocker 2). A tenant whose shadow disagrees with Core
+ * fails closed as drift, and a tenant Core cannot resolve is deferred even
+ * when a shadow exists. For each Core-resolved owner the job issues one
  * idempotent ProvisionBusiness command (owner membership + tenant alias) and
  * records the resulting `business_id` on the legacy document as a shadow
  * field. Nothing is renamed on conflict, no business is created without an
@@ -45,48 +49,84 @@ export function legacyTenantPhoneSubject(doc: LegacyTenantDoc): string | null {
 }
 
 /**
- * Owner resolution is read from Core, never from a Kepenk-side write: the
- * KC-02 identity adapter linked `legacy-kepenk-phone:<phone> -> user_id`, so
- * a tenant whose phone resolves to a Core user has an owner. Returns a copy of
- * the page with `coreUserId` filled where Core knows the owner.
+ * Owner authority for a legacy tenant. Only `core` may provision: the owner
+ * was derived from Core (`legacy-kepenk-phone` identity alias). A Firestore
+ * `coreUserId` shadow that Core does not confirm is `shadow_only` (deferred)
+ * and one that contradicts Core is `shadow_mismatch` (fail closed, drift).
  */
-export async function resolveTenantOwners(client: CorePlatformClient, docs: LegacyTenantDoc[]): Promise<LegacyTenantDoc[]> {
-  const pending = docs.filter((doc) => !doc.coreUserId && legacyTenantPhoneSubject(doc))
-  if (pending.length === 0) return docs.map((doc) => ({ ...doc }))
+export type OwnerResolution =
+  | { kind: 'core'; userId: string }
+  | { kind: 'shadow_mismatch'; shadowUserId: string; coreUserId: string }
+  | { kind: 'shadow_only'; shadowUserId: string }
+  | { kind: 'none' }
+
+export type ResolvedTenant = LegacyTenantDoc & { ownerResolution: OwnerResolution }
+
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
+
+function shadowUserId(doc: LegacyTenantDoc): string | null {
+  return typeof doc.coreUserId === 'string' && UUID_RE.test(doc.coreUserId) ? doc.coreUserId : null
+}
+
+/**
+ * Owner resolution is read from Core on every run, never from a Kepenk-side
+ * write: the KC-02 identity adapter linked `legacy-kepenk-phone:<phone> ->
+ * user_id`, so the tenant's legacy phone is resolved through
+ * `core_resolve_identity_aliases`. The Firestore `coreUserId` shadow is
+ * compared against that answer but never substitutes for it.
+ */
+export async function resolveTenantOwners(client: CorePlatformClient, docs: LegacyTenantDoc[]): Promise<ResolvedTenant[]> {
+  const subjects = [...new Set(docs.map((doc) => legacyTenantPhoneSubject(doc)).filter((s): s is string => s !== null))]
   const bySubject = new Map<string, string>()
-  const subjects = [...new Set(pending.map((doc) => legacyTenantPhoneSubject(doc) as string))]
   for (let i = 0; i < subjects.length; i += CORE_ALIAS_BATCH_LIMIT) {
     const aliases = await client.resolveIdentityAliases(CORE_LEGACY_PHONE_PROVIDER, subjects.slice(i, i + CORE_ALIAS_BATCH_LIMIT))
     for (const alias of aliases) bySubject.set(alias.external_subject, alias.user_id)
   }
   return docs.map((doc) => {
-    if (doc.coreUserId) return { ...doc }
     const subject = legacyTenantPhoneSubject(doc)
-    const resolved = subject ? bySubject.get(subject) : undefined
-    return resolved ? { ...doc, coreUserId: resolved } : { ...doc }
+    const derived = subject ? bySubject.get(subject) ?? null : null
+    const shadow = shadowUserId(doc)
+    let ownerResolution: OwnerResolution
+    if (derived && shadow && shadow.toLowerCase() !== derived.toLowerCase()) {
+      ownerResolution = { kind: 'shadow_mismatch', shadowUserId: shadow, coreUserId: derived }
+    } else if (derived) {
+      ownerResolution = { kind: 'core', userId: derived }
+    } else if (shadow) {
+      ownerResolution = { kind: 'shadow_only', shadowUserId: shadow }
+    } else {
+      ownerResolution = { kind: 'none' }
+    }
+    return { ...doc, ownerResolution }
   })
 }
 
 export type BackfillDecision =
   | { kind: 'already_linked'; businessId: string }
   | { kind: 'deleted' }
-  | { kind: 'deferred_no_owner' }
+  | { kind: 'deferred_no_owner'; shadowOnly: boolean }
+  | { kind: 'owner_shadow_mismatch'; shadowUserId: string; coreUserId: string }
   | { kind: 'invalid_name' }
   | { kind: 'slug_invalid' | 'slug_reserved'; candidate: string }
   | { kind: 'ready'; ownerUserId: string; name: string; slug: string; slugSource: 'existing' | 'derived' }
-
-const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
 
 export function legacyTenantDisplayName(doc: LegacyTenantDoc): string {
   return String(doc.isletmeAdiTam || doc.isletmeAdi || doc.ad || '').trim()
 }
 
-export function planTenantBackfill(doc: LegacyTenantDoc): BackfillDecision {
+/** Only a Core-derived owner may provision; the Firestore `coreUserId` shadow alone never does. */
+export function planTenantBackfill(doc: LegacyTenantDoc & { ownerResolution?: OwnerResolution }): BackfillDecision {
   if (doc.durum === 'silindi') return { kind: 'deleted' }
   if (typeof doc.coreBusinessId === 'string' && UUID_RE.test(doc.coreBusinessId)) {
     return { kind: 'already_linked', businessId: doc.coreBusinessId }
   }
-  if (typeof doc.coreUserId !== 'string' || !UUID_RE.test(doc.coreUserId)) return { kind: 'deferred_no_owner' }
+  // Without a Core resolution a Firestore coreUserId is only an unconfirmed shadow.
+  const shadow = shadowUserId(doc)
+  const resolution: OwnerResolution = doc.ownerResolution ?? (shadow ? { kind: 'shadow_only', shadowUserId: shadow } : { kind: 'none' })
+  if (resolution.kind === 'shadow_mismatch') {
+    return { kind: 'owner_shadow_mismatch', shadowUserId: resolution.shadowUserId, coreUserId: resolution.coreUserId }
+  }
+  if (resolution.kind !== 'core') return { kind: 'deferred_no_owner', shadowOnly: resolution.kind === 'shadow_only' }
+  const ownerUserId = resolution.userId
 
   const name = legacyTenantDisplayName(doc)
   if (name.length < 2 || name.length > 120) return { kind: 'invalid_name' }
@@ -94,7 +134,7 @@ export function planTenantBackfill(doc: LegacyTenantDoc): BackfillDecision {
   const slug = decideBusinessSlug({ existingSlug: doc.subdomain || doc.slug, name })
   if (!slug.ok) return { kind: slug.reason === 'reserved' ? 'slug_reserved' : 'slug_invalid', candidate: slug.candidate }
 
-  return { kind: 'ready', ownerUserId: doc.coreUserId, name, slug: slug.slug, slugSource: slug.source }
+  return { kind: 'ready', ownerUserId, name, slug: slug.slug, slugSource: slug.source }
 }
 
 export const ProvisionResultSchema = z.object({
@@ -119,10 +159,14 @@ export interface BackfillReport {
   replayed: number
   alreadyLinked: number
   deferredNoOwner: number
+  /** Deferred tenants that carry a Firestore coreUserId shadow Core did not confirm. */
+  deferredShadowOnly: number
   deleted: number
   invalid: Array<{ esnafId: string; reason: string; candidate?: string }>
   slugConflicts: Array<{ esnafId: string; slug: string }>
   ownerMismatch: string[]
+  /** Firestore coreUserId contradicts the Core-derived owner: fail closed, never provisioned. */
+  ownerShadowMismatch: Array<{ esnafId: string; shadowUserId: string; coreUserId: string }>
   errors: Array<{ esnafId: string; code: string }>
   lastEsnafId: string | null
   exhausted: boolean
@@ -150,10 +194,12 @@ export async function runTenantBackfill(input: BackfillRunInput): Promise<Backfi
     replayed: 0,
     alreadyLinked: 0,
     deferredNoOwner: 0,
+    deferredShadowOnly: 0,
     deleted: 0,
     invalid: [],
     slugConflicts: [],
     ownerMismatch: [],
+    ownerShadowMismatch: [],
     errors: [],
     lastEsnafId: null,
     exhausted: false,
@@ -176,6 +222,10 @@ export async function runTenantBackfill(input: BackfillRunInput): Promise<Backfi
         continue
       case 'deferred_no_owner':
         report.deferredNoOwner++
+        if (decision.shadowOnly) report.deferredShadowOnly++
+        continue
+      case 'owner_shadow_mismatch':
+        report.ownerShadowMismatch.push({ esnafId: doc.id, shadowUserId: decision.shadowUserId, coreUserId: decision.coreUserId })
         continue
       case 'invalid_name':
         report.invalid.push({ esnafId: doc.id, reason: 'invalid_name' })
@@ -252,6 +302,14 @@ export interface ParityReport {
   ownerAliasMatch: number
   ownerAliasMissing: string[]
   ownerAliasMismatch: Array<{ esnafId: string; firestoreUserId: string; coreUserId: string }>
+  /** Every live tenant was visited (no page left unread). */
+  exhausted: boolean
+  /** The scan stopped at maxTenants with tenants possibly left unread; never zero drift. */
+  truncated: boolean
+  /**
+   * Full cutover invariant (R1 KC-03 blocker 1): exhaustive, not truncated,
+   * zero unlinked/deferred live tenants and empty alias/owner drift lists.
+   */
   zeroDrift: boolean
 }
 
@@ -287,21 +345,28 @@ export async function runTenantParityCheck(input: ParityRunInput): Promise<Parit
     ownerAliasMatch: 0,
     ownerAliasMissing: [],
     ownerAliasMismatch: [],
+    exhausted: false,
+    truncated: false,
     zeroDrift: false,
   }
 
   let startAfter: string | null = null
-  while (report.scanned < maxTenants) {
+  for (;;) {
     const page = await input.source.listTenants({ startAfter, limit: pageSize })
-    if (page.length === 0) break
+    if (page.length === 0) {
+      report.exhausted = true
+      break
+    }
     report.scanned += page.length
     startAfter = page[page.length - 1].id
 
-    const live = page.filter((doc) => doc.durum !== 'silindi')
+    const resolvedPage = await resolveTenantOwners(input.client, page)
+    const live = resolvedPage.filter((doc) => doc.durum !== 'silindi')
     const linked = live.filter((doc) => typeof doc.coreBusinessId === 'string' && UUID_RE.test(doc.coreBusinessId))
     report.linked += linked.length
     report.unlinked += live.length - linked.length
-    report.deferredNoOwner += live.filter((doc) => !doc.coreBusinessId && !doc.coreUserId).length
+    // Deferred = unlinked tenants Core cannot resolve an owner for; the Firestore shadow does not count.
+    report.deferredNoOwner += live.filter((doc) => !doc.coreBusinessId && doc.ownerResolution.kind !== 'core').length
 
     for (const batch of chunk(linked, CORE_ALIAS_BATCH_LIMIT)) {
       const aliases = await input.client.resolveTenantAliases(CORE_LEGACY_TENANT_PROVIDER, batch.map((doc) => doc.id))
@@ -329,10 +394,21 @@ export async function runTenantParityCheck(input: ParityRunInput): Promise<Parit
       })
     }
 
-    if (page.length < pageSize) break
+    if (page.length < pageSize) {
+      report.exhausted = true
+      break
+    }
+    if (report.scanned >= maxTenants) {
+      report.truncated = true
+      break
+    }
   }
 
   report.zeroDrift =
+    report.exhausted &&
+    !report.truncated &&
+    report.unlinked === 0 &&
+    report.deferredNoOwner === 0 &&
     report.aliasMissing.length === 0 &&
     report.aliasMismatch.length === 0 &&
     report.ownerAliasMissing.length === 0 &&
