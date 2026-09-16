@@ -45,6 +45,7 @@ jobs:
           src/app/api/auth/cikis/route.ts
           src/app/api/auth/me/route.ts
           test/unit/humanAuthAdapters.test.ts
+          test/unit/jwtHmac.test.ts
       - name: Validate trust browser smoke script
         run: bash -n apps/web/test/e2e/trust-browser-smoke.sh
       - name: Typecheck P0 trust baseline artifacts
