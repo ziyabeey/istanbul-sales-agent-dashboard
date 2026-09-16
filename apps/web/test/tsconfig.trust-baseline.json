@@ -1,0 +1,17 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "incremental": false,
+    "types": ["node", "vitest/globals", "@playwright/test"]
+  },
+  "include": [
+    "fixtures/trust-baseline.ts",
+    "unit/trustBaseline.characterization.test.ts",
+    "e2e/trust-baseline.spec.ts"
+  ],
+  "exclude": [
+    "../node_modules",
+    "../.next"
+  ]
+}
