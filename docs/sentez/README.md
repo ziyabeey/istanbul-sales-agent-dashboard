@@ -15,6 +15,19 @@
 | 4 | Cleanup Backlog + Cutover Gates | BEKLİYOR | — |
 | 5 | Kepenk v2 Portable Core / Vertical Packaging | BEKLİYOR | — |
 
+## Korunan public frontend
+
+Kepenk/KPNK public marketing frontend'i özel koruma altındadır:
+
+- `apps/web/src/app/page.tsx`
+- root layout / global design tokens,
+- `Navbar`, ana landing section'ları ve public marketing route ağı,
+- SEO/PWA/public acquisition surface.
+
+Canonical sözleşme: `docs/sentez/frontend-preservation-contract.md`.
+
+**Kural:** backend/domain migration frontend'i sıfırdan yeniden yazmak için gerekçe değildir. Görsel/interaction baseline KEEP WHOLE; eski fiyat, ürün vaadi, capability listesi ve doğrulanmamış claim/testimonial gibi içerikler CONTENT REWIRE edilir.
+
 ## SENTEZ 1 kararı
 
 Kepenk v2 beş düzlemde organize edilir:
@@ -80,14 +93,18 @@ SENTEZ 3 sekiz migration kümesini gerçek dependency wave'lerine dönüştürü
 3. compatibility/projection dönemlerini tanımla,
 4. provider/payment/finance cutover sırasını kesinleştir,
 5. vertical pack activation gate'lerini çıkar,
-6. big-bang yerine strangler migration graph üret.
+6. big-bang yerine strangler migration graph üret,
+7. korunan public frontend'in hangi wave'de yalnız data/API rewire alacağını sabitle.
 
 Kod değişikliği yapılmaz.
 
 ## Kapsam kuralı
 
+- `KEPENK_SOKUM_PLANI.md` içindeki 01–24 tarihsel kararlar senteze dahildir.
+- `docs/sokum/25-41` repo-doğrulanmış sonraki turlardır.
 - `docs/sokum/36-canonical-architecture-synthesis.md` core baseline'dır.
 - `docs/sokum/37-41` son vertical/control-plane eklentileridir.
 - `docs/sokum/final-inventory-sweep.md` domain söküm kapanışıdır.
+- `docs/sentez/frontend-preservation-contract.md` public Kepenk frontend'inin KEEP/PRESERVE kuralıdır.
 - `apps/randevu-server` Kepenk kapsamı dışındadır ve değiştirilmez.
 - Yeni domain avına dönülmez; yalnız somut kapsam boşluğu kanıtlanırsa ayrıca değerlendirilir.
