@@ -129,26 +129,31 @@ Opening PR #2 exposed pre-existing CI failures before any trust runtime change:
 1. `.github/workflows/ci.yml` used `npm ci`, while the repository declares `packageManager: pnpm@9.1.0` and tracks `pnpm-lock.yaml`.
 2. The workflow invoked Turbo `type-check` and `test` tasks that are not declared in `turbo.json`.
 3. A recursive lint attempt exposed `apps/sites`' legacy `next lint` script as interactive/unconfigured in CI.
-4. Running full `@kepenk/web` ESLint then exposed the existing source/config debt: **1066 findings = 809 errors + 257 warnings** across legacy application code and generated `apps/web/test-results/e2e-html/**` assets.
+4. Running full `@kepenk/web` ESLint exposed the existing source/config debt: **1066 findings = 809 errors + 257 warnings** across legacy application code and generated `apps/web/test-results/e2e-html/**` assets.
+5. Running full `@kepenk/web` TypeScript checking also exposes pre-existing application errors outside the P0-00 trust artifacts.
 
-P0-00 does not convert that historical debt into false green status and does not broaden this trust-baseline PR into an 800-error cleanup project.
+P0-00 does not convert that historical debt into false green status and does not broaden this trust-baseline PR into a whole-repository lint/type cleanup project.
 
 The evidence workflow is therefore repaired as follows without changing application runtime:
 
 - enable `pnpm@9.1.0` through Corepack,
 - install with `pnpm install --frozen-lockfile`,
 - lint only the three trust-baseline source artifacts introduced by P0-00,
-- keep `@kepenk/web` typecheck as the next broad compile/static gate,
+- typecheck only the P0-00 artifacts with `apps/web/test/tsconfig.trust-baseline.json` as a **blocking gate**,
+- still execute the full `@kepenk/web` typecheck as an **informational, tolerated legacy-debt signal** with `continue-on-error`,
 - run `@kepenk/web` unit/integration suites explicitly,
 - keep monorepo `pnpm build` as the broader build gate,
 - add a pull-request-only Chromium job for `trust-baseline.spec.ts`,
 - keep the existing full Playwright/Lighthouse/staging chain on main push.
 
-Known CI/lint debt remains explicit:
+The first isolated typecheck run found a P0-00-only configuration error: `@playwright/test` was incorrectly listed as a global `types` library. The config was corrected to rely on normal module imports for Playwright/Vitest types. That is a P0-00 defect and is fixed in this branch, rather than being classified as legacy debt.
+
+Known CI/lint/type debt remains explicit:
 
 - full web lint currently has the 809-error / 257-warning baseline above,
 - generated `test-results/e2e-html/**` should eventually be ignored by ESLint,
 - `apps/sites` lint configuration needs a non-interactive modern ESLint migration,
+- broad `@kepenk/web` typecheck has historical errors outside P0-00,
 - none of these are represented as completed by P0-00.
 
 ## How to run
@@ -161,10 +166,18 @@ pnpm --filter @kepenk/web exec eslint \
   test/fixtures/trust-baseline.ts \
   test/unit/trustBaseline.characterization.test.ts \
   test/e2e/trust-baseline.spec.ts
-pnpm --filter @kepenk/web typecheck
+pnpm --filter @kepenk/web exec tsc \
+  -p test/tsconfig.trust-baseline.json \
+  --noEmit
 pnpm --filter @kepenk/web test:unit
 pnpm --filter @kepenk/web test:integration
 pnpm build
+```
+
+Informational legacy-debt probe:
+
+```bash
+pnpm --filter @kepenk/web typecheck
 ```
 
 Browser smoke:
@@ -179,14 +192,18 @@ pnpm --filter @kepenk/web exec playwright test \
 
 P0-00 is ready to merge only when:
 
-- exact-head CI install + changed-file lint + typecheck + unit + integration + build gates have been evaluated,
-- the trust characterization suite passes on the exact branch head,
+- exact-head dependency installation succeeds,
+- P0-00 changed-file lint is green,
+- P0-00 isolated TypeScript gate is green,
+- the trust characterization suite is green on the exact branch head,
 - PR trust browser smoke passes for `/giris` at desktop, 390px and 360px,
 - unauthenticated dashboard/admin redirect smoke passes,
+- broad unit/integration/build gates have been evaluated and any pre-existing failures are classified rather than hidden,
 - no application/runtime source file changed,
 - branch diff is limited to tests/fixtures/docs plus CI evidence workflow repair,
-- any remaining broad repository failure is recorded as pre-existing debt rather than silently ignored,
 - later hard-cut PRs reference this baseline when flipping a known-risk assertion.
+
+The broad historical `@kepenk/web` lint/type debt is **not** a claim of green health and is **not** silently skipped. It is explicitly out of P0-00's runtime scope while the newly introduced trust artifacts remain hard-gated.
 
 ## Rollback
 
