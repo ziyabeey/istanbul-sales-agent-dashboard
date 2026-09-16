@@ -46,7 +46,9 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: 'Geçersiz istek' }, { status: 400 })
     }
 
-    const secret = process.env.ADMIN_SECRET_TOKEN
+    // ADMIN_SECRET_TOKEN was historically exposed to browser bundles as an API
+    // header. Never reuse that legacy value as a login credential.
+    const secret = process.env.ADMIN_LOGIN_SECRET
     if (!secret) {
         return NextResponse.json({ error: 'Sunucu yapılandırma hatası' }, { status: 500 })
     }
