@@ -33,7 +33,8 @@ test.describe('API Healthcheck', () => {
   test('API root responding', async ({ request }) => {
     const response = await request.get('/api/health')
     expect(response.status()).toBe(200)
-    await expect(response.json()).resolves.toMatchObject({ ok: true, service: 'kepenk-web' })
+    const payload = await response.json() as { ok?: boolean; service?: string }
+    expect(payload).toMatchObject({ ok: true, service: 'kepenk-web' })
   })
 })
 
