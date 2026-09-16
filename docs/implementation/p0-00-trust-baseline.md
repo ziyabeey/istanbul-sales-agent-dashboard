@@ -2,7 +2,7 @@
 
 > Branch: `p0/00-trust-baseline`  
 > Base: `main@82912585450ab4307fcf9220ab27b5c361d65792`  
-> Scope: additive characterization + browser smoke only  
+> Scope: additive characterization + browser smoke + CI evidence repair  
 > Runtime behavior changes: **none**
 
 ## Purpose
@@ -122,21 +122,42 @@ This table is representative, not a claim that code-search produced an exhaustiv
 | Cloud Tasks unavailable | direct HTTP fallback | direct HTTP fallback | production fail/degraded, no trust downgrade |
 | Privacy purge simulation | can return success | can return success | never production success |
 
+## CI evidence baseline
+
+Opening PR #2 exposed a pre-existing CI failure before any trust runtime change:
+
+1. `.github/workflows/ci.yml` used `npm ci`, while the repository declares `packageManager: pnpm@9.1.0` and tracks `pnpm-lock.yaml`.
+2. The workflow invoked Turbo `type-check` and `test` tasks that are not declared in `turbo.json`.
+3. A recursive lint attempt then exposed `apps/sites`' legacy `next lint` script as interactive/unconfigured in CI.
+
+P0-00 therefore repairs the evidence pipeline without changing application runtime:
+
+- enable `pnpm@9.1.0` through Corepack,
+- install with `pnpm install --frozen-lockfile`,
+- gate lint/type on `@kepenk/web`, the application changed by Pilot-0,
+- run `@kepenk/web` unit/integration suites explicitly,
+- keep monorepo `pnpm build` as the broader build gate,
+- keep Playwright/Lighthouse/staging behavior on main push.
+
+The `apps/sites` lint configuration remains an explicit repository debt; it is not silently represented as green monorepo lint coverage.
+
 ## How to run
 
-From `apps/web`:
+From repository root:
 
 ```bash
-npm test -- trustBaseline.characterization.test.ts
-npm run test:e2e -- trust-baseline.spec.ts
+pnpm install --frozen-lockfile
+pnpm --filter @kepenk/web test:unit -- trustBaseline.characterization.test.ts
+pnpm --filter @kepenk/web test:integration
+pnpm --filter @kepenk/web lint
+pnpm --filter @kepenk/web typecheck
+pnpm build
 ```
 
-Full regression candidates:
+Browser smoke:
 
 ```bash
-npm run test:unit
-npm run typecheck
-npm run build
+pnpm --filter @kepenk/web test:e2e -- trust-baseline.spec.ts
 ```
 
 ## P0-00 merge gate
@@ -147,9 +168,9 @@ P0-00 is ready to merge only when:
 - browser smoke passes for `/giris` at desktop, 390px and 360px,
 - unauthenticated dashboard/admin redirect smoke passes,
 - no application/runtime source file changed,
-- branch diff is limited to tests/fixtures/docs,
+- branch diff is limited to tests/fixtures/docs plus the CI evidence workflow repair,
 - later hard-cut PRs reference this baseline when flipping a known-risk assertion.
 
 ## Rollback
 
-Entire P0-00 is additive. Revert removes only tests/fixtures/docs and does not alter production behavior.
+P0-00 changes only tests/fixtures/docs and CI configuration. Revert does not alter production application behavior.
