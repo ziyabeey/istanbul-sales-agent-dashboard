@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { NextRequest } from 'next/server'
+import type { NextRequest } from 'next/server'
 import type { RequestContext } from '../../../../packages/auth/src/types/canonical'
 
 const mocks = vi.hoisted(() => ({
@@ -33,20 +33,44 @@ const CONTEXT = {
   membershipRevision: 1,
 } as unknown as RequestContext
 
-function request(
+/**
+ * Vitest runs in jsdom, where importing NextRequest does not construct the
+ * framework-owned `nextUrl` surface reliably. Proxy behavior only needs the
+ * stable request fields below, so the unit seam models those explicitly while
+ * the real Next.js object is exercised by trust-browser-smoke.
+ */
+function proxyRequest(
   url: string,
-  options: { cookie?: string; host?: string; method?: string; body?: string } = {}
+  options: { cookie?: string; host?: string } = {}
 ): NextRequest {
+  const parsed = new URL(url)
   const headers = new Headers()
+  headers.set('host', options.host ?? parsed.host)
   if (options.cookie) headers.set('cookie', options.cookie)
-  if (options.host) headers.set('host', options.host)
-  if (options.body) headers.set('content-type', 'application/json')
 
-  return new NextRequest(url, {
-    method: options.method ?? 'GET',
+  const cookieValues = new Map<string, string>()
+  for (const entry of (options.cookie ?? '').split(';')) {
+    const separator = entry.indexOf('=')
+    if (separator < 0) continue
+    const name = entry.slice(0, separator).trim()
+    const value = entry.slice(separator + 1).trim()
+    if (name && value) cookieValues.set(name, value)
+  }
+
+  const nextUrl = new URL(parsed.toString()) as URL & { clone: () => URL }
+  nextUrl.clone = () => new URL(parsed.toString())
+
+  return {
+    nextUrl,
     headers,
-    body: options.body,
-  })
+    url: parsed.toString(),
+    cookies: {
+      get(name: string) {
+        const value = cookieValues.get(name)
+        return value ? { name, value } : undefined
+      },
+    },
+  } as unknown as NextRequest
 }
 
 describe('P0-03 request-gate convergence', () => {
@@ -58,7 +82,7 @@ describe('P0-03 request-gate convergence', () => {
   it('denies dashboard access when a random business cookie cannot resolve canonical context', async () => {
     mocks.resolveToken.mockResolvedValue(null)
 
-    const response = await proxy(request(
+    const response = await proxy(proxyRequest(
       'http://localhost:3000/dashboard/manage',
       { cookie: 'kepenk_session=random-cookie' }
     ))
@@ -71,7 +95,7 @@ describe('P0-03 request-gate convergence', () => {
   it('authorizes dashboard only from canonical RequestContext', async () => {
     mocks.resolveToken.mockResolvedValue(CONTEXT)
 
-    const response = await proxy(request(
+    const response = await proxy(proxyRequest(
       'http://localhost:3000/dashboard/manage',
       { cookie: 'kepenk_session=canonical-token' }
     ))
@@ -83,7 +107,7 @@ describe('P0-03 request-gate convergence', () => {
   it('guards app subdomain root before dashboard rewrite', async () => {
     mocks.resolveToken.mockResolvedValue(null)
 
-    const response = await proxy(request(
+    const response = await proxy(proxyRequest(
       'http://app.localhost:3000/',
       {
         host: 'app.localhost:3000',
@@ -101,7 +125,7 @@ describe('P0-03 request-gate convergence', () => {
   it('preserves app subdomain rewrite after canonical authorization', async () => {
     mocks.resolveToken.mockResolvedValue(CONTEXT)
 
-    const response = await proxy(request(
+    const response = await proxy(proxyRequest(
       'http://app.localhost:3000/',
       {
         host: 'app.localhost:3000',
@@ -116,7 +140,7 @@ describe('P0-03 request-gate convergence', () => {
   it('keeps login reachable on business subdomains when unauthenticated', async () => {
     mocks.resolveToken.mockResolvedValue(null)
 
-    const response = await proxy(request(
+    const response = await proxy(proxyRequest(
       'http://app.localhost:3000/giris',
       { host: 'app.localhost:3000' }
     ))
