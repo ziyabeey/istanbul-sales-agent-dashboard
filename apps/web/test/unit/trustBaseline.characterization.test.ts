@@ -44,8 +44,10 @@ describe('Pilot-0 trust baseline characterization', () => {
 
   it('KNOWN-RISK: cryptographically verified legacy esnafId JWT compatibility remains temporary', () => {
     const source = readSource('src/lib/sessionManager.ts')
-    expect(source).toContain('new SignJWT({ esnafId })')
+    expect(source).toContain('return signHs256Jwt({')
+    expect(source).toContain('verifyHs256Jwt(token, getSessionSecret()')
     expect(source).toContain('return { esnafId: payload.esnafId }')
+    expect(source).not.toContain("from 'jose'")
     expect(KNOWN_TRUST_RISKS).toContain(
       'legacy_human_jwt_has_no_durable_revocation_until_request_gate_retirement'
     )
