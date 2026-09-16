@@ -124,22 +124,32 @@ This table is representative, not a claim that code-search produced an exhaustiv
 
 ## CI evidence baseline
 
-Opening PR #2 exposed a pre-existing CI failure before any trust runtime change:
+Opening PR #2 exposed pre-existing CI failures before any trust runtime change:
 
 1. `.github/workflows/ci.yml` used `npm ci`, while the repository declares `packageManager: pnpm@9.1.0` and tracks `pnpm-lock.yaml`.
 2. The workflow invoked Turbo `type-check` and `test` tasks that are not declared in `turbo.json`.
-3. A recursive lint attempt then exposed `apps/sites`' legacy `next lint` script as interactive/unconfigured in CI.
+3. A recursive lint attempt exposed `apps/sites`' legacy `next lint` script as interactive/unconfigured in CI.
+4. Running full `@kepenk/web` ESLint then exposed the existing source/config debt: **1066 findings = 809 errors + 257 warnings** across legacy application code and generated `apps/web/test-results/e2e-html/**` assets.
 
-P0-00 therefore repairs the evidence pipeline without changing application runtime:
+P0-00 does not convert that historical debt into false green status and does not broaden this trust-baseline PR into an 800-error cleanup project.
+
+The evidence workflow is therefore repaired as follows without changing application runtime:
 
 - enable `pnpm@9.1.0` through Corepack,
 - install with `pnpm install --frozen-lockfile`,
-- gate lint/type on `@kepenk/web`, the application changed by Pilot-0,
+- lint only the three trust-baseline source artifacts introduced by P0-00,
+- keep `@kepenk/web` typecheck as the next broad compile/static gate,
 - run `@kepenk/web` unit/integration suites explicitly,
 - keep monorepo `pnpm build` as the broader build gate,
-- keep Playwright/Lighthouse/staging behavior on main push.
+- add a pull-request-only Chromium job for `trust-baseline.spec.ts`,
+- keep the existing full Playwright/Lighthouse/staging chain on main push.
 
-The `apps/sites` lint configuration remains an explicit repository debt; it is not silently represented as green monorepo lint coverage.
+Known CI/lint debt remains explicit:
+
+- full web lint currently has the 809-error / 257-warning baseline above,
+- generated `test-results/e2e-html/**` should eventually be ignored by ESLint,
+- `apps/sites` lint configuration needs a non-interactive modern ESLint migration,
+- none of these are represented as completed by P0-00.
 
 ## How to run
 
@@ -147,28 +157,35 @@ From repository root:
 
 ```bash
 pnpm install --frozen-lockfile
-pnpm --filter @kepenk/web test:unit -- trustBaseline.characterization.test.ts
-pnpm --filter @kepenk/web test:integration
-pnpm --filter @kepenk/web lint
+pnpm --filter @kepenk/web exec eslint \
+  test/fixtures/trust-baseline.ts \
+  test/unit/trustBaseline.characterization.test.ts \
+  test/e2e/trust-baseline.spec.ts
 pnpm --filter @kepenk/web typecheck
+pnpm --filter @kepenk/web test:unit
+pnpm --filter @kepenk/web test:integration
 pnpm build
 ```
 
 Browser smoke:
 
 ```bash
-pnpm --filter @kepenk/web test:e2e -- trust-baseline.spec.ts
+pnpm --filter @kepenk/web exec playwright test \
+  test/e2e/trust-baseline.spec.ts \
+  --project=chrome
 ```
 
 ## P0-00 merge gate
 
 P0-00 is ready to merge only when:
 
-- the characterization suite passes on the exact branch head,
-- browser smoke passes for `/giris` at desktop, 390px and 360px,
+- exact-head CI install + changed-file lint + typecheck + unit + integration + build gates have been evaluated,
+- the trust characterization suite passes on the exact branch head,
+- PR trust browser smoke passes for `/giris` at desktop, 390px and 360px,
 - unauthenticated dashboard/admin redirect smoke passes,
 - no application/runtime source file changed,
-- branch diff is limited to tests/fixtures/docs plus the CI evidence workflow repair,
+- branch diff is limited to tests/fixtures/docs plus CI evidence workflow repair,
+- any remaining broad repository failure is recorded as pre-existing debt rather than silently ignored,
 - later hard-cut PRs reference this baseline when flipping a known-risk assertion.
 
 ## Rollback
