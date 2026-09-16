@@ -1,0 +1,168 @@
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { NextRequest } from 'next/server'
+import type { RequestContext } from '../../../../packages/auth/src/types/canonical'
+
+const mocks = vi.hoisted(() => ({
+  resolveToken: vi.fn(),
+  resolveRequest: vi.fn(),
+}))
+
+vi.mock('@/lib/auth/businessSession', () => ({
+  BUSINESS_SESSION_COOKIE: 'kepenk_session',
+  resolveCanonicalBusinessContext: mocks.resolveToken,
+  resolveCanonicalBusinessContextFromRequest: mocks.resolveRequest,
+}))
+
+vi.mock('@/lib/mvpFeatureFlags', () => ({
+  isMvpDashboardPathAllowed: () => true,
+  isMvpTestReleaseEnabled: () => false,
+}))
+
+import proxy from '../../src/proxy'
+import { apiGuard } from '../../src/lib/apiGuard'
+
+const CONTEXT = {
+  sessionId: 'ses_test',
+  userId: 'usr_test',
+  membershipId: 'mem_test',
+  tenantId: 'tenant-canonical',
+  role: 'owner',
+  permissions: [],
+  authMethod: 'phone_otp',
+  sessionEpoch: 0,
+  membershipRevision: 1,
+} as unknown as RequestContext
+
+function request(
+  url: string,
+  options: { cookie?: string; host?: string; method?: string; body?: string } = {}
+): NextRequest {
+  const headers = new Headers()
+  if (options.cookie) headers.set('cookie', options.cookie)
+  if (options.host) headers.set('host', options.host)
+  if (options.body) headers.set('content-type', 'application/json')
+
+  return new NextRequest(url, {
+    method: options.method ?? 'GET',
+    headers,
+    body: options.body,
+  })
+}
+
+describe('P0-03 request-gate convergence', () => {
+  beforeEach(() => {
+    vi.clearAllMocks()
+    process.env.ADMIN_SECRET_TOKEN = 'test-admin-secret'
+  })
+
+  it('denies dashboard access when a random business cookie cannot resolve canonical context', async () => {
+    mocks.resolveToken.mockResolvedValue(null)
+
+    const response = await proxy(request(
+      'http://localhost:3000/dashboard/manage',
+      { cookie: 'kepenk_session=random-cookie' }
+    ))
+
+    expect(response.status).toBe(307)
+    expect(response.headers.get('location')).toContain('/giris?callbackUrl=%2Fdashboard%2Fmanage')
+    expect(mocks.resolveToken).toHaveBeenCalledWith('random-cookie')
+  })
+
+  it('authorizes dashboard only from canonical RequestContext', async () => {
+    mocks.resolveToken.mockResolvedValue(CONTEXT)
+
+    const response = await proxy(request(
+      'http://localhost:3000/dashboard/manage',
+      { cookie: 'kepenk_session=canonical-token' }
+    ))
+
+    expect(response.status).toBe(200)
+    expect(response.headers.get('x-middleware-next')).toBe('1')
+  })
+
+  it('guards app subdomain root before dashboard rewrite', async () => {
+    mocks.resolveToken.mockResolvedValue(null)
+
+    const response = await proxy(request(
+      'http://app.localhost:3000/',
+      {
+        host: 'app.localhost:3000',
+        cookie: 'kepenk_session=random-cookie',
+      }
+    ))
+
+    expect(response.status).toBe(307)
+    const location = new URL(response.headers.get('location')!)
+    expect(location.hostname).toBe('localhost')
+    expect(location.pathname).toBe('/giris')
+    expect(location.searchParams.get('callbackUrl')).toBe('/dashboard/manage')
+  })
+
+  it('preserves app subdomain rewrite after canonical authorization', async () => {
+    mocks.resolveToken.mockResolvedValue(CONTEXT)
+
+    const response = await proxy(request(
+      'http://app.localhost:3000/',
+      {
+        host: 'app.localhost:3000',
+        cookie: 'kepenk_session=canonical-token',
+      }
+    ))
+
+    expect(response.status).toBe(200)
+    expect(response.headers.get('x-middleware-rewrite')).toContain('/dashboard/manage')
+  })
+
+  it('keeps login reachable on business subdomains when unauthenticated', async () => {
+    mocks.resolveToken.mockResolvedValue(null)
+
+    const response = await proxy(request(
+      'http://app.localhost:3000/giris',
+      { host: 'app.localhost:3000' }
+    ))
+
+    expect(response.status).toBe(200)
+    expect(response.headers.get('x-middleware-next')).toBe('1')
+  })
+
+  it('API user guard returns the exact canonical context', async () => {
+    mocks.resolveRequest.mockResolvedValue(CONTEXT)
+
+    const guarded = await apiGuard(new Request('http://localhost/api/example', {
+      headers: { cookie: 'kepenk_session=canonical-token' },
+    }), { requireUserSession: true })
+
+    expect(guarded.ok).toBe(true)
+    if (!guarded.ok) throw new Error('expected canonical guard success')
+    expect(guarded.context).toEqual(CONTEXT)
+  })
+
+  it('API user guard rejects an unresolved session', async () => {
+    mocks.resolveRequest.mockResolvedValue(null)
+
+    const guarded = await apiGuard(new Request('http://localhost/api/example', {
+      headers: { cookie: 'kepenk_session=random-cookie' },
+    }), { requireUserSession: true })
+
+    expect(guarded.ok).toBe(false)
+    if (guarded.ok) throw new Error('expected canonical guard denial')
+    expect(guarded.response.status).toBe(401)
+  })
+
+  it('caller tenant payload cannot replace canonical tenant authority', async () => {
+    mocks.resolveRequest.mockResolvedValue(CONTEXT)
+
+    const guarded = await apiGuard(new Request('http://localhost/api/example?tenantId=tenant-attacker', {
+      method: 'POST',
+      headers: {
+        cookie: 'kepenk_session=canonical-token',
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify({ tenantId: 'tenant-attacker' }),
+    }), { requireUserSession: true })
+
+    expect(guarded.ok).toBe(true)
+    if (!guarded.ok) throw new Error('expected canonical guard success')
+    expect(guarded.context?.tenantId).toBe('tenant-canonical')
+  })
+})
