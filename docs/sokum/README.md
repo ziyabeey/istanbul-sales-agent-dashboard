@@ -18,102 +18,110 @@
 | 32 | Data Lifecycle / Privacy / Consent / Retention | KAPALI | `docs/sokum/32-data-lifecycle-privacy-consent-retention.md` |
 | 33 | External Integration Connection Lifecycle | KAPALI | `docs/sokum/33-integration-connection-lifecycle.md` |
 | 34 | Tenant / Business Lifecycle / Onboarding / Provisioning / Offboarding | KAPALI | `docs/sokum/34-tenant-business-lifecycle.md` |
-| 35 | Entitlement / Capability / Module / Feature Flag Runtime Authority | AÇIK | sıradaki doğrulama turu |
+| 35 | Entitlement / Capability / Module / Feature Flag Runtime Authority | KAPALI | `docs/sokum/35-entitlement-capability-runtime-authority.md` |
+| 36 | Canonical Architecture Synthesis / KEEP-REWRITE-DROP / Migration & Cleanup Sequence | AÇIK | sıradaki sentez turu |
 
 ## Kanonik devam kuralı
 
 - `KEPENK_SOKUM_PLANI.md` 01-24 geniş snapshot olarak korunur.
 - 25+ doğrulanmış belgeler `docs/sokum/` altında ayrı tutulur.
-- Yeni turda yalnız bu indeks + en son kapalı söküm + aktif frontier kodu okunur.
+- Yeni turda yalnız bu indeks + gerekli kapalı söküm belgeleri + aktif frontier okunur.
 - Paralel ajan frontier'ı kapatmışsa güncel `main` okunup sonraki açık frontier'a geçilir.
 - `apps/randevu-server` bu söküm serisi nedeniyle değiştirilmez.
 - Production secret/token değerleri dokümana kopyalanmaz.
 
-## Kapanan son karar: SÖKÜM 34
+## Kapanan son karar: SÖKÜM 35
 
-Canonical tenant lifecycle authority olmadığı doğrulandı.
+Runtime capability authority'nin package, modül projection'ları, `ayarlar.*`, quota, provider health ve global feature flag'ler arasında parçalı olduğu doğrulandı.
 
 En kritik bulgular:
 
-- `/onboarding/submit` tenant yaratmadan AI preview success dönebilirken `/onboarding/complete` doğrudan `esnaflar/{id}` yaratıp session açıyor.
-- onboarding request içindeki `paket` doğrudan tenant root'a yazılabiliyor; server-side entitlement authority bu noktada görünmüyor.
-- `kvkkOnay: true` creation snapshot'ına hard-coded yazılıyor; consent lifecycle ile tenant creation karışmış.
-- setup progress production truth değil, in-memory `demo-esnaf` state'i.
-- gerçek `durum: aktif` geçişi ödeme sonrası `paketSenaryosuCalistir` içinde required provisioning tamamlanmadan önce yapılıyor.
-- site/VAPI/domain/content/messaging provisioning farklı failure semantics ile fan-out oluyor; tek durable provisioning run yok.
-- admin PATCH `durum`, `paket`, modüller, ayarlar ve provider resource alanlarını raw mutate edebiliyor.
-- session JWT tenant lifecycle state'ini kontrol etmiyor; suspension için central fail-closed gate doğrulanmadı.
-- admin DELETE yalnız root tenant document'ını siliyor; bu offboarding completion değildir.
+- package catalog ve `minPaket` module policy değerli input'lar fakat tek runtime authorization truth'u değiller,
+- `paketSenaryosuCalistir` package değişiminde `aktifModuller`, çok sayıda `ayarlar.*` boolean'ı ve provider provisioning side effect'i üretiyor,
+- downgrade tarafında üst paketten kalan capability/resource state'ini sistematik deprovision eden simetrik akış görünmüyor,
+- `/api/esnaf/sync-moduller` client'ın gönderdiği module listesini package entitlement ile server-side kesiştirmeden `aktifWebModulleri` ve `siteJson.moduller` alanlarına yazıyor,
+- global MVP/release flags ile commercial entitlement farklı kavramlar olmasına rağmen runtime availability aynı yüzeylerde kesişiyor,
+- `runAgent()` tenant entitlement/quota gate'i olmadan model çalıştırabiliyor,
+- `/api/domain/sec` gibi route'lar effective capability yerine doğrudan `esnaf.paket` string'ine bakarak authorization kararı veriyor,
+- quota exhaustion ile entitlement yokluğu aynı şey değildir ve ayrı reason code gerektirir,
+- provider/integration health capability hakkı değil, runtime dependency girdisidir.
 
 Canonical yön:
-
-```text
-CREATING
-  ↓
-ONBOARDING
-  ↓
-PROVISIONING
-  ↓
-ACTIVE
-  ├─→ SUSPENDED → ACTIVE
-  └─→ CLOSING
-          ↓
-      OFFBOARDING
-          ↓
-        CLOSED
-```
-
-Tenant orchestration:
-
-```text
-BusinessTenant
-   ├── OnboardingRun
-   ├── ProvisioningRun / ProvisioningTask[]
-   ├── lifecycleRevision + sessionEpoch
-   └── OffboardingRun
-```
-
-En önemli invariant:
-
-> Tenant `ACTIVE` ancak minimum-ready-set kullanılabilir olduğunda aktif olur; `CLOSED` ancak required internal/external offboarding task'ları reconciliation proof ile tamamlandığında kapanmış sayılır.
-
-## Aktif frontier
-
-### SÖKÜM 35 - Entitlement / Capability / Module / Feature Flag Runtime Authority
-
-SÖKÜM 34 sırasında `paket`, `aktifModuller`, `aktifWebModulleri`, `ayarlar.*` ve farklı runtime flag'lerinin aynı capability gerçeğini paralel biçimde temsil ettiği yeniden görünür oldu. SÖKÜM 12 billing/package kararını yeniden yapmayacağız; bu tur özellikle **effective capability runtime truth** katmanını doğrulayacak.
-
-Öncelikli sorular:
-
-- Bir tenant'ın belirli capability'yi kullanıp kullanamayacağına hangi tek authority karar veriyor?
-- `paket`, `aktifModuller`, `aktifWebModulleri`, `ayarlar.*`, feature flags ve quota sonuçları nasıl birleşiyor?
-- Package plan yalnız entitlement input'u mu, yoksa runtime authorization doğrudan package string'e mi bakıyor?
-- Admin override varsa canonical modeli, süresi, nedeni ve auditi var mı?
-- Upgrade/downgrade capability diff'i transactional/idempotent mi?
-- Capability kaldırılınca mevcut jobs, integrations, site modules ve scheduled actions nasıl deprovision oluyor?
-- Public site module projection ile dashboard/backend capability gate aynı truth'u mu kullanıyor?
-- Client payload/site draft içindeki package/module alanları authorization etkileyebiliyor mu?
-- Feature flag ile commercial entitlement birbirinden ayrılmış mı?
-- Quota exhaustion capability availability ile nasıl temsil ediliyor?
-- Capability dependency'leri var mı? Örn. `ads.manage` için bağlı provider connection zorunlu mu?
-- Runtime fail-closed mu, yoksa eksik field/default nedeniyle premium capability açılabiliyor mu?
-- Legacy module/settings fields compatibility projection olarak mı kalacak?
-
-SÖKÜM 35'in hedefi:
 
 ```text
 Subscription / Contract
         ↓
 Entitlement Policy
         ↓
-Effective Capability Set
-   ↙        ↓         ↘
-Runtime   Quotas   Dependencies
- Gates             / Health
+EntitlementGrant[]
         ↓
-Provision / Deprovision
++--------------------------------+
+| Tenant lifecycle               |
+| Release flags                  |
+| Tenant preferences             |
+| Quotas                         |
+| Integration/resource health    |
++--------------------------------+
         ↓
-Capability Read Model
+EffectiveCapabilitySet
+        ↓
++--------------------------------+
+| Dashboard / APIs               |
+| Public Action Gateway          |
+| Site Editor / Publish          |
+| Workers / Schedulers           |
+| Provider Adapters              |
+| AI / Messaging / Commerce      |
++--------------------------------+
+        ↓
+Audit + Outbox + Provisioning
 ```
 
-> **Package adından bağımsız, server-side ve audit edilebilir tek bir effective capability authority kurup tüm runtime authorization ve provisioning kararlarını aynı truth'a bağlamak.**
+En önemli invariant:
+
+> Bir capability'nin varlığı package string'i veya mutable boolean ile değil, server-side effective policy decision ile kanıtlanmalıdır.
+
+## Aktif frontier
+
+### SÖKÜM 36 - Canonical Architecture Synthesis / KEEP-REWRITE-DROP / Migration & Cleanup Sequence
+
+01-35 arasındaki domain ve cross-cutting authority sökümleri artık yeterli kapsama ulaştı. Bu tur yeni bir feature domain aramak yerine, bulunan parçaları tek bir yeni Kepenk mimarisine bağlayacak ve eski repodan neyin taşınacağı, yeniden yazılacağı veya tamamen atılacağı konusunda uygulanabilir bir migration/cleanup haritası çıkaracak.
+
+Öncelikli sorular:
+
+- 01-35 kararları tek canonical bounded-context haritasında nasıl birleşiyor?
+- Hangi mevcut package/app/library doğrudan KEEP edilebilir?
+- Hangi parçalar yalnız adapter/UI/algorithm olarak tutulup authority katmanı REWRITE edilmelidir?
+- Hangi legacy route, collection, parallel schema, fake/demo runtime ve duplicate authority DROP edilmelidir?
+- Yeni sistemde stable ID ve ownership graph nasıl olmalıdır?
+- Migration hangi dependency sırasıyla yapılırsa public site, booking, CRM, commerce, messaging ve integrations aynı anda kırılmaz?
+- Strangler/migration sırasında legacy ve canonical state arasında hangi compatibility projections gerekir?
+- Hangi dual-write yolları kısa süreli kabul edilebilir, hangileri kesinlikle yasaklanmalıdır?
+- Cutover readiness ve rollback kriterleri nelerdir?
+- Temizlikte hangi dosyalar/route'lar önce deprecate, sonra archive, en son delete edilmelidir?
+- Yeni Kepenk'in minimum production-ready core'u hangi authority'lerden oluşmalıdır?
+- Hangi alanlar sonraki ürün fazlarına bırakılabilir?
+
+SÖKÜM 36'nın hedefi:
+
+```text
+01-35 Verified Decisions
+          ↓
+Canonical Bounded Context Map
+          ↓
+KEEP / REWRITE / DROP Matrix
+          ↓
+Target Dependency Graph
+          ↓
+Migration Waves
+          ↓
+Compatibility / Shadow Read
+          ↓
+Cutover Gates
+          ↓
+Legacy Cleanup Manifest
+          ↓
+New Kepenk Architecture Baseline
+```
+
+> **Söküm çıktısını dağınık kararlar koleksiyonundan, uygulanabilir tek mimari ve temizleme planına dönüştürmek.**
