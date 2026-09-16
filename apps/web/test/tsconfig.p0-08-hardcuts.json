@@ -5,13 +5,22 @@
     "incremental": false,
     "baseUrl": "..",
     "paths": {
-      "@/*": ["src/*"],
-      "zod": ["../../packages/admin/node_modules/zod"]
+      "@/*": ["src/*"]
     },
     "types": ["node", "vitest/globals", "next/types/global"]
   },
   "include": [
-    "../src/app/api/cron/kuyruk-isleyici/route.ts"
+    "../src/lib/serviceAuth.ts",
+    "../src/app/api/auth/onboarding-otp-gonder/route.ts",
+    "../src/app/api/auth/dev-login/route.ts",
+    "../src/app/api/cron/kuyruk-isleyici/route.ts",
+    "../src/app/api/workers/site-ureticisi/route.ts",
+    "../src/app/api/esnaf/[id]/route.ts",
+    "../src/app/api/cron/data-purge/route.ts",
+    "../src/app/api/cron/kvkk/route.ts",
+    "./fixtures/trust-baseline.ts",
+    "./unit/trustBaseline.characterization.test.ts",
+    "./unit/servicePrincipalAndJobs.test.ts"
   ],
   "exclude": [
     "../node_modules",
