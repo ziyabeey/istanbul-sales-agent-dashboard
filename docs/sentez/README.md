@@ -3,7 +3,7 @@
 > **Tarih:** 2026-09-16  
 > **Domain sökümü:** KAPALI — SÖKÜM 01–41  
 > **Aktif faz:** Söküm Sonrası Mimari Sentez / Kurtarma Planı  
-> **Aktif frontier:** **SENTEZ 3 — Dependency / Migration Graph**
+> **Aktif frontier:** **SENTEZ 4 — Cleanup Backlog + Cutover Gates**
 
 ## Fazlar
 
@@ -11,8 +11,8 @@
 |---|---|---|---|
 | 1 | Canonical Capability Map | KAPALI | `docs/sentez/01-canonical-capability-map.md` |
 | 2 | Duplicate Authority & Legacy Writer Registry | KAPALI | `docs/sentez/02-duplicate-authority-legacy-writer-registry.md` |
-| 3 | Dependency / Migration Graph | AÇIK | — |
-| 4 | Cleanup Backlog + Cutover Gates | BEKLİYOR | — |
+| 3 | Dependency / Migration Graph | KAPALI | `docs/sentez/03-dependency-migration-graph.md` |
+| 4 | Cleanup Backlog + Cutover Gates | AÇIK | — |
 | 5 | Kepenk v2 Portable Core / Vertical Packaging | BEKLİYOR | — |
 
 ## Korunan public frontend
@@ -84,17 +84,38 @@ En yüksek riskli writer sınıfları:
 - Booking/Order/Restaurant içine gömülü payment authority,
 - simulated/no-op privacy purge.
 
-## SENTEZ 3 kapsamı
+## SENTEZ 3 kararı
 
-SENTEZ 3 sekiz migration kümesini gerçek dependency wave'lerine dönüştürür:
+Migration on ana wave'de yürütülür:
 
-1. prerequisite authority'leri belirle,
-2. parallel ilerleyebilecek blokları ayır,
-3. compatibility/projection dönemlerini tanımla,
-4. provider/payment/finance cutover sırasını kesinleştir,
-5. vertical pack activation gate'lerini çıkar,
-6. big-bang yerine strangler migration graph üret,
-7. korunan public frontend'in hangi wave'de yalnız data/API rewire alacağını sabitle.
+```text
+W0  Freeze / inventory / protected baselines
+W1  Trust Spine
+W2  Tenant + Business + Commercial Spine
+W3  Durable Execution + Credential + Integration
+W4  Delivery / Site / Asset / Public Experience
+W5  Customer + Messaging + Support Foundation
+W6  Booking + Payment + Finance
+W7  Commerce + Inventory + Analytics + Marketing
+W8  Agent Runtime + Knowledge
+W9  Vertical Product Activation
+W10 Admin / Privacy / Offboarding convergence + cleanup
+```
+
+`docs/sentez/03-dependency-migration-graph.md` ayrıca SÖKÜM 01–41'in her birini bu wave'lere satır satır map eder. Final inventory package'ları da aynı graph içinde extension/adapter olarak yerleştirilmiştir.
+
+Public Kepenk frontend'i `F0` preservation track olarak bütün migration boyunca korunur; W4 ve launch aşamalarında yalnız data/CTA/copy truth rewire alır.
+
+## SENTEZ 4 kapsamı
+
+SENTEZ 4 artık “hangi sırada?” sorusundan “hangi legacy parça ne zaman gerçekten kaldırılabilir?” sorusuna geçer:
+
+1. P0/P1 cleanup backlog'u exact risk sırasına koy,
+2. her legacy authority için prerequisite ve cutover gate yaz,
+3. archive/delete yerine önce permission/write disable aşamasını tanımla,
+4. protected frontend ve güçlü core primitive'leri cleanup dışında tut,
+5. greenfield vertical seed'leri ile dead duplicate writer'ları ayır,
+6. rollback ve parity kanıtını cleanup önkoşulu yap.
 
 Kod değişikliği yapılmaz.
 
