@@ -7,6 +7,46 @@ const mocks = vi.hoisted(() => ({
   resolveRequest: vi.fn(),
 }))
 
+/**
+ * Vitest's jsdom transform does not expose NextResponse's framework-only static
+ * helpers. Model only the response contract the proxy/API tests assert; the
+ * real NextResponse implementation is exercised by trust-browser-smoke.
+ */
+vi.mock('next/server', () => ({
+  NextResponse: {
+    redirect(url: string | URL, init?: number | ResponseInit) {
+      const status = typeof init === 'number' ? init : init?.status ?? 307
+      return new Response(null, {
+        status,
+        headers: { location: url.toString() },
+      })
+    },
+    rewrite(url: string | URL) {
+      return new Response(null, {
+        status: 200,
+        headers: { 'x-middleware-rewrite': url.toString() },
+      })
+    },
+    next() {
+      return new Response(null, {
+        status: 200,
+        headers: { 'x-middleware-next': '1' },
+      })
+    },
+    json(body: unknown, init?: ResponseInit) {
+      const headers = new Headers(init?.headers)
+      if (!headers.has('content-type')) {
+        headers.set('content-type', 'application/json')
+      }
+      return new Response(JSON.stringify(body), {
+        ...init,
+        status: init?.status ?? 200,
+        headers,
+      })
+    },
+  },
+}))
+
 vi.mock('@/lib/auth/businessSession', () => ({
   BUSINESS_SESSION_COOKIE: 'kepenk_session',
   resolveCanonicalBusinessContext: mocks.resolveToken,
@@ -34,7 +74,7 @@ const CONTEXT = {
 } as unknown as RequestContext
 
 /**
- * Vitest runs in jsdom, where importing NextRequest does not construct the
+ * Vitest runs in jsdom, where constructing NextRequest does not expose the
  * framework-owned `nextUrl` surface reliably. Proxy behavior only needs the
  * stable request fields below, so the unit seam models those explicitly while
  * the real Next.js object is exercised by trust-browser-smoke.
