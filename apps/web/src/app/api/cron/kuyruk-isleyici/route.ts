@@ -21,7 +21,6 @@ async function processQueue(req: Request) {
             audience: SERVICE_AUDIENCES.queueProcessor,
             scopes: [SERVICE_SCOPES.queueProcess],
             allowedSubjects: ['cloud-tasks', 'cloud-scheduler'],
-            allowLegacyCronSecret: true,
         },
     })
     if (!guard.ok) return guard.response
@@ -69,7 +68,6 @@ async function processQueue(req: Request) {
                         }
                     }
 
-                    // Refresh the lease before the potentially expensive model call.
                     const leaseAlive = await islemHeartbeat(id, lease.leaseToken)
                     if (!leaseAlive) throw new Error('worker_lease_lost')
 
@@ -82,38 +80,24 @@ async function processQueue(req: Request) {
                         await waMesajGonder(data.payload.telefon, yanit)
                     }
                 } else {
-                    yanit = `[${data.tip}] İşlem henüz desteklenmiyor`
+                    yanit = `Desteklenmeyen işlem tipi: ${data.tip}`
                 }
 
                 await islemTamamla(id, yanit, lease.leaseToken)
-
-                await adminDb.collection('agent_logs').add({
-                    ajan: 'kuyruk_isleyici',
-                    esnafId: data.esnafId,
-                    tip: 'kuyruk_islendi',
-                    input: { kuyrukId: id, tip: data.tip, attempt: lease.attempt },
-                    output: { yanitUzunluk: yanit.length },
-                    basari: true,
-                    hata: null,
-                    zaman: new Date(),
-                    kanal: data.tip,
-                })
-
                 islenen++
             } catch (error: unknown) {
-                const message = error instanceof Error ? error.message : 'Bilinmeyen worker hatası'
+                const message = error instanceof Error ? error.message : 'Bilinmeyen hata'
                 await islemHata(id, message, lease.leaseToken)
             }
         }
 
         return NextResponse.json({
             islem: islenen,
-            toplam: islemler.length,
             recoveredLeases,
-            mesaj: `${islenen}/${islemler.length} işlem tamamlandı`,
+            mesaj: `${islenen} işlem tamamlandı`,
         })
     } catch (error: unknown) {
-        const message = error instanceof Error ? error.message : 'Bilinmeyen kuyruk hatası'
+        const message = error instanceof Error ? error.message : 'Bilinmeyen hata'
         return NextResponse.json({ error: message }, { status: 500 })
     }
 }
