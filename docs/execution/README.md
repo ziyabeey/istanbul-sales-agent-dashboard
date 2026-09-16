@@ -16,8 +16,8 @@
 | W3 | Durable Execution + Credential + Integration | KAPALI / planlandı | `docs/execution/w03-durable-execution-credential-integration.md` |
 | W4 | Site / Asset / Publish / Public Experience | KAPALI / planlandı | `docs/execution/w04-site-asset-publish-public-experience.md` |
 | W5 | Customer + Messaging + Support Foundation | KAPALI / planlandı | `docs/execution/w05-customer-messaging-support-foundation.md` |
-| W6 | Booking + Payment + Finance | AÇIK | — |
-| W7 | Commerce + Inventory + Analytics + Marketing | BEKLİYOR | — |
+| W6 | Booking + Payment + Finance | KAPALI / planlandı | `docs/execution/w06-booking-payment-finance.md` |
+| W7 | Commerce + Inventory + Analytics + Marketing | AÇIK | — |
 | W8 | Agent Runtime + Knowledge | BEKLİYOR | — |
 | W9 | Vertical Activation | BEKLİYOR | — |
 | W10 | Admin / Privacy / Offboarding convergence + final cleanup | BEKLİYOR | — |
@@ -95,17 +95,30 @@
 - gerçek `/api/destek/talep` flow'u SupportCase foundation'a taşındı; unsigned cookie decode ve e-mail-only read authorization `HARD-CUT`,
 - Support messages Messaging bridge'e, AI confidence ise advisory role'e indirildi.
 
+## W6 kapanış
+
+- booking-schema service/staff/resource/lifecycle/policy/deposit semantics `PRESERVE`; actual payment/refund fields projection'a indirildi,
+- `/api/randevu` canonical Booking command + policy/price snapshots + durable notification path'ına `REWIRE`,
+- PaymentIntent / Attempt / VerifiedResult / Allocation / Refund / Reconciliation authority `BUILD`,
+- Iyzico checkout/installment/refund protocol know-how `PRESERVE`, raw state mutation ve credential lookup ayrıştırıldı,
+- subscription/commerce/restaurant callback'lerinin direct domain `paid/odendi` mutation'ları kapatıldı,
+- restaurant split payment local fake success `REWRITE`,
+- accounting minor-unit/category/source-link primitive'leri `PRESERVE`, immutable FinancialEvent/Ledger authority `BUILD`,
+- finance `bilanco` booked appointment price yerine canonical financial projections'a `REWIRE`,
+- subscription cancellation Payment'tan W2 commercial command'a ayrıldı.
+
 ## Aktif frontier
 
-**W6 — Booking + Payment + Finance exact manifest.**
+**W7 — Commerce + Inventory + Analytics + Marketing exact manifest.**
 
-W6 target:
+W7 target:
 
 ```text
-Booking lifecycle + policy snapshots
-PaymentIntent / provider attempt / verified result
-Refund / settlement / reconciliation
-Immutable financial event / ledger
-Booking/Order/Restaurant payment projections
-Minor-unit invariant
+Product / Variant / InventoryItem
+Order lifecycle + immutable price/promotion/shipping snapshots
+Stock reservation/commit/release
+Canonical analytics/conversion event spine
+Revenue attribution from W6 financial truth
+Campaign/Journey + budget/approval policy
+Meta/Google provider activation through W3
 ```
