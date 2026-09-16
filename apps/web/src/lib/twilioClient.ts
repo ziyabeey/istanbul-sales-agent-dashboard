@@ -1,17 +1,30 @@
 import twilio from 'twilio'
 import { adminDb } from './firebaseAdmin'
 import { telegramGonder } from './telegram'
+import {
+    EnvCredentialResolver,
+    PLATFORM_CREDENTIAL_REFS,
+    resolveRequiredCredential,
+} from './credentials/credentialResolver'
 
 let _client: twilio.Twilio | null = null
+const credentialResolver = new EnvCredentialResolver()
 
-function getClient(): twilio.Twilio {
+async function getClient(): Promise<{ client: twilio.Twilio; fromNumber: string }> {
+    const credential = await resolveRequiredCredential(
+        credentialResolver,
+        PLATFORM_CREDENTIAL_REFS.twilio,
+        ['accountSid', 'authToken', 'fromNumber']
+    )
+
     if (!_client) {
-        if (!process.env.TWILIO_ACCOUNT_SID || !process.env.TWILIO_AUTH_TOKEN) {
-            throw new Error('Twilio env eksik: TWILIO_ACCOUNT_SID veya TWILIO_AUTH_TOKEN')
-        }
-        _client = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN)
+        _client = twilio(credential.values.accountSid, credential.values.authToken)
     }
-    return _client
+
+    return {
+        client: _client,
+        fromNumber: credential.values.fromNumber,
+    }
 }
 
 export async function waMesajGonder(
@@ -21,11 +34,10 @@ export async function waMesajGonder(
     ajan = 'system'
 ): Promise<boolean> {
     const to = telefon.startsWith('whatsapp:') ? telefon : `whatsapp:${telefon}`
-    const from = process.env.TWILIO_WHATSAPP_FROM!
 
     try {
-        const client = getClient()
-        const result = await client.messages.create({ from, to, body: mesaj })
+        const { client, fromNumber } = await getClient()
+        const result = await client.messages.create({ from: fromNumber, to, body: mesaj })
 
         await adminDb.collection('agent_logs').add({
             ajan,
@@ -40,8 +52,8 @@ export async function waMesajGonder(
         })
 
         return true
-    } catch (error: any) {
-        // SMS YOK — sadece log ve alert
+    } catch (error: unknown) {
+        const message = error instanceof Error ? error.message : 'Bilinmeyen Twilio hatası'
         await adminDb.collection('agent_logs').add({
             ajan,
             esnafId: esnafId || null,
@@ -49,16 +61,15 @@ export async function waMesajGonder(
             input: { telefon },
             output: null,
             basari: false,
-            hata: error.message,
+            hata: message,
             zaman: new Date(),
             kanal: 'whatsapp',
         })
 
-        // Operatöre Telegram — WA ulaşılamadı
         await telegramGonder(
             `📵 <b>WA Ulaşılamadı</b>\n` +
             `Esnaf: ${esnafId || telefon}\n` +
-            `Hata: ${error.message}\n` +
+            `Hata: ${message}\n` +
             `→ Instagram DM dene`
         )
 
@@ -66,10 +77,13 @@ export async function waMesajGonder(
     }
 }
 
-export function esnafHitap(esnaf: any): string {
-    if (esnaf?.ad) return `${esnaf.ad} Usta`
-    if (esnaf?.isletmeAdiTam) return esnaf.isletmeAdiTam
-    if (esnaf?.isletmeAdi) return esnaf.isletmeAdi
+export function esnafHitap(esnaf: unknown): string {
+    if (esnaf && typeof esnaf === 'object') {
+        const candidate = esnaf as Record<string, unknown>
+        if (typeof candidate.ad === 'string' && candidate.ad) return `${candidate.ad} Usta`
+        if (typeof candidate.isletmeAdiTam === 'string' && candidate.isletmeAdiTam) return candidate.isletmeAdiTam
+        if (typeof candidate.isletmeAdi === 'string' && candidate.isletmeAdi) return candidate.isletmeAdi
+    }
     return 'Usta'
 }
 
