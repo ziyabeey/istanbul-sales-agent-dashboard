@@ -90,6 +90,21 @@ jobs:
           src/app/api/admin/marketing/leadler/route.ts
           src/components/layout/AdminSidebar.tsx
           test/unit/adminSession.test.ts
+      - name: Lint P0-07 admin audit and impersonation
+        run: >-
+          pnpm --filter @kepenk/web exec eslint
+          src/lib/impersonation.ts
+          src/lib/security/auditLogger.ts
+          src/lib/apiGuard.ts
+          src/app/api/admin/impersonate/route.ts
+          'src/app/api/admin/esnaf/[id]/route.ts'
+          src/app/api/admin/kota/route.ts
+          src/app/api/auth/me/route.ts
+          'src/app/api/esnaf/[id]/route.ts'
+          src/app/dashboard/components/ImpersonationBanner.tsx
+          src/app/dashboard/layout.tsx
+          test/unit/adminAudit.test.ts
+          test/unit/impersonationSession.test.ts
       - name: Validate trust browser smoke script
         run: bash -n apps/web/test/e2e/trust-browser-smoke.sh
       - name: Typecheck P0 trust baseline artifacts
@@ -106,6 +121,8 @@ jobs:
         run: pnpm --filter @kepenk/web exec tsc -p test/tsconfig.p0-05-credentials.json --noEmit
       - name: Typecheck P0-06 admin sessions
         run: pnpm --filter @kepenk/web exec tsc -p test/tsconfig.p0-06-admin-session.json --noEmit
+      - name: Typecheck P0-07 admin audit and impersonation
+        run: pnpm --filter @kepenk/web exec tsc -p test/tsconfig.p0-07-admin-audit.json --noEmit
       - name: Legacy full web typecheck baseline
         id: legacy-web-typecheck
         continue-on-error: true

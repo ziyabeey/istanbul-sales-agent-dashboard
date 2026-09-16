@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { useEsnaf } from '@/context/EsnafContext';
 import { isMvpTestReleaseEnabled } from '@/lib/mvpFeatureFlags';
 import SetupWizardBanner from './components/SetupWizardBanner';
+import ImpersonationBanner from './components/ImpersonationBanner';
 import {
     Home, PenSquare, Globe, Bot, Users, Settings, MessageSquare, CalendarDays, FlaskConical,
     type LucideIcon,
@@ -108,6 +109,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
             {/* Main Content Area */}
             <main className="flex-1 flex flex-col min-h-screen w-full relative z-10">
+                <ImpersonationBanner />
                 <header className="h-16 border-b border-white/10 flex items-center justify-between px-6 bg-white/[0.01] backdrop-blur-md sticky top-0 z-30 shadow-sm shadow-black/50">
                     <h1 className="font-syne font-bold text-lg text-white drop-shadow-sm">Hoş Geldiniz, {userName}</h1>
                     <div className="flex items-center gap-4">

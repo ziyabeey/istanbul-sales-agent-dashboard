@@ -1,0 +1,33 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "incremental": false,
+    "baseUrl": "..",
+    "paths": {
+      "@/*": ["src/*"],
+      "zod": ["../../packages/admin/node_modules/zod"]
+    },
+    "types": ["node", "vitest/globals", "next/types/global"]
+  },
+  "include": [
+    "../src/lib/auth/adminSessionConstants.ts",
+    "../src/lib/auth/adminSession.ts",
+    "../src/lib/apiGuard.ts",
+    "../src/lib/impersonation.ts",
+    "../src/lib/security/auditLogger.ts",
+    "../src/app/api/admin/impersonate/route.ts",
+    "../src/app/api/admin/esnaf/[id]/route.ts",
+    "../src/app/api/admin/kota/route.ts",
+    "../src/app/api/auth/me/route.ts",
+    "../src/app/api/esnaf/[id]/route.ts",
+    "../src/app/dashboard/components/ImpersonationBanner.tsx",
+    "../src/app/dashboard/layout.tsx",
+    "./unit/adminAudit.test.ts",
+    "./unit/impersonationSession.test.ts"
+  ],
+  "exclude": [
+    "../node_modules",
+    "../.next"
+  ]
+}

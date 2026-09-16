@@ -5,6 +5,7 @@ import { resolveCanonicalBusinessContextFromRequest } from './auth/businessSessi
 import {
     readAdminSessionToken,
     validateAdminSessionToken,
+    type AdminSession,
 } from './auth/adminSession'
 import { verifyServiceRequest, type ServiceRequirement } from './serviceAuth'
 
@@ -19,7 +20,12 @@ type GuardOptions = {
 }
 
 type GuardResult =
-    | { ok: true; context?: RequestContext; servicePrincipal?: ServicePrincipal }
+    | {
+        ok: true
+        context?: RequestContext
+        servicePrincipal?: ServicePrincipal
+        adminSession?: AdminSession
+    }
     | { ok: false; response: NextResponse }
 
 const SAFE_METHODS = new Set(['GET', 'HEAD', 'OPTIONS'])
@@ -50,6 +56,7 @@ export async function apiGuard(
 ): Promise<GuardResult> {
     let context: RequestContext | undefined
     let servicePrincipal: ServicePrincipal | undefined
+    let adminSession: AdminSession | undefined
 
     if (options.requireUserSession) {
         const resolved = await resolveCanonicalBusinessContextFromRequest(request)
@@ -74,8 +81,6 @@ export async function apiGuard(
     }
 
     if (options.requireCronSecret) {
-        // Legacy compatibility only. New worker/task routes should use
-        // requireServicePrincipal and opt into this secret only route-by-route.
         const secret =
             request.headers.get('x-cron-secret') ||
             request.headers.get('authorization')?.replace('Bearer ', '')
@@ -113,6 +118,7 @@ export async function apiGuard(
                     response: NextResponse.json({ error: 'Unauthorized' }, { status: 401 }),
                 }
             }
+            adminSession = session
         } catch {
             return {
                 ok: false,
@@ -138,5 +144,6 @@ export async function apiGuard(
         ok: true,
         ...(context ? { context } : {}),
         ...(servicePrincipal ? { servicePrincipal } : {}),
+        ...(adminSession ? { adminSession } : {}),
     }
 }
