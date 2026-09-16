@@ -85,21 +85,75 @@ assert_login_dom() {
   grep -Fq 'Hemen başla' "$dom_file"
 }
 
+assert_redirects_to_login() {
+  local label="$1"
+  shift
+  local headers_file="$RESULT_DIR/${label}.headers"
+
+  curl --silent --show-error --output /dev/null --dump-header "$headers_file" "$@"
+  if ! grep -Eiq '^location: .*\/giris\?callbackUrl=' "$headers_file"; then
+    echo "$label did not redirect to /giris." >&2
+    cat "$headers_file" >&2
+    exit 1
+  fi
+}
+
 assert_login_dom desktop-1440 1440 900
 assert_login_dom mobile-390 390 844
 assert_login_dom mobile-360 360 800
 
-DASHBOARD_HEADERS="$RESULT_DIR/dashboard-redirect.headers"
-ADMIN_HEADERS="$RESULT_DIR/admin-redirect.headers"
-
-curl --silent --show-error --output /dev/null --dump-header "$DASHBOARD_HEADERS" \
+assert_redirects_to_login dashboard-unauthenticated "$BASE_URL/dashboard/manage"
+assert_redirects_to_login dashboard-random-cookie \
+  --header 'Cookie: kepenk_session=random-cookie' \
   "$BASE_URL/dashboard/manage"
-if ! grep -Eiq '^location: .*\/giris\?callbackUrl=.*dashboard' "$DASHBOARD_HEADERS"; then
-  echo "Unauthenticated dashboard did not redirect to /giris." >&2
-  cat "$DASHBOARD_HEADERS" >&2
+
+# Build a cryptographically valid legacy {esnafId} JWT with the development
+# session secret. P0-03 must still reject it at the dashboard request gate.
+LEGACY_TOKEN="$(node <<'NODE'
+const crypto = require('crypto')
+const secret = 'kepenk-dev-secret-change-in-production-32ch'
+const now = Math.floor(Date.now() / 1000)
+const encode = (value) => Buffer.from(JSON.stringify(value)).toString('base64url')
+const header = encode({ alg: 'HS256', typ: 'JWT' })
+const payload = encode({ esnafId: 'legacy-smoke-tenant', iss: 'kepenk.ai', iat: now, exp: now + 3600 })
+const input = `${header}.${payload}`
+const signature = crypto.createHmac('sha256', secret).update(input).digest('base64url')
+process.stdout.write(`${input}.${signature}`)
+NODE
+)"
+assert_redirects_to_login dashboard-legacy-signed-cookie \
+  --header "Cookie: kepenk_session=$LEGACY_TOKEN" \
+  "$BASE_URL/dashboard/manage"
+
+for subdomain in app edit manage; do
+  assert_redirects_to_login "${subdomain}-subdomain-unauthenticated" \
+    --header "Host: ${subdomain}.localhost:3000" \
+    "$BASE_URL/"
+done
+
+# /giris itself must remain reachable on business subdomains instead of being
+# rewritten under /dashboard and entering an auth redirect loop.
+APP_LOGIN_STATUS="$(curl --silent --show-error --output /dev/null --write-out '%{http_code}' \
+  --header 'Host: app.localhost:3000' \
+  "$BASE_URL/giris")"
+if [[ "$APP_LOGIN_STATUS" != "200" ]]; then
+  echo "app.localhost /giris is not directly reachable (status $APP_LOGIN_STATUS)." >&2
   exit 1
 fi
 
+# Destek subdomain remains a public/support surface and must not be captured by
+# the business dashboard auth gate.
+DESTEK_HEADERS="$RESULT_DIR/destek-subdomain.headers"
+curl --silent --show-error --output /dev/null --dump-header "$DESTEK_HEADERS" \
+  --header 'Host: destek.localhost:3000' \
+  "$BASE_URL/"
+if grep -Eiq '^location: .*\/giris' "$DESTEK_HEADERS"; then
+  echo "destek.localhost was incorrectly captured by business auth." >&2
+  cat "$DESTEK_HEADERS" >&2
+  exit 1
+fi
+
+ADMIN_HEADERS="$RESULT_DIR/admin-redirect.headers"
 curl --silent --show-error --output /dev/null --dump-header "$ADMIN_HEADERS" \
   "$BASE_URL/admin"
 if ! grep -Eiq '^location: .*\/admin\/login' "$ADMIN_HEADERS"; then
@@ -108,4 +162,4 @@ if ! grep -Eiq '^location: .*\/admin\/login' "$ADMIN_HEADERS"; then
   exit 1
 fi
 
-echo "P0-00 trust browser smoke passed with $CHROME_BIN."
+echo "P0-03 trust browser smoke passed with $CHROME_BIN."
