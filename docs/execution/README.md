@@ -1,10 +1,10 @@
 # Kepenk v2 — Exact Execution Manifest
 
 > **Tarih:** 2026-09-16  
-> **Durum:** **IMPLEMENTATION-READY PLAN — W0–W10 + Pilot Cutover + Pilot-0/1 PR packaging tamam, production implementation başlamadı**  
+> **Durum:** **IMPLEMENTATION-READY MASTER PLAN — tüm planning katmanları kapalı, production implementation başlamadı**  
 > **Kaynak:** SÖKÜM 01–41 + SENTEZ 01–05  
-> **Amaç:** Canonical mimariyi exact file/route/package task'larına ve güvenli cutover paketlerine dönüştürmek.  
-> **Kural:** Bu klasör kod implementasyonu yapmaz; hangi dosyanın hangi wave'de ne olacağını, hangi acceptance gate ile kapanacağını ve hangi sırada cutover edileceğini sabitler.
+> **Amaç:** Canonical mimariyi exact file/route/package task'larına, güvenli cutover paketlerine, PR/branch birimlerine ve retirement gates'e dönüştürmek.  
+> **Kural:** Bu klasör production kodu implement etmez; implementation sırasında hangi authority'nin, hangi sırada, hangi acceptance/rollback/retirement şartıyla değişeceğini sabitler.
 
 ## Wave manifestleri
 
@@ -38,17 +38,19 @@ Vertical Activation
 Final Legacy Retirement
 ```
 
-PR-level packaging:
+### PR-level implementation packaging
 
-| Pilot | Durum | Belge |
+| Paket | Durum | Belge |
 |---|---|---|
 | Pilot-0 Trust Bootstrap | KAPALI / PR-planlandı | `docs/execution/pilot-0-trust-bootstrap-pr-plan.md` |
 | Pilot-1 First Canonical Tenant | KAPALI / PR-planlandı | `docs/execution/pilot-1-first-canonical-tenant-pr-plan.md` |
-| Pilot-2 Golden Flow | AKTİF FRONTIER | henüz PR-planlanmadı |
-| Pilot-3 Public Site + Messaging | BEKLİYOR | — |
-| Pilot-4 Commerce + Analytics + Agent | BEKLİYOR | — |
+| Pilot-2 Golden Flow | KAPALI / PR-planlandı | `docs/execution/pilot-2-customer-booking-payment-finance-pr-plan.md` |
+| Pilot-3 Public Site + Messaging | KAPALI / PR-planlandı | `docs/execution/pilot-3-public-site-messaging-pr-plan.md` |
+| Pilot-4 Commerce + Analytics + Agent | KAPALI / PR-planlandı | `docs/execution/pilot-4-commerce-analytics-agent-pr-plan.md` |
+| Restaurant / Support / Marketplace / Procurement | KAPALI / PR-planlandı | `docs/execution/vertical-activation-pr-plan.md` |
+| Admin / Privacy / Offboarding / Legacy Retirement | KAPALI / PR-planlandı | `docs/execution/final-retirement-pr-plan.md` |
 
-Cutover stratejisi:
+### Cutover stratejisi
 
 ```text
 EXPAND
@@ -81,6 +83,7 @@ Bidirectional dual-authority migration yasaktır.
 - Kepenk public frontend `PRESERVE WHOLE UX + CONTENT/API REWIRE`.
 - `/giris` gibi çalışan auth/acquisition UX'leri sırf backend authority değişiyor diye yeniden çizilmez.
 - `apps/sites` public shell korunur.
+- Site editor/theme/template/renderer emeği korunur; authority yeniden bağlanır.
 - Strong typed/domain primitives mümkünse korunup canonical authority altında yeniden bağlanır.
 - `apps/randevu-server` kapsam dışıdır.
 - Hiçbir `DROP` etiketi tek başına delete yetkisi değildir.
@@ -195,39 +198,44 @@ Bidirectional dual-authority migration yasaktır.
 - DataClassPolicy registry ile W1–W9 tüm data sınıfları, derived data ve external sink'ler lifecycle inventory'ye bağlandı,
 - versioned Consent, Retention, LegalHold, ExportRequest, ErasureRequest, LifecycleTask ve PurgeProof authority'leri planlandı,
 - iki fake privacy cron production success yolu `HARD-CUT`; gerçek `kvkk-purge` lifecycle seed'i Data Inventory driven orchestrator'a `REWIRE`,
-- root tenant DELETE `HARD-CUT`; canonical OffboardingRun access revoke → retention → purge plan → verified purge → tombstone akışına bağlandı,
+- root tenant DELETE `HARD-CUT`; canonical OffboardingRun access revoke -> retention -> purge plan -> verified purge -> tombstone akışına bağlandı,
 - final P0/P1/P2 legacy retirement matrix ve universal deletion gates sabitlendi,
 - protected frontend/core/extension deny-list final cleanup'a taşındı.
 
-## Execution planning kapanış kararı
+## Master planning kapanış kararı
 
-`W0 → W10` planlama zinciri tamamlandı. **W11 açılmaz.** Pilot cutover packaging tamamlandı ve PR-level implementation packaging Pilot-0 ile Pilot-1 için kapatıldı. Bu klasör artık implementation sırasında değişikliklerin hangi authority'ye, hangi acceptance gate'e, hangi cutover paketine ve hangi retirement şartına göre yapılacağını belirleyen baseline'dır.
+`SÖKÜM 01–41 -> SENTEZ 01–05 -> W0–W10 -> Pilot-0–4 -> Vertical Activation -> Final Retirement` planlama zinciri tamamlandı.
+
+**Yeni SÖKÜM 42, W11 veya yeni planning frontier açılmaz.** Yeni bir current-main live writer implementation sırasında keşfedilirse önce mevcut canonical owner'lardan birine map edilir; gerçekten yeni domain authority olduğu kanıtlanmadan yeni bounded context açılmaz.
 
 ### Implementation entry gate
 
-Production koduna geçmeden önce başlangıç paketi yalnız `Pilot-0 / Trust Bootstrap` olacaktır:
+Production/application koduna geçilecekse ilk ve tek başlangıç paketi:
 
 ```text
-User/Membership/Session
-RequestContext
-AdminPrincipal/AdminSession
-ServicePrincipal
-Durable audit request/outcome
-minimum DurableJob
-minimum CredentialRef
-canary telemetry
+Pilot-0 / P0-00 Trust Baseline / Evidence Harness
 ```
 
-İlk feature migration'ı Trust gate geçmeden başlamaz.
+Ardından planlanan dependency graph izlenir. Trust gate geçmeden feature migration başlamaz.
 
 ### Mevcut durum
 
-- SÖKÜM: kapalı
-- SENTEZ: kapalı
-- W0–W10 execution planning: kapalı
-- Pilot cutover packaging: kapalı
-- Pilot-0 PR packaging: kapalı (`pilot-0-trust-bootstrap-pr-plan.md`)
-- Pilot-1 PR packaging: kapalı (`pilot-1-first-canonical-tenant-pr-plan.md`)
-- Aktif planning frontier: **Pilot-2 Golden Flow PR packaging**
-- Production implementation: **başlamadı**
-- Application code: bu planlama fazında **değiştirilmedi**
+- SÖKÜM: **kapalı**
+- SENTEZ: **kapalı**
+- W0–W10 execution planning: **kapalı**
+- Pilot cutover packaging: **kapalı**
+- Pilot-0 PR packaging: **kapalı**
+- Pilot-1 PR packaging: **kapalı**
+- Pilot-2 PR packaging: **kapalı**
+- Pilot-3 PR packaging: **kapalı**
+- Pilot-4 PR packaging: **kapalı**
+- Vertical activation PR packaging: **kapalı**
+- Final retirement PR packaging: **kapalı**
+- Planning frontier: **YOK**
+- Production implementation: **BAŞLAMADI**
+- Application code: bu planlama fazında **DEĞİŞTİRİLMEDİ**
+- Kepenk public/frontend preservation contract: **AKTİF**
+
+### Sonraki adım
+
+Yalnız explicit implementation yetkisi verilirse `Pilot-0 / P0-00` ile production-code workstream başlatılır. Aksi halde bu repository implementation-ready planning baseline olarak dondurulmuştur.
