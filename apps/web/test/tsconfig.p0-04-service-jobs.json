@@ -13,6 +13,7 @@
     "../src/lib/cloudTasksClient.ts",
     "../src/lib/islemKuyrugu.ts",
     "../src/lib/apiGuard.ts",
+    "../src/lib/envReadiness.ts",
     "./unit/servicePrincipalAndJobs.test.ts"
   ],
   "exclude": [
