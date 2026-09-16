@@ -15,8 +15,8 @@
 | W2 | Tenant + Business + Commercial Spine | KAPALI / planlandı | `docs/execution/w02-tenant-business-commercial-spine.md` |
 | W3 | Durable Execution + Credential + Integration | KAPALI / planlandı | `docs/execution/w03-durable-execution-credential-integration.md` |
 | W4 | Site / Asset / Publish / Public Experience | KAPALI / planlandı | `docs/execution/w04-site-asset-publish-public-experience.md` |
-| W5 | Customer + Messaging + Support Foundation | AÇIK | — |
-| W6 | Booking + Payment + Finance | BEKLİYOR | — |
+| W5 | Customer + Messaging + Support Foundation | KAPALI / planlandı | `docs/execution/w05-customer-messaging-support-foundation.md` |
+| W6 | Booking + Payment + Finance | AÇIK | — |
 | W7 | Commerce + Inventory + Analytics + Marketing | BEKLİYOR | — |
 | W8 | Agent Runtime + Knowledge | BEKLİYOR | — |
 | W9 | Vertical Activation | BEKLİYOR | — |
@@ -83,18 +83,29 @@
 - Public Action Gateway ile booking/contact/order live fake-success ve caller-controlled tenant target kapatıldı,
 - Kepenk/KPNK ana marketing frontend'i ayrı preservation contract ile korunmaya devam ediyor.
 
+## W5 kapanış
+
+- `crm-schema` Contact/Activity/Label/Segment contract'ları `PRESERVE/PROMOTE`,
+- current-main'de tarihsel `/api/customers` ve `/api/musteriler` route'ları yok; obsolete API dual-store yeniden kurulmayacak,
+- `musteriCRM.ts` telefon-türetilmiş parallel profile authority olmaktan çıkarılıp migration/compatibility source'a indirildi,
+- CustomerIdentityAlias + revisioned Customer Core runtime `BUILD`,
+- Conversation / Message / MessageIntent provider-independent authority `BUILD`,
+- W3 provider ingress/outbound transport ile Messaging lifecycle ayrıldı,
+- campaign/agent/support direct provider send yerine MessageIntent contract'ına bağlandı,
+- gerçek `/api/destek/talep` flow'u SupportCase foundation'a taşındı; unsigned cookie decode ve e-mail-only read authorization `HARD-CUT`,
+- Support messages Messaging bridge'e, AI confidence ise advisory role'e indirildi.
+
 ## Aktif frontier
 
-**W5 — Customer + Messaging + Support Foundation exact manifest.**
+**W6 — Booking + Payment + Finance exact manifest.**
 
-W5 target:
+W6 target:
 
 ```text
-Customer / Identity aliases / Activity timeline
-CRM compatibility shell
-Conversation / Message / MessageIntent
-Consent/policy-gated durable outbound
-SupportCase create/read foundation
-Support messages + Messaging bridge
-Verified requester/operator authorization
+Booking lifecycle + policy snapshots
+PaymentIntent / provider attempt / verified result
+Refund / settlement / reconciliation
+Immutable financial event / ledger
+Booking/Order/Restaurant payment projections
+Minor-unit invariant
 ```
