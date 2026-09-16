@@ -14,8 +14,8 @@
 | W1 | Trust Spine | KAPALI / planlandı | `docs/execution/w01-trust-spine.md` |
 | W2 | Tenant + Business + Commercial Spine | KAPALI / planlandı | `docs/execution/w02-tenant-business-commercial-spine.md` |
 | W3 | Durable Execution + Credential + Integration | KAPALI / planlandı | `docs/execution/w03-durable-execution-credential-integration.md` |
-| W4 | Site / Asset / Publish / Public Experience | AÇIK | — |
-| W5 | Customer + Messaging + Support Foundation | BEKLİYOR | — |
+| W4 | Site / Asset / Publish / Public Experience | KAPALI / planlandı | `docs/execution/w04-site-asset-publish-public-experience.md` |
+| W5 | Customer + Messaging + Support Foundation | AÇIK | — |
 | W6 | Booking + Payment + Finance | BEKLİYOR | — |
 | W7 | Commerce + Inventory + Analytics + Marketing | BEKLİYOR | — |
 | W8 | Agent Runtime + Knowledge | BEKLİYOR | — |
@@ -72,21 +72,29 @@
 - duplicate WhatsApp/Instagram ingress tek verified + durable inbox contract'ına indirildi,
 - mock/simulated provider success ve production trust downgrade yolları `HARD-CUT/RETIRE`.
 
+## W4 kapanış
+
+- `site-schema`, renderer, publish-engine generator, templates, editor ve `apps/sites` shell `PRESERVE`,
+- editor save/autosave draft-only authority'ye taşındı; mutable public `siteData` write kapatıldı,
+- `/site/v2/save` canonical Draft Save seed'i, `/site/v2/publish` canonical PublishCommand seed'i oldu,
+- PublishedSiteRevision + immutable artifacts + atomic active pointer + rollback `BUILD`,
+- DomainBinding global hostname authority olarak ayrıldı; Cloudflare/provider state projection oldu,
+- Asset Core ile raw URL/blob media authority kaldırıldı,
+- Public Action Gateway ile booking/contact/order live fake-success ve caller-controlled tenant target kapatıldı,
+- Kepenk/KPNK ana marketing frontend'i ayrı preservation contract ile korunmaya devam ediyor.
+
 ## Aktif frontier
 
-**W4 — Site / Asset / Publish / Public Experience exact manifest.**
+**W5 — Customer + Messaging + Support Foundation exact manifest.**
 
-W4 target:
+W5 target:
 
 ```text
-SiteAuthoring / SiteDraft
-Asset Core
-PublishCommand
-PublishedSiteRevision
-Immutable Artifact
-DomainBinding
-apps/sites Public Runtime
-Public Action Gateway
+Customer / Identity aliases / Activity timeline
+CRM compatibility shell
+Conversation / Message / MessageIntent
+Consent/policy-gated durable outbound
+SupportCase create/read foundation
+Support messages + Messaging bridge
+Verified requester/operator authorization
 ```
-
-Kepenk/KPNK ana marketing landing ayrı koruma sözleşmesiyle `PRESERVE WHOLE UX` kalır; W4 esas olarak işletmeler için üretilen site platformunu canonicalize eder.
