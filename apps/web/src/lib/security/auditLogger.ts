@@ -1,4 +1,5 @@
 import crypto from 'crypto'
+import type { DocumentData, Query } from 'firebase-admin/firestore'
 import type {
   AdminActionOutcome,
   AdminActionRequested,
@@ -172,7 +173,7 @@ export async function queryAuditLogs(
   esnafId: string,
   filters: { eventType?: string; actorId?: string; from?: string; to?: string; limit?: number }
 ): Promise<AuditEntry[]> {
-  let query: any = adminDb.collection('esnaflar').doc(esnafId).collection('audit_logs')
+  let query: Query<DocumentData> = adminDb.collection('esnaflar').doc(esnafId).collection('audit_logs')
 
   if (filters.eventType) query = query.where('eventType', '==', filters.eventType)
   if (filters.actorId) query = query.where('actorId', '==', filters.actorId)
@@ -180,7 +181,7 @@ export async function queryAuditLogs(
   if (filters.to) query = query.where('timestamp', '<=', filters.to)
 
   const snap = await query.orderBy('timestamp', 'desc').limit(filters.limit || 100).get()
-  return snap.docs.map((d: any) => d.data() as AuditEntry)
+  return snap.docs.map((doc) => doc.data() as AuditEntry)
 }
 
 function hashForPrivacy(input: string): string {

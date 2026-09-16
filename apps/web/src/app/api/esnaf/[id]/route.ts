@@ -83,8 +83,10 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
     try {
         const doc = await adminDb.collection('esnaflar').doc(id).get()
         if (!doc.exists) return NextResponse.json({ error: 'Esnaf bulunamadı' }, { status: 404 })
-        const data = doc.data()!
-        const { iyzicoPlanId: _iyzico, wpSiteId: _wp, twilioNumarasi: _twilio, ...safe } = data
+        const safe = { ...doc.data()! }
+        delete safe.iyzicoPlanId
+        delete safe.wpSiteId
+        delete safe.twilioNumarasi
         return attachActingIdentity(NextResponse.json({ id: doc.id, ...safe }), yetki.authority)
     } catch (error: unknown) {
         const message = error instanceof Error ? error.message : 'Bilinmeyen hata'
