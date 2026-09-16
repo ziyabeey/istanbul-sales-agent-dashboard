@@ -87,7 +87,7 @@ export function verifyHs256Jwt(
   if (options.audience !== undefined && payload.aud !== options.audience) return null
 
   const nowSeconds = Math.floor((options.now ?? new Date()).getTime() / 1000)
-  const skew = options.clockSkewSeconds ?? 30
+  const skew = options.clockSkewSeconds ?? 0
 
   if (typeof payload.exp !== 'number' || payload.exp <= nowSeconds - skew) return null
   if (typeof payload.iat === 'number' && payload.iat > nowSeconds + skew) return null
