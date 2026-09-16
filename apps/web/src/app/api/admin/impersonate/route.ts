@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 import { apiGuard } from '@/lib/apiGuard'
 import {
     endImpersonationSessionToken,
-    getActiveImpersonationFromRequest,
+    getBoundActiveImpersonationFromRequest,
     impersonateBaslat,
     impersonateBitir,
     readImpersonationSessionToken,
@@ -26,11 +26,9 @@ export async function GET(request: Request) {
     if (!guard.ok) return guard.response
 
     try {
-        const session = await getActiveImpersonationFromRequest(request)
+        const session = await getBoundActiveImpersonationFromRequest(request)
         if (!session) return NextResponse.json({ active: false })
-        if (session.adminId !== guard.adminSession?.principalId) {
-            return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
-        }
+
         return NextResponse.json({
             active: true,
             actingAdminId: session.adminId,
@@ -52,6 +50,14 @@ export async function POST(request: Request) {
     }
 
     try {
+        const existing = await getBoundActiveImpersonationFromRequest(request)
+        if (existing) {
+            return NextResponse.json(
+                { error: 'Önce aktif impersonation oturumunu sonlandırın' },
+                { status: 409 }
+            )
+        }
+
         const body = await request.json() as { esnafId?: unknown; reason?: unknown }
         const esnafId = typeof body.esnafId === 'string' ? body.esnafId.trim() : ''
         const reason = typeof body.reason === 'string' ? body.reason.trim() : ''
@@ -97,12 +103,9 @@ export async function DELETE(request: Request) {
 
     try {
         const token = readImpersonationSessionToken(request)
-        const session = token ? await getActiveImpersonationFromRequest(request) : null
+        const session = token ? await getBoundActiveImpersonationFromRequest(request) : null
         if (!token || !session) {
             return impersonateBitir(NextResponse.json({ ok: true, active: false }))
-        }
-        if (session.adminId !== guard.adminSession.principalId) {
-            return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
         }
 
         const response = NextResponse.json({
