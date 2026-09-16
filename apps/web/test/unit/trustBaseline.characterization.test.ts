@@ -21,18 +21,22 @@ function readSource(relativePath: string): string {
 }
 
 describe('Pilot-0 trust baseline characterization', () => {
-  it('pins the current principal/cookie/credential vocabulary after P0-05', () => {
-    expect(TRUST_BASELINE_VERSION).toBe('p0-05@2026-09-16')
+  it('pins the current principal/cookie/credential vocabulary after P0-06', () => {
+    expect(TRUST_BASELINE_VERSION).toBe('p0-06@2026-09-16')
     expect(CURRENT_TRUST_COOKIES).toEqual({
       businessSession: 'kepenk_session',
-      adminSession: 'admin_token',
+      adminSession: 'admin_session',
       impersonation: 'kepenk_impersonate',
     })
     expect(CURRENT_PRINCIPAL_SOURCES.dashboard[0]).toContain('durable Session -> User -> Membership')
     expect(CURRENT_PRINCIPAL_SOURCES.businessApi[0]).toContain('apiGuard requireUserSession')
+    expect(CURRENT_PRINCIPAL_SOURCES.adminApi[0]).toContain('durable Firestore AdminSession')
     expect(CURRENT_PRINCIPAL_SOURCES.service[0]).toContain('signed ServicePrincipal')
     expect(CURRENT_CREDENTIAL_AUTHORITY.encryptionWrite).toContain('active kid')
-    expect(CURRENT_SHARED_SECRET_SURFACES.length).toBeGreaterThanOrEqual(5)
+    expect(CURRENT_SHARED_SECRET_SURFACES.find((surface) => surface.id === 'admin-login')?.secret)
+      .toBe('ADMIN_LOGIN_SECRET')
+    expect(CURRENT_SHARED_SECRET_SURFACES.some((surface) => surface.id === 'admin-proxy')).toBe(false)
+    expect(CURRENT_SHARED_SECRET_SURFACES.some((surface) => surface.id === 'admin-api')).toBe(false)
   })
 
   it('P0-03: one canonical business-session resolver owns dashboard and API identity', () => {
@@ -215,28 +219,38 @@ describe('Pilot-0 trust baseline characterization', () => {
     expect(KNOWN_TRUST_RISKS).toContain('legacy_tenant_provider_tokens_still_live_on_esnaflar_root_until_w3')
   })
 
-  it('KNOWN-RISK: admin login, proxy and API still use incompatible trust authorities', () => {
+  it('P0-06: admin login, logout, proxy and API converge on durable AdminSession authority', () => {
     const login = readSource('src/app/api/admin/login/route.ts')
+    const logout = readSource('src/app/api/admin/logout/route.ts')
     const proxy = readSource('src/proxy.ts')
     const guard = readSource('src/lib/apiGuard.ts')
 
-    expect(login).toContain('createHmac')
-    expect(login).toContain("cookieStore.set('admin_token', sessionToken")
-    expect(proxy).toContain("req.cookies.get('admin_token')?.value")
-    expect(proxy).toContain('token !== process.env.ADMIN_SECRET_TOKEN')
-    expect(guard).toContain("request.headers.get('x-admin-token')")
-    expect(guard).toContain('token !== process.env.ADMIN_SECRET_TOKEN')
+    expect(login).toContain('const secret = process.env.ADMIN_LOGIN_SECRET')
+    expect(login).toContain('crypto.timingSafeEqual')
+    expect(login).toContain('issueAdminSession()')
+    expect(login).toContain('response.cookies.set(ADMIN_SESSION_COOKIE, token')
+    expect(login).not.toContain('crypto.createHmac')
+    expect(logout).toContain('await revokeAdminSessionToken(token)')
+    expect(proxy).toContain('req.cookies.get(ADMIN_SESSION_COOKIE)?.value')
+    expect(proxy).not.toContain('process.env.ADMIN_SECRET_TOKEN')
+    expect(guard).toContain('readAdminSessionToken(request)')
+    expect(guard).toContain('validateAdminSessionToken(token)')
+    expect(guard).not.toContain("request.headers.get('x-admin-token')")
+    expect(KNOWN_TRUST_RISKS).not.toContain('admin_login_proxy_api_use_incompatible_authorities')
   })
 
-  it('KNOWN-RISK: admin proxy fails open if both cookie token and ADMIN_SECRET_TOKEN are absent', () => {
+  it('P0-06: admin proxy fails closed on missing session cookie without shared-secret comparison', () => {
     const proxy = readSource('src/proxy.ts')
-    const cookieToken: string | undefined = undefined
-    const configuredSecret: string | undefined = undefined
 
-    expect(proxy).toContain("const token = req.cookies.get('admin_token')?.value")
-    expect(proxy).toContain('if (token !== process.env.ADMIN_SECRET_TOKEN)')
-    expect(cookieToken !== configuredSecret).toBe(false)
-    expect(proxy).not.toContain('if (!process.env.ADMIN_SECRET_TOKEN)')
+    expect(proxy).toContain("if (pathname.startsWith('/admin') && !pathname.startsWith('/admin/login'))")
+    expect(proxy).toContain('if (!req.cookies.get(ADMIN_SESSION_COOKIE)?.value)')
+    expect(proxy).toContain("return NextResponse.redirect(new URL('/admin/login', req.nextUrl))")
+    expect(proxy).not.toContain("req.cookies.get('admin_token')")
+    expect(proxy).not.toContain('token !== process.env.ADMIN_SECRET_TOKEN')
+    expect(CURRENT_PRINCIPAL_SOURCES.adminProxy[0]).toContain('UX-only')
+    expect(KNOWN_TRUST_RISKS).not.toContain(
+      'admin_proxy_fails_open_when_secret_and_cookie_are_both_absent'
+    )
   })
 
   it('KNOWN-RISK: onboarding SMS failure still enables fixed 123456 verification code', () => {
@@ -283,8 +297,8 @@ describe('Pilot-0 trust baseline characterization', () => {
   it('keeps only unresolved trust risks in the register', () => {
     expect(KNOWN_TRUST_RISKS).toContain('unmigrated_business_api_callers_can_still_use_legacy_esnafId_jwt_compatibility')
     expect(KNOWN_TRUST_RISKS).toContain('legacy_tenant_provider_tokens_still_live_on_esnaflar_root_until_w3')
-    expect(KNOWN_TRUST_RISKS).toContain('admin_login_proxy_api_use_incompatible_authorities')
-    expect(KNOWN_TRUST_RISKS).toContain('admin_proxy_fails_open_when_secret_and_cookie_are_both_absent')
+    expect(KNOWN_TRUST_RISKS).not.toContain('admin_login_proxy_api_use_incompatible_authorities')
+    expect(KNOWN_TRUST_RISKS).not.toContain('admin_proxy_fails_open_when_secret_and_cookie_are_both_absent')
     expect(KNOWN_TRUST_RISKS).toContain('unmigrated_cron_routes_still_use_shared_cron_secret')
     expect(KNOWN_TRUST_RISKS).toContain('privacy_crons_can_report_simulated_success')
     expect(KNOWN_TRUST_RISKS).not.toContain('dashboard_proxy_accepts_business_cookie_by_presence')

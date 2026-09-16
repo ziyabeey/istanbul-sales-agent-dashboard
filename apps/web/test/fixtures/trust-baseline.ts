@@ -1,8 +1,8 @@
-export const TRUST_BASELINE_VERSION = 'p0-05@2026-09-16'
+export const TRUST_BASELINE_VERSION = 'p0-06@2026-09-16'
 
 export const CURRENT_TRUST_COOKIES = {
   businessSession: 'kepenk_session',
-  adminSession: 'admin_token',
+  adminSession: 'admin_session',
   impersonation: 'kepenk_impersonate',
 } as const
 
@@ -29,8 +29,12 @@ export const CURRENT_PRINCIPAL_SOURCES = {
     'apiGuard requireUserSession -> canonical Session -> User -> Membership -> RequestContext',
     'unmigrated legacy API callers may still use cryptographically verified esnafId JWT compatibility adapter',
   ],
-  adminProxy: ['admin_token cookie == ADMIN_SECRET_TOKEN', 'fails open if both cookie and secret are absent'],
-  adminApi: ['x-admin-token == ADMIN_SECRET_TOKEN'],
+  adminProxy: [
+    'admin_session cookie presence is UX-only; admin API performs authoritative validation',
+  ],
+  adminApi: [
+    'admin_session opaque token -> SHA-256 digest -> durable Firestore AdminSession -> expiry + revocation validation',
+  ],
   service: [
     'signed ServicePrincipal bearer -> audience + subject + scope verification',
     'selected worker routes may explicitly accept CRON_SECRET compatibility until P0-08',
@@ -49,19 +53,16 @@ export const CURRENT_CREDENTIAL_AUTHORITY = {
 } as const
 
 export const CURRENT_SHARED_SECRET_SURFACES = [
-  { id: 'admin-login', path: 'src/app/api/admin/login/route.ts', secret: 'ADMIN_SECRET_TOKEN', purpose: 'human admin password' },
-  { id: 'admin-proxy', path: 'src/proxy.ts', secret: 'ADMIN_SECRET_TOKEN', purpose: 'admin page authorization' },
-  { id: 'admin-api', path: 'src/lib/apiGuard.ts', secret: 'ADMIN_SECRET_TOKEN', purpose: 'admin API authorization' },
+  { id: 'admin-login', path: 'src/app/api/admin/login/route.ts', secret: 'ADMIN_LOGIN_SECRET', purpose: 'human admin login credential' },
+  { id: 'dev-login', path: 'src/app/api/auth/dev-login/route.ts', secret: 'ADMIN_SECRET_TOKEN', purpose: 'legacy development login compatibility' },
   { id: 'cron-api', path: 'src/lib/apiGuard.ts', secret: 'CRON_SECRET', purpose: 'legacy cron compatibility for routes not yet migrated' },
   { id: 'adk-api', path: 'src/lib/apiGuard.ts', secret: 'ADK_BEARER_TOKEN', purpose: 'ADK service authorization' },
 ] as const
 
-/** Risks intentionally still unresolved after P0-05. */
+/** Risks intentionally still unresolved after P0-06. */
 export const KNOWN_TRUST_RISKS = [
   'unmigrated_business_api_callers_can_still_use_legacy_esnafId_jwt_compatibility',
   'legacy_tenant_provider_tokens_still_live_on_esnaflar_root_until_w3',
-  'admin_login_proxy_api_use_incompatible_authorities',
-  'admin_proxy_fails_open_when_secret_and_cookie_are_both_absent',
   'onboarding_sms_failure_enables_fixed_123456_code',
   'dev_login_has_hardcoded_admin_secret_fallback',
   'unmigrated_cron_routes_still_use_shared_cron_secret',
