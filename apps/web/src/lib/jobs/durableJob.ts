@@ -38,11 +38,16 @@ export function leaseExpiresAt(
   return new Date(now.getTime() + leaseMs)
 }
 
+/**
+ * A processing record without a lease is treated as abandoned. This lets the
+ * P0-04 recovery path safely adopt legacy `isleniyor` queue records that were
+ * created before lease metadata existed.
+ */
 export function isLeaseExpired(
   leaseUntil: Date | null | undefined,
   now: Date = new Date()
 ): boolean {
-  return Boolean(leaseUntil && leaseUntil.getTime() <= now.getTime())
+  return !leaseUntil || leaseUntil.getTime() <= now.getTime()
 }
 
 export function canAttemptJob(
