@@ -1,6 +1,10 @@
 import { NextResponse } from 'next/server'
-import { adminDb } from '@/lib/firebaseAdmin'
-import { otpDogrula, oturumOlustur } from '@/lib/sessionManager'
+import { otpDogrula, canonicalOturumOlustur } from '@/lib/sessionManager'
+import {
+  findUniqueActiveTenantByPhone,
+  normalizeLoginPhone,
+} from '@/lib/auth/legacyAccountResolver'
+import { issueCanonicalHumanSession } from '@/lib/auth/humanAuthService'
 
 export async function POST(req: Request) {
   try {
@@ -9,37 +13,35 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Telefon ve kod gerekli' }, { status: 400 })
     }
 
-    const temizTelefon = telefon.replace(/[^0-9]/g, '')
+    const temizTelefon = normalizeLoginPhone(String(telefon))
+    if (temizTelefon.length < 10) {
+      return NextResponse.json({ error: 'Kod hatalı veya süresi dolmuş' }, { status: 400 })
+    }
 
-    // Firestore OTP doğrulama (3dk TTL, otomatik silme)
-    const gecerli = await otpDogrula(temizTelefon, kod)
+    const gecerli = await otpDogrula(temizTelefon, String(kod))
     if (!gecerli) {
       return NextResponse.json({ error: 'Kod hatalı veya süresi dolmuş' }, { status: 400 })
     }
 
-    if (!adminDb) {
-      return NextResponse.json({ error: 'Veritabanı bağlantısı kurulamadı' }, { status: 500 })
+    // OTP doğrulandıktan sonra hesap tekrar çözülür. Telefon artık tek ve aktif
+    // bir tenant'a bağlı değilse eski limit(1) davranışıyla rastgele seçim yok.
+    const account = await findUniqueActiveTenantByPhone(temizTelefon)
+    if (account.kind !== 'unique') {
+      return NextResponse.json({ error: 'Hesap doğrulanamadı' }, { status: 409 })
     }
 
-    const sorgu = await adminDb
-      .collection('esnaflar')
-      .where('telefonTemiz', '==', temizTelefon)
-      .limit(1)
-      .get()
+    const issued = await issueCanonicalHumanSession({
+      tenantId: account.account.tenantId,
+      provider: 'phone',
+      subject: temizTelefon,
+      authMethod: 'phone_otp',
+    })
 
-    if (sorgu.empty) {
-      return NextResponse.json({ error: 'Hesap bulunamadı' }, { status: 404 })
-    }
-
-    const esnafId = sorgu.docs[0].id
-
-    // JWT HttpOnly cookie oluştur (7 gün geçerli)
-    const response = NextResponse.json({ esnafId })
-    await oturumOlustur(esnafId, response)
-
+    // Response shape korunur; yetki kaynağı artık durable canonical Session'dır.
+    const response = NextResponse.json({ esnafId: account.account.tenantId })
+    await canonicalOturumOlustur(issued.session, response)
     return response
-  } catch (error: any) {
-    // console.error('[GİRİŞ KODU DOĞRULA]', error)
+  } catch {
     return NextResponse.json({ error: 'Sunucu hatası' }, { status: 500 })
   }
 }

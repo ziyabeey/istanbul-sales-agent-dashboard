@@ -1,0 +1,26 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "incremental": false,
+    "types": ["node", "vitest/globals"]
+  },
+  "include": [
+    "../../../packages/auth/src/types/canonical.ts",
+    "../../../packages/auth/src/types/roles.ts",
+    "../src/lib/auth/**/*.ts",
+    "../src/lib/sessionManager.ts",
+    "../src/app/api/auth/giris-kodu-gonder/route.ts",
+    "../src/app/api/auth/giris-kodu-dogrula/route.ts",
+    "../src/app/api/auth/google/route.ts",
+    "../src/app/api/auth/cikis/route.ts",
+    "../src/app/api/auth/me/route.ts",
+    "./unit/canonicalAuthCore.test.ts",
+    "./unit/humanAuthAdapters.test.ts",
+    "./unit/jwtHmac.test.ts"
+  ],
+  "exclude": [
+    "../node_modules",
+    "../.next"
+  ]
+}

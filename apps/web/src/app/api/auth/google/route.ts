@@ -1,6 +1,12 @@
 import { NextResponse } from 'next/server'
-import { adminDb } from '@/lib/firebaseAdmin'
-import { oturumOlustur } from '@/lib/sessionManager'
+import { canonicalOturumOlustur } from '@/lib/sessionManager'
+import {
+  findUniqueTenantByEmail,
+  normalizeLoginEmail,
+} from '@/lib/auth/legacyAccountResolver'
+import { issueCanonicalHumanSession } from '@/lib/auth/humanAuthService'
+
+const GOOGLE_ISSUERS = new Set(['accounts.google.com', 'https://accounts.google.com'])
 
 export async function POST(req: Request) {
   try {
@@ -9,70 +15,88 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Credential gerekli' }, { status: 400 })
     }
 
-    // Google tokeninfo ile doğrula (harici paket gerekmez)
+    const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID
+    if (!clientId) {
+      return NextResponse.json({ error: 'Google giriş yapılandırılmamış' }, { status: 503 })
+    }
+
     const controller = new AbortController()
     const timeout = setTimeout(() => controller.abort(), 5000)
     let payload: Record<string, string>
+
     try {
       const res = await fetch(
-        `https://oauth2.googleapis.com/tokeninfo?id_token=${credential}`,
+        `https://oauth2.googleapis.com/tokeninfo?id_token=${encodeURIComponent(String(credential))}`,
         { signal: controller.signal }
       )
-      clearTimeout(timeout)
+
       if (!res.ok) {
         return NextResponse.json({ error: 'Geçersiz Google token' }, { status: 401 })
       }
+
       payload = await res.json()
     } catch {
-      clearTimeout(timeout)
       return NextResponse.json({ error: 'Google doğrulama zaman aşımı' }, { status: 502 })
+    } finally {
+      clearTimeout(timeout)
     }
 
-    // Audience kontrolü
-    const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID
-    if (clientId && payload.aud !== clientId) {
+    if (payload.aud !== clientId) {
       return NextResponse.json({ error: 'Token audience uyuşmuyor' }, { status: 401 })
     }
 
-    const googleEmail = (payload.email || '').toLowerCase()
+    if (!GOOGLE_ISSUERS.has(payload.iss || '')) {
+      return NextResponse.json({ error: 'Geçersiz Google issuer' }, { status: 401 })
+    }
+
+    if (payload.email_verified !== 'true') {
+      return NextResponse.json({ error: 'Google email doğrulanmamış' }, { status: 401 })
+    }
+
+    const googleSubject = (payload.sub || '').trim()
+    const googleEmail = normalizeLoginEmail(payload.email || '')
     const googleName = payload.name || ''
 
-    if (!googleEmail) {
-      return NextResponse.json({ error: 'Email bilgisi alınamadı' }, { status: 400 })
+    if (!googleSubject || !googleEmail) {
+      return NextResponse.json({ error: 'Google kimlik bilgisi eksik' }, { status: 400 })
     }
 
-    // Firestore'da email ile ara
-    const sorgu = await adminDb
-      .collection('esnaflar')
-      .where('email', '==', googleEmail)
-      .limit(1)
-      .get()
-
-    if (sorgu.empty) {
+    // Email yalnız legacy tenant migration lookup'ıdır. Canonical AuthIdentity
+    // stable Google subject (`sub`) ile bağlanır.
+    const account = await findUniqueTenantByEmail(googleEmail)
+    if (account.kind === 'none') {
       return NextResponse.json({ needsOnboarding: true, googleEmail, googleName })
     }
 
-    const doc = sorgu.docs[0]
-    const esnaf = doc.data()
+    if (account.kind === 'ambiguous') {
+      return NextResponse.json({ error: 'Hesap eşleştirmesi belirsiz' }, { status: 409 })
+    }
 
-    // Güvenlik: pasif/silindi hesaplara erişim verme
-    if (esnaf.durum === 'pasif' || esnaf.durum === 'silindi') {
+    const durum = String(account.account.data.durum || '')
+    if (durum === 'pasif' || durum === 'silindi') {
       return NextResponse.json({ needsOnboarding: true, googleEmail, googleName })
     }
 
-    // JWT HttpOnly cookie oluştur
-    if (esnaf.durum === 'onboarding') {
-      const response = NextResponse.json({ esnafId: doc.id, durum: 'onboarding' })
-      await oturumOlustur(doc.id, response)
+    const issued = await issueCanonicalHumanSession({
+      tenantId: account.account.tenantId,
+      provider: 'google',
+      subject: googleSubject,
+      authMethod: 'google_oidc',
+    })
+
+    if (durum === 'onboarding') {
+      const response = NextResponse.json({
+        esnafId: account.account.tenantId,
+        durum: 'onboarding',
+      })
+      await canonicalOturumOlustur(issued.session, response)
       return response
     }
 
-    const response = NextResponse.json({ esnafId: doc.id })
-    await oturumOlustur(doc.id, response)
+    const response = NextResponse.json({ esnafId: account.account.tenantId })
+    await canonicalOturumOlustur(issued.session, response)
     return response
-  } catch (error: any) {
-    // console.error('[Google Auth]', error)
+  } catch {
     return NextResponse.json({ error: 'Sunucu hatası' }, { status: 500 })
   }
 }
-

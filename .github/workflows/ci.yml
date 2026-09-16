@@ -35,12 +35,25 @@ jobs:
           pnpm --filter @kepenk/web exec eslint
           'src/lib/auth/**/*.ts'
           test/unit/canonicalAuthCore.test.ts
+      - name: Lint P0-02 human auth adapters
+        run: >-
+          pnpm --filter @kepenk/web exec eslint
+          src/lib/sessionManager.ts
+          src/app/api/auth/giris-kodu-gonder/route.ts
+          src/app/api/auth/giris-kodu-dogrula/route.ts
+          src/app/api/auth/google/route.ts
+          src/app/api/auth/cikis/route.ts
+          src/app/api/auth/me/route.ts
+          test/unit/humanAuthAdapters.test.ts
+          test/unit/jwtHmac.test.ts
       - name: Validate trust browser smoke script
         run: bash -n apps/web/test/e2e/trust-browser-smoke.sh
       - name: Typecheck P0 trust baseline artifacts
         run: pnpm --filter @kepenk/web exec tsc -p test/tsconfig.trust-baseline.json --noEmit
       - name: Typecheck P0-01 canonical auth core
         run: pnpm --filter @kepenk/web exec tsc -p test/tsconfig.p0-01-auth-core.json --noEmit
+      - name: Typecheck P0-02 human auth adapters
+        run: pnpm --filter @kepenk/web exec tsc -p test/tsconfig.p0-02-human-auth.json --noEmit
       - name: Legacy full web typecheck baseline
         id: legacy-web-typecheck
         continue-on-error: true
@@ -48,7 +61,7 @@ jobs:
       - name: Record known web typecheck debt
         if: steps.legacy-web-typecheck.outcome == 'failure'
         run: >-
-          echo "::warning title=Known legacy web typecheck debt::apps/web/src/lib/cloudTasksClient.ts has pre-existing TS2322 incompatibilities in Cloud Tasks httpMethod typing and OIDC audience typing. Pilot-0 records this failure without changing unrelated runtime source."
+          echo "::warning title=Known legacy web typecheck debt::Broad pre-existing web type debt remains outside the Pilot-0 changed trust surface."
 
   unit-tests:
     runs-on: ubuntu-latest
@@ -86,7 +99,7 @@ jobs:
       - name: Record known integration debt
         if: steps.legacy-integration.outcome == 'failure'
         run: >-
-          echo "::warning title=Known legacy integration debt::The existing integration suite cannot resolve the undeclared direct zod dependency used by apps/web/src/lib/zodSemalar.ts. Pilot-0 records this failure without changing unrelated runtime dependencies."
+          echo "::warning title=Known legacy integration debt::Existing integration debt remains visible outside the Pilot-0 changed trust surface."
 
   bundle-size:
     runs-on: ubuntu-latest
@@ -107,7 +120,7 @@ jobs:
       - name: Record known build debt
         if: steps.legacy-build.outcome == 'failure'
         run: >-
-          echo "::warning title=Known legacy build debt::The current monorepo build fails because packages/site-schema uses Node crypto without declaring Node type definitions. Pilot-0 records this failure without changing unrelated package/runtime dependencies."
+          echo "::warning title=Known legacy build debt::Existing monorepo build debt remains visible outside the Pilot-0 changed trust surface."
 
   trust-browser-smoke:
     if: github.event_name == 'pull_request'
