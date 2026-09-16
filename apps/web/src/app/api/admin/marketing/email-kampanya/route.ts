@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server'
 import { adminDb } from '@/lib/firebaseAdmin'
+import { apiGuard } from '@/lib/apiGuard'
 import { Resend } from 'resend'
 
-const ADMIN_TOKEN = process.env.ADMIN_SECRET_TOKEN!
 const resend = new Resend(process.env.RESEND_API_KEY || 're_mock_key_for_build')
 const FROM_EMAIL = process.env.FROM_EMAIL || 'kepenk.ai <noreply@kepenk.ai>'
 
@@ -13,9 +13,8 @@ const FROM_EMAIL = process.env.FROM_EMAIL || 'kepenk.ai <noreply@kepenk.ai>'
  * Segment: 'leadler' | 'aktif_esnaflar' | 'paket:TEMEL' | 'paket:STANDART' | ...
  */
 export async function POST(request: Request) {
-    if (request.headers.get('x-admin-token') !== ADMIN_TOKEN) {
-        return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
-    }
+    const guard = await apiGuard(request, { requireAdminSession: true })
+    if (!guard.ok) return guard.response
     if (!adminDb) return NextResponse.json({ error: 'DB yok' }, { status: 500 })
 
     const { segment, konu, html, onizleme } = await request.json()
@@ -54,8 +53,7 @@ export async function POST(request: Request) {
                 }))
             )
             gonderilen += batch.length
-        } catch (e) {
-            // console.error('[EMAIL KAMPANYA] batch hata:', e)
+        } catch {
             hata += batch.length
         }
 
@@ -80,9 +78,8 @@ export async function POST(request: Request) {
 
 // GET — kampanya geçmişi
 export async function GET(request: Request) {
-    if (request.headers.get('x-admin-token') !== ADMIN_TOKEN) {
-        return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
-    }
+    const guard = await apiGuard(request, { requireAdminSession: true })
+    if (!guard.ok) return guard.response
     if (!adminDb) return NextResponse.json({ kampanyalar: [] })
 
     const snap = await adminDb.collection('marketingKampanyalar')

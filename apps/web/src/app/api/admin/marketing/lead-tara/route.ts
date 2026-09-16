@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
+import { apiGuard } from '@/lib/apiGuard'
 
-const ADMIN_TOKEN = process.env.ADMIN_SECRET_TOKEN!
 const CRON_SECRET = process.env.CRON_SECRET || ''
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'
 
@@ -13,9 +13,8 @@ const APP_URL = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'
  * (CRON_SECRET yoksa dahili forward ile tetikler)
  */
 export async function POST(request: Request) {
-    if (request.headers.get('x-admin-token') !== ADMIN_TOKEN) {
-        return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
-    }
+    const guard = await apiGuard(request, { requireAdminSession: true })
+    if (!guard.ok) return guard.response
 
     const { ilce, sektor, limit = 20 } = await request.json()
     if (!ilce || !sektor) {
@@ -54,10 +53,10 @@ export async function POST(request: Request) {
             ilce,
             sektor,
         })
-    } catch (e: any) {
+    } catch (error: unknown) {
         return NextResponse.json({
             ok: false,
-            error: e.message,
+            error: error instanceof Error ? error.message : 'Lead scan tetiklenemedi',
             uyari: 'Lead scan tetiklenemedi. CRON_SECRET .env.local\'a ekleyin.',
         }, { status: 500 })
     }

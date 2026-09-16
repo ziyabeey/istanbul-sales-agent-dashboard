@@ -3,6 +3,7 @@ import {
     BUSINESS_SESSION_COOKIE,
     resolveCanonicalBusinessContext,
 } from '@/lib/auth/businessSession'
+import { ADMIN_SESSION_COOKIE } from '@/lib/auth/adminSessionConstants'
 import { isMvpDashboardPathAllowed, isMvpTestReleaseEnabled } from '@/lib/mvpFeatureFlags'
 
 /**
@@ -53,11 +54,10 @@ export default async function proxy(req: NextRequest) {
         return NextResponse.next()
     }
 
-    // Admin auth remains owned by P0-06. P0-03 intentionally does not turn
-    // business RequestContext into an admin principal.
+    // Admin API routes perform the authoritative Firestore-backed AdminSession
+    // validation. Proxy only provides a fast UX gate for admin pages.
     if (pathname.startsWith('/admin') && !pathname.startsWith('/admin/login')) {
-        const token = req.cookies.get('admin_token')?.value
-        if (token !== process.env.ADMIN_SECRET_TOKEN) {
+        if (!req.cookies.get(ADMIN_SESSION_COOKIE)?.value) {
             return NextResponse.redirect(new URL('/admin/login', req.nextUrl))
         }
     }
