@@ -35,9 +35,16 @@ export const SERVICE_SCOPES = {
   queueProcess: 'queue:process',
   siteGenerate: 'site:generate',
   taskInvoke: 'task:invoke',
+  // KC-03/04/05 Core migration jobs (machine identity only; never business membership).
+  coreBackfill: 'core:backfill',
+  coreBilling: 'core:billing',
+  coreProjection: 'core:projection',
 } as const
 
 export const SERVICE_AUDIENCES = {
   queueProcessor: 'kepenk.ai:/api/cron/kuyruk-isleyici',
   siteGenerator: 'kepenk.ai:/api/workers/site-ureticisi',
+  coreBackfill: 'kepenk.ai:/api/cron/core-backfill',
+  coreBillingOutbox: 'kepenk.ai:/api/cron/core-billing-outbox',
+  coreProjection: 'kepenk.ai:/api/cron/core-projection',
 } as const

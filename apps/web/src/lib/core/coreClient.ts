@@ -82,6 +82,24 @@ export const CoreSnapshotSchema = z.object({
 })
 export type CoreSnapshot = z.infer<typeof CoreSnapshotSchema>
 
+export const CoreTenantAliasSchema = z.object({
+  external_id: z.string(),
+  business_id: z.string().uuid(),
+  slug: z.string(),
+})
+export type CoreTenantAlias = z.infer<typeof CoreTenantAliasSchema>
+
+export const CoreIdentityAliasSchema = z.object({
+  external_subject: z.string(),
+  user_id: z.string().uuid(),
+})
+export type CoreIdentityAlias = z.infer<typeof CoreIdentityAliasSchema>
+
+const TenantAliasBatchSchema = z.object({ aliases: z.array(CoreTenantAliasSchema) })
+const IdentityAliasBatchSchema = z.object({ aliases: z.array(CoreIdentityAliasSchema) })
+
+export const CORE_ALIAS_BATCH_LIMIT = 100
+
 export const CoreMembershipSchema = z.object({
   id: z.string().uuid(),
   business_id: z.string().uuid(),
@@ -202,6 +220,42 @@ export class CorePlatformClient {
       this.options.anonKey
     )
     return this.unwrap(raw, FeedDataSchema)
+  }
+
+  /** KC-03: which legacy tenant ids already map to a Core business (bounded batch). */
+  async resolveTenantAliases(provider: string, externalIds: string[]): Promise<CoreTenantAlias[]> {
+    if (externalIds.length === 0) return []
+    if (externalIds.length > CORE_ALIAS_BATCH_LIMIT) throw new CorePlatformError('INVALID_PLATFORM_PAYLOAD')
+    const secret = await this.options.principalSecret()
+    const raw = await this.rpc(
+      'core_resolve_tenant_aliases',
+      {
+        p_principal_name: this.options.principalName,
+        p_principal_secret: secret,
+        p_provider: provider,
+        p_external_ids: externalIds,
+      },
+      this.options.anonKey
+    )
+    return this.unwrap(raw, TenantAliasBatchSchema).aliases
+  }
+
+  /** KC-03: which legacy identity subjects already map to a Core user (bounded batch). */
+  async resolveIdentityAliases(provider: string, externalSubjects: string[]): Promise<CoreIdentityAlias[]> {
+    if (externalSubjects.length === 0) return []
+    if (externalSubjects.length > CORE_ALIAS_BATCH_LIMIT) throw new CorePlatformError('INVALID_PLATFORM_PAYLOAD')
+    const secret = await this.options.principalSecret()
+    const raw = await this.rpc(
+      'core_resolve_identity_aliases',
+      {
+        p_principal_name: this.options.principalName,
+        p_principal_secret: secret,
+        p_provider: provider,
+        p_external_subjects: externalSubjects,
+      },
+      this.options.anonKey
+    )
+    return this.unwrap(raw, IdentityAliasBatchSchema).aliases
   }
 
   async hasEntitlement(accessToken: string, businessId: string, entitlementKey: string): Promise<boolean> {
