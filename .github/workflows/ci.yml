@@ -74,6 +74,22 @@ jobs:
           src/lib/googleBusinessClient.ts
           src/lib/metaGraphClient.ts
           test/unit/credentialEnvelope.test.ts
+      - name: Lint P0-06 admin sessions
+        run: >-
+          pnpm --filter @kepenk/web exec eslint
+          src/lib/auth/adminSessionConstants.ts
+          src/lib/auth/adminSession.ts
+          src/lib/apiGuard.ts
+          src/proxy.ts
+          src/app/api/admin/login/route.ts
+          src/app/api/admin/logout/route.ts
+          src/app/api/admin/stats/route.ts
+          src/app/api/admin/marketing/email-kampanya/route.ts
+          src/app/api/admin/marketing/google-ads/route.ts
+          src/app/api/admin/marketing/lead-tara/route.ts
+          src/app/api/admin/marketing/leadler/route.ts
+          src/components/layout/AdminSidebar.tsx
+          test/unit/adminSession.test.ts
       - name: Validate trust browser smoke script
         run: bash -n apps/web/test/e2e/trust-browser-smoke.sh
       - name: Typecheck P0 trust baseline artifacts
@@ -88,6 +104,8 @@ jobs:
         run: pnpm --filter @kepenk/web exec tsc -p test/tsconfig.p0-04-service-jobs.json --noEmit
       - name: Typecheck P0-05 credential authority
         run: pnpm --filter @kepenk/web exec tsc -p test/tsconfig.p0-05-credentials.json --noEmit
+      - name: Typecheck P0-06 admin sessions
+        run: pnpm --filter @kepenk/web exec tsc -p test/tsconfig.p0-06-admin-session.json --noEmit
       - name: Legacy full web typecheck baseline
         id: legacy-web-typecheck
         continue-on-error: true
