@@ -4,6 +4,30 @@ import { apiGuard } from '@/lib/apiGuard'
 import { PAKET_FIYATLARI_AYLIK } from '@/data/paketler'
 import { PAKET_FIYATLARI } from '@/types'
 
+type AdminEsnafStatsRecord = {
+    id: string
+    ad?: string
+    isletmeAdiTam?: string
+    sektor?: string
+    ilce?: string
+    sehir?: string
+    paket?: string
+    durum?: string
+    email?: string
+    churnSkoru?: number
+    telefon?: string
+    telefonTemiz?: string
+    waNumarasi?: string
+    instagramUsername?: string
+    kayitTarihi?: unknown
+    twilioNumarasi?: string
+    ayarlar?: Record<string, unknown>
+    saglikSkoru?: number
+    subdomainUrl?: string
+    aktifWebModulleri?: string[]
+    notlar?: string
+}
+
 /**
  * GET /api/admin/stats
  * Admin istatistik API'si. Durable AdminSession doğrulaması yapar.
@@ -20,32 +44,37 @@ export async function GET(request: Request) {
 
     try {
         const esnaflarSnap = await adminDb.collection('esnaflar').get()
-        const esnaflar = esnaflarSnap.docs.map((doc: FirebaseFirestore.QueryDocumentSnapshot) => ({
-            id: doc.id,
-            ...doc.data(),
-        }))
+        const esnaflar = esnaflarSnap.docs.map<AdminEsnafStatsRecord>(
+            (doc: FirebaseFirestore.QueryDocumentSnapshot) => ({
+                id: doc.id,
+                ...(doc.data() as Omit<AdminEsnafStatsRecord, 'id'>),
+            })
+        )
 
-        const aktifEsnaflar = esnaflar.filter(e => e.durum === 'aktif')
+        const aktifEsnaflar = esnaflar.filter((e) => e.durum === 'aktif')
 
         // MRR: aylık fiyatlar toplamı
-        const mrr = aktifEsnaflar.reduce((acc, e) => {
+        const mrr = aktifEsnaflar.reduce<number>((acc, e) => {
             const paketKey = (e.paket || 'TEMEL') as keyof typeof PAKET_FIYATLARI_AYLIK
             return acc + (PAKET_FIYATLARI_AYLIK[paketKey] || 0)
         }, 0)
 
         // ARR: yıllık fiyatlar toplamı (finans sayfasında hesaplanır, ama burada da göndeririz)
-        const arr = aktifEsnaflar.reduce((acc, e) => {
+        const arr = aktifEsnaflar.reduce<number>((acc, e) => {
             const paketKey = (e.paket || 'TEMEL') as keyof typeof PAKET_FIYATLARI
             return acc + (PAKET_FIYATLARI[paketKey] || 0)
         }, 0)
 
         const churnOrtalama = esnaflar.length > 0
-            ? Math.round(esnaflar.reduce((acc, e) => acc + (e.churnSkoru || 0), 0) / esnaflar.length)
+            ? Math.round(
+                esnaflar.reduce<number>((acc, e) => acc + (e.churnSkoru || 0), 0) /
+                esnaflar.length
+            )
             : 0
 
         const churnYuksek = esnaflar
-            .filter(e => (e.churnSkoru || 0) > 70)
-            .map(e => ({
+            .filter((e) => (e.churnSkoru || 0) > 70)
+            .map((e) => ({
                 id: e.id,
                 ad: e.ad || e.isletmeAdiTam,
                 churnSkoru: e.churnSkoru,
@@ -63,7 +92,7 @@ export async function GET(request: Request) {
             toplamSayisi: esnaflar.length,
             churnOrtalama,
             churnYuksek,
-            esnaflar: esnaflar.map(e => ({
+            esnaflar: esnaflar.map((e) => ({
                 id: e.id,
                 ad: e.ad || e.isletmeAdiTam,
                 sektor: e.sektor,
