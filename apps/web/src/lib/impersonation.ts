@@ -5,6 +5,7 @@ import { NextResponse } from 'next/server'
 import type { ImpersonationSession } from '../../../../packages/admin/src/types/impersonation'
 import { adminDb } from './firebaseAdmin'
 import {
+    ADMIN_SESSION_COOKIE,
     readAdminSessionToken,
     validateAdminSessionToken,
     type AdminSessionRepository,
@@ -264,15 +265,16 @@ export async function getBoundActiveImpersonationFromRequest(
 export async function assertNoActiveImpersonationForRestrictedAction(
     request: Request,
     repository?: ImpersonationSessionRepository,
-    now = new Date()
+    now = new Date(),
+    adminSessionRepository?: AdminSessionRepository
 ): Promise<void> {
-    const token = readImpersonationSessionToken(request)
-    if (!token) return
-    const session = await validateImpersonationSessionToken(
-        token,
-        repository ?? new FirestoreImpersonationSessionRepository(),
-        now
-    )
+    if (!readImpersonationSessionToken(request)) return
+
+    const session = await getBoundActiveImpersonationFromRequest(request, {
+        impersonationRepository: repository,
+        adminSessionRepository,
+        now,
+    })
     if (session) throw new ImpersonationRestrictedActionError()
 }
 
@@ -309,10 +311,23 @@ export async function impersonationBilgiAl(): Promise<{
     expiresAt?: string
 }> {
     const cookieStore = await cookies()
-    const token = cookieStore.get(IMPERSONATE_COOKIE)?.value
-    if (!token || !TOKEN_RE.test(token)) return { aktif: false }
-    const session = await validateImpersonationSessionToken(token)
+    const impersonationToken = cookieStore.get(IMPERSONATE_COOKIE)?.value
+    const adminToken = cookieStore.get(ADMIN_SESSION_COOKIE)?.value
+    if (
+        !impersonationToken || !TOKEN_RE.test(impersonationToken) ||
+        !adminToken
+    ) {
+        return { aktif: false }
+    }
+
+    const session = await validateImpersonationSessionToken(impersonationToken)
     if (!session) return { aktif: false }
+
+    const adminSession = await validateAdminSessionToken(adminToken)
+    if (!adminSession || adminSession.principalId !== session.adminId) {
+        return { aktif: false }
+    }
+
     return {
         aktif: true,
         esnafId: session.subject.id,
