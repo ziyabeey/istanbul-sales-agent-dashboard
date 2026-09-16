@@ -5,8 +5,7 @@
     "incremental": false,
     "baseUrl": "..",
     "paths": {
-      "@/*": ["src/*"],
-      "zod": ["../../packages/admin/node_modules/zod"]
+      "@/*": ["src/*"]
     },
     "types": ["node", "vitest/globals", "next/types/global"]
   },
