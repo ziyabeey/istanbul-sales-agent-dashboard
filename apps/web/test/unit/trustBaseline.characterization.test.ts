@@ -21,10 +21,10 @@ function readSource(relativePath: string): string {
 }
 
 describe('Pilot-0 trust baseline characterization', () => {
-  it('pins the current principal/cookie/credential vocabulary after P0-07', () => {
+  it('pins the current principal/cookie/credential vocabulary after P0-08', () => {
     const sharedSecretIds = CURRENT_SHARED_SECRET_SURFACES.map((surface) => String(surface.id))
 
-    expect(TRUST_BASELINE_VERSION).toBe('p0-07@2026-09-16')
+    expect(TRUST_BASELINE_VERSION).toBe('p0-08@2026-09-16')
     expect(CURRENT_TRUST_COOKIES).toEqual({
       businessSession: 'kepenk_session',
       adminSession: 'admin_session',
@@ -41,6 +41,7 @@ describe('Pilot-0 trust baseline characterization', () => {
       .toBe('ADMIN_LOGIN_SECRET')
     expect(sharedSecretIds).not.toContain('admin-proxy')
     expect(sharedSecretIds).not.toContain('admin-api')
+    expect(sharedSecretIds).not.toContain('dev-login')
   })
 
   it('P0-03: one canonical business-session resolver owns dashboard and API identity', () => {
@@ -158,17 +159,22 @@ describe('Pilot-0 trust baseline characterization', () => {
     expect(KNOWN_TRUST_RISKS).not.toContain('cloud_task_header_has_dev_secret_fallback')
   })
 
-  it('P0-04: migrated workers require audience and scope before doing work', () => {
+  it('P0-04/P0-08: migrated workers require signed audience and scope without CRON_SECRET compatibility', () => {
     const queue = readSource('src/app/api/cron/kuyruk-isleyici/route.ts')
     const site = readSource('src/app/api/workers/site-ureticisi/route.ts')
+    const serviceAuth = readSource('src/lib/serviceAuth.ts')
 
     expect(queue).toContain('requireServicePrincipal: {')
     expect(queue).toContain('SERVICE_AUDIENCES.queueProcessor')
     expect(queue).toContain('SERVICE_SCOPES.queueProcess')
-    expect(queue).toContain('allowLegacyCronSecret: true')
+    expect(queue).not.toContain('allowLegacyCronSecret')
     expect(site).toContain('requireServicePrincipal: {')
     expect(site).toContain('SERVICE_AUDIENCES.siteGenerator')
     expect(site).toContain('SERVICE_SCOPES.siteGenerate')
+    expect(site).not.toContain('allowLegacyCronSecret')
+    expect(serviceAuth).not.toContain('allowLegacyCronSecret')
+    expect(serviceAuth).not.toContain('legacy_cron_secret')
+    expect(serviceAuth).not.toContain('process.env.CRON_SECRET')
   })
 
   it('P0-04: durable queue uses leases, bounded retry and idempotency keys', () => {
@@ -277,17 +283,33 @@ describe('Pilot-0 trust baseline characterization', () => {
     expect(banner).toContain("fetch('/api/admin/impersonate'")
   })
 
-  it('KNOWN-RISK: onboarding SMS failure still enables fixed 123456 verification code', () => {
+  it('P0-08: onboarding SMS failure cannot create a fixed verification code', () => {
     const source = readSource('src/app/api/auth/onboarding-otp-gonder/route.ts')
-    expect(source).toContain("kod = '123456'")
+    expect(source).not.toContain("kod = '123456'")
+    expect(source).not.toContain('OTP DEV BYPASS')
     expect(source).toContain('if (!smsBasari)')
+    expect(source).toContain('{ status: 503 }')
+    expect(source.indexOf('if (!smsBasari)')).toBeLessThan(source.indexOf('await otpKaydet'))
+    expect(KNOWN_TRUST_RISKS).not.toContain('onboarding_sms_failure_enables_fixed_123456_code')
   })
 
-  it('KNOWN-RISK: dev-login still has a hardcoded secret fallback and may create a real tenant', () => {
+  it('P0-08: dev-login is production-disabled and has no shared-secret fallback', () => {
     const source = readSource('src/app/api/auth/dev-login/route.ts')
-    expect(source).toContain("process.env.ADMIN_SECRET_TOKEN || 'kepenk-admin-2026'")
-    expect(source).toContain("adminDb.collection('esnaflar').add")
-    expect(source).toContain('await oturumOlustur(esnafId, response)')
+    expect(source).toContain("process.env.NODE_ENV === 'production'")
+    expect(source).toContain("process.env.ENABLE_DEV_LOGIN !== 'true'")
+    expect(source).toContain('process.env.DEV_LOGIN_SECRET')
+    expect(source).not.toContain('ADMIN_SECRET_TOKEN')
+    expect(source).not.toContain('kepenk-admin-2026')
+    expect(source).toContain("process.env.ENABLE_DEV_LOGIN_FIXTURE_CREATE !== 'true'")
+    expect(KNOWN_TRUST_RISKS).not.toContain('dev_login_has_hardcoded_admin_secret_fallback')
+  })
+
+  it('P0-08: raw admin secret header cannot authorize business API access', () => {
+    const source = readSource('src/app/api/esnaf/[id]/route.ts')
+    expect(source).not.toContain("request.headers.get('x-admin-token')")
+    expect(source).not.toContain('process.env.ADMIN_SECRET_TOKEN')
+    expect(source).toContain('getBoundActiveImpersonationFromRequest(request)')
+    expect(source).toContain('await oturumDogrulaServer()')
   })
 
   it('KNOWN-RISK: unmigrated cron routes still rely on the shared CRON_SECRET path', () => {
@@ -297,14 +319,19 @@ describe('Pilot-0 trust baseline characterization', () => {
     expect(KNOWN_TRUST_RISKS).toContain('unmigrated_cron_routes_still_use_shared_cron_secret')
   })
 
-  it('KNOWN-RISK: privacy cron endpoints still contain simulated completion counters', () => {
+  it('P0-08: privacy cron endpoints cannot claim simulated compliance completion', () => {
     const dataPurge = readSource('src/app/api/cron/data-purge/route.ts')
     const kvkk = readSource('src/app/api/cron/kvkk/route.ts')
 
-    expect(dataPurge).toContain('const simulatedDeletedAccountsCount = 4')
-    expect(dataPurge).toContain('Data Purge Execution Completed successfully.')
-    expect(kvkk).toContain('const anonymizedCount = 14')
-    expect(kvkk).toContain('const deletedCount = 3')
+    expect(dataPurge).not.toContain('simulatedDeletedAccountsCount')
+    expect(dataPurge).not.toContain('Completed successfully')
+    expect(dataPurge).toContain('authoritative: false')
+    expect(dataPurge).toContain('{ status: 501 }')
+    expect(kvkk).not.toContain('const anonymizedCount = 14')
+    expect(kvkk).not.toContain('const deletedCount = 3')
+    expect(kvkk).toContain('authoritative: false')
+    expect(kvkk).toContain('{ status: 501 }')
+    expect(KNOWN_TRUST_RISKS).not.toContain('privacy_crons_can_report_simulated_success')
   })
 
   it('pins current auth response-shape fixtures for compatibility adapters', () => {
@@ -321,10 +348,12 @@ describe('Pilot-0 trust baseline characterization', () => {
   it('keeps only unresolved trust risks in the register', () => {
     expect(KNOWN_TRUST_RISKS).toContain('unmigrated_business_api_callers_can_still_use_legacy_esnafId_jwt_compatibility')
     expect(KNOWN_TRUST_RISKS).toContain('legacy_tenant_provider_tokens_still_live_on_esnaflar_root_until_w3')
+    expect(KNOWN_TRUST_RISKS).toContain('unmigrated_cron_routes_still_use_shared_cron_secret')
+    expect(KNOWN_TRUST_RISKS).not.toContain('onboarding_sms_failure_enables_fixed_123456_code')
+    expect(KNOWN_TRUST_RISKS).not.toContain('dev_login_has_hardcoded_admin_secret_fallback')
+    expect(KNOWN_TRUST_RISKS).not.toContain('privacy_crons_can_report_simulated_success')
     expect(KNOWN_TRUST_RISKS).not.toContain('admin_login_proxy_api_use_incompatible_authorities')
     expect(KNOWN_TRUST_RISKS).not.toContain('admin_proxy_fails_open_when_secret_and_cookie_are_both_absent')
-    expect(KNOWN_TRUST_RISKS).toContain('unmigrated_cron_routes_still_use_shared_cron_secret')
-    expect(KNOWN_TRUST_RISKS).toContain('privacy_crons_can_report_simulated_success')
     expect(KNOWN_TRUST_RISKS).not.toContain('dashboard_proxy_accepts_business_cookie_by_presence')
     expect(KNOWN_TRUST_RISKS).not.toContain('cloud_tasks_missing_credentials_downgrades_to_direct_http')
   })
