@@ -1,4 +1,3 @@
-import { decodeJwt } from 'jose'
 import { describe, expect, it } from 'vitest'
 import type {
   AuthIdentity,
@@ -84,6 +83,11 @@ class MemoryHumanAuthRepositories implements HumanAuthRepositories {
       },
     }
   }
+}
+
+function decodeSegment(token: string, index: number): Record<string, unknown> {
+  const segment = token.split('.')[index]
+  return JSON.parse(Buffer.from(segment, 'base64url').toString('utf8')) as Record<string, unknown>
 }
 
 const NOW = new Date('2026-09-16T09:00:00.000Z')
@@ -182,7 +186,7 @@ describe('canonical human auth issuance', () => {
 })
 
 describe('canonical signed session locator', () => {
-  it('signs only durable Session locator identity and verifies issuer/audience contract', async () => {
+  it('pins HS256 and carries only durable Session locator identity', async () => {
     const tokenNow = new Date()
     const session: Session = {
       sessionId: 'ses_test',
@@ -196,8 +200,10 @@ describe('canonical signed session locator', () => {
     }
 
     const token = await issueCanonicalSessionToken(session)
-    const decoded = decodeJwt(token)
+    const header = decodeSegment(token, 0)
+    const decoded = decodeSegment(token, 1)
 
+    expect(header.alg).toBe('HS256')
     expect(isCanonicalSessionTokenCandidate(token)).toBe(true)
     expect(decoded.sub).toBe('usr_test')
     expect(decoded.sid).toBe('ses_test')
