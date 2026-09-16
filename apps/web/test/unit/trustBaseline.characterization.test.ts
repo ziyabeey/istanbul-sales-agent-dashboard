@@ -344,6 +344,21 @@ describe('Pilot-0 trust baseline characterization', () => {
     expect(billing).toContain("const created = await deps.store.create(fresh)")
   })
 
+  it('KC-05: canary tenants receive commercial state only through the Core projection', () => {
+    const scenario = readSource('src/utils/paketSenaryosu.ts')
+    const adminPatch = readSource('src/app/api/admin/esnaf/[id]/route.ts')
+    const projection = readSource('src/lib/core/projection.ts')
+    const entitlementRoute = readSource('src/app/api/admin/core/entitlement/route.ts')
+
+    expect(scenario).toContain('stripLegacyCommercialFields(esnafId, {')
+    expect(scenario).not.toMatch(/docRef\.update\(\{\s*durum:/)
+    expect(adminPatch).toContain('assertLegacyCommercialWriteAllowed(id, guncellemeler)')
+    expect(projection).toContain("legacyDurumForSubscriptionStatus(payload.data.status)")
+    expect(projection).not.toContain('has_entitlement')
+    expect(entitlementRoute).toContain("command: action === 'grant' ? 'GrantEntitlement' : 'RevokeEntitlement'")
+    expect(entitlementRoute).not.toContain('.update(')
+  })
+
   it('KNOWN-RISK: unmigrated cron routes still rely on the shared CRON_SECRET path', () => {
     const source = readSource('src/lib/apiGuard.ts')
     expect(source).toContain('requireCronSecret?: boolean')
