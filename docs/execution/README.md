@@ -1,10 +1,10 @@
 # Kepenk v2 — Exact Execution Manifest
 
 > **Tarih:** 2026-09-16  
-> **Durum:** **PLANLAMA KAPALI — W0–W10 tamam, implementation başlamadı**  
+> **Durum:** **IMPLEMENTATION-READY PLAN — W0–W10 + Pilot Cutover tamam, production implementation başlamadı**  
 > **Kaynak:** SÖKÜM 01–41 + SENTEZ 01–05  
-> **Amaç:** Canonical mimariyi exact file/route/package task'larına dönüştürmek.  
-> **Kural:** Bu klasör kod implementasyonu yapmaz; hangi dosyanın hangi wave'de ne olacağını ve hangi acceptance gate ile kapanacağını sabitler.
+> **Amaç:** Canonical mimariyi exact file/route/package task'larına ve güvenli cutover paketlerine dönüştürmek.  
+> **Kural:** Bu klasör kod implementasyonu yapmaz; hangi dosyanın hangi wave'de ne olacağını, hangi acceptance gate ile kapanacağını ve hangi sırada cutover edileceğini sabitler.
 
 ## Wave manifestleri
 
@@ -21,6 +21,39 @@
 | W8 | Agent Runtime + Knowledge | KAPALI / planlandı | `docs/execution/w08-agent-runtime-knowledge.md` |
 | W9 | Vertical Activation | KAPALI / planlandı | `docs/execution/w09-vertical-activation.md` |
 | W10 | Admin / Privacy / Offboarding convergence + final cleanup | KAPALI / planlandı | `docs/execution/w10-admin-privacy-offboarding-final-cleanup.md` |
+
+## Pilot cutover
+
+`docs/execution/pilot-cutover-packaging.md` W1–W10 task'larını geri alınabilir implementation paketlerine böler:
+
+```text
+Pilot-0  Trust Bootstrap
+Pilot-1  First Canonical Tenant
+Pilot-2  Customer + Booking + Payment + Finance Golden Flow
+Pilot-3  Public Site + Public Action + Messaging
+Pilot-4  Commerce + Analytics + Agent Safe Loop
+         ↓
+Vertical Activation
+         ↓
+Final Legacy Retirement
+```
+
+Cutover stratejisi:
+
+```text
+EXPAND
+ -> BACKFILL
+ -> SHADOW READ
+ -> CANONICAL WRITE
+ -> one-way LEGACY PROJECTION
+ -> CANARY READ
+ -> OBSERVE
+ -> BROADEN
+ -> WRITE DENY
+ -> RETIRE
+```
+
+Bidirectional dual-authority migration yasaktır.
 
 ## Disposition etiketleri
 
@@ -158,23 +191,31 @@
 
 ## Execution planning kapanış kararı
 
-`W0 → W10` planlama zinciri tamamlandı. **W11 açılmaz.** Bu klasör artık implementation sırasında değişikliklerin hangi authority'ye, hangi acceptance gate'e ve hangi retirement şartına göre yapılacağını belirleyen execution baseline'dır.
+`W0 → W10` planlama zinciri tamamlandı. **W11 açılmaz.** Pilot cutover packaging de tamamlandı. Bu klasör artık implementation sırasında değişikliklerin hangi authority'ye, hangi acceptance gate'e, hangi cutover paketine ve hangi retirement şartına göre yapılacağını belirleyen baseline'dır.
 
-### Sonraki frontier
+### Implementation entry gate
 
-**Implementation Readiness / Pilot Cutover Packaging**
-
-Bu faz da production kodu yazmadan önce yalnız şunları çıkarır:
+Production koduna geçmeden önce başlangıç paketi yalnız `Pilot-0 / Trust Bootstrap` olacaktır:
 
 ```text
-Pilot-0 / Trust bootstrap
-Pilot-1 / first canonical tenant
-Pilot-2 / first customer + booking + payment flow
-Pilot-3 / public site + messaging flow
-Pilot-4 / commerce/analytics/agent flow
-Legacy hard-cut checkpoints
-Rollback / recovery checkpoints
-Acceptance evidence pack
+User/Membership/Session
+RequestContext
+AdminPrincipal/AdminSession
+ServicePrincipal
+Durable audit request/outcome
+minimum DurableJob
+minimum CredentialRef
+canary telemetry
 ```
 
-Amaç yeni mimari tasarlamak değil, mevcut W1–W10 task'larını küçük ve geri alınabilir uygulama paketlerine bölmektir.
+İlk feature migration'ı Trust gate geçmeden başlamaz.
+
+### Mevcut durum
+
+- SÖKÜM: kapalı
+- SENTEZ: kapalı
+- W0–W10 execution planning: kapalı
+- Pilot cutover packaging: kapalı
+- Production implementation: **başlamadı**
+- Application code: bu planlama fazında **değiştirilmedi**
+- Bir sonraki adım: yalnız explicit implementation yetkisi verildiğinde Pilot-0 task'larını implementation ticket/branch birimlerine bölmek
