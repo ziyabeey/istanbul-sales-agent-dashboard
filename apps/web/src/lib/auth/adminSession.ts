@@ -1,6 +1,5 @@
 import crypto from 'crypto'
 import type { Firestore } from 'firebase-admin/firestore'
-import { z } from 'zod'
 import { adminDb } from '../firebaseAdmin'
 
 import { ADMIN_SESSION_COOKIE, ADMIN_SESSION_TTL_SECONDS } from './adminSessionConstants'
@@ -10,17 +9,74 @@ export { ADMIN_SESSION_COOKIE, ADMIN_SESSION_TTL_SECONDS } from './adminSessionC
 const ADMIN_SESSION_COLLECTION = 'auth_admin_sessions'
 const ADMIN_SESSION_TOKEN_RE = /^[A-Za-z0-9_-]{43}$/
 const TOKEN_HASH_RE = /^[a-f0-9]{64}$/
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
+const ADMIN_SESSION_KEYS = new Set([
+    'sessionId',
+    'principalId',
+    'tokenHash',
+    'issuedAt',
+    'expiresAt',
+    'revokedAt',
+])
 
-export const AdminSessionSchema = z.object({
-    sessionId: z.string().uuid(),
-    principalId: z.string().min(1),
-    tokenHash: z.string().regex(TOKEN_HASH_RE),
-    issuedAt: z.string().datetime(),
-    expiresAt: z.string().datetime(),
-    revokedAt: z.string().datetime().nullable(),
-}).strict()
+export type AdminSession = {
+    sessionId: string
+    principalId: string
+    tokenHash: string
+    issuedAt: string
+    expiresAt: string
+    revokedAt: string | null
+}
 
-export type AdminSession = z.infer<typeof AdminSessionSchema>
+function parseIsoDateTime(value: unknown, fieldName: string): string {
+    if (typeof value !== 'string') {
+        throw new Error(`${fieldName} must be an ISO date-time string`)
+    }
+
+    const parsed = new Date(value)
+    if (Number.isNaN(parsed.getTime()) || parsed.toISOString() !== value) {
+        throw new Error(`${fieldName} must be a valid ISO date-time string`)
+    }
+
+    return value
+}
+
+function parseAdminSession(value: unknown): AdminSession {
+    if (!value || typeof value !== 'object' || Array.isArray(value)) {
+        throw new Error('AdminSession must be an object')
+    }
+
+    const record = value as Record<string, unknown>
+    const keys = Object.keys(record)
+    if (keys.length !== ADMIN_SESSION_KEYS.size || keys.some((key) => !ADMIN_SESSION_KEYS.has(key))) {
+        throw new Error('AdminSession contains unexpected or missing fields')
+    }
+
+    const { sessionId, principalId, tokenHash, issuedAt, expiresAt, revokedAt } = record
+
+    if (typeof sessionId !== 'string' || !UUID_RE.test(sessionId)) {
+        throw new Error('AdminSession sessionId must be a UUID')
+    }
+    if (typeof principalId !== 'string' || principalId.length === 0) {
+        throw new Error('AdminSession principalId is required')
+    }
+    if (typeof tokenHash !== 'string' || !TOKEN_HASH_RE.test(tokenHash)) {
+        throw new Error('AdminSession tokenHash must be a SHA-256 digest')
+    }
+
+    return {
+        sessionId,
+        principalId,
+        tokenHash,
+        issuedAt: parseIsoDateTime(issuedAt, 'issuedAt'),
+        expiresAt: parseIsoDateTime(expiresAt, 'expiresAt'),
+        revokedAt: revokedAt === null ? null : parseIsoDateTime(revokedAt, 'revokedAt'),
+    }
+}
+
+export const AdminSessionSchema = {
+    parse: parseAdminSession,
+} as const
 
 export interface AdminSessionRepository {
     getByTokenHash(tokenHash: string): Promise<AdminSession | null>
