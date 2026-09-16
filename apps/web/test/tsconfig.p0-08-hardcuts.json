@@ -11,8 +11,7 @@
     "types": ["node", "vitest/globals", "next/types/global"]
   },
   "include": [
-    "../src/app/api/cron/kuyruk-isleyici/route.ts",
-    "../src/app/api/workers/site-ureticisi/route.ts"
+    "../src/app/api/cron/kuyruk-isleyici/route.ts"
   ],
   "exclude": [
     "../node_modules",
