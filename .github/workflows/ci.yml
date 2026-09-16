@@ -23,8 +23,8 @@ jobs:
           corepack enable
           corepack prepare pnpm@9.1.0 --activate
       - run: pnpm install --frozen-lockfile
-      - run: pnpm -r --if-present lint
-      - run: pnpm -r --if-present typecheck
+      - run: pnpm --filter @kepenk/web lint
+      - run: pnpm --filter @kepenk/web typecheck
 
   unit-tests:
     runs-on: ubuntu-latest
