@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { coreIdempotencyKey, type CorePlatformClient } from './coreClient'
+import { CORE_LEGACY_TENANT_PROVIDER, coreIdempotencyKey, type CorePlatformClient } from './coreClient'
 import { CorePlatformError } from './errors'
 
 /**
@@ -7,11 +7,14 @@ import { CorePlatformError } from './errors'
  *
  * A server-verified provider payment (never a client claim) becomes exactly
  * one ChangeSubscription command whose idempotency key derives from the
- * provider event id. The event is persisted to a durable outbox before any
- * network call so a timeout is recovered with the same key (K03 rule), a
- * replay of the same payment never produces a second subscription event, and
- * a payment for a tenant that KC-03 has not linked yet is deferred rather
- * than guessed. Plan -> entitlement derivation lives in Core; Kepenk only
+ * provider event id. The event is persisted to a durable outbox with an
+ * atomic create-if-absent before any network call, so a timeout is recovered
+ * with the same key (K03 rule), a concurrent first callback for the same
+ * payment converges on one canonical stored event (R1 KC-04 blocker 3), a
+ * replay never produces a second subscription event, and the target business
+ * is the Core tenant alias, cross-checked against the Firestore shadow
+ * (missing alias -> deferred, shadow disagreement -> fail closed; R1 KC-04
+ * blocker 2). Plan -> entitlement derivation lives in Core; Kepenk only
  * names the plan key.
  */
 export const KEPENK_LAUNCH_PLAN_KEY = 'kepenk_standard'
@@ -76,12 +79,27 @@ export interface BillingOutboxRecord {
   createdAt: string
   updatedAt: string
   result: { eventId: number; version: number } | null
+  /** Firestore shadow disagreed with the Core tenant alias: operator drift signal, never applied. */
+  drift?: { shadowBusinessId: string; coreBusinessId: string } | null
 }
 
 export interface BillingOutboxStore {
   get(key: string): Promise<BillingOutboxRecord | null>
+  /** Atomic create-if-absent: the first writer wins, every later writer sees 'exists'. */
+  create(record: BillingOutboxRecord): Promise<'created' | 'exists'>
   put(record: BillingOutboxRecord): Promise<void>
   listDue(input: { now: Date; limit: number }): Promise<BillingOutboxRecord[]>
+}
+
+/** Canonical business routing for a legacy tenant: Core tenant alias is authority, the shadow is only cross-checked. */
+export interface BusinessRouting {
+  coreBusinessId: string | null
+  shadowBusinessId: string | null
+}
+
+export async function resolveCoreBusinessAlias(client: Pick<CorePlatformClient, 'resolveTenantAliases'>, esnafId: string): Promise<string | null> {
+  const aliases = await client.resolveTenantAliases(CORE_LEGACY_TENANT_PROVIDER, [esnafId])
+  return aliases.find((alias) => alias.external_id === esnafId)?.business_id ?? null
 }
 
 export class InMemoryBillingOutboxStore implements BillingOutboxStore {
@@ -89,6 +107,11 @@ export class InMemoryBillingOutboxStore implements BillingOutboxStore {
   async get(key: string): Promise<BillingOutboxRecord | null> {
     const record = this.records.get(key)
     return record ? { ...record } : null
+  }
+  async create(record: BillingOutboxRecord): Promise<'created' | 'exists'> {
+    if (this.records.has(record.key)) return 'exists'
+    this.records.set(record.key, { ...record })
+    return 'created'
   }
   async put(record: BillingOutboxRecord): Promise<void> {
     this.records.set(record.key, { ...record })
@@ -113,8 +136,8 @@ export const ChangeSubscriptionResultSchema = z.object({
 export interface ApplyPaymentDeps {
   store: BillingOutboxStore
   client: CorePlatformClient
-  /** KC-03 shadow field lookup: legacy esnafId -> Core business_id (null while unlinked). */
-  resolveBusinessId: (esnafId: string) => Promise<string | null>
+  /** Canonical routing: Core tenant alias (authority) + Firestore shadow (cross-check only). */
+  resolveBusinessRouting: (esnafId: string) => Promise<BusinessRouting>
   now?: () => Date
 }
 
@@ -124,30 +147,30 @@ export function retryBackoffMs(attempts: number): number {
   return Math.min(30_000 * 2 ** Math.max(attempts - 1, 0), 60 * 60 * 1000)
 }
 
-/** Durably records the verified payment first, then tries to apply it to Core. */
+export function newOutboxRecord(event: VerifiedPaymentEvent, at: string): BillingOutboxRecord {
+  return { key: billingIdempotencyKey(event), event, businessId: null, status: 'pending', attempts: 0, lastError: null, nextAttemptAt: null, createdAt: at, updatedAt: at, result: null, drift: null }
+}
+
+/**
+ * Durably records the verified payment first (atomic create-if-absent), then
+ * tries to apply it to Core. A concurrent first callback that loses the
+ * create re-reads the canonical stored event, so one key always carries one
+ * payload (period derived from the stored paidAt, never from the caller's
+ * clock) and Core sees one commercial event.
+ */
 export async function applyVerifiedPayment(deps: ApplyPaymentDeps, eventInput: VerifiedPaymentEvent): Promise<ApplyPaymentOutcome> {
   const event = VerifiedPaymentEventSchema.parse(eventInput)
   const now = deps.now ?? (() => new Date())
   const key = billingIdempotencyKey(event)
 
   let record = await deps.store.get(key)
-  if (record?.status === 'applied') return { key, status: 'applied', businessId: record.businessId }
-  if (record?.status === 'conflict') return { key, status: 'conflict', businessId: record.businessId }
   if (!record) {
-    record = {
-      key,
-      event,
-      businessId: null,
-      status: 'pending',
-      attempts: 0,
-      lastError: null,
-      nextAttemptAt: null,
-      createdAt: now().toISOString(),
-      updatedAt: now().toISOString(),
-      result: null,
-    }
-    await deps.store.put(record)
+    const fresh = newOutboxRecord(event, now().toISOString())
+    const created = await deps.store.create(fresh)
+    record = created === 'created' ? fresh : ((await deps.store.get(key)) ?? fresh)
   }
+  if (record.status === 'applied') return { key, status: 'applied', businessId: record.businessId }
+  if (record.status === 'conflict') return { key, status: 'conflict', businessId: record.businessId }
   return attempt(deps, record, now)
 }
 
@@ -163,10 +186,20 @@ async function attempt(deps: ApplyPaymentDeps, record: BillingOutboxRecord, now:
     return { key: record.key, status: 'failed', businessId: record.businessId }
   }
 
-  const businessId = record.businessId ?? (await deps.resolveBusinessId(record.event.esnafId))
+  let businessId = record.businessId
   if (!businessId) {
-    await save({ status: 'deferred', lastError: 'BUSINESS_NOT_LINKED', attempts: record.attempts + 1, nextAttemptAt: new Date(now().getTime() + retryBackoffMs(record.attempts + 1)).toISOString() })
-    return { key: record.key, status: 'deferred', businessId: null }
+    const routing = await deps.resolveBusinessRouting(record.event.esnafId)
+    if (!routing.coreBusinessId) {
+      // No Core tenant alias yet (KC-03 has not linked this tenant): the shadow alone never routes money.
+      await save({ status: 'deferred', lastError: 'BUSINESS_NOT_LINKED', attempts: record.attempts + 1, nextAttemptAt: new Date(now().getTime() + retryBackoffMs(record.attempts + 1)).toISOString() })
+      return { key: record.key, status: 'deferred', businessId: null }
+    }
+    if (routing.shadowBusinessId && routing.shadowBusinessId.toLowerCase() !== routing.coreBusinessId.toLowerCase()) {
+      // Stale or foreign shadow: fail closed with a drift signal instead of moving a payment to the wrong business.
+      await save({ status: 'failed', lastError: 'BUSINESS_SHADOW_MISMATCH', attempts: record.attempts + 1, nextAttemptAt: null, drift: { shadowBusinessId: routing.shadowBusinessId, coreBusinessId: routing.coreBusinessId } })
+      return { key: record.key, status: 'failed', businessId: null }
+    }
+    businessId = routing.coreBusinessId
   }
 
   const period = subscriptionPeriod(record.event.paidAt, record.event.billingInterval)

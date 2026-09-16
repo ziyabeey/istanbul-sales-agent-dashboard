@@ -86,16 +86,38 @@ export async function POST(request: Request) {
 
                         const esnafPaket = esnaf.paket || 'TEMEL'
 
-                        // KC-04: the server-verified payment becomes one idempotent Core
-                        // ChangeSubscription command (durable outbox first). Fire-and-forget:
-                        // Firestore stays authoritative until KC-05 cutover and the legacy
-                        // package scenario below must not depend on Core availability.
-                        void recordVerifiedIyzicoPayment({
+                        // KC-04 (R1 blocker 1): the server-verified payment is persisted to the
+                        // durable Core billing outbox BEFORE the success path continues, and the
+                        // callback awaits that write. A failed persist raises an operator
+                        // reconciliation signal (Firestore record + Telegram) and flags the
+                        // redirect; Firestore stays authoritative for the legacy package until
+                        // KC-05 cutover, so the legacy scenario still runs below.
+                        const coreBilling = await recordVerifiedIyzicoPayment({
                             paymentId: result.paymentId || '',
                             conversationId: convId,
                             esnafId,
                             paket: esnafPaket,
-                        }).catch(() => { /* recorded by the outbox job on the next run */ })
+                        })
+                        let coreBillingFlag = ''
+                        if (coreBilling && !coreBilling.durable) {
+                            coreBillingFlag = '?core=beklemede'
+                            await adminDb.collection('basarisizSenaryolar').add({
+                                esnafId,
+                                paket: esnafPaket,
+                                paymentId: result.paymentId || '',
+                                hata: `CORE_BILLING_OUTBOX_PERSIST_FAILED: ${coreBilling.error}`,
+                                kaynak: 'core-billing-outbox',
+                                tarih: new Date().toISOString(),
+                                durum: 'bekliyor', // Manuel uzlaştırma bekliyor
+                            }).catch(() => { /* Firestore also failing: Telegram below is the last signal */ })
+                            await telegramGonder(
+                                `🚨 <b>KRİTİK: Ödeme alındı ama Core billing outbox yazılamadı!</b>\n` +
+                                `Esnaf: ${esnafId}\n` +
+                                `Paket: ${esnafPaket}\n` +
+                                `PaymentId: ${result.paymentId}\n` +
+                                `<b>Manuel uzlaştırma gerekli!</b>`
+                            ).catch(() => { /* nothing durable left; the redirect flag is the last trace */ })
+                        }
 
                         // Paket senaryosunu AWAIT ile çağır — hata olursa Firestore'a kaydet
                         try {
@@ -127,7 +149,7 @@ export async function POST(request: Request) {
 
                         resolve(
                             NextResponse.redirect(
-                                `${process.env.NEXT_PUBLIC_APP_URL}/odeme/basarili`
+                                `${process.env.NEXT_PUBLIC_APP_URL}/odeme/basarili${coreBillingFlag}`
                             )
                         )
                     } catch (innerErr: unknown) {

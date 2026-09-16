@@ -10,7 +10,7 @@ vi.mock('@/lib/core/billing', () => ({
 }))
 vi.mock('@/lib/core/billingStore', () => ({
   FirestoreBillingOutboxStore: class {},
-  resolveLinkedBusinessId: vi.fn(async () => null),
+  resolveBusinessRouting: vi.fn(async () => ({ coreBusinessId: null, shadowBusinessId: null })),
 }))
 
 const issuedAt = new Date('2026-09-16T07:00:00.000Z')

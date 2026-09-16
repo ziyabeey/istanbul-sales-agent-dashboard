@@ -3,7 +3,7 @@ import { apiGuard } from '@/lib/apiGuard'
 import { adminDb } from '@/lib/firebaseAdmin'
 import { processBillingOutbox } from '@/lib/core/billing'
 import { isCoreBillingEnabled } from '@/lib/core/billingHook'
-import { FirestoreBillingOutboxStore, resolveLinkedBusinessId } from '@/lib/core/billingStore'
+import { FirestoreBillingOutboxStore, resolveBusinessRouting } from '@/lib/core/billingStore'
 import { getCoreRuntime } from '@/lib/core/deps'
 import { readJsonBody } from '@/lib/core/routeHelpers'
 import { SERVICE_AUDIENCES, SERVICE_SCOPES } from '@/lib/serviceAuth'
@@ -33,7 +33,7 @@ export async function POST(request: Request) {
   const body = await readJsonBody(request)
   const db = adminDb
   const report = await processBillingOutbox(
-    { store: new FirestoreBillingOutboxStore(db), client: runtime.client, resolveBusinessId: (esnafId) => resolveLinkedBusinessId(db, esnafId) },
+    { store: new FirestoreBillingOutboxStore(db), client: runtime.client, resolveBusinessRouting: (esnafId) => resolveBusinessRouting(db, runtime.client, esnafId) },
     { limit: Number.isInteger(body.limit) ? Number(body.limit) : 25 }
   )
   return NextResponse.json({ ok: true, outbox: report })

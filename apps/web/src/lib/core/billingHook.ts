@@ -1,6 +1,6 @@
 import { adminDb } from '../firebaseAdmin'
-import { KEPENK_DEFAULT_BILLING_INTERVAL, applyVerifiedPayment, billingIdempotencyKey, type VerifiedPaymentEvent } from './billing'
-import { FirestoreBillingOutboxStore, resolveLinkedBusinessId } from './billingStore'
+import { KEPENK_DEFAULT_BILLING_INTERVAL, applyVerifiedPayment, billingIdempotencyKey, newOutboxRecord, type VerifiedPaymentEvent } from './billing'
+import { FirestoreBillingOutboxStore, resolveBusinessRouting } from './billingStore'
 import { getCoreRuntime } from './deps'
 
 export function isCoreBillingEnabled(env: NodeJS.ProcessEnv = process.env): boolean {
@@ -15,13 +15,21 @@ export interface IyzicoPaymentInput {
   paidAt?: Date
 }
 
+export type IyzicoBillingOutcome =
+  /** The verified event is durably queued (and possibly already applied). */
+  | { durable: true; key: string; status: string }
+  /** The outbox write itself failed: the callback must raise an operator reconciliation signal. */
+  | { durable: false; key: string; status: 'persist_failed'; error: string }
+
 /**
  * KC-04: called by the İyzico callback after the server-side retrieve proved
- * paymentStatus=SUCCESS. Persists the event durably first; applying it to Core
- * is attempted immediately when the runtime is configured and otherwise left
- * to the outbox job. Never throws into the payment redirect.
+ * paymentStatus=SUCCESS. The verified event is persisted durably (atomic
+ * create-if-absent) BEFORE anything else and the callback awaits that
+ * result (R1 blocker 1); applying to Core is attempted immediately when the
+ * runtime is configured and otherwise left to the outbox job. Never throws
+ * into the payment redirect; a persist failure is reported, not swallowed.
  */
-export async function recordVerifiedIyzicoPayment(input: IyzicoPaymentInput): Promise<{ key: string; status: string } | null> {
+export async function recordVerifiedIyzicoPayment(input: IyzicoPaymentInput): Promise<IyzicoBillingOutcome | null> {
   if (!isCoreBillingEnabled() || !adminDb) return null
   const event: VerifiedPaymentEvent = {
     provider: 'iyzico',
@@ -32,26 +40,35 @@ export async function recordVerifiedIyzicoPayment(input: IyzicoPaymentInput): Pr
     paidAt: (input.paidAt ?? new Date()).toISOString(),
     billingInterval: KEPENK_DEFAULT_BILLING_INTERVAL,
   }
+  const key = billingIdempotencyKey(event)
+  const db = adminDb
+  const store = new FirestoreBillingOutboxStore(db)
+
+  // 1) Durable first. A concurrent first callback converges on the record that won the create.
   try {
-    const store = new FirestoreBillingOutboxStore(adminDb)
+    const existing = await store.get(key)
+    if (!existing) await store.create(newOutboxRecord(event, new Date().toISOString()))
+  } catch (error) {
+    const message = error instanceof Error ? error.message : 'UNKNOWN'
+    return { durable: false, key, status: 'persist_failed', error: message.slice(0, 200) }
+  }
+
+  // 2) Best-effort immediate apply; any failure leaves the durable record for the outbox job.
+  try {
     const runtime = getCoreRuntime()
     if (!runtime) {
-      // No Core connection: keep the event durable and let the outbox job apply it.
-      const key = billingIdempotencyKey(event)
-      const existing = await store.get(key)
-      if (!existing) {
-        const now = new Date().toISOString()
-        await store.put({ key, event, businessId: null, status: 'pending', attempts: 0, lastError: 'CORE_RUNTIME_NOT_CONFIGURED', nextAttemptAt: now, createdAt: now, updatedAt: now, result: null })
+      const record = await store.get(key)
+      if (record && record.status === 'pending' && record.attempts === 0 && record.lastError === null) {
+        await store.put({ ...record, lastError: 'CORE_RUNTIME_NOT_CONFIGURED', nextAttemptAt: new Date().toISOString(), updatedAt: new Date().toISOString() })
       }
-      return { key, status: existing?.status ?? 'pending' }
+      return { durable: true, key, status: record?.status ?? 'pending' }
     }
-    const db = adminDb
     const outcome = await applyVerifiedPayment(
-      { store, client: runtime.client, resolveBusinessId: (esnafId) => resolveLinkedBusinessId(db, esnafId) },
+      { store, client: runtime.client, resolveBusinessRouting: (esnafId) => resolveBusinessRouting(db, runtime.client, esnafId) },
       event
     )
-    return { key: outcome.key, status: outcome.status }
+    return { durable: true, key: outcome.key, status: outcome.status }
   } catch {
-    return null
+    return { durable: true, key, status: 'pending' }
   }
 }

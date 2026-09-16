@@ -8,8 +8,8 @@
 
 ```text
 İyzico checkoutForm.retrieve (sunucu tarafı, paymentStatus=SUCCESS)   ← istemci beyanı değil
-  → recordVerifiedIyzicoPayment (payment/callback, fire-and-forget)
-  → core_billing_outbox/{key} durable kayıt (önce yazılır)
+  → recordVerifiedIyzicoPayment (payment/callback, AWAIT edilir; R1 blocker 1)
+  → core_billing_outbox/{key} durable kayıt (atomik create-if-absent; success yolu bu yazım gözlenmeden ilerlemez; persist hatası → basarisizSenaryolar + Telegram operatör sinyali + `?core=beklemede` bayrağı)
   → core_apply_platform_command(ChangeSubscription)
        key = kc04-iyzico-<sha256(paymentId)>   (sağlayıcı olay kimliğinden türetilir)
        payload = { business_id, plan_key: kepenk_standard, status: active,
@@ -27,7 +27,9 @@ Plan → entitlement dönüşümü Core'daki `core.plan_entitlements` politikas�
 | Aynı ödeme olayı tekrar | outbox kaydı `applied` → **ikinci komut yok** |
 | `PLATFORM_IDEMPOTENCY_CONFLICT` | `conflict`: operatör müdahalesi, otomatik retry yok |
 | `CORE_UNAVAILABLE` / timeout / `IN_PROGRESS` | `pending`, üstel backoff (30 s … 1 saat); **aynı anahtarla** yeniden denenir |
-| Esnaf henüz KC-03 ile bağlanmamış | `deferred`; bağlantı gelince aynı anahtarla uygulanır, business tahmin edilmez |
+| Esnaf henüz KC-03 ile bağlanmamış (Core `legacy-kepenk-firestore` tenant alias'ı yok) | `deferred`; bağlantı gelince aynı anahtarla uygulanır, business tahmin edilmez — Firestore `coreBusinessId` gölgesi tek başına asla yönlendirmez (R1 blocker 2) |
+| Firestore `coreBusinessId` ≠ Core tenant alias | `failed` + `lastError: BUSINESS_SHADOW_MISMATCH` + `drift{shadowBusinessId, coreBusinessId}`; komut yok, operatör uzlaştırması |
+| Aynı ödeme için eşzamanlı iki ilk callback | `create()` atomik; kaybeden kanonik saklı olayı okur, dönem saklı `paidAt`'tan türer → tek payload, tek Core olayı (R1 blocker 3) |
 | Bilinmeyen paket / kalıcı Core hatası | `failed` (rapor) |
 | Core runtime yapılandırılmamış | olay yine durable yazılır; outbox job'u uygular |
 

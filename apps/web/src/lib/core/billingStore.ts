@@ -1,5 +1,6 @@
 import type { Firestore } from 'firebase-admin/firestore'
-import type { BillingOutboxRecord, BillingOutboxStore } from './billing'
+import { resolveCoreBusinessAlias, type BillingOutboxRecord, type BillingOutboxStore, type BusinessRouting } from './billing'
+import type { CorePlatformClient } from './coreClient'
 
 export const CORE_BILLING_OUTBOX_COLLECTION = 'core_billing_outbox'
 
@@ -10,6 +11,18 @@ export class FirestoreBillingOutboxStore implements BillingOutboxStore {
   async get(key: string): Promise<BillingOutboxRecord | null> {
     const doc = await this.db.collection(CORE_BILLING_OUTBOX_COLLECTION).doc(key).get()
     return doc.exists ? (doc.data() as BillingOutboxRecord) : null
+  }
+
+  /** Firestore create() is atomic: a concurrent first callback for the same payment loses with ALREADY_EXISTS. */
+  async create(record: BillingOutboxRecord): Promise<'created' | 'exists'> {
+    try {
+      await this.db.collection(CORE_BILLING_OUTBOX_COLLECTION).doc(record.key).create(record)
+      return 'created'
+    } catch (error) {
+      const code = (error as { code?: unknown }).code
+      if (code === 6 || code === 'already-exists' || code === 'ALREADY_EXISTS') return 'exists'
+      throw error
+    }
   }
 
   async put(record: BillingOutboxRecord): Promise<void> {
@@ -29,6 +42,13 @@ export class FirestoreBillingOutboxStore implements BillingOutboxStore {
   }
 }
 
+/** Canonical routing: Core tenant alias is the authority; the Firestore shadow is only cross-checked. */
+export async function resolveBusinessRouting(db: Firestore, client: Pick<CorePlatformClient, 'resolveTenantAliases'>, esnafId: string): Promise<BusinessRouting> {
+  const [coreBusinessId, shadowBusinessId] = await Promise.all([resolveCoreBusinessAlias(client, esnafId), resolveLinkedBusinessId(db, esnafId)])
+  return { coreBusinessId, shadowBusinessId }
+}
+
+/** KC-03 shadow hint only; never the routing authority. */
 export async function resolveLinkedBusinessId(db: Firestore, esnafId: string): Promise<string | null> {
   const doc = await db.collection('esnaflar').doc(esnafId).get()
   const value = doc.exists ? doc.data()?.coreBusinessId : null
