@@ -2,91 +2,76 @@
 
 > **Tarih:** 2026-09-16  
 > **Domain sökümü:** KAPALI — SÖKÜM 01–41  
-> **Aktif faz:** Söküm Sonrası Mimari Sentez / Kurtarma Planı  
-> **Aktif frontier:** **SENTEZ 4 — Cleanup Backlog + Cutover Gates**
+> **Mimari sentez:** KAPALI — SENTEZ 01–05  
+> **Aktif frontier:** **Implementation öncesi Exact File / Task Manifest**  
+> **Amaç:** Bundan sonra yeni mimari icat etmek değil; doğrulanmış sentezi exact dosya, route, package ve migration task'larına çevirmek.
 
-## Fazlar
+## Sentez fazları
 
 | No | Alan | Durum | Belge |
 |---|---|---|---|
 | 1 | Canonical Capability Map | KAPALI | `docs/sentez/01-canonical-capability-map.md` |
 | 2 | Duplicate Authority & Legacy Writer Registry | KAPALI | `docs/sentez/02-duplicate-authority-legacy-writer-registry.md` |
 | 3 | Dependency / Migration Graph | KAPALI | `docs/sentez/03-dependency-migration-graph.md` |
-| 4 | Cleanup Backlog + Cutover Gates | AÇIK | — |
-| 5 | Kepenk v2 Portable Core / Vertical Packaging | BEKLİYOR | — |
+| 4 | Cleanup Backlog + Cutover Gates | KAPALI | `docs/sentez/04-cleanup-backlog-cutover-gates.md` |
+| 5 | Kepenk v2 Portable Core / Vertical Packaging | KAPALI | `docs/sentez/05-portable-core-vertical-packaging.md` |
 
-## Korunan public frontend
+## Kaynak kapsamı
 
-Kepenk/KPNK public marketing frontend'i özel koruma altındadır:
+Sentez **baştan sona bütün sökümü** kapsar:
 
-- `apps/web/src/app/page.tsx`
-- root layout / global design tokens,
-- `Navbar`, ana landing section'ları ve public marketing route ağı,
-- SEO/PWA/public acquisition surface.
+- `KEPENK_SOKUM_PLANI.md` içindeki SÖKÜM 01–24 tarihsel kararlar,
+- `docs/sokum/25-41` repo-doğrulanmış turlar,
+- `docs/sokum/36-canonical-architecture-synthesis.md` core baseline,
+- Restaurant / Marketplace / Procurement / Support / Admin vertical-control-plane eklentileri,
+- `docs/sokum/final-inventory-sweep.md`,
+- `voice`, `studio`, `blog`, `seo`, `influencer` extension/adapter classification'ı.
 
-Canonical sözleşme: `docs/sentez/frontend-preservation-contract.md`.
+`apps/randevu-server` Kepenk kapsamı dışındadır ve değiştirilmez.
 
-**Kural:** backend/domain migration frontend'i sıfırdan yeniden yazmak için gerekçe değildir. Görsel/interaction baseline KEEP WHOLE; eski fiyat, ürün vaadi, capability listesi ve doğrulanmamış claim/testimonial gibi içerikler CONTENT REWIRE edilir.
+## Final canonical ürün modeli
 
-## SENTEZ 1 kararı
+```text
+LEVEL 1 — Portable Platform Core
+  Identity / Trust
+  Tenant / Business / Subscription / Entitlement
+  Durable Execution
+  Integration / Credentials
+  Audit / Telemetry / Data Lifecycle
 
-Kepenk v2 beş düzlemde organize edilir:
+LEVEL 2 — Standard Business Capabilities
+  Customer
+  Booking
+  Commerce / Inventory
+  Payment
+  Finance
+  Messaging
+  Marketing / Attribution
+  Site / Asset / Publish / Domain / Public Action
+  Agent Runtime / Knowledge
 
-1. Platform Control Plane
-2. Core Business Plane
-3. Delivery / Public Experience Plane
-4. Integration & Durable Execution Plane
-5. Vertical Product Plane
+LEVEL 3 — Vertical Product Packs
+  Restaurant Operations
+  Support OS
+  Marketplace
+  Procurement
 
-First-class vertical'lar:
+EXTENSIONS / ADAPTERS
+  Voice
+  Blog
+  SEO
+  Studio
+  Influencer
 
-- Restaurant Operations
-- Marketplace
-- Procurement
-- Support OS
-
-`voice`, `studio`, `blog`, `seo`, `influencer` ayrı universal authority değildir; ilgili core/vertical'lara bağlanan adapter/extension seed'leridir.
+CONTROL SURFACE
+  Platform Admin / Operations
+```
 
 Ana invariant:
 
-> **Her business gerçeğinin tek write authority'si vardır. UI, provider adapter, AI agent, admin paneli, public site ve vertical product başka authority'nin gerçeğini doğrudan mutate etmez.**
+> **Her business gerçeğinin tek write authority'si vardır. UI, admin, AI, provider adapter, public site veya vertical başka authority'nin gerçeğini doğrudan mutate etmez.**
 
-## SENTEZ 2 kararı
-
-Legacy authority'ler aşağıdaki migration kümelerine ayrıldı:
-
-```text
-A. Identity / Admin Trust
-B. Tenant / Subscription / Entitlement
-C. Site / Asset / Public Action
-D. Customer / Messaging
-E. Integration / Durable Execution / Credentials
-F. Payment / Finance
-G. Agent / Audit / Telemetry / Privacy
-H. Vertical Products
-```
-
-Cutover tipleri:
-
-- **Type A — Security hard cut**: insecure compatibility tutulmaz.
-- **Type B — Strangler adapter**: legacy caller canonical command'a yönlendirilir.
-- **Type C — Projection migration**: eski alan read projection olarak geçici yaşar.
-- **Type D — Greenfield authority**: demo/contract seed'den gerçek runtime inşa edilir; demo state migrate edilmez.
-
-En yüksek riskli writer sınıfları:
-
-- raw/shared admin secret ve parçalı admin session,
-- direct tenant/package/kota/hard-delete mutation,
-- tenant-root credential/provider state,
-- unsigned session/email authorization,
-- provider callback'in domain state'ini payment success olarak mutate etmesi,
-- mutable finance/balance state,
-- Booking/Order/Restaurant içine gömülü payment authority,
-- simulated/no-op privacy purge.
-
-## SENTEZ 3 kararı
-
-Migration on ana wave'de yürütülür:
+## Migration sırası
 
 ```text
 W0  Freeze / inventory / protected baselines
@@ -102,30 +87,55 @@ W9  Vertical Product Activation
 W10 Admin / Privacy / Offboarding convergence + cleanup
 ```
 
-`docs/sentez/03-dependency-migration-graph.md` ayrıca SÖKÜM 01–41'in her birini bu wave'lere satır satır map eder. Final inventory package'ları da aynı graph içinde extension/adapter olarak yerleştirilmiştir.
+`docs/sentez/03-dependency-migration-graph.md` SÖKÜM 01–41'in tamamını bu wave'lere satır satır map eder.
 
-Public Kepenk frontend'i `F0` preservation track olarak bütün migration boyunca korunur; W4 ve launch aşamalarında yalnız data/CTA/copy truth rewire alır.
+## Cleanup kuralı
 
-## SENTEZ 4 kapsamı
+`DROP` doğrudan silme değildir.
 
-SENTEZ 4 artık “hangi sırada?” sorusundan “hangi legacy parça ne zaman gerçekten kaldırılabilir?” sorusuna geçer:
+```text
+classify
+ -> deprecate
+ -> canonical adapter
+ -> legacy write disable
+ -> parity observation
+ -> caller zero
+ -> permission/secret revoke
+ -> archive
+ -> delete
+```
 
-1. P0/P1 cleanup backlog'u exact risk sırasına koy,
-2. her legacy authority için prerequisite ve cutover gate yaz,
-3. archive/delete yerine önce permission/write disable aşamasını tanımla,
-4. protected frontend ve güçlü core primitive'leri cleanup dışında tut,
-5. greenfield vertical seed'leri ile dead duplicate writer'ları ayır,
-6. rollback ve parity kanıtını cleanup önkoşulu yap.
+Security hard-cut yüzeyleri hariç hiçbir legacy authority replacement çalışmadan silinmez.
 
-Kod değişikliği yapılmaz.
+Canonical cleanup gate: `docs/sentez/04-cleanup-backlog-cutover-gates.md`.
 
-## Kapsam kuralı
+## Korunan Kepenk public frontend
 
-- `KEPENK_SOKUM_PLANI.md` içindeki 01–24 tarihsel kararlar senteze dahildir.
-- `docs/sokum/25-41` repo-doğrulanmış sonraki turlardır.
-- `docs/sokum/36-canonical-architecture-synthesis.md` core baseline'dır.
-- `docs/sokum/37-41` son vertical/control-plane eklentileridir.
-- `docs/sokum/final-inventory-sweep.md` domain söküm kapanışıdır.
-- `docs/sentez/frontend-preservation-contract.md` public Kepenk frontend'inin KEEP/PRESERVE kuralıdır.
-- `apps/randevu-server` Kepenk kapsamı dışındadır ve değiştirilmez.
-- Yeni domain avına dönülmez; yalnız somut kapsam boşluğu kanıtlanırsa ayrıca değerlendirilir.
+Kepenk/KPNK public marketing frontend'i v2 launch surface olarak özel koruma altındadır:
+
+- `apps/web/src/app/page.tsx`
+- root layout / global design tokens,
+- `Navbar`, landing section'ları,
+- public acquisition/SEO route shell,
+- PWA/legal/public assets.
+
+Canonical sözleşme: `docs/sentez/frontend-preservation-contract.md`.
+
+Karar:
+
+> **PRESERVE WHOLE UX + CONTENT/API REWIRE.**
+
+Backend migration frontend'i sıfırdan rewrite etmek için gerekçe değildir. Eski fiyat, capability listesi, CTA, claim/testimonial gibi içerikler güncel truth'a yeniden bağlanır; görsel/interaction baseline korunur.
+
+## Sonraki faz: Exact File / Task Manifest
+
+Artık hedef mimari yeterince sabittir. Sonraki iş read-only planlama ile exact implementation manifest üretmektir:
+
+1. W0/W1'den başlayarak exact dosya/route/package inventory çıkar.
+2. Her item'a `PRESERVE / REWIRE / ADAPTER / PROJECTION / HARD-CUT / GREENFIELD / ARCHIVE / DELETE-after-gate` etiketi ver.
+3. Dependency ve owner belirt.
+4. Acceptance/cutover gate ekle.
+5. Frontend protected-surface check'i her cleanup task'ında zorunlu tut.
+6. Implementation task'larını küçük, review edilebilir wave'lere böl.
+
+Bu aşamada da implementation yapılmaz; önce exact execution manifest çıkarılır.
