@@ -79,8 +79,12 @@ export function getControlledLaunchEnvReadiness() {
 export function getFeatureEnvReadiness(): FeatureReadinessMap {
     const generationMissing = [
         ...missing(FIREBASE_REQUIRED_ENV),
-        ...missing(['CRON_SECRET', 'NEXT_PUBLIC_APP_URL']),
+        ...missing(['SERVICE_AUTH_SECRET']),
     ]
+
+    if (!hasEnv('INTERNAL_APP_URL') && !hasEnv('NEXT_PUBLIC_APP_URL')) {
+        generationMissing.push('INTERNAL_APP_URL_OR_NEXT_PUBLIC_APP_URL')
+    }
 
     if (!hasEnv('GEMINI_API_KEY') && !hasEnv('GOOGLE_API_KEY')) {
         generationMissing.push('GEMINI_API_KEY_OR_GOOGLE_API_KEY')
