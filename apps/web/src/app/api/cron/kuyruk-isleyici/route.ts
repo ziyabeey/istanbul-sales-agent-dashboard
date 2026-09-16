@@ -68,6 +68,7 @@ async function processQueue(req: Request) {
                         }
                     }
 
+                    // Refresh the lease before the potentially expensive model call.
                     const leaseAlive = await islemHeartbeat(id, lease.leaseToken)
                     if (!leaseAlive) throw new Error('worker_lease_lost')
 
@@ -80,24 +81,38 @@ async function processQueue(req: Request) {
                         await waMesajGonder(data.payload.telefon, yanit)
                     }
                 } else {
-                    yanit = `Desteklenmeyen işlem tipi: ${data.tip}`
+                    yanit = `[${data.tip}] İşlem henüz desteklenmiyor`
                 }
 
                 await islemTamamla(id, yanit, lease.leaseToken)
+
+                await adminDb.collection('agent_logs').add({
+                    ajan: 'kuyruk_isleyici',
+                    esnafId: data.esnafId,
+                    tip: 'kuyruk_islendi',
+                    input: { kuyrukId: id, tip: data.tip, attempt: lease.attempt },
+                    output: { yanitUzunluk: yanit.length },
+                    basari: true,
+                    hata: null,
+                    zaman: new Date(),
+                    kanal: data.tip,
+                })
+
                 islenen++
             } catch (error: unknown) {
-                const message = error instanceof Error ? error.message : 'Bilinmeyen hata'
+                const message = error instanceof Error ? error.message : 'Bilinmeyen worker hatası'
                 await islemHata(id, message, lease.leaseToken)
             }
         }
 
         return NextResponse.json({
             islem: islenen,
+            toplam: islemler.length,
             recoveredLeases,
-            mesaj: `${islenen} işlem tamamlandı`,
+            mesaj: `${islenen}/${islemler.length} işlem tamamlandı`,
         })
     } catch (error: unknown) {
-        const message = error instanceof Error ? error.message : 'Bilinmeyen hata'
+        const message = error instanceof Error ? error.message : 'Bilinmeyen kuyruk hatası'
         return NextResponse.json({ error: message }, { status: 500 })
     }
 }
