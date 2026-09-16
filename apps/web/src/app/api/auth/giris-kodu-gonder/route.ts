@@ -1,7 +1,13 @@
 import { NextResponse } from 'next/server'
-import { adminDb } from '@/lib/firebaseAdmin'
 import { otpGonderNetgsm } from '@/lib/netgsmClient'
 import { otpKaydet, otpRateKontrol } from '@/lib/sessionManager'
+import {
+  findUniqueActiveTenantByPhone,
+  normalizeLoginPhone,
+} from '@/lib/auth/legacyAccountResolver'
+import { adminDb } from '@/lib/firebaseAdmin'
+
+const GENERIC_SUCCESS = { ok: true }
 
 export async function POST(req: Request) {
   try {
@@ -10,7 +16,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Telefon numarası gerekli' }, { status: 400 })
     }
 
-    const temizTelefon = telefon.replace(/[^0-9]/g, '')
+    const temizTelefon = normalizeLoginPhone(String(telefon))
     if (temizTelefon.length < 10) {
       return NextResponse.json({ error: 'Geçersiz telefon numarası' }, { status: 400 })
     }
@@ -19,47 +25,31 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Veritabanı bağlantısı kurulamadı' }, { status: 500 })
     }
 
-    // Firestore'da bu telefon var mı?
-    const sorgu = await adminDb
-      .collection('esnaflar')
-      .where('telefonTemiz', '==', temizTelefon)
-      .where('durum', '==', 'aktif')
-      .limit(1)
-      .get()
-
-    if (sorgu.empty) {
-      return NextResponse.json(
-        { error: 'Bu numarayla kayıtlı aktif hesap bulunamadı' },
-        { status: 404 }
-      )
+    // Account enumeration önleme: kayıt yoksa veya telefon birden fazla aktif
+    // tenant'a bağlıysa aynı başarılı response dönülür ve OTP üretilmez.
+    const account = await findUniqueActiveTenantByPhone(temizTelefon)
+    if (account.kind !== 'unique') {
+      return NextResponse.json(GENERIC_SUCCESS)
     }
 
-    const esnafDoc = sorgu.docs[0]
-    const esnaf = esnafDoc.data()
-
-    // Rate limit — Firestore'daki son OTP kaydı kontrolü (60sn)
+    // Rate-limit bilgisi de hesabın varlığını dışarı sızdırmaz.
     const rateOk = await otpRateKontrol(temizTelefon)
     if (!rateOk) {
-      return NextResponse.json({ error: '60 saniye bekleyiniz' }, { status: 429 })
+      return NextResponse.json(GENERIC_SUCCESS)
     }
 
-    // 6 haneli OTP üret
     const kod = Math.floor(100000 + Math.random() * 900000).toString()
-
-    // Firestore'a kaydet (3dk TTL)
     await otpKaydet(temizTelefon, kod)
 
-    // SMS ile gönder (NetGSM)
     const smsBasari = await otpGonderNetgsm(temizTelefon, kod)
     if (!smsBasari) {
-      // OTP'yi Firestore'dan sil
       await adminDb.collection('otp_sessions').doc(temizTelefon).delete()
-      return NextResponse.json({ error: 'SMS gönderilemedi, tekrar deneyin' }, { status: 500 })
+      // Provider outcome must not become an account-existence oracle.
+      return NextResponse.json(GENERIC_SUCCESS)
     }
 
-    return NextResponse.json({ ok: true, ad: esnaf.ad || '' })
-  } catch (error: any) {
-    // console.error('[GİRİŞ KODU GÖNDER]', error)
+    return NextResponse.json(GENERIC_SUCCESS)
+  } catch {
     return NextResponse.json({ error: 'Sunucu hatası' }, { status: 500 })
   }
 }
