@@ -64,7 +64,7 @@ export async function apiGuard(
     if (options.requireAdminToken) {
         // AdminPrincipal/AdminSession convergence belongs to P0-06.
         const token = request.headers.get('x-admin-token')
-        if (!process.env.ADMIN_SECRET_TOKEN || token !== process.env.ADMIN_SECRET_TOKEN) {
+        if (token !== process.env.ADMIN_SECRET_TOKEN) {
             return {
                 ok: false,
                 response: NextResponse.json({ error: 'Forbidden' }, { status: 403 }),
@@ -74,7 +74,7 @@ export async function apiGuard(
 
     if (options.requireADKBearer) {
         const auth = request.headers.get('authorization')
-        if (!process.env.ADK_BEARER_TOKEN || auth !== `Bearer ${process.env.ADK_BEARER_TOKEN}`) {
+        if (auth !== `Bearer ${process.env.ADK_BEARER_TOKEN}`) {
             return {
                 ok: false,
                 response: NextResponse.json({ error: 'Unauthorized' }, { status: 401 }),
