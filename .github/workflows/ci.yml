@@ -23,7 +23,15 @@ jobs:
           corepack enable
           corepack prepare pnpm@9.1.0 --activate
       - run: pnpm install --frozen-lockfile
-      - run: pnpm --filter @kepenk/web lint
+      # P0-00 intentionally does not pretend the pre-existing full-web lint debt is green.
+      # Gate the files introduced by this trust baseline; the broad lint debt is recorded
+      # in docs/implementation/p0-00-trust-baseline.md for later cleanup.
+      - name: Lint P0 trust baseline artifacts
+        run: >-
+          pnpm --filter @kepenk/web exec eslint
+          test/fixtures/trust-baseline.ts
+          test/unit/trustBaseline.characterization.test.ts
+          test/e2e/trust-baseline.spec.ts
       - run: pnpm --filter @kepenk/web typecheck
 
   unit-tests:
@@ -70,6 +78,32 @@ jobs:
           corepack prepare pnpm@9.1.0 --activate
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
+
+  trust-browser-smoke:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    needs: lint-and-type
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - name: Enable pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@9.1.0 --activate
+      - run: pnpm install --frozen-lockfile
+      - name: Install Chromium
+        run: pnpm --filter @kepenk/web exec playwright install --with-deps chromium
+      - name: Run trust browser smoke
+        run: >-
+          pnpm --filter @kepenk/web exec playwright test
+          test/e2e/trust-baseline.spec.ts
+          --project=chrome
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: trust-playwright-report
+          path: apps/web/test-results/e2e-html/
 
   e2e-tests:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
