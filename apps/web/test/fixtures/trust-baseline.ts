@@ -1,4 +1,4 @@
-export const TRUST_BASELINE_VERSION = 'p0-06@2026-09-16'
+export const TRUST_BASELINE_VERSION = 'p0-07@2026-09-16'
 
 export const CURRENT_TRUST_COOKIES = {
   businessSession: 'kepenk_session',
@@ -41,7 +41,9 @@ export const CURRENT_PRINCIPAL_SOURCES = {
   ],
   cron: ['legacy requireCronSecret remains for unmigrated cron routes'],
   adk: ['Authorization bearer == ADK_BEARER_TOKEN'],
-  impersonation: ['kepenk_impersonate JWT -> adminId + esnafId'],
+  impersonation: [
+    'kepenk_impersonate opaque token -> durable Firestore ImpersonationSession -> active bound AdminSession -> single target business',
+  ],
 } as const
 
 export const CURRENT_CREDENTIAL_AUTHORITY = {
@@ -59,7 +61,7 @@ export const CURRENT_SHARED_SECRET_SURFACES = [
   { id: 'adk-api', path: 'src/lib/apiGuard.ts', secret: 'ADK_BEARER_TOKEN', purpose: 'ADK service authorization' },
 ] as const
 
-/** Risks intentionally still unresolved after P0-06. */
+/** Risks intentionally still unresolved after P0-07. */
 export const KNOWN_TRUST_RISKS = [
   'unmigrated_business_api_callers_can_still_use_legacy_esnafId_jwt_compatibility',
   'legacy_tenant_provider_tokens_still_live_on_esnaflar_root_until_w3',
