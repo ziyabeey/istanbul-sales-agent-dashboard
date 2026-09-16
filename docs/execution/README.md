@@ -13,8 +13,8 @@
 | W0 | Freeze / inventory / protected baselines | KAPALI / sentezde sabit | `docs/sentez/frontend-preservation-contract.md`, SENTEZ 2–4 |
 | W1 | Trust Spine | KAPALI / planlandı | `docs/execution/w01-trust-spine.md` |
 | W2 | Tenant + Business + Commercial Spine | KAPALI / planlandı | `docs/execution/w02-tenant-business-commercial-spine.md` |
-| W3 | Durable Execution + Credential + Integration | AÇIK | — |
-| W4 | Site / Asset / Publish / Public Experience | BEKLİYOR | — |
+| W3 | Durable Execution + Credential + Integration | KAPALI / planlandı | `docs/execution/w03-durable-execution-credential-integration.md` |
+| W4 | Site / Asset / Publish / Public Experience | AÇIK | — |
 | W5 | Customer + Messaging + Support Foundation | BEKLİYOR | — |
 | W6 | Booking + Payment + Finance | BEKLİYOR | — |
 | W7 | Commerce + Inventory + Analytics + Marketing | BEKLİYOR | — |
@@ -61,19 +61,32 @@
 - `paketSenaryosuCalistir` cross-wave decomposition adayı oldu,
 - public `PricingCards` görsel olarak `PRESERVE`, commercial truth için `DATA REWIRE`.
 
+## W3 kapanış
+
+- Cloud Tasks + Firestore queue primitive'leri `PRESERVE/HARDEN`, tek DurableJob contract'ına bağlandı,
+- shared cron/internal secret modeli ServicePrincipal/OIDC trust'a `REWRITE`,
+- AES-GCM primitive `PRESERVE`, key-id/versioned envelope `BUILD`,
+- raw provider env/token discovery Credential Authority'ye taşındı,
+- Google OAuth Connection + CredentialRef lifecycle'a `REWIRE`,
+- Twilio number provisioning/pool gerçek provider primitive'i olarak `PRESERVE`, resource authority `ProviderResourceBinding` oldu,
+- duplicate WhatsApp/Instagram ingress tek verified + durable inbox contract'ına indirildi,
+- mock/simulated provider success ve production trust downgrade yolları `HARD-CUT/RETIRE`.
+
 ## Aktif frontier
 
-**W3 — Durable Execution + Credential + Integration exact manifest.**
+**W4 — Site / Asset / Publish / Public Experience exact manifest.**
 
-W3 target:
+W4 target:
 
 ```text
-DurableJob / Outbox / EventInbox
-Idempotency / Retry / DLQ / Replay
-CredentialRef / Credential lifecycle
-IntegrationConnection
-ProviderResourceBinding
-WebhookSubscription
-SyncCursor
-Connection health / re-auth / reconciliation
+SiteAuthoring / SiteDraft
+Asset Core
+PublishCommand
+PublishedSiteRevision
+Immutable Artifact
+DomainBinding
+apps/sites Public Runtime
+Public Action Gateway
 ```
+
+Kepenk/KPNK ana marketing landing ayrı koruma sözleşmesiyle `PRESERVE WHOLE UX` kalır; W4 esas olarak işletmeler için üretilen site platformunu canonicalize eder.
