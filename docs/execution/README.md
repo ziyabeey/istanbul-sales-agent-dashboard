@@ -12,8 +12,8 @@
 |---|---|---|---|
 | W0 | Freeze / inventory / protected baselines | KAPALI / sentezde sabit | `docs/sentez/frontend-preservation-contract.md`, SENTEZ 2–4 |
 | W1 | Trust Spine | KAPALI / planlandı | `docs/execution/w01-trust-spine.md` |
-| W2 | Tenant + Business + Commercial Spine | AÇIK | — |
-| W3 | Durable Execution + Credential + Integration | BEKLİYOR | — |
+| W2 | Tenant + Business + Commercial Spine | KAPALI / planlandı | `docs/execution/w02-tenant-business-commercial-spine.md` |
+| W3 | Durable Execution + Credential + Integration | AÇIK | — |
 | W4 | Site / Asset / Publish / Public Experience | BEKLİYOR | — |
 | W5 | Customer + Messaging + Support Foundation | BEKLİYOR | — |
 | W6 | Booking + Payment + Finance | BEKLİYOR | — |
@@ -44,26 +44,36 @@
 
 ## W1 kapanış
 
-Trust manifest exact path seviyesinde şunları ayırdı:
-
 - signed session/permission primitive'leri `PRESERVE/REWRITE`,
 - phone/Google login route'ları canonical User/Membership/Session'a `ADAPTER`,
 - onboarding fixed `123456`, production dev-login ve raw Admin secret `HARD-CUT`,
 - proxy cookie-existence trust ve parallel NextAuth/custom/admin session authority `REWRITE`,
 - admin impersonation contract seed'i `PRESERVE/PROMOTE`.
 
+## W2 kapanış
+
+- `esnaflar/{id}` monolit truth; Tenant, Profile, Subscription, Entitlement, Preference, Quota ve diğer projection'lara ayrıldı,
+- onboarding complete canonical command orchestration'a `REWRITE`,
+- setup-progress process Map authority olmaktan çıkarıldı,
+- plan/module catalog metadata `PRESERVE`, runtime package-string authorization `REWRITE`,
+- `sync-moduller` preference command + entitlement intersection'a taşındı,
+- admin tenant/kota mutation'ları canonical commands'a bölündü,
+- `paketSenaryosuCalistir` cross-wave decomposition adayı oldu,
+- public `PricingCards` görsel olarak `PRESERVE`, commercial truth için `DATA REWIRE`.
+
 ## Aktif frontier
 
-**W2 — Tenant + Business + Commercial Spine exact manifest.**
+**W3 — Durable Execution + Credential + Integration exact manifest.**
 
-W2 target:
+W3 target:
 
 ```text
-BusinessTenant
-BusinessProfile
-Subscription / Contract
-EntitlementGrant
-EffectiveCapabilitySet
-Quota / dependency policy
-Incident / maintenance policy
+DurableJob / Outbox / EventInbox
+Idempotency / Retry / DLQ / Replay
+CredentialRef / Credential lifecycle
+IntegrationConnection
+ProviderResourceBinding
+WebhookSubscription
+SyncCursor
+Connection health / re-auth / reconciliation
 ```
