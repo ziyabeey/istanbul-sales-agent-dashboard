@@ -1,50 +1,65 @@
-/**
- * @kepenk/admin — Audit Log Types
- *
- * Every admin action creates an immutable log entry.
- * Firestore: admin_audit_logs/{logId}
- */
+export type AuditAction =
+    | 'COMPLAINT_STATUS_CHANGED'
+    | 'ESNAF_FLAGGED'
+    | 'ESNAF_STATUS_CHANGED'
+    | 'ESNAF_UPDATED'
+    | 'ESNAF_DELETED'
+    | 'ADMIN_KOTA_MUTATION'
+    | 'IMPERSONATION_STARTED'
+    | 'IMPERSONATION_ENDED'
+    | 'MANUAL_PACKAGE_ADJUSTMENT';
 
-export type AuditSeverity = 'info' | 'warning' | 'critical'
-export type AuditTargetType = 'user' | 'site' | 'subscription' | 'ticket' | 'feature_flag' | 'system'
+export type AuditTargetType =
+    | 'complaint'
+    | 'business'
+    | 'user'
+    | 'package'
+    | 'impersonation'
+    | 'system';
 
-export type AuditCategory =
-  | 'user_management'
-  | 'site_moderation'
-  | 'billing'
-  | 'impersonation'
-  | 'feature_flags'
-  | 'support'
-  | 'system_config'
+export type AdminAuditOutcome = 'REQUESTED' | 'SUCCEEDED' | 'FAILED';
 
-export interface AuditLogEntry {
-  id: string
-  adminId: string
-  adminEmail: string
-  action: string
-  category: AuditCategory
-  targetType: AuditTargetType
-  targetId: string
-  beforeState?: Record<string, unknown>
-  afterState?: Record<string, unknown>
-  severity: AuditSeverity
-  ip: string
-  userAgent?: string
-  timestamp: string
+interface AdminActionBase {
+    eventId: string;
+    caseId: string;
+    actorAdminId: string;
+    actingAsTargetId?: string;
+    targetType: AuditTargetType;
+    targetId: string;
+    action: AuditAction;
+    timestamp: string;
+    ip?: string;
+    userAgent?: string;
+    requestId?: string;
+    metadata?: Record<string, unknown>;
 }
 
-export const SEVERITY_LABELS: Record<AuditSeverity, { label: string; color: string }> = {
-  info: { label: 'Bilgi', color: '#3B82F6' },
-  warning: { label: 'Uyarı', color: '#F59E0B' },
-  critical: { label: 'Kritik', color: '#EF4444' },
+export interface AdminActionRequested extends AdminActionBase {
+    eventType: 'AdminActionRequested';
+    outcome: 'REQUESTED';
 }
 
-export const CATEGORY_LABELS: Record<AuditCategory, string> = {
-  user_management: 'Kullanıcı Yönetimi',
-  site_moderation: 'Site Moderasyon',
-  billing: 'Faturalama',
-  impersonation: 'Kullanıcı Taklit',
-  feature_flags: 'Feature Flags',
-  support: 'Destek',
-  system_config: 'Sistem Ayarları',
+export interface AdminActionOutcome extends AdminActionBase {
+    eventType: 'AdminActionOutcome';
+    outcome: 'SUCCEEDED' | 'FAILED';
+    errorCode?: string;
+}
+
+export type AdminAuditRecord = AdminActionRequested | AdminActionOutcome;
+
+// Legacy compatibility shape. New privileged mutations should use the
+// AdminActionRequested/AdminActionOutcome pair above.
+export interface AuditLogInput {
+    adminId: string;
+    action: AuditAction;
+    targetType: AuditTargetType;
+    targetId: string;
+    metadata?: Record<string, unknown>;
+}
+
+export interface AuditLog extends AuditLogInput {
+    id: string;
+    createdAt: string;
+    ip?: string;
+    userAgent?: string;
 }
