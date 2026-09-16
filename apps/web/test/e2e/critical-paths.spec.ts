@@ -14,32 +14,27 @@ test.describe('Site Erişilebilirlik', () => {
   test('dashboard login sayfası yükleniyor', async ({ page }) => {
     const response = await page.goto('/giris')
     expect(response?.status()).toBeLessThan(400)
-    // Login formu mevcut olmalı
-    await expect(page.locator('form, [role="form"], input[type="email"], input[type="password"]').first()).toBeVisible({ timeout: 10000 })
+    await expect(page.getByText('Paneline giriş yap')).toBeVisible({ timeout: 10000 })
+    await expect(page.locator('input[type="tel"]')).toBeVisible({ timeout: 10000 })
+    await expect(page.getByRole('button', { name: /SMS Kodu Gönder/ })).toBeVisible({ timeout: 10000 })
   })
 })
 
 test.describe('Demo Vitrin Sayfaları', () => {
-  test('demo vitrin listesi yükleniyor', async ({ page }) => {
-    const response = await page.goto('/demo-vitrinler')
+  test('akıllı yüzük demo vitrini yükleniyor', async ({ page }) => {
+    const response = await page.goto('/demolar/akilli-yuzuk')
     expect(response?.status()).toBeLessThan(400)
-  })
-
-  test('kasap demo vitrini yükleniyor', async ({ page }) => {
-    const response = await page.goto('/demo-vitrinler/kasap-demo')
-    if (response?.status() === 200) {
-      // Sayfa içeriği mevcut
-      const body = await page.textContent('body')
-      expect(body?.length).toBeGreaterThan(100)
-    }
+    const body = await page.textContent('body')
+    expect(body?.length).toBeGreaterThan(100)
   })
 })
 
 test.describe('API Healthcheck', () => {
   test('API root responding', async ({ request }) => {
     const response = await request.get('/api/health')
-    // 200 or 404 (if health endpoint doesn't exist yet)
-    expect([200, 404]).toContain(response.status())
+    expect(response.status()).toBe(200)
+    const payload = await response.json() as { ok?: boolean; service?: string }
+    expect(payload).toMatchObject({ ok: true, service: 'kepenk-web' })
   })
 })
 
@@ -94,11 +89,13 @@ test.describe('SEO Temel Kontroller', () => {
 
   test('meta description mevcut', async ({ page }) => {
     await page.goto('/')
-    const desc = await page.getAttribute('meta[name="description"]', 'content')
-    // Description might not be present on all pages
-    if (desc) {
-      expect(desc.length).toBeGreaterThan(10)
-      expect(desc.length).toBeLessThanOrEqual(160)
+    const meta = page.locator('meta[name="description"]')
+    if (await meta.count()) {
+      const desc = await meta.first().getAttribute('content')
+      if (desc) {
+        expect(desc.length).toBeGreaterThan(10)
+        expect(desc.length).toBeLessThanOrEqual(160)
+      }
     }
   })
 
