@@ -24,13 +24,10 @@ class MemoryHumanAuthRepositories implements HumanAuthRepositories {
   readonly membershipStore = new Map<string, Membership>()
   readonly sessionStore = new Map<string, Session>()
 
-  readonly users = {
-    getById: async: any => {},
-  } as HumanAuthRepositories['users']
-
-  readonly identities = {} as HumanAuthRepositories['identities']
-  readonly memberships = {} as HumanAuthRepositories['memberships']
-  readonly sessions = {} as HumanAuthRepositories['sessions']
+  users: HumanAuthRepositories['users']
+  identities: HumanAuthRepositories['identities']
+  memberships: HumanAuthRepositories['memberships']
+  sessions: HumanAuthRepositories['sessions']
 
   constructor() {
     this.users = {
@@ -118,10 +115,10 @@ describe('canonical human auth issuance', () => {
     expect(phone.session.activeMembershipId).toBe(phone.membership.membershipId)
     expect(phone.session).not.toHaveProperty('tenantId')
     expect(phone.session).not.toHaveProperty('role')
-    expect(repositories.userStore).toHaveLength(1)
-    expect(repositories.membershipStore).toHaveLength(1)
-    expect(repositories.identityStore).toHaveLength(2)
-    expect(repositories.sessionStore).toHaveLength(2)
+    expect(repositories.userStore.size).toBe(1)
+    expect(repositories.membershipStore.size).toBe(1)
+    expect(repositories.identityStore.size).toBe(2)
+    expect(repositories.sessionStore.size).toBe(2)
   })
 
   it('fails before issuing a Session when an AuthIdentity belongs to another User', async () => {
@@ -145,7 +142,7 @@ describe('canonical human auth issuance', () => {
       now: NOW,
     }, repositories)).rejects.toThrow('different canonical user')
 
-    expect(repositories.sessionStore).toHaveLength(0)
+    expect(repositories.sessionStore.size).toBe(0)
   })
 
   it('does not issue a Session through a suspended Membership', async () => {
@@ -180,7 +177,7 @@ describe('canonical human auth issuance', () => {
       now: NOW,
     }, repositories)).rejects.toThrow('Canonical membership is suspended')
 
-    expect(repositories.sessionStore).toHaveLength(0)
+    expect(repositories.sessionStore.size).toBe(0)
   })
 })
 
