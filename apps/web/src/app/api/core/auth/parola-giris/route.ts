@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 import { normalizeLoginEmail } from '@/lib/auth/legacyAccountResolver'
 import { attachCoreSessionCookies, issueCoreBffSession } from '@/lib/core/bffSession'
 import { isRecoverySession } from '@/lib/core/jwtVerifier'
-import { authErrorResponse, readJsonBody, requireCoreRuntime } from '@/lib/core/routeHelpers'
+import { authErrorResponse, readJsonBody, requireCoreRuntime, requireSameOrigin } from '@/lib/core/routeHelpers'
 
 /**
  * KC-02: e-mail + password login against Supabase Auth for users who have
@@ -11,6 +11,8 @@ import { authErrorResponse, readJsonBody, requireCoreRuntime } from '@/lib/core/
 export async function POST(request: Request) {
   const gate = requireCoreRuntime()
   if (!gate.ok) return gate.response
+  const origin = requireSameOrigin(request)
+  if (origin) return origin
   const { runtime } = gate
 
   const body = await readJsonBody(request)

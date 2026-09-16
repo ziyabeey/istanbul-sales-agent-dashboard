@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { normalizeLoginEmail } from '@/lib/auth/legacyAccountResolver'
-import { authErrorResponse, readJsonBody, requireCoreRuntime } from '@/lib/core/routeHelpers'
+import { authErrorResponse, readJsonBody, requireCoreRuntime, requireSameOrigin } from '@/lib/core/routeHelpers'
 import { CoreAuthError } from '@/lib/core/errors'
 
 /**
@@ -11,6 +11,8 @@ import { CoreAuthError } from '@/lib/core/errors'
 export async function POST(request: Request) {
   const gate = requireCoreRuntime()
   if (!gate.ok) return gate.response
+  const origin = requireSameOrigin(request)
+  if (origin) return origin
 
   const body = await readJsonBody(request)
   const email = normalizeLoginEmail(String(body.email ?? ''))

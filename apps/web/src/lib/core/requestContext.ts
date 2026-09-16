@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { CORE_ACCESS_REFRESH_SKEW_SECONDS } from './config'
-import type { CoreMembership, CorePlatformClient } from './coreClient'
+import type { CoreMembership, CorePlatformClient, CoreSnapshot } from './coreClient'
 import { CoreAuthError, CorePlatformError } from './errors'
 import { isRecoverySession, type SupabaseClaims, type SupabaseJwtVerifier } from './jwtVerifier'
 import {
@@ -15,13 +15,15 @@ import {
 import type { SupabaseAuthClient } from './supabaseAuth'
 
 /**
- * KC-02: CoreRequestContext.
+ * KC-02: CoreRequestContext = { user_id, business_id, role, entitlements }.
  *
- * user_id comes from the verified JWT `sub`; business_id is derived from the
- * user's active Postgres memberships and never from a client-supplied value.
+ * user_id comes from the verified JWT `sub`; business_id and role are derived
+ * from the user's active Postgres memberships and never from a client value.
  * A stored business selection is only a hint and is dropped when it no longer
- * matches an active membership (membership deactivation is effective on the
- * next request).
+ * matches an active membership (deactivation is effective on the next
+ * request). Entitlements are read from the KC-01 snapshot RPC with the user's
+ * own JWT for the resolved business; a Core outage fails closed instead of
+ * yielding an empty-but-trusted set.
  */
 export interface CoreRequestContext {
   kind: 'core'
@@ -33,6 +35,9 @@ export interface CoreRequestContext {
   memberships: CoreMembership[]
   businessId: string | null
   role: CoreMembership['role'] | null
+  /** Granted, unexpired entitlement keys for `businessId` (empty when no business). */
+  entitlements: string[]
+  subscription: CoreSnapshot['subscription']
 }
 
 export interface CoreContextDeps {
@@ -82,6 +87,13 @@ async function ensureFreshAccessToken(
   return { record: updated, accessToken: refreshed.access_token, claims }
 }
 
+function grantedEntitlementKeys(snapshot: CoreSnapshot, now: Date): string[] {
+  return snapshot.entitlements
+    .filter((e) => e.granted && (!e.valid_until || new Date(e.valid_until).getTime() > now.getTime()))
+    .map((e) => e.entitlement_key)
+    .sort()
+}
+
 export async function resolveCoreRequestContext(request: Request, deps: CoreContextDeps): Promise<CoreContextResult> {
   const now = deps.now ? deps.now() : new Date()
   const token = readCoreSessionToken(request)
@@ -121,6 +133,21 @@ export async function resolveCoreRequestContext(request: Request, deps: CoreCont
     (selected && active.find((m) => m.business_id === selected)) ||
     (active.length === 1 ? active[0] : null)
 
+  let entitlements: string[] = []
+  let subscription: CoreSnapshot['subscription'] = null
+  if (chosen) {
+    try {
+      const snapshot = await deps.client.getBusinessPlatformSnapshot(fresh.accessToken, chosen.business_id)
+      entitlements = grantedEntitlementKeys(snapshot, now)
+      subscription = snapshot.subscription
+    } catch (error) {
+      if (error instanceof CorePlatformError && (error.code === 'AUTH_REQUIRED' || error.code === 'BUSINESS_ACCESS_DENIED')) {
+        return { ok: false, reason: 'SESSION_EXPIRED' }
+      }
+      return { ok: false, reason: 'CORE_UNAVAILABLE' }
+    }
+  }
+
   return {
     ok: true,
     record: fresh.record,
@@ -134,8 +161,15 @@ export async function resolveCoreRequestContext(request: Request, deps: CoreCont
       memberships: active,
       businessId: chosen?.business_id ?? null,
       role: chosen?.role ?? null,
+      entitlements,
+      subscription,
     },
   }
+}
+
+/** Single authorization primitive for Kepenk code paths (mirrors public.has_entitlement). */
+export function hasContextEntitlement(context: CoreRequestContext, entitlementKey: string): boolean {
+  return context.businessId !== null && context.entitlements.includes(entitlementKey.trim().toLowerCase())
 }
 
 export interface RequireCoreContextOptions {
@@ -145,6 +179,8 @@ export interface RequireCoreContextOptions {
   allowRecovery?: boolean
   /** Require a resolved active business membership. */
   requireBusiness?: boolean
+  /** Require a granted entitlement for the resolved business. */
+  requireEntitlement?: string
 }
 
 export type RequireCoreContextResult =
@@ -175,8 +211,11 @@ export async function requireCoreContext(
   const resolved = await resolveCoreRequestContext(request, deps)
   if (!resolved.ok) return fail(resolved.reason)
   if (resolved.context.recovery && !options.allowRecovery) return fail('RECOVERY_REQUIRED')
-  if (options.requireBusiness && !resolved.context.businessId) {
+  if ((options.requireBusiness || options.requireEntitlement) && !resolved.context.businessId) {
     return { ok: false, response: NextResponse.json({ error: 'BUSINESS_REQUIRED' }, { status: 403 }) }
+  }
+  if (options.requireEntitlement && !hasContextEntitlement(resolved.context, options.requireEntitlement)) {
+    return { ok: false, response: NextResponse.json({ error: 'ENTITLEMENT_REQUIRED', entitlement: options.requireEntitlement }, { status: 403 }) }
   }
   return resolved
 }

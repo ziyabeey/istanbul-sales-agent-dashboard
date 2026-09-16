@@ -119,6 +119,41 @@ export class SupabaseAuthClient {
     }
   }
 
+  /**
+   * Completes an e-mail recovery link server-side. The Supabase recovery
+   * template must send `{{ .TokenHash }}` to the Kepenk BFF instead of an
+   * implicit-flow fragment, so the browser never receives tokens.
+   */
+  async verifyRecoveryTokenHash(tokenHash: string): Promise<SupabaseSession> {
+    const { status, json } = await this.call('verify', { type: 'recovery', token_hash: tokenHash })
+    if (status < 200 || status >= 300) throw SupabaseAuthClient.failure(status, 'OTP_INVALID')
+    const parsed = SupabaseSessionSchema.safeParse(json)
+    if (!parsed.success) throw new CoreAuthError('AUTH_UNAVAILABLE', { status })
+    return parsed.data
+  }
+
+  async updatePassword(accessToken: string, password: string): Promise<void> {
+    const url = `${this.options.supabaseUrl}/auth/v1/user`
+    let response: Response
+    try {
+      response = await this.fetchImpl(url, {
+        method: 'PUT',
+        headers: {
+          'content-type': 'application/json',
+          apikey: this.options.anonKey,
+          authorization: `Bearer ${accessToken}`,
+        },
+        body: JSON.stringify({ password }),
+        signal: AbortSignal.timeout(this.timeoutMs),
+      })
+    } catch (cause) {
+      throw new CoreAuthError('AUTH_UNAVAILABLE', { cause })
+    }
+    if (response.status >= 200 && response.status < 300) return
+    if (response.status === 401 || response.status === 403) throw new CoreAuthError('SESSION_EXPIRED', { status: response.status })
+    throw SupabaseAuthClient.failure(response.status, 'CREDENTIALS_INVALID')
+  }
+
   async requestPasswordRecovery(email: string): Promise<void> {
     const { status } = await this.call('recover', { email })
     if (status >= 200 && status < 300) return

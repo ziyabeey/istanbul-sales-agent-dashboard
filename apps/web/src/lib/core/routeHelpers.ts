@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+import { isSameOriginMutation } from '../apiGuard'
 import { isCoreBffEnabled } from './config'
 import { getCoreRuntime, type CoreRuntime } from './deps'
 import { CoreAuthError, CorePlatformError } from './errors'
@@ -18,6 +19,15 @@ export function requireCoreRuntime(): CoreRouteRuntime {
     return { ok: false, response: NextResponse.json({ error: 'CORE_UNAVAILABLE' }, { status: 503 }) }
   }
   return { ok: true, runtime }
+}
+
+/**
+ * Login and recovery entrypoints carry no session yet, so double-submit CSRF
+ * cannot apply; they still refuse cross-site POSTs by Origin (KC-02 BFF contract).
+ */
+export function requireSameOrigin(request: Request): NextResponse | null {
+  if (isSameOriginMutation(request)) return null
+  return NextResponse.json({ error: 'ORIGIN_REJECTED' }, { status: 403 })
 }
 
 export async function readJsonBody(request: Request): Promise<Record<string, unknown>> {

@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { authErrorResponse, readJsonBody, requireCoreRuntime } from '@/lib/core/routeHelpers'
+import { authErrorResponse, readJsonBody, requireCoreRuntime, requireSameOrigin } from '@/lib/core/routeHelpers'
 import { toTurkishE164 } from '@/lib/core/supabaseAuth'
 
 /**
@@ -9,6 +9,8 @@ import { toTurkishE164 } from '@/lib/core/supabaseAuth'
 export async function POST(request: Request) {
   const gate = requireCoreRuntime()
   if (!gate.ok) return gate.response
+  const origin = requireSameOrigin(request)
+  if (origin) return origin
 
   const body = await readJsonBody(request)
   const phone = toTurkishE164(String(body.telefon ?? ''))

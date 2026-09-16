@@ -1,20 +1,22 @@
 import { NextResponse } from 'next/server'
-import { adminDb } from '@/lib/firebaseAdmin'
 import { attachCoreSessionCookies, issueCoreBffSession } from '@/lib/core/bffSession'
-import { adaptLegacyIdentity } from '@/lib/core/identityAdapter'
+import { linkLegacyPhoneIdentity } from '@/lib/core/identityAdapter'
 import { isRecoverySession } from '@/lib/core/jwtVerifier'
-import { authErrorResponse, readJsonBody, requireCoreRuntime } from '@/lib/core/routeHelpers'
+import { authErrorResponse, readJsonBody, requireCoreRuntime, requireSameOrigin } from '@/lib/core/routeHelpers'
 import { toTurkishE164 } from '@/lib/core/supabaseAuth'
 
 /**
  * KC-02: complete a Supabase phone OTP login and establish the host-only BFF
  * session. Tokens stay on the server; the browser receives an opaque locator
- * and a CSRF cookie. The legacy identity adapter runs after the session is
- * established and never blocks or authorizes the login.
+ * and a CSRF cookie. The legacy identity alias is linked after the session is
+ * established and never blocks or authorizes the login. No legacy tenant
+ * document is written here (KC-03 owns esnaf -> business shadow state).
  */
 export async function POST(request: Request) {
   const gate = requireCoreRuntime()
   if (!gate.ok) return gate.response
+  const origin = requireSameOrigin(request)
+  if (origin) return origin
   const { runtime } = gate
 
   const body = await readJsonBody(request)
@@ -34,15 +36,14 @@ export async function POST(request: Request) {
     const issued = await issueCoreBffSession(runtime.sessions, session)
     const recovery = isRecoverySession(claims)
     const memberships = recovery ? [] : await runtime.client.listMemberships(session.access_token)
-    const adapter = await adaptLegacyIdentity({ client: runtime.client, db: adminDb }, { phoneE164: phone, userId: session.user.id })
+    const identityAlias = await linkLegacyPhoneIdentity(runtime.client, { phoneE164: phone, userId: session.user.id })
 
     const response = NextResponse.json({
       userId: session.user.id,
       recovery,
       businessId: memberships.length === 1 ? memberships[0].business_id : null,
       membershipCount: memberships.length,
-      legacyEsnafId: adapter.legacyEsnafId,
-      identityAlias: adapter.identityAlias,
+      identityAlias,
     })
     return attachCoreSessionCookies(response, issued)
   } catch (error) {
