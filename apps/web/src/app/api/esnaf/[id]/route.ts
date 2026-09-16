@@ -112,10 +112,10 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
 
         const validatedData: EsnafGuncelleInput = parsed.data
         const update: Record<string, unknown> = {}
-        const izinliAlanlar: (keyof EsnafGuncelleInput)[] = [
+        const izinliAlanlar = [
             'ad', 'telefon', 'adres', 'bildirimAyarlari', 'instagramUsername',
             'instagramUrl', 'facebookUrl', 'paletId', 'secilenPalet'
-        ]
+        ] as const
         for (const alan of izinliAlanlar) {
             if (validatedData[alan] !== undefined) update[alan] = validatedData[alan]
         }
