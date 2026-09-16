@@ -20,12 +20,12 @@ The following surfaces are explicitly protected by P0-00:
 - 390px mobile login surface,
 - 360px mobile login surface,
 - unauthenticated dashboard -> `/giris` redirect,
-- unauthenticated admin -> `/admin/login` redirect,
+- unauthenticated admin -> `/admin/login` redirect when `ADMIN_SECRET_TOKEN` is configured,
 - proxy subdomain intent for `edit`, `app`, `manage`, `destek`.
 
 Real-browser smoke: `apps/web/test/e2e/trust-browser-smoke.sh`.
 
-The browser smoke intentionally uses the Chrome/Chromium binary already present on the CI runner instead of adding a new package dependency to this baseline PR. It starts the real Next.js app, renders `/giris` at 1440, 390 and 360 widths, checks the preserved login content, and verifies unauthenticated dashboard/admin redirect headers.
+The browser smoke intentionally uses the Chrome/Chromium binary already present on the CI runner instead of adding a new package dependency to this baseline PR. It starts the real Next.js app with a deterministic non-empty test `ADMIN_SECRET_TOKEN`, renders `/giris` at 1440, 390 and 360 widths, checks the preserved login content, and verifies unauthenticated dashboard/admin redirect headers. The characterization suite separately pins the current admin fail-open behavior when that environment secret is absent.
 
 ## Current cookie / principal inventory
 
@@ -33,7 +33,7 @@ The browser smoke intentionally uses the Chrome/Chromium binary already present 
 |---|---|
 | Business dashboard | NextAuth `req.auth` **OR presence of** `kepenk_session` cookie |
 | Business API/session | signed `kepenk_session` JWT carrying `esnafId` |
-| Admin page proxy | `admin_token` cookie compared to raw `ADMIN_SECRET_TOKEN` |
+| Admin page proxy | `admin_token` cookie compared to raw `ADMIN_SECRET_TOKEN`; fails open if both are absent |
 | Admin API | `x-admin-token` compared to raw `ADMIN_SECRET_TOKEN` |
 | Cron | `x-cron-secret` / bearer compared to `CRON_SECRET` |
 | ADK | bearer compared to `ADK_BEARER_TOKEN` |
@@ -91,12 +91,13 @@ The unit characterization suite records these exact legacy risks:
 
 1. Dashboard proxy accepts business login based on `kepenk_session` cookie presence rather than verifying that cookie at the proxy gate.
 2. Admin login, proxy and API use incompatible trust authorities.
-3. Onboarding SMS failure activates fixed OTP `123456`.
-4. Production-visible `dev-login` has a hard-coded admin-secret fallback and can create a real `esnaflar` record.
-5. Cloud Tasks missing credentials downgrades to direct HTTP execution.
-6. Cloud Task worker header falls back to `dev-secret-123`.
-7. Privacy cron routes can report simulated successful deletion/anonymization.
-8. Logout clears the cookie but has no durable server-side Session revocation authority.
+3. Admin proxy fails open when both the `admin_token` cookie and `ADMIN_SECRET_TOKEN` are absent because `undefined !== undefined` is false.
+4. Onboarding SMS failure activates fixed OTP `123456`.
+5. Production-visible `dev-login` has a hard-coded admin-secret fallback and can create a real `esnaflar` record.
+6. Cloud Tasks missing credentials downgrades to direct HTTP execution.
+7. Cloud Task worker header falls back to `dev-secret-123`.
+8. Privacy cron routes can report simulated successful deletion/anonymization.
+9. Logout clears the cookie but has no durable server-side Session revocation authority.
 
 Source-level characterization: `apps/web/test/unit/trustBaseline.characterization.test.ts`.
 
@@ -119,7 +120,7 @@ This table is representative, not a claim that code-search produced an exhaustiv
 | Demo mode | disabled unless explicitly enabled | enabled by default outside production | isolated demo principal |
 | Onboarding OTP provider failure | fixed `123456` fallback currently possible | same code path | fail closed in production |
 | Dev login | route exists and shared-secret fallback exists | test convenience | production hard-cut, explicit dev harness |
-| Admin auth | raw shared secret + process-local HMAC session split | same model | durable AdminSession |
+| Admin auth | raw shared secret expected to be configured + process-local HMAC session split | missing secret can make proxy fail open | durable AdminSession, fail closed on config errors |
 | Worker auth | shared secret | shared secret/fallback | ServicePrincipal/OIDC |
 | Cloud Tasks unavailable | direct HTTP fallback | direct HTTP fallback | production fail/degraded, no trust downgrade |
 | Privacy purge simulation | can return success | can return success | never production success |
@@ -134,10 +135,11 @@ Opening PR #2 exposed pre-existing CI failures before any trust runtime change:
 4. Running full `@kepenk/web` ESLint exposed the existing source/config debt: **1066 findings = 809 errors + 257 warnings** across legacy application code and generated `apps/web/test-results/e2e-html/**` assets.
 5. Exact-head full `@kepenk/web` TypeScript currently fails in pre-existing runtime source `apps/web/src/lib/cloudTasksClient.ts` with two TS2322 errors: Cloud Tasks `httpMethod` is typed as a plain string where `HttpMethod` is required, and the optional OIDC `audience` can be `undefined` where the client type requires a string. P0-00 does not modify that runtime source.
 6. The isolated P0-00 trust TypeScript gate is **green**.
-7. Exact-head unit tests are **green** on the previously exercised head and remain a blocking P0 gate.
+7. Exact-head unit tests are **green** on the exercised baseline and remain a blocking P0 gate.
 8. The legacy integration suite currently fails before two suites load because `apps/web/src/lib/zodSemalar.ts` imports `zod` while `@kepenk/web` does not declare `zod` as a direct dependency. Two other integration files still execute successfully, with 24 tests passing before the resolver failure terminates the suite.
-9. The legacy monorepo build currently fails in `@kepenk/crm-schema` through `packages/site-schema/src/validators.ts`: Node `crypto` types cannot be resolved because `@kepenk/site-schema` does not declare Node type definitions.
+9. The legacy monorepo build currently fails in `@kepenk/site-schema`: `packages/site-schema/src/validators.ts` imports Node `crypto`, while the package does not declare Node type definitions.
 10. The repository's historical Playwright commands reference a runner that is not declared in `@kepenk/web`; the first PR browser job therefore failed before executing any browser test with `Command "playwright" not found`.
+11. The first real Chrome smoke rendered `/giris` successfully at all three viewports and passed the unauthenticated dashboard redirect, then discovered that `/admin` returned `200` when `ADMIN_SECRET_TOKEN` was absent. Source inspection confirmed the proxy comparison fails open in that configuration. This is now a KNOWN-RISK characterization instead of being hidden as a test-harness failure.
 
 P0-00 does not repair unrelated runtime/package ownership in order to manufacture a green dashboard. It records those failures as explicit debt and hard-gates only evidence that this PR can truthfully own.
 
@@ -152,7 +154,7 @@ The evidence workflow is repaired as follows without changing application runtim
 - hard-gate `@kepenk/web` unit tests, including the trust characterization suite,
 - execute the legacy integration suite as a visible tolerated baseline and emit a CI warning when its known undeclared-`zod` failure remains,
 - execute the legacy monorepo build as a visible tolerated baseline and emit a CI warning when its known Node-types failure remains,
-- run a pull-request-only real Chrome/Chromium trust smoke without introducing Playwright as an undeclared dependency,
+- run a pull-request-only real Chrome/Chromium trust smoke with a deterministic configured admin secret and no new package dependency,
 - preserve the historical full Playwright/Lighthouse/staging chain on main push; its undeclared Playwright dependency remains separately visible debt and is not silently rewritten here.
 
 The first isolated typecheck run also found a P0-00-only configuration error: `@playwright/test` had been incorrectly listed as a global `types` library. That branch-local defect was fixed rather than classified as legacy debt.
@@ -166,6 +168,7 @@ Known CI/tooling debt remains explicit:
 - `@kepenk/web` needs an explicit decision/fix for its undeclared direct `zod` usage,
 - `@kepenk/site-schema` needs an explicit Node type/runtime boundary fix for `crypto`,
 - the historical Playwright e2e chain needs a declared, lockfile-backed test-runner dependency before it can be relied on,
+- GitHub-hosted actions currently warn that Node.js 20 is deprecated for action runtimes; application test commands still execute under the explicitly installed Node 20.20.2,
 - none of these are represented as completed by P0-00.
 
 ## How to run
@@ -207,7 +210,8 @@ P0-00 is ready to leave draft only when:
 - P0-00 isolated TypeScript gate is green,
 - the trust characterization/unit suite is green on the exact branch head,
 - real Chrome/Chromium smoke passes for `/giris` at desktop, 390px and 360px,
-- unauthenticated dashboard/admin redirect smoke passes,
+- configured-secret unauthenticated dashboard/admin redirect smoke passes,
+- the missing-admin-secret fail-open behavior remains explicitly pinned until its owning hard-cut fixes it,
 - full web typecheck, broad integration and broad build probes have all been evaluated and any pre-existing failures are classified with visible warnings rather than hidden,
 - no application/runtime source file changed,
 - branch diff is limited to tests/fixtures/docs plus CI evidence workflow repair,

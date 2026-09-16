@@ -65,6 +65,17 @@ describe('P0-00 trust baseline characterization', () => {
     expect(guard).toContain('token !== process.env.ADMIN_SECRET_TOKEN')
   })
 
+  it('KNOWN-RISK: admin proxy fails open if both cookie token and ADMIN_SECRET_TOKEN are absent', () => {
+    const proxy = readSource('src/proxy.ts')
+    const cookieToken: string | undefined = undefined
+    const configuredSecret: string | undefined = undefined
+
+    expect(proxy).toContain("const token = req.cookies.get('admin_token')?.value")
+    expect(proxy).toContain('if (token !== process.env.ADMIN_SECRET_TOKEN)')
+    expect(cookieToken !== configuredSecret).toBe(false)
+    expect(proxy).not.toContain('if (!process.env.ADMIN_SECRET_TOKEN)')
+  })
+
   it('KNOWN-RISK: onboarding SMS failure currently enables fixed 123456 verification code', () => {
     const source = readSource('src/app/api/auth/onboarding-otp-gonder/route.ts')
     expect(source).toContain("kod = '123456'")
@@ -121,6 +132,7 @@ describe('P0-00 trust baseline characterization', () => {
   it('keeps the known-risk register explicit rather than silently normalizing insecure behavior', () => {
     expect(KNOWN_TRUST_RISKS).toContain('dashboard_proxy_accepts_business_cookie_by_presence')
     expect(KNOWN_TRUST_RISKS).toContain('admin_login_proxy_api_use_incompatible_authorities')
+    expect(KNOWN_TRUST_RISKS).toContain('admin_proxy_fails_open_when_secret_and_cookie_are_both_absent')
     expect(KNOWN_TRUST_RISKS).toContain('privacy_crons_can_report_simulated_success')
   })
 })

@@ -36,7 +36,7 @@ export const CURRENT_AUTH_RESPONSE_SHAPES = {
 export const CURRENT_PRINCIPAL_SOURCES = {
   dashboard: ['NextAuth req.auth', 'kepenk_session cookie presence'],
   businessApi: ['kepenk_session JWT -> esnafId'],
-  adminProxy: ['admin_token cookie == ADMIN_SECRET_TOKEN'],
+  adminProxy: ['admin_token cookie == ADMIN_SECRET_TOKEN', 'fails open if both cookie and secret are absent'],
   adminApi: ['x-admin-token == ADMIN_SECRET_TOKEN'],
   cron: ['x-cron-secret or Authorization bearer == CRON_SECRET'],
   adk: ['Authorization bearer == ADK_BEARER_TOKEN'],
@@ -89,6 +89,7 @@ export const CURRENT_SHARED_SECRET_SURFACES = [
 export const KNOWN_TRUST_RISKS = [
   'dashboard_proxy_accepts_business_cookie_by_presence',
   'admin_login_proxy_api_use_incompatible_authorities',
+  'admin_proxy_fails_open_when_secret_and_cookie_are_both_absent',
   'onboarding_sms_failure_enables_fixed_123456_code',
   'dev_login_has_hardcoded_admin_secret_fallback',
   'cloud_tasks_missing_credentials_downgrades_to_direct_http',

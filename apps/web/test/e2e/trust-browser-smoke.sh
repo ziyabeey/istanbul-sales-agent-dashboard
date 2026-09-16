@@ -6,6 +6,7 @@ WEB_DIR="$ROOT_DIR/apps/web"
 RESULT_DIR="$WEB_DIR/test-results/trust-browser"
 SERVER_LOG="$RESULT_DIR/server.log"
 BASE_URL="${TRUST_BASE_URL:-http://127.0.0.1:3000}"
+TRUST_ADMIN_SECRET_TOKEN="${TRUST_ADMIN_SECRET_TOKEN:-p0-00-trust-smoke-admin-secret}"
 
 mkdir -p "$RESULT_DIR"
 : > "$SERVER_LOG"
@@ -25,7 +26,10 @@ if [[ -z "$CHROME_BIN" ]]; then
   exit 1
 fi
 
-pnpm --filter @kepenk/web dev:smoke >"$SERVER_LOG" 2>&1 &
+# Production is expected to have ADMIN_SECRET_TOKEN configured. The separate
+# characterization suite pins the current fail-open behavior when it is absent.
+ADMIN_SECRET_TOKEN="$TRUST_ADMIN_SECRET_TOKEN" \
+  pnpm --filter @kepenk/web dev:smoke >"$SERVER_LOG" 2>&1 &
 SERVER_PID=$!
 
 cleanup() {
@@ -99,7 +103,7 @@ fi
 curl --silent --show-error --output /dev/null --dump-header "$ADMIN_HEADERS" \
   "$BASE_URL/admin"
 if ! grep -Eiq '^location: .*\/admin\/login' "$ADMIN_HEADERS"; then
-  echo "Unauthenticated admin did not redirect to /admin/login." >&2
+  echo "Configured-secret unauthenticated admin did not redirect to /admin/login." >&2
   cat "$ADMIN_HEADERS" >&2
   exit 1
 fi
