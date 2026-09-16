@@ -2,12 +2,18 @@ import { NextResponse } from 'next/server'
 import type { RequestContext } from '../../../../packages/auth/src/types/canonical'
 import type { ServicePrincipal } from '../../../../packages/security/src/servicePrincipal'
 import { resolveCanonicalBusinessContextFromRequest } from './auth/businessSession'
+import {
+    readAdminSessionToken,
+    validateAdminSessionToken,
+} from './auth/adminSession'
 import { verifyServiceRequest, type ServiceRequirement } from './serviceAuth'
 
 type GuardOptions = {
     requireUserSession?: boolean
     requireServicePrincipal?: ServiceRequirement
     requireCronSecret?: boolean
+    requireAdminSession?: boolean
+    /** @deprecated P0-06 compatibility alias. Semantics are durable AdminSession, never x-admin-token. */
     requireAdminToken?: boolean
     requireADKBearer?: boolean
 }
@@ -15,6 +21,28 @@ type GuardOptions = {
 type GuardResult =
     | { ok: true; context?: RequestContext; servicePrincipal?: ServicePrincipal }
     | { ok: false; response: NextResponse }
+
+const SAFE_METHODS = new Set(['GET', 'HEAD', 'OPTIONS'])
+
+export function isSameOriginMutation(request: Request): boolean {
+    if (SAFE_METHODS.has(request.method.toUpperCase())) return true
+
+    const origin = request.headers.get('origin')
+    if (!origin) return false
+
+    try {
+        const originUrl = new URL(origin)
+        const requestUrl = new URL(request.url)
+        const forwardedHost = request.headers.get('x-forwarded-host')?.split(',')[0]?.trim()
+        const forwardedProto = request.headers.get('x-forwarded-proto')?.split(',')[0]?.trim()
+        const expectedHost = forwardedHost || request.headers.get('host') || requestUrl.host
+        const expectedProtocol = forwardedProto ? `${forwardedProto}:` : requestUrl.protocol
+
+        return originUrl.host === expectedHost && originUrl.protocol === expectedProtocol
+    } catch {
+        return false
+    }
+}
 
 export async function apiGuard(
     request: Request,
@@ -61,13 +89,37 @@ export async function apiGuard(
         }
     }
 
-    if (options.requireAdminToken) {
-        // AdminPrincipal/AdminSession convergence belongs to P0-06.
-        const token = request.headers.get('x-admin-token')
-        if (token !== process.env.ADMIN_SECRET_TOKEN) {
+    if (options.requireAdminSession || options.requireAdminToken) {
+        if (!isSameOriginMutation(request)) {
             return {
                 ok: false,
                 response: NextResponse.json({ error: 'Forbidden' }, { status: 403 }),
+            }
+        }
+
+        const token = readAdminSessionToken(request)
+        if (!token) {
+            return {
+                ok: false,
+                response: NextResponse.json({ error: 'Unauthorized' }, { status: 401 }),
+            }
+        }
+
+        try {
+            const session = await validateAdminSessionToken(token)
+            if (!session) {
+                return {
+                    ok: false,
+                    response: NextResponse.json({ error: 'Unauthorized' }, { status: 401 }),
+                }
+            }
+        } catch {
+            return {
+                ok: false,
+                response: NextResponse.json(
+                    { error: 'Admin authentication unavailable' },
+                    { status: 503 }
+                ),
             }
         }
     }

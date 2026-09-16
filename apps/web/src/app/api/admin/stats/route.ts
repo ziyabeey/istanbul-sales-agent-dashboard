@@ -1,19 +1,18 @@
 import { NextResponse } from 'next/server'
 import { adminDb } from '@/lib/firebaseAdmin'
+import { apiGuard } from '@/lib/apiGuard'
 import { PAKET_FIYATLARI_AYLIK } from '@/data/paketler'
 import { PAKET_FIYATLARI } from '@/types'
 
 /**
  * GET /api/admin/stats
- * Admin istatistik API'si. x-admin-token header kontrolü yapar.
+ * Admin istatistik API'si. Durable AdminSession doğrulaması yapar.
  * MRR = aylık fiyatların toplamı (PAKET_FIYATLARI_AYLIK)
  * ARR = yıllık fiyatların toplamı (PAKET_FIYATLARI) — finans sayfası için esnaflar listesinde yer alır
  */
 export async function GET(request: Request) {
-    const token = request.headers.get('x-admin-token')
-    if (!process.env.ADMIN_SECRET_TOKEN || token !== process.env.ADMIN_SECRET_TOKEN) {
-        return NextResponse.json({ error: 'Yetkisiz erişim' }, { status: 401 })
-    }
+    const guard = await apiGuard(request, { requireAdminSession: true })
+    if (!guard.ok) return guard.response
 
     if (!adminDb) {
         return NextResponse.json({ error: 'Veritabanı bağlantısı yok' }, { status: 500 })

@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server'
 import { adminDb, Timestamp } from '@/lib/firebaseAdmin'
-
-const ADMIN_TOKEN = process.env.ADMIN_SECRET_TOKEN!
+import { apiGuard } from '@/lib/apiGuard'
 
 /**
  * kepenk.ai'nin kendi Google Ads kampanyaları (B2B esnaf edinme)
@@ -9,9 +8,8 @@ const ADMIN_TOKEN = process.env.ADMIN_SECRET_TOKEN!
  */
 
 export async function GET(request: Request) {
-    if (request.headers.get('x-admin-token') !== ADMIN_TOKEN) {
-        return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
-    }
+    const guard = await apiGuard(request, { requireAdminSession: true })
+    if (!guard.ok) return guard.response
     if (!adminDb) return NextResponse.json({ kampanyalar: [], butce: null })
 
     // kepenk.ai self-promotion kampanyaları
@@ -52,9 +50,8 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
-    if (request.headers.get('x-admin-token') !== ADMIN_TOKEN) {
-        return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
-    }
+    const guard = await apiGuard(request, { requireAdminSession: true })
+    if (!guard.ok) return guard.response
     if (!adminDb) return NextResponse.json({ error: 'DB yok' }, { status: 500 })
 
     const { baslik, platform, gunlukButce, gun, hedefSehir, hedefSektorler } = await request.json()
@@ -87,9 +84,8 @@ export async function POST(request: Request) {
 
 // PATCH — kampanya bütçe güncelle veya durdur
 export async function PATCH(request: Request) {
-    if (request.headers.get('x-admin-token') !== ADMIN_TOKEN) {
-        return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
-    }
+    const guard = await apiGuard(request, { requireAdminSession: true })
+    if (!guard.ok) return guard.response
     if (!adminDb) return NextResponse.json({ error: 'DB yok' }, { status: 500 })
 
     const { id, gunlukButce, durum } = await request.json()

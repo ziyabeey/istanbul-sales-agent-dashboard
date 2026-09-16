@@ -21,9 +21,17 @@ export default function AdminSidebar() {
 
     if (pathname === "/admin/login") return null;
 
-    const handleLogout = () => {
-        document.cookie = "admin_token=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT";
-        router.push("/admin/login");
+    const handleLogout = async () => {
+        try {
+            const response = await fetch("/api/admin/logout", { method: "POST" });
+            if (!response.ok) return;
+
+            router.replace("/admin/login");
+            router.refresh();
+        } catch {
+            // Fail closed: if revocation cannot be confirmed, keep the current
+            // page/session visible rather than pretending logout succeeded.
+        }
     };
 
     return (

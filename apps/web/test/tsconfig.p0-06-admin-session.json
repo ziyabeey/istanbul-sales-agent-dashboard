@@ -1,0 +1,27 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "incremental": false,
+    "types": ["node", "vitest/globals", "next/types/global"]
+  },
+  "include": [
+    "../src/lib/auth/adminSessionConstants.ts",
+    "../src/lib/auth/adminSession.ts",
+    "../src/lib/apiGuard.ts",
+    "../src/app/api/admin/login/route.ts",
+    "../src/app/api/admin/logout/route.ts",
+    "../src/app/api/admin/stats/route.ts",
+    "../src/app/api/admin/marketing/email-kampanya/route.ts",
+    "../src/app/api/admin/marketing/google-ads/route.ts",
+    "../src/app/api/admin/marketing/lead-tara/route.ts",
+    "../src/app/api/admin/marketing/leadler/route.ts",
+    "../src/components/layout/AdminSidebar.tsx",
+    "../src/proxy.ts",
+    "./unit/adminSession.test.ts"
+  ],
+  "exclude": [
+    "../node_modules",
+    "../.next"
+  ]
+}

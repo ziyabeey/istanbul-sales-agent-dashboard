@@ -1,8 +1,12 @@
-import { NextResponse } from 'next/server'
-import { cookies } from 'next/headers'
 import crypto from 'crypto'
+import { NextResponse } from 'next/server'
+import {
+    ADMIN_SESSION_COOKIE,
+    ADMIN_SESSION_TTL_SECONDS,
+    issueAdminSession,
+} from '@/lib/auth/adminSession'
 
-// Basit in-memory rate limiting (IP başına)
+// Basit in-memory rate limiting (IP başına). Session authority değildir.
 const loginAttempts = new Map<string, { count: number; resetAt: number }>()
 const MAX_ATTEMPTS = 5
 const WINDOW_MS = 15 * 60 * 1000 // 15 dakika
@@ -34,41 +38,54 @@ export async function POST(request: Request) {
         )
     }
 
-    const { sifre } = await request.json()
-    const secret = process.env.ADMIN_SECRET_TOKEN
+    let sifre: unknown
+    try {
+        const body = await request.json()
+        sifre = body?.sifre
+    } catch {
+        return NextResponse.json({ error: 'Geçersiz istek' }, { status: 400 })
+    }
 
+    const secret = process.env.ADMIN_SECRET_TOKEN
     if (!secret) {
         return NextResponse.json({ error: 'Sunucu yapılandırma hatası' }, { status: 500 })
     }
 
-    // Timing-safe karşılaştırma
-    const expected = Buffer.from(secret, 'utf8')
-    const actual = Buffer.from(String(sifre || ''), 'utf8')
+    // Compare fixed-length digests so secret length is not exposed by an early exit.
+    const expected = crypto.createHash('sha256').update(secret, 'utf8').digest()
+    const actual = crypto.createHash('sha256').update(String(sifre || ''), 'utf8').digest()
 
-    if (expected.length !== actual.length || !crypto.timingSafeEqual(expected, actual)) {
+    if (!crypto.timingSafeEqual(expected, actual)) {
         return NextResponse.json({ error: 'Hatalı şifre' }, { status: 401 })
     }
 
-    // Oturum token'ı oluştur (plaintext secret yerine HMAC hash)
-    const sessionToken = crypto
-        .createHmac('sha256', secret)
-        .update(`admin-session-${Date.now()}`)
-        .digest('hex')
+    try {
+        const { token, session } = await issueAdminSession()
+        const response = NextResponse.json({ ok: true })
 
-    const cookieStore = await cookies()
-    cookieStore.set('admin_token', sessionToken, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        maxAge: 60 * 60 * 24 * 7,  // 7 gün
-        sameSite: 'strict',
-        path: '/',
-    })
+        response.cookies.set(ADMIN_SESSION_COOKIE, token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            maxAge: ADMIN_SESSION_TTL_SECONDS,
+            expires: new Date(session.expiresAt),
+            sameSite: 'strict',
+            path: '/',
+        })
 
-    // Session token'ı process-local Map'e kaydet (doğrulama için)
-    if (!(global as any).ADMIN_SESSIONS) {
-        (global as any).ADMIN_SESSIONS = new Map()
+        // Eski statik-secret cookie authority'sini kalıcı olarak söndür.
+        response.cookies.set('admin_token', '', {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            maxAge: 0,
+            sameSite: 'strict',
+            path: '/',
+        })
+
+        return response
+    } catch {
+        return NextResponse.json(
+            { error: 'Admin oturumu oluşturulamadı' },
+            { status: 503 }
+        )
     }
-    (global as any).ADMIN_SESSIONS.set(sessionToken, { createdAt: Date.now() })
-
-    return NextResponse.json({ ok: true })
 }
