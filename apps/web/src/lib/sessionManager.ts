@@ -8,7 +8,6 @@
  * OTP storage remains here temporarily and is independent from Session truth.
  */
 
-import { SignJWT, jwtVerify } from 'jose'
 import { cookies } from 'next/headers'
 import { NextRequest, NextResponse } from 'next/server'
 import type { RequestContext, Session } from '../../../../packages/auth/src/types/canonical'
@@ -21,6 +20,7 @@ import {
     RequestContextBuilder,
     SessionVerifier,
 } from './auth'
+import { signHs256Jwt, verifyHs256Jwt } from './auth/jwtHmac'
 import {
     isCanonicalSessionTokenCandidate,
     issueCanonicalSessionToken,
@@ -29,8 +29,8 @@ import {
 import { getSessionSecret } from './auth/sessionSecret'
 
 const COOKIE_ADI = 'kepenk_session'
-const JWT_SURE = '7d' // Legacy compatibility token validity
 const COOKIE_MAX_AGE = 7 * 24 * 60 * 60 // 7 gün (saniye)
+const SESSION_ISSUER = 'kepenk.ai'
 
 function setSessionCookie(response: NextResponse, token: string): NextResponse {
     response.cookies.set(COOKIE_ADI, token, {
@@ -78,23 +78,23 @@ export async function canonicalRequestContextDogrula(
 // P0-02 new human logins must not use this. Demo/dev/onboarding compatibility
 // callers remain until their owning Pilot-0 hard-cut.
 export async function jwtOlustur(esnafId: string): Promise<string> {
-    return new SignJWT({ esnafId })
-        .setProtectedHeader({ alg: 'HS256' })
-        .setIssuedAt()
-        .setExpirationTime(JWT_SURE)
-        .setIssuer('kepenk.ai')
-        .sign(getSessionSecret())
+    const now = Math.floor(Date.now() / 1000)
+    return signHs256Jwt({
+        esnafId,
+        iss: SESSION_ISSUER,
+        iat: now,
+        exp: now + COOKIE_MAX_AGE,
+    }, getSessionSecret())
 }
 
 // ── Legacy JWT Doğrula ───────────────────────────────────────────────────────
 export async function jwtDogrula(token: string): Promise<{ esnafId: string } | null> {
-    try {
-        const { payload } = await jwtVerify(token, getSessionSecret(), { issuer: 'kepenk.ai' })
-        if (typeof payload.esnafId !== 'string' || !payload.esnafId) return null
-        return { esnafId: payload.esnafId }
-    } catch {
-        return null
-    }
+    const payload = verifyHs256Jwt(token, getSessionSecret(), {
+        issuer: SESSION_ISSUER,
+    })
+
+    if (!payload || typeof payload.esnafId !== 'string' || !payload.esnafId) return null
+    return { esnafId: payload.esnafId }
 }
 
 // ── Legacy Oturum Oluştur ────────────────────────────────────────────────────
@@ -177,7 +177,6 @@ export async function otpDogrula(telefon: string, kod: string): Promise<boolean>
 
     if (data.kod !== String(kod)) return false
 
-    // Başarılı — OTP'yi sil
     await ref.delete()
     return true
 }
@@ -185,7 +184,7 @@ export async function otpDogrula(telefon: string, kod: string): Promise<boolean>
 export async function otpRateKontrol(telefon: string): Promise<boolean> {
     const doc = await adminDb.collection('otp_sessions').doc(telefon).get()
 
-    if (!doc.exists) return true // Rate limit yok, gönderilebilir
+    if (!doc.exists) return true
 
     const data = doc.data()!
     const olusturma = data.olusturma?.toDate?.() || new Date(data.olusturma)
