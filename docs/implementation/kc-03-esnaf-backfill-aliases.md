@@ -12,14 +12,16 @@ Her canlı `esnaflar/{esnafId}` için:
 | --- | --- |
 | `durum = silindi` | atlanır |
 | `coreBusinessId` var | zaten bağlı (0 komut) |
-| `coreUserId` yok | **bekletilir** — sahipsiz business yaratılmaz |
+| owner Core'da yok | **bekletilir** — sahipsiz business yaratılmaz |
 | ad < 2 veya > 120 karakter | `invalid_name` raporlanır |
 | slug türetilemez / rezerve | `slug_invalid` / `slug_reserved` raporlanır |
 | hazır | `ProvisionBusiness` — idempotency key `kc03-provision-<sha256(esnafId)>`, payload `{owner_user_id, name, slug, timezone, tenant_alias{legacy-kepenk-firestore, esnafId}}` |
 
+Owner çözümü Core'dan okunur, Kepenk tarafı yazımdan değil: KC-02 girişte `legacy-kepenk-phone:<telefon> → user_id` alias'ını bağlar; backfill her sayfa için `core_resolve_identity_aliases` (100'lük batch) ile `telefonTemiz`'i Core kullanıcısına çevirir. Çözülen `coreUserId` yalnız başarılı provisioning ile birlikte gölge alan olarak yazılır (PR #18 blocker 4).
+
 Slug: mevcut `subdomain`/`slug` canonical ise korunur, değilse Randevu `slugify` portu (`src/lib/core/slug.ts`) ile addan türetilir. Rezerve ad listesi DOMAIN-01 kesinleşene kadar geçici ve dardır. `BUSINESS_SLUG_TAKEN` → **fail-closed, rapor**, sessiz rename yok.
 
-Sonuç `coreBusinessId`, `coreBusinessSlug`, `coreBusinessLinkedAt`, `coreBackfill{created, slugSource, idempotencyKey}` olarak legacy dokümana gölge yazılır. Firestore hâlâ authoritative'dir; bu alanlar yetki vermez.
+Sonuç `coreUserId`, `coreBusinessId`, `coreBusinessSlug`, `coreBusinessLinkedAt`, `coreBackfill{created, slugSource, idempotencyKey}` olarak legacy dokümana gölge yazılır. Firestore hâlâ authoritative'dir; bu alanlar yetki vermez.
 
 Koruma: KC-01 `ProvisionBusiness` aynı alias için mevcut business'ı döndürür; sahip bu business'ın üyesi değilse (`membership_id = null`) legacy tenant **bağlanmaz** ve `ownerMismatch` raporlanır (foreign-alias hijack yok).
 

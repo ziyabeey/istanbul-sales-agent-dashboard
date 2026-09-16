@@ -39,6 +39,34 @@ export interface LegacyTenantSource {
   saveReport(kind: 'backfill' | 'parity', report: Record<string, unknown>): Promise<void>
 }
 
+export function legacyTenantPhoneSubject(doc: LegacyTenantDoc): string | null {
+  const digits = String(doc.telefonTemiz ?? '').replace(/\D/g, '')
+  return digits.length >= 10 ? digits : null
+}
+
+/**
+ * Owner resolution is read from Core, never from a Kepenk-side write: the
+ * KC-02 identity adapter linked `legacy-kepenk-phone:<phone> -> user_id`, so
+ * a tenant whose phone resolves to a Core user has an owner. Returns a copy of
+ * the page with `coreUserId` filled where Core knows the owner.
+ */
+export async function resolveTenantOwners(client: CorePlatformClient, docs: LegacyTenantDoc[]): Promise<LegacyTenantDoc[]> {
+  const pending = docs.filter((doc) => !doc.coreUserId && legacyTenantPhoneSubject(doc))
+  if (pending.length === 0) return docs.map((doc) => ({ ...doc }))
+  const bySubject = new Map<string, string>()
+  const subjects = [...new Set(pending.map((doc) => legacyTenantPhoneSubject(doc) as string))]
+  for (let i = 0; i < subjects.length; i += CORE_ALIAS_BATCH_LIMIT) {
+    const aliases = await client.resolveIdentityAliases(CORE_LEGACY_PHONE_PROVIDER, subjects.slice(i, i + CORE_ALIAS_BATCH_LIMIT))
+    for (const alias of aliases) bySubject.set(alias.external_subject, alias.user_id)
+  }
+  return docs.map((doc) => {
+    if (doc.coreUserId) return { ...doc }
+    const subject = legacyTenantPhoneSubject(doc)
+    const resolved = subject ? bySubject.get(subject) : undefined
+    return resolved ? { ...doc, coreUserId: resolved } : { ...doc }
+  })
+}
+
 export type BackfillDecision =
   | { kind: 'already_linked'; businessId: string }
   | { kind: 'deleted' }
@@ -131,8 +159,9 @@ export async function runTenantBackfill(input: BackfillRunInput): Promise<Backfi
     exhausted: false,
   }
 
-  const tenants = await input.source.listTenants({ startAfter: input.startAfter ?? null, limit: batchSize })
-  report.exhausted = tenants.length < batchSize
+  const page = await input.source.listTenants({ startAfter: input.startAfter ?? null, limit: batchSize })
+  report.exhausted = page.length < batchSize
+  const tenants = await resolveTenantOwners(input.client, page)
 
   for (const doc of tenants) {
     report.scanned++
@@ -184,6 +213,7 @@ export async function runTenantBackfill(input: BackfillRunInput): Promise<Backfi
       }
 
       await input.source.markLinked(doc.id, {
+        coreUserId: decision.ownerUserId,
         coreBusinessId: result.business_id,
         coreBusinessSlug: result.slug,
         coreBusinessLinkedAt: now().toISOString(),

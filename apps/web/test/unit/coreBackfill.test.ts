@@ -76,6 +76,23 @@ describe('planTenantBackfill', () => {
 })
 
 describe('runTenantBackfill', () => {
+  it('resolves owners from Core identity aliases instead of a Kepenk-side write', async () => {
+    const source = new MemorySource([
+      { id: 'esnaf-1', telefonTemiz: '905551234567', isletmeAdiTam: 'Telefonla Bulunan' },
+      { id: 'esnaf-2', telefonTemiz: '905550000000', isletmeAdiTam: 'Core Bilmiyor' },
+      { id: 'esnaf-3', isletmeAdiTam: 'Telefonsuz' },
+    ])
+    const resolveIdentityAliases = vi.fn(async () => [{ external_subject: '905551234567', user_id: OWNER }])
+    const { client, applyCommand } = fakeClient({ resolveIdentityAliases })
+
+    const report = await runTenantBackfill({ source, client, now: NOW })
+    expect(resolveIdentityAliases).toHaveBeenCalledWith('legacy-kepenk-phone', ['905551234567', '905550000000'])
+    expect(report).toMatchObject({ provisioned: 1, deferredNoOwner: 2 })
+    expect(applyCommand).toHaveBeenCalledTimes(1)
+    expect(source.patches.get('esnaf-1')).toMatchObject({ coreUserId: OWNER, coreBusinessId: BIZ })
+    expect(source.patches.has('esnaf-2')).toBe(false)
+  })
+
   it('provisions ready tenants once with a deterministic key and records the shadow business id', async () => {
     const source = new MemorySource([
       { id: 'esnaf-1', coreUserId: OWNER, isletmeAdiTam: 'Kepenk Berber' },
@@ -97,7 +114,7 @@ describe('runTenantBackfill', () => {
       timezone: 'Europe/Istanbul',
       tenant_alias: { provider: 'legacy-kepenk-firestore', external_id: 'esnaf-1' },
     })
-    expect(source.patches.get('esnaf-1')).toMatchObject({ coreBusinessId: BIZ, coreBusinessSlug: 'kepenk-berber', coreBusinessLinkedAt: '2026-09-16T12:00:00.000Z' })
+    expect(source.patches.get('esnaf-1')).toMatchObject({ coreUserId: OWNER, coreBusinessId: BIZ, coreBusinessSlug: 'kepenk-berber', coreBusinessLinkedAt: '2026-09-16T12:00:00.000Z' })
     expect(source.reports.at(-1)?.kind).toBe('backfill')
 
     // Second run: the shadow field short-circuits; zero commands, zero new rows.
