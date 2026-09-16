@@ -6,7 +6,14 @@
  */
 
 import { createHash, randomUUID } from 'node:crypto'
-import type { DocumentData, QueryDocumentSnapshot, Transaction } from 'firebase-admin/firestore'
+import type {
+    CollectionReference,
+    DocumentData,
+    DocumentReference,
+    DocumentSnapshot,
+    QueryDocumentSnapshot,
+    Transaction,
+} from 'firebase-admin/firestore'
 import { adminDb } from '@/lib/firebaseAdmin'
 import {
     DEFAULT_JOB_LEASE_MS,
@@ -72,6 +79,23 @@ export interface IslemLease {
     attempt: number
 }
 
+function queueCollection(): CollectionReference<DocumentData> {
+    return adminDb.collection('islem_kuyrugu') as CollectionReference<DocumentData>
+}
+
+function queueDocument(islemId: string): DocumentReference<DocumentData> {
+    return queueCollection().doc(islemId)
+}
+
+async function transactionDocument(
+    tx: Transaction,
+    ref: DocumentReference<DocumentData>
+): Promise<{ snapshot: DocumentSnapshot<DocumentData>; data: DocumentData | null }> {
+    const snapshot: DocumentSnapshot<DocumentData> = await tx.get(ref)
+    const data = snapshot.data() ?? null
+    return { snapshot, data }
+}
+
 function asDate(value: unknown): Date | null {
     if (!value) return null
     if (value instanceof Date) return value
@@ -130,8 +154,8 @@ export async function kuyruğaEkle(
     }
 
     const idempotencyKey = options.idempotencyKey?.trim() || null
-    const collection = adminDb.collection('islem_kuyrugu')
-    const ref = idempotencyKey
+    const collection = queueCollection()
+    const ref: DocumentReference<DocumentData> = idempotencyKey
         ? collection.doc(deterministicJobId(islem.tip, islem.esnafId, idempotencyKey))
         : collection.doc()
 
@@ -158,7 +182,7 @@ export async function kuyruğaEkle(
     }
 
     await adminDb.runTransaction(async (tx: Transaction) => {
-        const snapshot = await tx.get(ref)
+        const { snapshot } = await transactionDocument(tx, ref)
         if (snapshot.exists) return
         tx.create(ref, document)
     })
@@ -168,8 +192,7 @@ export async function kuyruğaEkle(
 
 export async function kuyruktanAl(limit = 5): Promise<{ id: string; data: KuyrukIslemi }[]> {
     const now = new Date()
-    const snap = await adminDb
-        .collection('islem_kuyrugu')
+    const snap = await queueCollection()
         .where('durum', '==', 'bekliyor')
         .orderBy('olusturma', 'asc')
         .limit(Math.max(limit * 5, limit))
@@ -194,14 +217,14 @@ export async function islemClaimEt(
     islemId: string,
     leaseMs: number = DEFAULT_JOB_LEASE_MS
 ): Promise<IslemLease | null> {
-    const ref = adminDb.collection('islem_kuyrugu').doc(islemId)
+    const ref = queueDocument(islemId)
     const now = new Date()
 
     return adminDb.runTransaction(async (tx: Transaction) => {
-        const doc = await tx.get(ref)
-        if (!doc.exists) return null
+        const { snapshot, data: raw } = await transactionDocument(tx, ref)
+        if (!snapshot.exists || !raw) return null
 
-        const data = normalizedJob(doc.id, doc.data())
+        const data = normalizedJob(snapshot.id, raw)
         if (!canAttemptJob(data.durum, data.nextAttemptAt, data.denemeSayisi, data.maxDeneme, now)) {
             return null
         }
@@ -231,13 +254,13 @@ export async function islemHeartbeat(
     leaseToken: string,
     leaseMs: number = DEFAULT_JOB_LEASE_MS
 ): Promise<boolean> {
-    const ref = adminDb.collection('islem_kuyrugu').doc(islemId)
+    const ref = queueDocument(islemId)
     const now = new Date()
 
     return adminDb.runTransaction(async (tx: Transaction) => {
-        const doc = await tx.get(ref)
-        if (!doc.exists) return false
-        const data = normalizedJob(doc.id, doc.data())
+        const { snapshot, data: raw } = await transactionDocument(tx, ref)
+        if (!snapshot.exists || !raw) return false
+        const data = normalizedJob(snapshot.id, raw)
         if (data.durum !== 'isleniyor' || data.leaseToken !== leaseToken) return false
 
         tx.update(ref, {
@@ -254,13 +277,13 @@ export async function islemTamamla(
     sonuc: string,
     leaseToken?: string
 ): Promise<void> {
-    const ref = adminDb.collection('islem_kuyrugu').doc(islemId)
+    const ref = queueDocument(islemId)
     const now = new Date()
 
     await adminDb.runTransaction(async (tx: Transaction) => {
-        const doc = await tx.get(ref)
-        if (!doc.exists) throw new Error('İşlem bulunamadı')
-        const data = normalizedJob(doc.id, doc.data())
+        const { snapshot, data: raw } = await transactionDocument(tx, ref)
+        if (!snapshot.exists || !raw) throw new Error('İşlem bulunamadı')
+        const data = normalizedJob(snapshot.id, raw)
         if (data.durum === 'tamamlandi') return
         if (data.durum !== 'isleniyor') throw new Error('İşlem aktif lease altında değil')
         if (data.leaseToken && data.leaseToken !== leaseToken) {
@@ -285,13 +308,13 @@ export async function islemHata(
     hata: string,
     leaseToken?: string
 ): Promise<void> {
-    const ref = adminDb.collection('islem_kuyrugu').doc(islemId)
+    const ref = queueDocument(islemId)
     const now = new Date()
 
     await adminDb.runTransaction(async (tx: Transaction) => {
-        const doc = await tx.get(ref)
-        if (!doc.exists) throw new Error('İşlem bulunamadı')
-        const data = normalizedJob(doc.id, doc.data())
+        const { snapshot, data: raw } = await transactionDocument(tx, ref)
+        if (!snapshot.exists || !raw) throw new Error('İşlem bulunamadı')
+        const data = normalizedJob(snapshot.id, raw)
         if (data.durum !== 'isleniyor') return
         if (data.leaseToken && data.leaseToken !== leaseToken) {
             throw new Error('İşlem lease token uyuşmuyor')
@@ -325,8 +348,7 @@ export async function islemHata(
 
 export async function suresiDolanLeaseKurtar(limit = 25): Promise<number> {
     const now = new Date()
-    const snap = await adminDb
-        .collection('islem_kuyrugu')
+    const snap = await queueCollection()
         .where('durum', '==', 'isleniyor')
         .limit(limit)
         .get()
@@ -336,13 +358,14 @@ export async function suresiDolanLeaseKurtar(limit = 25): Promise<number> {
         const current = normalizedJob(snapshot.id, snapshot.data())
         if (!isLeaseExpired(current.leaseUntil, now)) continue
 
+        const ref: DocumentReference<DocumentData> = snapshot.ref
         const didRecover = await adminDb.runTransaction(async (tx: Transaction) => {
-            const fresh = await tx.get(snapshot.ref)
-            if (!fresh.exists) return false
-            const data = normalizedJob(fresh.id, fresh.data())
+            const { snapshot: fresh, data: raw } = await transactionDocument(tx, ref)
+            if (!fresh.exists || !raw) return false
+            const data = normalizedJob(fresh.id, raw)
             if (data.durum !== 'isleniyor' || !isLeaseExpired(data.leaseUntil, now)) return false
 
-            tx.update(snapshot.ref, {
+            tx.update(ref, {
                 durum: data.denemeSayisi >= data.maxDeneme ? 'hata' : 'bekliyor',
                 hata: 'worker_lease_expired',
                 guncelleme: now,
