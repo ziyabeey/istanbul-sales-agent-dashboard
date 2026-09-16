@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 import { CORE_ACCESS_REFRESH_SKEW_SECONDS } from './config'
 import type { CoreMembership, CorePlatformClient, CoreSnapshot } from './coreClient'
 import { CoreAuthError, CorePlatformError } from './errors'
-import { isRecoverySession, type SupabaseClaims, type SupabaseJwtVerifier } from './jwtVerifier'
+import { type SupabaseClaims, type SupabaseJwtVerifier, classifySession, type CoreSessionClass } from './jwtVerifier'
 import {
   decryptedTokens,
   loadCoreBffSession,
@@ -31,6 +31,8 @@ export interface CoreRequestContext {
   userId: string
   accessToken: string
   claims: SupabaseClaims
+  /** standard | recovery; `unverified` never produces a context. */
+  sessionClass: CoreSessionClass
   recovery: boolean
   memberships: CoreMembership[]
   businessId: string | null
@@ -54,6 +56,7 @@ export type CoreContextFailure =
   | 'SESSION_EXPIRED'
   | 'CSRF_REJECTED'
   | 'RECOVERY_REQUIRED'
+  | 'SESSION_CLASS_UNVERIFIED'
   | 'CORE_UNAVAILABLE'
 
 export type CoreContextResult =
@@ -114,7 +117,10 @@ export async function resolveCoreRequestContext(request: Request, deps: CoreCont
   if (!fresh) return { ok: false, reason: 'SESSION_EXPIRED' }
   if (fresh.claims.sub !== record.userId) return { ok: false, reason: 'SESSION_REVOKED' }
 
-  const recovery = isRecoverySession(fresh.claims)
+  const sessionClass = classifySession(fresh.claims)
+  // Missing/empty/unusable amr is not a feature session: fail closed before membership or entitlement reads.
+  if (sessionClass === 'unverified') return { ok: false, reason: 'SESSION_CLASS_UNVERIFIED' }
+  const recovery = sessionClass === 'recovery'
   let memberships: CoreMembership[] = []
   if (!recovery) {
     try {
@@ -157,6 +163,7 @@ export async function resolveCoreRequestContext(request: Request, deps: CoreCont
       userId: fresh.claims.sub,
       accessToken: fresh.accessToken,
       claims: fresh.claims,
+      sessionClass,
       recovery,
       memberships: active,
       businessId: chosen?.business_id ?? null,
@@ -193,6 +200,7 @@ const FAILURE_STATUS: Record<CoreContextFailure, number> = {
   SESSION_EXPIRED: 401,
   CSRF_REJECTED: 403,
   RECOVERY_REQUIRED: 403,
+  SESSION_CLASS_UNVERIFIED: 401,
   CORE_UNAVAILABLE: 503,
 }
 

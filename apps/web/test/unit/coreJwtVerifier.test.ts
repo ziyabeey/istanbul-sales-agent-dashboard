@@ -1,6 +1,6 @@
 import { createHmac, generateKeyPairSync, sign as cryptoSign, type KeyObject } from 'node:crypto'
 import { describe, expect, it, vi } from 'vitest'
-import { SupabaseJwtVerifier, isRecoverySession } from '@/lib/core/jwtVerifier'
+import { SupabaseJwtVerifier, classifySession, isRecoverySession } from '@/lib/core/jwtVerifier'
 
 const ISSUER = 'https://core.example.test/auth/v1'
 const JWKS_URL = `${ISSUER}/.well-known/jwks.json`
@@ -118,5 +118,21 @@ describe('SupabaseJwtVerifier', () => {
     expect(isRecoverySession(objectShape)).toBe(true)
     expect(isRecoverySession(stringShape)).toBe(true)
     expect(isRecoverySession(normal)).toBe(false)
+  })
+
+  it('classifies sessions explicitly and treats missing, empty or unusable amr as unverified', async () => {
+    const { privateKey, jwk } = makeEs256()
+    const verifier = new SupabaseJwtVerifier({ issuer: ISSUER, jwksUrl: JWKS_URL, fetch: jwksFetch([jwk]) as unknown as typeof fetch, now: () => NOW })
+    const verify = (overrides: Record<string, unknown>) => verifier.verify(signEs256(privateKey, baseClaims(overrides as never)))
+
+    expect(classifySession(await verify({}))).toBe('standard')
+    expect(classifySession(await verify({ amr: ['password'] }))).toBe('standard')
+    expect(classifySession(await verify({ amr: ['password', 'RECOVERY'] }))).toBe('recovery')
+    expect(classifySession(await verify({ amr: [{ method: 'recovery' }] }))).toBe('recovery')
+    expect(classifySession(await verify({ amr: undefined }))).toBe('unverified')
+    expect(classifySession(await verify({ amr: [] }))).toBe('unverified')
+    expect(classifySession(await verify({ amr: [{ method: '' }] }))).toBe('unverified')
+    expect(classifySession(await verify({ amr: ['anonymous'] }))).toBe('unverified')
+    expect(classifySession(await verify({ amr: ['made-up-method'] }))).toBe('unverified')
   })
 })

@@ -303,6 +303,12 @@ describe('Pilot-0 trust baseline characterization', () => {
     expect(context).toContain('deps.verifier.verify(')
     expect(context).toContain('deps.client.listMemberships(')
     expect(context).toContain("if (fresh.claims.sub !== record.userId) return { ok: false, reason: 'SESSION_REVOKED' }")
+    // R1 KC-02: explicit session class; missing/empty/unusable amr never becomes a feature session.
+    expect(context).toContain('const sessionClass = classifySession(fresh.claims)')
+    expect(context).toContain("if (sessionClass === 'unverified') return { ok: false, reason: 'SESSION_CLASS_UNVERIFIED' }")
+    expect(context).not.toContain('isRecoverySession(')
+    expect(otp).toContain("if (sessionClass === 'unverified')")
+    expect(otp).toContain('AUTH_SESSION_CLASS_UNVERIFIED')
     expect(otp).toContain('runtime.verifier.verify(session.access_token)')
     expect(otp).not.toContain('access_token:')
     expect(otp).not.toContain('refresh_token:')

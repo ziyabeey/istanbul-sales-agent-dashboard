@@ -224,6 +224,28 @@ async function loggedIn(accessToken = 'access.token.0123456789') {
   }
 }
 
+describe('session class fail-closed on login', () => {
+  it('refuses to issue a BFF session for a JWT with missing or empty amr on otp-dogrula and parola-giris', async () => {
+    for (const amr of [undefined, []] as Array<SupabaseClaims['amr']>) {
+      runtime = makeRuntime()
+      vi.mocked(getCoreRuntime).mockReturnValue(runtime)
+      runtime.verifier.verify.mockResolvedValue(claims({ amr }))
+
+      const otp = await otpDogrula(json('https://app.kepenk.ai/api/core/auth/otp-dogrula', { telefon: '05551234567', kod: '123456' }, ORIGIN))
+      expect(otp.status).toBe(401)
+      expect(await otp.json()).toEqual({ error: 'AUTH_SESSION_CLASS_UNVERIFIED' })
+      expect(setCookies(otp).some((c) => c.startsWith(`${CORE_BFF_SESSION_COOKIE}=`))).toBe(false)
+
+      const password = await parolaGiris(json('https://app.kepenk.ai/api/core/auth/parola-giris', { email: 'owner@example.test', parola: 'correct-horse-battery' }, ORIGIN))
+      expect(password.status).toBe(401)
+      expect(await password.json()).toEqual({ error: 'AUTH_SESSION_CLASS_UNVERIFIED' })
+
+      expect(runtime.sessions.records.size).toBe(0)
+      expect(runtime.client.listMemberships).not.toHaveBeenCalled()
+    }
+  })
+})
+
 describe('me', () => {
   it('requires a session and returns identity, business, entitlements and subscription from one context', async () => {
     expect((await me(new Request('https://app.kepenk.ai/api/core/auth/me'))).status).toBe(401)

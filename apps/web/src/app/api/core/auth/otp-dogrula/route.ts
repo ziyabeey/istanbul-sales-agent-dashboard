@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import { attachCoreSessionCookies, issueCoreBffSession } from '@/lib/core/bffSession'
 import { linkLegacyPhoneIdentity } from '@/lib/core/identityAdapter'
-import { isRecoverySession } from '@/lib/core/jwtVerifier'
+import { classifySession } from '@/lib/core/jwtVerifier'
 import { authErrorResponse, readJsonBody, requireCoreRuntime, requireSameOrigin } from '@/lib/core/routeHelpers'
 import { toTurkishE164 } from '@/lib/core/supabaseAuth'
 
@@ -33,8 +33,13 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Kimlik doğrulanamadı' }, { status: 401 })
     }
 
+    const sessionClass = classifySession(claims)
+    if (sessionClass === 'unverified') {
+      // No BFF session for a JWT without a usable amr: nothing downstream may treat it as a login.
+      return NextResponse.json({ error: 'AUTH_SESSION_CLASS_UNVERIFIED' }, { status: 401 })
+    }
     const issued = await issueCoreBffSession(runtime.sessions, session)
-    const recovery = isRecoverySession(claims)
+    const recovery = sessionClass === 'recovery'
     const memberships = recovery ? [] : await runtime.client.listMemberships(session.access_token)
     const identityAlias = await linkLegacyPhoneIdentity(runtime.client, { phoneE164: phone, userId: session.user.id })
 

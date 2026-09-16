@@ -48,8 +48,38 @@ export function amrMethods(claims: SupabaseClaims): string[] {
   return (claims.amr ?? []).map((entry) => (typeof entry === 'string' ? entry : entry.method)).map((m) => m.toLowerCase())
 }
 
+/**
+ * Session class at every Kepenk authority boundary (R1 KC-02 pre-review):
+ * a JWT with missing, empty or unusable `amr` is never a feature session and
+ * fails closed as `unverified` (mirrors Core AUTH_SESSION_CLASS_UNVERIFIED);
+ * `recovery` stays recovery-only; only a known interactive method yields
+ * `standard`.
+ */
+export type CoreSessionClass = 'standard' | 'recovery' | 'unverified'
+
+/** AMR methods that prove an interactive login for a standard feature session. */
+export const STANDARD_AMR_METHODS: ReadonlySet<string> = new Set([
+  'password',
+  'otp',
+  'oauth',
+  'sso/saml',
+  'magiclink',
+  'totp',
+  'mfa/totp',
+  'mfa/phone',
+  'webauthn',
+  'invite',
+])
+
+export function classifySession(claims: SupabaseClaims): CoreSessionClass {
+  const methods = amrMethods(claims).map((m) => m.trim()).filter((m) => m.length > 0)
+  if (methods.length === 0) return 'unverified'
+  if (methods.includes('recovery')) return 'recovery'
+  return methods.some((m) => STANDARD_AMR_METHODS.has(m)) ? 'standard' : 'unverified'
+}
+
 export function isRecoverySession(claims: SupabaseClaims): boolean {
-  return amrMethods(claims).includes('recovery')
+  return classifySession(claims) === 'recovery'
 }
 
 export class SupabaseJwtVerifier {

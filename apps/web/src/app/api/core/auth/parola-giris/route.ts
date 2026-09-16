@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import { normalizeLoginEmail } from '@/lib/auth/legacyAccountResolver'
 import { attachCoreSessionCookies, issueCoreBffSession } from '@/lib/core/bffSession'
-import { isRecoverySession } from '@/lib/core/jwtVerifier'
+import { classifySession } from '@/lib/core/jwtVerifier'
 import { authErrorResponse, readJsonBody, requireCoreRuntime, requireSameOrigin } from '@/lib/core/routeHelpers'
 
 /**
@@ -28,8 +28,13 @@ export async function POST(request: Request) {
     if (claims.sub !== session.user.id) {
       return NextResponse.json({ error: 'Kimlik doğrulanamadı' }, { status: 401 })
     }
+    const sessionClass = classifySession(claims)
+    if (sessionClass === 'unverified') {
+      // No BFF session for a JWT without a usable amr: nothing downstream may treat it as a login.
+      return NextResponse.json({ error: 'AUTH_SESSION_CLASS_UNVERIFIED' }, { status: 401 })
+    }
     const issued = await issueCoreBffSession(runtime.sessions, session)
-    const recovery = isRecoverySession(claims)
+    const recovery = sessionClass === 'recovery'
     const memberships = recovery ? [] : await runtime.client.listMemberships(session.access_token)
     const response = NextResponse.json({
       userId: session.user.id,

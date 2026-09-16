@@ -197,11 +197,28 @@ describe('resolveCoreRequestContext', () => {
     expect(await resolveCoreRequestContext(request, deps)).toEqual({ ok: false, reason: 'SESSION_REVOKED' })
   })
 
+  it('fails closed on a JWT with missing or empty amr before touching memberships or entitlements', async () => {
+    for (const amr of [undefined, []] as Array<SupabaseClaims['amr']>) {
+      const { deps, sessions, listMemberships, getBusinessPlatformSnapshot } = makeDeps({ verify: async (token) => claimsFor(token, { amr }) })
+      const { request } = await requestWithSession(sessions)
+      expect(await resolveCoreRequestContext(request, deps)).toEqual({ ok: false, reason: 'SESSION_CLASS_UNVERIFIED' })
+      expect(listMemberships).not.toHaveBeenCalled()
+      expect(getBusinessPlatformSnapshot).not.toHaveBeenCalled()
+      const gated = await requireCoreContext(request, deps, { csrf: false })
+      expect(gated.ok).toBe(false)
+      if (!gated.ok) {
+        expect(gated.response.status).toBe(401)
+        expect(await gated.response.json()).toEqual({ error: 'SESSION_CLASS_UNVERIFIED' })
+      }
+    }
+  })
+
   it('marks recovery sessions and skips membership resolution for them', async () => {
     const { deps, sessions, listMemberships } = makeDeps({ verify: async (token) => claimsFor(token, { amr: [{ method: 'recovery' }] }) })
     const { request } = await requestWithSession(sessions)
     const result = await resolveCoreRequestContext(request, deps)
     expect(result.ok && result.context.recovery).toBe(true)
+    expect(result.ok && result.context.sessionClass).toBe('recovery')
     expect(result.ok && result.context.businessId).toBeNull()
     expect(listMemberships).not.toHaveBeenCalled()
   })

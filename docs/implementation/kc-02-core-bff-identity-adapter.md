@@ -19,6 +19,8 @@ Supabase access/refresh token'ları yalnız `core_bff_sessions` kaydında, AES-2
 
 ### CoreRequestContext = { user_id, business_id, role, entitlements }
 
+**Oturum sınıfı (R1 pre-review, 2026-09-17):** `classifySession(claims)` → `standard | recovery | unverified`. `amr` eksik, boş veya bilinmeyen/kullanılamaz (`anonymous`, boş method) ise oturum **unverified** sayılır ve membership/entitlement okunmadan `SESSION_CLASS_UNVERIFIED` 401 ile kapanır (Core'daki `AUTH_SESSION_CLASS_UNVERIFIED` ile aynı fail-closed davranış); giriş route'ları (`otp-dogrula`, `parola-giris`) böyle bir JWT için BFF oturumu üretmez (`AUTH_SESSION_CLASS_UNVERIFIED` 401). `recovery` yalnız recovery-only yüzeylere girer; yalnız bilinen etkileşimli bir yöntem (`password`, `otp`, `oauth`, `sso/saml`, `magiclink`, `totp`, `mfa/*`, `webauthn`, `invite`) `standard` üretir. Boolean `recovery` alanı sınıftan türetilir.
+
 `resolveCoreRequestContext`: locator → kayıt → (gerekirse refresh) → JWT doğrula → `sub == kayıt sahibi` → aktif membership listesi → `business_id` (saklanan seçim yalnız aktif membership ile eşleşirse; tek membership varsa o) → `get_business_platform_snapshot` (kullanıcının kendi JWT'si) → **granted ve süresi dolmamış entitlement anahtarları** + abonelik özeti. Snapshot okunamazsa istek fail-closed (503); `BUSINESS_ACCESS_DENIED` → oturum düşürülür. Tek yetki primitive'i: `hasContextEntitlement(context, key)` / `requireCoreContext(..., { requireEntitlement })`. `/me` ayrı bir kaynaktan okumaz; aynı context'i döner.
 
 ### Origin kapısı
