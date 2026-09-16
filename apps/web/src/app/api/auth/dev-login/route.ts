@@ -1,21 +1,29 @@
+import crypto from 'node:crypto'
 import { NextResponse } from 'next/server'
 import { adminDb } from '@/lib/firebaseAdmin'
 import { oturumOlustur } from '@/lib/sessionManager'
 
+function safeSecretEquals(presented: unknown, expected: string): boolean {
+  if (typeof presented !== 'string') return false
+  const left = Buffer.from(presented)
+  const right = Buffer.from(expected)
+  return left.length === right.length && crypto.timingSafeEqual(left, right)
+}
+
 /**
- * DEV-ONLY: SMS bypass ile test hesabına giriş.
- * Production'da kaldırılacak veya ADMIN_SECRET_TOKEN ile korunacak.
- * 
- * POST /api/auth/dev-login
- * Body: { telefon: "05001234567", secret: "kepenk-admin-2026" }
+ * Explicit local/test-only login helper.
+ * Production is permanently disabled by P0-08.
  */
 export async function POST(req: Request) {
+  if (process.env.NODE_ENV === 'production' || process.env.ENABLE_DEV_LOGIN !== 'true') {
+    return NextResponse.json({ error: 'Not found' }, { status: 404 })
+  }
+
   try {
     const { telefon, secret } = await req.json()
+    const devLoginSecret = process.env.DEV_LOGIN_SECRET?.trim()
 
-    // Güvenlik: sadece admin token ile çalışır
-    const adminToken = process.env.ADMIN_SECRET_TOKEN || 'kepenk-admin-2026'
-    if (secret !== adminToken) {
+    if (!devLoginSecret || !safeSecretEquals(secret, devLoginSecret)) {
       return NextResponse.json({ error: 'Yetkisiz erişim' }, { status: 403 })
     }
 
@@ -28,22 +36,23 @@ export async function POST(req: Request) {
     }
 
     const temizTelefon = telefon.replace(/[^0-9]/g, '')
-
-    // Esnafı telefonla bul
-    let esnafId: string
     const sorgu = await adminDb
       .collection('esnaflar')
       .where('telefonTemiz', '==', temizTelefon)
       .limit(1)
       .get()
 
+    let esnafId: string
     if (sorgu.empty) {
-      // Yoksa oluştur (test hesabı)
+      if (process.env.ENABLE_DEV_LOGIN_FIXTURE_CREATE !== 'true') {
+        return NextResponse.json({ error: 'Test hesabı bulunamadı' }, { status: 404 })
+      }
+
       const yeniEsnaf = await adminDb.collection('esnaflar').add({
         ad: 'Test Esnaf',
-        isletmeAdi: 'kepenk Test İşletmesi',
+        isletmeAdi: 'Kepenk Test İşletmesi',
         telefonTemiz: temizTelefon,
-        telefon: telefon,
+        telefon,
         email: 'test@kepenk.ai',
         sektor: 'berber',
         paket: 'buyume',
@@ -54,22 +63,20 @@ export async function POST(req: Request) {
       esnafId = yeniEsnaf.id
     } else {
       esnafId = sorgu.docs[0].id
-      // Son giriş güncelle
       await adminDb.collection('esnaflar').doc(esnafId).update({
         sonGiris: new Date(),
       })
     }
 
-    // JWT HttpOnly cookie oluştur
     const response = NextResponse.json({
       esnafId,
-      mesaj: 'Dev login başarılı — dashboard\'a yönlendirin',
+      mesaj: 'Dev login başarılı',
     })
     await oturumOlustur(esnafId, response)
-
     return response
-  } catch (error: any) {
-    console.error('[DEV LOGIN]', error)
-    return NextResponse.json({ error: error.message || 'Sunucu hatası' }, { status: 500 })
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : 'Sunucu hatası'
+    console.error('[DEV LOGIN]', message)
+    return NextResponse.json({ error: message }, { status: 500 })
   }
 }
