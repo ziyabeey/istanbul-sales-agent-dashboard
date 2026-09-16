@@ -3,11 +3,11 @@ import { oturumDogrulaServer } from '@/lib/sessionManager'
 import { adminDb } from '@/lib/firebaseAdmin'
 import { DEMO_USER, isDemoSession } from '@/lib/demoMode'
 import { demoBusiness } from '@/data/demoBusiness'
-import { getActiveImpersonationFromRequest } from '@/lib/impersonation'
+import { getBoundActiveImpersonationFromRequest } from '@/lib/impersonation'
 
 export async function GET(request: Request) {
   try {
-    const impersonation = await getActiveImpersonationFromRequest(request)
+    const impersonation = await getBoundActiveImpersonationFromRequest(request)
     const esnafId = impersonation?.subject.id || await oturumDogrulaServer()
     if (!esnafId) {
       return NextResponse.json({ error: 'Oturum bulunamadı' }, { status: 401 })

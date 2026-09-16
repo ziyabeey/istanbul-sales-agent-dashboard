@@ -5,7 +5,7 @@ import { zodGuard, esnafGuncelleSema, type EsnafGuncelleInput } from '@/lib/zodS
 import { isDemoEsnafId, isDemoModeEnabled } from '@/lib/demoMode'
 import { demoBusiness } from '@/data/demoBusiness'
 import {
-    getActiveImpersonationFromRequest,
+    getBoundActiveImpersonationFromRequest,
     readImpersonationSessionToken,
 } from '@/lib/impersonation'
 
@@ -22,21 +22,25 @@ async function yetkiKontrol(request: Request, hedefId: string): Promise<YetkiSon
     const impersonationToken = readImpersonationSessionToken(request)
     if (impersonationToken) {
         try {
-            const session = await getActiveImpersonationFromRequest(request)
-            if (session) {
-                if (session.subject.id !== hedefId) {
-                    return {
-                        ok: false,
-                        response: NextResponse.json({ error: 'Impersonation hedefi dışında erişim yasak' }, { status: 403 }),
-                    }
-                }
+            const session = await getBoundActiveImpersonationFromRequest(request)
+            if (!session) {
                 return {
-                    ok: true,
-                    authority: {
-                        actingAdminId: session.adminId,
-                        actingAsTargetId: session.subject.id,
-                    },
+                    ok: false,
+                    response: NextResponse.json({ error: 'Impersonation authority geçersiz' }, { status: 401 }),
                 }
+            }
+            if (session.subject.id !== hedefId) {
+                return {
+                    ok: false,
+                    response: NextResponse.json({ error: 'Impersonation hedefi dışında erişim yasak' }, { status: 403 }),
+                }
+            }
+            return {
+                ok: true,
+                authority: {
+                    actingAdminId: session.adminId,
+                    actingAsTargetId: session.subject.id,
+                },
             }
         } catch {
             return {

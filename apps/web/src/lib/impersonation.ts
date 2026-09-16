@@ -4,6 +4,11 @@ import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
 import type { ImpersonationSession } from '../../../../packages/admin/src/types/impersonation'
 import { adminDb } from './firebaseAdmin'
+import {
+    readAdminSessionToken,
+    validateAdminSessionToken,
+    type AdminSessionRepository,
+} from './auth/adminSession'
 
 export const IMPERSONATE_COOKIE = 'kepenk_impersonate'
 export const IMPERSONATION_TTL_SECONDS = 60 * 60
@@ -214,22 +219,60 @@ export async function endImpersonationSessionToken(
 
 export async function getActiveImpersonationFromRequest(
     request: Request,
-    repository: ImpersonationSessionRepository = new FirestoreImpersonationSessionRepository(),
+    repository?: ImpersonationSessionRepository,
     now = new Date()
 ): Promise<ImpersonationSession | null> {
     const token = readImpersonationSessionToken(request)
     if (!token) return null
-    return validateImpersonationSessionToken(token, repository, now)
+    return validateImpersonationSessionToken(
+        token,
+        repository ?? new FirestoreImpersonationSessionRepository(),
+        now
+    )
+}
+
+export async function getBoundActiveImpersonationFromRequest(
+    request: Request,
+    options: {
+        impersonationRepository?: ImpersonationSessionRepository
+        adminSessionRepository?: AdminSessionRepository
+        now?: Date
+    } = {}
+): Promise<ImpersonationSession | null> {
+    const impersonationToken = readImpersonationSessionToken(request)
+    if (!impersonationToken) return null
+
+    const adminToken = readAdminSessionToken(request)
+    if (!adminToken) return null
+
+    const now = options.now ?? new Date()
+    const impersonation = await validateImpersonationSessionToken(
+        impersonationToken,
+        options.impersonationRepository ?? new FirestoreImpersonationSessionRepository(),
+        now
+    )
+    if (!impersonation) return null
+
+    const adminSession = options.adminSessionRepository
+        ? await validateAdminSessionToken(adminToken, options.adminSessionRepository, now)
+        : await validateAdminSessionToken(adminToken, undefined, now)
+
+    if (!adminSession || adminSession.principalId !== impersonation.adminId) return null
+    return impersonation
 }
 
 export async function assertNoActiveImpersonationForRestrictedAction(
     request: Request,
-    repository: ImpersonationSessionRepository = new FirestoreImpersonationSessionRepository(),
+    repository?: ImpersonationSessionRepository,
     now = new Date()
 ): Promise<void> {
     const token = readImpersonationSessionToken(request)
     if (!token) return
-    const session = await validateImpersonationSessionToken(token, repository, now)
+    const session = await validateImpersonationSessionToken(
+        token,
+        repository ?? new FirestoreImpersonationSessionRepository(),
+        now
+    )
     if (session) throw new ImpersonationRestrictedActionError()
 }
 

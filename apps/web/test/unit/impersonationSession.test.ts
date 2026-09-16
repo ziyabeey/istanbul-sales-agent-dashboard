@@ -1,9 +1,18 @@
 import { describe, expect, it } from 'vitest'
 import {
+    ADMIN_SESSION_COOKIE,
+    issueAdminSession,
+    revokeAdminSessionToken,
+    type AdminSession,
+    type AdminSessionRepository,
+} from '@/lib/auth/adminSession'
+import {
+    IMPERSONATE_COOKIE,
     IMPERSONATION_TTL_SECONDS,
     ImpersonationRestrictedActionError,
     assertNoActiveImpersonationForRestrictedAction,
     endImpersonationSessionToken,
+    getBoundActiveImpersonationFromRequest,
     hashImpersonationToken,
     issueImpersonationSession,
     validateImpersonationSessionToken,
@@ -26,6 +35,25 @@ class MemoryRepository implements ImpersonationSessionRepository {
         const session = this.sessions.get(tokenHash)
         if (!session) return false
         this.sessions.set(tokenHash, { ...session, endedAt })
+        return true
+    }
+}
+
+class MemoryAdminRepository implements AdminSessionRepository {
+    readonly sessions = new Map<string, AdminSession>()
+
+    async getByTokenHash(tokenHash: string): Promise<AdminSession | null> {
+        return this.sessions.get(tokenHash) ?? null
+    }
+
+    async create(session: AdminSession): Promise<void> {
+        this.sessions.set(session.tokenHash, session)
+    }
+
+    async revoke(tokenHash: string, revokedAt: string): Promise<boolean> {
+        const session = this.sessions.get(tokenHash)
+        if (!session) return false
+        this.sessions.set(tokenHash, { ...session, revokedAt })
         return true
     }
 }
@@ -58,7 +86,40 @@ describe('ImpersonationSession', () => {
         const repository = new MemoryRepository()
         const now = new Date('2026-09-16T10:00:00.000Z')
         const { token } = await issueImpersonationSession({ adminId: 'admin-1', subjectId: 'esnaf-1', subjectLabel: 'Salon', reason: 'support case' }, repository, now)
-        const request = new Request('https://kepenk.ai/api/admin/kota', { headers: { cookie: `kepenk_impersonate=${token}` } })
+        const request = new Request('https://kepenk.ai/api/admin/kota', { headers: { cookie: `${IMPERSONATE_COOKIE}=${token}` } })
         await expect(assertNoActiveImpersonationForRestrictedAction(request, repository, now)).rejects.toBeInstanceOf(ImpersonationRestrictedActionError)
+    })
+
+    it('requires a still-valid AdminSession for acting-as authority', async () => {
+        const impersonationRepository = new MemoryRepository()
+        const adminSessionRepository = new MemoryAdminRepository()
+        const now = new Date('2026-09-16T10:00:00.000Z')
+        const admin = await issueAdminSession(adminSessionRepository, now)
+        const impersonation = await issueImpersonationSession({
+            adminId: admin.session.principalId,
+            subjectId: 'esnaf-1',
+            subjectLabel: 'Salon',
+            reason: 'support case',
+        }, impersonationRepository, now)
+
+        const request = new Request('https://kepenk.ai/api/auth/me', {
+            headers: {
+                cookie: `${ADMIN_SESSION_COOKIE}=${admin.token}; ${IMPERSONATE_COOKIE}=${impersonation.token}`,
+            },
+        })
+
+        expect(await getBoundActiveImpersonationFromRequest(request, {
+            impersonationRepository,
+            adminSessionRepository,
+            now,
+        })).not.toBeNull()
+
+        await revokeAdminSessionToken(admin.token, adminSessionRepository, new Date(now.getTime() + 1000))
+
+        expect(await getBoundActiveImpersonationFromRequest(request, {
+            impersonationRepository,
+            adminSessionRepository,
+            now: new Date(now.getTime() + 2000),
+        })).toBeNull()
     })
 })
