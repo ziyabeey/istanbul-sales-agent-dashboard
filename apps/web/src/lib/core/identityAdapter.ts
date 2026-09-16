@@ -5,13 +5,15 @@ import { CorePlatformError } from './errors'
  * KC-02: legacy -> Supabase identity adapter, applied at the session
  * production point only.
  *
- * Kepenk business users never had Firebase Auth accounts: Pilot-0 keeps their
- * identities in Firestore `auth_identities` keyed by provider `phone` and the
- * normalized phone subject (see docs/execution/kc-00-kepenk-authority-inventory.md).
- * The alias therefore uses provider `legacy-kepenk-phone` with the digits-only
- * phone as `external_subject`. If the KC-00 hosted receipt shows a real
- * Firebase Auth population, a second `firebase` alias is added by the same
- * command without changing this one. The adapter grants nothing, blocks no
+ * Provisional compatibility alias: the KC-00 static inventory found no
+ * Firebase client dependency and models Pilot-0 identities in Firestore
+ * `auth_identities` keyed by provider `phone` + normalized phone subject
+ * (docs/execution/kc-00-kepenk-authority-inventory.md). The hosted Firebase
+ * Auth population is still UNKNOWN until Issue #10 supplies the receipt, so
+ * this alias uses provider `legacy-kepenk-phone` with the digits-only phone as
+ * `external_subject` and must not be read as the canonical migration mode. If
+ * the receipt shows a real Firebase Auth population, a `firebase` uid alias
+ * is added with the same command. The adapter grants nothing, blocks no
  * login, and writes nothing to legacy tenant documents (KC-03 owns that).
  */
 export type LegacyIdentityLinkResult = 'linked' | 'already_linked' | 'conflict' | 'skipped' | 'failed'

@@ -4,9 +4,10 @@ import { requireCoreContext } from '@/lib/core/requestContext'
 import { authErrorResponse, readJsonBody, requireCoreRuntime } from '@/lib/core/routeHelpers'
 
 /**
- * KC-02: the only surface a recovery-class session may use. Updates the
- * Supabase password with the server-held access token, then revokes the BFF
- * session so the user continues with a fresh standard login (`parola-giris`).
+ * KC-02: the recovery-only password-update surface. A standard session is
+ * rejected (fail closed); a recovery-class session updates the Supabase
+ * password with the server-held access token and is then revoked so the user
+ * continues with a fresh standard login (`parola-giris`).
  */
 export async function POST(request: Request) {
   const gate = requireCoreRuntime()
@@ -15,6 +16,9 @@ export async function POST(request: Request) {
 
   const resolved = await requireCoreContext(request, runtime, { allowRecovery: true })
   if (!resolved.ok) return resolved.response
+  if (resolved.context.recovery !== true) {
+    return NextResponse.json({ error: 'RECOVERY_SESSION_REQUIRED' }, { status: 403 })
+  }
 
   const body = await readJsonBody(request)
   const password = String(body.parola ?? '')

@@ -154,8 +154,10 @@ export class SupabaseAuthClient {
     throw SupabaseAuthClient.failure(response.status, 'CREDENTIALS_INVALID')
   }
 
-  async requestPasswordRecovery(email: string): Promise<void> {
-    const { status } = await this.call('recover', { email })
+  /** `redirectTo` must be on the project's redirect allow-list; the e-mail template appends `token_hash`. */
+  async requestPasswordRecovery(email: string, redirectTo?: string): Promise<void> {
+    const path = redirectTo ? `recover?redirect_to=${encodeURIComponent(redirectTo)}` : 'recover'
+    const { status } = await this.call(path, { email })
     if (status >= 200 && status < 300) return
     throw SupabaseAuthClient.failure(status, 'AUTH_UNAVAILABLE')
   }

@@ -1,6 +1,7 @@
 import type { Firestore } from 'firebase-admin/firestore'
 import { adminDb } from '../firebaseAdmin'
 import { EnvCredentialResolver } from '../credentials/credentialResolver'
+import type { CoreAuthFlowConsumptionStore } from './authFlow'
 import type { CoreBffSessionRecord, CoreBffSessionRepository } from './bffSession'
 import { CORE_CREDENTIAL_REFS, coreIssuer, coreJwksUrl, readCoreConnectionConfig, type CoreConnectionConfig } from './config'
 import { CorePlatformClient } from './coreClient'
@@ -30,8 +31,27 @@ export class FirestoreCoreBffSessionRepository implements CoreBffSessionReposito
   }
 }
 
+export const CORE_AUTH_FLOW_CONSUMED_COLLECTION = 'core_auth_flows_consumed'
+
+/** create() is atomic in Firestore: the second consumer of the same state fails. */
+export class FirestoreCoreAuthFlowConsumptionStore implements CoreAuthFlowConsumptionStore {
+  constructor(private readonly db: Firestore) {}
+
+  async consume(stateHash: string, expiresAt: string): Promise<boolean> {
+    try {
+      await this.db.collection(CORE_AUTH_FLOW_CONSUMED_COLLECTION).doc(stateHash).create({ consumedAt: new Date().toISOString(), expiresAt })
+      return true
+    } catch (error) {
+      const code = (error as { code?: unknown }).code
+      if (code === 6 || code === 'already-exists' || code === 'ALREADY_EXISTS') return false
+      throw error
+    }
+  }
+}
+
 export interface CoreRuntime extends CoreContextDeps {
   config: CoreConnectionConfig
+  flows: CoreAuthFlowConsumptionStore
 }
 
 let cached: CoreRuntime | null = null
@@ -71,6 +91,7 @@ export function getCoreRuntime(): CoreRuntime | null {
       hs256Secret: () => resolveSecret('jwtSecret', CORE_CREDENTIAL_REFS.jwt),
     }),
     sessions: new FirestoreCoreBffSessionRepository(adminDb),
+    flows: new FirestoreCoreAuthFlowConsumptionStore(adminDb),
   }
   return cached
 }
