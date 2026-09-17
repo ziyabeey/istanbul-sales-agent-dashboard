@@ -1,10 +1,18 @@
 # Kepenk v2 — Exact Execution Manifest
 
 > **Tarih:** 2026-09-16  
-> **Durum:** **IMPLEMENTATION-READY MASTER PLAN — tüm planning katmanları kapalı, production implementation başlamadı**  
+> **Durum:** **TEKNİK PLANLAMA KAPALI — P0/KC uygulaması ilerliyor; ürün ve kabul durumu ayrı izlenir**  
 > **Kaynak:** SÖKÜM 01–41 + SENTEZ 01–05  
 > **Amaç:** Canonical mimariyi exact file/route/package task'larına, güvenli cutover paketlerine, PR/branch birimlerine ve retirement gates'e dönüştürmek.  
 > **Kural:** Bu klasör production kodu implement etmez; implementation sırasında hangi authority'nin, hangi sırada, hangi acceptance/rollback/retirement şartıyla değişeceğini sabitler.
+
+## Ürün planı ve uygulama durumu
+
+Ürün sırası ve çıkış ölçütleri [Kepenk Product Master Plan](../product/KEPENK_PRODUCT_MASTER_PLAN.md) içinde; commit/PR/kabul kanıtları [17 Eylül 2026 durum kaydında](../product/STATUS-2026-09-17.md) izlenir.
+
+Bu dosyadaki W “kapanış” özetleri **planlama kararlarını** anlatır; geçmiş zamanla yazılmış maddeler uygulama/kabul kanıtı değildir. P0-01…07 main'e birleşmiş, KC-00 kabul edilmiş ve Randevu KC-01 birleşmiştir; sonraki kapılar durum kaydında ayrıdır. Eski “implementation başlamadı” başlıkları tarihsel planlama anını temsil eder.
+
+K04/KC [adoption sözleşmesi](kepenk-core-adoption.md), P1'in iptal/değişen tenant-commercial işlerinde önceliklidir. Randevu'nun kendi ürün planı ve mevcut görev sahiplikleri korunur.
 
 ## Wave manifestleri
 
@@ -210,7 +218,7 @@ Bidirectional dual-authority migration yasaktır.
 
 ### Implementation entry gate
 
-Production/application koduna geçilecekse ilk ve tek başlangıç paketi:
+İlk implementation başlangıcı şu paket olarak tanımlanmıştır; tamamlanan iş yeniden başlatılmaz:
 
 ```text
 Pilot-0 / P0-00 Trust Baseline / Evidence Harness
@@ -232,10 +240,10 @@ Ardından planlanan dependency graph izlenir. Trust gate geçmeden feature migra
 - Vertical activation PR packaging: **kapalı**
 - Final retirement PR packaging: **kapalı**
 - Planning frontier: **YOK**
-- Production implementation: **BAŞLAMADI**
+- Production implementation: **P0/KC İLERLİYOR**; [tarihli durum ve açık kapılar](../product/STATUS-2026-09-17.md)
 - Application code: bu planlama fazında **DEĞİŞTİRİLMEDİ**
 - Kepenk public/frontend preservation contract: **AKTİF**
 
 ### Sonraki adım
 
-Yalnız explicit implementation yetkisi verilirse `Pilot-0 / P0-00` ile production-code workstream başlatılır. Aksi halde bu repository implementation-ready planning baseline olarak dondurulmuştur.
+Mevcut P0/KC görevleri ve Randevu'nun bağımsız ürün hattı kendi sahipleriyle ilerler. Güncel PR/CI/acceptance kontrol edilmeden tarihsel başlangıç paketi yeniden açılmaz. Bu index ürün sırası için master plana, sıradaki somut kapılar için tarihli durum kaydına yönlendirir; yeni runtime görevi veya merge izni vermez.
