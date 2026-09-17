@@ -31,7 +31,7 @@ export async function POST(request: Request) {
         // BEFORE any tenant is created. Requests without a Core session take the
         // intentional legacy path (KC-03 backfill links them later).
         const runtime = getCoreRuntime()
-        const gate: OnboardingCoreGate = runtime ? await resolveOnboardingCoreGate(request, runtime) : { mode: 'disabled' }
+        const gate: OnboardingCoreGate = await resolveOnboardingCoreGate(request, runtime)
         if (gate.mode === 'rejected') {
             return NextResponse.json({ error: gate.reason }, { status: gate.status })
         }

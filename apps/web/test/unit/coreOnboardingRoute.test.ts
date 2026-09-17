@@ -100,12 +100,30 @@ describe('POST /api/onboarding/complete — Core mutation gate', () => {
     expect(saga.records.size).toBe(0)
   })
 
-  it('keeps the legacy path open for requests without a Core session and issues no Core command', async () => {
+  it('fails closed when Core is enabled and a Core session is presented but the runtime is unavailable', async () => {
+    const { cookie, csrf } = await sessionCookies()
+    vi.mocked(getCoreRuntime).mockReturnValue(null)
+
+    const response = await complete(post({ cookie, origin: 'https://app.kepenk.ai', [CORE_BFF_CSRF_HEADER]: csrf }))
+
+    expect(response.status).toBe(503)
+    expect(await response.json()).toEqual({ error: 'CORE_UNAVAILABLE' })
+    expect(set).not.toHaveBeenCalled()
+    expect(update).not.toHaveBeenCalled()
+    expect(applyCommand).not.toHaveBeenCalled()
+    expect(saga.records.size).toBe(0)
+  })
+
+  it('keeps the legacy path open without a Core session even when the runtime is unavailable', async () => {
+    vi.mocked(getCoreRuntime).mockReturnValue(null)
+
     const response = await complete(post({ origin: 'https://app.kepenk.ai' }))
     expect(response.status).toBe(200)
     expect(await response.json()).toMatchObject({ esnafId: 'esnaf-new', core: 'no_core_session' })
     expect(set).toHaveBeenCalledTimes(1)
+    expect(update).not.toHaveBeenCalled()
     expect(applyCommand).not.toHaveBeenCalled()
+    expect(saga.records.size).toBe(0)
   })
 
   it('provisions Core through the durable saga when the gated session is complete', async () => {

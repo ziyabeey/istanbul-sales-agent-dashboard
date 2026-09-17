@@ -1,8 +1,9 @@
 import type { Firestore } from 'firebase-admin/firestore'
 import { isSameOriginMutation } from '../apiGuard'
 import { ProvisionResultSchema } from './backfill'
-import { readCoreSessionToken, verifyCoreCsrf } from './bffSession'
+import { readCookie, verifyCoreCsrf } from './bffSession'
 import { ChangeSubscriptionResultSchema, KEPENK_LAUNCH_PLAN_KEY, retryBackoffMs } from './billing'
+import { CORE_BFF_SESSION_COOKIE } from './config'
 import { CORE_LEGACY_TENANT_PROVIDER, coreIdempotencyKey, type CorePlatformClient } from './coreClient'
 import { CorePlatformError } from './errors'
 import { resolveCoreRequestContext, type CoreContextDeps } from './requestContext'
@@ -54,9 +55,10 @@ export type OnboardingCoreGate =
   /** A Core session was presented but the mutation gate failed: no tenant, no command. */
   | { mode: 'rejected'; reason: OnboardingGateRejection; status: 401 | 403 | 503 }
 
-export async function resolveOnboardingCoreGate(request: Request, deps: CoreContextDeps, env: EnvLike = process.env): Promise<OnboardingCoreGate> {
+export async function resolveOnboardingCoreGate(request: Request, deps: CoreContextDeps | null, env: EnvLike = process.env): Promise<OnboardingCoreGate> {
   if (!isCoreOnboardingEnabled(env)) return { mode: 'disabled' }
-  if (!readCoreSessionToken(request)) return { mode: 'legacy' }
+  if (!readCookie(request, CORE_BFF_SESSION_COOKIE)) return { mode: 'legacy' }
+  if (!deps) return { mode: 'rejected', reason: 'CORE_UNAVAILABLE', status: 503 }
   if (!isSameOriginMutation(request)) return { mode: 'rejected', reason: 'ORIGIN_REJECTED', status: 403 }
   if (!verifyCoreCsrf(request)) return { mode: 'rejected', reason: 'CSRF_REJECTED', status: 403 }
 
