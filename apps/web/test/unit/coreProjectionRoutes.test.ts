@@ -81,11 +81,20 @@ describe('POST /api/admin/core/entitlement', () => {
     expect(applyCommand).not.toHaveBeenCalled()
   })
 
+  it('requires a caller-stable intent key before routing or issuing a Core command', async () => {
+    vi.mocked(validateAdminSessionToken).mockResolvedValue({ principalId: 'admin-1' } as never)
+    const missing = await entitlement(post(url, adminHeaders, { esnafId: 'esnaf-1', action: 'grant', entitlementKey: 'booking' }))
+    expect(missing.status).toBe(400)
+    expect(await missing.json()).toMatchObject({ error: 'IDEMPOTENCY_KEY_REQUIRED' })
+    expect(resolveBusinessRouting).not.toHaveBeenCalled()
+    expect(applyCommand).not.toHaveBeenCalled()
+  })
+
   it('issues an audited Core command instead of patching Firestore', async () => {
     vi.mocked(validateAdminSessionToken).mockResolvedValue({ principalId: 'admin-1' } as never)
     const response = await entitlement(post(url, adminHeaders, { esnafId: 'esnaf-1', action: 'grant', entitlementKey: 'Custom_Domain', validUntil: '2027-01-01T00:00:00Z', idempotencyKey: 'ticket-42' }))
     expect(response.status).toBe(200)
-    expect(runAuditedAdminMutation).toHaveBeenCalledWith(expect.objectContaining({ actorAdminId: 'admin-1', targetType: 'business', targetId: 'esnaf-1', action: 'ESNAF_UPDATED' }), expect.anything(), expect.any(Function))
+    expect(runAuditedAdminMutation).toHaveBeenCalledWith(expect.objectContaining({ actorAdminId: 'admin-1', targetType: 'business', targetId: 'esnaf-1', action: 'ESNAF_UPDATED', metadata: expect.objectContaining({ intentKey: 'ticket-42' }) }), expect.anything(), expect.any(Function))
     const [input] = applyCommand.mock.calls[0] as unknown as [{ idempotencyKey: string; command: string; payload: Record<string, unknown> }]
     expect(input.command).toBe('GrantEntitlement')
     expect(input.payload).toEqual({ business_id: '5b000000-0000-4000-8000-000000000001', entitlement_key: 'custom_domain', limit_value: null, valid_until: '2027-01-01T00:00:00Z' })
@@ -97,11 +106,11 @@ describe('POST /api/admin/core/entitlement', () => {
 
   it('validates input and refuses unlinked tenants', async () => {
     vi.mocked(validateAdminSessionToken).mockResolvedValue({ principalId: 'admin-1' } as never)
-    expect((await entitlement(post(url, adminHeaders, { esnafId: 'esnaf-1', action: 'drop', entitlementKey: 'x' }))).status).toBe(400)
-    expect((await entitlement(post(url, adminHeaders, { esnafId: 'esnaf-1', action: 'grant', entitlementKey: 'Bad Key' }))).status).toBe(400)
-    expect((await entitlement(post(url, adminHeaders, { esnafId: 'esnaf-1', action: 'grant', entitlementKey: 'booking', limitValue: -1 }))).status).toBe(400)
+    expect((await entitlement(post(url, adminHeaders, { esnafId: 'esnaf-1', action: 'drop', entitlementKey: 'x', idempotencyKey: 'ticket-bad-action' }))).status).toBe(400)
+    expect((await entitlement(post(url, adminHeaders, { esnafId: 'esnaf-1', action: 'grant', entitlementKey: 'Bad Key', idempotencyKey: 'ticket-bad-key' }))).status).toBe(400)
+    expect((await entitlement(post(url, adminHeaders, { esnafId: 'esnaf-1', action: 'grant', entitlementKey: 'booking', limitValue: -1, idempotencyKey: 'ticket-bad-limit' }))).status).toBe(400)
     vi.mocked(resolveBusinessRouting).mockResolvedValueOnce({ coreBusinessId: null, shadowBusinessId: null })
-    const unlinked = await entitlement(post(url, adminHeaders, { esnafId: 'esnaf-2', action: 'revoke', entitlementKey: 'booking' }))
+    const unlinked = await entitlement(post(url, adminHeaders, { esnafId: 'esnaf-2', action: 'revoke', entitlementKey: 'booking', idempotencyKey: 'ticket-unlinked' }))
     expect(unlinked.status).toBe(409)
     expect(applyCommand).not.toHaveBeenCalled()
   })
@@ -113,13 +122,13 @@ describe('POST /api/admin/core/entitlement', () => {
 
     // The Firestore shadow alone never routes an entitlement command.
     vi.mocked(resolveBusinessRouting).mockResolvedValueOnce({ coreBusinessId: null, shadowBusinessId: CORE_BIZ })
-    const shadowOnly = await entitlement(post(url, adminHeaders, { esnafId: 'esnaf-3', action: 'grant', entitlementKey: 'booking' }))
+    const shadowOnly = await entitlement(post(url, adminHeaders, { esnafId: 'esnaf-3', action: 'grant', entitlementKey: 'booking', idempotencyKey: 'ticket-shadow-only' }))
     expect(shadowOnly.status).toBe(409)
     expect(await shadowOnly.json()).toMatchObject({ error: 'BUSINESS_NOT_LINKED' })
 
     // A stale or cross-business shadow fails closed and raises an operator drift signal.
     vi.mocked(resolveBusinessRouting).mockResolvedValueOnce({ coreBusinessId: CORE_BIZ, shadowBusinessId: FOREIGN })
-    const mismatch = await entitlement(post(url, adminHeaders, { esnafId: 'esnaf-4', action: 'grant', entitlementKey: 'booking' }))
+    const mismatch = await entitlement(post(url, adminHeaders, { esnafId: 'esnaf-4', action: 'grant', entitlementKey: 'booking', idempotencyKey: 'ticket-shadow-mismatch' }))
     expect(mismatch.status).toBe(409)
     expect(await mismatch.json()).toMatchObject({ error: 'BUSINESS_SHADOW_MISMATCH' })
     expect(recordBusinessRoutingDrift).toHaveBeenCalledWith(expect.anything(), expect.objectContaining({ esnafId: 'esnaf-4', shadowBusinessId: FOREIGN, coreBusinessId: CORE_BIZ, source: 'admin-entitlement' }))
