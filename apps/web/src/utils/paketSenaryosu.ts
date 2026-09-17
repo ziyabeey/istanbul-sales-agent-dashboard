@@ -6,6 +6,7 @@ import { createHttpTask } from '@/lib/cloudTasksClient'
 import { haftaIcerikUret } from './icerikUreticisi'
 import { esnafModulleri } from '@/data/moduller'
 import { PAKET_FIYATLARI_AYLIK } from '@/data/paketler'
+import { resolvePaidCapabilities, stripLegacyCommercialFields } from '@/lib/core/canary'
 
 export async function paketSenaryosuCalistir(
   esnafId: string,
@@ -17,8 +18,18 @@ export async function paketSenaryosuCalistir(
   if (!doc.exists) throw new Error(`Esnaf bulunamadı: ${esnafId}`)
   const esnaf = doc.data()!
 
+  // KC-05 (R1 blocker 1): paid capabilities never come from the legacy `paket`
+  // for canary tenants. The callback has no Core user token, so canary paid
+  // capabilities open only through the Core-event-gated projection; here the
+  // canary set is empty and a forged/stale `paket=PREMIUM` opens nothing.
+  const yetki = resolvePaidCapabilities({ esnafId, paket, coreEntitlements: null })
+  const yetkiler = yetki.capabilities
+
   // ── 1. HERKESE ORTAK: Firestore güncelle ──────────────────────────────────
-  await docRef.update({
+  // KC-05 canary: `durum` / `paket` / `aktifModuller` are Core-owned for canary
+  // tenants and only arrive through the projection; the legacy root write is
+  // reduced to the non-commercial fields.
+  const ortakGuncelleme = stripLegacyCommercialFields(esnafId, {
     durum:   'aktif',
     paket,
     odemeId,
@@ -26,15 +37,19 @@ export async function paketSenaryosuCalistir(
       new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)
     ),
   })
+  await docRef.update(ortakGuncelleme.patch)
 
   // ── 2. PAKET BAZLI MODÜLLER ────────────────────────────────────────────────
   const aktifModuller = esnafModulleri(esnaf.sektor, paket)
-  await docRef.update({
+  const modulGuncelleme = stripLegacyCommercialFields(esnafId, {
     aktifModuller: aktifModuller.map(m => m.id),
   })
+  if (Object.keys(modulGuncelleme.patch).length > 0) {
+    await docRef.update(modulGuncelleme.patch)
+  }
 
-  // ── 2.5. VAPI SESLI ASISTAN (BUYUME+) ────────────────────────────────────
-  if (['BUYUME', 'PREMIUM', 'PREMIUMPLUS'].includes(paket)) {
+  // ── 2.5. VAPI SESLI ASISTAN (yetki: voice_assistant) ─────────────────────
+  if (yetkiler.has('voice_assistant')) {
     import('@/lib/vapiClient')
       .then(({ createVoiceAgentForEsnaf }) => createVoiceAgentForEsnaf(esnafId))
       .then(agentId => {
@@ -64,18 +79,35 @@ export async function paketSenaryosuCalistir(
 
   // ── 4. İÇERİK ÜRETİMİ ────────────────────────────────────────────────────
   const platformlar = ['instagram']
-  if (['STANDART', 'BUYUME', 'PREMIUM', 'PREMIUMPLUS'].includes(paket)) {
+  if (yetkiler.has('content_facebook')) {
     platformlar.push('facebook')
   }
-  if (['BUYUME', 'PREMIUM', 'PREMIUMPLUS'].includes(paket) && esnaf.googlePlacesId) {
+  if (yetkiler.has('content_gmb') && esnaf.googlePlacesId) {
     platformlar.push('gmb')
   }
 
   haftaIcerikUret(esnafId, platformlar).catch(console.error)
 
   // ── 5. PAKET'E ÖZEL AKSIYONLAR ────────────────────────────────────────────
+  // Canary: no paket-derived paid action; a neutral welcome only. Paid settings
+  // (`ayarlar.*`), domain gift and VAPI follow Core entitlements via the projection.
+  if (yetki.source === 'core') {
+    await waMesajGonder(
+      esnaf.waNumarasi,
+      `🎉 Hoş geldiniz ${esnafHitap(esnaf)}!\n\n` +
+      `Ödemeniz alındı. Siteniz hazırlanıyor, 2-3 dakika içinde WhatsApp'a link gelecek.\n\n` +
+      `Dashboard: ${process.env.NEXT_PUBLIC_APP_URL}/dashboard`,
+      esnafId, 'hosgeldin_core'
+    )
+    await telegramGonder(
+      `🧪 <b>Core canary ödeme</b>\n` +
+      `Esnaf: ${esnaf.isletmeAdiTam}\n` +
+      `Ödenen paket: ${paket} (legacy alan, yetki kaynağı değil)\n` +
+      `Ticari yetkiler Core entitlement → projection ile açılır.`
+    )
+  }
 
-  if (paket === 'TEMEL') {
+  if (yetki.source === 'legacy' && paket === 'TEMEL') {
     await waMesajGonder(
       esnaf.waNumarasi,
       `🎉 Hoş geldiniz ${esnafHitap(esnaf)}!\n\n` +
@@ -86,7 +118,7 @@ export async function paketSenaryosuCalistir(
     )
   }
 
-  if (paket === 'STANDART') {
+  if (yetki.source === 'legacy' && paket === 'STANDART') {
     await waMesajGonder(
       esnaf.waNumarasi,
       `🎉 Hoş geldiniz ${esnafHitap(esnaf)}!\n\n` +
@@ -102,7 +134,7 @@ export async function paketSenaryosuCalistir(
     })
   }
 
-  if (paket === 'BUYUME') {
+  if (yetki.source === 'legacy' && paket === 'BUYUME') {
     await waMesajGonder(
       esnaf.waNumarasi,
       `🚀 Hoş geldiniz ${esnafHitap(esnaf)}!\n\n` +
@@ -126,7 +158,7 @@ export async function paketSenaryosuCalistir(
     })
   }
 
-  if (paket === 'PREMIUM' || paket === 'PREMIUMPLUS') {
+  if (yetki.source === 'legacy' && (paket === 'PREMIUM' || paket === 'PREMIUMPLUS')) {
     // Domain hediyesi akışını başlat (fire-and-forget)
     import('@/lib/cloudflareRegistrar')
       .then(({ domainHediyeAkisi }) => domainHediyeAkisi(esnafId, paket))

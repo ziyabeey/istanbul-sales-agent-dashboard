@@ -1,0 +1,38 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "incremental": false,
+    "baseUrl": "..",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    },
+    "types": [
+      "node",
+      "vitest/globals",
+      "next/types/global"
+    ]
+  },
+  "include": [
+    "../../../packages/security/src/servicePrincipal.ts",
+    "../src/lib/core/*.ts",
+    "../src/app/api/cron/core-projection/route.ts",
+    "../src/app/api/admin/core/entitlement/route.ts",
+    "../src/app/api/core/plan/route.ts",
+    "../src/app/api/admin/esnaf/[id]/route.ts",
+    "./unit/coreProjection.test.ts",
+    "./unit/coreCanary.test.ts",
+    "./unit/coreOnboardingCore.test.ts",
+    "./unit/coreProjectionRoutes.test.ts",
+    "../src/app/api/onboarding/complete/route.ts",
+    "../src/utils/paketSenaryosu.ts",
+    "./unit/coreCanaryScenario.test.ts",
+    "./unit/coreOnboardingRoute.test.ts"
+  ],
+  "exclude": [
+    "../node_modules",
+    "../.next"
+  ]
+}

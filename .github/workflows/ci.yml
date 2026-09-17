@@ -139,6 +139,27 @@ jobs:
           test/unit/coreBilling.test.ts
           test/unit/coreBillingHook.test.ts
           test/unit/coreBillingRoutes.test.ts
+      - name: Lint KC-05 projection, onboarding and canary cutover
+        run: >-
+          pnpm --filter @kepenk/web exec eslint
+          src/lib/core/canary.ts
+          src/lib/core/projection.ts
+          src/lib/core/projectionStore.ts
+          src/lib/core/onboardingCore.ts
+          src/lib/core/onboardingSagaStore.ts
+          src/app/api/cron/core-projection/route.ts
+          src/app/api/admin/core/entitlement/route.ts
+          src/app/api/core/plan/route.ts
+          src/app/api/onboarding/complete/route.ts
+          'src/app/api/admin/esnaf/[id]/route.ts'
+          src/utils/paketSenaryosu.ts
+          test/unit/coreProjection.test.ts
+          test/unit/coreCanary.test.ts
+          test/unit/coreCanaryScenario.test.ts
+          test/unit/coreOnboardingCore.test.ts
+          test/unit/coreOnboardingRoute.test.ts
+          test/unit/coreProjectionRoutes.test.ts
+          test/unit/trustBaseline.characterization.test.ts
       - name: Validate trust browser smoke script
         run: bash -n apps/web/test/e2e/trust-browser-smoke.sh
       - name: Typecheck P0 trust baseline artifacts
@@ -163,6 +184,8 @@ jobs:
         run: pnpm --filter @kepenk/web exec tsc -p test/tsconfig.kc-03-backfill.json --noEmit
       - name: Typecheck KC-04 billing command path
         run: pnpm --filter @kepenk/web exec tsc -p test/tsconfig.kc-04-billing.json --noEmit
+      - name: Typecheck KC-05 projection, onboarding and canary cutover
+        run: pnpm --filter @kepenk/web exec tsc -p test/tsconfig.kc-05-projection.json --noEmit
       - name: Legacy full web typecheck baseline
         id: legacy-web-typecheck
         continue-on-error: true

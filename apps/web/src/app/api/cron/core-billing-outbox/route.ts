@@ -5,12 +5,15 @@ import { processBillingOutbox } from '@/lib/core/billing'
 import { isCoreBillingEnabled } from '@/lib/core/billingHook'
 import { FirestoreBillingOutboxStore, resolveBusinessRouting } from '@/lib/core/billingStore'
 import { getCoreRuntime } from '@/lib/core/deps'
+import { isCoreOnboardingEnabled, redriveOnboardingSagas } from '@/lib/core/onboardingCore'
+import { FirestoreOnboardingSagaStore } from '@/lib/core/onboardingSagaStore'
 import { readJsonBody } from '@/lib/core/routeHelpers'
 import { SERVICE_AUDIENCES, SERVICE_SCOPES } from '@/lib/serviceAuth'
 
 /**
  * KC-04: re-drives pending/deferred verified payment events into Core with
- * their original idempotency keys. Signed ServicePrincipal only.
+ * their original idempotency keys. KC-05: also re-drives open onboarding
+ * sagas (stored payload, stable keys). Signed ServicePrincipal only.
  */
 export async function POST(request: Request) {
   const guard = await apiGuard(request, {
@@ -32,9 +35,13 @@ export async function POST(request: Request) {
 
   const body = await readJsonBody(request)
   const db = adminDb
+  const limit = Number.isInteger(body.limit) ? Number(body.limit) : 25
   const report = await processBillingOutbox(
     { store: new FirestoreBillingOutboxStore(db), client: runtime.client, resolveBusinessRouting: (esnafId) => resolveBusinessRouting(db, runtime.client, esnafId) },
-    { limit: Number.isInteger(body.limit) ? Number(body.limit) : 25 }
+    { limit }
   )
-  return NextResponse.json({ ok: true, outbox: report })
+  const onboarding = isCoreOnboardingEnabled()
+    ? await redriveOnboardingSagas({ store: new FirestoreOnboardingSagaStore(db), client: runtime.client, db, limit })
+    : null
+  return NextResponse.json({ ok: true, outbox: report, onboarding })
 }

@@ -344,6 +344,64 @@ describe('Pilot-0 trust baseline characterization', () => {
     expect(billing).toContain("const created = await deps.store.create(fresh)")
   })
 
+  it('KC-05: canary tenants receive commercial state only through the Core projection', () => {
+    const scenario = readSource('src/utils/paketSenaryosu.ts')
+    const adminPatch = readSource('src/app/api/admin/esnaf/[id]/route.ts')
+    const projection = readSource('src/lib/core/projection.ts')
+    const entitlementRoute = readSource('src/app/api/admin/core/entitlement/route.ts')
+
+    expect(scenario).toContain('stripLegacyCommercialFields(esnafId, {')
+    expect(scenario).not.toMatch(/docRef\.update\(\{\s*durum:/)
+    expect(adminPatch).toContain('assertLegacyCommercialWriteAllowed(id, guncellemeler)')
+    expect(projection).toContain("legacyDurumForSubscriptionStatus(payload.data.status)")
+    expect(projection).not.toContain('has_entitlement')
+    expect(entitlementRoute).toContain("command: action === 'grant' ? 'GrantEntitlement' : 'RevokeEntitlement'")
+    expect(entitlementRoute).not.toContain('.update(')
+  })
+
+  it('KC-05: canary paid capabilities come from Core entitlements, never from the legacy paket', () => {
+    const scenario = readSource('src/utils/paketSenaryosu.ts')
+    const canary = readSource('src/lib/core/canary.ts')
+
+    expect(scenario).toContain('resolvePaidCapabilities({ esnafId, paket, coreEntitlements: null })')
+    expect(scenario).toContain("yetkiler.has('voice_assistant')")
+    expect(scenario).toContain("yetki.source === 'legacy' && (paket === 'PREMIUM' || paket === 'PREMIUMPLUS')")
+    // No paid side effect may be gated on the package value alone any more.
+    expect(scenario).not.toMatch(/if \(\['BUYUME', 'PREMIUM', 'PREMIUMPLUS'\]\.includes\(paket\)\)/)
+    expect(canary).toContain('return { source: \'core\', capabilities: new Set(), evidence: \'none\' }')
+  })
+
+  it('KC-05: onboarding Core writes pass the mutation gate and run as a durable saga', () => {
+    const route = readSource('src/app/api/onboarding/complete/route.ts')
+    const onboarding = readSource('src/lib/core/onboardingCore.ts')
+
+    expect(route).toContain('await resolveOnboardingCoreGate(request, runtime)')
+    expect(route).toContain("gate.mode === 'rejected'")
+    expect(route).toContain("gate.mode === 'core'")
+    expect(onboarding).toContain('if (!isSameOriginMutation(request)) return { mode: \'rejected\', reason: \'ORIGIN_REJECTED\', status: 403 }')
+    expect(onboarding).toContain('if (!verifyCoreCsrf(request)) return { mode: \'rejected\', reason: \'CSRF_REJECTED\', status: 403 }')
+    // Stable period and keys live in the stored intent, not in a fresh now().
+    expect(onboarding).toContain('const created = await input.store.create(fresh)')
+    expect(onboarding).toContain('current_period_start: current.trialStart')
+    expect(onboarding).toContain('current_period_end: current.trialEnd')
+  })
+
+  it('KC-05: admin entitlement routing and the projection worker are lease- and alias-guarded', () => {
+    const entitlementRoute = readSource('src/app/api/admin/core/entitlement/route.ts')
+    const projection = readSource('src/lib/core/projection.ts')
+    const projectionStore = readSource('src/lib/core/projectionStore.ts')
+
+    expect(entitlementRoute).toContain('await resolveBusinessRouting(db, runtime.client, esnafId)')
+    expect(entitlementRoute).toContain("error: 'BUSINESS_SHADOW_MISMATCH'")
+    expect(entitlementRoute).toContain('recordBusinessRoutingDrift(db, {')
+    expect(projection).toContain('await input.store.acquireLease({ owner, now: now(), ttlMs })')
+    expect(projection).toContain("if (advanced === 'lease_lost')")
+    // Lease, cursor and tenant writes are transactional and monotonic.
+    expect(projectionStore).toContain('this.db.runTransaction')
+    expect(projectionStore).toContain("if (typeof last === 'number' && last >= input.eventId) return 'stale' as TenantWrite")
+    expect(projectionStore).toContain("if (input.afterEventId <= current) return 'stale' as CursorAdvance")
+  })
+
   it('KNOWN-RISK: unmigrated cron routes still rely on the shared CRON_SECRET path', () => {
     const source = readSource('src/lib/apiGuard.ts')
     expect(source).toContain('requireCronSecret?: boolean')
