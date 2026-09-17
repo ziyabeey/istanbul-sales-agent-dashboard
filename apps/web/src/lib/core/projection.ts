@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { isCoreCanaryTenant, legacyDurumForSubscriptionStatus } from './canary'
+import { ayarlarPatchForEntitlementChanges, isCoreCanaryTenant, legacyDurumForSubscriptionStatus } from './canary'
 import { CORE_LEGACY_TENANT_PROVIDER, type CoreFeedEvent, type CorePlatformClient } from './coreClient'
 
 /** Minimal env shape so tests can pass partial environments. */
@@ -12,42 +12,89 @@ export type EnvLike = Record<string, string | undefined>
  * the derived read model onto the legacy tenant document (`esnaflar/{id}.core`).
  * Nothing here decides authorization (K04 §11): the projection may be stale
  * or deliberately paused and every authority decision still comes from Core.
- * Writes are deterministic merges keyed by event order, so replaying the
- * feed from any earlier cursor converges to the same state.
+ *
+ * Concurrency (R1 KC-05 blocker 5): a run holds a durable single lease, the
+ * global cursor only ever moves forward under that lease, and every tenant
+ * write is guarded by the stored `core.lastEventId`. An overlapping or
+ * resumed-after-pause worker therefore cannot overwrite a newer projection
+ * nor leave the cursor ahead of what was applied.
  */
+export const CORE_PROJECTION_LEASE_TTL_MS = 60_000
+
 export interface CoreBusinessIndexEntry {
   esnafId: string | null
   slug: string | null
   updatedAt: string
 }
 
+export type LeaseAcquisition = { ok: true } | { ok: false; heldBy: string | null; expiresAt: string | null }
+export type CursorAdvance = 'advanced' | 'stale' | 'lease_lost'
+export type TenantWrite = 'applied' | 'stale'
+
 export interface CoreProjectionStore {
+  /** Durable single lease; an unexpired lease held by another owner refuses the run. */
+  acquireLease(input: { owner: string; now: Date; ttlMs: number }): Promise<LeaseAcquisition>
+  releaseLease(owner: string): Promise<void>
   getCursor(): Promise<number>
-  setCursor(afterEventId: number, at: string): Promise<void>
+  /** Monotonic and lease-guarded: never moves backwards, never writes for a lost lease. */
+  advanceCursor(input: { owner: string; afterEventId: number; at: string }): Promise<CursorAdvance>
   getBusinessIndex(businessId: string): Promise<CoreBusinessIndexEntry | null>
   setBusinessIndex(businessId: string, entry: CoreBusinessIndexEntry): Promise<void>
   /** Fallback lookup on the legacy collection (KC-03 shadow field). */
   findEsnafIdByBusinessId(businessId: string): Promise<string | null>
-  /** Deep-merge write onto `esnaflar/{esnafId}`. */
-  mergeTenantProjection(esnafId: string, patch: Record<string, unknown>): Promise<void>
+  /** Deep-merge write onto `esnaflar/{esnafId}`, refused when `core.lastEventId` is already newer. */
+  mergeTenantProjection(esnafId: string, patch: Record<string, unknown>, input: { eventId: number }): Promise<TenantWrite>
   recordOrphan(event: CoreFeedEvent, reason: string): Promise<void>
 }
 
 export class InMemoryCoreProjectionStore implements CoreProjectionStore {
   cursor = 0
   cursorUpdatedAt: string | null = null
+  leaseOwner: string | null = null
+  leaseExpiresAt: string | null = null
   readonly index = new Map<string, CoreBusinessIndexEntry>()
   readonly tenants = new Map<string, Record<string, unknown>>()
   readonly orphans: Array<{ event: CoreFeedEvent; reason: string }> = []
   constructor(readonly shadowByBusinessId: Map<string, string> = new Map()) {}
+
+  async acquireLease(input: { owner: string; now: Date; ttlMs: number }): Promise<LeaseAcquisition> {
+    const live = this.leaseOwner && this.leaseExpiresAt && new Date(this.leaseExpiresAt).getTime() > input.now.getTime()
+    if (live && this.leaseOwner !== input.owner) return { ok: false, heldBy: this.leaseOwner, expiresAt: this.leaseExpiresAt }
+    this.leaseOwner = input.owner
+    this.leaseExpiresAt = new Date(input.now.getTime() + input.ttlMs).toISOString()
+    return { ok: true }
+  }
+
+  async releaseLease(owner: string): Promise<void> {
+    if (this.leaseOwner === owner) {
+      this.leaseOwner = null
+      this.leaseExpiresAt = null
+    }
+  }
+
   async getCursor(): Promise<number> { return this.cursor }
-  async setCursor(afterEventId: number, at: string): Promise<void> { this.cursor = afterEventId; this.cursorUpdatedAt = at }
+
+  async advanceCursor(input: { owner: string; afterEventId: number; at: string }): Promise<CursorAdvance> {
+    const expired = !this.leaseExpiresAt || new Date(this.leaseExpiresAt).getTime() <= new Date(input.at).getTime()
+    if (this.leaseOwner !== input.owner || expired) return 'lease_lost'
+    if (input.afterEventId <= this.cursor) return 'stale'
+    this.cursor = input.afterEventId
+    this.cursorUpdatedAt = input.at
+    return 'advanced'
+  }
+
   async getBusinessIndex(businessId: string): Promise<CoreBusinessIndexEntry | null> { return this.index.get(businessId) ?? null }
   async setBusinessIndex(businessId: string, entry: CoreBusinessIndexEntry): Promise<void> { this.index.set(businessId, entry) }
   async findEsnafIdByBusinessId(businessId: string): Promise<string | null> { return this.shadowByBusinessId.get(businessId) ?? null }
-  async mergeTenantProjection(esnafId: string, patch: Record<string, unknown>): Promise<void> {
-    this.tenants.set(esnafId, deepMerge(this.tenants.get(esnafId) ?? {}, patch))
+
+  async mergeTenantProjection(esnafId: string, patch: Record<string, unknown>, input: { eventId: number }): Promise<TenantWrite> {
+    const current = this.tenants.get(esnafId) ?? {}
+    const last = (current.core as Record<string, unknown> | undefined)?.lastEventId
+    if (typeof last === 'number' && last >= input.eventId) return 'stale'
+    this.tenants.set(esnafId, deepMerge(current, patch))
+    return 'applied'
   }
+
   async recordOrphan(event: CoreFeedEvent, reason: string): Promise<void> { this.orphans.push({ event, reason }) }
 }
 
@@ -90,12 +137,19 @@ const ProvisionPayloadSchema = z.object({ slug: z.string().optional(), name: z.s
 export interface ProjectionReport {
   startedAt: string
   finishedAt: string
+  owner: string
+  lease: 'acquired' | 'busy'
+  heldBy: string | null
   cursorBefore: number
   cursorAfter: number
   fetched: number
   applied: number
+  /** Events skipped because a newer projection already exists for that tenant. */
+  stale: number
   orphans: number
   hasMore: boolean
+  /** The lease was taken over mid-run: the worker stopped instead of clobbering. */
+  interrupted: boolean
   /** Age of the newest projected event when the job ran (ms), or null when nothing was fetched. */
   lagMs: number | null
 }
@@ -106,6 +160,9 @@ export interface ProjectionRunInput {
   limit?: number
   now?: () => Date
   env?: EnvLike
+  /** Worker identity for the durable lease. */
+  owner?: string
+  leaseTtlMs?: number
 }
 
 function entitlementPatch(changes: Array<z.infer<typeof EntitlementChangeSchema>>, eventId: number): Record<string, unknown> {
@@ -142,7 +199,12 @@ async function resolveEsnafId(store: CoreProjectionStore, event: CoreFeedEvent, 
   return { esnafId, slug }
 }
 
-export async function projectEvent(store: CoreProjectionStore, event: CoreFeedEvent, now: string, env: EnvLike = process.env): Promise<'applied' | 'indexed' | 'orphan'> {
+export async function projectEvent(
+  store: CoreProjectionStore,
+  event: CoreFeedEvent,
+  now: string,
+  env: EnvLike = process.env
+): Promise<'applied' | 'indexed' | 'orphan' | 'stale'> {
   const { esnafId, slug } = await resolveEsnafId(store, event, now)
   if (!esnafId) {
     // ProvisionBusiness emits business_provisioned before tenant_alias_linked:
@@ -161,6 +223,7 @@ export async function projectEvent(store: CoreProjectionStore, event: CoreFeedEv
     },
   }
   const patch: Record<string, unknown> = base
+  const canary = isCoreCanaryTenant(esnafId, env)
 
   if (event.event_type === 'subscription_changed') {
     const payload = SubscriptionPayloadSchema.safeParse(event.payload)
@@ -179,10 +242,13 @@ export async function projectEvent(store: CoreProjectionStore, event: CoreFeedEv
       updatedAt: event.created_at,
     }
     if (payload.data.entitlements) core.entitlements = entitlementPatch(payload.data.entitlements, event.event_id)
-    if (isCoreCanaryTenant(esnafId, env)) {
-      // Canary: the legacy root field is a projection of Core, never an authority.
+    if (canary) {
+      // Canary: the legacy root fields are a projection of Core, never an authority.
       patch.durum = legacyDurumForSubscriptionStatus(payload.data.status)
       patch.durumKaynak = 'core-projection'
+      // R1 KC-05 blocker 1: paid `ayarlar.*` flags are derived from Core
+      // entitlements here, not from the legacy `paket` value at payment time.
+      if (payload.data.entitlements) Object.assign(patch, prefixedAyarlar(ayarlarPatchForEntitlementChanges(payload.data.entitlements)))
     }
   } else if (event.event_type === 'entitlement_granted' || event.event_type === 'entitlement_revoked') {
     const payload = EntitlementPayloadSchema.safeParse(event.payload)
@@ -190,44 +256,85 @@ export async function projectEvent(store: CoreProjectionStore, event: CoreFeedEv
       await store.recordOrphan(event, 'malformed entitlement payload')
       return 'orphan'
     }
-    ;(patch.core as Record<string, unknown>).entitlements = entitlementPatch(
-      [{ entitlement_key: payload.data.entitlement_key, granted: event.event_type === 'entitlement_granted', limit_value: payload.data.limit_value ?? null, valid_until: payload.data.valid_until ?? null }],
-      event.event_id
-    )
+    const change = {
+      entitlement_key: payload.data.entitlement_key,
+      granted: event.event_type === 'entitlement_granted',
+      limit_value: payload.data.limit_value ?? null,
+      valid_until: payload.data.valid_until ?? null,
+    }
+    ;(patch.core as Record<string, unknown>).entitlements = entitlementPatch([change], event.event_id)
+    if (canary) Object.assign(patch, prefixedAyarlar(ayarlarPatchForEntitlementChanges([change])))
   }
 
-  await store.mergeTenantProjection(esnafId, patch)
-  return 'applied'
+  return store.mergeTenantProjection(esnafId, patch, { eventId: event.event_id })
+}
+
+/** `ayarlar.x` dotted paths so a merge never replaces the whole settings map. */
+function prefixedAyarlar(flags: Record<string, boolean>): Record<string, boolean> {
+  const out: Record<string, boolean> = {}
+  for (const [key, value] of Object.entries(flags)) out[`ayarlar.${key}`] = value
+  return out
 }
 
 export async function runCoreProjection(input: ProjectionRunInput): Promise<ProjectionReport> {
   const now = input.now ?? (() => new Date())
   const limit = Math.min(Math.max(input.limit ?? 100, 1), 100)
-  const cursorBefore = await input.store.getCursor()
+  const owner = input.owner ?? 'core-projection'
+  const ttlMs = input.leaseTtlMs ?? CORE_PROJECTION_LEASE_TTL_MS
   const report: ProjectionReport = {
     startedAt: now().toISOString(),
     finishedAt: '',
-    cursorBefore,
-    cursorAfter: cursorBefore,
+    owner,
+    lease: 'busy',
+    heldBy: null,
+    cursorBefore: 0,
+    cursorAfter: 0,
     fetched: 0,
     applied: 0,
+    stale: 0,
     orphans: 0,
     hasMore: false,
+    interrupted: false,
     lagMs: null,
   }
 
-  const page = await input.client.readChangeFeed({ afterEventId: cursorBefore, limit })
-  report.fetched = page.events.length
-  report.hasMore = page.has_more
+  const lease = await input.store.acquireLease({ owner, now: now(), ttlMs })
+  if (!lease.ok) {
+    // Another worker owns the feed: do nothing rather than race it.
+    report.heldBy = lease.heldBy
+    report.finishedAt = now().toISOString()
+    return report
+  }
+  report.lease = 'acquired'
 
-  for (const event of page.events) {
-    const at = now().toISOString()
-    const outcome = await projectEvent(input.store, event, at, input.env)
-    if (outcome === 'orphan') report.orphans++
-    else report.applied++
-    await input.store.setCursor(event.event_id, at)
-    report.cursorAfter = event.event_id
-    report.lagMs = Math.max(0, now().getTime() - new Date(event.created_at).getTime())
+  try {
+    const cursorBefore = await input.store.getCursor()
+    report.cursorBefore = cursorBefore
+    report.cursorAfter = cursorBefore
+
+    const page = await input.client.readChangeFeed({ afterEventId: cursorBefore, limit })
+    report.fetched = page.events.length
+    report.hasMore = page.has_more
+
+    for (const event of page.events) {
+      const at = now().toISOString()
+      const outcome = await projectEvent(input.store, event, at, input.env)
+      if (outcome === 'orphan') report.orphans++
+      else if (outcome === 'stale') report.stale++
+      else report.applied++
+
+      const advanced = await input.store.advanceCursor({ owner, afterEventId: event.event_id, at })
+      if (advanced === 'lease_lost') {
+        // The lease was taken over (or expired): stop instead of dragging the
+        // cursor past a newer worker's position.
+        report.interrupted = true
+        break
+      }
+      if (advanced === 'advanced') report.cursorAfter = event.event_id
+      report.lagMs = Math.max(0, now().getTime() - new Date(event.created_at).getTime())
+    }
+  } finally {
+    if (!report.interrupted) await input.store.releaseLease(owner)
   }
 
   report.finishedAt = now().toISOString()

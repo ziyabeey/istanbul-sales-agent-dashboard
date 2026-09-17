@@ -8,6 +8,8 @@ vi.mock('@/lib/core/deps', () => ({ getCoreRuntime: vi.fn() }))
 vi.mock('@/lib/core/billing', () => ({
   processBillingOutbox: vi.fn(async () => ({ processed: 2, applied: 1, deferred: 1, pending: 0, conflict: 0, failed: 0 })),
 }))
+vi.mock('@/lib/core/onboardingCore', () => ({ isCoreOnboardingEnabled: () => false, redriveOnboardingSagas: vi.fn() }))
+vi.mock('@/lib/core/onboardingSagaStore', () => ({ FirestoreOnboardingSagaStore: class {} }))
 vi.mock('@/lib/core/billingStore', () => ({
   FirestoreBillingOutboxStore: class {},
   resolveBusinessRouting: vi.fn(async () => ({ coreBusinessId: null, shadowBusinessId: null })),

@@ -3,7 +3,8 @@ import { adminDb, Timestamp } from '@/lib/firebaseAdmin'
 import { buildLocalPreviewPath, buildLocalSiteDataFromEsnaf } from '@/lib/site/localSiteData'
 import { oturumOlustur } from '@/lib/sessionManager'
 import { getCoreRuntime } from '@/lib/core/deps'
-import { provisionCoreForNewTenant, type OnboardingCoreOutcome } from '@/lib/core/onboardingCore'
+import { provisionCoreForNewTenant, resolveOnboardingCoreGate, type OnboardingCoreGate, type OnboardingCoreOutcome } from '@/lib/core/onboardingCore'
+import { FirestoreOnboardingSagaStore } from '@/lib/core/onboardingSagaStore'
 
 export async function POST(request: Request) {
     try {
@@ -23,6 +24,16 @@ export async function POST(request: Request) {
                 { error: 'Veritabanı bağlantısı kurulamadı' },
                 { status: 500 }
             )
+        }
+
+        // KC-05 (R1 blocker 2): a request that presents a Core BFF session must pass
+        // the Origin + CSRF + standard-session gate of every Core mutation, checked
+        // BEFORE any tenant is created. Requests without a Core session take the
+        // intentional legacy path (KC-03 backfill links them later).
+        const runtime = getCoreRuntime()
+        const gate: OnboardingCoreGate = runtime ? await resolveOnboardingCoreGate(request, runtime) : { mode: 'disabled' }
+        if (gate.mode === 'rejected') {
+            return NextResponse.json({ error: gate.reason }, { status: gate.status })
         }
 
         // Telefon formatla
@@ -98,26 +109,29 @@ export async function POST(request: Request) {
             siteDurumu: 'local-preview-ready',
         })
 
-        // KC-05: onboarding writes the canonical Core when the request carries a
-        // Core BFF session (ProvisionBusiness + tester trial, idempotent per esnafId).
-        // Without a Core session the legacy path continues and KC-03 backfill
-        // links the tenant later. A Core failure is recorded, never hidden.
-        let core: OnboardingCoreOutcome = { status: 'disabled' }
-        const runtime = getCoreRuntime()
-        if (runtime) {
-            core = await provisionCoreForNewTenant({
-                request,
-                deps: runtime,
+        // KC-05: with a gated Core session the onboarding intent is persisted as a
+        // durable saga (R1 blocker 3) and run: ProvisionBusiness + tester trial with
+        // stable keys and a stable period; an open saga is re-driven by the signed
+        // billing outbox job. A Core failure is recorded, never hidden.
+        let coreStatus: string = gate.mode === 'legacy' ? 'no_core_session' : 'disabled'
+        let businessId: string | null = null
+        if (gate.mode === 'core' && runtime) {
+            const core = await provisionCoreForNewTenant({
+                ownerUserId: gate.userId,
+                client: runtime.client,
+                store: new FirestoreOnboardingSagaStore(adminDb),
                 db: adminDb,
                 esnafId,
                 name: adim1.isletmeAdi,
-            }).catch((): OnboardingCoreOutcome => ({ status: 'failed', step: 'provision', code: 'UNEXPECTED' }))
+            }).catch((): OnboardingCoreOutcome => ({ status: 'failed', step: 'provision', code: 'UNEXPECTED', retryable: true }))
+            coreStatus = core.status
+            if (core.status === 'provisioned') businessId = core.businessId
             if (core.status === 'failed') {
-                await esnafRef.update({ coreOnboarding: { status: 'deferred', step: core.step, error: core.code } }).catch(() => {})
+                await esnafRef.update({ coreOnboarding: { status: core.retryable ? 'deferred' : 'failed', step: core.step, error: core.code } }).catch(() => {})
             }
         }
 
-        const response = NextResponse.json({ esnafId, localPreviewUrl, core: core.status, ...(core.status === 'provisioned' ? { businessId: core.businessId } : {}) })
+        const response = NextResponse.json({ esnafId, localPreviewUrl, core: coreStatus, ...(businessId ? { businessId } : {}) })
         return oturumOlustur(esnafId, response)
     } catch {
         // console.error('[ONBOARDING COMPLETE]', error)

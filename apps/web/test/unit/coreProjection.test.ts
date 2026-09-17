@@ -43,8 +43,10 @@ describe('runCoreProjection', () => {
     const { client } = feedClient(EVENTS)
     const report = await runCoreProjection({ store, client, now: NOW, env: {} })
 
-    expect(report).toMatchObject({ cursorBefore: 0, cursorAfter: 6, fetched: 6, applied: 6, orphans: 0, hasMore: false, lagMs: 10_000 })
+    expect(report).toMatchObject({ lease: 'acquired', cursorBefore: 0, cursorAfter: 6, fetched: 6, applied: 6, stale: 0, orphans: 0, hasMore: false, interrupted: false, lagMs: 10_000 })
     expect(store.index.get(BIZ)).toMatchObject({ esnafId: 'esnaf-1', slug: 'kepenk-berber' })
+    // The lease is handed back for the next tick.
+    expect(store.leaseOwner).toBeNull()
 
     const tenant = store.tenants.get('esnaf-1') as Record<string, unknown>
     const core = tenant.core as Record<string, unknown>
@@ -59,17 +61,20 @@ describe('runCoreProjection', () => {
     })
     // Legacy root commercial fields are untouched for non-canary tenants.
     expect(tenant.durum).toBeUndefined()
+    expect(tenant['ayarlar.customDomain']).toBeUndefined()
   })
 
-  it('is idempotent: replaying from an earlier cursor converges to the same state', async () => {
+  it('is idempotent: replaying from an earlier cursor converges to the same state and rewrites nothing', async () => {
     const store = new InMemoryCoreProjectionStore()
     const { client } = feedClient(EVENTS)
     await runCoreProjection({ store, client, now: NOW, env: {} })
     const first = JSON.stringify(store.tenants.get('esnaf-1'))
 
     store.cursor = 0
-    await runCoreProjection({ store, client, now: NOW, env: {} })
+    const replay = await runCoreProjection({ store, client, now: NOW, env: {} })
     expect(JSON.stringify(store.tenants.get('esnaf-1'))).toBe(first)
+    // Every replayed event is refused by the monotonic guard: no rewrite at all.
+    expect(replay).toMatchObject({ fetched: 6, applied: 0, stale: 6, orphans: 0 })
     expect(store.orphans).toEqual([])
   })
 
@@ -83,17 +88,22 @@ describe('runCoreProjection', () => {
     expect(readChangeFeed).toHaveBeenLastCalledWith({ afterEventId: 4, limit: 4 })
   })
 
-  it('writes the legacy durum only for canary tenants and only as a projection of Core status', async () => {
+  it('writes the legacy durum and the paid ayarlar flags only for canary tenants, only as a projection of Core', async () => {
     const store = new InMemoryCoreProjectionStore()
-    const { client } = feedClient(EVENTS.slice(0, 3))
+    const { client } = feedClient(EVENTS.slice(0, 4))
     await runCoreProjection({ store, client, now: NOW, env: { CORE_CANARY_TENANTS: 'esnaf-1, esnaf-9' } })
     const tenant = store.tenants.get('esnaf-1') as Record<string, unknown>
     expect(tenant.durum).toBe('aktif')
     expect(tenant.durumKaynak).toBe('core-projection')
     expect(tenant.paket).toBeUndefined()
+    // KC-05 blocker 1: the paid flag arrives from the Core entitlement event, not from `paket`.
+    expect(tenant['ayarlar.randevuSistemi']).toBe(true)
+    expect(tenant['ayarlar.customDomain']).toBe(true)
 
     await projectEvent(store, EVENTS[5], NOW().toISOString(), { CORE_CANARY_TENANTS: 'esnaf-1' })
-    expect((store.tenants.get('esnaf-1') as Record<string, unknown>).durum).toBe('pasif')
+    const after = store.tenants.get('esnaf-1') as Record<string, unknown>
+    expect(after.durum).toBe('pasif')
+    expect(after['ayarlar.randevuSistemi']).toBe(false)
   })
 
   it('records orphans for businesses without a legacy tenant and keeps going, using the shadow lookup as fallback', async () => {
@@ -106,5 +116,42 @@ describe('runCoreProjection', () => {
     expect(report).toMatchObject({ applied: 1, orphans: 1, cursorAfter: 2 })
     expect(store.orphans[0].reason).toContain('no legacy tenant')
     expect((store.tenants.get('esnaf-shadow')?.core as Record<string, unknown>).entitlements).toEqual({ booking: { granted: true, limitValue: null, validUntil: null, eventId: 2 } })
+  })
+})
+
+describe('projection concurrency (two workers)', () => {
+  it('refuses to run while another worker holds the durable lease', async () => {
+    const store = new InMemoryCoreProjectionStore()
+    const { client, readChangeFeed } = feedClient(EVENTS)
+    expect(await store.acquireLease({ owner: 'worker-a', now: NOW(), ttlMs: 60_000 })).toEqual({ ok: true })
+
+    const blocked = await runCoreProjection({ store, client, owner: 'worker-b', now: NOW, env: {} })
+    expect(blocked).toMatchObject({ lease: 'busy', heldBy: 'worker-a', fetched: 0, applied: 0, cursorAfter: 0 })
+    expect(readChangeFeed).not.toHaveBeenCalled()
+    expect(store.tenants.size).toBe(0)
+    expect(store.cursor).toBe(0)
+  })
+
+  it('a worker whose lease lapsed stops instead of advancing the cursor, and its late writes lose to the newer projection', async () => {
+    const store = new InMemoryCoreProjectionStore()
+    const { client } = feedClient(EVENTS)
+
+    // Worker A resumes after its lease has lapsed: it may still apply the event it
+    // holds, but it can no longer move the shared cursor.
+    const stalled = await runCoreProjection({ store, client, owner: 'worker-a', leaseTtlMs: 0, now: NOW, env: {} })
+    expect(stalled).toMatchObject({ lease: 'acquired', interrupted: true, cursorAfter: 0 })
+    expect(store.cursor).toBe(0)
+
+    // Worker B takes the feed over and projects everything from the untouched cursor.
+    const takeover = await runCoreProjection({ store, client, owner: 'worker-b', now: NOW, env: {} })
+    expect(takeover).toMatchObject({ lease: 'acquired', cursorAfter: 6, interrupted: false })
+    const projected = store.tenants.get('esnaf-1') as Record<string, unknown>
+    expect((projected.core as Record<string, unknown>).lastEventId).toBe(6)
+
+    // Worker A finally delivers an older event: the monotonic guard refuses it.
+    expect(await projectEvent(store, EVENTS[2], NOW().toISOString(), {})).toBe('stale')
+    expect(JSON.stringify(store.tenants.get('esnaf-1'))).toBe(JSON.stringify(projected))
+    expect(await store.advanceCursor({ owner: 'worker-a', afterEventId: 3, at: NOW().toISOString() })).toBe('lease_lost')
+    expect(store.cursor).toBe(6)
   })
 })

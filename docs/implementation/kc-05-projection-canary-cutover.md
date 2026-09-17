@@ -21,6 +21,8 @@ core_projection_state/feed.afterEventId  (cursor)
 
 Deterministik merge: cursor'ı geriye almak aynı duruma yakınsar (test: replay). Projection **yetki üretmez** (K04 §11): `has_entitlement` / snapshot her istekte Core'dan okunur; projection kasıtlı eskitildiğinde yetki kararı değişmez.
 
+**Eşzamanlılık (R1 blocker 5).** Her tick kendi `owner` kimliğiyle `core_projection_state/feed` üzerindeki **durable tek lease**'i alır (TTL 60 s, Firestore transaction). Canlı lease başka bir worker'daysa tick `lease: busy` döner ve feed'i hiç okumaz. Cursor ilerletme aynı transaction guard'ında hem lease sahipliğini hem monotonluğu doğrular (`advanced | stale | lease_lost`); lease kaybedilirse worker döngüyü kırar ve `interrupted: true` raporlar, cursor'ı uygulanmamış bir noktaya taşımaz. Tenant yazımı da `core.lastEventId` ile monotoniktir: eski bir worker'ın geciken yazımı `stale` olur, yeni projection ezilmez. Rapor alanları: `owner`, `lease`, `heldBy`, `stale`, `interrupted`.
+
 ## Canary cutover (`src/lib/core/canary.ts`)
 
 `CORE_CANARY_TENANTS` listesindeki esnaflar için legacy root **ticari yazımı kapanır**:
@@ -28,6 +30,8 @@ Deterministik merge: cursor'ı geriye almak aynı duruma yakınsar (test: replay
 | Yüzey | Canary davranışı |
 | --- | --- |
 | `paketSenaryosuCalistir` (İyzico callback) | `durum` / `paket` / `aktifModuller` yazılmaz (`stripLegacyCommercialFields`); `odemeId`, `yenilenmeTarihi` yazılır. Ticari durum KC-04 komutu → Core → projection ile gelir |
+| `paketSenaryosuCalistir` ücretli yan etkileri (R1 blocker 1) | `resolvePaidCapabilities` ile karara bağlanır. Canary'de callback'in Core kanıtı yoktur → yetki kümesi **boş**: VAPI sesli asistan, domain hediyesi, `ayarlar.*` ücretli bayrakları ve ücretli içerik platformları (facebook/gmb) açılmaz, yalnızca nötr karşılama mesajı gider. Forged/stale `paket=PREMIUM` hiçbir şey açmaz |
+| Ücretli `ayarlar.*` bayrakları | Projection, Core `entitlement_granted` / `entitlement_revoked` ve `subscription_changed` olaylarındaki entitlement listesinden türetir (`ayarlarPatchForEntitlementChanges`); iki yönlü (revoke → `false`) |
 | `PATCH /api/admin/esnaf/[id]` | `paket` / `durum` / `aktifModuller` içeren raw patch **409 `CORE_CANARY_WRITE_BLOCKED`** |
 | Projection | Core `subscription.status` → legacy `durum` (`trial|active→aktif`, `past_due→riskli`, `cancelled→pasif`), `durumKaynak: core-projection` |
 
@@ -35,20 +39,25 @@ Deterministik merge: cursor'ı geriye almak aynı duruma yakınsar (test: replay
 
 ## Onboarding Core'a yazar (`src/lib/core/onboardingCore.ts`)
 
-`POST /api/onboarding/complete` legacy dokümanı yazdıktan sonra, istekte Core BFF oturumu varsa (`CORE_ONBOARDING_ENABLED=true`): `ProvisionBusiness` (owner = oturumun `user_id`'si, alias = esnafId, key `kc05-onboard-<esnafId>`) + `ChangeSubscription status=trial` (`CORE_TRIAL_DAYS`, varsayılan 90; key `kc05-trial-<esnafId>`) → gölge alanlar (`coreUserId`, `coreBusinessId`, `coreOnboarding`). Core oturumu yoksa legacy akış değişmez ve KC-03 backfill sonradan bağlar. Core hatası `coreOnboarding.status = deferred` olarak kaydedilir; yarım provisioning yok, foreign alias'a bağlanma yok.
+**Mutation gate (R1 blocker 2).** İstek bir Core BFF oturumu taşıyorsa `resolveOnboardingCoreGate` **esnaf dokümanı yaratılmadan önce** çalışır ve her Core mutation'ıyla aynı kapıyı uygular: `Origin` eşleşmesi + double-submit CSRF + `standard` oturum sınıfı. Reddedilen istek `403 ORIGIN_REJECTED` / `403 CSRF_REJECTED` / `401 SESSION_CLASS_UNVERIFIED` / `403 RECOVERY_REQUIRED` döner ve **sıfır tenant, sıfır Core komutu** üretir. Oturum hiç yoksa kapı `legacy` moduna düşer: bilinçli legacy akış korunur, KC-03 backfill sonradan bağlar.
+
+**Durable saga (R1 blocker 3).** Kapıyı geçen istek için önce `core_onboarding_saga/{esnafId}` **atomik create-if-absent** ile yazılır: `slug`, `ownerUserId`, sabit `trialStart` / `trialEnd` ve sabit anahtarlar (`kc05-onboard-<hash>`, `kc05-trial-<hash>`) bu kayıtta dondurulur. Saga adımları `pending → provisioned → subscribed → completed`; her adım saklı payload'ı oynatır, dolayısıyla `ProvisionBusiness` commit olup trial yanıtı kaybolsa bile redrive **aynı anahtar ve aynı dönemle** devam eder — tek business, tek trial olayı, orijinal dönem. `ProvisionBusiness` owner eşleşmezse `OWNER_MISMATCH` ile kalıcı durur (foreign alias'a bağlanma yok). Retry edilebilir hatalar backoff ile `nextAttemptAt` alır ve `POST /api/cron/core-billing-outbox` (imzalı ServicePrincipal) açık sagaları `redriveOnboardingSagas` ile yeniden sürer; retry edilemez hatalar `status: failed` olur ve kuyruktan çıkar. Gölge alanlar (`coreUserId`, `coreBusinessId`, `coreOnboarding`) son adımda yazılır.
 
 ## Admin komutları ve plan okuma
 
-- `POST /api/admin/core/entitlement {esnafId, action grant|revoke, entitlementKey, limitValue?, validUntil?, idempotencyKey?}` — durable AdminSession + `runAuditedAdminMutation` + impersonation kısıtı; raw Firestore patch yerine `GrantEntitlement` / `RevokeEntitlement`; bağlanmamış tenant 409.
+- `POST /api/admin/core/entitlement {esnafId, action grant|revoke, entitlementKey, limitValue?, validUntil?, idempotencyKey?}` — durable AdminSession + `runAuditedAdminMutation` + impersonation kısıtı; raw Firestore patch yerine `GrantEntitlement` / `RevokeEntitlement`. **Kanonik yönlendirme (R1 blocker 4):** hedef business Core `legacy-kepenk-firestore:<esnafId>` tenant alias'ıdır; Firestore `coreBusinessId` gölgesi yalnız çapraz kontrol edilir. Alias yok → `409 BUSINESS_NOT_LINKED` (gölge tek başına asla yönlendirmez); alias ≠ gölge → `409 BUSINESS_SHADOW_MISMATCH`, `core_routing_drift` operatör kaydı ve sıfır komut.
 - `GET /api/core/plan` — CoreRequestContext'ten plan/status/dönem/entitlement'lar (`source: core`); fiyat kodda yaşamaz.
 
 ## Kanıt
 
 - `test/unit/coreProjection.test.ts`: 6 olaylık feed → index + `core.*` alanları; replay idempotent; cursor ile sayfalama; canary `durum` projection'ı; orphan kaydı + gölge fallback.
-- `test/unit/coreCanary.test.ts`: liste ayrıştırma, guard, strip, durum eşlemesi, geri alma (listeden çıkarınca yazım serbest).
-- `test/unit/coreOnboardingCore.test.ts`: provisioning + trial + gölge; flag/oturum/recovery no-op; adım bazlı hata, foreign alias reddi, rezerve slug.
-- `test/unit/coreProjectionRoutes.test.ts`: projection ServicePrincipal + flag; admin entitlement route AdminSession/raw header negatifleri, audited komut, idempotent intent, unlinked 409.
-- `trustBaseline.characterization.test.ts`: KC-05 kaynak değişmezleri (legacy senaryo/admin patch/projection/entitlement route).
+- `test/unit/coreCanary.test.ts`: liste ayrıştırma, guard, strip, durum eşlemesi, geri alma (listeden çıkarınca yazım serbest); ücretli yetki türetimi (legacy paket eşlemesi / canary'de Core kanıtı yoksa boş küme / süresi geçmiş ve revoke edilmiş entitlement açmaz / bilinmeyen key açmaz) ve `ayarlar` bayrak eşlemesi.
+- `test/unit/coreCanaryScenario.test.ts` (R1 blocker 1): canary tenant + `paket=PREMIUM` → VAPI yok, domain hediyesi yok, `ayarlar.*` yok, içerik yalnız instagram, yalnız nötr karşılama; non-canary kontrol senaryosu legacy davranışı korur.
+- `test/unit/coreOnboardingCore.test.ts`: kapı matrisi (legacy/disabled, origin-less, cross-origin, CSRF eksik, CSRF hatalı, recovery, unverified, geçerli) ve durable saga (provision+trial+gölge, kayıp trial yanıtı → redrive aynı anahtar+dönem, mükerrer submission tek saga, retry edilemez hatalar, rezerve slug).
+- `test/unit/coreOnboardingRoute.test.ts` (R1 blocker 2): route seviyesinde reddedilen isteklerde sıfır tenant + sıfır komut; oturumsuz legacy 200; kapıyı geçen istek saga ile provision.
+- `test/unit/coreProjectionRoutes.test.ts`: projection ServicePrincipal + flag + worker `owner`; admin entitlement route AdminSession/raw header negatifleri, audited komut, idempotent intent, unlinked 409, gölge-only 409 ve gölge uyuşmazlığı 409 + drift kaydı.
+- `coreProjection.test.ts` eşzamanlılık bölümü (R1 blocker 5): başka worker lease'i tutarken feed hiç okunmaz; lease'i düşmüş worker cursor'ı ilerletmez (`interrupted`), devralan worker temiz cursor'dan tamamlar, eski worker'ın geciken yazımı `stale` olur ve `advanceCursor` `lease_lost` döner.
+- `trustBaseline.characterization.test.ts`: KC-05 kaynak değişmezleri (legacy senaryo/admin patch/projection/entitlement route + ücretli yetki türetimi, onboarding kapısı ve saga, alias yönlendirme, lease/monoton guard).
 - CI: `Lint KC-05 ...` + `Typecheck KC-05 ...` (`test/tsconfig.kc-05-projection.json`).
 
 ## Açık / hosted-only (KC-05 kabulü)
@@ -57,5 +66,7 @@ Deterministik merge: cursor'ı geriye almak aynı duruma yakınsar (test: replay
 - Projection gecikmesi (`lagMs`) hosted ölçüm; "projection kasıtlı eskitildiğinde yetki değişmez" ve "canary'de Firestore root write kapalıyken tüm akışlar çalışır" tarayıcı/staging kanıtı.
 - Geri alma provası (listeden çıkar → legacy yazım geri gelir) hosted.
 - `aktifModuller` canary'de yazılmaz; modül aktivasyonunun entitlement'tan türetilmesi UI tarafında `/api/core/plan` ile yapılır (W7 kapsamı).
+- **Entitlement key sözleşmesi:** `CORE_ENTITLEMENT_CAPABILITIES` KC-01 katalogunun ötesinde anahtarlar içerir (`voice_assistant`, `custom_domain`, `ads_management`, `lead_mining`, `vip_support`, `google_review_tracking`, `morning_message`, `content_facebook`, `content_gmb`). KC-01'de bugün `booking`, `ai_booking_assistant`, `messaging_credits` tanımlı; kalan anahtarların `core.plan_entitlements` politikasına eklenmesi canary kabulünden önce Core tarafında yapılmalıdır. Eklenene kadar bu yetenekler canary'de **kapalı** kalır (bilinmeyen key hiçbir şey açmaz) — fail-closed davranış kasıtlıdır.
+- Açık operasyonel takipler (R1 non-blocking): orphan DLQ redrive/rewind prosedürü ve admin entitlement caller-stable intent key kanıtı.
 - **Hosted gerçek ve pre-cutover kanıt (Issue #10 receipt, DANIŞMA 3 kabul, 2026-09-16):** 7 tenant (`durum` aktif 2 / onboarding 5); canary kohortu için 1 onboarding tenant + fixture yeterlidir. Receipt'in dört telemetri UNKNOWN'ı (route bazlı runtime caller'lar, repo dışı doğrudan tarayıcı Firestore client'ları, aktif legacy esnafId JWT caller'ları, dış worker'lar) KC-05 canary/retirement için **pre-cutover kanıt** olarak açık kalır: canary, gizli bir yetki bağımlılığı olmadığını ispatlamadan legacy yazım kesintileri genişletilmez. Deployed Firestore rules ≠ repo rules olduğu için KC-00 hiçbir yıkıcı rules temizliği veya Firebase/Firestore retirement'ı yetkilendirmez; bu ayrı bir cutover/retirement kapısıdır.
 - Firestore koleksiyon temizliği kapsam dışı.

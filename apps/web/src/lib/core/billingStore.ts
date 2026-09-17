@@ -48,6 +48,16 @@ export async function resolveBusinessRouting(db: Firestore, client: Pick<CorePla
   return { coreBusinessId, shadowBusinessId }
 }
 
+export const CORE_ROUTING_DRIFT_COLLECTION = 'core_routing_drift'
+
+/** Operator signal when the Firestore shadow disagrees with the Core tenant alias (never auto-repaired). */
+export async function recordBusinessRoutingDrift(
+  db: Firestore,
+  input: { esnafId: string; shadowBusinessId: string; coreBusinessId: string; source: string; actor?: string | null }
+): Promise<void> {
+  await db.collection(CORE_ROUTING_DRIFT_COLLECTION).add({ ...input, actor: input.actor ?? null, recordedAt: new Date().toISOString() })
+}
+
 /** KC-03 shadow hint only; never the routing authority. */
 export async function resolveLinkedBusinessId(db: Firestore, esnafId: string): Promise<string | null> {
   const doc = await db.collection('esnaflar').doc(esnafId).get()

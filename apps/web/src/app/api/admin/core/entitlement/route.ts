@@ -2,7 +2,7 @@ import { randomUUID } from 'node:crypto'
 import { NextResponse } from 'next/server'
 import { apiGuard } from '@/lib/apiGuard'
 import { adminDb } from '@/lib/firebaseAdmin'
-import { resolveLinkedBusinessId } from '@/lib/core/billingStore'
+import { recordBusinessRoutingDrift, resolveBusinessRouting } from '@/lib/core/billingStore'
 import { coreIdempotencyKey } from '@/lib/core/coreClient'
 import { getCoreRuntime } from '@/lib/core/deps'
 import { CorePlatformError } from '@/lib/core/errors'
@@ -19,8 +19,10 @@ import {
 /**
  * KC-05: admin tools change commercial state through Core commands, never by
  * patching Firestore. Durable AdminSession + audited mutation; the tenant's
- * Core business comes from the KC-03/KC-05 shadow field; idempotency is per
- * admin intent (client-supplied key or the audit case id).
+ * Core business is the Core `legacy-kepenk-firestore` tenant alias (R1
+ * blocker 4) cross-checked against the Firestore shadow: missing alias ->
+ * unlinked, disagreement -> fail closed with a drift record; idempotency is
+ * per admin intent (client-supplied key or the audit case id).
  */
 const KEY_RE = /^[a-z0-9]+(?:_[a-z0-9]+)*$/
 
@@ -62,10 +64,16 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: 'limitValue negatif olamaz' }, { status: 400 })
     }
 
-    const businessId = await resolveLinkedBusinessId(db, esnafId)
-    if (!businessId) {
-        return NextResponse.json({ error: 'BUSINESS_NOT_LINKED', hint: 'KC-03 backfill or onboarding must link the tenant first' }, { status: 409 })
+    const routing = await resolveBusinessRouting(db, runtime.client, esnafId)
+    if (!routing.coreBusinessId) {
+        // The Firestore shadow alone never routes an entitlement command.
+        return NextResponse.json({ error: 'BUSINESS_NOT_LINKED', hint: 'KC-03 backfill or onboarding must link the tenant in Core first' }, { status: 409 })
     }
+    if (routing.shadowBusinessId && routing.shadowBusinessId.toLowerCase() !== routing.coreBusinessId.toLowerCase()) {
+        await recordBusinessRoutingDrift(db, { esnafId, shadowBusinessId: routing.shadowBusinessId, coreBusinessId: routing.coreBusinessId, source: 'admin-entitlement', actor: guard.adminSession.principalId }).catch(() => {})
+        return NextResponse.json({ error: 'BUSINESS_SHADOW_MISMATCH', hint: 'Firestore coreBusinessId disagrees with the Core tenant alias; reconcile before granting' }, { status: 409 })
+    }
+    const businessId = routing.coreBusinessId
 
     try {
         const result = await runAuditedAdminMutation(

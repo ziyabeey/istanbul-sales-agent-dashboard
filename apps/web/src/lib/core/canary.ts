@@ -73,3 +73,115 @@ export function legacyDurumForSubscriptionStatus(status: 'trial' | 'active' | 'p
   if (status === 'past_due') return 'riskli'
   return 'pasif'
 }
+
+// ---------------------------------------------------------------------------
+// R1 KC-05 blocker 1: paid capabilities are never derived from the legacy
+// `paket` value for canary tenants. The Iyzico callback runs without a Core
+// user token, so for canary tenants the scenario opens nothing on its own and
+// every paid capability arrives through the Core-event-gated projection
+// (entitlement_granted / subscription_changed events emitted by Core).
+// ---------------------------------------------------------------------------
+export const PAID_CAPABILITIES = [
+  'voice_assistant',
+  'custom_domain',
+  'ads_management',
+  'booking',
+  'lead_mining',
+  'vip_support',
+  'google_review_tracking',
+  'morning_message',
+  'content_facebook',
+  'content_gmb',
+] as const
+export type PaidCapability = (typeof PAID_CAPABILITIES)[number]
+
+const STANDART_CAPABILITIES: readonly PaidCapability[] = ['google_review_tracking', 'morning_message', 'content_facebook']
+const BUYUME_CAPABILITIES: readonly PaidCapability[] = [...STANDART_CAPABILITIES, 'ads_management', 'booking', 'voice_assistant', 'content_gmb']
+const PREMIUM_CAPABILITIES: readonly PaidCapability[] = [...BUYUME_CAPABILITIES, 'lead_mining', 'custom_domain']
+
+/** What the legacy package scenario opened per `paket` before KC-05 (legacy tenants only). */
+const LEGACY_PAKET_CAPABILITIES: Record<string, readonly PaidCapability[]> = {
+  TEMEL: [],
+  STANDART: STANDART_CAPABILITIES,
+  BUYUME: BUYUME_CAPABILITIES,
+  PREMIUM: PREMIUM_CAPABILITIES,
+  PREMIUMPLUS: [...PREMIUM_CAPABILITIES, 'vip_support'],
+}
+
+export function legacyPaketCapabilities(paket: string): ReadonlySet<PaidCapability> {
+  return new Set(LEGACY_PAKET_CAPABILITIES[paket] ?? [])
+}
+
+/** Core entitlement key -> legacy capability. Unknown keys open nothing. */
+export const CORE_ENTITLEMENT_CAPABILITIES: Record<string, readonly PaidCapability[]> = {
+  booking: ['booking'],
+  custom_domain: ['custom_domain'],
+  voice_assistant: ['voice_assistant'],
+  ads_management: ['ads_management'],
+  lead_mining: ['lead_mining'],
+  vip_support: ['vip_support'],
+  google_review_tracking: ['google_review_tracking'],
+  morning_message: ['morning_message'],
+  content_facebook: ['content_facebook'],
+  content_gmb: ['content_gmb'],
+}
+
+export interface CoreEntitlementLike {
+  entitlement_key: string
+  granted: boolean
+  valid_until?: string | null
+}
+
+export function capabilitiesFromCoreEntitlements(entitlements: readonly CoreEntitlementLike[], now: Date): ReadonlySet<PaidCapability> {
+  const out = new Set<PaidCapability>()
+  for (const entitlement of entitlements) {
+    if (!entitlement.granted) continue
+    if (entitlement.valid_until && new Date(entitlement.valid_until).getTime() <= now.getTime()) continue
+    for (const capability of CORE_ENTITLEMENT_CAPABILITIES[entitlement.entitlement_key.trim().toLowerCase()] ?? []) out.add(capability)
+  }
+  return out
+}
+
+export type PaidCapabilityResolution =
+  | { source: 'legacy'; capabilities: ReadonlySet<PaidCapability> }
+  | { source: 'core'; capabilities: ReadonlySet<PaidCapability>; evidence: 'entitlements' | 'none' }
+
+/**
+ * Legacy tenants keep the `paket` mapping. Canary tenants only get what Core
+ * entitlements grant; without Core evidence (the callback has none) the set is
+ * empty, so a forged or stale `paket=PREMIUM` opens nothing.
+ */
+export function resolvePaidCapabilities(input: {
+  esnafId: string
+  paket: string
+  coreEntitlements?: readonly CoreEntitlementLike[] | null
+  now?: Date
+  env?: EnvLike
+}): PaidCapabilityResolution {
+  const env = input.env ?? process.env
+  if (!isCoreCanaryTenant(input.esnafId, env)) return { source: 'legacy', capabilities: legacyPaketCapabilities(input.paket) }
+  if (!input.coreEntitlements) return { source: 'core', capabilities: new Set(), evidence: 'none' }
+  return { source: 'core', capabilities: capabilitiesFromCoreEntitlements(input.coreEntitlements, input.now ?? new Date()), evidence: 'entitlements' }
+}
+
+/** Legacy `ayarlar.*` flags that the projection derives from Core entitlements for canary tenants. */
+export const CAPABILITY_AYARLAR_FLAGS: Partial<Record<PaidCapability, string>> = {
+  google_review_tracking: 'googleYorumTakip',
+  morning_message: 'sabahMesaji',
+  ads_management: 'reklamYonetimi',
+  booking: 'randevuSistemi',
+  lead_mining: 'leadMadencisi',
+  custom_domain: 'customDomain',
+  vip_support: 'vipDestek',
+}
+
+export function ayarlarPatchForEntitlementChanges(changes: readonly CoreEntitlementLike[]): Record<string, boolean> {
+  const patch: Record<string, boolean> = {}
+  for (const change of changes) {
+    for (const capability of CORE_ENTITLEMENT_CAPABILITIES[change.entitlement_key.trim().toLowerCase()] ?? []) {
+      const flag = CAPABILITY_AYARLAR_FLAGS[capability]
+      if (flag) patch[flag] = change.granted
+    }
+  }
+  return patch
+}

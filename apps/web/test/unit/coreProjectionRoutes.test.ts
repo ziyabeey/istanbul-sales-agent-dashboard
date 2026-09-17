@@ -2,7 +2,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { SERVICE_AUDIENCES, SERVICE_SCOPES, issueServiceToken } from '@/lib/serviceAuth'
 import { getCoreRuntime } from '@/lib/core/deps'
 import { runCoreProjection } from '@/lib/core/projection'
-import { resolveLinkedBusinessId } from '@/lib/core/billingStore'
+import { recordBusinessRoutingDrift, resolveBusinessRouting } from '@/lib/core/billingStore'
 import { validateAdminSessionToken } from '@/lib/auth/adminSession'
 import { runAuditedAdminMutation } from '@/lib/security/auditLogger'
 import { POST as projection } from '@/app/api/cron/core-projection/route'
@@ -11,7 +11,10 @@ import { POST as entitlement } from '@/app/api/admin/core/entitlement/route'
 vi.mock('@/lib/core/deps', () => ({ getCoreRuntime: vi.fn() }))
 vi.mock('@/lib/core/projection', () => ({ runCoreProjection: vi.fn(async () => ({ fetched: 3, applied: 3, orphans: 0, cursorAfter: 3, hasMore: false, lagMs: 120 })) }))
 vi.mock('@/lib/core/projectionStore', () => ({ FirestoreCoreProjectionStore: class {} }))
-vi.mock('@/lib/core/billingStore', () => ({ resolveLinkedBusinessId: vi.fn(async () => '5b000000-0000-4000-8000-000000000001') }))
+vi.mock('@/lib/core/billingStore', () => ({
+  resolveBusinessRouting: vi.fn(async () => ({ coreBusinessId: '5b000000-0000-4000-8000-000000000001', shadowBusinessId: '5b000000-0000-4000-8000-000000000001' })),
+  recordBusinessRoutingDrift: vi.fn(async () => undefined),
+}))
 vi.mock('@/lib/impersonation', () => ({
   assertNoActiveImpersonationForRestrictedAction: vi.fn(async () => undefined),
   ImpersonationRestrictedActionError: class extends Error {},
@@ -64,7 +67,7 @@ describe('POST /api/cron/core-projection', () => {
     const response = await projection(post(url, auth, { limit: 50 }))
     expect(response.status).toBe(200)
     expect(await response.json()).toMatchObject({ ok: true, projection: { applied: 3, lagMs: 120 } })
-    expect(runCoreProjection).toHaveBeenCalledWith(expect.objectContaining({ limit: 50 }))
+    expect(runCoreProjection).toHaveBeenCalledWith(expect.objectContaining({ limit: 50, owner: expect.stringMatching(/^projection-/) }))
   })
 })
 
@@ -97,9 +100,29 @@ describe('POST /api/admin/core/entitlement', () => {
     expect((await entitlement(post(url, adminHeaders, { esnafId: 'esnaf-1', action: 'drop', entitlementKey: 'x' }))).status).toBe(400)
     expect((await entitlement(post(url, adminHeaders, { esnafId: 'esnaf-1', action: 'grant', entitlementKey: 'Bad Key' }))).status).toBe(400)
     expect((await entitlement(post(url, adminHeaders, { esnafId: 'esnaf-1', action: 'grant', entitlementKey: 'booking', limitValue: -1 }))).status).toBe(400)
-    vi.mocked(resolveLinkedBusinessId).mockResolvedValueOnce(null)
+    vi.mocked(resolveBusinessRouting).mockResolvedValueOnce({ coreBusinessId: null, shadowBusinessId: null })
     const unlinked = await entitlement(post(url, adminHeaders, { esnafId: 'esnaf-2', action: 'revoke', entitlementKey: 'booking' }))
     expect(unlinked.status).toBe(409)
+    expect(applyCommand).not.toHaveBeenCalled()
+  })
+
+  it('routes by the Core tenant alias only: a shadow-only tenant is unlinked and a disagreeing shadow fails closed with drift', async () => {
+    vi.mocked(validateAdminSessionToken).mockResolvedValue({ principalId: 'admin-1' } as never)
+    const CORE_BIZ = '5b000000-0000-4000-8000-000000000001'
+    const FOREIGN = '5b000000-0000-4000-8000-00000000000f'
+
+    // The Firestore shadow alone never routes an entitlement command.
+    vi.mocked(resolveBusinessRouting).mockResolvedValueOnce({ coreBusinessId: null, shadowBusinessId: CORE_BIZ })
+    const shadowOnly = await entitlement(post(url, adminHeaders, { esnafId: 'esnaf-3', action: 'grant', entitlementKey: 'booking' }))
+    expect(shadowOnly.status).toBe(409)
+    expect(await shadowOnly.json()).toMatchObject({ error: 'BUSINESS_NOT_LINKED' })
+
+    // A stale or cross-business shadow fails closed and raises an operator drift signal.
+    vi.mocked(resolveBusinessRouting).mockResolvedValueOnce({ coreBusinessId: CORE_BIZ, shadowBusinessId: FOREIGN })
+    const mismatch = await entitlement(post(url, adminHeaders, { esnafId: 'esnaf-4', action: 'grant', entitlementKey: 'booking' }))
+    expect(mismatch.status).toBe(409)
+    expect(await mismatch.json()).toMatchObject({ error: 'BUSINESS_SHADOW_MISMATCH' })
+    expect(recordBusinessRoutingDrift).toHaveBeenCalledWith(expect.anything(), expect.objectContaining({ esnafId: 'esnaf-4', shadowBusinessId: FOREIGN, coreBusinessId: CORE_BIZ, source: 'admin-entitlement' }))
     expect(applyCommand).not.toHaveBeenCalled()
   })
 })

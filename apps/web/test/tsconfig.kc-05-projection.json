@@ -5,9 +5,15 @@
     "incremental": false,
     "baseUrl": "..",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": [
+        "src/*"
+      ]
     },
-    "types": ["node", "vitest/globals", "next/types/global"]
+    "types": [
+      "node",
+      "vitest/globals",
+      "next/types/global"
+    ]
   },
   "include": [
     "../../../packages/security/src/servicePrincipal.ts",
@@ -19,7 +25,11 @@
     "./unit/coreProjection.test.ts",
     "./unit/coreCanary.test.ts",
     "./unit/coreOnboardingCore.test.ts",
-    "./unit/coreProjectionRoutes.test.ts"
+    "./unit/coreProjectionRoutes.test.ts",
+    "../src/app/api/onboarding/complete/route.ts",
+    "../src/utils/paketSenaryosu.ts",
+    "./unit/coreCanaryScenario.test.ts",
+    "./unit/coreOnboardingRoute.test.ts"
   ],
   "exclude": [
     "../node_modules",

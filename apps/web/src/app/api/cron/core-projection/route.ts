@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto'
 import { NextResponse } from 'next/server'
 import { apiGuard } from '@/lib/apiGuard'
 import { adminDb } from '@/lib/firebaseAdmin'
@@ -14,6 +15,8 @@ export function isCoreProjectionEnabled(env: NodeJS.ProcessEnv = process.env): b
 /**
  * KC-05: Core -> Firestore projection tick. Signed ServicePrincipal only;
  * reports latency so the gap between Core and the read model is measured.
+ * Each tick takes the durable feed lease under its own worker id, so an
+ * overlapping tick reports `lease: busy` instead of racing (R1 blocker 5).
  */
 export async function POST(request: Request) {
   const guard = await apiGuard(request, {
@@ -38,6 +41,7 @@ export async function POST(request: Request) {
     store: new FirestoreCoreProjectionStore(adminDb),
     client: runtime.client,
     limit: Number.isInteger(body.limit) ? Number(body.limit) : 100,
+    owner: typeof body.owner === 'string' && /^[A-Za-z0-9._:-]{4,64}$/.test(body.owner) ? body.owner : `projection-${randomUUID()}`,
   })
   return NextResponse.json({ ok: true, projection: report })
 }
