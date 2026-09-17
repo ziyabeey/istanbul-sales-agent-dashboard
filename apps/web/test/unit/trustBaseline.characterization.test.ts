@@ -330,6 +330,20 @@ describe('Pilot-0 trust baseline characterization', () => {
     expect(CURRENT_PRINCIPAL_SOURCES.coreBff[0]).toContain('browser never sees tokens')
   })
 
+  it('KC-04: the payment callback awaits the durable Core billing outbox and routes by the Core tenant alias', () => {
+    const callback = readSource('src/app/api/payment/callback/route.ts')
+    const billing = readSource('src/lib/core/billing.ts')
+    const hook = readSource('src/lib/core/billingHook.ts')
+    expect(callback).toContain('const coreBilling = await recordVerifiedIyzicoPayment({')
+    expect(callback).not.toContain('void recordVerifiedIyzicoPayment(')
+    expect(callback).toContain("CORE_BILLING_OUTBOX_PERSIST_FAILED")
+    expect(hook).toContain('await store.create(newOutboxRecord(event')
+    expect(hook).toContain("status: 'persist_failed'")
+    expect(billing).toContain('resolveBusinessRouting: (esnafId: string) => Promise<BusinessRouting>')
+    expect(billing).toContain("lastError: 'BUSINESS_SHADOW_MISMATCH'")
+    expect(billing).toContain("const created = await deps.store.create(fresh)")
+  })
+
   it('KNOWN-RISK: unmigrated cron routes still rely on the shared CRON_SECRET path', () => {
     const source = readSource('src/lib/apiGuard.ts')
     expect(source).toContain('requireCronSecret?: boolean')
