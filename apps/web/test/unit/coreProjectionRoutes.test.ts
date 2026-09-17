@@ -38,21 +38,22 @@ function post(url: string, headers: Record<string, string>, body: unknown = {}) 
   return new Request(url, { method: 'POST', headers: { 'content-type': 'application/json', ...headers }, body: JSON.stringify(body) })
 }
 
-const applyCommand = vi.fn(async () => ({ business_id: '5b000000-0000-4000-8000-000000000001', entitlement_key: 'custom_domain', granted: true, event_id: 9 }))
+const CORE_BIZ = '5b000000-0000-4000-8000-000000000001'
+const applyCommand = vi.fn(async () => ({ business_id: CORE_BIZ, entitlement_key: 'custom_domain', granted: true, event_id: 9 }))
 
 beforeEach(() => {
+  vi.clearAllMocks()
   vi.useFakeTimers()
   vi.setSystemTime(new Date('2026-09-16T07:00:30.000Z'))
   process.env.SERVICE_AUTH_SECRET = 'kc05-service-auth-secret-0123456789abcdef0123456789abcdef'
   process.env.CORE_PROJECTION_ENABLED = 'true'
   vi.mocked(getCoreRuntime).mockReturnValue({ client: { applyCommand } } as never)
-  applyCommand.mockClear()
+  vi.mocked(resolveBusinessRouting).mockResolvedValue({ coreBusinessId: CORE_BIZ, shadowBusinessId: CORE_BIZ })
 })
 
 afterEach(() => {
   vi.useRealTimers()
   delete process.env.CORE_PROJECTION_ENABLED
-  vi.mocked(runCoreProjection).mockClear()
 })
 
 describe('POST /api/cron/core-projection', () => {
@@ -90,14 +91,14 @@ describe('POST /api/admin/core/entitlement', () => {
     expect(applyCommand).not.toHaveBeenCalled()
   })
 
-  it('issues an audited Core command instead of patching Firestore', async () => {
+  it('issues an audited Core command instead of patching Firestore and reuses the same Core key on retry', async () => {
     vi.mocked(validateAdminSessionToken).mockResolvedValue({ principalId: 'admin-1' } as never)
     const response = await entitlement(post(url, adminHeaders, { esnafId: 'esnaf-1', action: 'grant', entitlementKey: 'Custom_Domain', validUntil: '2027-01-01T00:00:00Z', idempotencyKey: 'ticket-42' }))
     expect(response.status).toBe(200)
     expect(runAuditedAdminMutation).toHaveBeenCalledWith(expect.objectContaining({ actorAdminId: 'admin-1', targetType: 'business', targetId: 'esnaf-1', action: 'ESNAF_UPDATED', metadata: expect.objectContaining({ intentKey: 'ticket-42' }) }), expect.anything(), expect.any(Function))
     const [input] = applyCommand.mock.calls[0] as unknown as [{ idempotencyKey: string; command: string; payload: Record<string, unknown> }]
     expect(input.command).toBe('GrantEntitlement')
-    expect(input.payload).toEqual({ business_id: '5b000000-0000-4000-8000-000000000001', entitlement_key: 'custom_domain', limit_value: null, valid_until: '2027-01-01T00:00:00Z' })
+    expect(input.payload).toEqual({ business_id: CORE_BIZ, entitlement_key: 'custom_domain', limit_value: null, valid_until: '2027-01-01T00:00:00Z' })
     const again = await entitlement(post(url, adminHeaders, { esnafId: 'esnaf-1', action: 'grant', entitlementKey: 'custom_domain', validUntil: '2027-01-01T00:00:00Z', idempotencyKey: 'ticket-42' }))
     expect(again.status).toBe(200)
     const [second] = applyCommand.mock.calls[1] as unknown as [{ idempotencyKey: string }]
@@ -117,7 +118,6 @@ describe('POST /api/admin/core/entitlement', () => {
 
   it('routes by the Core tenant alias only: a shadow-only tenant is unlinked and a disagreeing shadow fails closed with drift', async () => {
     vi.mocked(validateAdminSessionToken).mockResolvedValue({ principalId: 'admin-1' } as never)
-    const CORE_BIZ = '5b000000-0000-4000-8000-000000000001'
     const FOREIGN = '5b000000-0000-4000-8000-00000000000f'
 
     // The Firestore shadow alone never routes an entitlement command.
