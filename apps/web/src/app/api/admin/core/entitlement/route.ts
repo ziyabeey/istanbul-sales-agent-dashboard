@@ -1,4 +1,3 @@
-import { randomUUID } from 'node:crypto'
 import { NextResponse } from 'next/server'
 import { apiGuard } from '@/lib/apiGuard'
 import { adminDb } from '@/lib/firebaseAdmin'
@@ -21,10 +20,13 @@ import {
  * patching Firestore. Durable AdminSession + audited mutation; the tenant's
  * Core business is the Core `legacy-kepenk-firestore` tenant alias (R1
  * blocker 4) cross-checked against the Firestore shadow: missing alias ->
- * unlinked, disagreement -> fail closed with a drift record; idempotency is
- * per admin intent (client-supplied key or the audit case id).
+ * unlinked, disagreement -> fail closed with a drift record. Every caller
+ * must provide a stable idempotency key for the operator intent so a lost HTTP
+ * response can be retried without appending another entitlement event.
  */
 const KEY_RE = /^[a-z0-9]+(?:_[a-z0-9]+)*$/
+const MIN_INTENT_KEY_LENGTH = 8
+const MAX_INTENT_KEY_LENGTH = 128
 
 function mutationError(error: unknown): NextResponse {
     if (error instanceof ImpersonationRestrictedActionError) {
@@ -55,10 +57,16 @@ export async function POST(request: Request) {
     const entitlementKey = String(body.entitlementKey ?? '').trim().toLowerCase()
     const limitValue = body.limitValue === undefined || body.limitValue === null ? null : Number(body.limitValue)
     const validUntil = typeof body.validUntil === 'string' && body.validUntil ? body.validUntil : null
-    const intentKey = typeof body.idempotencyKey === 'string' && body.idempotencyKey.trim() ? body.idempotencyKey.trim() : randomUUID()
+    const intentKey = typeof body.idempotencyKey === 'string' ? body.idempotencyKey.trim() : ''
 
     if (!esnafId || !action || !KEY_RE.test(entitlementKey) || entitlementKey.length > 64) {
         return NextResponse.json({ error: 'esnafId, action (grant|revoke) ve entitlementKey gerekli' }, { status: 400 })
+    }
+    if (intentKey.length < MIN_INTENT_KEY_LENGTH || intentKey.length > MAX_INTENT_KEY_LENGTH) {
+        return NextResponse.json(
+            { error: 'IDEMPOTENCY_KEY_REQUIRED', hint: `idempotencyKey ${MIN_INTENT_KEY_LENGTH}-${MAX_INTENT_KEY_LENGTH} karakterlik sabit bir operator intent anahtari olmali` },
+            { status: 400 }
+        )
     }
     if (limitValue !== null && (!Number.isInteger(limitValue) || limitValue < 0)) {
         return NextResponse.json({ error: 'limitValue negatif olamaz' }, { status: 400 })
@@ -82,7 +90,7 @@ export async function POST(request: Request) {
                 targetType: 'business',
                 targetId: esnafId,
                 action: 'ESNAF_UPDATED',
-                metadata: { coreCommand: action === 'grant' ? 'GrantEntitlement' : 'RevokeEntitlement', entitlementKey, businessId },
+                metadata: { coreCommand: action === 'grant' ? 'GrantEntitlement' : 'RevokeEntitlement', entitlementKey, businessId, intentKey },
             },
             request,
             async () => {
