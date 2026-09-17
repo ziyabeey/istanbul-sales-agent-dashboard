@@ -13,6 +13,7 @@
     "../src/lib/core/*.ts",
     "../src/lib/credentials/credentialResolver.ts",
     "../src/app/api/core/auth/**/route.ts",
+    "../src/app/parola-yenile/page.tsx",
     "./unit/coreClient.test.ts",
     "./unit/coreJwtVerifier.test.ts",
     "./unit/coreBffSession.test.ts",
