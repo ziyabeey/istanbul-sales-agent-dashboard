@@ -1,0 +1,19 @@
+# Depot CI Migration
+# Source: .github/workflows/lighthouse-pr.yml
+#
+# Changes made:
+# - Changed GitHub runs-on labels to their Depot equivalents
+
+name: Lighthouse PR Gate
+on:
+  pull_request:
+    branches: [main]
+jobs:
+  lighthouse:
+    runs-on: depot-ubuntu-latest # was: ubuntu-latest. Mapped standard GitHub runner to Depot equivalent.
+    steps:
+      - uses: actions/checkout@v4
+      - uses: treosh/lighthouse-ci-action@v11
+        with:
+          configPath: ./lighthouserc.json
+          uploadArtifacts: true
