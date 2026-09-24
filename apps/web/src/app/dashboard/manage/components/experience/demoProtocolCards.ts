@@ -1,47 +1,37 @@
 import type { ActionCardProtocol } from '@kepenk/action-card-schema'
+import { randevuEventToActionCard } from '@/lib/experience/randevuEventAdapter'
+
+const randevuCancellationCard = randevuEventToActionCard({
+  businessId: '41000000-0000-4000-8000-000000000001',
+  appointmentId: '42000000-0000-4000-8000-000000000001',
+  event: {
+    id: '43000000-0000-4000-8000-000000000001',
+    event_type: 'cancelled',
+    actor_user_id: null,
+    from_status: 'confirmed',
+    to_status: 'cancelled',
+    payload: {
+      groupId: '44000000-0000-4000-8000-000000000001',
+      groupVersion: 3,
+      lineOrdinal: 1,
+      reason: 'Demo canonical cancellation',
+    },
+    created_at: '2026-09-24T12:00:00+03:00',
+  },
+  reservation: {
+    startsAt: '2026-09-24T19:30:00+03:00',
+    endsAt: '2026-09-24T21:00:00+03:00',
+    timezone: 'Europe/Istanbul',
+    serviceName: 'Saç kesimi',
+  },
+})
+
+if (!randevuCancellationCard) {
+  throw new Error('K4 canonical Randevu demo fixture is invalid')
+}
 
 export const DEMO_ACTION_CARDS: ActionCardProtocol[] = [
-  {
-    protocolVersion: '1',
-    cardId: 'demo-booking-cancelled',
-    businessId: 'demo-business',
-    dedupeKey: 'booking:appointment-1530:cancelled',
-    revision: 2,
-    source: {
-      domain: 'booking',
-      eventRef: { id: 'evt-booking-1', type: 'appointment.cancelled' },
-      occurredAt: '2026-09-24T15:00:00+03:00',
-      subjectRefs: [{ type: 'appointment', id: 'appointment-1530' }],
-      evidenceRefs: [{ id: 'booking-row-1530', kind: 'booking', label: '15:30 rezervasyon kaydı' }],
-    },
-    attention: {
-      urgency: 'high',
-      importance: 82,
-      riskClass: 'low',
-      deadlineAt: '2026-09-24T16:00:00+03:00',
-    },
-    presentation: {
-      title: '15:30 randevusu iptal edildi.',
-      context: '90 dakikalık boşluk oluştu. Bekleme listesindeki 3 müşteri bu aralık için uygun görünüyor.',
-      reason: 'İptal edilen rezervasyon 15:30–17:00 aralığını boşalttı.',
-      tone: 'warning',
-    },
-    actions: [
-      {
-        actionId: 'fill-gap',
-        label: 'Boşluğu doldur',
-        mode: 'command',
-        capability: { name: 'booking.waitlist.offer', permission: 'booking.write' },
-        idempotencyKey: 'demo-booking-cancelled:fill-gap',
-        primary: true,
-        requiresHumanConfirmation: true,
-      },
-      { actionId: 'snooze', label: 'Daha sonra', mode: 'snooze', primary: false, requiresHumanConfirmation: false },
-      { actionId: 'dismiss', label: 'Kapat', mode: 'dismiss', primary: false, requiresHumanConfirmation: false },
-    ],
-    suppressionGroup: 'booking-capacity',
-    state: 'new',
-  },
+  randevuCancellationCard,
   {
     protocolVersion: '1',
     cardId: 'demo-payment-attention',
