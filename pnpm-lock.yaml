@@ -467,6 +467,9 @@ importers:
 
   packages/ui:
     dependencies:
+      '@kepenk/action-card-schema':
+        specifier: workspace:*
+        version: link:../action-card-schema
       framer-motion:
         specifier: ^12.35.2
         version: 12.35.2(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
