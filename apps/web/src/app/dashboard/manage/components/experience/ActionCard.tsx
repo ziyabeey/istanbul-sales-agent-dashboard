@@ -1,91 +1,70 @@
 'use client'
 
-export type ActionCardAttention = 'neutral' | 'info' | 'warning' | 'critical' | 'success'
-export type ActionCardState = 'new' | 'seen' | 'snoozed' | 'acted' | 'dismissed'
+import type { ActionCardAction, ActionCardModel } from '@kepenk/ui'
 
-export interface ActionCardAction {
-    label: string
-    onClick: () => void
+const DOMAIN_LABELS: Record<ActionCardModel['source']['domain'], string> = {
+    booking: 'Randevu',
+    finance: 'Finance',
+    inventory: 'Tedarik',
+    property: 'Emlak',
+    crm: 'CRM',
+    commerce: 'Commerce',
+    marketing: 'Social',
+    system: 'Kepenk',
+}
+
+function cssAttention(attention: ActionCardModel['attention']) {
+    return attention === 'positive' ? 'success' : attention
 }
 
 export interface ActionCardProps {
-    id: string
-    domain: string
-    sourceEvent: string
-    title: string
-    context: string
-    attention?: ActionCardAttention
-    state?: ActionCardState
-    reason?: string
-    deadline?: string
-    primaryAction: ActionCardAction
-    secondaryAction?: ActionCardAction
-    onDismiss?: () => void
-    onSnooze?: () => void
+    card: ActionCardModel
+    onAction: (card: ActionCardModel, action: ActionCardAction) => void
 }
 
-export default function ActionCard({
-    id,
-    domain,
-    sourceEvent,
-    title,
-    context,
-    attention = 'neutral',
-    state = 'new',
-    reason,
-    deadline,
-    primaryAction,
-    secondaryAction,
-    onDismiss,
-    onSnooze,
-}: ActionCardProps) {
+export default function ActionCard({ card, onAction }: ActionCardProps) {
+    const evidenceLabels = card.evidence?.map(item => item.label || item.id).filter(Boolean) ?? []
+
     return (
         <article
             className="kpnk-action-card"
-            data-attention={attention}
-            data-state={state}
-            aria-labelledby={`${id}-title`}
+            data-attention={cssAttention(card.attention)}
+            data-state={card.state}
+            aria-labelledby={`${card.id}-title`}
         >
             <div className="kpnk-action-meta">
-                <span className="kpnk-action-domain">{domain}</span>
-                <span>{sourceEvent}</span>
-                {deadline ? <><span aria-hidden="true">·</span><span>{deadline}</span></> : null}
+                <span className="kpnk-action-domain">{DOMAIN_LABELS[card.source.domain]}</span>
+                {card.source.eventId ? <span>{card.source.eventId}</span> : null}
+                {card.deadlineAt ? (
+                    <>
+                        <span aria-hidden="true">·</span>
+                        <span>Son zaman {card.deadlineAt}</span>
+                    </>
+                ) : null}
             </div>
 
-            <h2 id={`${id}-title`} className="kpnk-action-title">{title}</h2>
-            <p className="kpnk-action-context">{context}</p>
+            <h2 id={`${card.id}-title`} className="kpnk-action-title">{card.title}</h2>
+            {card.context ? <p className="kpnk-action-context">{card.context}</p> : null}
 
-            {reason ? (
+            {(card.reason || evidenceLabels.length > 0) ? (
                 <details className="kpnk-action-reason">
                     <summary>Neden bunu görüyorum?</summary>
-                    <p>{reason}</p>
+                    {card.reason ? <p>{card.reason}</p> : null}
+                    {evidenceLabels.length > 0 ? <p>Kanıt: {evidenceLabels.join(' · ')}</p> : null}
                 </details>
             ) : null}
 
             <div className="kpnk-action-row">
-                <button type="button" className="kpnk-action-btn primary" onClick={primaryAction.onClick}>
-                    {primaryAction.label}
-                </button>
-
-                {secondaryAction ? (
-                    <button type="button" className="kpnk-action-btn" onClick={secondaryAction.onClick}>
-                        {secondaryAction.label}
+                {card.actions.map(action => (
+                    <button
+                        key={action.id}
+                        type="button"
+                        className={`kpnk-action-btn${action.primary ? ' primary' : action.kind === 'dismiss' || action.kind === 'snooze' ? ' ghost' : ''}`}
+                        onClick={() => onAction(card, action)}
+                    >
+                        {action.label}
                     </button>
-                ) : null}
-
-                <span className="kpnk-action-spacer" />
-
-                {onSnooze ? (
-                    <button type="button" className="kpnk-action-btn ghost" onClick={onSnooze}>
-                        Daha sonra
-                    </button>
-                ) : null}
-
-                {onDismiss ? (
-                    <button type="button" className="kpnk-action-btn ghost" onClick={onDismiss} aria-label={`${title} kartını kapat`}>
-                        Kapat
-                    </button>
-                ) : null}
+                ))}
             </div>
         </article>
     )
