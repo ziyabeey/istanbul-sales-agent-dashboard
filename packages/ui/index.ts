@@ -1,5 +1,6 @@
 export {
   ACTION_CARD_DEMOS,
+  actionCardProtocolToModel,
 } from './action-card'
 
 export type {
