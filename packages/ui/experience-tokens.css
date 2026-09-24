@@ -1,0 +1,55 @@
+/*
+ * Kepenk Experience semantic tokens.
+ *
+ * These are aliases over the existing Kepenk design language. Components
+ * should prefer these semantic names so the underlying visual identity can
+ * evolve without rewriting interaction contracts.
+ */
+
+:root {
+  --kpnk-x-canvas: var(--kpnk-bg, #ffffff);
+  --kpnk-x-surface: var(--kpnk-card-bg, #ffffff);
+  --kpnk-x-surface-subtle: var(--kpnk-bg-secondary, #f8f8f8);
+
+  --kpnk-x-text: var(--kpnk-text, #000000);
+  --kpnk-x-text-muted: var(--kpnk-text-secondary, #868686);
+  --kpnk-x-border: var(--kpnk-border, #e8e8e8);
+
+  --kpnk-x-accent: var(--kpnk-primary, #dc4620);
+  --kpnk-x-accent-hover: var(--kpnk-primary-hover, #c43e1c);
+  --kpnk-x-focus: var(--kpnk-primary, #dc4620);
+
+  --kpnk-x-attention-neutral: #6b7280;
+  --kpnk-x-attention-info: #2563eb;
+  --kpnk-x-attention-positive: var(--kpnk-success, #20c368);
+  --kpnk-x-attention-warning: var(--kpnk-warning, #f5a623);
+  --kpnk-x-attention-critical: var(--kpnk-danger, #df1c1c);
+
+  --kpnk-x-radius-card: var(--kpnk-card-radius, 10px);
+  --kpnk-x-radius-action: 999px;
+  --kpnk-x-shadow-card: var(--kpnk-card-shadow, 0 1px 3px rgba(0,0,0,0.08));
+
+  --kpnk-x-space-1: 4px;
+  --kpnk-x-space-2: 8px;
+  --kpnk-x-space-3: 12px;
+  --kpnk-x-space-4: 16px;
+  --kpnk-x-space-5: 24px;
+  --kpnk-x-space-6: 32px;
+
+  --kpnk-x-motion-instant: 80ms;
+  --kpnk-x-motion-fast: 140ms;
+  --kpnk-x-motion-base: 220ms;
+  --kpnk-x-motion-slow: 360ms;
+
+  --kpnk-x-touch-target: 44px;
+  --kpnk-x-feed-max: 760px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --kpnk-x-motion-instant: 0ms;
+    --kpnk-x-motion-fast: 0ms;
+    --kpnk-x-motion-base: 0ms;
+    --kpnk-x-motion-slow: 0ms;
+  }
+}
