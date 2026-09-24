@@ -69,6 +69,7 @@ export const ActionCardPresentationSchema = z.object({
   title: z.string().min(1).max(120),
   context: z.string().max(400).optional(),
   reason: z.string().max(400).optional(),
+  tone: z.enum(['neutral', 'info', 'positive', 'warning', 'critical']).optional(),
 })
 export type ActionCardPresentation = z.infer<typeof ActionCardPresentationSchema>
 
