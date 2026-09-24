@@ -21,11 +21,11 @@ import {
 
 const actionCards = [
   {
-    label: "Randevu",
+    label: "Randevu · örnek",
     tone: "warning",
     title: "15:30 randevusu iptal edildi.",
-    body: "90 dakikalık boşluk oluştu. Bekleme listesindeki 3 müşteri bu aralık için uygun görünüyor.",
-    primary: "Boşluğu doldur",
+    body: "Takvimdeki iptal olayı için bir aksiyon kartı oluştu. Canlı komutlar yalnız doğrulanmış Randevu yetenekleriyle açılır.",
+    primary: "Takvim etkisini gör",
     secondary: "Daha sonra",
   },
   {
