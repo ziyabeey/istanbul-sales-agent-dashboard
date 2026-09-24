@@ -9,30 +9,30 @@ import Analytics from '@/components/Analytics'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'KPNK — Türk Esnafı İçin Yapay Zeka',
-  description: 'Elektrikçiden kuaföre, restoranından avukata — her esnaf için AI ile üretilmiş web sitesi, otomatik sosyal medya içeriği ve müşteri yönetimi.',
-  keywords: 'esnaf dijital varlık, türk küçük işletme, yapay zeka web sitesi, esnaf instagram, kpnk ai',
+  title: 'Kepenk.ai — Randevu ve İşletme Otomasyonu',
+  description: 'Kepenk.ai ile randevularınızı, müşterilerinizi ve işletme operasyonlarınızı tek yerden yönetin.',
+  keywords: 'kepenk ai, online randevu, randevu yönetimi, müşteri yönetimi, işletme otomasyonu, küçük işletme yazılımı',
   authors: [{ name: 'yzt.digital' }],
   metadataBase: new URL('https://kepenk.ai'),
   openGraph: {
-    title: 'KPNK — Esnafın Dijital Ortağı',
-    description: 'AI ile dakikalar içinde web sitesi, her sabah içerik, 7/24 müşteri otomasyonu.',
+    title: 'Kepenk.ai — İşletmen açıkken de kapalıyken de randevular çalışsın',
+    description: 'Randevu, müşteri yönetimi ve işletme otomasyonu tek yerde.',
     url: 'https://kepenk.ai',
-    siteName: 'KPNK',
+    siteName: 'Kepenk.ai',
     locale: 'tr_TR',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'KPNK — Türk Esnafı İçin Yapay Zeka',
-    description: 'AI ile dakikalar içinde web sitesi, her sabah içerik, 7/24 müşteri otomasyonu.',
+    title: 'Kepenk.ai — Randevu ve İşletme Otomasyonu',
+    description: 'Randevu, müşteri yönetimi ve işletme otomasyonu tek yerde.',
   },
   robots: { index: true, follow: true },
   manifest: '/manifest.json',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
-    title: 'KPNK',
+    title: 'Kepenk.ai',
   },
 }
 
@@ -73,7 +73,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "SoftwareApplication",
-              "name": "KPNK",
+              "name": "Kepenk.ai",
               "applicationCategory": "BusinessApplication",
               "operatingSystem": "Web",
               "offers": {

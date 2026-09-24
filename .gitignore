@@ -49,3 +49,12 @@ next-env.d.ts
 .turbo
 **/.next
 apps/web/.next/
+
+
+# generated / local runtime artifacts
+*.log
+*.tmp
+tmp_error.html
+**/playwright-report/
+**/test-results/
+**/coverage/
