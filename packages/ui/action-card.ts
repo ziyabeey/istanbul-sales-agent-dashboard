@@ -1,3 +1,5 @@
+import type { ActionCardProtocol } from '@kepenk/action-card-schema'
+
 export type ActionCardDomain =
   | 'booking'
   | 'finance'
@@ -110,3 +112,39 @@ export const ACTION_CARD_DEMOS: ActionCardModel[] = [
     ],
   },
 ]
+
+
+function deriveAttention(card: ActionCardProtocol): ActionCardAttention {
+  if (card.presentation.tone) return card.presentation.tone
+  if (card.attention.riskClass === 'critical' || card.attention.urgency === 'immediate') return 'critical'
+  if (card.attention.riskClass === 'high' || card.attention.urgency === 'high') return 'warning'
+  if (card.attention.importance >= 60) return 'info'
+  return 'neutral'
+}
+
+export function actionCardProtocolToModel(card: ActionCardProtocol): ActionCardModel {
+  return {
+    id: card.cardId,
+    source: {
+      domain: card.source.domain,
+      eventId: card.source.eventRef.type,
+      occurredAt: card.source.occurredAt,
+    },
+    attention: deriveAttention(card),
+    state: card.state,
+    title: card.presentation.title,
+    context: card.presentation.context,
+    reason: card.presentation.reason,
+    evidence: card.source.evidenceRefs.map((evidence) => ({
+      id: evidence.id,
+      label: evidence.label,
+    })),
+    actions: card.actions.map((action) => ({
+      id: action.actionId,
+      label: action.label,
+      kind: action.mode,
+      primary: action.primary,
+      requiresConfirmation: action.requiresHumanConfirmation,
+    })),
+  }
+}
