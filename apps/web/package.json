@@ -23,6 +23,7 @@
     "@google/adk": "^0.3.0",
     "@google/generative-ai": "^0.24.1",
     "@kepenk/agents": "workspace:*",
+    "@kepenk/action-card-schema": "workspace:*",
     "@kepenk/booking-schema": "workspace:*",
     "@kepenk/cloudflare": "workspace:*",
     "@kepenk/config": "workspace:*",
