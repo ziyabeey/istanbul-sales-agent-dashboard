@@ -103,6 +103,56 @@ describe('Action Card protocol', () => {
     })).toEqual({ ok: false, reason: 'unauthorized_capability' })
   })
 
+
+
+  it('rejects a snoozed card before command execution', () => {
+    expect(evaluateActionCardCommand({
+      card: bookingCard({
+        state: 'snoozed',
+        snoozeUntil: '2026-09-24T17:30:00+03:00',
+      }),
+      actionId: 'fill-gap',
+      allowedCapabilities: ['booking.waitlist.offer'],
+      now: new Date('2026-09-24T17:00:00+03:00'),
+    })).toEqual({ ok: false, reason: 'snoozed' })
+  })
+
+  it('rejects a card before notBefore', () => {
+    expect(evaluateActionCardCommand({
+      card: bookingCard({
+        notBefore: '2026-09-24T17:30:00+03:00',
+      }),
+      actionId: 'fill-gap',
+      allowedCapabilities: ['booking.waitlist.offer'],
+      now: new Date('2026-09-24T17:00:00+03:00'),
+    })).toEqual({ ok: false, reason: 'not_yet_active' })
+  })
+
+  it('rejects a command when its required permission is absent', () => {
+    const card = bookingCard({
+      actions: [{
+        actionId: 'fill-gap',
+        label: 'Boşluğu doldur',
+        mode: 'command',
+        capability: {
+          name: 'booking.waitlist.offer',
+          permission: 'booking.write',
+        },
+        idempotencyKey: 'card-1:fill-gap',
+        primary: true,
+        requiresHumanConfirmation: true,
+      }],
+    })
+
+    expect(evaluateActionCardCommand({
+      card,
+      actionId: 'fill-gap',
+      allowedCapabilities: ['booking.waitlist.offer'],
+      allowedPermissions: ['booking.read'],
+      now: new Date('2026-09-24T17:00:00+03:00'),
+    })).toEqual({ ok: false, reason: 'unauthorized_permission' })
+  })
+
   it('detects duplicate canonical dedupe keys', () => {
     const first = bookingCard()
     const second = bookingCard({ cardId: 'card-2', revision: 2 })
