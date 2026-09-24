@@ -9,14 +9,14 @@ import Analytics from '@/components/Analytics'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Kepenk.ai — Randevu ve İşletme Otomasyonu',
-  description: 'Kepenk.ai ile randevularınızı, müşterilerinizi ve işletme operasyonlarınızı tek yerden yönetin.',
+  title: 'Kepenk.ai — Bırak iş sana gelsin',
+  description: 'Kepenk işletmendeki olayları izler ve yapılması gereken işi doğru anda önüne getirir. İlk production ürünümüz Randevu.',
   keywords: 'kepenk ai, online randevu, randevu yönetimi, müşteri yönetimi, işletme otomasyonu, küçük işletme yazılımı',
   authors: [{ name: 'yzt.digital' }],
   metadataBase: new URL('https://kepenk.ai'),
   openGraph: {
-    title: 'Kepenk.ai — İşletmen açıkken de kapalıyken de randevular çalışsın',
-    description: 'Randevu, müşteri yönetimi ve işletme otomasyonu tek yerde.',
+    title: 'Kepenk.ai — Bırak iş sana gelsin',
+    description: 'İşletmendeki olaylardan doğru aksiyona. İlk production ürünümüz Randevu.',
     url: 'https://kepenk.ai',
     siteName: 'Kepenk.ai',
     locale: 'tr_TR',
@@ -24,8 +24,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Kepenk.ai — Randevu ve İşletme Otomasyonu',
-    description: 'Randevu, müşteri yönetimi ve işletme otomasyonu tek yerde.',
+    title: 'Kepenk.ai — Bırak iş sana gelsin',
+    description: 'İşletmendeki olaylardan doğru aksiyona. İlk production ürünümüz Randevu.',
   },
   robots: { index: true, follow: true },
   manifest: '/manifest.json',
