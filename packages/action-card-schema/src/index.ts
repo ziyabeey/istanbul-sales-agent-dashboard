@@ -149,12 +149,13 @@ export type ActionCardProtocol = z.infer<typeof ActionCardProtocolSchema>
 
 export type ActionExecutionGateResult =
   | { ok: true; action: Extract<ActionCardAction, { mode: 'command' }> }
-  | { ok: false; reason: 'invalid_card' | 'expired' | 'inactive' | 'action_not_found' | 'not_command' | 'unauthorized_capability' }
+  | { ok: false; reason: 'invalid_card' | 'expired' | 'not_yet_active' | 'snoozed' | 'inactive' | 'action_not_found' | 'not_command' | 'unauthorized_capability' | 'unauthorized_permission' }
 
 export function evaluateActionCardCommand(input: {
   card: unknown
   actionId: string
   allowedCapabilities: Iterable<string>
+  allowedPermissions?: Iterable<string>
   now?: Date
 }): ActionExecutionGateResult {
   const parsed = ActionCardProtocolSchema.safeParse(input.card)
@@ -167,7 +168,18 @@ export function evaluateActionCardCommand(input: {
     return { ok: false, reason: 'expired' }
   }
 
-  if (['resolved', 'dismissed', 'expired', 'failed'].includes(card.state)) {
+  if (card.notBefore && Date.parse(card.notBefore) > now.getTime()) {
+    return { ok: false, reason: 'not_yet_active' }
+  }
+
+  if (
+    card.state === 'snoozed' ||
+    (card.snoozeUntil && Date.parse(card.snoozeUntil) > now.getTime())
+  ) {
+    return { ok: false, reason: 'snoozed' }
+  }
+
+  if (['executing', 'resolved', 'dismissed', 'expired', 'failed'].includes(card.state)) {
     return { ok: false, reason: 'inactive' }
   }
 
@@ -178,6 +190,13 @@ export function evaluateActionCardCommand(input: {
   const allowed = new Set(input.allowedCapabilities)
   if (!allowed.has(action.capability.name)) {
     return { ok: false, reason: 'unauthorized_capability' }
+  }
+
+  if (action.capability.permission) {
+    const allowedPermissions = new Set(input.allowedPermissions ?? [])
+    if (!allowedPermissions.has(action.capability.permission)) {
+      return { ok: false, reason: 'unauthorized_permission' }
+    }
   }
 
   return { ok: true, action }
