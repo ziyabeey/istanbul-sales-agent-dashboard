@@ -80,4 +80,26 @@ describe('K2 attention policy', () => {
     expect(plan.visible.map(c => c.cardId)).toEqual(['a', 'b'])
     expect(plan.deferred.map(c => c.cardId)).toEqual(['c'])
   })
+  it('returns a quiet plan for an empty input', () => {
+    const plan = planActionCardAttention([], { now })
+    expect(plan.visible).toEqual([])
+    expect(plan.deferred).toEqual([])
+    expect(plan.suppressed).toEqual([])
+  })
+
+  it('ranks a near deadline ahead when other weights are equal', () => {
+    const later = card({
+      cardId: 'later',
+      dedupeKey: 'later',
+      attention: { urgency: 'normal', importance: 50, riskClass: 'low', deadlineAt: '2026-09-26T12:00:00+03:00' },
+    })
+    const soon = card({
+      cardId: 'soon',
+      dedupeKey: 'soon',
+      attention: { urgency: 'normal', importance: 50, riskClass: 'low', deadlineAt: '2026-09-24T12:30:00+03:00' },
+    })
+
+    const plan = planActionCardAttention([later, soon], { now })
+    expect(plan.visible.map(c => c.cardId)).toEqual(['soon', 'later'])
+  })
 })
