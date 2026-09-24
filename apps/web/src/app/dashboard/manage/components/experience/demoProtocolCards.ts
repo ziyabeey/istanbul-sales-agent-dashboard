@@ -19,8 +19,8 @@ const randevuCancellationCard = randevuEventToActionCard({
     created_at: '2026-09-24T12:00:00+03:00',
   },
   reservation: {
-    startsAt: '2026-09-24T15:30:00+03:00',
-    endsAt: '2026-09-24T17:00:00+03:00',
+    startsAt: '2026-09-24T19:30:00+03:00',
+    endsAt: '2026-09-24T21:00:00+03:00',
     timezone: 'Europe/Istanbul',
     serviceName: 'Saç kesimi',
   },
