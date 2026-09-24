@@ -93,6 +93,9 @@ importers:
       '@kepenk/agents':
         specifier: workspace:*
         version: link:../../packages/agents
+      '@kepenk/action-card-schema':
+        specifier: workspace:*
+        version: link:../../packages/action-card-schema
       '@kepenk/booking-schema':
         specifier: workspace:*
         version: link:../../packages/booking-schema
