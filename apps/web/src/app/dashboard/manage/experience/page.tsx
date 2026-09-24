@@ -5,6 +5,17 @@ import { CalendarX2, CircleDollarSign, House, PackageSearch } from 'lucide-react
 import { ACTION_CARD_DEMOS, type ActionCardDomain, type ActionCardModel } from '@kepenk/ui'
 import styles from './experience.module.css'
 
+const DOMAIN_LABEL: Record<ActionCardDomain, string> = {
+  booking: 'Randevu',
+  finance: 'Finans',
+  inventory: 'Stok',
+  property: 'Emlak',
+  crm: 'Müşteri',
+  commerce: 'Satış',
+  marketing: 'Pazarlama',
+  system: 'Kepenk',
+}
+
 const DOMAIN_ICON: Record<ActionCardDomain, ComponentType<{ size?: number; strokeWidth?: number }>> = {
   booking: CalendarX2,
   finance: CircleDollarSign,
@@ -27,8 +38,7 @@ function ActionCard({ card }: { card: ActionCardModel }) {
 
       <div className={styles.content}>
         <div className={styles.meta}>
-          <span>{card.source.domain}</span>
-          {card.source.eventId ? <span>· {card.source.eventId}</span> : null}
+          <span>{DOMAIN_LABEL[card.source.domain]}</span>
         </div>
 
         <h2 className={styles.title}>{card.title}</h2>
