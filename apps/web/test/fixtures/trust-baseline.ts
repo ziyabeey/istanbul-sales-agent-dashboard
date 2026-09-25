@@ -44,6 +44,9 @@ export const CURRENT_PRINCIPAL_SOURCES = {
   impersonation: [
     'kepenk_impersonate opaque token -> durable Firestore ImpersonationSession -> active bound AdminSession -> single target business',
   ],
+  coreBff: [
+    'kepenk_core_session host-only opaque locator -> durable core_bff_sessions record (tokens encrypted at rest) -> verified Supabase access JWT (JWKS or resolver-held HS256, amr session class standard|recovery|unverified fail-closed) -> active Postgres memberships via RLS -> CoreRequestContext; browser never sees tokens, Firebase JWT never reaches the database',
+  ],
 } as const
 
 export const CURRENT_CREDENTIAL_AUTHORITY = {
