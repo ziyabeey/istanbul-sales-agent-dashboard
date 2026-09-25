@@ -23,6 +23,8 @@ jobs:
           corepack enable
           corepack prepare pnpm@9.1.0 --activate
       - run: pnpm install --frozen-lockfile
+      - name: Validate Cloud Run workspace manifest parity
+        run: node scripts/check-cloud-run-workspaces.mjs
       # Pilot-0 hard-gates the trust surfaces it changes. Broad legacy
       # lint/type debt is still executed where useful and remains visible.
       - name: Lint P0 trust baseline artifacts
