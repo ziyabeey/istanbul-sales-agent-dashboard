@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useEffect, useState, type FormEvent } from 'react'
 
 const CORE_CSRF_COOKIE = 'kepenk_core_csrf'
@@ -107,16 +108,16 @@ export default function ParolaYenilePage() {
               <p className="text-red-600 text-sm">
                 Bu kurtarma bağlantısı geçersiz, kullanılmış veya süresi dolmuş.
               </p>
-              <a href="/giris" className="inline-flex w-full justify-center rounded-xl bg-primary px-4 py-3 font-syne font-bold text-white">
+              <Link href="/giris" className="inline-flex w-full justify-center rounded-xl bg-primary px-4 py-3 font-syne font-bold text-white">
                 Giriş ekranına dön →
-              </a>
+              </Link>
             </div>
           ) : basarili ? (
             <div className="space-y-4" aria-live="polite">
               <p className="text-sm text-foreground">Parolan güncellendi. Kurtarma oturumu kapatıldı.</p>
-              <a href="/giris" className="inline-flex w-full justify-center rounded-xl bg-primary px-4 py-3 font-syne font-bold text-white">
+              <Link href="/giris" className="inline-flex w-full justify-center rounded-xl bg-primary px-4 py-3 font-syne font-bold text-white">
                 Giriş yap →
-              </a>
+              </Link>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
