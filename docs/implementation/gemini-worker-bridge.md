@@ -31,14 +31,29 @@ The bridge PR runs a one-time self-test against Issue #39. The worker result is 
 ## Google Cloud runtime
 
 - Project: `cs-project-ljhot8la`
+- Project number: `155940992193`
 - Location: `global`
 - Managed agent: `kepenk-coder-nonprod`
 - API revision: `2026-05-20`
 - API: Vertex AI Agent Platform Interactions API
 
-The repository's existing `GCP_SA_KEY` GitHub secret is used only to obtain a short-lived Google OAuth access token inside the workflow. The service account represented by that secret must have permission to create Agent Platform interactions.
+## Keyless GitHub authentication
 
-Long term, replace the service-account-key authentication path with GitHub OIDC / Workload Identity Federation.
+The bridge uses GitHub OIDC and Google Workload Identity Federation. No Google service-account key is stored in GitHub.
+
+Bootstrap resources:
+
+- workload identity pool: `kepenk-github`
+- OIDC provider: `github`
+- service account: `kepenk-github-agent@cs-project-ljhot8la.iam.gserviceaccount.com`
+- repository condition: `ziyabeey/istanbul-sales-agent-dashboard`
+- service account role: `roles/aiplatform.user`
+
+The one-time bootstrap is implemented in:
+
+`scripts/setup-github-agent-wif.sh`
+
+It is idempotent and can be run from an authenticated Google Cloud Shell with sufficient IAM permissions.
 
 ## GitHub safety boundary
 
