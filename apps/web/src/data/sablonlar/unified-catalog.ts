@@ -5,8 +5,8 @@
  * Each ThemeCatalogEntry becomes a Sablon with an iframe demo URL.
  */
 
-import { THEME_CATALOG_ARRAY, CATALOG_SECTORS } from '@kepenk/templates'
-import type { ThemeCatalogEntry } from '@kepenk/templates'
+import { THEME_CATALOG_ARRAY, CATALOG_SECTORS } from '@kepenk/templates/catalog'
+import type { ThemeCatalogEntry } from '@kepenk/templates/catalog'
 import type { Sablon } from './index'
 
 // ─────────────────────────────────────────────

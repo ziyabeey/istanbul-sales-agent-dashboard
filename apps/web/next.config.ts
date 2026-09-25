@@ -21,7 +21,15 @@ const workspaceRoot = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const nextConfig: NextConfig = {
     output: 'standalone' as const,
     outputFileTracingRoot: workspaceRoot,
-    serverExternalPackages: ['iyzipay', 'firebase-admin', '@google-cloud/tasks', 'twilio', 'puppeteer-core'],
+    serverExternalPackages: [
+        'iyzipay',
+        'firebase-admin',
+        '@google-cloud/tasks',
+        'twilio',
+        'puppeteer-core',
+        'isomorphic-dompurify',
+        'jsdom',
+    ],
     transpilePackages: [
         "@kepenk/ui",
         "@kepenk/config",
