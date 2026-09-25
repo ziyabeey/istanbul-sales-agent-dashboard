@@ -7,9 +7,7 @@ import {
 function card(overrides: Partial<ActionCardProtocol> & { cardId: string; dedupeKey: string }): ActionCardProtocol {
   return {
     protocolVersion: '1',
-    cardId: overrides.cardId,
     businessId: 'b1',
-    dedupeKey: overrides.dedupeKey,
     revision: 1,
     source: {
       domain: 'system',

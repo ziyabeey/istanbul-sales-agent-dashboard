@@ -10,7 +10,6 @@ const businessId = '51000000-0000-4000-8000-000000000001'
 function card(overrides: Partial<ActionCardProtocol> & { cardId: string }): ActionCardProtocol {
   return {
     protocolVersion: '1',
-    cardId: overrides.cardId,
     businessId,
     dedupeKey: overrides.cardId,
     revision: 1,

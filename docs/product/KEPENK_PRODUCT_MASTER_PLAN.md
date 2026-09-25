@@ -5,6 +5,8 @@
 > Durum: doküman önerisi; mevcut uygulama görevlerinin kabul, sahiplik veya bağımlılık durumunu değiştirmez.  
 > Güncel ilerleme: [17 Eylül durum kaydı](STATUS-2026-09-17.md).
 
+> 25 Eylül ürün dilimi: [Kepenk Alpha — İlk Gün ve Bugün Deneyimi](KEPENK_ALPHA_FIRST_DAY.md). Bu ek, mevcut deneyim temelini kullanır ve Drive faz adlarındaki farkları eşler; aşağıdaki teknik kabul ve bağımlılıkları kaldırmaz. 17 Eylül durum kaydı tarihsel bir gözlemdir, bugünün canlı kabulü değildir.
+
 ## 1. Bu belgenin yeri
 
 Ürün sırası: **Randevu → Web Builder → Commerce satış modülü → Restaurant**.

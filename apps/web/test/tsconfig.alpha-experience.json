@@ -1,0 +1,18 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "incremental": false,
+    "types": ["node", "vitest/globals"]
+  },
+  "include": [
+    "../src/lib/experience/*.ts",
+    "../src/app/dashboard/manage/experience-home/page.tsx",
+    "./unit/homeReadiness.test.ts",
+    "./unit/experienceHome.test.ts",
+    "./unit/actionCardAttention.test.ts",
+    "./unit/actionCardMetrics.test.ts",
+    "./unit/actionCardProtocol.test.ts",
+    "./unit/randevuEventAdapter.test.ts"
+  ],
+  "exclude": ["../node_modules", "../.next"]
+}
