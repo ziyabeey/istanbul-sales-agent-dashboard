@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0b0b0b"/>
+  <rect x="74" y="72" width="92" height="92" rx="24" fill="#ff5a1f"/>
+  <text x="120" y="137" text-anchor="middle" fill="white" font-family="Arial,Helvetica,sans-serif" font-weight="800" font-size="48">K</text>
+  <text x="194" y="139" fill="white" font-family="Arial,Helvetica,sans-serif" font-weight="800" font-size="64">Kepenk.ai</text>
+  <text x="74" y="324" fill="white" font-family="Arial,Helvetica,sans-serif" font-weight="800" font-size="58">İşletmen açıkken de, kapalıyken de</text>
+  <text x="74" y="392" fill="white" font-family="Arial,Helvetica,sans-serif" font-weight="800" font-size="58">randevular çalışsın.</text>
+  <text x="74" y="538" fill="#b7b7b7" font-family="Arial,Helvetica,sans-serif" font-size="28">Randevu · Müşteri yönetimi · İşletme otomasyonu</text>
+</svg>
