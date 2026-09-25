@@ -125,6 +125,31 @@ describe('K5 Action Card experience metrics', () => {
     expect(metrics.medianTimeToDecisionMs).toBe(2000)
   })
 
+  it('measures a same-millisecond first choice as zero regardless of random event IDs', () => {
+    const cards = [card({ cardId: 'a' })]
+    const outcomes = [
+      outcome('a', 'action_selected', '2026-09-24T10:00:00.000Z', { actionId: 'open', outcomeId: 'a-choice' }),
+      outcome('a', 'surfaced', '2026-09-24T10:00:00.000Z', { outcomeId: 'z-exposure' }),
+    ]
+    expect(deriveActionCardExperienceMetrics({ cards, outcomes }).medianTimeToDecisionMs).toBe(0)
+    expect(deriveActionCardExperienceMetrics({ cards, outcomes: [...outcomes].reverse() }).medianTimeToDecisionMs).toBe(0)
+  })
+
+  it('never replaces the first choice duration with a later choice on the same card', () => {
+    const cards = [card({ cardId: 'a' })]
+    const outcomes = [
+      outcome('a', 'surfaced', '2026-09-24T10:00:00.000Z'),
+      outcome('a', 'opened', '2026-09-24T10:00:01.000Z'),
+      outcome('a', 'action_selected', '2026-09-24T10:00:02.500Z', { actionId: 'open' }),
+      outcome('a', 'action_selected', '2026-09-24T10:00:10.000Z', { actionId: 'open' }),
+      outcome('a', 'dismissed', '2026-09-24T10:00:20.000Z'),
+    ]
+    const metrics = deriveActionCardExperienceMetrics({ cards, outcomes })
+    expect(metrics.medianTimeToDecisionMs).toBe(2500)
+    expect(metrics.cardsWithDecision).toBe(1)
+    expect(metrics.actionSelections).toBe(2)
+  })
+
   it('separates command selection from verified execution outcome', () => {
     const cards = [card({ cardId: 'a' }), card({ cardId: 'b' })]
     const outcomes = [

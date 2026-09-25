@@ -53,6 +53,9 @@ export function deriveActionCardExperienceMetrics(input: {
   const ordered = [...input.outcomes].sort((a, b) => {
     const time = Date.parse(a.occurredAt) - Date.parse(b.occurredAt)
     if (time !== 0) return time
+    // Equal timestamps still prove a zero-duration decision; random IDs must not hide it.
+    if (a.type === 'surfaced' && b.type !== 'surfaced') return -1
+    if (b.type === 'surfaced' && a.type !== 'surfaced') return 1
     return a.outcomeId.localeCompare(b.outcomeId)
   })
 

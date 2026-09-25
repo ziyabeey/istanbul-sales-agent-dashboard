@@ -52,7 +52,14 @@ Those require explicit outcome attribution and accepted persistence in K5b / lat
 
 No analytics provider is called and no event is persisted.
 
-The internal `K5 pilot ölçümü` disclosure shows the derived session metrics and is intended for product validation, not production reporting.
+The `Bu denemedeki seçimlerin` disclosure shows the derived session metrics and is intended for product validation, not production reporting.
+
+### First-decision timing in the preview
+
+- The per-card summary uses the shared metrics implementation, not a second duration calculation. It includes only cards with valid exposure evidence and shows each card's first choice.
+- Later choices and reopening do not replace the first decision duration. Equal exposure/decision timestamps produce a valid zero duration; exposure takes precedence over random event IDs when sorting that timestamp.
+- Wall-clock elapsed time includes background-tab time. The UI explicitly distinguishes it from active work time, productivity or time saved, and shows how many measured cards contribute to the median.
+- `Denemeyi baştan başlat` restores the sample scenario with a fresh keyed session, including card visibility and exposure timestamps. Prior choices, messages and durations are discarded only from the local preview state. It does not call a service, create a real reminder or modify domain records.
 
 ## K5b gate
 

@@ -11,6 +11,7 @@
     "./unit/homeReadiness.test.ts",
     "./unit/experienceHome.test.ts",
     "./unit/turkishPresentation.test.ts",
+    "./unit/previewDecisions.test.ts",
     "./unit/actionCardAttention.test.ts",
     "./unit/actionCardMetrics.test.ts",
     "./unit/actionCardProtocol.test.ts",

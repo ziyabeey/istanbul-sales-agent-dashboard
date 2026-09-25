@@ -4,7 +4,6 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
 import {
   ActionCardProtocolSchema,
-  deriveActionCardExperienceMetrics,
   planActionCardAttention,
   type ActionCardOutcomeEvent,
 } from '@kepenk/action-card-schema'
@@ -15,9 +14,9 @@ import {
 } from '@kepenk/ui'
 import ActionCard from '../components/experience/ActionCard'
 import DeferredActionCard from '../components/experience/DeferredActionCard'
+import ExperienceMetrics from '../components/experience/ExperienceMetrics'
 import { DEMO_ACTION_CARDS } from '../components/experience/demoProtocolCards'
 import { getHomeReadiness, type HomeSourceStatus } from '@/lib/experience/homeReadiness'
-import { formatDecisionDuration } from '@/lib/experience/turkishPresentation'
 
 const DEMO_NOW = new Date('2026-09-24T18:00:00+03:00')
 const SCENARIOS = [
@@ -33,6 +32,8 @@ type Scenario = typeof SCENARIOS[number]
 
 export default function ExperienceHomePage() {
   const [scenario, setScenario] = useState<Scenario>(SCENARIOS[0])
+  const [previewRun, setPreviewRun] = useState(0)
+  const [resetMessage, setResetMessage] = useState('')
 
   return (
     <main className="kpnk-main kpnk-home-shell">
@@ -45,13 +46,25 @@ export default function ExperienceHomePage() {
           Görünümü dene
           <select id="home-scenario" value={scenario.id} onChange={event => {
             const next = SCENARIOS.find(candidate => candidate.id === event.target.value)
-            if (next) setScenario(next)
+            if (next) {
+              setScenario(next)
+              setResetMessage('')
+            }
           }}>
             {SCENARIOS.map(option => <option key={option.id} value={option.id}>{option.label}</option>)}
           </select>
         </label>
+        <div className="kpnk-preview-reset">
+          <button type="button" className="kpnk-action-btn" aria-describedby="preview-reset-help" onClick={() => {
+            setScenario(SCENARIOS[0])
+            setPreviewRun(current => current + 1)
+            setResetMessage('Yeni deneme başladı. Örnek işler geri geldi; önceki seçimler ve süreler sıfırlandı.')
+          }}>Denemeyi baştan başlat</button>
+          <p id="preview-reset-help">Örnek işleri geri getirir; bu denemedeki seçimlerini ve süreleri sıfırlar.</p>
+          <div aria-live="polite" aria-atomic="true">{resetMessage}</div>
+        </div>
       </aside>
-      <ExperienceHomeSession key={scenario.id} scenario={scenario} />
+      <ExperienceHomeSession key={`${scenario.id}:${previewRun}`} scenario={scenario} />
     </main>
   )
 }
@@ -81,7 +94,6 @@ function ExperienceHomeSession({ scenario }: { scenario: Scenario }) {
   const visible = plan.visible.map(actionCardProtocolToModel)
   const deferred = plan.deferred.map(actionCardProtocolToModel)
   const readiness = getHomeReadiness(scenario.status, { visible: visible.length, deferred: deferred.length })
-  const metrics = deriveActionCardExperienceMetrics({ cards: parsedCards, outcomes })
 
   useEffect(() => {
     const presented = [...plan.visible, ...plan.deferred.filter(card => card.cardId === expandedCardId)]
@@ -223,52 +235,7 @@ function ExperienceHomeSession({ scenario }: { scenario: Scenario }) {
         <Link href="/dashboard/manage/experience-lab" prefetch={false}>Tüm örnek kartları gör</Link>
       </footer>
 
-      {readiness.canShowCards ? <details
-        className="kpnk-card"
-        style={{ width: 'min(900px, 100%)', marginTop: 18, padding: '14px 16px' }}
-      >
-        <summary style={{ cursor: 'pointer', fontSize: 12, fontWeight: 700 }}>
-          Bu denemedeki seçimlerin
-        </summary>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))',
-            gap: 8,
-            marginTop: 12,
-          }}
-        >
-          {[
-            ['Gösterilen kart', metrics.cardsSurfaced],
-            ['Yanıtlanan kart', metrics.cardsWithDecision],
-            ['Seçilen işlem', metrics.actionSelections],
-            ['Kapatılan kart', metrics.dismissals],
-            ['Ertelenen kart', metrics.snoozes],
-            ['Sayfa açma seçimi', metrics.navigationSelections],
-            [
-              'Ortanca karar süresi',
-              formatDecisionDuration(metrics.medianTimeToDecisionMs),
-            ],
-          ].map(([label, value]) => (
-            <div
-              key={String(label)}
-              style={{
-                background: 'var(--kpnk-bg-secondary)',
-                borderRadius: 10,
-                padding: '10px 12px',
-              }}
-            >
-              <strong style={{ display: 'block', fontSize: 16 }}>{value}</strong>
-              <span style={{ fontSize: 10, color: 'var(--kpnk-text-secondary)' }}>{label}</span>
-            </div>
-          ))}
-        </div>
-        <p style={{ marginTop: 10, fontSize: 10, lineHeight: 1.5, color: 'var(--kpnk-text-secondary)' }}>
-          Bu bölüm, bu denemede gördüğün kartları ve yaptığın seçimleri gösterir. Şimdi ilgilen bölümündeki kartlar ve ayrıntısını açtığın işler birer kez sayılır.
-          Ayrıntı açmak, işlem seçmek sayılmaz. Bir işin tamamlandığını veya gelir elde edildiğini göstermez.
-          Bilgiler kalıcı olarak kaydedilmez; başka bir yere gönderilmez. Görünümü değiştirince veya sayfayı yenileyince sıfırlanır.
-        </p>
-      </details> : null}
+      {readiness.canShowCards ? <ExperienceMetrics cards={parsedCards} outcomes={outcomes} /> : null}
 
       <div className="kpnk-experience-outcome" aria-live="polite">{outcome}</div>
     </>

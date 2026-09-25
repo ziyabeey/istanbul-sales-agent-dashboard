@@ -119,3 +119,13 @@ Repo master planındaki ürün sırası ile Drive'ın genişleyen strateji dalga
 - Görünüm değişince açık ayrıntı, gizlenen örnekler, mesaj ve ölçümler sıfırlanır. Hiçbir gerçek hatırlatma, işlem veya kalıcı ölçüm oluşturulmaz.
 
 Doğrulama: 35 dosyada 341 birim testi ve ilgili iki dosyada 36 arayüz/dil testi geçti. Alpha tip kontrolü ve değişen kodun ESLint kontrolü başarılı. Chrome'da ayrıntı/açık açıklama, seçim mesajı, Escape ile odak dönüşü, durum değişimi ve sıfırlanan sayılar kontrol edildi; yalnız kart açıldığında gösterim 3, yanıt/seçim 0 görüldü. Konsol hata/uyarı kaydı yoktu. Aynı örnek verili izole yüzey kullanıldı; tam uygulama build'i, gerçek giriş, mobil cihaz veya canlı bağlantı kabulü değildir. GitHub/Vercel yayını yapılmadı.
+
+## 10. Karar süresi ve yeniden deneme — 25 Eylül devam teslimi
+
+- “Bu denemedeki seçimlerin” bölümü, gösterilen her kartın ilk seçimini ve karar süresini ayrı satırda gösterir. Henüz karar verilmemiş kartlarda süre uydurulmaz.
+- Sürelerin tek hesap kaynağı mevcut ortak K5 ölçümüdür; kart tablosu ikinci bir süre hesabı kurmaz. Yeniden açma ve sonraki seçimler ilk karar süresini değiştirmez. Ortancaya kaç kartın dahil olduğu belirtilir.
+- Aynı milisaniyedeki gösterim/seçim olaylarının rastgele kimlik sırası yüzünden boş süre üretmesi düzeltildi. Eşit zamanda gösterim önce değerlendirilir; doğru süre sıfırdır. Olay şeması, işletme/sürüm filtresi ve karar tanımı değişmez.
+- Açıklama, sekme arka plandayken geçen zamanın dahil olduğunu ve ölçümün çalışma hızı, aktif çalışma süresi veya kazanılan zaman olmadığını açıklar.
+- “Denemeyi baştan başlat” ilk örnek görünüme döner; kartları geri getirir, açık ayrıntıyı, önceki seçimleri, süreleri ve kart mesajını sıfırlar. Klavye odağı yeniden başlatma düğmesinde kalır. Hiçbir kalıcı kayıt veya canlı bağlantı değişmez.
+
+Doğrulama: 36 dosyada 357 birim testi; odaklı dört dosyada 57 test; Alpha tip kontrolü ve değişen web kodunun ESLint kontrolü başarılı. Ortak ölçüm dosyası Alpha tip kontrolü ve ilgili regresyon testleriyle doğrulandı; web ESLint kapsamı bu paket dosyasını kapsamıyor. Chrome'da ilk seçim, tekrar seçimde sabit süre, yeniden başlatma, temiz ölçümler ve tablo yerleşimi kontrol edildi; konsol hata/uyarı kaydı görülmedi. İzole örnek verili önizleme sınırı korunur; mobil cihaz, gerçek giriş, tam uygulama build'i veya canlı pilot kabulü değildir. GitHub/Vercel yayını yapılmadı.

@@ -5,12 +5,15 @@ import ExperienceHomePage from '@/app/dashboard/manage/experience-home/page'
 
 const { push } = vi.hoisted(() => ({ push: vi.fn() }))
 vi.mock('next/navigation', () => ({ useRouter: () => ({ push }) }))
+const START = Date.parse('2026-09-25T10:00:00.000Z')
 
 describe('Kepenk Alpha experience preview', () => {
   let container: HTMLDivElement
   let root: Root
 
   beforeEach(async () => {
+    vi.useFakeTimers({ toFake: ['Date'] })
+    vi.setSystemTime(START)
     vi.stubGlobal('IS_REACT_ACT_ENVIRONMENT', true)
     container = document.createElement('div')
     document.body.appendChild(container)
@@ -22,6 +25,7 @@ describe('Kepenk Alpha experience preview', () => {
     await act(async () => { root.unmount() })
     container.remove()
     vi.unstubAllGlobals()
+    vi.useRealTimers()
   })
 
   async function selectScenario(id: string) {
@@ -47,6 +51,11 @@ describe('Kepenk Alpha experience preview', () => {
 
   function buttonNamed(label: string, within: ParentNode = container) {
     return Array.from(within.querySelectorAll<HTMLButtonElement>('button')).find(button => button.textContent === label)!
+  }
+
+  function decisionRow(title: string) {
+    return Array.from(container.querySelectorAll<HTMLTableRowElement>('.kpnk-preview-decisions tbody tr'))
+      .find(row => row.querySelector('th')?.textContent === title)!
   }
 
   it('labels sample data and keeps the existing card experience', () => {
@@ -225,5 +234,80 @@ describe('Kepenk Alpha experience preview', () => {
     expect(laterRows().every(row => row.getAttribute('aria-expanded') === 'false')).toBe(true)
     expect(metric('Gösterilen kart')).toBe('2')
     expect(metric('Yanıtlanan kart')).toBe('0')
+  })
+
+  it('shows the first per-card choice and duration without timing later choices again', async () => {
+    const title = '3 ürün 4 gün içinde bitebilir.'
+    expect(decisionRow(title).textContent).toContain('Henüz seçim yapmadın')
+    vi.setSystemTime(START + 2500)
+    await act(async () => { buttonNamed('Sipariş seçeneklerini gör').click() })
+    expect(decisionRow(title).textContent).toContain('Sipariş seçeneklerini gör')
+    expect(decisionRow(title).textContent).toContain('2,5 sn')
+    expect(metric('Ortanca karar süresi')).toBe('2,5 sn')
+    expect(container.textContent).toContain('ilk seçimini yaptığın 1 kart üzerinden hesaplandı')
+    vi.setSystemTime(START + 10000)
+    await act(async () => { buttonNamed('Sipariş seçeneklerini gör').click() })
+    expect(metric('Seçilen işlem')).toBe('2')
+    expect(metric('Ortanca karar süresi')).toBe('2,5 sn')
+    expect(decisionRow(title).textContent).toContain('2,5 sn')
+    expect(container.textContent).toContain('Sekme arka plandayken geçen zaman da dahildir')
+  })
+
+  it('starts a deferred card timer when its detail is first presented, not when its title appears', async () => {
+    vi.setSystemTime(START + 20000)
+    await act(async () => { laterRows()[0].click() })
+    vi.setSystemTime(START + 21250)
+    await act(async () => { buttonNamed('Tahsilatları incele', expandedPanel()).click() })
+    expect(decisionRow('12.450 TL tahsilat bekliyor.').textContent).toContain('1,3 sn')
+    expect(metric('Ortanca karar süresi')).toBe('1,3 sn')
+  })
+
+  it('restarts all preview state without navigation or losing the reset-button focus', async () => {
+    vi.setSystemTime(START + 2500)
+    await act(async () => { buttonNamed('Sipariş seçeneklerini gör').click() })
+    await act(async () => { buttonNamed('Daha sonra', container.querySelector('.kpnk-action-feed article')!).click() })
+    await act(async () => { laterRows()[0].click() })
+    const reset = buttonNamed('Denemeyi baştan başlat')
+    reset.focus()
+    vi.setSystemTime(START + 30000)
+    await act(async () => { reset.click() })
+    expect(document.activeElement).toBe(reset)
+    expect(container.querySelectorAll('article')).toHaveLength(2)
+    expect(laterRows()).toHaveLength(2)
+    expect(container.querySelector('.kpnk-later-detail:not([hidden])')).toBeNull()
+    expect(container.querySelector('.kpnk-experience-outcome')?.textContent).toBe('')
+    expect(metric('Gösterilen kart')).toBe('2')
+    expect(metric('Yanıtlanan kart')).toBe('0')
+    expect(metric('Seçilen işlem')).toBe('0')
+    expect(metric('Ertelenen kart')).toBe('0')
+    expect(metric('Ortanca karar süresi')).toBe('—')
+    expect(container.textContent).toContain('Yeni deneme başladı.')
+    vi.setSystemTime(START + 31000)
+    await act(async () => { buttonNamed('Sipariş seçeneklerini gör').click() })
+    expect(metric('Ortanca karar süresi')).toBe('1,0 sn')
+    expect(push).not.toHaveBeenCalled()
+  })
+
+  it('returns to the sample scenario when restarting from a source error', async () => {
+    await selectScenario('unavailable')
+    await act(async () => { buttonNamed('Denemeyi baştan başlat').click() })
+    expect(container.querySelector<HTMLSelectElement>('#home-scenario')?.value).toBe('sample')
+    expect(container.querySelectorAll('article')).toHaveLength(2)
+    expect(metric('Yanıtlanan kart')).toBe('0')
+    await selectScenario('not_connected')
+    expect(container.textContent).not.toContain('Yeni deneme başladı.')
+    expect(container.querySelector('.kpnk-preview-decisions')).toBeNull()
+  })
+
+  it('can restore the sample cards after all of them have been dismissed', async () => {
+    for (let index = 0; index < 4; index += 1) {
+      await act(async () => { buttonNamed('Kapat', container.querySelector('.kpnk-action-feed article')!).click() })
+    }
+    expect(container.querySelectorAll('article')).toHaveLength(0)
+    expect(metric('Kapatılan kart')).toBe('4')
+    await act(async () => { buttonNamed('Denemeyi baştan başlat').click() })
+    expect(container.querySelectorAll('article')).toHaveLength(2)
+    expect(metric('Kapatılan kart')).toBe('0')
+    expect(container.querySelectorAll('.kpnk-preview-decisions tbody tr')).toHaveLength(2)
   })
 })

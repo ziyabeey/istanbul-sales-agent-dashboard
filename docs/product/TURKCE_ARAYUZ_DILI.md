@@ -35,6 +35,7 @@ Bu eşleme kullanıcı metni içindir; API, tablo, olay, yetki veya route adlar�
 - Saat dilimi bulunmayan veya geçersiz zaman değeri için saat uydurulmaz. Ham tarih kodu kullanıcıya gösterilmez.
 - Ondalık ayracı virgüldür: `1,3 sn`. Binlik ayracı noktadır: `12.450 TL`.
 - “Ortanca karar süresi” ortalamaya çevrilmez. Seçim sayısı, tamamlanan işlem sayısı diye sunulmaz.
+- Karar süresinin başlangıcı ve bitişi açıklanır. Sekme arka plandayken geçen zaman da dahilse bu belirtilir; süre bir verimlilik puanı veya kazanılan zaman olarak sunulmaz. Ölçülemeyen değer `—`, geçerli sıfır süre `0,0 sn` olarak gösterilir.
 - `lang="tr"` ve yerel biçimlendirme korunur. Sunucu ve tarayıcı aynı saat dilimini kullanır; cihaz ayarına göre farklı sonuç üretilmez.
 
 ## Doğru beklenti
