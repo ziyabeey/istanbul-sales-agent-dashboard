@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import type { NextRequest } from 'next/server'
 import type { RequestContext } from '../../../../packages/auth/src/types/canonical'
 
@@ -114,6 +114,7 @@ function proxyRequest(
 }
 
 describe('P0-03 request-gate convergence', () => {
+  afterEach(() => vi.unstubAllEnvs())
   beforeEach(() => {
     vi.clearAllMocks()
     process.env.ADMIN_SECRET_TOKEN = 'test-admin-secret'
@@ -187,6 +188,22 @@ describe('P0-03 request-gate convergence', () => {
 
     expect(response.status).toBe(200)
     expect(response.headers.get('x-middleware-next')).toBe('1')
+  })
+
+  it.each(['/giris', '/baslangic', '/parola-yenile', '/api/core/auth/me', '/api/core/auth/baslangic'])('keeps gated Core entry %s on its original host without legacy rewrites', async path => {
+    vi.stubEnv('CORE_BFF_ENABLED', 'true'); vi.stubEnv('CORE_ENTRY_ENABLED', 'true')
+    const response = await proxy(proxyRequest(`https://app.kepenk.ai${path}`, { cookie: 'kepenk_session=legacy-fixture' }))
+    expect(response.headers.get('x-middleware-next')).toBe('1')
+    expect(response.headers.get('x-middleware-rewrite')).toBeNull()
+    expect(response.headers.get('location')).toBeNull()
+    expect(response.headers.get('cache-control')).toBe('private, no-store')
+    expect(mocks.resolveToken).not.toHaveBeenCalled()
+  })
+
+  it('does not turn Core rollout into access to the legacy dashboard', async () => {
+    vi.stubEnv('CORE_BFF_ENABLED', 'true'); vi.stubEnv('CORE_ENTRY_ENABLED', 'true')
+    const response = await proxy(proxyRequest('https://app.kepenk.ai/dashboard/manage'))
+    expect(response.status).toBe(307)
   })
 
   it('API user guard returns the exact canonical context', async () => {

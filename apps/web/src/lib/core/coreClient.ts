@@ -90,6 +90,11 @@ export const CoreMembershipSchema = z.object({
 })
 export type CoreMembership = z.infer<typeof CoreMembershipSchema>
 
+const CoreMembershipLabelSchema = CoreMembershipSchema.extend({
+  businesses: z.object({ id: z.string().uuid(), name: z.string().trim().min(1), slug: z.string().trim().min(1) }),
+}).refine(row => row.active && row.business_id === row.businesses.id)
+export type CoreMembershipLabel = z.infer<typeof CoreMembershipLabelSchema>
+
 export interface CoreClientOptions {
   supabaseUrl: string
   anonKey: string
@@ -239,6 +244,35 @@ export class CorePlatformClient {
     if (!response.ok) throw new CorePlatformError('CORE_UNAVAILABLE', { status: response.status })
     const parsed = z.array(CoreMembershipSchema).safeParse(await response.json().catch(() => null))
     if (!parsed.success) throw new CorePlatformError('CORE_UNAVAILABLE', { rawMessage: 'malformed memberships' })
+    return parsed.data
+  }
+
+  /** Display only; authorization continues to come from CoreRequestContext. */
+  async listMembershipLabels(accessToken: string, verifiedUserId: string): Promise<CoreMembershipLabel[]> {
+    const userId = z.string().uuid().parse(verifiedUserId)
+    const query = new URLSearchParams({
+      select: 'id,business_id,role,active,businesses!memberships_business_id_fkey(id,name,slug)',
+      user_id: `eq.${userId}`,
+      active: 'eq.true',
+      order: 'created_at.asc',
+      // Probe for overflow instead of presenting a silently truncated picker.
+      limit: '51',
+    })
+    let response: Response
+    try {
+      response = await this.fetchImpl(`${this.options.supabaseUrl}/rest/v1/memberships?${query}`, {
+        method: 'GET',
+        headers: { apikey: this.options.anonKey, authorization: `Bearer ${accessToken}` },
+        cache: 'no-store',
+        signal: AbortSignal.timeout(this.timeoutMs),
+      })
+    } catch (cause) {
+      throw new CorePlatformError('CORE_UNAVAILABLE', { cause })
+    }
+    if (response.status === 401 || response.status === 403) throw new CorePlatformError('AUTH_REQUIRED')
+    if (!response.ok) throw new CorePlatformError('CORE_UNAVAILABLE')
+    const parsed = z.array(CoreMembershipLabelSchema).max(50).safeParse(await response.json().catch(() => null))
+    if (!parsed.success) throw new CorePlatformError('CORE_UNAVAILABLE')
     return parsed.data
   }
 }

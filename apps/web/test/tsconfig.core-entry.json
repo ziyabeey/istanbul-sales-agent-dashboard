@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.kc-02-core-bff.json",
+  "include": [
+    "../src/lib/core/*.ts",
+    "../src/components/core/*.tsx",
+    "../src/context/BusinessSessionBoundary.tsx",
+    "../src/app/baslangic/page.tsx",
+    "../src/app/giris/page.tsx",
+    "../src/app/api/core/auth/**/route.ts",
+    "../src/proxy.ts",
+    "./unit/coreEntry*.test.ts",
+    "./unit/coreEntry*.test.tsx"
+  ]
+}

@@ -129,3 +129,13 @@ Doğrulama: 35 dosyada 341 birim testi ve ilgili iki dosyada 36 arayüz/dil test
 - “Denemeyi baştan başlat” ilk örnek görünüme döner; kartları geri getirir, açık ayrıntıyı, önceki seçimleri, süreleri ve kart mesajını sıfırlar. Klavye odağı yeniden başlatma düğmesinde kalır. Hiçbir kalıcı kayıt veya canlı bağlantı değişmez.
 
 Doğrulama: 36 dosyada 357 birim testi; odaklı dört dosyada 57 test; Alpha tip kontrolü ve değişen web kodunun ESLint kontrolü başarılı. Ortak ölçüm dosyası Alpha tip kontrolü ve ilgili regresyon testleriyle doğrulandı; web ESLint kapsamı bu paket dosyasını kapsamıyor. Chrome'da ilk seçim, tekrar seçimde sabit süre, yeniden başlatma, temiz ölçümler ve tablo yerleşimi kontrol edildi; konsol hata/uyarı kaydı görülmedi. İzole örnek verili önizleme sınırı korunur; mobil cihaz, gerçek giriş, tam uygulama build'i veya canlı pilot kabulü değildir. GitHub/Vercel yayını yapılmadı.
+
+## 11. Ortak girişe bağlı ilk dilim — 25 Eylül
+
+E-posta/parola girişi → sunucudan doğrulanmış işletme adı/seçimi → sınırlı başlangıç ekranı → çıkış yerelde uygulandı. Parola kurtarma isteği mevcut Core akışına bağlandı. Yeni akış `CORE_BFF_ENABLED` ve ek `CORE_ENTRY_ENABLED` kapılarının arkasındadır; hiçbir canlı ortamda açılmadı. Eski giriş varsayılandır, eski dashboard yetki modeli bu dilimde dönüştürülmez.
+
+İşletme adları Randevu'nun doğrulanmış üyelik/işletme ilişkisiyle sunucudan okunur; yetki mevcut Core context'inden gelir. Tek işletmede seçim sorulmaz, çoklu işletmede seçim gerekir. İşletme değişirken eski görünüm temizlenir; kaynak hatası ile üyelik yokluğu ayrıdır. Randevu kaynağı hazırmış gibi iş kartı veya iş sayısı gösterilmez.
+
+39 dosyada 407 test, iki odaklı tip kontrolü ve değişen uygulama kodunun ESLint kontrolü başarılı. Chrome'da gerçek bileşen, taklit yerel yanıtlarla kontrol edildi; dar ekran dahil. Tam uygulama/hosted kabul, SMS giriş arayüzü, eski kullanıcı taşıma, KC-05, K4b ve K5b açık kalır. Asıl hosted hedef mevcut KG-01 kararına göre Cloud Run'dır; Vercel önizlemesinin başarılı olması bu kapıları kapatmaz.
+
+Uygulama ve kabul ayrıntıları: [Ortak kimlik — ilk giriş ve işletme akışı](../implementation/core-first-day-entry.md).

@@ -5,6 +5,7 @@ import {
 } from '@/lib/auth/businessSession'
 import { ADMIN_SESSION_COOKIE } from '@/lib/auth/adminSessionConstants'
 import { isMvpDashboardPathAllowed, isMvpTestReleaseEnabled } from '@/lib/mvpFeatureFlags'
+import { isCoreEntryEnabled, isCoreEntryRoute } from '@/lib/core/entryGate'
 
 /**
  * Kepenk Unified Proxy (Next.js 16)
@@ -20,6 +21,14 @@ export default async function proxy(req: NextRequest) {
     const hostname = req.headers.get('host') || ''
     const { pathname } = req.nextUrl
     const subdomain = extractSubdomain(hostname)
+
+    // The Core entry keeps its host-only session. Its APIs authorize requests;
+    // no legacy dashboard route is admitted through this routing exception.
+    if (isCoreEntryEnabled() && isCoreEntryRoute(pathname)) {
+        const response = NextResponse.next()
+        response.headers.set('Cache-Control', 'private, no-store')
+        return response
+    }
 
     const dashboardTarget = resolveDashboardTarget(subdomain, pathname)
     const sessionToken = req.cookies.get(BUSINESS_SESSION_COOKIE)?.value

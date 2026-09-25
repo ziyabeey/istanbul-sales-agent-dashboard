@@ -2,7 +2,8 @@ import type { Metadata, Viewport } from 'next'
 import { Inter, Plus_Jakarta_Sans } from 'next/font/google'
 import OfflineToast from '@/components/ui/OfflineToast'
 import CookieBanner from '@/components/layout/CookieBanner'
-import { EsnafProvider } from '@/context/EsnafContext'
+import BusinessSessionBoundary from '@/context/BusinessSessionBoundary'
+import { isCoreEntryEnabled } from '@/lib/core/entryGate'
 import { ThemeProvider } from '@/components/ThemeProvider'
 import { Toaster } from '@/components/ui/sonner'
 import Analytics from '@/components/Analytics'
@@ -92,12 +93,12 @@ export default function RootLayout({
           }}
         />
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
-          <EsnafProvider>
+          <BusinessSessionBoundary coreEntryEnabled={isCoreEntryEnabled()}>
             <OfflineToast />
             <CookieBanner />
             <Toaster />
             {children}
-          </EsnafProvider>
+          </BusinessSessionBoundary>
         </ThemeProvider>
         <Analytics />
       </body>

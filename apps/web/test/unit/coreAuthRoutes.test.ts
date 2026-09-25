@@ -18,6 +18,7 @@ import { POST as parolaGiris } from '@/app/api/core/auth/parola-giris/route'
 import { GET as kurtarma } from '@/app/api/core/auth/kurtarma/route'
 import { POST as parolaGuncelle } from '@/app/api/core/auth/parola-guncelle/route'
 import { POST as firebaseBagla } from '@/app/api/core/auth/firebase-bagla/route'
+import { GET as baslangic } from '@/app/api/core/auth/baslangic/route'
 
 // Real Response objects so cookie headers can be asserted.
 vi.mock('next/server', () => {
@@ -90,6 +91,7 @@ function makeRuntime() {
     client: {
       applyCommand: vi.fn(async () => ({ linked: true })),
       listMemberships: vi.fn(async () => [{ id: '6b000000-0000-4000-8000-000000000001', business_id: BIZ, role: 'owner', active: true }]),
+      listMembershipLabels: vi.fn(async () => [{ id: '6b000000-0000-4000-8000-000000000001', business_id: BIZ, role: 'owner', active: true, businesses: { id: BIZ, name: 'İstanbul Atölye', slug: 'istanbul-atolye' } }]),
       getBusinessPlatformSnapshot: vi.fn(async () => ({
         business_id: BIZ,
         subscription: { plan_key: 'kepenk_standard', status: 'active', current_period_start: null, current_period_end: null, version: 1 },
@@ -127,6 +129,30 @@ beforeEach(() => {
 
 afterEach(() => {
   delete process.env.CORE_BFF_ENABLED
+  delete process.env.CORE_ENTRY_ENABLED
+})
+
+describe('gated first-day route chain', () => {
+  it('connects password login, verified business display, selection and logout using the same in-memory BFF session', async () => {
+    process.env.CORE_ENTRY_ENABLED = 'true'
+    const login = await parolaGiris(json('https://app.kepenk.ai/api/core/auth/parola-giris', { email: 'owner@example.test', parola: 'fixture-password' }, ORIGIN))
+    expect(login.status).toBe(200)
+    const cookies = setCookies(login).map(value => value.split(';')[0])
+    const cookie = cookies.join('; ')
+    const csrf = cookies.find(value => value.startsWith(`${CORE_BFF_CSRF_COOKIE}=`))!.split('=')[1]
+    const initial = await baslangic(new Request('https://app.kepenk.ai/api/core/auth/baslangic', { headers: { cookie } }))
+    expect(initial.status).toBe(200)
+    expect(await initial.json()).toEqual({ recovery: false, businessId: BIZ, memberships: [{ businessId: BIZ, role: 'owner', name: 'İstanbul Atölye', slug: 'istanbul-atolye' }] })
+    expect(initial.headers.get('cache-control')).toBe('private, no-store')
+    const chosen = await isletmeSec(json('https://app.kepenk.ai/api/core/auth/isletme-sec', { businessId: BIZ }, { cookie, ...ORIGIN, [CORE_BFF_CSRF_HEADER]: csrf }))
+    expect(chosen.status).toBe(200)
+    const confirmed = await baslangic(new Request('https://app.kepenk.ai/api/core/auth/baslangic', { headers: { cookie } }))
+    expect((await confirmed.json()).businessId).toBe(BIZ)
+    const ended = await cikis(json('https://app.kepenk.ai/api/core/auth/cikis', {}, { cookie, ...ORIGIN, [CORE_BFF_CSRF_HEADER]: csrf }))
+    expect(ended.status).toBe(200)
+    expect(runtime.auth.signOut).toHaveBeenCalledWith('pw.token.0123456789')
+    expect([...runtime.sessions.records.values()].every(record => Boolean(record.revokedAt))).toBe(true)
+  })
 })
 
 describe('feature gate', () => {
