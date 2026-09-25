@@ -266,3 +266,33 @@ jobs:
             --region=$GCP_REGION \
             --no-traffic \
             --tag=canary
+
+
+  cloud-run-container-smoke:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    needs: lint-and-type
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build Cloud Run image
+        run: docker build -t kepenk-cloudrun-smoke:${{ github.sha }} .
+      - name: Start Cloud Run image
+        run: docker run -d --name kepenk-cloudrun-smoke -p 18080:8080 kepenk-cloudrun-smoke:${{ github.sha }}
+      - name: Probe health endpoint
+        run: |
+          for i in $(seq 1 30); do
+            if curl --fail --silent http://127.0.0.1:18080/api/health > /tmp/kepenk-health.json; then
+              cat /tmp/kepenk-health.json
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "Cloud Run container did not become healthy"
+          docker logs kepenk-cloudrun-smoke || true
+          exit 1
+      - name: Container logs on failure
+        if: failure()
+        run: docker logs kepenk-cloudrun-smoke || true
+      - name: Cleanup
+        if: always()
+        run: docker rm -f kepenk-cloudrun-smoke || true
