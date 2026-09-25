@@ -466,6 +466,15 @@
     background: rgba(255,255,255,.72);
 }
 
+.kpnk-later-item { border-bottom: 1px solid var(--kpnk-border-light); }
+.kpnk-later-item:last-child { border-bottom: 0; }
+
+.kpnk-later-detail {
+    padding: 0 14px 14px;
+}
+
+.kpnk-later-detail > .kpnk-action-btn { margin-top: 12px; }
+
 .kpnk-later-row {
     width: 100%;
     display: grid;
@@ -475,7 +484,6 @@
     min-height: 52px;
     padding: 11px 14px;
     border: 0;
-    border-bottom: 1px solid var(--kpnk-border-light);
     background: transparent;
     color: var(--kpnk-text);
     text-align: left;
@@ -483,7 +491,6 @@
     font-family: var(--kpnk-font);
 }
 
-.kpnk-later-row:last-child { border-bottom: 0; }
 .kpnk-later-row:hover { background: rgba(220,70,32,.035); }
 .kpnk-later-row:focus-visible {
     position: relative;

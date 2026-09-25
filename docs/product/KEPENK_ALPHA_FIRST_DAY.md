@@ -109,3 +109,13 @@ Repo master planındaki ürün sırası ile Drive'ın genişleyen strateji dalga
 - Değişen TypeScript/React ve test dosyalarının ESLint kontrolü: başarılı; sayfa içi laboratuvar bağlantısı Next Link kullanır.
 - Chrome: aynı sayfa bileşeni ve CSS, yalnız örnek verili izole yerel test yüzeyinde render edildi. Örnek kartlar, bağlantı yok, kaynak hatası ve başarılı boş durumları görüldü; konsol hata/uyarı kaydı yoktu. Next navigasyonu bu görsel testte taklit edildi, gerçek giriş veya protected dashboard akışı test edilmedi.
 - Tam uygulama build'i, mobil breakpoint ve hosted/pilot kabulü bu teslimin yeni kanıtı değildir. Yeni CI/deploy sonucu yoktur; K4b/K5b ve canlı ilk gün yolculuğu açık kalır.
+
+## 9. Kart ayrıntısı — 25 Eylül yerel devam teslimi
+
+- “Daha sonra ilgilen” satırı, aynı yerde tam iş kartını ve açık neden/dayanak açıklamasını gösterir. Aynı anda yalnız bir satır açıktır.
+- “Ayrıntıyı kapat” ve Escape yalnız ayrıntıyı kapatır, kartı listeden kaldırmaz; odak ilgili satıra döner. Kartın “Kapat” / “Daha sonra” seçimi ise kartı bu denemeden kaldırır; odak kalıcı sayfa başlığına taşınır.
+- İlk tam gösterim `surfaced`, ayrıntı açma `opened` olarak yalnız yerel bellekte tutulur. Tekrar açma veya ana listeye taşınma, farklı kart gösterim sayısını artırmaz. Açmak karar veya tamamlanmış işlem değildir; kanonik sonuç şeması değişmez.
+- Bugün önizlemesindeki örnek yönlendirme düğmeleri artık gerçek ürün sayfasını açmaya çalışmaz. Seçim kaydedilir; “Bu önizlemede ilgili sayfa açılmaz ve gerçek kayıtlar değişmez” mesajı gösterilir. Ana dashboard navigasyonu ve protokoldeki hedef bağlantılar değişmez.
+- Görünüm değişince açık ayrıntı, gizlenen örnekler, mesaj ve ölçümler sıfırlanır. Hiçbir gerçek hatırlatma, işlem veya kalıcı ölçüm oluşturulmaz.
+
+Doğrulama: 35 dosyada 341 birim testi ve ilgili iki dosyada 36 arayüz/dil testi geçti. Alpha tip kontrolü ve değişen kodun ESLint kontrolü başarılı. Chrome'da ayrıntı/açık açıklama, seçim mesajı, Escape ile odak dönüşü, durum değişimi ve sıfırlanan sayılar kontrol edildi; yalnız kart açıldığında gösterim 3, yanıt/seçim 0 görüldü. Konsol hata/uyarı kaydı yoktu. Aynı örnek verili izole yüzey kullanıldı; tam uygulama build'i, gerçek giriş, mobil cihaz veya canlı bağlantı kabulü değildir. GitHub/Vercel yayını yapılmadı.

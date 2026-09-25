@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import {
   ActionCardProtocolSchema,
@@ -15,9 +14,10 @@ import {
   type ActionCardModel,
 } from '@kepenk/ui'
 import ActionCard from '../components/experience/ActionCard'
+import DeferredActionCard from '../components/experience/DeferredActionCard'
 import { DEMO_ACTION_CARDS } from '../components/experience/demoProtocolCards'
 import { getHomeReadiness, type HomeSourceStatus } from '@/lib/experience/homeReadiness'
-import { ACTION_CARD_DOMAIN_LABELS, formatDecisionDuration } from '@/lib/experience/turkishPresentation'
+import { formatDecisionDuration } from '@/lib/experience/turkishPresentation'
 
 const DEMO_NOW = new Date('2026-09-24T18:00:00+03:00')
 const SCENARIOS = [
@@ -57,11 +57,12 @@ export default function ExperienceHomePage() {
 }
 
 function ExperienceHomeSession({ scenario }: { scenario: Scenario }) {
-  const router = useRouter()
   const [hidden, setHidden] = useState<string[]>([])
+  const [expandedCardId, setExpandedCardId] = useState<string | null>(null)
   const [outcome, setOutcome] = useState('')
   const [outcomes, setOutcomes] = useState<ActionCardOutcomeEvent[]>([])
   const surfaced = useRef(new Set<string>())
+  const heading = useRef<HTMLHeadingElement>(null)
 
   const parsedCards = useMemo(
     () => scenario.id === 'sample'
@@ -83,7 +84,8 @@ function ExperienceHomeSession({ scenario }: { scenario: Scenario }) {
   const metrics = deriveActionCardExperienceMetrics({ cards: parsedCards, outcomes })
 
   useEffect(() => {
-    const fresh = plan.visible.filter(card => !surfaced.current.has(card.cardId))
+    const presented = [...plan.visible, ...plan.deferred.filter(card => card.cardId === expandedCardId)]
+    const fresh = presented.filter(card => !surfaced.current.has(card.cardId))
     if (fresh.length === 0) return
 
     const occurredAt = new Date().toISOString()
@@ -100,7 +102,7 @@ function ExperienceHomeSession({ scenario }: { scenario: Scenario }) {
         occurredAt,
       })),
     ])
-  }, [plan.visible])
+  }, [plan.visible, plan.deferred, expandedCardId])
 
   const appendOutcome = (
     card: ActionCardModel,
@@ -126,7 +128,9 @@ function ExperienceHomeSession({ scenario }: { scenario: Scenario }) {
     if (!readiness.canShowCards) return
     if (action.kind === 'dismiss' || action.kind === 'snooze') {
       appendOutcome(card, action.kind === 'dismiss' ? 'dismissed' : 'snoozed')
+      setExpandedCardId(null)
       setHidden(current => current.includes(card.id) ? current : [...current, card.id])
+      heading.current?.focus()
       setOutcome(action.kind === 'snooze'
         ? `“${card.title}” kartı bu önizlemede ertelendi. Hatırlatma kurulmadı.`
         : `“${card.title}” kartı bu önizlemede kapatıldı. Gerçek kayıt değişmedi.`)
@@ -135,9 +139,7 @@ function ExperienceHomeSession({ scenario }: { scenario: Scenario }) {
 
     if (action.kind === 'navigate') {
       appendOutcome(card, 'action_selected', action.id)
-      const protocolCard = parsedCards.find(candidate => candidate.cardId === card.id)
-      const protocolAction = protocolCard?.actions.find(candidate => candidate.actionId === action.id)
-      if (protocolAction?.mode === 'navigate') router.push(protocolAction.href)
+      setOutcome(`“${action.label}” seçildi. Bu önizlemede ilgili sayfa açılmaz ve gerçek kayıtlar değişmez.`)
       return
     }
 
@@ -150,7 +152,7 @@ function ExperienceHomeSession({ scenario }: { scenario: Scenario }) {
       <header className="kpnk-home-head">
         <div>
           <div className="kpnk-experience-kicker">Kepenk · Bugün</div>
-          <h1>Bırak iş sana gelsin.</h1>
+          <h1 ref={heading} tabIndex={-1}>Bırak iş sana gelsin.</h1>
           <p>İlgilenmen gereken işleri burada gör. Her kartta ne olduğunu ve neler yapabileceğini bul.</p>
         </div>
 
@@ -192,16 +194,21 @@ function ExperienceHomeSession({ scenario }: { scenario: Scenario }) {
           </div>
           <div className="kpnk-later-list">
             {deferred.map(card => (
-              <button
+              <DeferredActionCard
                 key={card.id}
-                type="button"
-                className="kpnk-later-row"
-                onClick={() => setOutcome(`“${card.title}” daha sonra ilgilenebileceğin örnek işler arasında.`)}
-              >
-                <span className="kpnk-later-domain">{ACTION_CARD_DOMAIN_LABELS[card.source.domain]}</span>
-                <span className="kpnk-later-title">{card.title}</span>
-                <span aria-hidden="true">›</span>
-              </button>
+                card={card}
+                expanded={expandedCardId === card.id}
+                onToggle={() => {
+                  if (expandedCardId === card.id) {
+                    setExpandedCardId(null)
+                  } else {
+                    setExpandedCardId(card.id)
+                    appendOutcome(card, 'opened')
+                  }
+                }}
+                onClose={() => setExpandedCardId(null)}
+                onAction={handleAction}
+              />
             ))}
           </div>
         </section>
@@ -257,7 +264,8 @@ function ExperienceHomeSession({ scenario }: { scenario: Scenario }) {
           ))}
         </div>
         <p style={{ marginTop: 10, fontSize: 10, lineHeight: 1.5, color: 'var(--kpnk-text-secondary)' }}>
-          Bu bölüm, bu denemede gördüğün kartları ve yaptığın seçimleri gösterir. Bir işin tamamlandığını veya gelir elde edildiğini göstermez.
+          Bu bölüm, bu denemede gördüğün kartları ve yaptığın seçimleri gösterir. Şimdi ilgilen bölümündeki kartlar ve ayrıntısını açtığın işler birer kez sayılır.
+          Ayrıntı açmak, işlem seçmek sayılmaz. Bir işin tamamlandığını veya gelir elde edildiğini göstermez.
           Bilgiler kalıcı olarak kaydedilmez; başka bir yere gönderilmez. Görünümü değiştirince veya sayfayı yenileyince sıfırlanır.
         </p>
       </details> : null}

@@ -10,9 +10,10 @@ function cssAttention(attention: ActionCardModel['attention']) {
 export interface ActionCardProps {
     card: ActionCardModel
     onAction: (card: ActionCardModel, action: ActionCardAction) => void
+    showExplanation?: boolean
 }
 
-export default function ActionCard({ card, onAction }: ActionCardProps) {
+export default function ActionCard({ card, onAction, showExplanation = false }: ActionCardProps) {
     const evidenceLabels = [...new Set(card.evidence?.map(item => item.label?.trim() || 'İlgili işlem kaydı') ?? [])]
     const eventLabel = getActionCardEventLabel(card.source.eventId)
     const deadline = formatExperienceDateTime(card.deadlineAt)
@@ -39,7 +40,7 @@ export default function ActionCard({ card, onAction }: ActionCardProps) {
             {card.context ? <p className="kpnk-action-context">{card.context}</p> : null}
 
             {(card.reason || evidenceLabels.length > 0) ? (
-                <details className="kpnk-action-reason">
+                <details className="kpnk-action-reason" open={showExplanation || undefined}>
                     <summary>Neden bu kartı görüyorum?</summary>
                     {card.reason ? <p>{card.reason}</p> : null}
                     {evidenceLabels.length > 0 ? <p>Dayanak: {evidenceLabels.join(' · ')}</p> : null}

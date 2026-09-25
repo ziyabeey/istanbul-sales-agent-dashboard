@@ -41,6 +41,8 @@ Bu eşleme kullanıcı metni içindir; API, tablo, olay, yetki veya route adlar�
 
 - Örnek veri her zaman belirtilir. Kartı kapatmak, randevuyu iptal etmek değildir.
 - Önizlemede erteleme, gerçek hatırlatma kurulmuş gibi anlatılmaz.
+- “Ayrıntıyı kapat” yalnız açık bölümü daraltır; kartın “Kapat” düğmesinden ayrılır. Kartı incelemek işlem seçimi, seçim de tamamlanan iş diye anlatılmaz.
+- Örnek yönlendirme çalıştırılmıyorsa açıkça “Bu önizlemede ilgili sayfa açılmaz” denir; sessizce tepkisiz kalınmaz.
 - Bağlantı hatası “iş yok” değildir; beklenen yanıt “başarılı” değildir.
 - Gerçekten yapılmayan iş için “tamamlandı”, “gönderildi”, “kaydedildi” veya “gelir sağlandı” denmez.
 - Bir kart yalnız tek hizmet iptalini kanıtlıyorsa bütün randevunun iptal edildiği iddia edilmez.
