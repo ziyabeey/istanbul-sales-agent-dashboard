@@ -28,8 +28,8 @@ describe('Kepenk Alpha home source readiness', () => {
   it('limits the quiet claim to the successfully read source', () => {
     const view = getHomeReadiness('ready', { visible: 0, deferred: 0 })
     expect(view.kind).toBe('quiet')
-    expect(view.description).toContain('başarıyla okunan işleri')
-    expect(view.description).toContain('diğer ürünler hakkında bilgi vermez')
+    expect(view.description).toContain('kontrol edilen kayıtları')
+    expect(view.description).toContain('Diğer uygulamalardaki işleri kapsamaz')
   })
 
   it('keeps deferred work discoverable when nothing is urgent', () => {

@@ -34,22 +34,22 @@ describe('Kepenk Alpha experience preview', () => {
 
   it('labels sample data and keeps the existing card experience', () => {
     expect(container.textContent).toContain('Ürün önizlemesi · örnek işletme')
-    expect(container.textContent).toContain('Canlı Randevu bağlantısı yok')
+    expect(container.textContent).toContain('Randevu henüz bağlı değil')
     expect(container.querySelectorAll('article').length).toBeGreaterThan(0)
-    expect(container.querySelector('[aria-label="Örnek dikkat özeti"]')).not.toBeNull()
+    expect(container.querySelector('[aria-label="Örnek iş özeti"]')).not.toBeNull()
   })
 
   it.each([
-    ['not_connected', 'Önce Randevu bağlantısı gerekiyor.'],
+    ['not_connected', 'Randevu henüz bağlı değil.'],
     ['loading', 'İşlerin kontrol ediliyor.'],
     ['unavailable', 'İşlerini şu an kontrol edemedik.'],
-    ['forbidden', 'Bu işletmenin işlerini görüntüleme yetkin yok.'],
-    ['stale', 'İşlerinin güncelliğini doğrulayamadık.'],
+    ['forbidden', 'Bu işletmenin işlerini görme yetkin yok.'],
+    ['stale', 'Bilgilerin güncel olduğundan emin değiliz.'],
   ])('shows %s without old cards, zero counts or success claims', async (id, title) => {
     await selectScenario(id)
     expect(container.querySelector('[role="status"]')?.textContent).toContain(title)
     expect(container.querySelectorAll('article')).toHaveLength(0)
-    expect(container.querySelector('[aria-label="Örnek dikkat özeti"]')).toBeNull()
+    expect(container.querySelector('[aria-label="Örnek iş özeti"]')).toBeNull()
     expect(container.querySelector('details')).toBeNull()
     expect(container.textContent).not.toContain('Şu an ilgilenmen gereken bir iş yok.')
     expect(push).not.toHaveBeenCalled()
@@ -58,8 +58,8 @@ describe('Kepenk Alpha experience preview', () => {
   it('shows a scoped quiet state only in the successful-empty scenario', async () => {
     await selectScenario('quiet')
     expect(container.textContent).toContain('Şu an ilgilenmen gereken bir iş yok.')
-    expect(container.textContent).toContain('diğer ürünler hakkında bilgi vermez')
-    expect(container.querySelector('[aria-label="Örnek dikkat özeti"]')).not.toBeNull()
+    expect(container.textContent).toContain('Diğer uygulamalardaki işleri kapsamaz')
+    expect(container.querySelector('[aria-label="Örnek iş özeti"]')).not.toBeNull()
     expect(container.querySelectorAll('article')).toHaveLength(0)
   })
 
@@ -73,5 +73,31 @@ describe('Kepenk Alpha experience preview', () => {
     expect(container.querySelector('.kpnk-experience-outcome')?.textContent).toBe('')
     expect(container.querySelectorAll('article')).toHaveLength(2)
     expect(push).not.toHaveBeenCalled()
+  })
+
+  it('uses Turkish labels and readable dates, including collapsed explanations', () => {
+    const text = container.textContent ?? ''
+    expect(text).toContain('Finans')
+    expect(text).toContain('Emlak')
+    expect(text).toContain('Stok')
+    expect(text).toContain('24 Eylül 2026, 19:30 (TSİ)')
+    expect(text).toContain('12.450 TL')
+    expect(text).not.toMatch(/Finance|Property|canonical|appointment_events|appointment\.cancelled|stock\.projected_low|Business outcome|\bUI\b|Navigasyon|Son zaman/)
+    expect(text).not.toContain('2026-09-24T')
+  })
+
+  it('does not promise a real reminder after a preview snooze', async () => {
+    const snooze = Array.from(container.querySelectorAll('button')).find(button => button.textContent === 'Daha sonra')!
+    await act(async () => { snooze.click() })
+    expect(container.querySelector('.kpnk-experience-outcome')?.textContent).toContain('Hatırlatma kurulmadı.')
+    expect(push).not.toHaveBeenCalled()
+  })
+
+  it('does not promise a future scheduler when selecting deferred work', async () => {
+    const later = container.querySelector<HTMLButtonElement>('.kpnk-later-row')!
+    await act(async () => { later.click() })
+    const message = container.querySelector('.kpnk-experience-outcome')?.textContent ?? ''
+    expect(message).toContain('örnek işler arasında')
+    expect(message).not.toContain('gösterilecek')
   })
 })

@@ -1,6 +1,7 @@
 'use client'
 
 import { useMemo, useState } from 'react'
+import Link from 'next/link'
 import { ActionCardProtocolSchema } from '@kepenk/action-card-schema'
 import {
   actionCardProtocolToModel,
@@ -24,25 +25,28 @@ export default function ExperienceLabPage() {
     if (action.kind === 'dismiss') {
       setHidden(current => [...current, card.id])
     }
-    setOutcome(`${action.label} seçildi · ${card.id} · demo outcome: ${action.kind}`)
+    setOutcome(action.kind === 'dismiss'
+      ? `“${card.title}” kartı bu önizlemede kapatıldı. Gerçek kayıt değişmedi.`
+      : `“${action.label}” seçildi. Bu sayfada yalnız kartların görünümünü deniyorsun; gerçek işlem yapılmaz.`)
   }
 
   return (
     <main className="kpnk-main kpnk-experience-lab">
       <header className="kpnk-experience-head">
-        <div className="kpnk-experience-kicker">Kepenk Experience · K1</div>
-        <h1>Bırak iş sana gelsin.</h1>
+        <div className="kpnk-experience-kicker">Kepenk · Örnek kartlar</div>
+        <h1>İşlerini tek bakışta gör.</h1>
         <p>
-          Bu laboratuvar versioned canonical Action Card envelope üzerinden render edilir.
-          Kart capability veya transaction authority değildir.
+          Buradaki bilgiler örnektir. Kartları inceleyebilir ve düğmeleri deneyebilirsin.
+          Gerçek randevu, ödeme veya stok kaydı değişmez.
         </p>
+        <Link href="/dashboard/manage/experience-home" prefetch={false}>Bugün görünümüne dön</Link>
       </header>
 
-      <section className="kpnk-action-feed" aria-label="Kepenk aksiyonları">
+      <section className="kpnk-action-feed" aria-label="Örnek iş kartları">
         {visible.map(card => <ActionCard key={card.id} card={card} onAction={handleAction} />)}
         {visible.length === 0 ? (
           <div className="kpnk-card" style={{ padding: 22, fontSize: 13, color: 'var(--kpnk-text-secondary)' }}>
-            Şimdilik yapılacak bir şey yok. Sessizlik de ürün davranışıdır.
+            Tüm örnek kartları kapattın. Yeniden denemek için sayfayı yenileyebilirsin.
           </div>
         ) : null}
       </section>

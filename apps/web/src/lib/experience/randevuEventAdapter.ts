@@ -150,8 +150,8 @@ export function randevuEventToActionCard(input: RandevuEventAdapterInput): Actio
     : `booking-appointment:${input.appointmentId}:cancelled`
 
   const lineText = meta.lineOrdinal
-    ? `Rezervasyonun ${meta.lineOrdinal}. hizmet satırında iptal kaydı oluştu.`
-    : 'Randevu kaynağında iptal kaydı oluştu.'
+    ? `Randevudaki ${meta.lineOrdinal}. hizmet iptal edildi.`
+    : 'Randevu için bir iptal kaydı var.'
 
   const serviceText = reservation?.serviceName
     ? ` Hizmet: ${reservation.serviceName}.`
@@ -176,7 +176,7 @@ export function randevuEventToActionCard(input: RandevuEventAdapterInput): Actio
         ...(meta.groupId ? [{ type: 'booking_group', id: meta.groupId }] : []),
       ],
       evidenceRefs: [
-        { id: event.id, kind: 'appointment_event', label: 'Randevu iptal olayı' },
+        { id: event.id, kind: 'appointment_event', label: 'Randevu iptal kaydı' },
       ],
     },
     attention: {
@@ -186,9 +186,9 @@ export function randevuEventToActionCard(input: RandevuEventAdapterInput): Actio
       deadlineAt: reservation?.startsAt ?? undefined,
     },
     presentation: {
-      title: time ? `${time} rezervasyonunda iptal var.` : 'Bir rezervasyon iptal edildi.',
-      context: `${lineText}${serviceText} Takvim etkisini kontrol edebilirsin.`,
-      reason: 'Bu kart Randevu’nun canonical appointment_events kaydından üretildi.',
+      title: time ? `${time} randevusunda iptal var.` : 'Bir randevuda iptal var.',
+      context: `${lineText}${serviceText} Takvimdeki değişikliği kontrol edebilirsin.`,
+      reason: 'Randevu uygulamasındaki iptal kaydı nedeniyle bu kartı görüyorsun.',
       tone: 'warning',
     },
     actions: [

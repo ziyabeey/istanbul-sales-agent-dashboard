@@ -17,24 +17,24 @@ export interface HomeReadiness {
 
 const sourceMessages: Record<Exclude<HomeSourceStatus, 'ready'>, { title: string; description: string }> = {
   not_connected: {
-    title: 'Önce Randevu bağlantısı gerekiyor.',
-    description: 'İşletmenin güncel işlerini henüz okuyamıyoruz. Bağlantı kurulmadan burada gerçek iş veya sonuç gösterilmez.',
+    title: 'Randevu henüz bağlı değil.',
+    description: 'İşlerini burada görebilmen için önce Randevu bağlantısı kurulmalı. Henüz işletmene ait bilgiler gösterilmiyor.',
   },
   loading: {
     title: 'İşlerin kontrol ediliyor.',
-    description: 'Kaynak yanıtını bekliyoruz. Henüz ilgilenmen gereken iş olup olmadığını bilmiyoruz.',
+    description: 'Bilgilerin gelmesini bekliyoruz. Kontrol bitmeden işlerin hakkında bir sonuç gösteremeyiz.',
   },
   unavailable: {
     title: 'İşlerini şu an kontrol edemedik.',
-    description: 'Veri kaynağına ulaşılamadı. Bu, iş olmadığı anlamına gelmez; bağlantı yeniden kurulunca kontrol edilmeli.',
+    description: 'Bilgilerine ulaşamadık. Bu, ilgilenmen gereken iş olmadığı anlamına gelmez. Bağlantı kurulduktan sonra yeniden kontrol edilmeli.',
   },
   forbidden: {
-    title: 'Bu işletmenin işlerini görüntüleme yetkin yok.',
-    description: 'Doğru işletmeyi seçtiğini kontrol et veya işletme yöneticisinden erişimini kontrol etmesini iste.',
+    title: 'Bu işletmenin işlerini görme yetkin yok.',
+    description: 'Doğru işletmeyi seçtiğinden emin ol. Erişim için işletme yöneticisine başvur.',
   },
   stale: {
-    title: 'İşlerinin güncelliğini doğrulayamadık.',
-    description: 'Önceki bilgiler artık güncel olmayabilir. Kaynak yeniden doğrulanmadan kartlar ve işlemler gösterilmez.',
+    title: 'Bilgilerin güncel olduğundan emin değiliz.',
+    description: 'Son kontrolden sonra değişiklik olmuş olabilir. Bilgiler yenilenene kadar kartları göstermiyoruz.',
   },
 }
 
@@ -61,7 +61,7 @@ export function getHomeReadiness(
     canShowCounts: true,
     title: 'Şu an ilgilenmen gereken bir iş yok.',
     description: counts.deferred > 0
-      ? 'Daha sonra bakılabilecek işler aşağıda. Bu özet yalnız bu kaynaktan okunan işleri kapsar.'
-      : 'Bu özet yalnız bu kaynaktan başarıyla okunan işleri kapsar; diğer ürünler hakkında bilgi vermez.',
+      ? 'Acil olmayan işler aşağıda. Bu özet yalnız kontrol edilen kayıtları kapsar.'
+      : 'Bu özet yalnız kontrol edilen kayıtları kapsar. Diğer uygulamalardaki işleri kapsamaz.',
   }
 }

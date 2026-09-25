@@ -69,14 +69,14 @@ describe('K4 Randevu canonical event adapter', () => {
     expect(card?.source.eventRef.revision).toBe(7)
     expect(card?.source.subjectRefs).toContainEqual({ type: 'booking_group', id: groupId })
     expect(card?.suppressionGroup).toBe(`booking-group:${groupId}:v7:cancelled`)
-    expect(card?.presentation.context).toContain('2. hizmet satırında')
+    expect(card?.presentation.context).toContain('2. hizmet iptal edildi')
     expect(card?.presentation.context).not.toContain('Müşteri iptali')
   })
 
   it('does not fabricate time, customer or empty-slot duration when context is absent', () => {
     const card = randevuEventToActionCard({ businessId, appointmentId, event: event() })
 
-    expect(card?.presentation.title).toBe('Bir rezervasyon iptal edildi.')
+    expect(card?.presentation.title).toBe('Bir randevuda iptal var.')
     expect(card?.presentation.context).not.toMatch(/dakika|müşteri|15:30/i)
     expect(card?.attention.urgency).toBe('normal')
   })

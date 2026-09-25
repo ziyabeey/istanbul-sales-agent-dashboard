@@ -47,9 +47,9 @@ export const DEMO_ACTION_CARDS: ActionCardProtocol[] = [
     },
     attention: { urgency: 'normal', importance: 68, riskClass: 'medium' },
     presentation: {
-      title: '₺12.450 tahsilat bekliyor.',
+      title: '12.450 TL tahsilat bekliyor.',
       context: 'Üç açık adisyon ödeme bekliyor. En eski kayıt iki gün önce oluşturuldu.',
-      reason: 'Bu kart finansal gerçeği hesaplamaz; canonical Finance projection sonucunu yalnız sunar.',
+      reason: 'Örnek kayıtlarda ödeme bekleyen üç adisyon bulunduğu için bu kartı görüyorsun.',
       tone: 'info',
     },
     actions: [
@@ -86,8 +86,8 @@ export const DEMO_ACTION_CARDS: ActionCardProtocol[] = [
     attention: { urgency: 'high', importance: 76, riskClass: 'medium' },
     presentation: {
       title: '3 ürün 4 gün içinde bitebilir.',
-      context: 'Yaklaşan randevu yoğunluğuna göre açıcı ve iki sarf kaleminde stok riski oluşuyor.',
-      reason: 'Stok ve planlı talep aynı kartta yalnız kanıt referansları üzerinden buluşur.',
+      context: 'Yaklaşan randevularda kullanılacak açıcı ve iki sarf malzemesi yetersiz kalabilir.',
+      reason: 'Örnek stok kayıtları ve yaklaşan randevular, bu ürünlerin azalabileceğini gösteriyor.',
       tone: 'critical',
     },
     actions: [
@@ -121,8 +121,8 @@ export const DEMO_ACTION_CARDS: ActionCardProtocol[] = [
     attention: { urgency: 'low', importance: 56, riskClass: 'low' },
     presentation: {
       title: 'Ayşe Hanım için 3 yeni eşleşme var.',
-      context: 'İki mülk bütçe ve lokasyon tercihleriyle güçlü biçimde eşleşiyor.',
-      reason: 'Müşteri talebi ile aktif portföyün deterministik eşleştirme sonucu.',
+      context: 'Üç seçenekten ikisi bütçe ve konum tercihlerine daha uygun görünüyor.',
+      reason: 'Örnek müşteri tercihleri ile portföydeki mülkler karşılaştırıldı.',
       tone: 'positive',
     },
     actions: [

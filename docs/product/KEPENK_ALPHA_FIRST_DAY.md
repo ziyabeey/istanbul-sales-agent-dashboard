@@ -4,6 +4,8 @@
 > Bu teslim: ürün sözleşmesi + mevcut laboratuvarda durum önizlemesi.
 > Canlı bağlantı, onboarding, pilot veya production kabulü değildir.
 
+> Türkçe metin ilkeleri ve güncel sözcük seçimi: [Türkçe arayüz dili](TURKCE_ARAYUZ_DILI.md). Aşağıdaki davranış sözleşmesi korunur; ekrandaki ifadeler bu rehbere göre sadeleştirilir.
+
 ## 1. Kullanıcı, ihtiyaç ve vaat
 
 İlk kullanıcı Randevu kullanan işletme sahibidir. İhtiyacı; gün içinde hangi işe neden bakması gerektiğini, doğru işletme bağlamında ve gereksiz gezinmeden anlamaktır.
@@ -40,13 +42,13 @@ Bu yolculuk hedef sözleşmedir. Şimdiki `/dashboard/manage/experience-home` bi
 
 | Durum | Kullanıcıya söylenen | Kart / sayı |
 | --- | --- | --- |
-| Bağlantı kurulmadı | “Önce Randevu bağlantısı gerekiyor.” | Gösterilmez; sıfır iş denmez. |
+| Bağlantı kurulmadı | “Randevu henüz bağlı değil.” | Gösterilmez; sıfır iş denmez. |
 | Yükleniyor | “İşlerin kontrol ediliyor.” | Henüz sonuç iddiası yok. |
 | Başarılı okuma, işler var | İş ve kanıt görünür. | Mevcut K2 öncelik kuralları uygulanır. |
 | Başarılı okuma, şimdi iş yok | “Şu an ilgilenmen gereken bir iş yok.” | Yalnız başarıyla okunan kaynak kapsamı; ertelenen işler ayrıca görünür. |
 | Kaynak erişilemiyor | “İşlerini şu an kontrol edemedik.” | Eski kartlar/sayılar ve başarı işareti gösterilmez. |
-| Yetki yok | “Bu işletmenin işlerini görüntüleme yetkin yok.” | İşletme ve erişim kontrolü önerilir; kartlar gizlenir. |
-| Güncellik doğrulanamıyor | “İşlerinin güncelliğini doğrulayamadık.” | Yeniden doğrulanana kadar kart/işlem gösterilmez. |
+| Yetki yok | “Bu işletmenin işlerini görme yetkin yok.” | İşletme ve erişim kontrolü önerilir; kartlar gizlenir. |
+| Güncellik doğrulanamıyor | “Bilgilerin güncel olduğundan emin değiliz.” | Yeniden doğrulanana kadar kart/işlem gösterilmez. |
 
 İstemcideki durum seçici yalnız laboratuvar simülasyonudur; gerçek erişim yetkisi vermez, kaynak sağlığını ölçmez. Canlı durum sunucudaki kabul edilmiş kimlik/transport sonucundan türetilmelidir. Güncellik eşiği ve yeniden deneme davranışı K4b kapsamında kaynak sözleşmesiyle belirlenir; burada keyfî süre seçilmez.
 

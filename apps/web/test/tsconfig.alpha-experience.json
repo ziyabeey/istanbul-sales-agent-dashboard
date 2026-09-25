@@ -7,8 +7,10 @@
   "include": [
     "../src/lib/experience/*.ts",
     "../src/app/dashboard/manage/experience-home/page.tsx",
+    "../src/app/dashboard/manage/experience-lab/page.tsx",
     "./unit/homeReadiness.test.ts",
     "./unit/experienceHome.test.ts",
+    "./unit/turkishPresentation.test.ts",
     "./unit/actionCardAttention.test.ts",
     "./unit/actionCardMetrics.test.ts",
     "./unit/actionCardProtocol.test.ts",

@@ -17,14 +17,15 @@ import {
 import ActionCard from '../components/experience/ActionCard'
 import { DEMO_ACTION_CARDS } from '../components/experience/demoProtocolCards'
 import { getHomeReadiness, type HomeSourceStatus } from '@/lib/experience/homeReadiness'
+import { ACTION_CARD_DOMAIN_LABELS, formatDecisionDuration } from '@/lib/experience/turkishPresentation'
 
 const DEMO_NOW = new Date('2026-09-24T18:00:00+03:00')
 const SCENARIOS = [
   { id: 'sample', label: 'Örnek işler', status: 'ready' },
   { id: 'not_connected', label: 'İlk gün · bağlantı kurulmadı', status: 'not_connected' },
   { id: 'loading', label: 'İşler yükleniyor', status: 'loading' },
-  { id: 'quiet', label: 'Okuma başarılı · iş yok', status: 'ready' },
-  { id: 'unavailable', label: 'Kaynağa ulaşılamıyor', status: 'unavailable' },
+  { id: 'quiet', label: 'Kontrol tamamlandı · iş yok', status: 'ready' },
+  { id: 'unavailable', label: 'Bilgilere ulaşılamıyor', status: 'unavailable' },
   { id: 'forbidden', label: 'İşletmeye erişim yok', status: 'forbidden' },
   { id: 'stale', label: 'Bilgiler güncel değil', status: 'stale' },
 ] as const satisfies readonly { id: string; label: string; status: HomeSourceStatus }[]
@@ -38,7 +39,7 @@ export default function ExperienceHomePage() {
       <aside className="kpnk-home-preview" aria-labelledby="preview-title">
         <div>
           <strong id="preview-title">Ürün önizlemesi · örnek işletme</strong>
-          <p>Canlı Randevu bağlantısı yok. Kartlar ve aşağıdaki durumlar örnektir; gerçek işlem yapılmaz.</p>
+          <p>Randevu henüz bağlı değil. Buradaki kartlar ve durumlar örnektir; gerçek kayıtlar değişmez.</p>
         </div>
         <label htmlFor="home-scenario">
           Görünümü dene
@@ -127,8 +128,8 @@ function ExperienceHomeSession({ scenario }: { scenario: Scenario }) {
       appendOutcome(card, action.kind === 'dismiss' ? 'dismissed' : 'snoozed')
       setHidden(current => current.includes(card.id) ? current : [...current, card.id])
       setOutcome(action.kind === 'snooze'
-        ? `${card.title} daha sonraya alındı.`
-        : `${card.title} kapatıldı.`)
+        ? `“${card.title}” kartı bu önizlemede ertelendi. Hatırlatma kurulmadı.`
+        : `“${card.title}” kartı bu önizlemede kapatıldı. Gerçek kayıt değişmedi.`)
       return
     }
 
@@ -141,7 +142,7 @@ function ExperienceHomeSession({ scenario }: { scenario: Scenario }) {
     }
 
     appendOutcome(card, 'action_selected', action.id)
-    setOutcome(`${action.label} seçildi. Demo shell command çalıştırmaz; domain confirmation/execution katmanına devreder.`)
+    setOutcome(`“${action.label}” seçildi. Bu önizlemede gerçek işlem yapılmaz.`)
   }
 
   return (
@@ -150,13 +151,13 @@ function ExperienceHomeSession({ scenario }: { scenario: Scenario }) {
         <div>
           <div className="kpnk-experience-kicker">Kepenk · Bugün</div>
           <h1>Bırak iş sana gelsin.</h1>
-          <p>Önünde yalnız şu an karar vermen gereken işler var. Geri kalanı Kepenk sessizce sıraya koyar.</p>
+          <p>İlgilenmen gereken işleri burada gör. Her kartta ne olduğunu ve neler yapabileceğini bul.</p>
         </div>
 
-        {readiness.canShowCounts ? <div className="kpnk-attention-summary" aria-label="Örnek dikkat özeti">
+        {readiness.canShowCounts ? <div className="kpnk-attention-summary" aria-label="Örnek iş özeti">
           <div><strong>{visible.length}</strong><span>Şimdi</span></div>
           <div><strong>{deferred.length}</strong><span>Sonra</span></div>
-          <div><strong>{plan.suppressed.length}</strong><span>Susturuldu</span></div>
+          <div><strong>{plan.suppressed.length}</strong><span>Gösterilmeyen</span></div>
         </div> : null}
       </header>
 
@@ -186,8 +187,8 @@ function ExperienceHomeSession({ scenario }: { scenario: Scenario }) {
       {readiness.canShowCards && deferred.length > 0 ? (
         <section className="kpnk-home-section kpnk-home-later" aria-labelledby="later-title">
           <div className="kpnk-home-section-head">
-            <div><h2 id="later-title">Sonra bakılabilir</h2></div>
-            <span>Toplu gösterim için uygun</span>
+            <div><h2 id="later-title">Daha sonra ilgilen</h2></div>
+            <span>Acil olmayan işler</span>
           </div>
           <div className="kpnk-later-list">
             {deferred.map(card => (
@@ -195,9 +196,9 @@ function ExperienceHomeSession({ scenario }: { scenario: Scenario }) {
                 key={card.id}
                 type="button"
                 className="kpnk-later-row"
-                onClick={() => setOutcome(`${card.title} sonraki dikkat penceresinde gösterilecek.`)}
+                onClick={() => setOutcome(`“${card.title}” daha sonra ilgilenebileceğin örnek işler arasında.`)}
               >
-                <span className="kpnk-later-domain">{card.source.domain}</span>
+                <span className="kpnk-later-domain">{ACTION_CARD_DOMAIN_LABELS[card.source.domain]}</span>
                 <span className="kpnk-later-title">{card.title}</span>
                 <span aria-hidden="true">›</span>
               </button>
@@ -208,9 +209,11 @@ function ExperienceHomeSession({ scenario }: { scenario: Scenario }) {
 
       <footer className="kpnk-home-foot">
         <span>{readiness.canShowCounts
-          ? `Gösterilmeyen ${plan.suppressed.length} örnek kart tekrar veya öncelik kuralları nedeniyle sessiz.`
-          : 'Kaynak doğrulanmadığı için iş sayısı ve kartlar gösterilmiyor.'}</span>
-        <Link href="/dashboard/manage/experience-lab" prefetch={false}>Protokol laboratuvarını aç</Link>
+          ? plan.suppressed.length > 0
+            ? `${plan.suppressed.length} örnek kart, tekrarları ve gereksiz bildirimleri azaltmak için gösterilmiyor.`
+            : 'Bu görünümdeki işler ve sayılar örnektir.'
+          : 'Bilgiler kontrol edilemediği için kartlar ve iş sayısı gösterilmiyor.'}</span>
+        <Link href="/dashboard/manage/experience-lab" prefetch={false}>Tüm örnek kartları gör</Link>
       </footer>
 
       {readiness.canShowCards ? <details
@@ -218,7 +221,7 @@ function ExperienceHomeSession({ scenario }: { scenario: Scenario }) {
         style={{ width: 'min(900px, 100%)', marginTop: 18, padding: '14px 16px' }}
       >
         <summary style={{ cursor: 'pointer', fontSize: 12, fontWeight: 700 }}>
-          Örnek etkileşim ölçümü · yalnız bu görünüm
+          Bu denemedeki seçimlerin
         </summary>
         <div
           style={{
@@ -229,17 +232,15 @@ function ExperienceHomeSession({ scenario }: { scenario: Scenario }) {
           }}
         >
           {[
-            ['Gösterildi', metrics.cardsSurfaced],
-            ['Karar verildi', metrics.cardsWithDecision],
-            ['Aksiyon seçildi', metrics.actionSelections],
-            ['Kapatıldı', metrics.dismissals],
-            ['Ertelendi', metrics.snoozes],
-            ['Navigasyon', metrics.navigationSelections],
+            ['Gösterilen kart', metrics.cardsSurfaced],
+            ['Yanıtlanan kart', metrics.cardsWithDecision],
+            ['Seçilen işlem', metrics.actionSelections],
+            ['Kapatılan kart', metrics.dismissals],
+            ['Ertelenen kart', metrics.snoozes],
+            ['Sayfa açma seçimi', metrics.navigationSelections],
             [
-              'Karara süre',
-              metrics.medianTimeToDecisionMs === null
-                ? '—'
-                : `${(metrics.medianTimeToDecisionMs / 1000).toFixed(1)} sn`,
+              'Ortanca karar süresi',
+              formatDecisionDuration(metrics.medianTimeToDecisionMs),
             ],
           ].map(([label, value]) => (
             <div
@@ -256,7 +257,8 @@ function ExperienceHomeSession({ scenario }: { scenario: Scenario }) {
           ))}
         </div>
         <p style={{ marginTop: 10, fontSize: 10, lineHeight: 1.5, color: 'var(--kpnk-text-secondary)' }}>
-          Bu panel yalnız UI etkileşimini ölçer. Business outcome, gelir veya başarı etkisi çıkarmaz ve veriyi dışarı göndermez.
+          Bu bölüm, bu denemede gördüğün kartları ve yaptığın seçimleri gösterir. Bir işin tamamlandığını veya gelir elde edildiğini göstermez.
+          Bilgiler kalıcı olarak kaydedilmez; başka bir yere gönderilmez. Görünümü değiştirince veya sayfayı yenileyince sıfırlanır.
         </p>
       </details> : null}
 
