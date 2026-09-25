@@ -6,6 +6,7 @@ on:
     paths:
       - ".github/workflows/gemini-worker.yml"
       - "scripts/gemini-worker-bridge.mjs"
+      - "scripts/setup-github-agent-wif.sh"
       - "docs/implementation/gemini-worker-bridge.md"
   issue_comment:
     types: [created]
@@ -24,6 +25,7 @@ permissions:
   contents: read
   issues: write
   pull-requests: write
+  id-token: write
 
 concurrency:
   group: gemini-worker-${{ github.event.issue.number || github.event.pull_request.number || github.run_id }}
@@ -49,13 +51,16 @@ jobs:
       - name: Checkout bridge
         uses: actions/checkout@v4
 
-      - name: Authenticate to Google Cloud
-        uses: google-github-actions/auth@v2
+      - id: google-auth
+        name: Authenticate to Google Cloud with GitHub OIDC
+        uses: google-github-actions/auth@v3
         with:
-          credentials_json: ${{ secrets.GCP_SA_KEY }}
+          project_id: cs-project-ljhot8la
+          workload_identity_provider: projects/155940992193/locations/global/workloadIdentityPools/kepenk-github/providers/github
+          service_account: kepenk-github-agent@cs-project-ljhot8la.iam.gserviceaccount.com
 
       - name: Set up gcloud
-        uses: google-github-actions/setup-gcloud@v2
+        uses: google-github-actions/setup-gcloud@v3
         with:
           project_id: cs-project-ljhot8la
 
