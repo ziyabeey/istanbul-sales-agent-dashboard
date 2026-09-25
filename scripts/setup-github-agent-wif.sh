@@ -21,6 +21,8 @@ fi
 
 gcloud projects add-iam-policy-binding "$PROJECT_ID"   --member="serviceAccount:${SERVICE_ACCOUNT_EMAIL}"   --role="roles/aiplatform.user"   --condition=None >/dev/null
 
+gcloud projects add-iam-policy-binding "$PROJECT_ID"   --member="serviceAccount:${SERVICE_ACCOUNT_EMAIL}"   --role="roles/serviceusage.serviceUsageConsumer"   --condition=None >/dev/null
+
 if ! gcloud iam workload-identity-pools describe "$POOL_ID"   --project="$PROJECT_ID"   --location=global >/dev/null 2>&1; then
   gcloud iam workload-identity-pools create "$POOL_ID"     --project="$PROJECT_ID"     --location=global     --display-name="Kepenk GitHub Actions"
 fi
