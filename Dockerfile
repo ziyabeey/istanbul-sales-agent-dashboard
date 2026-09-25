@@ -65,7 +65,7 @@ COPY --from=builder --chown=nextjs:nodejs /app/apps/web/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/apps/web/.next/static ./.next/static
 
 # Data klasörü (sektör şablonları vb.)
-COPY --from=builder --chown=nextjs:nodejs /app/data ./data 2>/dev/null || true
+COPY --from=builder --chown=nextjs:nodejs /app/data ./data
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=3s --start-period=10s --retries=3 \
