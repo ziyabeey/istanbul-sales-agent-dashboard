@@ -1,0 +1,17 @@
+.gcloudignore
+.git
+.gitignore
+.env
+.env.*
+.vercel
+.next
+**/.next
+node_modules
+**/node_modules
+.turbo
+**/.turbo
+**/dist
+coverage
+dev.log
+*.tmp
+.DS_Store

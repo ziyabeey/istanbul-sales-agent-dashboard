@@ -20,6 +20,12 @@ const DEMO_MODE_ENV = [
     'DEMO_MODE',
 ] as const
 
+function hasFirebaseRuntime(): boolean {
+    const hasExplicitCredentials = FIREBASE_REQUIRED_ENV.every((name) => hasEnv(name))
+    const hasCloudRunIdentity = hasEnv('K_SERVICE') && hasEnv('FIREBASE_PROJECT_ID')
+    return hasExplicitCredentials || hasCloudRunIdentity
+}
+
 type EnvName = string
 
 type FeatureReadiness = {
@@ -58,7 +64,10 @@ function feature(enabledEnvName: EnvName, required: readonly EnvName[]): Feature
 }
 
 export function getControlledLaunchEnvReadiness() {
-    const missingRequired = missing(CONTROLLED_LAUNCH_REQUIRED_ENV)
+    const missingRequired = [
+        ...missing(['SESSION_SECRET']),
+        ...(hasFirebaseRuntime() ? [] : [...FIREBASE_REQUIRED_ENV]),
+    ]
     const missingRecommended = missing(CONTROLLED_LAUNCH_RECOMMENDED_ENV)
     const problems = process.env.NODE_ENV === 'production'
         ? DEMO_MODE_ENV
@@ -77,10 +86,8 @@ export function getControlledLaunchEnvReadiness() {
 }
 
 export function getFeatureEnvReadiness(): FeatureReadinessMap {
-    const generationMissing = [
-        ...missing(FIREBASE_REQUIRED_ENV),
-        ...missing(['SERVICE_AUTH_SECRET']),
-    ]
+    const firebaseMissing = hasFirebaseRuntime() ? [] : [...FIREBASE_REQUIRED_ENV]
+    const generationMissing = [...firebaseMissing, ...missing(['SERVICE_AUTH_SECRET'])]
 
     if (!hasEnv('INTERNAL_APP_URL') && !hasEnv('NEXT_PUBLIC_APP_URL')) {
         generationMissing.push('INTERNAL_APP_URL_OR_NEXT_PUBLIC_APP_URL')
@@ -99,15 +106,15 @@ export function getFeatureEnvReadiness(): FeatureReadinessMap {
             }
             : { enabled: false, ready: true, missingRequired: [] },
         sitePublish: feature('KEPENK_SITE_PUBLISH_ENABLED', [
-            ...FIREBASE_REQUIRED_ENV,
+            ...firebaseMissing,
             'CF_ACCOUNT_ID',
             'CF_PAGES_TOKEN',
             'CF_API_TOKEN',
             'CF_ZONE_ID',
         ]),
-        siteEditorSave: feature('KEPENK_SITE_EDITOR_SAVE_ENABLED', FIREBASE_REQUIRED_ENV),
+        siteEditorSave: feature('KEPENK_SITE_EDITOR_SAVE_ENABLED', firebaseMissing),
         siteEditorPublish: feature('KEPENK_SITE_EDITOR_PUBLISH_ENABLED', [
-            ...FIREBASE_REQUIRED_ENV,
+            ...firebaseMissing,
             'NEXT_PUBLIC_APP_URL',
         ]),
     }

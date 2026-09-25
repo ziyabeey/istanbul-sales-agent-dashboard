@@ -34,9 +34,11 @@ const nextConfig: NextConfig = {
         "@kepenk/ui",
         "@kepenk/config",
         "@kepenk/agents",
+        "@kepenk/action-card-schema",
         "@kepenk/db",
         "@kepenk/cloudflare",
-        "@kepenk/shared"
+        "@kepenk/shared",
+        "@kepenk/templates"
     ],
     images: {
         remotePatterns: [

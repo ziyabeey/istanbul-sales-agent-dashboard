@@ -1,11 +1,11 @@
 steps:
-  # 1. Docker İmajını GCP Artifact Registry üzerine derleme
+  # 1. Kepenk web + BFF imajını derle
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'europe-west3-docker.pkg.dev/$PROJECT_ID/kepenk-repo/kepenk-ai-frontend:$COMMIT_SHA', '.']
+    args: ['build', '-t', '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/${_IMAGE}:$BUILD_ID', '.']
 
-  # 2. İmajı Artifact Registry'ye itme (Pushting)
+  # 2. İmajı Artifact Registry'ye gönder
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'europe-west3-docker.pkg.dev/$PROJECT_ID/kepenk-repo/kepenk-ai-frontend:$COMMIT_SHA']
+    args: ['push', '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/${_IMAGE}:$BUILD_ID']
 
   # 3. Google Cloud Run'a Deploy etme (Sıfır Kesinti)
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
@@ -13,18 +13,43 @@ steps:
     args:
       - 'run'
       - 'deploy'
-      - 'kepenk-ai'
+      - '${_SERVICE}'
       - '--image'
-      - 'europe-west3-docker.pkg.dev/$PROJECT_ID/kepenk-repo/kepenk-ai-frontend:$COMMIT_SHA'
+      - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/${_IMAGE}:$BUILD_ID'
       - '--region'
-      - 'europe-west3'
+      - '${_REGION}'
       - '--platform'
       - 'managed'
-      - '--allow-unauthenticated'
+      - '--no-allow-unauthenticated'
+      - '--service-account'
+      - 'kepenk-web-runtime@$PROJECT_ID.iam.gserviceaccount.com'
       - '--port'
       - '8080'
       - '--memory'
-      - '1024Mi'
+      - '1Gi'
+      - '--cpu'
+      - '1'
+      - '--concurrency'
+      - '80'
+      - '--min-instances'
+      - '0'
+      - '--max-instances'
+      - '1'
+      - '--timeout'
+      - '300'
+      - '--update-env-vars'
+      - 'FIREBASE_PROJECT_ID=$PROJECT_ID,GOOGLE_CLOUD_PROJECT=$PROJECT_ID,SUPABASE_URL=https://smizhsagjpqexveitbqu.supabase.co,CORE_PRINCIPAL_NAME=kepenk-web,CORE_BFF_ENABLED=true,CORE_ENTRY_ENABLED=true,NEXT_PUBLIC_APP_URL=https://kepenk-web-staging-4jtofh4w6q-ey.a.run.app,CLOUD_RUN_URL=https://kepenk-web-staging-4jtofh4w6q-ey.a.run.app,NEXT_TELEMETRY_DISABLED=1,KEPENK_DEMO_MODE=false,NEXT_PUBLIC_DEMO_MODE=false,DEMO_MODE=false'
+      - '--update-secrets'
+      - 'SESSION_SECRET=kepenk-session-secret:latest,ADMIN_SECRET_TOKEN=kepenk-admin-secret-token:latest,ADMIN_LOGIN_SECRET=kepenk-admin-login-secret:latest,SERVICE_AUTH_SECRET=kepenk-service-auth-secret:latest,CRON_SECRET=kepenk-cron-secret:latest,AUTH_SECRET=kepenk-auth-secret:latest,TOKEN_ENCRYPTION_KEY=kepenk-token-encryption-key:latest,SUPABASE_ANON_KEY=kepenk-supabase-anon-key:latest,CORE_PRINCIPAL_SECRET=kepenk-core-principal-secret:latest'
 
 images:
-  - 'europe-west3-docker.pkg.dev/$PROJECT_ID/kepenk-repo/kepenk-ai-frontend:$COMMIT_SHA'
+  - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/${_IMAGE}:$BUILD_ID'
+
+substitutions:
+  _REGION: europe-west3
+  _REPOSITORY: kepenk
+  _IMAGE: kepenk-web
+  _SERVICE: kepenk-web-staging
+
+options:
+  logging: CLOUD_LOGGING_ONLY

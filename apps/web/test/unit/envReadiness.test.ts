@@ -11,6 +11,7 @@ const TRACKED_ENV = [
     'FIREBASE_PROJECT_ID',
     'FIREBASE_CLIENT_EMAIL',
     'FIREBASE_PRIVATE_KEY',
+    'K_SERVICE',
     'NEXT_PUBLIC_APP_URL',
     'INTERNAL_APP_URL',
     'SERVICE_AUTH_SECRET',
@@ -91,6 +92,19 @@ describe('envReadiness', () => {
     it('tum production required env varsa hazirdir', () => {
         process.env.NODE_ENV = 'production'
         setProductionRequiredEnv()
+
+        const readiness = getControlledLaunchEnvReadiness()
+
+        expect(readiness.ready).toBe(true)
+        expect(isProductionEnvReady()).toBe(true)
+        expect(readiness.missingRequired).toEqual([])
+    })
+
+    it('Cloud Run servis kimligi uzun omurlu Firebase anahtari olmadan hazirdir', () => {
+        process.env.NODE_ENV = 'production'
+        process.env.SESSION_SECRET = 'super-secret-session-value'
+        process.env.FIREBASE_PROJECT_ID = 'kepenk-nonprod'
+        process.env.K_SERVICE = 'kepenk-web-staging'
 
         const readiness = getControlledLaunchEnvReadiness()
 

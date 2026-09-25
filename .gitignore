@@ -35,7 +35,6 @@ yarn-error.log*
 .env*
 
 # google cloud
-.gcloudignore
 google-cloud-sdk/
 
 # ide
