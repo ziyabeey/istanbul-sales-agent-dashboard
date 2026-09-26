@@ -7,6 +7,13 @@
   "exports": {
     ".": "./src/index.ts",
     "./catalog": "./src/registry/theme-catalog.ts",
+    "./src/registry/theme-catalog": "./src/registry/theme-catalog.ts",
+    "./src/registry/theme-map": "./src/registry/theme-map.ts",
+    "./src/themes/configs/_archive/108-insaat-elite": "./src/themes/configs/_archive/108-insaat-elite/index.ts",
+    "./src/themes/configs/_archive/109-insaat-kurumsal": "./src/themes/configs/_archive/109-insaat-kurumsal/index.ts",
+    "./src/themes/configs/_archive/110-insaat-modern": "./src/themes/configs/_archive/110-insaat-modern/index.ts",
+    "./src/themes/configs/_archive/111-insaat-prestij": "./src/themes/configs/_archive/111-insaat-prestij/index.ts",
+    "./src/themes/configs/_archive/112-insaat-sade": "./src/themes/configs/_archive/112-insaat-sade/index.ts",
     "./src/*": "./src/*"
   },
   "dependencies": {

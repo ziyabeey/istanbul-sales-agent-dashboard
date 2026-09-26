@@ -104,3 +104,38 @@ test('fails closed for an invalid TypeScript configuration', t => {
   const context = fixture(t, { [demo]: "import '@/lib/real'", 'apps/web/tsconfig.json': '{broken json' })
   assert.throws(() => checkDemoImports(context))
 })
+
+function packageFixture(t, exports) {
+  const context = fixture(t, {
+    'apps/web/tsconfig.json': JSON.stringify({ compilerOptions: {
+      module: 'esnext', moduleResolution: 'bundler', allowJs: true, jsx: 'react-jsx',
+      paths: { '@/*': ['./src/*'] },
+    }, include: ['src/**/*'] }),
+    [demo]: "import '@kepenk/templates/src/registry/example'; import '@kepenk/templates/src/configs/example'",
+    'packages/templates/package.json': JSON.stringify({ name: '@kepenk/templates', exports }),
+    'packages/templates/src/registry/example.ts': 'export const value = 1',
+    'packages/templates/src/configs/example/index.ts': 'export const config = {}',
+  })
+  const scope = path.join(context.repoRoot, 'apps/web/node_modules/@kepenk')
+  fs.mkdirSync(scope, { recursive: true })
+  fs.symlinkSync(path.join(context.repoRoot, 'packages/templates'), path.join(scope, 'templates'), 'dir')
+  return context
+}
+
+test('does not guess extensions or directory indexes inside a package export pattern', t => {
+  const context = packageFixture(t, { './src/*': './src/*' })
+  const report = checkDemoImports(context)
+  assert.equal(report.importsChecked, 2)
+  assert.equal(report.unresolved.length, 2)
+})
+
+test('resolves exact package export targets through workspace links without path aliases', t => {
+  const context = packageFixture(t, {
+    './src/registry/example': './src/registry/example.ts',
+    './src/configs/example': './src/configs/example/index.ts',
+    './src/*': './src/*',
+  })
+  const report = checkDemoImports(context)
+  assert.equal(report.importsChecked, 2)
+  assertDemoImports(report)
+})
