@@ -9,26 +9,31 @@
 // ══════════════════════════════════════════
 
 export const ALTYAPI_SABITLERI = {
-  projectId: 'kepenk-ai',
-  gcpRegionPrimary: 'europe-west1',
-  gcpRegionDR: 'europe-west3',
-  gcpProjectIds: { dev: 'kepenk-ai-dev', staging: 'kepenk-ai-staging', prod: 'kepenk-ai-prod' },
+  // Hosted inventory accepted 2026-09-26. projectId is the current staging runtime.
+  projectId: 'cs-project-ljhot8la',
+  gcpRegionPrimary: 'europe-west3',
+  gcpRegionDR: null,
+  gcpProjectIds: {
+    dev: 'cs-project-rhx8yoks',
+    staging: 'cs-project-ljhot8la',
+    prod: 'cs-project-evp0ac0k',
+  },
   runtime: 'Node.js 20 LTS',
-  framework: 'Next.js 14+ (App Router)',
+  framework: 'Next.js 16 (App Router)',
   packageManager: 'pnpm',
   monorepo: 'Turborepo',
 } as const
 
 export const COMPUTE_STACK = {
-  apiBackend: 'Cloud Run',
-  backgroundJobs: 'Cloud Run Jobs + Cloud Tasks',
-  aiInference: 'Cloud Run (Claude API proxy)',
+  apiBackend: 'Cloud Run (kepenk-web-staging)',
+  backgroundJobs: 'Cloud Tasks API enabled; queues not provisioned',
+  aiInference: 'Kepenk runtime with Vertex transport',
   esnafSites: 'Cloudflare Pages',
-  dashboard: 'Firebase Hosting + Cloud CDN',
+  dashboard: 'Cloud Run',
 } as const
 
 export const STORAGE_STACK = {
-  primaryDb: 'Firestore (Native mode)',
+  primaryDb: 'Supabase/Randevu canonical domain; Firestore projection/cache only',
   analyticsDw: 'BigQuery',
   blobStorage: 'Cloud Storage (GCS)',
   cache: 'Firestore TTL + Cloudflare KV',
@@ -63,9 +68,9 @@ export interface OrtamConfig {
 }
 
 export const ORTAMLAR: OrtamConfig[] = [
-  { id: 'dev', amac: 'Geliştirici yerel ortamı', gcpProject: 'kepenk-ai-dev', compute: 'docker-compose (local)', database: 'Firebase Emulator Suite', domain: 'localhost:3000', maliyet: '~$0', deployTetikleyici: 'Manuel (pnpm turbo dev)' },
-  { id: 'staging', amac: 'Pre-production doğrulama, E2E, QA', gcpProject: 'kepenk-ai-staging', compute: 'Cloud Run (min: 1)', database: 'Firestore (ayrı proje)', domain: 'staging.kepenk.ai', maliyet: '~$100-300/ay', deployTetikleyici: 'push to main → otomatik' },
-  { id: 'prod', amac: 'Canlı müşteri trafiği', gcpProject: 'kepenk-ai-prod', compute: 'Cloud Run (min: 2, auto-scale)', database: 'Firestore (production)', domain: 'kepenk.ai + custom domains', maliyet: 'Bölüm 6\'da detaylı', deployTetikleyici: 'v*.*.* tag → canary rollout' },
+  { id: 'dev', amac: 'Geliştirme/foundation', gcpProject: 'cs-project-rhx8yoks', compute: 'Uygulama runtime henüz provision edilmedi', database: 'Uygulama veritabanı provision edilmedi', domain: 'localhost:3000', maliyet: 'ölçülmedi', deployTetikleyici: 'Manuel (pnpm turbo dev)' },
+  { id: 'staging', amac: 'Pre-production doğrulama, E2E, QA', gcpProject: 'cs-project-ljhot8la', compute: 'Cloud Run: kepenk-web-staging', database: 'Firestore Native (europe-west3)', domain: 'https://kepenk-web-staging-4jtofh4w6q-ey.a.run.app', maliyet: 'ölçülmedi', deployTetikleyici: 'Cloud Build manual no-traffic canary; GitHub WIF bekliyor' },
+  { id: 'prod', amac: 'Canlı müşteri trafiği', gcpProject: 'cs-project-evp0ac0k', compute: 'Henüz provision edilmedi', database: 'Henüz provision edilmedi', domain: 'kepenk.ai (future)', maliyet: 'henüz provision edilmedi', deployTetikleyici: 'Production acceptance öncesi kapalı' },
 ]
 
 // ══════════════════════════════════════════
@@ -75,9 +80,9 @@ export const ORTAMLAR: OrtamConfig[] = [
 export const CI_PIPELINE = {
   araclar: { ci: 'GitHub Actions', containerRegistry: 'Artifact Registry (GCP)', iac: 'Terraform' },
   ciAdımlari: ['Değişiklik tespiti (paths-filter)', 'Lint + Type-check + Unit test', 'Entegrasyon testleri (Firebase Emulator)', 'Güvenlik tarama (Snyk)', 'Terraform plan (infra değişikliği varsa)'],
-  stagingDeploy: { tetikleyici: 'push to main', adimlar: ['Build + Push images', 'Cloud Run deploy', 'Cloudflare Pages deploy', 'Firestore rules/indexes deploy', 'Smoke tests', 'Slack bildirim'] },
+  stagingDeploy: { tetikleyici: 'Manuel Cloud Build (WIF kabulüne kadar)', adimlar: ['Build image', 'Artifact Registry push', 'Cloud Run --no-traffic canary', 'Health/readiness', 'Manuel trafik kararı'] },
   prodDeploy: {
-    tetikleyici: 'v*.*.* tag',
+    tetikleyici: 'Production acceptance öncesi kapalı',
     canaryAdimlari: [
       { yuzde: 5, bekleme: '5 dakika', kontrol: 'error rate < %5' },
       { yuzde: 25, bekleme: '2 dakika', kontrol: 'error rate < %5' },
@@ -101,7 +106,6 @@ export const SECRET_LISTESI: SecretTanimi[] = [
   { isim: 'twilio-account-sid', kategori: 'İletişim', rotasyonGun: 180, erisim: ['whatsapp-worker'] },
   { isim: 'twilio-auth-token', kategori: 'İletişim', rotasyonGun: 90, erisim: ['whatsapp-worker'] },
   { isim: 'netgsm-api-key', kategori: 'İletişim', rotasyonGun: 180, erisim: ['api'] },
-  { isim: 'firebase-admin-sdk', kategori: 'Altyapı', rotasyonGun: 365, erisim: ['dashboard', 'api'] },
   { isim: 'cloudflare-api-token', kategori: 'Altyapı', rotasyonGun: 180, erisim: ['site-renderer'] },
   { isim: 'pinecone-api-key', kategori: 'AI', rotasyonGun: 90, erisim: ['ai-proxy'] },
 ]

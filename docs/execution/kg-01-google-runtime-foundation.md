@@ -1,38 +1,39 @@
 # KG-01 — Google Runtime Foundation
 
-**Status:** implementation candidate  
+**Status:** runtime foundation accepted; hosted no-traffic canary pending  
 **Issue:** #45  
-**Base decision:** Kepenk hosted runtime standardizes on Google infrastructure.  
-**Non-goal:** returning canonical Booking / Commercial / tenant truth to legacy Firestore.
+**Accepted main:** `2132d4f9aaaf48297cf3325e2706a777b89f77a0`  
+**Hosted inventory receipt:** 2026-09-26  
+**Non-goal:** moving canonical Booking, Business, Membership, Subscription, Entitlement, payment, or ledger truth into Firestore.
 
 ## 1. Canonical runtime target
 
-Kepenk's server runtime is Google Cloud Run.
+Kepenk's hosted web/BFF runtime is Google Cloud Run.
 
 ```
 Browser
   |
   v
-kepenk.ai / Next.js
+Kepenk web / BFF
   |
   v
-Cloud Run (web + BFF)
+Cloud Run
   |
-  +--> Firebase Auth / Identity adapter
-  +--> Firestore (session/cache/projection/telemetry)
-  +--> Cloud Tasks / Scheduler / PubSub
+  +--> Firestore (projection/cache/preferences/telemetry)
   +--> Secret Manager / Cloud Storage / Logging
+  +--> Cloud Tasks when queues are explicitly provisioned
   |
-  +--> Randevu Worker / Supabase Core
+  +--> Supabase / Randevu canonical domain authorities
 ```
 
-The existing Next.js application and KC-02 BFF remain valid. There is no Vercel runtime dependency in the KC-02 contract.
+Firebase Auth is **not** part of the currently provisioned staging baseline. The
+nonprod project is not registered as a Firebase project and Identity Toolkit is
+not enabled. Do not recreate Firebase Auth merely because historical code or
+documents mention it.
 
 ## 2. Authority boundary
 
-### Canonical outside Firestore
-
-The following remain owned by their accepted relational/domain authorities:
+Canonical outside Firestore:
 
 - booking lifecycle and `appointment_events`
 - canonical `business_id`
@@ -41,122 +42,119 @@ The following remain owned by their accepted relational/domain authorities:
 - payment / ledger truth
 - Randevu salon operational state
 
-### Firestore allowed roles
-
 Firestore may hold:
 
-- opaque BFF session locator/cache
+- opaque BFF session locator/cache where the accepted auth design requires it
 - Action Card delivery/read state
-- user preference state
+- user preferences
 - notification projection
 - K5 UX telemetry
 - Jev/Evidence derived projection/cache
 - transient workflow state
-- explicitly classified legacy compatibility data during cutover
+- explicitly classified compatibility data
 
-A Firestore projection must never silently become write authority for a canonical relational domain.
+A Firestore projection must never silently become write authority for a
+canonical relational domain.
 
-## 3. Existing repository assets
+## 3. Accepted hosted environment map
 
-The repository is already partially Google-native:
+| Environment | Project ID | Hosted state |
+| --- | --- | --- |
+| development | `cs-project-rhx8yoks` | foundation APIs; app runtime/database not provisioned |
+| staging / nonprod | `cs-project-ljhot8la` | active Kepenk staging runtime |
+| production | `cs-project-evp0ac0k` | application runtime not provisioned |
 
-- root `Dockerfile` builds `@kepenk/web` into Next standalone output
-- `cloudbuild.yaml` builds an image, pushes to Artifact Registry, and deploys Cloud Run
-- `firebase-admin` is used server-side
-- `firestore.rules` and `firestore.indexes.json` exist
-- `cloudTasksClient.ts` exists
-- `gcpAuthGuard.ts` exists
-- scheduled Firestore backup code exists
-- current CI names `kepenk-ai` as the GCP project and `europe-west1` as its region
+Canonical staging details:
 
-KG-01 therefore modernizes and proves an existing Google path rather than creating a new provider stack.
+- region: `europe-west3`
+- Cloud Run service: `kepenk-web-staging`
+- observed ready revision: `kepenk-web-staging-00006-dzg`
+- observed traffic: 100% to that revision
+- Artifact Registry: `europe-west3-docker.pkg.dev/cs-project-ljhot8la/kepenk`
+- image package: `kepenk-web`
+- Firestore: `(default)`, Native mode, `europe-west3`
+- asset bucket: `cs-project-ljhot8la-kepenk-assets`
+- runtime identity: `kepenk-web-runtime@cs-project-ljhot8la.iam.gserviceaccount.com`
+- observed revision creator: `kepenk-build@cs-project-ljhot8la.iam.gserviceaccount.com`
+- Cloud Run invoker policy observed during inventory: `user:ziya@kepenk.ai` only
+- Cloud Tasks API: enabled, no queues observed
+- Cloud Scheduler API: not enabled
+- Firebase Projects API: project lookup returned HTTP 404
+- Identity Toolkit / Firebase Auth: not enabled
+- recent Cloud Build listing: empty; existing image build provenance is therefore not accepted evidence
 
-## 4. Hosted inventory already accepted from KC-00
+Secret names were inventoried without reading secret values. The active Cloud
+Run revision references Secret Manager for session/auth/service/core principal
+and Supabase anon-key material.
 
-Do not reopen KC-00.
+## 4. Historical Firebase evidence
 
-Accepted hosted evidence recorded on 2026-09-17 included:
+KC-00 observations from the deleted/replaced infrastructure are historical
+migration evidence only. They do **not** describe the new nonprod project and
+must not be used to infer current Firebase Auth users, Firestore documents,
+rules, or callers.
 
-- 7 legacy `esnaflar`
-- 1 Firebase password user
-- 0 legacy tenants carrying canonical `businessId/business_id`
-- 0 `auth_sessions`
-- measured commercial/usage collection groups at 0 in that inventory
-- deployed Firestore rules were not equal to the repository ruleset
-- direct/external runtime callers remained UNKNOWN and were deferred to cutover/canary evidence
+`.firebaserc` intentionally has no default project after this reconciliation.
+A future Firebase registration or rules deployment must name an explicit project
+and requires a separate acceptance receipt.
 
-This proves Firebase is not an empty historical artifact, but it does not make Firebase the canonical Business/Membership/Booking authority.
+## 5. Build and deploy contract
 
-## 5. Open project-identity inventory
+The root Dockerfile remains the canonical image build input.
 
-Repository configuration currently contains three incompatible naming stories:
-
-| Source | Value |
-| --- | --- |
-| `.firebaserc` | `xinxia-v5-test` |
-| CI / backups / current GCP metadata | `kepenk-ai` |
-| intended environment map in `devopsConfig.ts` | `kepenk-ai-dev`, `kepenk-ai-staging`, `kepenk-ai-prod` |
-
-Until hosted Google Console evidence resolves this:
-
-- do not run destructive `firebase deploy` from the repository default project;
-- do not rewrite `.firebaserc` by assumption;
-- do not copy data between these project IDs;
-- do not declare one of the environment-map projects live merely because it appears in source.
-
-Required hosted receipt:
-
-1. active Firebase project ID(s)
-2. active GCP project ID(s)
-3. Firestore database ownership and document population
-4. Firebase Auth user population/providers
-5. Cloud Run services
-6. Artifact Registry repository
-7. Cloud Tasks queues
-8. Scheduler jobs
-9. Storage buckets
-10. current custom-domain mapping
-11. deployed rules hash
-12. current service-account / Workload Identity deployment path
-
-## 6. Cloud Run build contract
-
-The existing root Dockerfile is the canonical starting point.
-
-Build intent:
+Required build:
 
 ```
 pnpm install --frozen-lockfile
-pnpm --filter @kepenk/web build
+pnpm --filter @kepenk/web build --webpack
 Next output: standalone
 runtime port: 8080
 health: /api/health
 ```
 
-The Docker dependency manifest list must stay in sync with `@kepenk/web` workspace dependencies. KG-01 starts by adding the recently introduced `@kepenk/action-card-schema` and `@kepenk/templates` workspace manifests and transpilation entries.
+`cloudbuild.yaml` is staging-only and fails closed unless
+`PROJECT_ID=cs-project-ljhot8la`. It:
 
-## 7. Authentication/runtime contract
+1. builds `kepenk-web`;
+2. pushes to the `kepenk` Artifact Registry repository;
+3. deploys a tagged `kepenk-web-staging` revision with `--no-traffic`;
+4. preserves the private service IAM policy;
+5. uses the accepted runtime service account;
+6. never promotes traffic.
 
-KC-02 remains the current implementation candidate.
+GitHub/Depot CI no longer contains the stale `kepenk-api-staging` /
+`gcr.io/kepenk-ai` deployment path. Hosted GitHub deployment remains disabled
+until Workload Identity Federation or another accepted keyless identity path is
+proven.
 
-Browser invariant:
+## 6. Authentication/runtime contract
+
+KC-02 remains the implementation candidate for the BFF identity boundary.
+
+Browser invariants:
 
 - browser receives no Supabase access or refresh token
 - host-only opaque BFF session locator
 - server resolves/refreshes Supabase session material
 - active Membership is re-read before business authority
 - recovery sessions cannot gain normal business context
+- no service-role browser bypass
 
-Google runtime improvement target:
+Google runtime invariants:
 
-- use runtime identity / ADC on Cloud Run instead of long-lived checked-in or manually copied Firebase Admin private keys
-- provider secrets move behind Secret Manager / existing CredentialRef resolver boundary
-- Cloud Tasks and Scheduler use narrow OIDC/service identities
+- Cloud Run uses runtime identity / ADC
+- no Firebase Admin private key is required for the accepted Firestore runtime
+- provider secrets stay behind Secret Manager / CredentialRef boundaries
+- Cloud Tasks/Scheduler identities are added only with the queues/jobs that use them
 - no parent-domain auth cookie
 
-## 8. K4b handoff after acceptance
+The former Firebase dual-proof acceptance item is now **conditional legacy
+compatibility scope**, not a prerequisite. Reintroduce it only if a live
+consumer or migration requirement is proven.
 
-Once KG-01 hosted inventory and KC-02 Cloud Run acceptance are green:
+## 7. K4b handoff
+
+After the no-traffic revision and KC-02 hosted R2 matrix are green:
 
 ```
 Kepenk browser
@@ -169,29 +167,44 @@ Kepenk browser
  -> Home Shell
 ```
 
-Failures are fail-closed:
+Failures remain fail-closed:
 
 - no active business context -> no Randevu read
 - Randevu 401/403 -> no fallback authority
 - malformed/unavailable event response -> no fabricated card
-- no legacy Firestore booking fallback
+- no Firestore booking fallback
 - no service-role browser bypass
 
-## 9. Rollout sequence
+## 8. Rollout sequence
 
-1. KG-01 hosted project/resource inventory.
-2. Reconcile canonical GCP/Firebase project naming.
-3. Prove current-main Docker image build.
-4. Deploy no-traffic Cloud Run revision.
-5. Run health/readiness.
-6. Rebase/refresh KC-02 onto the accepted Google-runtime base if needed.
-7. Run KC-02 hosted R2 matrix.
-8. Merge KC-02.
-9. Implement K4b live Randevu transport.
-10. Open K5b persistent pilot telemetry only after tenant/privacy schema is accepted.
+Completed:
 
-## 10. Explicitly retired path
+1. KG-01 current-main Docker image contract and exact-head container smoke.
+2. Hosted project/resource inventory.
+3. Canonical development/staging/production project mapping.
+4. Canonical staging region/service/registry/runtime identity mapping.
 
-Vercel is no longer a Kepenk runtime acceptance dependency.
+Next:
 
-Historical Vercel deployment failures remain diagnostic history only. They must not block Google runtime work and must not be used as Cloud Run acceptance evidence.
+1. merge this hosted-inventory reconciliation;
+2. build `main@2132d4f9` through the accepted Cloud Build contract;
+3. deploy a private tagged **no-traffic** revision;
+4. verify canary health/readiness without moving production traffic;
+5. refresh KC-02 #44 onto the accepted main/runtime base;
+6. run KC-02 hosted R2;
+7. merge KC-02;
+8. implement K4b live Randevu transport;
+9. open K5b persistent telemetry only after tenant/privacy schema acceptance.
+
+Production project `cs-project-evp0ac0k` remains untouched until a separate
+production acceptance gate.
+
+## 9. Explicitly retired paths
+
+- `xinxia-v5-test` is not an active project default.
+- `kepenk-ai`, `kepenk-ai-dev`, `kepenk-ai-staging`, and `kepenk-ai-prod`
+  are not accepted hosted project IDs.
+- `europe-west1` is not the accepted staging region.
+- `kepenk-api-staging`, `kepenk-repo`, and `kepenk-ai-frontend` are not
+  accepted staging service/repository/image names.
+- Vercel is not a Kepenk runtime acceptance dependency.

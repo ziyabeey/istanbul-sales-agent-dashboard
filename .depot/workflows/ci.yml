@@ -12,8 +12,12 @@ on:
   push:
     branches: [main]
 env:
-  GCP_PROJECT: kepenk-ai
-  GCP_REGION: europe-west1
+  # Hosted inventory receipt: 2026-09-26. Production remains unprovisioned.
+  GCP_PROJECT: cs-project-ljhot8la
+  GCP_REGION: europe-west3
+  GCP_SERVICE: kepenk-web-staging
+  GCP_ARTIFACT_REPOSITORY: kepenk
+  GCP_IMAGE: kepenk-web
 jobs:
   lint-and-type:
     runs-on: depot-ubuntu-24.04-16 # was: ubuntu-latest. Depot CI 16 CPU / 64 GB.
@@ -26,6 +30,8 @@ jobs:
           corepack enable
           corepack prepare pnpm@9.1.0 --activate
       - run: pnpm install --frozen-lockfile
+      - name: Validate hosted GCP runtime config
+        run: node scripts/check-gcp-runtime-config.mjs
       # Pilot-0 hard-gates the trust surfaces it changes. Broad legacy
       # lint/type debt is still executed where useful and remains visible.
       - name: Lint P0 trust baseline artifacts
@@ -187,19 +193,5 @@ jobs:
       - uses: treosh/lighthouse-ci-action@v11
         with:
           configPath: ./lighthouserc.json
-  deploy-staging:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    runs-on: depot-ubuntu-latest # was: ubuntu-latest. Mapped standard GitHub runner to Depot equivalent.
-    needs: [e2e-tests, lighthouse]
-    steps:
-      - uses: actions/checkout@v4
-      - uses: google-github-actions/auth@v2
-        with:
-          credentials_json: ${{ secrets.GCP_SA_KEY }}
-      - name: Deploy to staging (canary)
-        run: |
-          gcloud run deploy kepenk-api-staging \
-            --image=gcr.io/$GCP_PROJECT/kepenk-api:${{ github.sha }} \
-            --region=$GCP_REGION \
-            --no-traffic \
-            --tag=canary
+  # Hosted deployment is intentionally not performed from Depot yet.
+  # Cloud Build owns the private no-traffic staging canary until WIF is accepted.

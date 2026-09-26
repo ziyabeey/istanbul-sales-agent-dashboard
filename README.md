@@ -31,16 +31,16 @@ kepenk.ai/
 |--------|-----------|
 | **Frontend** | Next.js 16, React 19, TypeScript |
 | **Styling** | Tailwind CSS + CSS Custom Properties |
-| **Auth** | NextAuth.js + Google OAuth + SMS OTP |
+| **Auth** | Kepenk Core BFF + Supabase; Firebase Auth staging'de provision edilmedi |
 | **Backend** | Next.js API Routes, NestJS (mikro servisler) |
 | **AI** | Google ADK (Agent Development Kit) |
-| **Veritabanı** | Firebase (Firestore, Auth, Storage) |
+| **Veritabanı** | Supabase/Randevu canonical domain + Firestore projection/cache |
 | **Ödeme** | iyzico (iyzipay) |
 | **SMS** | Netgsm |
 | **E-posta** | Twilio |
 | **CDN/DNS** | Cloudflare |
 | **Hosting** | Google Cloud Run (europe-west3) |
-| **CI/CD** | Google Cloud Build |
+| **CI/CD** | GitHub/Depot CI + manuel Cloud Build no-traffic canary (WIF bekliyor) |
 | **Registry** | GCP Artifact Registry |
 
 ## 🚀 Hızlı Başlangıç
@@ -74,10 +74,10 @@ pnpm dev
 AUTH_SECRET=your-secret
 NEXT_PUBLIC_GOOGLE_CLIENT_ID=your-google-client-id
 
-# Firebase
-FIREBASE_PROJECT_ID=your-project-id
-FIREBASE_CLIENT_EMAIL=your-client-email
-FIREBASE_PRIVATE_KEY=your-private-key
+# Google runtime / Firestore
+FIREBASE_PROJECT_ID=cs-project-ljhot8la
+GOOGLE_CLOUD_PROJECT=cs-project-ljhot8la
+# Cloud Run uses ADC via kepenk-web-runtime; do not store Firebase Admin private keys.
 
 # Ödeme
 IYZIPAY_API_KEY=your-api-key
@@ -137,28 +137,27 @@ ADMIN_SECRET_TOKEN=your-admin-token
 
 ## 🚢 Deploy
 
-### Google Cloud Build (Otomatik)
+### Canonical staging canary
+
+Staging is the private Cloud Run service `kepenk-web-staging` in
+`cs-project-ljhot8la / europe-west3`. Production is not provisioned.
 
 ```bash
-gcloud builds submit --config=cloudbuild.yaml .
+gcloud config set project cs-project-ljhot8la
+
+gcloud builds submit \
+  --project=cs-project-ljhot8la \
+  --service-account=projects/cs-project-ljhot8la/serviceAccounts/kepenk-build@cs-project-ljhot8la.iam.gserviceaccount.com \
+  --config=cloudbuild.yaml \
+  --substitutions=_IMAGE_TAG="$(git rev-parse HEAD)" \
+  .
 ```
 
-### Manuel
+`cloudbuild.yaml` builds and pushes
+`europe-west3-docker.pkg.dev/cs-project-ljhot8la/kepenk/kepenk-web:<sha>`
+and creates a tagged **no-traffic** revision of `kepenk-web-staging`.
+It does not grant unauthenticated access or promote traffic.
 
-```bash
-# Docker imajı oluştur
-docker build -t kepenk-ai .
-
-# Yerel test
-docker run -p 8080:8080 kepenk-ai
-
-# Cloud Run'a deploy
-gcloud run deploy kepenk-ai \
-  --image europe-west3-docker.pkg.dev/PROJECT_ID/kepenk-repo/kepenk-ai-frontend:latest \
-  --region europe-west3 \
-  --platform managed \
-  --allow-unauthenticated
-```
 
 ## 📁 Proje Yapısı (Frontend)
 
