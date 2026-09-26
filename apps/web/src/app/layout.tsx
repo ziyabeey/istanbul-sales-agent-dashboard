@@ -1,11 +1,11 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, Plus_Jakarta_Sans } from 'next/font/google'
 import OfflineToast from '@/components/ui/OfflineToast'
 import CookieBanner from '@/components/layout/CookieBanner'
 import { EsnafProvider } from '@/context/EsnafContext'
 import { ThemeProvider } from '@/components/ThemeProvider'
 import { Toaster } from '@/components/ui/sonner'
 import Analytics from '@/components/Analytics'
+import './fonts.css'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -45,19 +45,6 @@ export const viewport: Viewport = {
   viewportFit: 'cover',
 }
 
-const inter = Inter({
-  variable: '--font-inter',
-  subsets: ['latin'],
-  display: 'swap',
-})
-
-const plusJakartaSans = Plus_Jakarta_Sans({
-  variable: '--font-display',
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800'],
-  display: 'swap',
-})
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -65,7 +52,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="tr" className="scroll-smooth">
-      <body className={`${inter.variable} ${plusJakartaSans.variable} font-sans antialiased`}>
+      <body className="font-sans antialiased">
         {/* SEO: JSON-LD Structured Data */}
         <script
           type="application/ld+json"

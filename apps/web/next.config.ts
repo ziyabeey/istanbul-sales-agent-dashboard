@@ -21,14 +21,18 @@ const workspaceRoot = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const nextConfig: NextConfig = {
     output: 'standalone' as const,
     outputFileTracingRoot: workspaceRoot,
-    serverExternalPackages: ['iyzipay', 'firebase-admin', '@google-cloud/tasks', 'twilio', 'puppeteer-core'],
+    // Keep jsdom's filesystem-relative assets beside its native Node module.
+    // The sites renderer must retain server-side HTML sanitization.
+    serverExternalPackages: ['iyzipay', 'firebase-admin', '@google-cloud/tasks', 'twilio', 'puppeteer-core', 'isomorphic-dompurify', 'jsdom'],
     transpilePackages: [
         "@kepenk/ui",
         "@kepenk/config",
         "@kepenk/agents",
+        "@kepenk/action-card-schema",
         "@kepenk/db",
         "@kepenk/cloudflare",
-        "@kepenk/shared"
+        "@kepenk/shared",
+        "@kepenk/templates"
     ],
     images: {
         remotePatterns: [

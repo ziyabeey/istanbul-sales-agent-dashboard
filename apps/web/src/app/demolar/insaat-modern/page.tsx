@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { INSAAT_MODERN_CONFIG, INSAAT_MODERN_BUSINESS } from '@kepenk/templates';
+import { INSAAT_MODERN_CONFIG, INSAAT_MODERN_BUSINESS } from '@kepenk/templates/src/themes/configs/_archive/110-insaat-modern';
 import ClientPage from './client';
 
 export const metadata: Metadata = {

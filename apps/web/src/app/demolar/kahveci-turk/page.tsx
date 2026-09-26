@@ -1,23 +1,29 @@
-import { THEME_CATALOG } from '@kepenk/templates';
-import ClientPage from './client';
-import { notFound } from 'next/navigation';
+import type { Metadata } from 'next'
+import { notFound } from 'next/navigation'
+import { loadThemeConfig } from '@kepenk/templates/src/registry/config-loader'
+import DemoClient from '../[themeId]/client'
 
-export async function generateMetadata() {
-  const theme = THEME_CATALOG.find((t) => t.id === 'kahveci-turk');
-  if (!theme) return { title: 'Not Found' };
-  
+const themeId = 'kahveci-turk'
+
+export async function generateMetadata(): Promise<Metadata> {
+  const result = await loadThemeConfig(themeId)
+  if (!result) return { title: 'Not Found' }
+
   return {
-    title: `${theme.name} | Kepenk Demo`,
-    description: theme.description,
-  };
+    title: `${result.config.name} | Kepenk Demo`,
+    description: result.config.description,
+  }
 }
 
-export default function Page() {
-  const theme = THEME_CATALOG.find((t) => t.id === 'kahveci-turk');
-  
-  if (!theme) {
-    notFound();
-  }
+export default async function Page() {
+  const result = await loadThemeConfig(themeId)
+  if (!result) notFound()
 
-  return <ClientPage theme={theme} />;
+  return (
+    <DemoClient
+      themeId={themeId}
+      sectorId={result.config.sectorId}
+      seoSchemaType={result.config.seoSchemaType}
+    />
+  )
 }

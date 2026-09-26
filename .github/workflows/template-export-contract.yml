@@ -1,0 +1,36 @@
+name: Template Export Contract
+
+on:
+  pull_request:
+    branches: [main, develop]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  template-export-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - name: Enable pinned pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@9.1.0 --activate
+      - run: pnpm install --frozen-lockfile
+      - name: Test named export checker
+        run: node --test scripts/check-template-exports.test.mjs
+      - name: Check real template consumers
+        run: node scripts/check-template-exports.mjs "$RUNNER_TEMP/template-exports/report.json"
+      - name: Preserve template export census
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: template-export-census-${{ github.sha }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/template-exports/
+          retention-days: 3
+          if-no-files-found: warn

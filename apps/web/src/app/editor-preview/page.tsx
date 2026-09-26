@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { ThemeRenderer } from '@kepenk/templates/src/renderer/ThemeRenderer'
-import { ThemeConfig } from '@kepenk/templates/src/types/ast-types'
-import { BusinessData } from '@kepenk/templates/src/types/section-types'
+import type { ThemeConfig, BusinessData } from '@kepenk/templates/src/types/section-types'
 
 export default function EditorPreviewPage() {
   const [theme, setTheme] = useState<ThemeConfig | null>(null)

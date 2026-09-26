@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { INSAAT_KURUMSAL_CONFIG, INSAAT_KURUMSAL_BUSINESS } from '@kepenk/templates';
+import { INSAAT_KURUMSAL_CONFIG, INSAAT_KURUMSAL_BUSINESS } from '@kepenk/templates/src/themes/configs/_archive/109-insaat-kurumsal';
 import ClientPage from './client';
 
 export const metadata: Metadata = {

@@ -1,0 +1,8 @@
+/* Pinned npm assets are bundled locally; no Google Fonts request during build. */
+@import '@fontsource-variable/inter/wght.css';
+@import '@fontsource-variable/plus-jakarta-sans/wght.css';
+
+:root {
+  --font-inter: 'Inter Variable';
+  --font-display: 'Plus Jakarta Sans Variable';
+}

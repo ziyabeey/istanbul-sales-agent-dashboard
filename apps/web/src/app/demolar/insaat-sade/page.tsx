@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { INSAAT_SADE_CONFIG, INSAAT_SADE_BUSINESS } from '@kepenk/templates';
+import { INSAAT_SADE_CONFIG, INSAAT_SADE_BUSINESS } from '@kepenk/templates/src/themes/configs/_archive/112-insaat-sade';
 import ClientPage from './client';
 
 export const metadata: Metadata = {

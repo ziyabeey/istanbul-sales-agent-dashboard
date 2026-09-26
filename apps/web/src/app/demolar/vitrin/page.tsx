@@ -3,6 +3,8 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import Link from 'next/link'
 import { THEME_CATALOG_ARRAY } from '@kepenk/templates/src/registry/theme-catalog'
+import { THEME_MAP } from '@kepenk/templates/src/registry/theme-map'
+import { isRetiredDemo } from '@/data/sablonlar/curation'
 
 export type DemoKategori = 'yerel-esnaf' | 'profesyonel' | 'saglik-guzellik' | 'etkinlik' | 'diger'
 export const KATEGORILER: Record<DemoKategori, { ad: string; sayi: number }> = {
@@ -102,8 +104,10 @@ function slugToTier(slug: string, prefix: string): string {
   return map[suffix] || suffix.charAt(0).toUpperCase() + suffix.slice(1)
 }
 
-function buildItems(): VitrinItem[] {
-  return THEME_CATALOG_ARRAY.map(theme => {
+export function buildItems(): VitrinItem[] {
+  return THEME_CATALOG_ARRAY
+    .filter(theme => Object.hasOwn(THEME_MAP, theme.id) && !isRetiredDemo(theme.id))
+    .map(theme => {
     // Basic tier extraction from plan names
     const planMap: Record<string, string> = {
       'free': 'Sade', 'starter': 'Klasik', 'growth': 'Modern', 'pro': 'Prestij', 'enterprise': 'Kurumsal', 'elite': 'VIP'
@@ -306,7 +310,7 @@ export default function VitrinPage() {
           <h1 className="font-syne font-black text-[clamp(2rem,5vw,3.5rem)] leading-[1.05] tracking-tight mb-5 relative">
             {ALL_ITEMS.length}+ Hazır Demo,<br />
             <span className="bg-gradient-to-r from-primary via-gold to-primary bg-clip-text text-transparent">
-              {new Set(THEME_CATALOG_ARRAY.map(d => d.sectorId)).size} Sektör
+              {new Set(ALL_ITEMS.map(d => d.sektorId)).size} Sektör
             </span>
           </h1>
           <p className="text-muted-foreground max-w-xl mx-auto text-sm leading-relaxed mb-8">
@@ -398,7 +402,7 @@ export default function VitrinPage() {
 
         <footer className="text-center py-6 border-t border-border/10">
           <p className="text-muted-foreground/30 text-xs">
-            © 2025 <span className="text-primary/50 font-bold">kepenk.ai</span> · {ALL_ITEMS.length} hazır demo · {new Set(THEME_CATALOG_ARRAY.map(d => d.sectorId)).size} sektör
+            © 2025 <span className="text-primary/50 font-bold">kepenk.ai</span> · {ALL_ITEMS.length} hazır demo · {new Set(ALL_ITEMS.map(d => d.sektorId)).size} sektör
           </p>
         </footer>
       </div>

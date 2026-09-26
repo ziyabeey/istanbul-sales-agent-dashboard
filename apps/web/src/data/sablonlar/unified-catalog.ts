@@ -5,9 +5,10 @@
  * Each ThemeCatalogEntry becomes a Sablon with an iframe demo URL.
  */
 
-import { THEME_CATALOG_ARRAY, CATALOG_SECTORS } from '@kepenk/templates'
-import type { ThemeCatalogEntry } from '@kepenk/templates'
+import { THEME_CATALOG_ARRAY, CATALOG_SECTORS } from '@kepenk/templates/catalog'
+import type { ThemeCatalogEntry } from '@kepenk/templates/catalog'
 import type { Sablon } from './index'
+import { isRetiredDemo } from './curation'
 
 // ─────────────────────────────────────────────
 // Plan → minPaket mapping
@@ -99,8 +100,10 @@ function themeToSablon(entry: ThemeCatalogEntry): Sablon {
   }
 }
 
-/** All 200 themes as Sablon[] for SablonMarket */
-export const UNIFIED_SABLONLAR: Sablon[] = THEME_CATALOG_ARRAY.map(themeToSablon)
+/** Public choices exclude explicitly retired, source-less demos. */
+export const UNIFIED_SABLONLAR: Sablon[] = THEME_CATALOG_ARRAY
+  .filter(entry => !isRetiredDemo(entry.id))
+  .map(themeToSablon)
 
 /** Sector filter options for SablonMarket */
 export const SEKTOR_FILTRELERI = CATALOG_SECTORS
