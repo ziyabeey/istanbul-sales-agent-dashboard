@@ -80,11 +80,11 @@ RUN addgroup --system --gid 1001 nodejs && \
     adduser --system --uid 1001 nextjs
 
 # Sadece gerekli dosyalar (minimal imaj)
-COPY --from=builder /app/apps/web/public ./public
+COPY --from=builder --chown=nextjs:nodejs /app/apps/web/public ./apps/web/public
 
 # Standalone output — tüm bağımlılıklar dahil
 COPY --from=builder --chown=nextjs:nodejs /app/apps/web/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/apps/web/.next/static ./.next/static
+COPY --from=builder --chown=nextjs:nodejs /app/apps/web/.next/static ./apps/web/.next/static
 
 # Data klasörü (sektör şablonları vb.)
 COPY --from=builder --chown=nextjs:nodejs /app/data ./data
@@ -99,4 +99,5 @@ EXPOSE 8080
 # Cloud Run graceful shutdown sinyali
 STOPSIGNAL SIGTERM
 
-CMD ["node", "server.js"]
+# outputFileTracingRoot preserves apps/web inside the standalone tree.
+CMD ["node", "apps/web/server.js"]
