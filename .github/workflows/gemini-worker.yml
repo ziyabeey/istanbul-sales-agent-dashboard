@@ -1,0 +1,85 @@
+name: Gemini Worker Bridge
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - ".github/workflows/gemini-worker.yml"
+      - "scripts/gemini-worker-bridge.mjs"
+      - "scripts/setup-github-agent-wif.sh"
+      - "docs/implementation/gemini-worker-bridge.md"
+  issue_comment:
+    types: [created]
+  workflow_dispatch:
+    inputs:
+      issue_number:
+        description: "Issue number to receive the worker result"
+        required: true
+        type: string
+      task:
+        description: "Bounded read-only task for the Gemini worker"
+        required: true
+        type: string
+      environment_id:
+        description: "Optional existing Agent Platform environment ID for warm filesystem reuse"
+        required: false
+        type: string
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+  id-token: write
+
+concurrency:
+  group: gemini-worker-${{ github.event.issue.number || github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: false
+
+jobs:
+  run-read-only-worker:
+    if: >-
+      (github.event_name == 'pull_request' &&
+       github.head_ref == 'infra/gemini-worker-bridge' &&
+       github.event.pull_request.head.repo.full_name == github.repository) ||
+      (github.event_name == 'issue_comment' &&
+       github.event.issue.pull_request == null &&
+       startsWith(github.event.comment.body, '/gemini-read') &&
+       (github.event.comment.author_association == 'OWNER' ||
+        github.event.comment.author_association == 'MEMBER' ||
+        github.event.comment.author_association == 'COLLABORATOR')) ||
+      github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout bridge
+        uses: actions/checkout@v4
+
+      - id: google-auth
+        name: Authenticate to Google Cloud with GitHub OIDC
+        uses: google-github-actions/auth@v3
+        with:
+          project_id: cs-project-ljhot8la
+          workload_identity_provider: projects/155940992193/locations/global/workloadIdentityPools/kepenk-github/providers/github
+          service_account: kepenk-github-agent@cs-project-ljhot8la.iam.gserviceaccount.com
+
+      - name: Set up gcloud
+        uses: google-github-actions/setup-gcloud@v3
+        with:
+          project_id: cs-project-ljhot8la
+
+      - name: Export short-lived Google access token
+        shell: bash
+        run: |
+          set -euo pipefail
+          TOKEN="$(gcloud auth print-access-token)"
+          echo "::add-mask::$TOKEN"
+          echo "GOOGLE_OAUTH_ACCESS_TOKEN=$TOKEN" >> "$GITHUB_ENV"
+
+      - name: Invoke Kepenk Gemini worker
+        env:
+          GOOGLE_CLOUD_PROJECT: cs-project-ljhot8la
+          GEMINI_WORKER_AGENT: kepenk-coder-nonprod
+          GEMINI_WORKER_ENVIRONMENT: ${{ inputs.environment_id || '' }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/gemini-worker-bridge.mjs
