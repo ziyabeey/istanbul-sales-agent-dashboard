@@ -54,8 +54,8 @@ COPY . .
 # Build-time env
 ENV NEXT_TELEMETRY_DISABLED=1
 
-# Tüm workspace paketlerini derle + web build
-RUN pnpm --filter @kepenk/web build
+# Keep the existing Webpack/PWA plugin chain on Next.js 16.
+RUN pnpm --filter @kepenk/web build --webpack
 
 # ── Runner (Production) ─────────────────────────────────────────────────────
 FROM node:20-alpine AS runner
