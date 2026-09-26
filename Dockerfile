@@ -7,6 +7,19 @@ RUN corepack enable && corepack prepare pnpm@9.1.0 --activate
 FROM base AS deps
 WORKDIR /app
 
+# node-canvas falls back to a native build on Alpine/musl x64.
+# Keep compiler/header packages out of the production runner image.
+RUN apk add --no-cache \
+    build-base \
+    python3 \
+    pkgconf \
+    cairo-dev \
+    pango-dev \
+    pixman-dev \
+    jpeg-dev \
+    giflib-dev \
+    librsvg-dev
+
 # Monorepo manifest dosyaları (pnpm cache katmanı)
 COPY package.json pnpm-workspace.yaml pnpm-lock.yaml ./
 COPY apps/web/package.json apps/web/package.json
@@ -52,6 +65,15 @@ ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=8080
 ENV HOSTNAME=0.0.0.0
+
+# Native node-canvas runtime libraries only; compiler toolchain stays in deps.
+RUN apk add --no-cache \
+    cairo \
+    pango \
+    pixman \
+    libjpeg-turbo \
+    giflib \
+    librsvg
 
 # Güvenlik: root olmayan kullanıcı
 RUN addgroup --system --gid 1001 nodejs && \
