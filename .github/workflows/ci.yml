@@ -77,7 +77,6 @@ jobs:
           src/lib/apiGuard.ts
           src/lib/envReadiness.ts
           src/lib/firebaseRuntime.ts
-          src/lib/firebaseAdmin.ts
           test/unit/firebaseAdminAdc.test.ts
           src/app/api/cron/kuyruk-isleyici/route.ts
           src/app/api/workers/site-ureticisi/route.ts
