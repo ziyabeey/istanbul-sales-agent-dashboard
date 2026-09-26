@@ -64,6 +64,12 @@ export function deriveActionCardExperienceMetrics(input: {
     const occurredAt = Date.parse(event.occurredAt)
     if (!Number.isFinite(occurredAt)) continue
 
+    // Invalid selections must not reserve an outcome ID or the first-decision slot.
+    const selectedAction = event.type === 'action_selected'
+      ? card.actions.find(candidate => candidate.actionId === event.actionId)
+      : undefined
+    if (event.type === 'action_selected' && !selectedAction) continue
+
     if (processedOutcomeIds.has(event.outcomeId)) continue
     processedOutcomeIds.add(event.outcomeId)
 
@@ -96,9 +102,8 @@ export function deriveActionCardExperienceMetrics(input: {
 
       if (event.type === 'action_selected') {
         actionSelections += 1
-        const action = card.actions.find(candidate => candidate.actionId === event.actionId)
-        if (action?.mode === 'navigate') navigationSelections += 1
-        if (action?.mode === 'command') commandSelections += 1
+        if (selectedAction?.mode === 'navigate') navigationSelections += 1
+        if (selectedAction?.mode === 'command') commandSelections += 1
         continue
       }
     }
