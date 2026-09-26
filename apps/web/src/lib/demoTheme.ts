@@ -10,6 +10,10 @@ interface DemoThemeDescriptor {
 // Retained static URLs have real archived configs but may predate catalog IDs.
 // This maps route metadata only; configs and business data still come from THEME_MAP.
 const legacyThemes: Record<string, DemoThemeDescriptor> = {
+  'haliyikama-fabrika': { id: 'haliyikama-fabrika', sectorId: 'haliyikama', seoSchemaType: 'LocalBusiness' },
+  'haliyikama-koltuk': { id: 'haliyikama-koltuk', sectorId: 'haliyikama', seoSchemaType: 'LocalBusiness' },
+  'haliyikama-lux': { id: 'haliyikama-lux', sectorId: 'haliyikama', seoSchemaType: 'LocalBusiness' },
+  'haliyikama-organik': { id: 'haliyikama-organik', sectorId: 'haliyikama', seoSchemaType: 'LocalBusiness' },
   'cicekci-dugun': { id: 'cicekci-dugun', sectorId: 'cicekci', seoSchemaType: 'Florist' },
   'insaat-elite': { id: 'insaat-elite', sectorId: 'insaat', seoSchemaType: 'GeneralContractor' },
   'insaat-kurumsal': { id: 'insaat-kurumsal', sectorId: 'insaat', seoSchemaType: 'GeneralContractor' },

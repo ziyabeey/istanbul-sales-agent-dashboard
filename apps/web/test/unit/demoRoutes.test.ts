@@ -9,6 +9,7 @@ const available = [
   'cicekci-dugun', 'insaat-elite', 'insaat-kurumsal',
   'insaat-modern', 'insaat-prestij', 'insaat-sade',
 ]
+const carpetThemes = ['haliyikama-fabrika', 'haliyikama-koltuk', 'haliyikama-lux', 'haliyikama-organik']
 // These existing URLs referred to configs already removed from THEME_MAP in #49.
 const unavailable = [
   'oto-lux', 'oto-mekanik', 'oto-prestij', 'oto-vip',
@@ -57,6 +58,17 @@ describe('legacy demo route convergence', () => {
     expect(module[`${prefix}_BUSINESS`].name).toBeTruthy()
   })
 
+  it.each(carpetThemes)('keeps the real carpet-cleaning configuration for %s', async themeId => {
+    expect(getRenderableDemoTheme(themeId)).toEqual({
+      id: themeId, sectorId: 'haliyikama', seoSchemaType: 'LocalBusiness',
+    })
+    const module = await THEME_MAP[themeId]()
+    const prefix = themeId.toUpperCase().replace(/-/g, '_')
+    expect(module[`${prefix}_CONFIG`].id).toBe(themeId)
+    expect(module[`${prefix}_CONFIG`].pages[0].sections.length).toBeGreaterThan(0)
+    expect(module[`${prefix}_BUSINESS`].name).toBeTruthy()
+  })
+
   it.each(unavailable)('does not advertise a loadable config for %s', themeId => {
     expect(Object.hasOwn(THEME_MAP, themeId)).toBe(false)
     expect(getRenderableDemoTheme(themeId)).toBeNull()
@@ -66,7 +78,7 @@ describe('legacy demo route convergence', () => {
     expect(getRenderableDemoTheme(themeId)).toBeNull()
   })
 
-  it.each([...available, ...unavailable])('keeps %s on its exact server-side compatibility wrapper', themeId => {
+  it.each([...available, ...unavailable, ...carpetThemes])('keeps %s on its exact server-side compatibility wrapper', themeId => {
     const source = parse(path.join(demoRoot, themeId, 'client.tsx'))
     expect(imports(source)).toEqual(['../_components/RegisteredDemo'])
     expect(attributes(source, 'RegisteredDemo', 'themeId')).toEqual([themeId])
