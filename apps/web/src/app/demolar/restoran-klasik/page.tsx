@@ -1,10 +1,11 @@
-import { Metadata } from 'next'
+import type { Metadata } from 'next'
 import ClientPage from './client'
-import { RESTORAN_KLASIK_BUSINESS } from '@kepenk/templates'
 
+// Source recovery is still open. Never read unavailable business data at import time.
 export const metadata: Metadata = {
-  title: `${RESTORAN_KLASIK_BUSINESS.name} | kepenk.ai Demo`,
-  description: RESTORAN_KLASIK_BUSINESS.slogan,
+  title: 'Demo henüz kullanılamıyor | Kepenk.ai',
+  description: 'Bu temanın kaynak dosyası henüz doğrulanmadığı için demo kullanıma açık değildir.',
+  robots: { index: false, follow: false },
 }
 
 export default function Page() {
