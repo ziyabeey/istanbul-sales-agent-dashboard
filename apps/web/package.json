@@ -5,11 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "dev:smoke": "next dev --webpack --hostname 127.0.0.1 --port 3000",
-    "prebuild": "npx tsx ../../scripts/generate-configs.ts && npx tsx ../../scripts/restore-missing-configs.ts",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "pretest": "npx tsx ../../scripts/generate-configs.ts && npx tsx ../../scripts/restore-missing-configs.ts",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:unit": "vitest run test/unit/",
@@ -65,6 +63,7 @@
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.5.0",
     "twilio": "^5.12.2",
+    "zod": "^3.23.8",
     "zustand": "^5.0.11"
   },
   "devDependencies": {
