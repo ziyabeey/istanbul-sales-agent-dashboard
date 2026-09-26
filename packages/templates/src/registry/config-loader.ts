@@ -81,14 +81,14 @@ export async function loadThemeConfig(themeId: string): Promise<ThemeLoadResult 
     // --------------------------------------------------
 
     // Merge plan-based layout tokens into cssVariables
-    // Plan tokens sit between base vars and per-theme overrides,
-    // so any explicit value in the config file still wins.
+    // Defaults fill missing layout tokens; existing theme variables and explicit
+    // overrides retain their values, including colors, fonts and custom spacing.
     const entry = getTheme(themeId)
     if (entry) {
       const planDefaults = PLAN_TOKENS[entry.plan]
       if (planDefaults) {
-        const merged: Record<string, string> = { ...planDefaults }
-        // Per-theme cssVariables override plan defaults
+        const merged: Record<string, string> = { ...planDefaults, ...config.cssVariables }
+        // Explicit cssOverrides have the final say
         if (config?.cssOverrides) {
           for (const [k, v] of Object.entries(config?.cssOverrides || {})) {
             merged[k] = v as string
