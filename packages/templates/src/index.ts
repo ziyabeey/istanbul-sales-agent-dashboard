@@ -240,3 +240,5 @@ export { WhatsAppFloating, CookieBannerBottomBar } from './sections/global/Globa
 // loadThemeConfig() + registerSectorSections() instead.
 export * from './exports-configs-sections'
 
+// Restore the original registered archive data for static demo consumers.
+export * from './legacy-demo-configs'

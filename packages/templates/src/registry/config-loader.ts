@@ -113,3 +113,6 @@ export function hasConfig(themeId: string): boolean {
   // This is a fast check — actual availability verified by loadThemeConfig
   return typeof themeId === 'string' && themeId.length > 0
 }
+
+// Historical editor name; share the exact implementation and return contract.
+export { loadThemeConfig as loadTheme }
