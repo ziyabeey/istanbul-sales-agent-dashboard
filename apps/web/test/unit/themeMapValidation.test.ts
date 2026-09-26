@@ -9,6 +9,18 @@ import {
 } from '@kepenk/templates'
 import fs from 'node:fs'
 import path from 'node:path'
+import { tmpdir } from 'node:os'
+
+// Directory existence alone does not prove that a bundler can resolve a module.
+function hasModuleFile(resolvedPath: string): boolean {
+  const extensions = ['.ts', '.tsx', '.js', '.jsx']
+  const candidates = [
+    resolvedPath,
+    ...extensions.map(extension => `${resolvedPath}${extension}`),
+    ...extensions.map(extension => path.join(resolvedPath, `index${extension}`)),
+  ]
+  return candidates.some(candidate => fs.existsSync(candidate) && fs.statSync(candidate).isFile())
+}
 
 const restoredBerberConfigs = [
   BERBER_BLADE_CONFIG,
@@ -37,10 +49,10 @@ describe('Theme Map Validation Guard', () => {
       const themeId = match[1]
       const importPath = match[2]
       const resolvedPath = path.normalize(path.join(registryDir, importPath))
-      const exists = fs.existsSync(resolvedPath) && fs.statSync(resolvedPath).isDirectory()
+      const exists = hasModuleFile(resolvedPath)
 
       if (!exists) {
-        console.error(`Theme Map Validation Failed: Theme "${themeId}" points to nonexistent directory "${importPath}" (resolved: "${resolvedPath}")`)
+        console.error(`Theme Map Validation Failed: Theme "${themeId}" has no resolvable module file at "${importPath}" (resolved: "${resolvedPath}")`)
       }
 
       expect(exists).toBe(true)
@@ -61,6 +73,46 @@ describe('Theme Map Validation Guard', () => {
     for (const config of restoredBerberConfigs) {
       expect(config.pages.length).toBeGreaterThan(0)
       expect(THEME_MAP[config.id]).toBeTypeOf('function')
+    }
+  })
+
+  it('rejects an empty config directory and an index.ts directory', () => {
+    const fixture = fs.mkdtempSync(path.join(tmpdir(), 'kepenk-theme-map-'))
+    try {
+      const configDir = path.join(fixture, 'config')
+      fs.mkdirSync(configDir)
+      expect(hasModuleFile(configDir)).toBe(false)
+      fs.mkdirSync(path.join(configDir, 'index.ts'))
+      expect(hasModuleFile(configDir)).toBe(false)
+    } finally {
+      fs.rmSync(fixture, { recursive: true, force: true })
+    }
+  })
+
+  it('accepts actual config entry files and direct module files', () => {
+    const fixture = fs.mkdtempSync(path.join(tmpdir(), 'kepenk-theme-map-'))
+    try {
+      const configDir = path.join(fixture, 'config')
+      fs.mkdirSync(configDir)
+      fs.writeFileSync(path.join(configDir, 'index.ts'), 'export const config = {}\n')
+      expect(hasModuleFile(configDir)).toBe(true)
+      const modulePath = path.join(fixture, 'standalone')
+      fs.writeFileSync(`${modulePath}.tsx`, 'export const config = {}\n')
+      expect(hasModuleFile(modulePath)).toBe(true)
+      expect(hasModuleFile(`${modulePath}.tsx`)).toBe(true)
+    } finally {
+      fs.rmSync(fixture, { recursive: true, force: true })
+    }
+  })
+
+  it('rejects absent targets and folders containing only documentation', () => {
+    const fixture = fs.mkdtempSync(path.join(tmpdir(), 'kepenk-theme-map-'))
+    try {
+      expect(hasModuleFile(path.join(fixture, 'missing'))).toBe(false)
+      fs.writeFileSync(path.join(fixture, 'README.md'), 'Config intentionally unavailable\n')
+      expect(hasModuleFile(fixture)).toBe(false)
+    } finally {
+      fs.rmSync(fixture, { recursive: true, force: true })
     }
   })
 })
