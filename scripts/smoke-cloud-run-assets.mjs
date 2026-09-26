@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import path from 'node:path'
+import { createRequire } from 'node:module'
 import { pathToFileURL } from 'node:url'
 
 function readNonemptyFile(filename) {
@@ -78,6 +79,41 @@ export async function verifyCloudRunAssets({ appDir, baseUrl, timeoutMs = 5000 }
   return { status: 'passed', service: health.service, entrypoint: 'apps/web/server.js', checks }
 }
 
+/** Exercise the native sanitizer and its package-relative CSS in the runtime image. */
+export function verifyCloudRunSanitizer({ appDir }) {
+  assert.ok(path.isAbsolute(appDir), 'Expected an absolute app directory')
+  readNonemptyFile(path.join(appDir, 'package.json'))
+  const appRequire = createRequire(path.join(appDir, 'package.json'))
+  const sanitizerEntry = appRequire.resolve('isomorphic-dompurify')
+  // Resolve the exact jsdom used by the sanitizer, not a test-only dependency.
+  const sanitizerRequire = createRequire(sanitizerEntry)
+  const { JSDOM } = sanitizerRequire('jsdom')
+  const dom = new JSDOM('<!doctype html><p>Runtime check</p>')
+  try {
+    const paragraph = dom.window.document.querySelector('p')
+    assert.equal(dom.window.getComputedStyle(paragraph).display, 'block', 'jsdom default stylesheet must load')
+  } finally {
+    dom.window.close()
+  }
+
+  const loaded = appRequire('isomorphic-dompurify')
+  const DOMPurify = loaded.default ?? loaded
+  assert.equal(typeof DOMPurify.sanitize, 'function', 'Native sanitizer must be callable')
+  // These are the existing /sites/[domain] options; no policies are relaxed here.
+  const clean = DOMPurify.sanitize(
+    '<p data-demo="kepenk"><strong>Randevu</strong><script type="application/json">{}</script></p>',
+    {
+      ADD_TAGS: ['style', 'link'],
+      ADD_ATTR: ['target', 'rel', 'loading', 'decoding'],
+      ALLOW_DATA_ATTR: true,
+      WHOLE_DOCUMENT: false,
+    },
+  )
+  assert.equal(clean, '<p data-demo="kepenk"><strong>Randevu</strong></p>', 'Sanitization must preserve content and remove the script element')
+  assert.equal(DOMPurify.sanitize(''), '', 'Empty HTML must remain empty')
+  return { status: 'passed', checks: ['native-sanitizer', 'jsdom-default-stylesheet', 'html-sanitization'] }
+}
+
 // CI streams this script to the running container: node --input-type=module -.
 const invokedAsScript = process.argv[1] === '-'
   || (process.argv[1] && pathToFileURL(path.resolve(process.argv[1])).href === import.meta.url)
@@ -87,7 +123,8 @@ if (invokedAsScript) {
       appDir: '/app/apps/web',
       baseUrl: `http://127.0.0.1:${process.env.PORT || '8080'}`,
     })
-    console.log(JSON.stringify(report, null, 2))
+    const sanitizer = verifyCloudRunSanitizer({ appDir: '/app/apps/web' })
+    console.log(JSON.stringify({ ...report, sanitizer }, null, 2))
   } catch (error) {
     console.error(`[cloud-run-assets] ${error instanceof Error ? error.message : String(error)}`)
     process.exitCode = 1
