@@ -158,4 +158,40 @@ describe('K5 Action Card experience metrics', () => {
     expect(metrics.dismissals).toBe(0)
     expect(metrics.snoozes).toBe(0)
   })
+
+  it('guarantees that duplicate outcomeId events are idempotent', () => {
+    const cards = [card({ cardId: 'a' })]
+    const baseOutcome = outcome('a', 'action_selected', '2026-09-24T10:00:01.000Z', { actionId: 'open' })
+    const outcomes = [
+      outcome('a', 'surfaced', '2026-09-24T10:00:00.000Z'),
+      baseOutcome,
+      { ...baseOutcome, occurredAt: '2026-09-24T10:00:02.000Z' }, // exact same outcomeId but replay attempt
+    ]
+
+    const metrics = deriveActionCardExperienceMetrics({ cards, outcomes })
+    expect(metrics.cardsSurfaced).toBe(1)
+    expect(metrics.cardsWithDecision).toBe(1)
+    expect(metrics.actionSelections).toBe(1)
+  })
+
+  it('ensures only the first valid decision per card contributes to metrics and rates', () => {
+    const cards = [card({ cardId: 'a' })]
+    const outcomes = [
+      outcome('a', 'surfaced', '2026-09-24T10:00:00.000Z'),
+      outcome('a', 'action_selected', '2026-09-24T10:00:01.000Z', { actionId: 'open' }),
+      // Subsequent valid decision events for the same card:
+      outcome('a', 'dismissed', '2026-09-24T10:00:02.000Z'),
+      outcome('a', 'snoozed', '2026-09-24T10:00:03.000Z'),
+    ]
+
+    const metrics = deriveActionCardExperienceMetrics({ cards, outcomes })
+    expect(metrics.cardsSurfaced).toBe(1)
+    expect(metrics.cardsWithDecision).toBe(1)
+    expect(metrics.actionSelections).toBe(1)
+    expect(metrics.dismissals).toBe(0)
+    expect(metrics.snoozes).toBe(0)
+    expect(metrics.actionRate).toBe(1)
+    expect(metrics.dismissalRate).toBe(0)
+    expect(metrics.snoozeRate).toBe(0)
+  })
 })

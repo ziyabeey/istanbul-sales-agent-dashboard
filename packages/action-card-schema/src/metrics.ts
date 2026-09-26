@@ -56,7 +56,12 @@ export function deriveActionCardExperienceMetrics(input: {
     return a.outcomeId.localeCompare(b.outcomeId)
   })
 
+  const processedOutcomeIds = new Set<string>()
+
   for (const event of ordered) {
+    if (processedOutcomeIds.has(event.outcomeId)) continue
+    processedOutcomeIds.add(event.outcomeId)
+
     const card = cardsById.get(event.cardId)
     if (!card || event.businessId !== card.businessId || event.cardRevision !== card.revision) continue
     const occurredAt = Date.parse(event.occurredAt)
@@ -69,30 +74,33 @@ export function deriveActionCardExperienceMetrics(input: {
     }
 
     const isDecision = event.type === 'action_selected' || event.type === 'dismissed' || event.type === 'snoozed'
-    if (isDecision && !decidedCards.has(event.cardId)) {
+    if (isDecision) {
+      if (decidedCards.has(event.cardId)) {
+        continue
+      }
       decidedCards.add(event.cardId)
       const surfaced = surfacedAt.get(event.cardId)
       if (surfaced !== undefined && occurredAt >= surfaced) {
         decisionDurations.push(occurredAt - surfaced)
       }
-    }
 
-    if (event.type === 'dismissed') {
-      dismissals += 1
-      continue
-    }
+      if (event.type === 'dismissed') {
+        dismissals += 1
+        continue
+      }
 
-    if (event.type === 'snoozed') {
-      snoozes += 1
-      continue
-    }
+      if (event.type === 'snoozed') {
+        snoozes += 1
+        continue
+      }
 
-    if (event.type === 'action_selected') {
-      actionSelections += 1
-      const action = card.actions.find(candidate => candidate.actionId === event.actionId)
-      if (action?.mode === 'navigate') navigationSelections += 1
-      if (action?.mode === 'command') commandSelections += 1
-      continue
+      if (event.type === 'action_selected') {
+        actionSelections += 1
+        const action = card.actions.find(candidate => candidate.actionId === event.actionId)
+        if (action?.mode === 'navigate') navigationSelections += 1
+        if (action?.mode === 'command') commandSelections += 1
+        continue
+      }
     }
 
     if (event.type === 'action_executed') {
