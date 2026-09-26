@@ -2,9 +2,9 @@ import { describe, expect, it } from 'vitest'
 import { createHash } from 'node:crypto'
 import fs from 'node:fs'
 import path from 'node:path'
-import * as recovered from '../../../packages/templates/src/historical-demo-configs'
+import * as recovered from '../../../../packages/templates/src/historical-demo-configs'
 
-const root = path.resolve(__dirname, '../../..')
+const root = path.resolve(__dirname, '../../../..')
 // Exact blobs from the last pre-checkpoint source, commit 5288d433.
 // These hashes cover all authored data, CSS and section configuration, not just names.
 const originals = [
