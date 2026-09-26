@@ -1,12 +1,14 @@
 import { describe, expect, it } from 'vitest'
 import fs from 'node:fs'
 import path from 'node:path'
-import { fileURLToPath } from 'node:url'
 import * as legacy from '../../../../packages/templates/src/legacy-demo-configs'
 import { THEME_MAP } from '../../../../packages/templates/src/registry/theme-map'
 import { loadTheme, loadThemeConfig } from '../../../../packages/templates/src/registry/config-loader'
 
-const root = fileURLToPath(new URL('../../../../', import.meta.url))
+import * as sections from '../../../../packages/templates/src/legacy-demo-sections'
+import { ClassScheduleGrid, TrainerProfileCard } from '../../../../packages/templates/src/sections/fitness/FitnessSections'
+
+const root = path.resolve(__dirname, '../../../..')
 
 describe('legacy template export compatibility', () => {
   it('exports exactly the archived module paths from the unchanged registry', () => {
@@ -40,6 +42,11 @@ describe('legacy template export compatibility', () => {
 
   it('the historical editor loader name is the exact canonical function', () => {
     expect(loadTheme).toBe(loadThemeConfig)
+  })
+
+  it('the shared schedule and trainer exports retain the fitness implementation', () => {
+    expect(sections.ClassScheduleGrid).toBe(ClassScheduleGrid)
+    expect(sections.TrainerProfileCard).toBe(TrainerProfileCard)
   })
 
   it('does not invent a theme for an unknown editor selection', async () => {

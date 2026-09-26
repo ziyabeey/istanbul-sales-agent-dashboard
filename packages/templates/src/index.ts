@@ -242,3 +242,4 @@ export * from './exports-configs-sections'
 
 // Restore the original registered archive data for static demo consumers.
 export * from './legacy-demo-configs'
+export * from './legacy-demo-sections'

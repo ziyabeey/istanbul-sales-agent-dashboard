@@ -18,6 +18,10 @@ const entrypoints = [
   ['./catalog', './src/registry/theme-catalog.ts'],
   ['./src/registry/theme-catalog', './src/registry/theme-catalog.ts'],
   ['./src/registry/theme-map', './src/registry/theme-map.ts'],
+  ['./src/registry/config-loader', './src/registry/config-loader.ts'],
+  ['./src/types/ast-types', './src/types/ast-types.ts'],
+  ['./src/types/section-types', './src/types/section-types.ts'],
+  ['./src/renderer/ThemeRenderer', './src/renderer/ThemeRenderer.tsx'],
   ...['elite', 'kurumsal', 'modern', 'prestij', 'sade'].map((variant, i) => [
     `./src/themes/configs/_archive/${108 + i}-insaat-${variant}`,
     `./src/themes/configs/_archive/${108 + i}-insaat-${variant}/index.ts`,

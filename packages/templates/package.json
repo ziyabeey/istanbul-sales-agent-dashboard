@@ -14,6 +14,10 @@
     "./src/themes/configs/_archive/110-insaat-modern": "./src/themes/configs/_archive/110-insaat-modern/index.ts",
     "./src/themes/configs/_archive/111-insaat-prestij": "./src/themes/configs/_archive/111-insaat-prestij/index.ts",
     "./src/themes/configs/_archive/112-insaat-sade": "./src/themes/configs/_archive/112-insaat-sade/index.ts",
+    "./src/registry/config-loader": "./src/registry/config-loader.ts",
+    "./src/types/ast-types": "./src/types/ast-types.ts",
+    "./src/types/section-types": "./src/types/section-types.ts",
+    "./src/renderer/ThemeRenderer": "./src/renderer/ThemeRenderer.tsx",
     "./src/*": "./src/*"
   },
   "dependencies": {
