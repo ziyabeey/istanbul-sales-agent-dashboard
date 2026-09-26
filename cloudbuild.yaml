@@ -1,30 +1,63 @@
+# Canonical staging build/deploy contract.
+# Hosted inventory receipt: 2026-09-26.
+# This file is intentionally fail-closed to the nonprod project and never promotes traffic.
+substitutions:
+  _REGION: europe-west3
+  _REPOSITORY: kepenk
+  _IMAGE: kepenk-web
+  _SERVICE: kepenk-web-staging
+  _IMAGE_TAG: manual
+
 steps:
-  # 1. Docker İmajını GCP Artifact Registry üzerine derleme
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'europe-west3-docker.pkg.dev/$PROJECT_ID/kepenk-repo/kepenk-ai-frontend:$COMMIT_SHA', '.']
-
-  # 2. İmajı Artifact Registry'ye itme (Pushting)
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'europe-west3-docker.pkg.dev/$PROJECT_ID/kepenk-repo/kepenk-ai-frontend:$COMMIT_SHA']
-
-  # 3. Google Cloud Run'a Deploy etme (Sıfır Kesinti)
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    id: 'assert-nonprod-target'
+    entrypoint: 'bash'
+    args:
+      - '-ceu'
+      - |
+        test "$PROJECT_ID" = "cs-project-ljhot8la" || {
+          echo "Refusing build: expected nonprod project cs-project-ljhot8la, got $PROJECT_ID" >&2
+          exit 1
+        }
+        test "${_REGION}" = "europe-west3"
+        test "${_SERVICE}" = "kepenk-web-staging"
+
+  - name: 'gcr.io/cloud-builders/docker'
+    id: 'build-image'
+    args:
+      - 'build'
+      - '-t'
+      - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/${_IMAGE}:${_IMAGE_TAG}'
+      - '.'
+
+  - name: 'gcr.io/cloud-builders/docker'
+    id: 'push-image'
+    args:
+      - 'push'
+      - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/${_IMAGE}:${_IMAGE_TAG}'
+
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    id: 'deploy-private-no-traffic-canary'
     entrypoint: 'gcloud'
     args:
       - 'run'
       - 'deploy'
-      - 'kepenk-ai'
+      - '${_SERVICE}'
       - '--image'
-      - 'europe-west3-docker.pkg.dev/$PROJECT_ID/kepenk-repo/kepenk-ai-frontend:$COMMIT_SHA'
+      - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/${_IMAGE}:${_IMAGE_TAG}'
       - '--region'
-      - 'europe-west3'
+      - '${_REGION}'
       - '--platform'
       - 'managed'
-      - '--allow-unauthenticated'
-      - '--port'
-      - '8080'
-      - '--memory'
-      - '1024Mi'
+      - '--service-account'
+      - 'kepenk-web-runtime@$PROJECT_ID.iam.gserviceaccount.com'
+      - '--no-traffic'
+      - '--tag'
+      - 'canary'
+      - '--quiet'
 
 images:
-  - 'europe-west3-docker.pkg.dev/$PROJECT_ID/kepenk-repo/kepenk-ai-frontend:$COMMIT_SHA'
+  - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/${_IMAGE}:${_IMAGE_TAG}'
+
+options:
+  logging: CLOUD_LOGGING_ONLY

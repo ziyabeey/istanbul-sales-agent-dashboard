@@ -1,12 +1,7 @@
-const FIREBASE_REQUIRED_ENV = [
-    'FIREBASE_PROJECT_ID',
-    'FIREBASE_CLIENT_EMAIL',
-    'FIREBASE_PRIVATE_KEY',
-] as const
+import { getFirebaseRuntimeReadiness } from './firebaseRuntime'
 
 const CONTROLLED_LAUNCH_REQUIRED_ENV = [
     'SESSION_SECRET',
-    ...FIREBASE_REQUIRED_ENV,
 ] as const
 
 const CONTROLLED_LAUNCH_RECOMMENDED_ENV = [
@@ -47,18 +42,29 @@ function missing(names: readonly EnvName[]): EnvName[] {
     return names.filter((name) => !hasEnv(name))
 }
 
-function feature(enabledEnvName: EnvName, required: readonly EnvName[]): FeatureReadiness {
+function firebaseMissing(): EnvName[] {
+    return getFirebaseRuntimeReadiness().missingRequired
+}
+
+function feature(enabledEnvName: EnvName, required: readonly EnvName[], includeFirebase = false): FeatureReadiness {
     const enabled = exactTrue(enabledEnvName)
     if (!enabled) {
         return { enabled: false, ready: true, missingRequired: [] }
     }
 
-    const missingRequired = missing(required)
+    const missingRequired = [
+        ...(includeFirebase ? firebaseMissing() : []),
+        ...missing(required),
+    ]
     return { enabled: true, ready: missingRequired.length === 0, missingRequired }
 }
 
 export function getControlledLaunchEnvReadiness() {
-    const missingRequired = missing(CONTROLLED_LAUNCH_REQUIRED_ENV)
+    const firebase = getFirebaseRuntimeReadiness()
+    const missingRequired = [
+        ...missing(CONTROLLED_LAUNCH_REQUIRED_ENV),
+        ...firebase.missingRequired,
+    ]
     const missingRecommended = missing(CONTROLLED_LAUNCH_RECOMMENDED_ENV)
     const problems = process.env.NODE_ENV === 'production'
         ? DEMO_MODE_ENV
@@ -68,17 +74,21 @@ export function getControlledLaunchEnvReadiness() {
 
     return {
         ready: missingRequired.length === 0 && problems.length === 0,
-        required: [...CONTROLLED_LAUNCH_REQUIRED_ENV],
+        required: [
+            ...CONTROLLED_LAUNCH_REQUIRED_ENV,
+            ...firebase.requirements,
+        ],
         missingRequired,
         recommended: [...CONTROLLED_LAUNCH_RECOMMENDED_ENV],
         missingRecommended,
         problems,
+        firebaseCredentialMode: firebase.credentialMode,
     }
 }
 
 export function getFeatureEnvReadiness(): FeatureReadinessMap {
     const generationMissing = [
-        ...missing(FIREBASE_REQUIRED_ENV),
+        ...firebaseMissing(),
         ...missing(['SERVICE_AUTH_SECRET']),
     ]
 
@@ -99,17 +109,15 @@ export function getFeatureEnvReadiness(): FeatureReadinessMap {
             }
             : { enabled: false, ready: true, missingRequired: [] },
         sitePublish: feature('KEPENK_SITE_PUBLISH_ENABLED', [
-            ...FIREBASE_REQUIRED_ENV,
             'CF_ACCOUNT_ID',
             'CF_PAGES_TOKEN',
             'CF_API_TOKEN',
             'CF_ZONE_ID',
-        ]),
-        siteEditorSave: feature('KEPENK_SITE_EDITOR_SAVE_ENABLED', FIREBASE_REQUIRED_ENV),
+        ], true),
+        siteEditorSave: feature('KEPENK_SITE_EDITOR_SAVE_ENABLED', [], true),
         siteEditorPublish: feature('KEPENK_SITE_EDITOR_PUBLISH_ENABLED', [
-            ...FIREBASE_REQUIRED_ENV,
             'NEXT_PUBLIC_APP_URL',
-        ]),
+        ], true),
     }
 }
 

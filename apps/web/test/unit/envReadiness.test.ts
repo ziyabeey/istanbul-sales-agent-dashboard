@@ -9,8 +9,12 @@ const TRACKED_ENV = [
     'NODE_ENV',
     'SESSION_SECRET',
     'FIREBASE_PROJECT_ID',
+    'GOOGLE_CLOUD_PROJECT',
     'FIREBASE_CLIENT_EMAIL',
     'FIREBASE_PRIVATE_KEY',
+    'K_SERVICE',
+    'GOOGLE_APPLICATION_CREDENTIALS',
+    'FIRESTORE_EMULATOR_HOST',
     'NEXT_PUBLIC_APP_URL',
     'INTERNAL_APP_URL',
     'SERVICE_AUTH_SECRET',
@@ -41,11 +45,18 @@ function clearTrackedEnv() {
     }
 }
 
-function setProductionRequiredEnv() {
+function setLegacyProductionRequiredEnv() {
     process.env.SESSION_SECRET = 'super-secret-session-value'
     process.env.FIREBASE_PROJECT_ID = 'kepenk-prod'
     process.env.FIREBASE_CLIENT_EMAIL = 'firebase@example.com'
     process.env.FIREBASE_PRIVATE_KEY = 'private-key-value'
+}
+
+function setCloudRunAdcProductionEnv() {
+    process.env.SESSION_SECRET = 'super-secret-session-value'
+    process.env.FIREBASE_PROJECT_ID = 'cs-project-ljhot8la'
+    process.env.GOOGLE_CLOUD_PROJECT = 'cs-project-ljhot8la'
+    process.env.K_SERVICE = 'kepenk-web-staging'
 }
 
 function setSiteGenerationTransportEnv() {
@@ -82,21 +93,44 @@ describe('envReadiness', () => {
         expect(isProductionEnvReady()).toBe(false)
         expect(readiness.missingRequired).toEqual([
             'SESSION_SECRET',
-            'FIREBASE_PROJECT_ID',
-            'FIREBASE_CLIENT_EMAIL',
-            'FIREBASE_PRIVATE_KEY',
+            'FIREBASE_PROJECT_ID_OR_GOOGLE_CLOUD_PROJECT',
+            'FIREBASE_CREDENTIALS_OR_ADC',
         ])
     })
 
-    it('tum production required env varsa hazirdir', () => {
+    it('legacy production credential seti ile hazirdir', () => {
         process.env.NODE_ENV = 'production'
-        setProductionRequiredEnv()
+        setLegacyProductionRequiredEnv()
 
         const readiness = getControlledLaunchEnvReadiness()
 
         expect(readiness.ready).toBe(true)
+        expect(readiness.firebaseCredentialMode).toBe('legacy')
         expect(isProductionEnvReady()).toBe(true)
         expect(readiness.missingRequired).toEqual([])
+    })
+
+    it('Cloud Run application-default credentials ile hazirdir', () => {
+        process.env.NODE_ENV = 'production'
+        setCloudRunAdcProductionEnv()
+
+        const readiness = getControlledLaunchEnvReadiness()
+
+        expect(readiness.ready).toBe(true)
+        expect(readiness.firebaseCredentialMode).toBe('adc')
+        expect(readiness.missingRequired).toEqual([])
+    })
+
+    it('yarim legacy credential ADC varken bile fail-closed kalir', () => {
+        process.env.NODE_ENV = 'production'
+        setCloudRunAdcProductionEnv()
+        process.env.FIREBASE_CLIENT_EMAIL = 'stale@example.com'
+
+        const readiness = getControlledLaunchEnvReadiness()
+
+        expect(readiness.ready).toBe(false)
+        expect(readiness.firebaseCredentialMode).toBe('unavailable')
+        expect(readiness.missingRequired).toEqual(['FIREBASE_PRIVATE_KEY'])
     })
 
     it('feature flag kapaliyken provider env gerekli degildir', () => {
@@ -114,7 +148,7 @@ describe('envReadiness', () => {
 
     it('generation flag acikken conditional env eksikse hazir degildir', () => {
         process.env.KEPENK_SITE_GENERATION_ENABLED = 'true'
-        setProductionRequiredEnv()
+        setCloudRunAdcProductionEnv()
 
         const readiness = getFeatureEnvReadiness()
 
@@ -129,7 +163,7 @@ describe('envReadiness', () => {
 
     it('generation flag acikken GEMINI_API_KEY ve internal service transport gereksinimleri karsilar', () => {
         process.env.KEPENK_SITE_GENERATION_ENABLED = 'true'
-        setProductionRequiredEnv()
+        setCloudRunAdcProductionEnv()
         setSiteGenerationTransportEnv()
         process.env.GEMINI_API_KEY = 'gemini-secret-value'
 
@@ -141,7 +175,7 @@ describe('envReadiness', () => {
 
     it('generation flag acikken GOOGLE_API_KEY ve public app origin gereksinimleri karsilar', () => {
         process.env.KEPENK_SITE_GENERATION_ENABLED = 'true'
-        setProductionRequiredEnv()
+        setCloudRunAdcProductionEnv()
         process.env.SERVICE_AUTH_SECRET = 'service-auth-secret-value-0123456789abcdef'
         process.env.NEXT_PUBLIC_APP_URL = 'https://kepenk.ai'
         process.env.GOOGLE_API_KEY = 'google-secret-value'
@@ -154,7 +188,7 @@ describe('envReadiness', () => {
 
     it('generation readiness CRON_SECRET istemez', () => {
         process.env.KEPENK_SITE_GENERATION_ENABLED = 'true'
-        setProductionRequiredEnv()
+        setCloudRunAdcProductionEnv()
         setSiteGenerationTransportEnv()
         process.env.GEMINI_API_KEY = 'gemini-secret-value'
         delete process.env.CRON_SECRET
@@ -164,19 +198,19 @@ describe('envReadiness', () => {
 
     it('production demo mode true ise problem olarak raporlar ama degeri sizdirmaz', () => {
         process.env.NODE_ENV = 'production'
-        setProductionRequiredEnv()
+        setCloudRunAdcProductionEnv()
         process.env.KEPENK_DEMO_MODE = 'true'
 
         const readiness = getControlledLaunchEnvReadiness()
 
         expect(readiness.ready).toBe(false)
         expect(readiness.problems).toEqual(['PRODUCTION_DEMO_MODE_ENABLED:KEPENK_DEMO_MODE'])
-        expect(snapshot(readiness)).not.toContain('true')
+        expect(snapshot(readiness)).not.toContain('"true"')
     })
 
     it('readiness objesi secret degerleri icermez', () => {
         process.env.NODE_ENV = 'production'
-        setProductionRequiredEnv()
+        setLegacyProductionRequiredEnv()
         process.env.NEXT_PUBLIC_APP_URL = 'https://kepenk.ai'
         process.env.SERVICE_AUTH_SECRET = 'service-auth-secret-value-0123456789abcdef'
         process.env.ADMIN_SECRET_TOKEN = 'admin-secret-value'
