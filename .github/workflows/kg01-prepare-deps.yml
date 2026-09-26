@@ -1,0 +1,98 @@
+name: KG-01 dependency preparation
+
+on:
+  pull_request:
+    branches: [main]
+    paths: ['.github/workflows/kg01-prepare-deps.yml']
+
+permissions:
+  contents: read
+
+jobs:
+  prepare:
+    if: >-
+      github.repository == 'ziyabeey/istanbul-sales-agent-dashboard' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.head.ref == 'kg/01-google-runtime-foundation'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - name: Prepare pinned package manager
+        run: |
+          corepack enable
+          corepack prepare pnpm@9.1.0 --activate
+      - name: Declare build dependencies
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs'
+          import assert from 'node:assert/strict'
+          import { execFileSync } from 'node:child_process'
+          const webFile = 'apps/web/package.json'
+          const templateFile = 'packages/templates/package.json'
+          const web = JSON.parse(fs.readFileSync(webFile, 'utf8'))
+          const templates = JSON.parse(fs.readFileSync(templateFile, 'utf8'))
+          const versions = { firebase: '12.19.0' }
+          for (const name of ['@fontsource-variable/inter', '@fontsource-variable/plus-jakarta-sans']) {
+            const version = execFileSync('npm', ['view', name, 'version', '--registry=https://registry.npmjs.org'], { encoding: 'utf8' }).trim()
+            assert.match(version, /^5\.\d+\.\d+$/, `Unexpected font package version: ${name}`)
+            versions[name] = version
+          }
+          Object.assign(web.dependencies, versions)
+          templates.dependencies['framer-motion'] = '12.35.2'
+          fs.writeFileSync(webFile, JSON.stringify(web, null, 2) + '\n')
+          fs.writeFileSync(templateFile, JSON.stringify(templates, null, 2) + '\n')
+          console.log(JSON.stringify({ selectedDependencies: versions, templateMotion: '12.35.2' }, null, 2))
+          NODE
+      - name: Generate lockfile with pnpm, then verify frozen installation
+        run: |
+          pnpm install --lockfile-only --ignore-scripts --no-frozen-lockfile
+          sha256sum pnpm-lock.yaml > /tmp/kg01-lock.sha256
+          pnpm install --frozen-lockfile --ignore-scripts
+          sha256sum --check /tmp/kg01-lock.sha256
+      - name: Verify real dependency resolution without cloud initialization
+        run: |
+          node --input-type=module <<'NODE'
+          import assert from 'node:assert/strict'
+          import fs from 'node:fs'
+          import path from 'node:path'
+          import { createRequire } from 'node:module'
+          const web = createRequire(path.resolve('apps/web/package.json'))
+          assert.equal(typeof web('firebase/app').initializeApp, 'function')
+          assert.equal(typeof web('firebase/firestore').getFirestore, 'function')
+          const templates = createRequire(path.resolve('packages/templates/package.json'))
+          assert.ok(templates.resolve('framer-motion'))
+          for (const [name, family] of [['inter', 'Inter Variable'], ['plus-jakarta-sans', 'Plus Jakarta Sans Variable']]) {
+            const cssFile = web.resolve(`@fontsource-variable/${name}/wght.css`)
+            const css = fs.readFileSync(cssFile, 'utf8')
+            assert.ok(css.includes(family))
+            assert.ok(css.includes('latin-ext'))
+            assert.ok(!/https?:/.test(css))
+            const files = [...css.matchAll(/url\(['"]?([^)'"\s]+)['"]?\)/g)]
+            assert.ok(files.length > 0)
+            for (const [, filename] of files) assert.ok(fs.statSync(path.resolve(path.dirname(cssFile), filename)).size > 0)
+          }
+          console.log('Firebase exports, template motion and both self-hosted font families resolved; no Firebase app initialized.')
+          NODE
+      - name: Publish generated candidate to a unique review-only branch
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          git diff --check
+          git add -- apps/web/package.json packages/templates/package.json pnpm-lock.yaml
+          test "$(git diff --cached --name-only | wc -l)" -eq 3
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'build(deps): generate Firebase and self-hosted font lockfile'
+          candidate="kg/01-generated-deps-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          git push origin "HEAD:refs/heads/$candidate"
+          echo "Generated candidate: $candidate"
+          git log -1 --format='commit=%H%ntree=%T%nparent=%P'
+          git show --stat --oneline HEAD
