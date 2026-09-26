@@ -158,4 +158,153 @@ describe('K5 Action Card experience metrics', () => {
     expect(metrics.dismissals).toBe(0)
     expect(metrics.snoozes).toBe(0)
   })
+
+  it('guarantees that duplicate outcomeId events are idempotent', () => {
+    const cards = [card({ cardId: 'a' })]
+    const baseOutcome = outcome('a', 'action_selected', '2026-09-24T10:00:01.000Z', { actionId: 'open' })
+    const outcomes = [
+      outcome('a', 'surfaced', '2026-09-24T10:00:00.000Z'),
+      baseOutcome,
+      { ...baseOutcome, occurredAt: '2026-09-24T10:00:02.000Z' }, // exact same outcomeId but replay attempt
+    ]
+
+    const metrics = deriveActionCardExperienceMetrics({ cards, outcomes })
+    expect(metrics.cardsSurfaced).toBe(1)
+    expect(metrics.cardsWithDecision).toBe(1)
+    expect(metrics.actionSelections).toBe(1)
+  })
+
+  it('does not let ignored stale evidence consume an outcomeId used by later valid evidence', () => {
+    const cards = [card({ cardId: 'a', revision: 2 })]
+    const sharedOutcomeId = 'shared-outcome'
+    const outcomes: ActionCardOutcomeEvent[] = [
+      { ...outcome('a', 'surfaced', '2026-09-24T10:00:00.000Z'), cardRevision: 2 },
+      {
+        ...outcome('a', 'action_selected', '2026-09-24T10:00:01.000Z', { actionId: 'open' }),
+        outcomeId: sharedOutcomeId,
+        cardRevision: 1,
+      },
+      {
+        ...outcome('a', 'action_selected', '2026-09-24T10:00:02.000Z', { actionId: 'open' }),
+        outcomeId: sharedOutcomeId,
+        cardRevision: 2,
+      },
+    ]
+
+    const metrics = deriveActionCardExperienceMetrics({ cards, outcomes })
+    expect(metrics.cardsSurfaced).toBe(1)
+    expect(metrics.cardsWithDecision).toBe(1)
+    expect(metrics.actionSelections).toBe(1)
+    expect(metrics.navigationSelections).toBe(1)
+    expect(metrics.medianTimeToDecisionMs).toBe(2000)
+  })
+
+  it('ensures only the first valid decision per card contributes to metrics and rates', () => {
+    const cards = [card({ cardId: 'a' })]
+    const outcomes = [
+      outcome('a', 'surfaced', '2026-09-24T10:00:00.000Z'),
+      outcome('a', 'action_selected', '2026-09-24T10:00:01.000Z', { actionId: 'open' }),
+      // Subsequent valid decision events for the same card:
+      outcome('a', 'dismissed', '2026-09-24T10:00:02.000Z'),
+      outcome('a', 'snoozed', '2026-09-24T10:00:03.000Z'),
+    ]
+
+    const metrics = deriveActionCardExperienceMetrics({ cards, outcomes })
+    expect(metrics.cardsSurfaced).toBe(1)
+    expect(metrics.cardsWithDecision).toBe(1)
+    expect(metrics.actionSelections).toBe(1)
+    expect(metrics.dismissals).toBe(0)
+    expect(metrics.snoozes).toBe(0)
+    expect(metrics.actionRate).toBe(1)
+    expect(metrics.dismissalRate).toBe(0)
+    expect(metrics.snoozeRate).toBe(0)
+  })
+
+  it('ignores an unknown action before the first valid selection', () => {
+    const cards = [card({ cardId: 'a' })]
+    const outcomes = [
+      outcome('a', 'surfaced', '2026-09-24T10:00:00.000Z'),
+      outcome('a', 'action_selected', '2026-09-24T10:00:01.000Z', { actionId: 'not-a-card-action' }),
+      outcome('a', 'action_selected', '2026-09-24T10:00:02.000Z', { actionId: 'open' }),
+    ]
+
+    const metrics = deriveActionCardExperienceMetrics({ cards, outcomes })
+    expect(metrics.cardsWithDecision).toBe(1)
+    expect(metrics.actionSelections).toBe(1)
+    expect(metrics.navigationSelections).toBe(1)
+    expect(metrics.medianTimeToDecisionMs).toBe(2000)
+  })
+
+  it('ignores a missing action before a valid dismissal', () => {
+    const cards = [card({ cardId: 'a' })]
+    const outcomes = [
+      outcome('a', 'surfaced', '2026-09-24T10:00:00.000Z'),
+      outcome('a', 'action_selected', '2026-09-24T10:00:01.000Z'),
+      outcome('a', 'dismissed', '2026-09-24T10:00:02.000Z'),
+    ]
+
+    const metrics = deriveActionCardExperienceMetrics({ cards, outcomes })
+    expect(metrics.cardsWithDecision).toBe(1)
+    expect(metrics.actionSelections).toBe(0)
+    expect(metrics.dismissals).toBe(1)
+    expect(metrics.medianTimeToDecisionMs).toBe(2000)
+  })
+
+  it('does not let an invalid action reserve a valid selection outcomeId', () => {
+    const cards = [card({ cardId: 'a' })]
+    const outcomes = [
+      outcome('a', 'surfaced', '2026-09-24T10:00:00.000Z'),
+      outcome('a', 'action_selected', '2026-09-24T10:00:01.000Z', {
+        outcomeId: 'shared-selection', actionId: 'not-a-card-action',
+      }),
+      outcome('a', 'action_selected', '2026-09-24T10:00:02.000Z', {
+        outcomeId: 'shared-selection', actionId: 'open',
+      }),
+    ]
+
+    const metrics = deriveActionCardExperienceMetrics({ cards, outcomes })
+    expect(metrics.cardsWithDecision).toBe(1)
+    expect(metrics.actionSelections).toBe(1)
+    expect(metrics.navigationSelections).toBe(1)
+    expect(metrics.medianTimeToDecisionMs).toBe(2000)
+  })
+
+  it('uses outcomeId to break equal-time decisions independently of input order', () => {
+    const cards = [card({ cardId: 'a' })]
+    const outcomes = [
+      outcome('a', 'surfaced', '2026-09-24T10:00:00.000Z'),
+      outcome('a', 'dismissed', '2026-09-24T10:00:01.000Z', { outcomeId: 'a-decision' }),
+      outcome('a', 'action_selected', '2026-09-24T10:00:01.000Z', {
+        outcomeId: 'b-decision', actionId: 'open',
+      }),
+    ]
+
+    const metrics = deriveActionCardExperienceMetrics({ cards, outcomes })
+    expect(metrics.dismissals).toBe(1)
+    expect(metrics.actionSelections).toBe(0)
+    expect(deriveActionCardExperienceMetrics({ cards, outcomes: [...outcomes].reverse() })).toEqual(metrics)
+  })
+
+  it('deduplicates execution evidence without inferring a missing result', () => {
+    const cards = [card({ cardId: 'a' })]
+    const selected = [
+      outcome('a', 'surfaced', '2026-09-24T10:00:00.000Z'),
+      outcome('a', 'action_selected', '2026-09-24T10:00:01.000Z', { actionId: 'run' }),
+    ]
+    const pending = deriveActionCardExperienceMetrics({ cards, outcomes: selected })
+    expect(pending.executedActions).toBe(0)
+    expect(pending.failedActions).toBe(0)
+    expect(pending.executionSuccessRate).toBe(null)
+
+    const outcomes = [
+      ...selected,
+      outcome('a', 'action_failed', '2026-09-24T10:00:02.000Z', { actionId: 'run', errorCode: 'FAILED' }),
+      outcome('a', 'action_executed', '2026-09-24T10:00:03.000Z', { actionId: 'run', executionRef: 'exec-a' }),
+    ]
+    const metrics = deriveActionCardExperienceMetrics({ cards, outcomes })
+    expect(metrics.executedActions).toBe(1)
+    expect(metrics.failedActions).toBe(1)
+    expect(metrics.executionSuccessRate).toBe(0.5)
+    expect(deriveActionCardExperienceMetrics({ cards, outcomes: [...outcomes, ...outcomes] })).toEqual(metrics)
+  })
 })

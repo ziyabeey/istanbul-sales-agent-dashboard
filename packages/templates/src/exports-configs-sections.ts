@@ -252,3 +252,10 @@ import './sections/vet/VetKlinikSections'
 import './sections/vet/VetLuxSections'
 import './sections/vet/VetPetshopSections'
 import './sections/vet/VeterinerSections'
+
+// Restored legacy Berber demo configs kept for static /demolar/* compatibility.
+export * from './themes/configs/_archive/011-berber-blade'
+export * from './themes/configs/_archive/012-berber-gentleman'
+export * from './themes/configs/_archive/013-berber-klasik'
+export * from './themes/configs/_archive/014-berber-sade'
+export * from './themes/configs/_archive/015-berber-studio'

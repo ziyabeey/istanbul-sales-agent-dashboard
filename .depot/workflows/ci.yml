@@ -1,0 +1,205 @@
+# Depot CI Migration
+# Source: .github/workflows/ci.yml
+#
+# Changes made:
+# - Changed GitHub runs-on labels to their Depot equivalents
+
+# CI/CD Pipeline — kepenk.ai
+name: CI/CD Pipeline
+on:
+  pull_request:
+    branches: [main, develop]
+  push:
+    branches: [main]
+env:
+  GCP_PROJECT: kepenk-ai
+  GCP_REGION: europe-west1
+jobs:
+  lint-and-type:
+    runs-on: depot-ubuntu-24.04-16 # was: ubuntu-latest. Depot CI 16 CPU / 64 GB.
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '20'}
+      - name: Enable pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@9.1.0 --activate
+      - run: pnpm install --frozen-lockfile
+      # Pilot-0 hard-gates the trust surfaces it changes. Broad legacy
+      # lint/type debt is still executed where useful and remains visible.
+      - name: Lint P0 trust baseline artifacts
+        run: >-
+          pnpm --filter @kepenk/web exec eslint test/fixtures/trust-baseline.ts test/unit/trustBaseline.characterization.test.ts
+      - name: Lint P0-01 canonical auth core
+        run: >-
+          pnpm --filter @kepenk/web exec eslint 'src/lib/auth/**/*.ts' test/unit/canonicalAuthCore.test.ts
+      - name: Lint P0-02 human auth adapters
+        run: >-
+          pnpm --filter @kepenk/web exec eslint src/lib/sessionManager.ts src/app/api/auth/giris-kodu-gonder/route.ts src/app/api/auth/giris-kodu-dogrula/route.ts src/app/api/auth/google/route.ts src/app/api/auth/cikis/route.ts src/app/api/auth/me/route.ts test/unit/humanAuthAdapters.test.ts test/unit/jwtHmac.test.ts
+      - name: Lint P0-03 request gates
+        run: >-
+          pnpm --filter @kepenk/web exec eslint src/proxy.ts src/lib/apiGuard.ts src/lib/auth/businessSession.ts test/unit/requestGateConvergence.test.ts
+      - name: Lint P0-04 service and durable jobs
+        run: >-
+          pnpm --filter @kepenk/web exec eslint src/lib/serviceAuth.ts src/lib/jobs/durableJob.ts src/lib/cloudTasksClient.ts src/lib/islemKuyrugu.ts src/lib/apiGuard.ts src/lib/envReadiness.ts src/app/api/cron/kuyruk-isleyici/route.ts src/app/api/workers/site-ureticisi/route.ts test/unit/servicePrincipalAndJobs.test.ts
+      - name: Lint P0-05 credential authority
+        run: >-
+          pnpm --filter @kepenk/web exec eslint src/lib/tokenSifreleme.ts 'src/lib/credentials/**/*.ts' src/lib/twilioClient.ts src/lib/googleBusinessClient.ts src/lib/metaGraphClient.ts test/unit/credentialEnvelope.test.ts
+      - name: Lint P0-06 admin sessions
+        run: >-
+          pnpm --filter @kepenk/web exec eslint src/lib/auth/adminSessionConstants.ts src/lib/auth/adminSession.ts src/lib/apiGuard.ts src/proxy.ts src/app/api/admin/login/route.ts src/app/api/admin/logout/route.ts src/app/api/admin/stats/route.ts src/app/api/admin/marketing/email-kampanya/route.ts src/app/api/admin/marketing/google-ads/route.ts src/app/api/admin/marketing/lead-tara/route.ts src/app/api/admin/marketing/leadler/route.ts src/components/layout/AdminSidebar.tsx test/unit/adminSession.test.ts
+      - name: Lint P0-07 admin audit and impersonation
+        run: >-
+          pnpm --filter @kepenk/web exec eslint src/lib/impersonation.ts src/lib/security/auditLogger.ts src/lib/zodSemalar.ts src/lib/apiGuard.ts src/app/api/admin/impersonate/route.ts 'src/app/api/admin/esnaf/[id]/route.ts' src/app/api/admin/kota/route.ts src/app/api/auth/me/route.ts 'src/app/api/esnaf/[id]/route.ts' src/app/dashboard/components/ImpersonationBanner.tsx src/app/dashboard/layout.tsx test/unit/adminAudit.test.ts test/unit/impersonationSession.test.ts
+      - name: Validate trust browser smoke script
+        run: bash -n apps/web/test/e2e/trust-browser-smoke.sh
+      - name: Typecheck P0 trust baseline artifacts
+        run: pnpm --filter @kepenk/web exec tsc -p test/tsconfig.trust-baseline.json --noEmit
+      - name: Typecheck P0-01 canonical auth core
+        run: pnpm --filter @kepenk/web exec tsc -p test/tsconfig.p0-01-auth-core.json --noEmit
+      - name: Typecheck P0-02 human auth adapters
+        run: pnpm --filter @kepenk/web exec tsc -p test/tsconfig.p0-02-human-auth.json --noEmit
+      - name: Typecheck P0-03 request gates
+        run: pnpm --filter @kepenk/web exec tsc -p test/tsconfig.p0-03-request-gates.json --noEmit
+      - name: Typecheck P0-04 service and durable jobs
+        run: pnpm --filter @kepenk/web exec tsc -p test/tsconfig.p0-04-service-jobs.json --noEmit
+      - name: Typecheck P0-05 credential authority
+        run: pnpm --filter @kepenk/web exec tsc -p test/tsconfig.p0-05-credentials.json --noEmit
+      - name: Typecheck P0-06 admin sessions
+        run: pnpm --filter @kepenk/web exec tsc -p test/tsconfig.p0-06-admin-session.json --noEmit
+      - name: Typecheck P0-07 admin audit and impersonation
+        run: pnpm --filter @kepenk/web exec tsc -p test/tsconfig.p0-07-admin-audit.json --noEmit
+      - name: Legacy full web typecheck baseline
+        id: legacy-web-typecheck
+        continue-on-error: true
+        run: pnpm --filter @kepenk/web typecheck
+      - name: Record known web typecheck debt
+        if: steps.legacy-web-typecheck.outcome == 'failure'
+        run: >-
+          echo "::warning title=Known legacy web typecheck debt::Broad pre-existing web type debt remains outside the Pilot-0 changed trust surface."
+  unit-tests:
+    runs-on: depot-ubuntu-24.04-16 # was: ubuntu-latest. Depot CI 16 CPU / 64 GB.
+    needs: lint-and-type
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '20'}
+      - name: Enable pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@9.1.0 --activate
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @kepenk/web test:unit
+      - name: Upload coverage
+        uses: codecov/codecov-action@v4
+        continue-on-error: true
+  integration-tests:
+    runs-on: depot-ubuntu-24.04-16 # was: ubuntu-latest. Depot CI 16 CPU / 64 GB.
+    needs: lint-and-type
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '20'}
+      - name: Enable pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@9.1.0 --activate
+      - run: pnpm install --frozen-lockfile
+      - name: Legacy integration baseline
+        id: legacy-integration
+        continue-on-error: true
+        run: pnpm --filter @kepenk/web test:integration
+      - name: Record known integration debt
+        if: steps.legacy-integration.outcome == 'failure'
+        run: >-
+          echo "::warning title=Known legacy integration debt::Existing integration debt remains visible outside the Pilot-0 changed trust surface."
+  bundle-size:
+    runs-on: depot-ubuntu-24.04-16 # was: ubuntu-latest. Depot CI 16 CPU / 64 GB.
+    needs: lint-and-type
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '20'}
+      - name: Enable pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@9.1.0 --activate
+      - run: pnpm install --frozen-lockfile
+      - name: Legacy monorepo build baseline
+        id: legacy-build
+        continue-on-error: true
+        run: pnpm build
+      - name: Record known build debt
+        if: steps.legacy-build.outcome == 'failure'
+        run: >-
+          echo "::warning title=Known legacy build debt::Existing monorepo build debt remains visible outside the Pilot-0 changed trust surface."
+  trust-browser-smoke:
+    if: github.event_name == 'pull_request'
+    runs-on: depot-ubuntu-24.04-16 # was: ubuntu-latest. Depot CI 16 CPU / 64 GB.
+    needs: lint-and-type
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '20'}
+      - name: Enable pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@9.1.0 --activate
+      - run: pnpm install --frozen-lockfile
+      - name: Run trust browser smoke
+        run: bash apps/web/test/e2e/trust-browser-smoke.sh
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: trust-browser-smoke-evidence
+          path: apps/web/test-results/trust-browser/
+  e2e-tests:
+    if: github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
+    runs-on: depot-ubuntu-24.04-16 # was: ubuntu-latest. Depot CI 16 CPU / 64 GB.
+    needs: [unit-tests, integration-tests]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '20'}
+      - name: Enable pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@9.1.0 --activate
+      - run: pnpm install --frozen-lockfile
+      - name: Install pinned Playwright test runner
+        run: pnpm --dir apps/web add --save-dev @playwright/test@1.63.0 --lockfile=false
+      - name: Install Playwright Chromium
+        run: pnpm --filter @kepenk/web exec playwright install --with-deps chromium
+      - name: Run Playwright critical paths
+        run: pnpm --filter @kepenk/web exec playwright test test/e2e/critical-paths.spec.ts --config=playwright.ci.config.ts --workers=1
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: apps/web/test-results/e2e-html/
+  lighthouse:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: depot-ubuntu-latest # was: ubuntu-latest. Mapped standard GitHub runner to Depot equivalent.
+    needs: e2e-tests
+    steps:
+      - uses: actions/checkout@v4
+      - uses: treosh/lighthouse-ci-action@v11
+        with:
+          configPath: ./lighthouserc.json
+  deploy-staging:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: depot-ubuntu-latest # was: ubuntu-latest. Mapped standard GitHub runner to Depot equivalent.
+    needs: [e2e-tests, lighthouse]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+      - name: Deploy to staging (canary)
+        run: |
+          gcloud run deploy kepenk-api-staging \
+            --image=gcr.io/$GCP_PROJECT/kepenk-api:${{ github.sha }} \
+            --region=$GCP_REGION \
+            --no-traffic \
+            --tag=canary
