@@ -174,6 +174,31 @@ describe('K5 Action Card experience metrics', () => {
     expect(metrics.actionSelections).toBe(1)
   })
 
+  it('does not let ignored stale evidence consume an outcomeId used by later valid evidence', () => {
+    const cards = [card({ cardId: 'a', revision: 2 })]
+    const sharedOutcomeId = 'shared-outcome'
+    const outcomes: ActionCardOutcomeEvent[] = [
+      { ...outcome('a', 'surfaced', '2026-09-24T10:00:00.000Z'), cardRevision: 2 },
+      {
+        ...outcome('a', 'action_selected', '2026-09-24T10:00:01.000Z', { actionId: 'open' }),
+        outcomeId: sharedOutcomeId,
+        cardRevision: 1,
+      },
+      {
+        ...outcome('a', 'action_selected', '2026-09-24T10:00:02.000Z', { actionId: 'open' }),
+        outcomeId: sharedOutcomeId,
+        cardRevision: 2,
+      },
+    ]
+
+    const metrics = deriveActionCardExperienceMetrics({ cards, outcomes })
+    expect(metrics.cardsSurfaced).toBe(1)
+    expect(metrics.cardsWithDecision).toBe(1)
+    expect(metrics.actionSelections).toBe(1)
+    expect(metrics.navigationSelections).toBe(1)
+    expect(metrics.medianTimeToDecisionMs).toBe(2000)
+  })
+
   it('ensures only the first valid decision per card contributes to metrics and rates', () => {
     const cards = [card({ cardId: 'a' })]
     const outcomes = [

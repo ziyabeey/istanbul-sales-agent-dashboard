@@ -59,13 +59,13 @@ export function deriveActionCardExperienceMetrics(input: {
   const processedOutcomeIds = new Set<string>()
 
   for (const event of ordered) {
-    if (processedOutcomeIds.has(event.outcomeId)) continue
-    processedOutcomeIds.add(event.outcomeId)
-
     const card = cardsById.get(event.cardId)
     if (!card || event.businessId !== card.businessId || event.cardRevision !== card.revision) continue
     const occurredAt = Date.parse(event.occurredAt)
     if (!Number.isFinite(occurredAt)) continue
+
+    if (processedOutcomeIds.has(event.outcomeId)) continue
+    processedOutcomeIds.add(event.outcomeId)
 
     if (event.type === 'surfaced') {
       const previous = surfacedAt.get(event.cardId)
