@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 import fs from 'node:fs'
 import path from 'node:path'
 import ts from 'typescript'
+import { isRetiredDemo } from '@/data/sablonlar/curation'
 import { getRenderableDemoTheme } from '@/lib/demoTheme'
 import { THEME_MAP } from '@kepenk/templates/src/registry/theme-map'
 
@@ -78,7 +79,7 @@ describe('legacy demo route convergence', () => {
     expect(getRenderableDemoTheme(themeId)).toBeNull()
   })
 
-  it.each([...available, ...unavailable, ...carpetThemes])('keeps %s on its exact server-side compatibility wrapper', themeId => {
+  it.each([...available, ...unavailable, ...carpetThemes].filter(id => !isRetiredDemo(id)))('keeps %s on its exact server-side compatibility wrapper', themeId => {
     const source = parse(path.join(demoRoot, themeId, 'client.tsx'))
     expect(imports(source)).toEqual(['../_components/RegisteredDemo'])
     expect(attributes(source, 'RegisteredDemo', 'themeId')).toEqual([themeId])

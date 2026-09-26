@@ -1,57 +1,71 @@
-# KG-01: unrecovered demo source containment
+# KG-01: premium-first demo curation
 
-## Boundary and evidence
+## Product decision, 26 September 2026
 
-Base candidate: `b5eb4551bacb7183b34becd0e45963eecbfa3d42`.
-CI/CD #304 (`36254135161`) failed during Docker page collection at
-`/demolar/oto-hizli`. Template Export Contract #4 reported 24 invalid named
-references for 18 missing CONFIG/BUSINESS names. They represent nine source
-IDs, not nine recovered designs:
+Ziya explicitly authorized keeping valuable, content-rich designs and removing
+empty or redundant demos, with special protection for the premium series.
+This supersedes the earlier requirement to recover every historical demo.
+Recovering the nine source-less designs below is no longer a KG-01 release gate.
+This is scope retirement, not a claim that missing designs have been restored.
 
-- `oto-dinamik`, `oto-guven`, `oto-hizli`, `oto-vip`
+## Preserved design assets
+
+Keep these HTML template candidates and their existing catalog entries intact:
+Obsidyen (`sablon-premium`), Çelik (`sektor-insaat-premium`),
+Titan (`sektor-spor-premium`), Papatya (`sektor-saglik-premium`),
+Prizma (`sektor-ajans-premium`) and Safir (`sektor-otel-premium`).
+Keep İpek (`sektor-guzellik-buyume`) as a relevant beauty-sector candidate.
+The whole `apps/web/src/data/sablonlar` HTML-source family is preserved in this
+first cut, along with all `*BespokeSections.tsx`, other section implementations,
+archived configs and twelve previously recovered historical config blobs.
+
+These are protected candidates, not confirmed production-quality templates.
+The user did not supply an exact premium-series ID. Protect both the premium
+HTML collection and the distinct Bespoke family until visual comparison.
+No visual, mobile, interaction or tenant-usage acceptance is claimed by file
+presence, source size or these tests.
+
+## First removal set
+
+Remove only `page.tsx` and `client.tsx` for these public demo routes:
+
+- `oto-dinamik`, `oto-guven`, `oto-hizli`, `oto-vip`, `oto-oto`
 - `restoran-fine`, `restoran-hizli`, `restoran-kafe`, `restoran-klasik`, `restoran-vip`
 
-The old `/demolar/oto-oto` URL requests `oto-vip`, not a different theme.
-Prior history recovery restored twelve distinct CONFIG/BUSINESS/CSS modules.
-Those original blobs, exports, IDs, sections and styles remain unchanged.
-No claim is made that all branches or external backups lack the nine sources.
+`oto-oto` was a duplicate URL for the absent `oto-vip` source. Twenty entry
+files are retired; no theme config, renderer or business-site file is deleted.
+Also remove root `create-routes.js`, the obsolete generator containing missing
+CONFIG/BUSINESS names that would recreate several of those entries.
 
-## Deliberate behavior change requiring review
+Prior CI #304 identified 24 invalid references for 18 missing names. #305
+contained these with static notFound wrappers. The cleanup now removes those
+wrappers and their placeholder metadata rather than treating them as product.
+The existing dynamic demo route performs the same server availability check
+and rejects retired IDs. The public catalog filters those IDs, including the
+old alias. Canonical theme data, tenant rendering and edit/publish APIs are not
+filtered by this public-demo policy.
 
-Keep the nine static URLs, but send their entry components through the
-existing `RegisteredDemo` server gate. Preserve each requested theme ID.
-The unchanged registry/resolver has no importer for those IDs, so the gate
-calls Next.js `notFound` before constructing the browser renderer. Do not
-invent data, alias to a different design, or emit business structured data.
+## Boundaries and rollback
 
-Six metadata modules previously read a missing BUSINESS value at module
-initialization. They now declare an explicit unavailable title/description
-and `robots: { index: false, follow: false }`, without importing missing data.
-The other page modules and the existing shared renderer are unchanged.
+Rollback anchor: `16ac356483d6df2c7b40558bd1a2144d8f2b41c9`.
+Keep the parent history; do not copy retired files into a runtime-imported
+archive. A future replacement is a new reviewed design, not automatic recovery.
 
-This contains a broken optional demo instead of allowing it to crash the
-whole application build. It is NOT template recovery or full product acceptance.
-A passing named-export census means active imports resolve, not that every
-planned demo is available. Independent review must accept this temporary
-404 behavior before a main merge. No route has been declared complete.
+No `/sites/[domain]` code, saved tenant data, publish snapshots, asset ownership,
+auth, payment, Core authority, Randevu, dependency, Docker or workflow policy
+changes. Live tenant usage has not been audited; therefore no shared theme
+source or persisted site data is deleted in this first cut.
 
-## Regression coverage
+## Acceptance and next curation cut
 
-`test/unit/unavailableDemoRoutes.test.ts` contains 25 cases: exact wrapper
-IDs, the real registry/resolver plus Next.js notFound behavior, actual imports
-of the six metadata modules, and a supported-theme positive control. Only
-the browser rendering dependency is isolated. These are not HTTP/browser tests.
-Existing template recovery and rendering tests remain in the CI selection.
+Actual unit tests cover absent entry files, real server notFound rejection,
+public-catalog removal, original premium HTML presence and supported-demo
+positive controls. The export/path checks and real Docker build/start/health/
+served-assets/native-sanitizer gates remain mandatory and unchanged.
 
-## Reopening each demo
-
-1. Recover and attribute its original source, or obtain explicit acceptance
-   for a newly authored replacement. Do not label a replacement as restored.
-2. Reconnect the loader/descriptor and check real CONFIG/BUSINESS/CSS values.
-3. Restore source-derived metadata and structured data; update the temporary
-   unavailable assertions instead of adding exceptions or skipping tests.
-4. Verify the exact URL and intended design in browser/visual acceptance.
-5. Complete exact-head Docker build, startup, health and served-assets checks.
-
-No auth, Randevu, dependencies, Docker, workflow gates, secrets or live traffic
-change is part of this containment patch. Source recovery remains open.
+For the broader cut: compare rendered premium and Bespoke candidates on mobile
+and desktop, retain distinct useful layouts, isolate valuable sections from
+weak demos, then check code references and saved-site usage before deleting
+shared sources. Do not prune by tier name, file size or generic placeholder
+counts alone. Current product goals remain real edit/save/publish/rollback,
+not maximizing the number of template IDs or regression cases.
