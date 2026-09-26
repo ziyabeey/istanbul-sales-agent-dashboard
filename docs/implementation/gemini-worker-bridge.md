@@ -102,3 +102,33 @@ Do not enable write mode until the read-only pilot demonstrates:
 7. bounded token/cost behavior
 
 Any later write-capable worker must remain unable to merge or deploy, and `main` stays protected by repository rules.
+
+
+## Warm environment reuse
+
+Manual `workflow_dispatch` runs may pass an existing Agent Platform
+`environment_id`. When supplied, the bridge sends it as the interaction
+`environment`, reusing the same managed sandbox filesystem and installed
+tooling without linking the new task to a previous interaction.
+
+This is intentionally filesystem reuse, not conversational continuation:
+
+- no `previous_interaction_id` is supplied;
+- the task prompt remains independently bounded;
+- repository state must still be fetched/reset explicitly by the worker;
+- branch and main protections remain unchanged;
+- environment reuse never grants merge or deployment authority.
+
+Every worker result records the effective environment ID so a coordinator can
+assign that warm environment to a later lane run.
+
+Example manual dispatch values:
+
+```text
+issue_number: 39
+task: Re-check the exact K4b blocker on current main.
+environment_id: env_CAEQ...
+```
+
+If `environment_id` is omitted, Agent Platform allocates a normal environment
+and the resulting environment ID is still reported for optional later reuse.

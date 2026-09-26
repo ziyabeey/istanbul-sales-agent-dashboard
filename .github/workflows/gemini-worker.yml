@@ -20,6 +20,10 @@ on:
         description: "Bounded read-only task for the Gemini worker"
         required: true
         type: string
+      environment_id:
+        description: "Optional existing Agent Platform environment ID for warm filesystem reuse"
+        required: false
+        type: string
 
 permissions:
   contents: read
@@ -76,5 +80,6 @@ jobs:
         env:
           GOOGLE_CLOUD_PROJECT: cs-project-ljhot8la
           GEMINI_WORKER_AGENT: kepenk-coder-nonprod
+          GEMINI_WORKER_ENVIRONMENT: ${{ inputs.environment_id || '' }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: node scripts/gemini-worker-bridge.mjs

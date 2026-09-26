@@ -9,6 +9,7 @@ const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const REPOSITORY = process.env.GITHUB_REPOSITORY || "ziyabeey/istanbul-sales-agent-dashboard";
 const EVENT_PATH = process.env.GITHUB_EVENT_PATH;
 const EVENT_NAME = process.env.GITHUB_EVENT_NAME;
+const ENVIRONMENT_ID = String(process.env.GEMINI_WORKER_ENVIRONMENT || "").trim() || null;
 
 if (!ACCESS_TOKEN) throw new Error("GOOGLE_OAUTH_ACCESS_TOKEN is required");
 if (!GITHUB_TOKEN) throw new Error("GITHUB_TOKEN is required");
@@ -131,6 +132,7 @@ async function callAgent(prompt) {
       background: true,
       store: true,
       agent: AGENT_ID,
+      ...(ENVIRONMENT_ID ? { environment: ENVIRONMENT_ID } : {}),
       input: [
         {
           type: "user_input",
@@ -162,6 +164,7 @@ async function callAgent(prompt) {
       interactionId: payload.id || null,
       status: payload.status || null,
       usage: payload.usage || null,
+      environmentId: payload.environment_id || ENVIRONMENT_ID,
     };
   }
 
@@ -172,6 +175,7 @@ async function callAgent(prompt) {
   let buffer = "";
   let output = "";
   let interactionId = null;
+  let environmentId = ENVIRONMENT_ID;
   let status = "in_progress";
   let usage = null;
 
@@ -204,6 +208,7 @@ async function callAgent(prompt) {
 
     const interaction = payload.interaction;
     if (interaction?.id) interactionId = interaction.id;
+    if (interaction?.environment_id) environmentId = interaction.environment_id;
     if (interaction?.status) status = interaction.status;
     if (interaction?.usage) usage = interaction.usage;
 
@@ -231,7 +236,7 @@ async function callAgent(prompt) {
     );
   }
 
-  return { text: output.trim(), interactionId, status, usage };
+  return { text: output.trim(), interactionId, environmentId, status, usage };
 }
 
 async function postComment(issueNumber, result, trigger) {
@@ -241,6 +246,7 @@ async function postComment(issueNumber, result, trigger) {
     `**Worker:** \`${AGENT_ID}\``,
     `**Trigger:** \`${trigger}\``,
     `**Interaction:** \`${result.interactionId || "unknown"}\``,
+    `**Environment:** \`${result.environmentId || "unknown"}\``,
     `**Status:** \`${result.status || "unknown"}\``,
     usage.total_tokens != null ? `**Tokens:** \`${usage.total_tokens}\`` : null,
   ]
@@ -288,6 +294,7 @@ console.log(
       issueNumber: resolved.issueNumber,
       trigger: resolved.trigger,
       interactionId: result.interactionId,
+      environmentId: result.environmentId,
       status: result.status,
       totalTokens: result.usage?.total_tokens ?? null,
     },
