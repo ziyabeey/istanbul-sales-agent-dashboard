@@ -38,8 +38,8 @@ async function loadFirebaseAdmin() {
         FieldValue: { increment: vi.fn() },
     }))
 
-    const module = await import('@/lib/firebaseAdmin')
-    return { module, initializeApp, cert, applicationDefault, getFirestore, db }
+    const firebaseAdminModule = await import('@/lib/firebaseAdmin')
+    return { firebaseAdminModule, initializeApp, cert, applicationDefault, getFirestore, db }
 }
 
 describe('firebaseAdmin runtime credentials', () => {
@@ -73,7 +73,7 @@ describe('firebaseAdmin runtime credentials', () => {
             projectId: 'cs-project-ljhot8la',
         })
         expect(ctx.getFirestore).toHaveBeenCalledTimes(1)
-        expect(ctx.module.adminDb).toBe(ctx.db)
+        expect(ctx.firebaseAdminModule.adminDb).toBe(ctx.db)
     })
 
     it('legacy complete credential set remains supported', async () => {
@@ -102,6 +102,6 @@ describe('firebaseAdmin runtime credentials', () => {
         expect(ctx.applicationDefault).not.toHaveBeenCalled()
         expect(ctx.cert).not.toHaveBeenCalled()
         expect(ctx.getFirestore).not.toHaveBeenCalled()
-        expect(ctx.module.adminDb).toBeNull()
+        expect(ctx.firebaseAdminModule.adminDb).toBeNull()
     })
 })
