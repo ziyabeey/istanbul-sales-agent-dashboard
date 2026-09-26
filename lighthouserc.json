@@ -6,7 +6,7 @@
         "http://127.0.0.1:3000/giris"
       ],
       "numberOfRuns": 1,
-      "startServerCommand": "corepack enable && corepack prepare pnpm@9.1.0 --activate && pnpm install --frozen-lockfile && pnpm --filter @kepenk/web dev:smoke",
+      "startServerCommand": "corepack enable && corepack prepare pnpm@9.1.0 --activate && pnpm install --frozen-lockfile && pnpm --filter @kepenk/web build && pnpm --filter @kepenk/web start --hostname 127.0.0.1 --port 3000",
       "startServerReadyPattern": "Ready in|Local:",
       "startServerReadyTimeout": 180000,
       "settings": {
