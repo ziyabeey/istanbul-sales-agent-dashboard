@@ -19,7 +19,7 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: '20' }
       - name: Check Cloud Run packaging regressions
-        run: node --test scripts/smoke-cloud-run-assets.test.mjs
+        run: node --test scripts/smoke-cloud-run-assets.test.mjs scripts/build-cloud-run-evidence.test.mjs
       - name: Enable pnpm
         run: |
           corepack enable
@@ -281,7 +281,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Build Cloud Run image
-        run: docker build -t kepenk-cloudrun-smoke:${{ github.sha }} .
+        env:
+          CLOUD_RUN_SOURCE_SHA: ${{ github.event.pull_request.head.sha }}
+        run: bash scripts/build-cloud-run-evidence.sh "kepenk-cloudrun-smoke:${{ github.sha }}"
+      - name: Preserve Cloud Run build evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cloud-run-build-evidence-${{ github.sha }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/cloud-run-build-evidence/
+          retention-days: 3
+          if-no-files-found: warn
       - name: Start Cloud Run image
         run: docker run -d --name kepenk-cloudrun-smoke -p 18080:8080 kepenk-cloudrun-smoke:${{ github.sha }}
       - name: Probe health endpoint
