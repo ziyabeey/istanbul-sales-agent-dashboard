@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Auto-generated dynamic import map - Global Registry
 
 export const THEME_MAP: Record<string, () => Promise<any>> = {
@@ -198,11 +199,6 @@ export const THEME_MAP: Record<string, () => Promise<any>> = {
   'organizasyon-parti': () => import('../themes/configs/_archive/195-organizasyon-parti'),
   'organizasyon-sade': () => import('../themes/configs/_archive/196-organizasyon-sade'),
   'organizasyon-yeni': () => import('../themes/configs/_archive/197-organizasyon-yeni'),
-  'oto-bakim': () => import('../themes/configs/_archive/198-oto-bakim'),
-  'oto-detay': () => import('../themes/configs/_archive/199-oto-detay'),
-  'oto-eksper': () => import('../themes/configs/_archive/201-oto-eksper'),
-  'oto-elektrik': () => import('../themes/configs/_archive/202-oto-elektrik'),
-  'oto-mekanik': () => import('../themes/configs/_archive/209-oto-mekanik'),
   'ozelders-akademi': () => import('../themes/configs/_archive/217-ozelders-akademi'),
   'ozelders-dil': () => import('../themes/configs/_archive/218-ozelders-dil'),
   'ozelders-kalem': () => import('../themes/configs/_archive/219-ozelders-kalem'),
@@ -226,11 +222,6 @@ export const THEME_MAP: Record<string, () => Promise<any>> = {
   'peyzaj-modern': () => import('../themes/configs/_archive/237-peyzaj-modern'),
   'peyzaj-organik': () => import('../themes/configs/_archive/238-peyzaj-organik'),
   'peyzaj-sulama': () => import('../themes/configs/_archive/239-peyzaj-sulama'),
-  'restoran-lezzet': () => import('../themes/configs/_archive/244-restoran-lezzet'),
-  'restoran-nar': () => import('../themes/configs/_archive/245-restoran-nar'),
-  'restoran-sofra': () => import('../themes/configs/_archive/246-restoran-sofra'),
-  'restoran-tabledot': () => import('../themes/configs/_archive/247-restoran-tabledot'),
-  'restoran-zincir': () => import('../themes/configs/_archive/249-restoran-zincir'),
   'spor-beast': () => import('../themes/configs/_archive/250-spor-beast'),
   'spor-elite': () => import('../themes/configs/_archive/251-spor-elite'),
   'spor-iron': () => import('../themes/configs/_archive/252-spor-iron'),

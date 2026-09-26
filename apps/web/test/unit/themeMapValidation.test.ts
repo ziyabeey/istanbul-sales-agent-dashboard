@@ -1,41 +1,45 @@
+import { describe, expect, it } from 'vitest'
+import { THEME_MAP } from '@kepenk/templates/src/registry/theme-map'
 import fs from 'node:fs'
 import path from 'node:path'
-import { describe, expect, it } from 'vitest'
 
-describe('Theme Map Registry Validation Guard', () => {
-  it('ensures all imported paths in theme-map.ts physically exist on disk', () => {
-    // Resolve paths relative to the monorepo workspace root
-    const themeMapPath = path.resolve(__dirname, '../../../../packages/templates/src/registry/theme-map.ts')
-    expect(fs.existsSync(themeMapPath)).toBe(true)
+describe('Theme Map Validation Guard', () => {
+  it('verifies that every dynamic import in THEME_MAP has a physically existing target on disk', () => {
+    // Resolve the path to the packages/templates/src/registry folder
+    // Since we are running the test under apps/web, let's find the absolute workspace root first
+    const workspaceRoot = path.resolve(__dirname, '../../../../')
+    const registryDir = path.join(workspaceRoot, 'packages/templates/src/registry')
 
-    const registryDir = path.dirname(themeMapPath)
-    const content = fs.readFileSync(themeMapPath, 'utf-8')
+    const mapKeys = Object.keys(THEME_MAP)
+    expect(mapKeys.length).toBeGreaterThan(0)
 
-    // Regex to match imports, e.g. import('../themes/configs/_archive/001-asansor-bina')
-    const importRegex = /'[^']+':\s*\(\)\s*=>\s*import\('([^']+)'\)/g
+    // Read theme-map.ts to extract import paths statically
+    const themeMapFile = path.join(registryDir, 'theme-map.ts')
+    const content = fs.readFileSync(themeMapFile, 'utf8')
+
+    // Regex to match import lines like: 'theme-id': () => import('path')
+    const pattern = /'([^']+)':\s*\(\)\s*=>\s*import\('([^']+)'\)/g
     let match
-    const missingTargets: string[] = []
+    let checkedCount = 0
 
-    while ((match = importRegex.exec(content)) !== null) {
-      const importPath = match[1]
-      const resolvedPath = path.resolve(registryDir, importPath)
+    while ((match = pattern.exec(content)) !== null) {
+      const themeId = match[1]
+      const importPath = match[2]
 
-      // A target exists if it is a TS file, TSX file, or a folder with index.ts/index.tsx
-      const possiblePaths = [
-        resolvedPath,
-        resolvedPath + '.ts',
-        resolvedPath + '.tsx',
-        path.join(resolvedPath, 'index.ts'),
-        path.join(resolvedPath, 'index.tsx'),
-      ]
-
-      const exists = possiblePaths.some(p => fs.existsSync(p))
+      // Resolve importPath relative to the registry directory
+      const resolvedPath = path.normalize(path.join(registryDir, importPath))
+      
+      // Check that the target directory exists
+      const exists = fs.existsSync(resolvedPath) && fs.statSync(resolvedPath).isDirectory()
+      
       if (!exists) {
-        missingTargets.push(importPath)
+        console.error(`Theme Map Validation Failed: Theme "${themeId}" points to nonexistent directory "${importPath}" (resolved: "${resolvedPath}")`)
       }
+
+      expect(exists).toBe(true)
+      checkedCount++
     }
 
-    // Fail the test if there are any referenced targets that are missing on disk
-    expect(missingTargets).toEqual([])
+    expect(checkedCount).toBe(mapKeys.length)
   })
 })
