@@ -19,6 +19,8 @@ function clearEnv() {
 }
 
 async function loadFirebaseAdmin() {
+    // test/setup.ts globally mocks this app module; opt this focused regression out.
+    vi.doUnmock('@/lib/firebaseAdmin')
     const initializeApp = vi.fn((options: Record<string, unknown>) => ({ options }))
     const getApps = vi.fn(() => [])
     const cert = vi.fn((value: Record<string, unknown>) => ({ kind: 'cert', value }))
