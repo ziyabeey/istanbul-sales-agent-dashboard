@@ -1,0 +1,39 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "incremental": false,
+    "baseUrl": "..",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "types": ["node", "vitest/globals", "next/types/global"]
+  },
+  // P0-08 hard-cut typecheck surface.
+  // `src/app/api/workers/site-ureticisi/route.ts` is deliberately not listed:
+  // its import chain (siteUreticisi -> siteSablonlari -> unified-catalog ->
+  // @kepenk/templates, and astGenerator -> astSchema) carries the legacy
+  // full-web typecheck debt that the continue-on-error baseline step already
+  // tracks. Its hard-cut (signed ServicePrincipal only) is enforced by the
+  // source assertions in unit/trustBaseline.characterization.test.ts and by
+  // the ServiceRequirement type-level assertion in
+  // unit/servicePrincipalAndJobs.test.ts, both of which are typechecked here.
+  "include": [
+    "../src/lib/serviceAuth.ts",
+    "../src/lib/esnafOwnership.ts",
+    "../src/app/api/auth/onboarding-otp-gonder/route.ts",
+    "../src/app/api/auth/dev-login/route.ts",
+    "../src/app/api/cron/kuyruk-isleyici/route.ts",
+    "../src/app/api/esnaf/[id]/route.ts",
+    "../src/app/api/cron/data-purge/route.ts",
+    "../src/app/api/cron/kvkk/route.ts",
+    "./fixtures/trust-baseline.ts",
+    "./unit/trustBaseline.characterization.test.ts",
+    "./unit/servicePrincipalAndJobs.test.ts",
+    "./unit/esnafOwnership.test.ts"
+  ],
+  "exclude": [
+    "../node_modules",
+    "../.next"
+  ]
+}

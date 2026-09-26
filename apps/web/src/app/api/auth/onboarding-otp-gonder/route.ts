@@ -14,34 +14,32 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: 'Geçersiz telefon numarası' }, { status: 400 })
         }
 
-        // Rate limit — Firestore `otp_sessions` kontrol (60sn)
         const rateOk = await otpRateKontrol(temizTelefon)
         if (!rateOk) {
             return NextResponse.json({ error: '60 saniye bekleyiniz' }, { status: 429 })
         }
 
-        let kod = Math.floor(100000 + Math.random() * 900000).toString()
+        const kod = Math.floor(100000 + Math.random() * 900000).toString()
 
         let smsBasari = false
         try {
             const smsResult = await otpGonderNetgsm(temizTelefon, kod)
             smsBasari = smsResult.success
-        } catch (smsErr: any) {
-            // console.warn('[OTP] SMS servisi hatası:', smsErr.message)
+        } catch {
+            smsBasari = false
         }
 
-        // SMS başarısızsa dev bypass — sabit kod 123456
+        // P0-08 hard cut: provider failure never creates a locally-verifiable bypass code.
         if (!smsBasari) {
-            kod = '123456'
-            // console.warn(`[OTP DEV BYPASS] SMS gönderilemedi. Bypass kodu aktif: ${kod} → ${temizTelefon}`)
+            return NextResponse.json(
+                { error: 'SMS servisi geçici olarak kullanılamıyor' },
+                { status: 503 }
+            )
         }
 
-        // Firestore'a kaydet (3dk TTL)
         await otpKaydet(temizTelefon, kod)
-
         return NextResponse.json({ ok: true })
-    } catch (error: any) {
-        // console.error('[ONBOARDING OTP GÖNDER]', error)
+    } catch {
         return NextResponse.json({ error: 'Sunucu hatası' }, { status: 500 })
     }
 }

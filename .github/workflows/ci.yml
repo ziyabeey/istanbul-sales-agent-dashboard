@@ -106,6 +106,22 @@ jobs:
           src/app/dashboard/layout.tsx
           test/unit/adminAudit.test.ts
           test/unit/impersonationSession.test.ts
+      - name: Lint P0-08 security hard cuts
+        run: >-
+          pnpm --filter @kepenk/web exec eslint
+          src/lib/serviceAuth.ts
+          src/lib/esnafOwnership.ts
+          src/app/api/auth/onboarding-otp-gonder/route.ts
+          src/app/api/auth/dev-login/route.ts
+          src/app/api/cron/kuyruk-isleyici/route.ts
+          src/app/api/workers/site-ureticisi/route.ts
+          'src/app/api/esnaf/[id]/route.ts'
+          src/app/api/cron/data-purge/route.ts
+          src/app/api/cron/kvkk/route.ts
+          test/fixtures/trust-baseline.ts
+          test/unit/trustBaseline.characterization.test.ts
+          test/unit/servicePrincipalAndJobs.test.ts
+          test/unit/esnafOwnership.test.ts
       - name: Validate trust browser smoke script
         run: bash -n apps/web/test/e2e/trust-browser-smoke.sh
       - name: Typecheck P0 trust baseline artifacts
@@ -124,6 +140,8 @@ jobs:
         run: pnpm --filter @kepenk/web exec tsc -p test/tsconfig.p0-06-admin-session.json --noEmit
       - name: Typecheck P0-07 admin audit and impersonation
         run: pnpm --filter @kepenk/web exec tsc -p test/tsconfig.p0-07-admin-audit.json --noEmit
+      - name: Typecheck P0-08 security hard cuts
+        run: pnpm --filter @kepenk/web exec tsc -p test/tsconfig.p0-08-hardcuts.json --noEmit
       - name: Legacy full web typecheck baseline
         id: legacy-web-typecheck
         continue-on-error: true

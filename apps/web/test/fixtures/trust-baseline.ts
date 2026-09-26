@@ -1,4 +1,4 @@
-export const TRUST_BASELINE_VERSION = 'p0-07@2026-09-16'
+export const TRUST_BASELINE_VERSION = 'p0-08@2026-09-16'
 
 export const CURRENT_TRUST_COOKIES = {
   businessSession: 'kepenk_session',
@@ -28,6 +28,7 @@ export const CURRENT_PRINCIPAL_SOURCES = {
   businessApi: [
     'apiGuard requireUserSession -> canonical Session -> User -> Membership -> RequestContext',
     'unmigrated legacy API callers may still use cryptographically verified esnafId JWT compatibility adapter',
+    'esnafOwnership requireSessionEsnaf / requireOwnedAppointment -> canonical business session, or bound audited ImpersonationSession for exactly its target; raw x-admin-token is never authority',
   ],
   adminProxy: [
     'admin_session cookie presence is UX-only; admin API performs authoritative validation',
@@ -37,7 +38,6 @@ export const CURRENT_PRINCIPAL_SOURCES = {
   ],
   service: [
     'signed ServicePrincipal bearer -> audience + subject + scope verification',
-    'selected worker routes may explicitly accept CRON_SECRET compatibility until P0-08',
   ],
   cron: ['legacy requireCronSecret remains for unmigrated cron routes'],
   adk: ['Authorization bearer == ADK_BEARER_TOKEN'],
@@ -56,17 +56,13 @@ export const CURRENT_CREDENTIAL_AUTHORITY = {
 
 export const CURRENT_SHARED_SECRET_SURFACES = [
   { id: 'admin-login', path: 'src/app/api/admin/login/route.ts', secret: 'ADMIN_LOGIN_SECRET', purpose: 'human admin login credential' },
-  { id: 'dev-login', path: 'src/app/api/auth/dev-login/route.ts', secret: 'ADMIN_SECRET_TOKEN', purpose: 'legacy development login compatibility' },
   { id: 'cron-api', path: 'src/lib/apiGuard.ts', secret: 'CRON_SECRET', purpose: 'legacy cron compatibility for routes not yet migrated' },
   { id: 'adk-api', path: 'src/lib/apiGuard.ts', secret: 'ADK_BEARER_TOKEN', purpose: 'ADK service authorization' },
 ] as const
 
-/** Risks intentionally still unresolved after P0-07. */
+/** Risks intentionally still unresolved after P0-08. */
 export const KNOWN_TRUST_RISKS = [
   'unmigrated_business_api_callers_can_still_use_legacy_esnafId_jwt_compatibility',
   'legacy_tenant_provider_tokens_still_live_on_esnaflar_root_until_w3',
-  'onboarding_sms_failure_enables_fixed_123456_code',
-  'dev_login_has_hardcoded_admin_secret_fallback',
   'unmigrated_cron_routes_still_use_shared_cron_secret',
-  'privacy_crons_can_report_simulated_success',
 ] as const

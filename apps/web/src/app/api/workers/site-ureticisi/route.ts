@@ -12,7 +12,6 @@ export async function POST(req: Request) {
             audience: SERVICE_AUDIENCES.siteGenerator,
             scopes: [SERVICE_SCOPES.siteGenerate],
             allowedSubjects: ['cloud-tasks'],
-            allowLegacyCronSecret: true,
         },
     })
     if (!guard.ok) return guard.response

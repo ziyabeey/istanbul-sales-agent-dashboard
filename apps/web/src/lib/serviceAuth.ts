@@ -1,4 +1,4 @@
-import { randomUUID, timingSafeEqual } from 'node:crypto'
+import { randomUUID } from 'node:crypto'
 import {
   SERVICE_AUDIENCES,
   SERVICE_SCOPES,
@@ -26,7 +26,6 @@ export interface ServiceRequirement {
   audience: string
   scopes: string[]
   allowedSubjects?: string[]
-  allowLegacyCronSecret?: boolean
   now?: Date
 }
 
@@ -35,12 +34,6 @@ function getServiceSecret(): Uint8Array | null {
   if (!raw) return null
   if (process.env.NODE_ENV === 'production' && raw.length < 32) return null
   return new TextEncoder().encode(raw)
-}
-
-function safeEqualText(left: string, right: string): boolean {
-  const a = Buffer.from(left)
-  const b = Buffer.from(right)
-  return a.length === b.length && timingSafeEqual(a, b)
 }
 
 function bearerToken(request: Request): string | null {
@@ -153,29 +146,8 @@ export function verifyServiceRequest(
   requirement: ServiceRequirement
 ): ServicePrincipal | null {
   const bearer = bearerToken(request)
-  if (bearer) {
-    const signed = verifyServiceToken(bearer, requirement)
-    if (signed) return signed
-  }
-
-  if (!requirement.allowLegacyCronSecret) return null
-
-  const legacySecret = process.env.CRON_SECRET?.trim()
-  if (!legacySecret) return null
-
-  const presented = request.headers.get('x-cron-secret')?.trim() || bearer
-  if (!presented || !safeEqualText(presented, legacySecret)) return null
-
-  const now = requirement.now ?? new Date()
-  return ServicePrincipalSchema.parse({
-    principalId: 'svc:legacy-cron-secret',
-    subject: 'legacy-cron-secret',
-    scopes: [...requirement.scopes],
-    authType: 'legacy_cron_secret',
-    issuedAt: now.toISOString(),
-    expiresAt: new Date(now.getTime() + 60_000).toISOString(),
-    invocationId: `legacy:${requirement.audience}`,
-  })
+  if (!bearer) return null
+  return verifyServiceToken(bearer, requirement)
 }
 
 export { SERVICE_AUDIENCES, SERVICE_SCOPES }

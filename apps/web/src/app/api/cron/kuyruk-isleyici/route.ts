@@ -21,7 +21,6 @@ async function processQueue(req: Request) {
             audience: SERVICE_AUDIENCES.queueProcessor,
             scopes: [SERVICE_SCOPES.queueProcess],
             allowedSubjects: ['cloud-tasks', 'cloud-scheduler'],
-            allowLegacyCronSecret: true,
         },
     })
     if (!guard.ok) return guard.response

@@ -50,12 +50,6 @@ async function yetkiKontrol(request: Request, hedefId: string): Promise<YetkiSon
         }
     }
 
-    // P0-08 removes this legacy compatibility verifier.
-    const adminToken = request.headers.get('x-admin-token')
-    if (adminToken && adminToken === process.env.ADMIN_SECRET_TOKEN) {
-        return { ok: true }
-    }
-
     const oturumEsnafId = await oturumDogrulaServer()
     if (oturumEsnafId && oturumEsnafId === hedefId) return { ok: true }
 
