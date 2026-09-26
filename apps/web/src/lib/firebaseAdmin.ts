@@ -1,32 +1,39 @@
-import { initializeApp, getApps, cert, App } from 'firebase-admin/app'
+import { initializeApp, getApps, cert, applicationDefault, App } from 'firebase-admin/app'
 import { getFirestore, Timestamp, FieldValue } from 'firebase-admin/firestore'
+import { getFirebaseRuntimeReadiness } from './firebaseRuntime'
 
 let app: App
 
-const hasCreds = !!(
-    process.env.FIREBASE_PROJECT_ID &&
-    process.env.FIREBASE_CLIENT_EMAIL &&
-    process.env.FIREBASE_PRIVATE_KEY
-)
+const firebaseRuntime = getFirebaseRuntimeReadiness()
+let firestoreReady = false
 
 if (!getApps().length) {
-    if (hasCreds) {
+    if (firebaseRuntime.credentialMode === 'legacy') {
         app = initializeApp({
             credential: cert({
-                projectId: process.env.FIREBASE_PROJECT_ID!,
+                projectId: firebaseRuntime.projectId!,
                 clientEmail: process.env.FIREBASE_CLIENT_EMAIL!,
                 privateKey: process.env.FIREBASE_PRIVATE_KEY!.replace(/\\n/g, '\n'),
             }),
+            projectId: firebaseRuntime.projectId!,
         })
+        firestoreReady = true
+    } else if (firebaseRuntime.credentialMode === 'adc') {
+        app = initializeApp({
+            credential: applicationDefault(),
+            projectId: firebaseRuntime.projectId!,
+        })
+        firestoreReady = true
     } else {
-        // Build-time stub — no real Firestore connection
+        // Build-time / unconfigured stub. Runtime readiness rejects promotion.
         app = initializeApp({ projectId: 'build-time-stub' })
     }
 } else {
     app = getApps()[0]
+    firestoreReady = firebaseRuntime.ready || app.options.projectId !== 'build-time-stub'
 }
 
-export const adminDb = hasCreds ? getFirestore(app) : (null as any)
+export const adminDb = firestoreReady ? getFirestore(app) : (null as any)
 export { Timestamp, FieldValue }
 
 // ─── Esnaf ─────────────────────────────────────────────────────────────────
@@ -202,4 +209,5 @@ export async function krediKullan(esnafId: string, limit: number): Promise<void>
         { merge: true }
     )
 }
+
 

@@ -48,7 +48,7 @@ jobs:
           pnpm --filter @kepenk/web exec eslint src/proxy.ts src/lib/apiGuard.ts src/lib/auth/businessSession.ts test/unit/requestGateConvergence.test.ts
       - name: Lint P0-04 service and durable jobs
         run: >-
-          pnpm --filter @kepenk/web exec eslint src/lib/serviceAuth.ts src/lib/jobs/durableJob.ts src/lib/cloudTasksClient.ts src/lib/islemKuyrugu.ts src/lib/apiGuard.ts src/lib/envReadiness.ts src/app/api/cron/kuyruk-isleyici/route.ts src/app/api/workers/site-ureticisi/route.ts test/unit/servicePrincipalAndJobs.test.ts
+          pnpm --filter @kepenk/web exec eslint src/lib/serviceAuth.ts src/lib/jobs/durableJob.ts src/lib/cloudTasksClient.ts src/lib/islemKuyrugu.ts src/lib/apiGuard.ts src/lib/envReadiness.ts src/lib/firebaseRuntime.ts src/lib/firebaseAdmin.ts test/unit/firebaseAdminAdc.test.ts src/app/api/cron/kuyruk-isleyici/route.ts src/app/api/workers/site-ureticisi/route.ts test/unit/servicePrincipalAndJobs.test.ts
       - name: Lint P0-05 credential authority
         run: >-
           pnpm --filter @kepenk/web exec eslint src/lib/tokenSifreleme.ts 'src/lib/credentials/**/*.ts' src/lib/twilioClient.ts src/lib/googleBusinessClient.ts src/lib/metaGraphClient.ts test/unit/credentialEnvelope.test.ts
