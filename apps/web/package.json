@@ -5,9 +5,11 @@
   "scripts": {
     "dev": "next dev",
     "dev:smoke": "next dev --webpack --hostname 127.0.0.1 --port 3000",
+    "prebuild": "npx tsx ../../scripts/generate-configs.ts && npx tsx ../../scripts/restore-missing-configs.ts",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "pretest": "npx tsx ../../scripts/generate-configs.ts && npx tsx ../../scripts/restore-missing-configs.ts",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:unit": "vitest run test/unit/",
