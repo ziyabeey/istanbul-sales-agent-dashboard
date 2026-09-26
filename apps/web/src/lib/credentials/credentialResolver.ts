@@ -10,6 +10,7 @@ import {
   type ResolvedCredential,
 } from '../../../../../packages/security/src/credentials'
 import { adminDb } from '../firebaseAdmin'
+import { CORE_CREDENTIAL_REFS } from '../core/config'
 import {
   credentialAktifKid,
   credentialEnvelopeCoz,
@@ -93,6 +94,20 @@ const ENV_CREDENTIALS: Readonly<Record<string, EnvCredentialDefinition>> = {
     ref: PLATFORM_CREDENTIAL_REFS.unsplash,
     fields: {
       accessKey: 'UNSPLASH_ACCESS_KEY',
+    },
+  },
+  // KC-02: Kepenk Core machine identity and optional HS256 verification secret.
+  // Both are confidential; safeEnvValue() refuses NEXT_PUBLIC_* by construction.
+  [CORE_CREDENTIAL_REFS.principal.credentialId]: {
+    ref: CORE_CREDENTIAL_REFS.principal,
+    fields: {
+      secret: 'CORE_PRINCIPAL_SECRET',
+    },
+  },
+  [CORE_CREDENTIAL_REFS.jwt.credentialId]: {
+    ref: CORE_CREDENTIAL_REFS.jwt,
+    fields: {
+      jwtSecret: 'SUPABASE_JWT_SECRET',
     },
   },
 }
